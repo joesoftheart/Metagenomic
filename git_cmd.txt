@@ -1,0 +1,57 @@
+git init <directory> //create git in directory
+git clone <repository> <directory> // clone project to directory
+git config --global user.name <name>  // config username
+git config --global user.email <email> // config email
+git add <file> <file> ... <file n> // add file
+git add -u //add tracked file all in <directory> 
+git add -A //tracked file and add untracked
+git rm <file>  // delete file in version control
+git add --all // all file and folder
+git commit -am "<commit message>"
+git commit -m "<commit message>" // commit file in index
+git commit -a -m "<commit message>" add files and commit files
+git log // show log message
+git checkout <commit> //before commit
+git checkout head~2 <file> // view file 2.v 
+git checkout HEAD <version>// old version 1.v
+git checkout master // change head to master
+git revert <commit>
+git reset HEAD --hard // back to last commit
+
+
+
+// git & github
+git clone <link in github> // clone repository to local
+ssh -T git@github.com // check connect gitub
+git clone git@github.com:joesoftheart/Metagenomic.git
+git push git@github.com:joesoftheart/Metagenomic.git master /or/ git push origin maser /or/ git push origin
+git pull git@github.com:joesoftheart/Metagenomic.git master /or/ git pull origin maser /or/ git pull origin
+
+
+
+//create ssh key
+1.ssh-keygen -t rsa -b 4096 -C "<email>" // keygen in folder .ssh
+2.create file name "config"
+	Host github.com
+		HostName github.com
+		User git
+		IdentityFile ~/.ssh/id_rsa
+3. open file id_rsa.pub and copy key
+4.eval "$(ssh-agent -s)"
+5.ssh-add ~/.ssh/id_rsa
+6.go to github click setting->SSH and GPG keys->New SSH key plase key
+
+ 
+// error conflict, error reject
+1.pull code 
+2.edit code 
+3.commit
+
+
+
+
+// file
+<project>/.git/config  //config file
+c:/Users/pc/.gitconfig //config file global
+<project>/.gitignore.txt // file ignore file ex = ignoreme.js
+
