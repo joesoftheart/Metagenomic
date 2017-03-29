@@ -6,6 +6,29 @@ if (isset($this->session->userdata['logged_in'])) {
 } else {
     header("location: main/login");
 } ?>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Language', 'Speakers (in millions)'], ['Other', 13], ['Other user', 83], ['Company', 1.4], ['Dogri', 2.3], ['Your storeges', 80], ['Free storegse', 300]]);
+
+        var options = {
+            title: 'Storeges',
+            legend: 'none',
+            pieSliceText: 'label',
+            slices: {  4: {offset: 0.2},
+                12: {offset: 0.3},
+                14: {offset: 0.4},
+                15: {offset: 0.5},
+            },
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    }
+</script>
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
@@ -24,19 +47,12 @@ if (isset($this->session->userdata['logged_in'])) {
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Pie Chart Example
-                </div>
                 <!-- /.panel-heading -->
+            <h3 class="page-header">Pie chart</h3>
                 <div class="panel-body">
-                    <div class="flot-chart">
-                        <div class="flot-chart-content" id="flot-pie-chart"></div>
-                    </div>
+                    <div id="piechart" style="width: 700px; height: 700px;"></div>
                 </div>
                 <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
         </div>
         <div class="col-lg-6">
             <div class="panel panel-default">
@@ -44,6 +60,9 @@ if (isset($this->session->userdata['logged_in'])) {
                     Progress bar
                 </div>
                 <div class="panel-body">
+
+                    <p>Server CPU Usage :<span class="description" id="show_cpu"></span>%</p>
+                    <p>Server Memory Usage :<span class="description" id="show_ram"></span>%</p>
                     <p>
                         <strong>Task 2</strong>
                         <span class="pull-right text-muted">20% Complete</span>
@@ -86,3 +105,34 @@ if (isset($this->session->userdata['logged_in'])) {
 
     </div>
 </div>
+
+
+
+<script>
+    window.setInterval(function(){
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url();?>used_resource/get_server_cpu_usage",
+            cache:false,
+            success:
+                function(data){
+                    $("#show_cpu").html(data);
+                }
+        });// you have missed this bracket
+        return false;
+    }, 3000);
+</script>
+<script>
+    window.setInterval(function(){
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url();?>used_resource/get_server_memory_usage",
+            cache:false,
+            success:
+                function(data){
+                    $("#show_ram").html(data);
+                }
+        });// you have missed this bracket
+        return false;
+    }, 3000);
+</script>
