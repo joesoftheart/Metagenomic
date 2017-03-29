@@ -314,7 +314,7 @@
                                 <a href="<?php echo site_url('all_projects')?>">All projects</a>
                             </li>
                             <li>
-                                <a href="#4">Share projects</a>
+                                <a href="<?php echo site_url('share_projects')?>">Share projects</a>
                             </li>
                             <li>
                                 <a href="#5">...</a>
@@ -326,7 +326,7 @@
                         <a href="#sample"><i class="fa fa-table fa-fw"></i> Samples<span class="fa arrow"></span></a>
                         <ul class="nav nav-secound-level">
                             <li>
-                                <a href="<?php echo site_url('samples') ?>">Add samples</a>
+                                <a href="<?php echo site_url('new_samples') ?>">Add samples</a>
                             </li>
                             <li>
                                 <a href="<?php echo site_url('all_samples')?> ">All samples</a>

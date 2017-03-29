@@ -48,3 +48,11 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        $('#dataTables-example2').DataTable({
+            responsive: true
+        });
+    });
+</script>

@@ -27,22 +27,56 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <?php echo form_open('new_projects/insert_project') ?>
                             <div class="form-group">
                                 <label>Project Name :</label>
-                                <input class="form-control" name="name_project" type="text" />
+                                <input class="form-control" name="project_name" type="text" />
                                 <label>Title Name :</label>
-                                <input class="form-control" name="title_project" type="text" />
+                                <input class="form-control" name="project_title" type="text" />
                                 <label>Detail samples :</label>
-                                <textarea class="form-control" name="detail_project" ></textarea>
+                                <textarea class="form-control" name="project_detail" ></textarea>
                                 <div class="form-group">
                                 <label>Permission :</label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="radioname" id="" value="joesoftheart">private
+                                    <input type="radio" name="project_permission" id="" value="private">private
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="radioname" id="" value="joesoftheart">public
+                                    <input type="radio" name="project_permission" id="" value="public">public
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="radioname" id="" value="joesoftheart">share people
+                                    <input type="radio" name="project_permission" id="" value="share">share people
                                 </label>
+                                </div>
+
+                                <label>Project type :</label>
+                                <select class="uk-select" name="project_type">
+                                    <option>18s</option>
+                                    <option>16s</option>
+                                    <option>its</option>
+                                </select><br>
+                                <div>
+                                    <?php
+                                    $path_owncloud = "../owncloud/data/" . $username . "/files/";
+                                    $select_folder = array_diff(scandir($path_owncloud, 1),array('.','..'));
+                                    ?>
+
+                                 <label>Select sample from owncloud :</label>
+                                    <select class="uk-select">
+                                        <?php foreach ($select_folder as $r) { ?>
+                                        <option name="path_owncloud" value="<?php echo $path_owncloud.$r;?>"><?php echo $r;?></option>
+                                        <?php  } ?>
+
+                                    </select>
+
+
+
+
+
+<!--                                    <br>-->
+<!--                                <input class="form-control" name="txtFileName" type="text" id="txtFileName">-->
+<!--                                    <br>-->
+<!--                                <input class="form-control" name="btnBrowse" type="button" id="btnBrowse" value="Browse" onClick="filName.click();">-->
+<!--                                <input class="form-control" type="file" name="filName" STYLE="display:none" onChange="txtFileName.value = this.value;">-->
+
+
+
                                 </div>
                             </div>
                             <button type="submit" name="save" value="submit" class="btn btn-default">Submit</button>

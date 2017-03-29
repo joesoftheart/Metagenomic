@@ -89,14 +89,6 @@ class Projects extends CI_Controller{
         $run17 = "../../../mothur/mothur '#summary.seqs(fasta=current, count=current)'";
         echo exec($run17);
         echo "run17";
-
-    }
-
-
-    public function run_prepare_texonomy(){
-        echo chdir("../test_run/exampledatatraining/exampledatatraining/");
-        echo getcwd();
-
         $run18 = "../../../mothur/mothur '#classify.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.count_table, reference=gg_13_8_99.fasta, taxonomy=gg_13_8_99.gg.tax, cutoff=80, processors=8)'";
         echo exec($run18);
         echo "run18";
@@ -119,8 +111,10 @@ class Projects extends CI_Controller{
         echo exec($run24);
         echo "run24";
 
-
     }
+
+
+
 
     public function run_prepare_phylotype(){
 

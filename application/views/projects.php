@@ -13,7 +13,7 @@ if (isset($this->session->userdata['logged_in'])) {
             <?php echo "User :" . $username . "   Email :" . $email . "   ID :" . $id . "    PROJECT_SESS :" . $id_project ;?>
             <br>
             <?php foreach ($rs as $r) {
-                echo "Name project :" . $r['name_project'];
+                echo "Name project :" . $r['project_name'];
             }
              ?>
             <ul class="breadcrumb">
@@ -28,8 +28,7 @@ if (isset($this->session->userdata['logged_in'])) {
         <div class="col-lg-10 col-lg-offset-1">
         <div>
             <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
-                <li ><a href="#">#preprocess</a></li>
-                <li ><a href="#">#prepare in taxonomy</a></li>
+                <li ><a href="#">#preprocess&&#prepare in taxonomy</a></li>
                 <li><a href="#">#prepare phylotype analysis</a></li>
                 <li><a href="#">#analysis</a></li>
                 <li><a href="#">#result&graph</a></li>
@@ -66,14 +65,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
                             <p id="show_prepro"></p>
                         </div>
-                    <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Run Prepro</button>
 
-                    </div><!-- close row form -->
-                    </form>
-
-                </li>
-                <li >
-                    <div class="col-lg-8 col-lg-offset-2">
                         <label>classify :</label>
                         <div class="row uk-margin">
                             <div class="col-lg-2">
@@ -93,14 +85,13 @@ if (isset($this->session->userdata['logged_in'])) {
                             </div>
 
                         </div>
-                        <div class="row uk-margin">
-
-                            <p id="show_pretex"></p>
-                        </div>
-                        <button id="btn_pretex"  name="submit" class="btn btn-default pull-right">Run Pretex</button>
+                    <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Run Prepro</button>
 
                     </div><!-- close row form -->
+                    </form>
+
                 </li>
+
                 <li >
                     <div class="col-lg-8 col-lg-offset-2">
                         <label>sub sample :</label>
@@ -210,26 +201,7 @@ if (isset($this->session->userdata['logged_in'])) {
         });
 
     </script>
-    <script>
-        $(document).ready(function () {
-            $("#btn_pretex").click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url();?>projects/run_prepare_texonomy",
-                    data: {text: $("#text").val()},
-                    dataType: "text",
-                    cache:false,
-                    success:
-                        function(data){
-                            $("#show_pretex").html(data);
-                        }
-                });// you have missed this bracket
-                return false;
-            });
 
-        });
-
-    </script>
     <script>
         $(document).ready(function () {
             $("#btn_prephy").click(function () {

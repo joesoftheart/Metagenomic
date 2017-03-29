@@ -30,9 +30,11 @@ class New_projects extends CI_Controller {
 
     public function  insert_project(){
         if ($this->input->post("save") != null){
-            $data = array("name_project" => $this->input->post("name_project"),
-                "title_project" => $this->input->post("title_project"));
-            echo $data['name_project'] . $data['title_project'];
+            $data = array("project_name" => $this->input->post("project_name"),
+                "project_title" => $this->input->post("project_title"),
+                "project_type" => $this->input->post("project_type"),
+                "project_permission" => $this->input->post("project_permission"),
+                "user_id" => $this->session->userdata["logged_in"]["_id"]);
 
             $this->mongo_db->insert('projects', $data);
             redirect("main", "refresh");
