@@ -28,7 +28,32 @@ if (isset($this->session->userdata['logged_in'])) {
                     <?php
                     $path_owncloud = "../owncloud/data/" . $username . "/files/";
                     $select_folder = array_diff(scandir($path_owncloud, 1),array('.','..'));
+
+                    $result_folder = array();
+                    $result_file = array();
+
+
+                    $cdir = scandir($path_owncloud);
+                    foreach ($cdir as $key => $value){
+
+                        if (!in_array($value,array('.', '..'))){
+                            if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)){
+                                $result_folder[$value] = $value;
+
+                            }else{
+
+                                $result_file[$value] = $value;
+                            }
+                        }
+                    }
+
+
+
                     ?>
+
+
+
+
 
 
 
@@ -40,7 +65,7 @@ if (isset($this->session->userdata['logged_in'])) {
                         <!-- .panel-heading -->
                         <div class="panel-body">
                             <div class="panel-group" id="accordion">
-                                <?php foreach ($select_folder as $r) { ?>
+                                <?php foreach ($result_folder as $r) { ?>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">

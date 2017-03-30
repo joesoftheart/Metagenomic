@@ -54,13 +54,35 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <div>
                                     <?php
                                     $path_owncloud = "../owncloud/data/" . $username . "/files/";
-                                    $select_folder = array_diff(scandir($path_owncloud, 1),array('.','..'));
+
+
+                                    $result_folder = array();
+                                    $result_file = array();
+                                    $cdir = scandir($path_owncloud);
+                                    foreach ($cdir as $key => $value)
+                                    {
+                                        if (!in_array($value,array(".","..")))
+                                        {
+                                            if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value))
+                                            {
+                                                $result_folder[$value] = $value;
+                                            }
+                                            else
+                                            {
+                                                $result_file[$value] = $value;
+                                            }
+                                        }
+                                    }
                                     ?>
 
+                                    <?php // print_r($result_file) ?>
+
+
+
                                  <label>Select sample from owncloud :</label>
-                                    <select class="uk-select">
-                                        <?php foreach ($select_folder as $r) { ?>
-                                        <option name="path_owncloud" value="<?php echo $path_owncloud.$r;?>"><?php echo $r;?></option>
+                                    <select class="uk-select" name="project_path">
+                                        <?php foreach ($result_folder as $r) { ?>
+                                        <option  value="<?php echo $path_owncloud.$r;?>"><?php echo $r;?></option>
                                         <?php  } ?>
 
                                     </select>
@@ -82,6 +104,7 @@ if (isset($this->session->userdata['logged_in'])) {
                             <button type="submit" name="save" value="submit" class="btn btn-default">Submit</button>
                             <button type="reset" name="reset"  class="btn btn-default">Clear</button>
                             </div>
+                            <?php echo form_close()?>
                         </div>
                     </div>
                 </div>
