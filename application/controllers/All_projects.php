@@ -41,9 +41,19 @@ class All_projects extends CI_Controller{
         $data = array("id_owner" => $this->input->post('id_owner'),
             "id_project" => $this->input->post('id_project'),
             "id_receiver" => $this->input->post("id_receiver"));
+        $query = $this->mongo_db->where($data)->get('share_project');
+        if (count($query) > 0){
 
-        $this->mongo_db->insert('share_project', $data);
-        echo "insert success";
+            echo "alrady exit";
+            sleep(2);
+            redirect("all_projects", "refresh");
+        }else {
+            echo "insert success";
+            $this->mongo_db->insert('share_project', $data);
+
+            sleep(2);
+            redirect("all_projects", "refresh");
+        }
 
     }
 

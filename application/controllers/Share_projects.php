@@ -21,22 +21,46 @@ class Share_projects extends CI_Controller{
         $id = ($this->session->userdata['logged_in']['_id']);
         $id = (string)$id;
 
-        $data_select = $this->mongo_db->where_or(array("id_receiver" => $id,"id_owner" => $id))->get('share_project');
-        $id_pro = array();
-        $i = 0;
-        foreach ($data_select as $r){
-            $id_pro[$i] =  $r['id_project'];
+        $share_project = $this->mongo_db->where(array("id_owner" => $id))->get('share_project');
+        $project = $this->mongo_db->select(array('_id', 'project_name'))->get('projects');
+        $receiver_user = $this->mongo_db->select(array("_id","user_name"))->get('user_login');
+        $project_show = array();
+
+        $i =0;
+        foreach ($share_project as $id_share){
+            foreach ($project as $id_pro) {
+                foreach ($receiver_user as $id_reci) {
+                    if ($id_pro['_id'] == $id_share['id_project'] and $id_reci['_id'] == $id_share['id_receiver']) {
+                        $project_show[$i]['owner_name'] = $this->session->userdata['logged_in']['username'];
+                        $project_show[$i]['project_name'] = $id_pro['project_name'];
+                        $project_show[$i]['receiver_name'] = $id_reci['user_name'];
+                        $project_show[$i]['id_share'] = $id_share['_id'];
+
+
+                    }
+                }
+            }
             $i++;
         }
-        print_r($id_pro);
-        $data['rs_share'] = $this->mongo_db->where_in($id_pro)->get('projects');
-        print_r($data);
 
 
+        $data['rs'] = $project_show;
+
+       // $data['rs'] = $this->mongo_db->where_in('_id',$project_show)->get('projects');
 
         $this->load->view('header');
-        // $this->load->view('share_projects',$data);
+        $this->load->view('share_projects',$data);
         $this->load->view('footer');
+
+    }
+
+    public function delete_your_share($id){
+        // echo $id;
+        $this->mongo_db->where(array("_id" => new MongoId($id)))->delete('share_project');
+        redirect("share_projects", "refresh");
+
+
+
 
     }
 

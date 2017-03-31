@@ -23,31 +23,28 @@ if (isset($this->session->userdata['logged_in'])) {
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <h4 class="page-header">share with you</h4>
+            <h4 class="page-header">your share</h4>
 
             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                 <tr>
-                    <th>Project Name</th>
-                    <th>Project Title</th>
-                    <th>Permission</th>
-                    <th>Type</th>
-                    <th>Samples</th>
+                    <th>Owner Name</th>
+                    <th>Project Name<</th>
+                    <th>Receiver Name</th>
+                    <th>Manage</th>
                 </tr>
                 </thead>
                 <tbody><?php if ($rs != null) { ?>
                 <?php foreach ($rs as $r) { ?>
-                        <?php if ($r['project_permission'] == "share"){ ?>
+
                     <tr class="odd gradeX">
-                        <td><?php echo $r['project_name'];?></td>
-                        <td><?php echo  $r['project_title'];?></td>
-                        <td><?php echo $r['project_permission']; ?></td>
-                        <td class="center"><?php echo $r['project_type'];?></td>
-                        <td class="center"><?php echo "555"; ?></td>
+                        <td><?php echo $r['owner_name'];?></td>
+                        <td><?php echo  $r['project_name'];?></td>
+                        <td><?php echo $r['receiver_name'] ?></td>
+                        <td class="center"><?php echo anchor('share_projects/delete_your_share/'.$r['id_share'],$r['id_share']."<--Delete"); ?></td>
                     </tr>
                         <?php  } ?>
                 <?php  } ?>
-                <?php  } ?>
                 </tbody>
             </table>
             <!-- /.table-responsive -->
@@ -56,34 +53,34 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
 
-            <h4 class="page-header">other people share</h4>
-
-            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example2">
-                <thead>
-                <tr>
-                    <th>Project Name</th>
-                    <th>Project Title</th>
-                    <th>Permission</th>
-                    <th>Type</th>
-                    <th>Samples</th>
-                </tr>
-                </thead>
-                <tbody><?php if ($rs != null) { ?>
-                    <?php foreach ($rs as $r) { ?>
-                        <?php if ($r['project_permission'] == "public") {?>
-                        <tr class="odd gradeX">
-                            <td><?php echo $r["project_name"]?></td>
-                            <td><?php echo $r["project_title"]?></td>
-                            <td><?php echo $r["project_permission"] ?></td>
-                            <td class="center"><?php echo $r["project_type"]?></td>
-                            <td class="center"><?php echo "555" ?></td>
-                        </tr>
-                            <?php } ?>
-                    <?php  } ?>
-                <?php  } ?>
-                </tbody>
-            </table>
-            <!-- /.table-responsive -->
+<!--            <h4 class="page-header">other people share</h4>-->
+<!---->
+<!--            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example2">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>Project Name</th>-->
+<!--                    <th>Project Title</th>-->
+<!--                    <th>Permission</th>-->
+<!--                    <th>Type</th>-->
+<!--                    <th>Samples</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>--><?php //if ($rs != null) { ?>
+<!--                    --><?php //foreach ($rs as $r) { ?>
+<!--                        --><?php //if ($r['project_permission'] == "public") {?>
+<!--                        <tr class="odd gradeX">-->
+<!--                            <td>--><?php //echo $r["project_name"]?><!--</td>-->
+<!--                            <td>--><?php //echo $r["project_title"]?><!--</td>-->
+<!--                            <td>--><?php //echo $r["project_permission"] ?><!--</td>-->
+<!--                            <td class="center">--><?php //echo $r["project_type"]?><!--</td>-->
+<!--                            <td class="center">--><?php //echo "555" ?><!--</td>-->
+<!--                        </tr>-->
+<!--                            --><?php //} ?>
+<!--                    --><?php // } ?>
+<!--                --><?php // } ?>
+<!--                </tbody>-->
+<!--            </table>-->
+<!--            <!-- /.table-responsive -->
 
 
 
