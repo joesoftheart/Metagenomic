@@ -32,6 +32,7 @@ if (isset($this->session->userdata['logged_in'])) {
                             <th>Permission</th>
                             <th>Type</th>
                             <th>Samples</th>
+                            <th>Manage</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -42,8 +43,42 @@ if (isset($this->session->userdata['logged_in'])) {
                             <td><?php echo $r["project_permission"] ?></td>
                             <td class="center"><?php echo $r["project_type"]?></td>
                             <td class="center"><?php echo "555" ?></td>
+                            <td><?php echo anchor("edit_project/edit_project/".$r['_id'],"Edit")?>&nbsp;
+                                <?php echo anchor("all_projects/delete_project/".$r['_id'],"Delete")
+                                ?><a href="#modal-sections<?php echo $r['_id']?>" uk-toggle> Share</a></td>
+
+
+                            <div id="modal-sections<?php echo $r['_id']?>" uk-modal="center: true">
+                                <form action="all_projects/share_project_to" method="post">
+                                <div class="uk-modal-dialog">
+                                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                                    <div class="uk-modal-header">
+                                        <h2 class="uk-modal-title">Project Name : <?php echo $r['project_name'];?></h2>
+                                    </div>
+                                    <div class="uk-modal-body">
+                                        <p><?php echo $r['project_name'];?><br><?php echo $r['project_title'];?><br> </p>
+                                        <p>Share to :</p>
+                                        <input type="hidden" name="id_owner" id="id_owner" value="<?php echo $id;?>">
+                                        <input type="hidden" name="id_project" id="id_project" value="<?php echo $r['_id'];?>">
+                                        <select name="id_receiver" id="id_receiver">
+
+                                            <?php foreach ($rs_user as $ru) { ?>
+                                            <option value="<?php echo $ru['_id']; ?>"><?php echo $ru['user_name'];  ?></option>
+                                            <?php   } ?>
+
+                                        </select>
+                                    </div>
+                                    <div class="uk-modal-footer uk-text-right">
+                                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                        <button id="btn_share" class="uk-button uk-button-primary" type="submit">Save</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+
                         </tr>
                         <?php  } ?>
+                        <p id="show_success"></p>
                         </tbody>
                     </table>
                     <!-- /.table-responsive -->
@@ -51,3 +86,24 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
     </div>
 </div>
+
+<script>
+//    $(document).ready(function () {
+//        $("#btn_share").click(function () {
+//            $.ajax({
+//                type: "POST",
+//                url: "<?php //echo base_url();?>//all_projects/share_project_to",
+//                data: {id_owner: $("#id_owner").val(),id_project: $("#id_project").val(),id_receiver: $("#id_receiver").val()},
+//                dataType: "text",
+//                cache:false,
+//                success:
+//                    function(data){
+//                        $("#show_success").html(data);
+//                    }
+//            });// you have missed this bracket
+//            return false;
+//        });
+//
+//    });
+
+</script>

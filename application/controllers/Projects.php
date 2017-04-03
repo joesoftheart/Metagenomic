@@ -28,8 +28,10 @@ class Projects extends CI_Controller{
             $this->session->set_userdata($ar);
         }
 
+        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
 
-        $this->load->view('header');
+
+        $this->load->view('header',$data);
         $this->load->view('projects',$data);
         $this->load->view('footer');
     }

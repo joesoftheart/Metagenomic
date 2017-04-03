@@ -11,11 +11,14 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
+       $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+
+
         //$this->load->library('mongo_db', array('activate'=>'metagenomic_db'),'mongo_db');
         $res = $this->mongo_db->get_where('projects',array("user_id" => $this->session->userdata["logged_in"]["_id"]));
         $data['rs'] = $res;
        // print_r($res);
-        $this->load->view('header');
+        $this->load->view('header',$data);
 		$this->load->view('index',$data);
         $this->load->view('footer');
 	}

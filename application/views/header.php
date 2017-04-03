@@ -101,44 +101,21 @@
                     <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-messages">
+                    <?php foreach ($rs_mes as $rs_v) { ?>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo site_url('view_message/view_message/'.$rs_v['_id'])?>">
                             <div>
-                                <strong>JoesoftHeart</strong>
+                                <strong><?php echo $rs_v['message_title'];?></strong>
                                 <span class="pull-right text-muted">
                                         <em>Yesterday</em>
                                     </span>
                             </div>
-                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            <div><?php echo $rs_v['message_detail'];?></div>
                         </a>
                     </li>
-                    <li class="divider"></li>
+                    <?php  } ?>
                     <li>
-                        <a href="#">
-                            <div>
-                                <strong>Pondkumiko</strong>
-                                <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                            </div>
-                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <strong>Bankyakuza</strong>
-                                <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                            </div>
-                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#">
+                        <a class="text-center" href="<?php  echo site_url('Messages')?>">
                             <strong>Read All Messages</strong>
                             <i class="fa fa-angle-right"></i>
                         </a>
@@ -146,6 +123,7 @@
                 </ul>
                 <!-- /.dropdown-messages -->
             </li>
+
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">

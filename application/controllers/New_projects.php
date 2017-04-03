@@ -21,8 +21,8 @@ class New_projects extends CI_Controller {
 
     public function index(){
 
-
-        $this->load->view('header');
+        $data['rs_mes'] = $this->mongo_db->get('messages');
+        $this->load->view('header',$data);
         $this->load->view('new_projects');
         $this->load->view('footer');
 
@@ -32,8 +32,10 @@ class New_projects extends CI_Controller {
         if ($this->input->post("save") != null){
             $data = array("project_name" => $this->input->post("project_name"),
                 "project_title" => $this->input->post("project_title"),
+                "project_detail" => $this->input->post("project_detail"),
                 "project_type" => $this->input->post("project_type"),
                 "project_permission" => $this->input->post("project_permission"),
+                "project_path" => $this->input->post("project_path"),
                 "user_id" => $this->session->userdata["logged_in"]["_id"]);
 
             $this->mongo_db->insert('projects', $data);
