@@ -36,7 +36,7 @@ class Projects extends CI_Controller{
 
     public function run_preprocess(){
          echo chdir("../test_run/exampledatatraining/exampledatatraining/");
-         echo getcwd();
+         echo getcwd();  
 
          $run1 = "../../../mothur/mothur '#make.contigs(file=stability.files, processors=8)'";
          echo exec($run1);
