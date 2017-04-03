@@ -17,6 +17,8 @@ class Share_projects extends CI_Controller{
 
     public function index(){
 
+        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+
       //  $data['rs'] = $this->mongo_db->get('projects');
         $id = ($this->session->userdata['logged_in']['_id']);
         $id = (string)$id;
@@ -48,7 +50,7 @@ class Share_projects extends CI_Controller{
 
        // $data['rs'] = $this->mongo_db->where_in('_id',$project_show)->get('projects');
 
-        $this->load->view('header');
+        $this->load->view('header',$data);
         $this->load->view('share_projects',$data);
         $this->load->view('footer');
 

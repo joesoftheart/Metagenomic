@@ -20,10 +20,11 @@ class Used_resource extends CI_Controller{
     }
 
     public function index(){
+        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
 //        $data_cpu = $this->get_server_cpu_usage();
 //        $data_ram = $this->get_server_memory_usage();
 //        $data['rs'] = array("data_cpu" => $data_cpu, "data_ram" => $data_ram);
-        $this->load->view('header');
+        $this->load->view('header',$data);
         $this->load->view('used_resource');
         $this->load->view('footer');
 

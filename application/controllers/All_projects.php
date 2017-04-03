@@ -23,8 +23,8 @@ class All_projects extends CI_Controller{
         //$data['rs'] = $this->mongo_db->where_in_all('user_id', array($this->session->userdata["logged_in"]["_id"]))->get('projects');
 
         $data['rs_user'] = $this->mongo_db->get('user_login');
-
-        $this->load->view('header');
+        $data['rs_mes'] = $this->mongo_db->get('messages');
+        $this->load->view('header',$data);
         $this->load->view('all_projects',$data);
         $this->load->view('footer');
 

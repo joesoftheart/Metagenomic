@@ -45,7 +45,7 @@ if (isset($this->session->userdata['logged_in'])) {
                             <td class="center"><?php echo "555" ?></td>
                             <td><?php echo anchor("edit_project/edit_project/".$r['_id'],"Edit")?>&nbsp;
                                 <?php echo anchor("all_projects/delete_project/".$r['_id'],"Delete")
-                                ?><a href="#modal-sections<?php echo $r['_id']?>" uk-toggle> Open</a></td>
+                                ?><a href="#modal-sections<?php echo $r['_id']?>" uk-toggle> Share</a></td>
 
 
                             <div id="modal-sections<?php echo $r['_id']?>" uk-modal="center: true">

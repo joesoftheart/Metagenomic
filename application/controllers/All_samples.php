@@ -17,8 +17,9 @@ class All_samples extends CI_Controller{
     }
 
     public function index(){
+        $data['rs_mes'] = $this->mongo_db->get('messages');
 
-        $this->load->view('header');
+        $this->load->view('header',$data);
         $this->load->view('all_samples');
         $this->load->view('footer');
 

@@ -19,8 +19,9 @@ class Read_file extends CI_Controller{
     }
 
     public function index(){
+        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
 
-        $this->load->view('header');
+        $this->load->view('header',$data);
         $this->load->view('read_file');
         $this->load->view('footer');
 

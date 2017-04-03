@@ -21,8 +21,8 @@ class New_projects extends CI_Controller {
 
     public function index(){
 
-
-        $this->load->view('header');
+        $data['rs_mes'] = $this->mongo_db->get('messages');
+        $this->load->view('header',$data);
         $this->load->view('new_projects');
         $this->load->view('footer');
 

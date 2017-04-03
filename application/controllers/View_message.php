@@ -3,28 +3,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Created by PhpStorm.
  * User: root
- * Date: 3/7/17
- * Time: 5:48 PM
+ * Date: 4/3/17
+ * Time: 9:32 PM
  */
-class Samples extends CI_Controller{
 
+
+
+class View_message extends CI_Controller{
     public function __construct()
     {
-
-
         parent::__construct();
-        $this->load->helper('url');
-        $CI = &get_instance();
-        $CI->load->library("session");
+
     }
 
-    public function index(){
+
+    public function view_message($id){
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+        $data['rs_message'] = $this->mongo_db->get_where('messages',array("_id" => new \MongoId($id)));
         $this->load->view('header',$data);
-        $this->load->view('samples');
+        $this->load->view('view_message',$data);
         $this->load->view('footer');
 
+
+
+
+
     }
+
+
+
 
 
 }

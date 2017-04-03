@@ -20,6 +20,31 @@ if (isset($this->session->userdata['logged_in'])) {
     </div>
 
     <div class="row">
+
+        <?php
+
+        $rs_u = 0;
+        foreach ($rs_users as $rs_user) {
+            $rs_u++;
+        }
+
+
+        $rs_p = 0;
+        foreach ($rs_projects as $rs_pro) {
+            $rs_p++;
+        }
+
+
+        $rs_t = 0;
+        foreach ($rs_ticket as $rs_tic) {
+            $rs_t++;
+        }
+
+
+
+
+
+        // $num_users = conut();?>
         <div class="col-lg-12">
             <!-- /.row -->
             <div class="row">
@@ -31,7 +56,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <i class="fa fa-users fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div class="huge"><?php echo $rs_u; ?></div>
                                     <div>Users</div>
                                 </div>
                             </div>
@@ -45,6 +70,57 @@ if (isset($this->session->userdata['logged_in'])) {
                         </a>
                     </div>
                 </div>
+                <?php
+                $file_read = array( 'fastq','jpg');
+                $path_owncloud = "../owncloud/data/" . $username . "/files/";
+                $select_folder = array_diff(scandir($path_owncloud,1),array('.','..'));
+                $result_folder = array();
+                $result_files = array();
+
+                $cdir = scandir($path_owncloud);
+
+                foreach ($cdir as $key => $value) {
+                    if (!in_array($value,array('.','..'))){
+                        if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                            $result_folder[$value] = $value;
+                        }else{
+
+
+                            $result_files[$value] = $value;
+                        }
+
+
+                    }
+                }
+
+
+                $num_folder = count($result_folder);
+                $num_files = count($result_files);
+
+                $count_files = 0;
+                foreach ($cdir as $key => $value) {
+                    if (!in_array($value,array('.', '..'))){
+                        if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                            $file_in_dir = scandir($path_owncloud . "/" . $value);
+
+                            foreach ($file_in_dir as $key => $value) {
+                                $type = explode( '.', $value );
+                                $type = array_reverse( $type );
+                                if(in_array( $type[0], $file_read ) ) {
+                                    $count_files++;
+                                }
+                            }
+
+
+
+                        }
+
+                    }
+                }
+
+
+                // echo "Test :".$count_test . "Num file :".$num_files;
+                ?>
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
@@ -53,7 +129,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <i class="fa fa-folder-open fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div class="huge"><?php echo $rs_p?></div>
                                     <div>Projects</div>
                                 </div>
                             </div>
@@ -67,6 +143,23 @@ if (isset($this->session->userdata['logged_in'])) {
                         </a>
                     </div>
                 </div>
+
+                <?php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ?>
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
@@ -75,7 +168,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <i class="fa fa-file-text-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
+                                    <div class="huge">
+                                        <?php echo $count_files; ?></div>
                                     <div>Samples </div>
                                 </div>
                             </div>
@@ -97,7 +191,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <i class="fa fa-support fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
+                                    <div class="huge"><?php echo $rs_t; ?></div>
                                     <div>Support Tickets!</div>
                                 </div>
                             </div>
