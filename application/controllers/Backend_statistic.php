@@ -22,9 +22,10 @@ class Backend_statistic extends CI_Controller{
 
     public function index(){
         $data['rs_mes'] = $this->mongo_db->get('messages');
+        $data['rs_cpu'] = shell_exec('lscpu');
 
         $this->load->view('header',$data);
-        $this->load->view('backend_statistic');
+        $this->load->view('backend_statistic',$data);
         $this->load->view('footer');
 
     }

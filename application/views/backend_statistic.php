@@ -20,29 +20,30 @@ if (isset($this->session->userdata['logged_in'])) {
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <table class="table">
-                <thead>
-                <tr>
-                    <td>CPU Using</td>
-                    <td>RAM Using</td>
-                    <td>TOTAL ACCESS</td>
-                    <td>Project Name</td>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>10 Core</td>
-                        <td>1G</td>
-                        <td>3 Person</td>
-                        <td>Thalassemia</td>
-                    </tr>
-
-                </tbody>
-                <tfoot>
-
-                </tfoot>
-
-            </table>
+<!--            <table class="table">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <td>CPU Using</td>-->
+<!--                    <td>RAM Using</td>-->
+<!--                    <td>TOTAL ACCESS</td>-->
+<!--                    <td>Project Name</td>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                    <tr>-->
+<!--                        <td>10 Core</td>-->
+<!--                        <td>1G</td>-->
+<!--                        <td>3 Person</td>-->
+<!--                        <td>Thalassemia</td>-->
+<!--                    </tr>-->
+<!---->
+<!--                </tbody>-->
+<!--                <tfoot>-->
+<!---->
+<!--                </tfoot>-->
+<!---->
+<!--            </table>-->
+            <?php  echo "<pre>" . $rs_cpu . "</pre>"?>
 
 
         </div>
