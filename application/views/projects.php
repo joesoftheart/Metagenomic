@@ -3,24 +3,27 @@ if (isset($this->session->userdata['logged_in'])) {
     $username = ($this->session->userdata['logged_in']['username']);
     $email = ($this->session->userdata['logged_in']['email']);
     $id = ($this->session->userdata['logged_in']['_id']);
-    $id_project = $this->session->userdata['pro_sess'];
+    $current_project = ($this->session->userdata['current_project']);
 } else {
     header("location: main/login");
 } ?>
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12 ">
-            <?php echo "User :" . $username . "   Email :" . $email . "   ID :" . $id . "    PROJECT_SESS :" . $id_project ;?>
+            <?php echo "User :" . $username . "   Email :" . $email . "   ID :" . $id . "    PROJECT_SESS :" . $current_project ;?>
             <br>
             <?php foreach ($rs as $r) {
                 echo "Name project :" . $r['project_name'];
             }
              ?>
-            <ul class="breadcrumb">
-                <li><a href="#">Home</a><span class="divider">/</span></li>
-                <li><a href="#">library</a><span class="divider">/</span></li><li>
-                    <a href="#">data</a><span class="divider">/</span></li>
-            </ul>
+            <?php $controller_name = $this->uri->segment(1); ?>
+            <br>
+            <ol class="breadcrumb">
+                <li <?php if ($controller_name == 'main'){
+                    echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
+                <li <?php if ($controller_name == 'projects'){
+                    echo "class=active";} ?>><?php if ($controller_name == 'projects'){?>Current project<?php } else {?><a href="<?php echo site_url('projects/index/'.$current_project)?>">Current project</a><?php } ?></li>
+            </ol>
         </div>
 
     </div>

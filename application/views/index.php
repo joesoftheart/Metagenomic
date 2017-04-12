@@ -3,6 +3,7 @@ if (isset($this->session->userdata['logged_in'])) {
     $username = ($this->session->userdata['logged_in']['username']);
     $email = ($this->session->userdata['logged_in']['email']);
     $id = ($this->session->userdata['logged_in']['_id']);
+    $current_project = ($this->session->userdata['current_project']);
 } else {
     header("location: main/login");
 } ?>
@@ -11,12 +12,14 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="row">
                 <div class="col-lg-12">
                     <?php echo "User :" . $username . "   Email :" . $email . "   ID :" . $id;?>
+                    <?php echo "Current project" . $current_project ?>
+                    <?php $controller_name = $this->uri->segment(1); ?>
                     <br>
-                    <ul class="breadcrumb">
-                        <li><a href="#">Home</a> <span class="divider">/</span></li>
-                        <li><a href="#">Library</a> <span class="divider">/</span></li>
-                        <li class="active">Data</li>
-                    </ul>
+                    <ol class="breadcrumb">
+                        <li <?php if ($controller_name == 'main'){
+                            echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
+                        <li><?php if ($current_project == null){?>Current project<?php } else {?><a href="<?php echo site_url('projects/index/'.$current_project)?>">Current project</a><?php } ?></li>
+                    </ol>
                     <h5 class="page-header">Projects</h5>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -27,29 +30,29 @@ if (isset($this->session->userdata['logged_in'])) {
                     <div class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid >
                         <?php $i = 0 ?>
                         <?php foreach ($rs as $r) {  ?>
-                            <?php if ($i < 4){  ?>
+                            <?php if ($i <= 3) {  ?>
                             <div  class="uk-animation-toggle">
                                 <a href="<?php echo  site_url('projects/index/'.$r['_id'])?>">
                                 <div  class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">
-                                    <h5 class="uk-card-title uk-text-small"><?=$r['project_name'];?></h5>
-                                    <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div><?php echo $i ?>
-                                    <p class="uk-text-center">Fade</p>
+                                    <h5 class="uk-card-title uk-text-small uk-text-center"><?=$r['project_name'];?></h5>
+                                    <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div>
+                                    <br>
                                 </div></a>
                             </div>
-                        <?php $i++; }  ?>
+                        <?php $i++; } else {  ?>
 
-                    <?php } ?>
-                </div><br>
+
+
+                </div>
 
                     <div id="toggle-animation" class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid aria-hidden="true" hidden="hidden">
-                        <?php foreach ($rs as $r) {  ?>
-                            <?php if ($i >= 4){  ?>
+
                                 <div  class="uk-animation-toggle">
                                     <a href="<?php echo site_url('projects')?>">
                                     <div id="toggle-animation" class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">
-                                        <h5 class="uk-card-title uk-text-small"><?=$r['project_name'];?></h5>
-                                        <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div><?php echo $i ?>
-                                        <p class="uk-text-center">Fade</p>
+                                        <h5 class="uk-card-title uk-text-small uk-text-center"><?=$r['project_name'];?></h5>
+                                        <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div>
+                                        <br>
                                     </div></a>
                                 </div>
                             <?php $i++;}  ?>
@@ -58,41 +61,41 @@ if (isset($this->session->userdata['logged_in'])) {
                     </div>
                     <button id="text_pro" onclick="toggleTextPro()" href="#toggle-animation" class="uk-button uk-button-link uk-navbar-right" type="button" uk-toggle="target: #toggle-animation; animation: uk-animation-fade">show more >></button>
 
-
-                    <h5 class="page-header">samples</h5>
-                    <div class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid >
-                        <?php $i = 0 ?>
-                        <?php foreach ($rs as $r) {  ?>
-                            <?php if ($i < 4){  ?>
-                                <div  class="uk-animation-toggle">
-                                    <div  class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">
-                                        <h5 class="uk-card-title uk-text-small"><?=$r['project_name'];?></h5>
-                                        <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div><?php echo $i ?>
-                                        <p class="uk-text-center">Fade</p>
-                                    </div>
-                                </div>
-                            <?php $i++; }   ?>
-
-                        <?php } ?>
-                    </div><br>
-
-                    <div id="toggle-animation2" class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid aria-hidden="true" hidden="hidden">
-                        <?php foreach ($rs as $r) {  ?>
-                            <?php if ($i >= 4){  ?>
-                                <div  class="uk-animation-toggle">
-                                    <div id="toggle-animation2" class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">
-                                        <h5 class="uk-card-title uk-text-small"><?=$r['project_name'];?></h5>
-                                        <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div><?php echo $i ?>
-                                        <p class="uk-text-center">Fade</p>
-                                    </div>
-                                </div>
-                            <?php $i++; }  ?>
-
-                        <?php } ?>
-                    </div>
-                    <button id="text_sam" onclick="toggleTextSam()" href="#toggle-animation2" class="uk-button uk-button-link uk-navbar-right" type="button" uk-toggle="target: #toggle-animation2; animation: uk-animation-fade">show more >></button>
-
-
+<!---->
+<!--                    <h5 class="page-header">samples</h5>-->
+<!--                    <div class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid >-->
+<!--                        --><?php //$i = 0 ?>
+<!--                        --><?php //foreach ($rs as $r) {  ?>
+<!--                            --><?php //if ($i < 4){  ?>
+<!--                                <div  class="uk-animation-toggle">-->
+<!--                                    <div  class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">-->
+<!--                                        <h5 class="uk-card-title uk-text-small">--><?//=$r['project_name'];?><!--</h5>-->
+<!--                                        <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div>--><?php //echo $i ?>
+<!--                                        <p class="uk-text-center">Fade</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            --><?php //$i++; }   ?>
+<!---->
+<!--                        --><?php //} ?>
+<!--                    </div><br>-->
+<!---->
+<!--                    <div id="toggle-animation2" class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid aria-hidden="true" hidden="hidden">-->
+<!--                        --><?php //foreach ($rs as $r) {  ?>
+<!--                            --><?php //if ($i >= 4){  ?>
+<!--                                <div  class="uk-animation-toggle">-->
+<!--                                    <div id="toggle-animation2" class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">-->
+<!--                                        <h5 class="uk-card-title uk-text-small">--><?//=$r['project_name'];?><!--</h5>-->
+<!--                                        <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div>--><?php //echo $i ?>
+<!--                                        <p class="uk-text-center">Fade</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            --><?php //$i++; }  ?>
+<!---->
+<!--                        --><?php //} ?>
+<!--                    </div>-->
+<!--                    <button id="text_sam" onclick="toggleTextSam()" href="#toggle-animation2" class="uk-button uk-button-link uk-navbar-right" type="button" uk-toggle="target: #toggle-animation2; animation: uk-animation-fade">show more >></button>-->
+<!---->
+<!---->
 
 
 

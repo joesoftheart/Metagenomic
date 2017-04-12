@@ -91,6 +91,7 @@ class Main extends CI_Controller {
 
                     // Add user data in session
                     $this->session->set_userdata('logged_in', $session_data);
+                    $this->session->set_userdata('current_project','');
 
                     redirect("main", "refresh");
                 }
@@ -111,6 +112,7 @@ class Main extends CI_Controller {
             'username' => ''
         );
         $this->session->unset_userdata('logged_in', $sess_array);
+        $this->session->unset_userdata('current_project','');
         $data['message_display'] = 'Successfully Logout';
         $this->load->view('login', $data);
     }

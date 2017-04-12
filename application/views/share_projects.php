@@ -11,11 +11,13 @@ if (isset($this->session->userdata['logged_in'])) {
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12"><br>
-            <ul class="breadcrumb">
-                <li><a href="#">Home</a><span class="divider">/</span> </li>
-                <li><a href="#">library</a><span class="divider">/</span> </li>
-                <li><a href="#">data</a><span class="divider">/</span> </li>
-            </ul>
+            <?php $controller_name = $this->uri->segment(1); ?>
+            <ol class="breadcrumb">
+                <li <?php if ($controller_name == 'main'){
+                    echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
+                <li class="active">Share projects</li>
+
+            </ol>
 
 
 
