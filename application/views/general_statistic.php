@@ -76,23 +76,25 @@ if (isset($this->session->userdata['logged_in'])) {
                 <?php
                 $file_read = array( 'fastq','jpg');
                 $path_owncloud = "../owncloud/data/" . $username . "/files/";
-                $select_folder = array_diff(scandir($path_owncloud,1),array('.','..'));
+                $cdir = array();
                 $result_folder = array();
                 $result_files = array();
+                if (is_dir($path_owncloud)) {
+                    $select_folder = array_diff(scandir($path_owncloud, 1), array('.', '..'));
+                    $cdir = scandir($path_owncloud);
 
-                $cdir = scandir($path_owncloud);
-
-                foreach ($cdir as $key => $value) {
-                    if (!in_array($value,array('.','..'))){
-                        if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
-                            $result_folder[$value] = $value;
-                        }else{
+                    foreach ($cdir as $key => $value) {
+                        if (!in_array($value, array('.', '..'))) {
+                            if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                                $result_folder[$value] = $value;
+                            } else {
 
 
-                            $result_files[$value] = $value;
+                                $result_files[$value] = $value;
+                            }
+
+
                         }
-
-
                     }
                 }
 
@@ -101,23 +103,24 @@ if (isset($this->session->userdata['logged_in'])) {
                 $num_files = count($result_files);
 
                 $count_files = 0;
-                foreach ($cdir as $key => $value) {
-                    if (!in_array($value,array('.', '..'))){
-                        if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
-                            $file_in_dir = scandir($path_owncloud . "/" . $value);
+                if ($cdir != null) {
+                    foreach ($cdir as $key => $value) {
+                        if (!in_array($value, array('.', '..'))) {
+                            if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                                $file_in_dir = scandir($path_owncloud . "/" . $value);
 
-                            foreach ($file_in_dir as $key => $value) {
-                                $type = explode( '.', $value );
-                                $type = array_reverse( $type );
-                                if(in_array( $type[0], $file_read ) ) {
-                                    $count_files++;
+                                foreach ($file_in_dir as $key => $value) {
+                                    $type = explode('.', $value);
+                                    $type = array_reverse($type);
+                                    if (in_array($type[0], $file_read)) {
+                                        $count_files++;
+                                    }
                                 }
+
+
                             }
 
-
-
                         }
-
                     }
                 }
 

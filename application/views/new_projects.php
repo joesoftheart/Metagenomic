@@ -57,21 +57,18 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <?php
                                     $path_owncloud = "../owncloud/data/" . $username . "/files/";
 
-
                                     $result_folder = array();
                                     $result_file = array();
-                                    $cdir = scandir($path_owncloud);
-                                    foreach ($cdir as $key => $value)
-                                    {
-                                        if (!in_array($value,array(".","..")))
-                                        {
-                                            if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value))
-                                            {
-                                                $result_folder[$value] = $value;
-                                            }
-                                            else
-                                            {
-                                                $result_file[$value] = $value;
+                                    if (is_dir($path_owncloud)) {
+                                        $cdir = scandir($path_owncloud);
+
+                                        foreach ($cdir as $key => $value) {
+                                            if (!in_array($value, array(".", ".."))) {
+                                                if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                                                    $result_folder[$value] = $value;
+                                                } else {
+                                                    $result_file[$value] = $value;
+                                                }
                                             }
                                         }
                                     }
@@ -83,9 +80,13 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                  <label>Select sample from owncloud :</label>
                                     <select class="uk-select" name="project_path">
+                                        <?php if ($result_folder != null){ ?>
                                         <?php foreach ($result_folder as $r) { ?>
                                         <option  value="<?php echo $path_owncloud.$r;?>"><?php echo $r;?></option>
                                         <?php  } ?>
+                                        <?php } else {
+                                            echo "<option>You not have sample in owncloud</option>";
+                                        } ?>
 
                                     </select>
 

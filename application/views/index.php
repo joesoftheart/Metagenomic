@@ -199,3 +199,26 @@ if (isset($this->session->userdata['logged_in'])) {
                 }
             }
         </script>
+
+
+<script>
+    $(document).ready(function(){
+        $("#search").keyup(function(){
+            if($("#search").val().length>3){
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost/Metagenomic/index.php/main",
+                    cache: false,
+                    data:'search='+$("#search").val(),
+                    success: function(response){
+
+                    },
+                    error: function(){
+                        alert('Error while request..');
+                    }
+                });
+            }
+            return false;
+        });
+    });
+</script>

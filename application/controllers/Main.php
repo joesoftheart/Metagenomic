@@ -11,6 +11,13 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
+
+
+	    if ($this->input->post('search')){
+            $search=  $this->input->post('search');
+            $query = $this->Search->getSearch($search);
+            print_r($query);
+        }
        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
 
 
@@ -103,6 +110,7 @@ class Main extends CI_Controller {
             }
         }
     }
+
 
 // Logout from admin page
     public function logout() {

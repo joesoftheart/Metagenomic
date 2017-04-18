@@ -45,9 +45,9 @@ if (isset($this->session->userdata['logged_in'])) {
                             <td><?php echo $r["project_permission"] ?></td>
                             <td class="center"><?php echo $r["project_type"]?></td>
                             <td class="center"><?php echo "555" ?></td>
-                            <td><?php echo anchor("edit_project/edit_project/".$r['_id'],"Edit")?>&nbsp;
-                                <?php echo anchor("all_projects/delete_project/".$r['_id'],"Delete")
-                                ?><a href="#modal-sections<?php echo $r['_id']?>" uk-toggle> Share</a></td>
+                            <td><?php echo anchor("edit_project/edit_project/".$r['_id'],"Edit",array('class' => 'btn btn-default btn-sm'))?>&nbsp;
+                                <?php echo anchor("all_projects/delete_project/".$r['_id'],"Delete",array('class' => 'btn btn-default btn-sm'))
+                                ?>&nbsp;<a href="#modal-sections<?php echo $r['_id']?>" class="btn btn-default btn-sm" uk-toggle> Share</a></td>
 
 
                             <div id="modal-sections<?php echo $r['_id']?>" uk-modal="center: true">

@@ -29,26 +29,27 @@ if (isset($this->session->userdata['logged_in'])) {
                 <div class="col-lg-12 ">
                     <?php
                     $path_owncloud = "../owncloud/data/" . $username . "/files/";
-                    $select_folder = array_diff(scandir($path_owncloud, 1),array('.','..'));
+
 
                     $result_folder = array();
                     $result_file = array();
 
+                    if (is_dir($path_owncloud)) {
+                        $select_folder = array_diff(scandir($path_owncloud, 1),array('.','..'));
+                        $cdir = scandir($path_owncloud);
+                        foreach ($cdir as $key => $value) {
 
-                    $cdir = scandir($path_owncloud);
-                    foreach ($cdir as $key => $value){
+                            if (!in_array($value, array('.', '..'))) {
+                                if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                                    $result_folder[$value] = $value;
 
-                        if (!in_array($value,array('.', '..'))){
-                            if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)){
-                                $result_folder[$value] = $value;
+                                } else {
 
-                            }else{
-
-                                $result_file[$value] = $value;
+                                    $result_file[$value] = $value;
+                                }
                             }
                         }
                     }
-
 
 
                     ?>
@@ -78,17 +79,19 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="panel-body">
                                             <?php
                                             $path_owncloud_files = "../owncloud/data/" . $username . "/files/".$r;
-                                            $select_files_in_folder = array_diff(scandir($path_owncloud_files, 1),array('.','..'));
+                                            if (is_dir($path_owncloud_files)) {
+                                                $select_files_in_folder = array_diff(scandir($path_owncloud_files, 1), array('.', '..'));
 
 
-                                            foreach ($select_files_in_folder as $list_file){
-                                                echo "<ul>";
-                                                echo "<li>";
-                                                echo $list_file;
-                                                echo "</li>";
-                                                echo "</ul>";
+                                                foreach ($select_files_in_folder as $list_file) {
+                                                    echo "<ul>";
+                                                    echo "<li>";
+                                                    echo $list_file;
+                                                    echo "</li>";
+                                                    echo "</ul>";
 
 
+                                                }
                                             }
 
 
