@@ -14,6 +14,10 @@ if (isset($this->session->userdata['logged_in'])) {
                     <?php echo "User :" . $username . "   Email :" . $email . "   ID :" . $id;?>
                     <?php echo "Current project" . $current_project ?>
                     <?php $controller_name = $this->uri->segment(1); ?>
+                    <div class="ui-widget">
+                        <label for="tags">Tags: </label>
+                        <input id="tags">
+                    </div>
                     <br>
                     <ol class="breadcrumb">
                         <li <?php if ($controller_name == 'main'){
@@ -60,7 +64,7 @@ if (isset($this->session->userdata['logged_in'])) {
                         <?php } ?>
                     </div>
                     <button id="text_pro" onclick="toggleTextPro()" href="#toggle-animation" class="uk-button uk-button-link uk-navbar-right" type="button" uk-toggle="target: #toggle-animation; animation: uk-animation-fade">show more >></button>
-
+                    <div id="show"></div>
 <!---->
 <!--                    <h5 class="page-header">samples</h5>-->
 <!--                    <div class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid >-->
@@ -206,12 +210,12 @@ if (isset($this->session->userdata['logged_in'])) {
         $("#search").keyup(function(){
             if($("#search").val().length>3){
                 $.ajax({
-                    type: "post",
-                    url: "http://localhost/Metagenomic/index.php/main",
+                    type: "POST",
+                    url: "<?php echo base_url();?>main/index",
                     cache: false,
                     data:'search='+$("#search").val(),
                     success: function(response){
-
+                        $("#show").html(response);
                     },
                     error: function(){
                         alert('Error while request..');
@@ -221,4 +225,25 @@ if (isset($this->session->userdata['logged_in'])) {
             return false;
         });
     });
+
+
+//    $(document).ready(function(){
+//
+//        $("#bt").click(function()
+//        {
+//            $.ajax({
+//                type: "POST",
+//                url: "<?php //echo base_url();?>//ajax_test/call_data",
+//                data: {text: $("#text").val()},
+//                dataType: "text",
+//                cache:false,
+//                success:
+//                    function(data){
+//                        $("#show").html(data);
+//                    }
+//            });// you have missed this bracket
+//            return false;
+//        });
+//    });
 </script>
+

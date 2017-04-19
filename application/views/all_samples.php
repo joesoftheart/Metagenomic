@@ -15,54 +15,106 @@ if (isset($this->session->userdata['logged_in'])) {
             <ol class="breadcrumb">
                 <li <?php if ($controller_name == 'main'){
                     echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
-                <li class="active">All samples</li>
+                <li class="active">New sample</li>
 
             </ol>
-            <h1 class="page-header">All samples</h1>
-
-
-        </div>
-    </div>
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Your projects
+            <h1 class="page-header">New Projects</h1>
+                <div class="row">
+                    <div class="col-lg-12">
+                                   <a class="btn btn-primary" target="_blank" href="http://localhost/owncloud">upload to owncloud</a>
+                    </div>
                 </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                        <thead>
-                        <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="odd gradeX">
-                            <td>Trident</td>
-                            <td>Internet Explorer 4.0</td>
-                            <td>Win 95+</td>
-                            <td class="center">4</td>
-                            <td class="center">X</td>
-                        </tr>
-                        <tr class="even gradeC">
-                            <td>Trident</td>
-                            <td>Internet Explorer 5.0</td>
-                            <td>Win 95+</td>
-                            <td class="center">5</td>
-                            <td class="center">C</td>
-                        </tr>
+            <br>
+            <div class="row">
+                <div class="col-lg-12 ">
+                    <?php
+                    $path_owncloud = "../owncloud/data/" . $username . "/files/";
 
-                        </tbody>
-                    </table>
-                    <!-- /.table-responsive -->
+
+                    $result_folder = array();
+                    $result_file = array();
+
+                    if (is_dir($path_owncloud)) {
+                        $select_folder = array_diff(scandir($path_owncloud, 1),array('.','..'));
+                        $cdir = scandir($path_owncloud);
+                        foreach ($cdir as $key => $value) {
+
+                            if (!in_array($value, array('.', '..'))) {
+                                if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                                    $result_folder[$value] = $value;
+
+                                } else {
+
+                                    $result_file[$value] = $value;
+                                }
+                            }
+                        }
+                    }
+
+
+                    ?>
+
+
+
+
+
+
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Collapsible Accordion Panel Group
+                        </div>
+                        <!-- .panel-heading -->
+                        <div class="panel-body">
+                            <div class="panel-group" id="accordion">
+                                <?php foreach ($result_folder as $r) { ?>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?php echo $r?>" aria-expanded="false" class="collapsed"><i class="fa fa-folder-open-o fa-1x"></i>  <?=$r; ?></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne<?php echo $r?>" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <?php
+                                            $path_owncloud_files = "../owncloud/data/" . $username . "/files/".$r;
+                                            if (is_dir($path_owncloud_files)) {
+                                                $select_files_in_folder = array_diff(scandir($path_owncloud_files, 1), array('.', '..'));
+
+
+                                                foreach ($select_files_in_folder as $list_file) {
+                                                    echo "<ul>";
+                                                    echo "<li>";
+                                                    echo $list_file;
+                                                    echo "</li>";
+                                                    echo "</ul>";
+
+
+                                                }
+                                            }
+
+
+
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php  } ?>
+                            </div>
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+
+
+
                 </div>
+
+
             </div>
+
         </div>
     </div>
+
+
 </div>

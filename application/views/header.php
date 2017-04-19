@@ -300,20 +300,17 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+
                     <li>
                         <a href="#sample"><i class="fa fa-table fa-fw"></i> Samples<span class="fa arrow"></span></a>
-                        <ul class="nav nav-secound-level">
+                        <ul class="nav nav-second-level">
                             <li>
-                                <a href="<?php echo site_url('new_samples') ?>">Add samples</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url('all_samples')?> ">All samples</a>
+                                <a href="<?php echo site_url('all_samples')?>">All samples</a>
                             </li>
 
                             <li>
-                                <a href="#8">...</a>
+                                <a href="<?php echo site_url('all_samples')?>">...</a>
                             </li>
-
                         </ul>
                     </li>
                     <li>

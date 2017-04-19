@@ -8,16 +8,15 @@
 class Search extends CI_Model{
 
     public function Search(){
-        parent::Model();
-
-
 
     }
 
 
     public function getSearch($search){
-        $data['rs'] = $this->mongo_db->like('project_name', $search, 'im', FALSE, TRUE);
+        echo "getSearch";
+        $data['rsw'] = $this->mongo_db->get('projects');
         return $data;
+
     }
 
 
