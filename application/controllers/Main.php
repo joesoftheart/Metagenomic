@@ -12,22 +12,15 @@ class Main extends CI_Controller {
 	public function index()
 	{
 
-
-	    if ($this->input->post('search')){
-            echo "Ok ma";
-            $search =  $this->input->post('search');
-            $query = $this->mongo_db->get('projects');
-            echo print_r($query);
-        }else {
             $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+            $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
             //$this->load->library('mongo_db', array('activate'=>'metagenomic_db'),'mongo_db');
             $res = $this->mongo_db->get_where('projects', array("user_id" => $this->session->userdata["logged_in"]["_id"]));
             $data['rs'] = $res;
-            // print_r($res);
+            // print_r($data);
             $this->load->view('header', $data);
             $this->load->view('index', $data);
             $this->load->view('footer');
-        }
 	}
 
     // Show login page

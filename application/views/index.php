@@ -14,10 +14,7 @@ if (isset($this->session->userdata['logged_in'])) {
                     <?php echo "User :" . $username . "   Email :" . $email . "   ID :" . $id;?>
                     <?php echo "Current project" . $current_project ?>
                     <?php $controller_name = $this->uri->segment(1); ?>
-                    <div class="ui-widget">
-                        <label for="tags">Tags: </label>
-                        <input id="tags">
-                    </div>
+
                     <br>
                     <ol class="breadcrumb">
                         <li <?php if ($controller_name == 'main'){
@@ -29,12 +26,12 @@ if (isset($this->session->userdata['logged_in'])) {
                 <!-- /.col-lg-12 -->
             </div>
             <div class="row">
-                <div class="col-lg-9">
+                <div class="col-lg-12">
 
-                    <div class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid >
+                    <div class="uk-child-width-1-2 uk-child-width-1-5@s uk-grid-match" uk-grid >
                         <?php $i = 0 ?>
                         <?php foreach ($rs as $r) {  ?>
-                            <?php if ($i <= 3) {  ?>
+                            <?php if ($i <= 4) {  ?>
                             <div  class="uk-animation-toggle">
                                 <a href="<?php echo  site_url('projects/index/'.$r['_id'])?>">
                                 <div  class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">
@@ -43,25 +40,28 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <br>
                                 </div></a>
                             </div>
-                        <?php $i++; } else {  ?>
+                        <?php $i++; }  ?>
+                        <?php  } ?>
 
 
 
                 </div>
 
-                    <div id="toggle-animation" class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid aria-hidden="true" hidden="hidden">
-
+                    <div id="toggle-animation" class="uk-child-width-1-2 uk-child-width-1-5@s uk-grid-match" uk-grid aria-hidden="true" hidden="hidden">
+                        <?php $j = 0 ?>
+                        <?php foreach ($rs as $rt) {  ?>
+                        <?php if ($j > 4) {  ?>
                                 <div  class="uk-animation-toggle">
-                                    <a href="<?php echo site_url('projects')?>">
+                                    <a href="<?php echo site_url('projects/index/'.$rt['_id'])?>">
                                     <div id="toggle-animation" class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">
-                                        <h5 class="uk-card-title uk-text-small uk-text-center"><?=$r['project_name'];?></h5>
+                                        <h5 class="uk-card-title uk-text-small uk-text-center"><?=$rt['project_name'];?></h5>
                                         <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div>
                                         <br>
                                     </div></a>
                                 </div>
-                            <?php $i++;}  ?>
-
+                                <?php   } $j++;  ?>
                         <?php } ?>
+
                     </div>
                     <button id="text_pro" onclick="toggleTextPro()" href="#toggle-animation" class="uk-button uk-button-link uk-navbar-right" type="button" uk-toggle="target: #toggle-animation; animation: uk-animation-fade">show more >></button>
                     <div id="show"></div>
@@ -104,66 +104,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                 </div>
-                <div class="col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                                </a>
-                            </div>
-                            <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                </div>
+
             </div>
 
         </div>

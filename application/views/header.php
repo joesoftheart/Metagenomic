@@ -42,6 +42,26 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#search-box").keyup(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url(); ?>search_projects/search",
+                    data:'search='+$(this).val(),
+                    beforeSend: function(){
+                    },
+                    success: function(data){
+                        $("#suggesstion-box").show();
+                        $("#suggesstion-box").html(data);
+                        $("#search-box").css("background","#FFF");
+                    }
+                });
+            });
+        });
+
+
+    </script>
 
 
     <!-- Material Design fonts -->
@@ -209,33 +229,17 @@
                     <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
+                    <?php foreach ($rs_notifi as $r){ ?>
                     <li>
                         <a href="#">
                             <div>
-                                <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                <i class="fa fa-envelope fa-fw"></i> <?php echo $r['subject'] ?>
                                 <span class="pull-right text-muted small">4 minutes ago</span>
                             </div>
                         </a>
                     </li>
                     <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-tasks fa-fw"></i> New Task
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
+                    <?php } ?>
                     <li>
                         <a class="text-center" href="#">
                             <strong>See All Alerts</strong>
@@ -270,13 +274,15 @@
                 <ul class="nav" id="side-menu">
                     <li class="sidebar-search">
                         <div class="input-group custom-search-form">
-                            <input id="search" type="text" class="form-control" placeholder="Search...">
+                            <input id="search-box" type="text" class="form-control" placeholder="Search...">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
                         </div>
+                        <div id="suggesstion-box"></div>
+
                         <!-- /input-group -->
                     </li>
                     <li>
