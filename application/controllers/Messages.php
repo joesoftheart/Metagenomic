@@ -21,7 +21,8 @@ class Messages extends CI_Controller{
 
 
     public function index(){
-        $data['rs_mes'] = $this->mongo_db->get('messages');
+        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
         $data['rs_message'] = $this->mongo_db->get('messages');
 
         $this->load->view('header',$data);

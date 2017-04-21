@@ -20,6 +20,9 @@ class Projects extends CI_Controller{
 
     public function index($id_project){
         $data['rs'] = $this->mongo_db->get_where('projects',array('_id' => new \MongoId($id_project)));
+        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
+
 
 
         if ($data != null) {

@@ -26,11 +26,23 @@ Class Login_Database extends CI_Model {
 
        // $this->mongo_db->where_or(array('user_name'=>$data['username'], 'user_password'=>$data['password']))->get('user_login');
         $query = $this->mongo_db->get_where('user_login',array("user_name" => $data['username'],"user_password" => $data['password']));
-        //print_r($query);
+        $admin = array();
+        if ($query != null) {
+            foreach ($query as $q) {
+                $id_user = (string)$q['_id'];
+
+            }
+            $admin = $this->mongo_db->get_where('roles', array("user_id" => $id_user));
+        }
+
+        //print_r($admin);
         $result = $query;
-        if (count($query) == 1) {
+        $result_admin = $admin;
+        if (count($query) == 1 && count($admin) == 0) {
             return $result;
-        } else {
+        } else if(count($query) == 1 && count($admin) == 1){
+            return $result;
+        }else {
             return false;
         }
     }
@@ -41,6 +53,23 @@ Class Login_Database extends CI_Model {
         $result = $query;
         if (count($query) == 1) {
             return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function read_user_admin($username) {
+        $query = $this->mongo_db->get_where('user_login',array("user_name" => $username));
+        $admin = array();
+        if ($query != null) {
+            foreach ($query as $q) {
+                $id_user = (string)$q['_id'];
+
+            }
+            $admin = $this->mongo_db->get_where('roles', array("user_id" => $id_user));
+        }
+        if (count($query) == 1 && count($admin) == 1) {
+            return $admin;
         } else {
             return false;
         }

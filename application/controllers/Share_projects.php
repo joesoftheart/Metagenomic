@@ -18,6 +18,7 @@ class Share_projects extends CI_Controller{
     public function index(){
 
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
 
       //  $data['rs'] = $this->mongo_db->get('projects');
         $id = ($this->session->userdata['logged_in']['_id']);

@@ -17,10 +17,19 @@ class Setting extends CI_Controller{
 
     public function index(){
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
 
         $this->load->view('header',$data);
         $this->load->view('setting');
         $this->load->view('footer');
+
+
+    }
+
+
+    public function manage_setting(){
+        echo "OK ma";
+
 
 
     }

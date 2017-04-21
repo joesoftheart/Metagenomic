@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-class View_message extends CI_Controller{
+class View_notification extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
@@ -17,12 +17,12 @@ class View_message extends CI_Controller{
     }
 
 
-    public function view_message($id){
+    public function view_notification($id){
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
         $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
-        $data['rs_message'] = $this->mongo_db->get_where('messages',array("_id" => new \MongoId($id)));
+        $data['rs_notification'] = $this->mongo_db->get_where('notification',array("_id" => new \MongoId($id)));
         $this->load->view('header',$data);
-        $this->load->view('view_message',$data);
+        $this->load->view('view_notification',$data);
         $this->load->view('footer');
 
 

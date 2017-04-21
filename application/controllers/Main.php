@@ -14,10 +14,8 @@ class Main extends CI_Controller {
 
             $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
             $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
-            //$this->load->library('mongo_db', array('activate'=>'metagenomic_db'),'mongo_db');
-            $res = $this->mongo_db->get_where('projects', array("user_id" => $this->session->userdata["logged_in"]["_id"]));
-            $data['rs'] = $res;
-            // print_r($data);
+            $data['rs']  = $this->mongo_db->get_where('projects', array("user_id" => $this->session->userdata["logged_in"]["_id"]));
+        
             $this->load->view('header', $data);
             $this->load->view('index', $data);
             $this->load->view('footer');
@@ -78,10 +76,19 @@ class Main extends CI_Controller {
             );
             $result = $this->login_database->login($data);
             if ($result == TRUE) {
-
                 $username = $this->input->post('username');
                 $result = $this->login_database->read_user_information($username);
-                if ($result != false) {
+                $result_admin = $this->login_database->read_user_admin($username);
+
+                if ($result != false && $result_admin != false){
+                    foreach ($result as $rs) {
+
+                        $session_data = array('username' => $rs['user_name'], 'email' => $rs['user_email'],'_id' => $rs['_id']);
+                    }
+                    $this->session->set_userdata('logged_in', $session_data);
+                    redirect("admin_main", "refresh");
+
+                }else if ($result != false) {
                     //print_r($result);
                     foreach ($result as $rs) {
 
@@ -101,6 +108,9 @@ class Main extends CI_Controller {
                 );
                 $this->load->view('login', $data);
             }
+
+
+
         }
     }
 

@@ -18,12 +18,11 @@ class All_projects extends CI_Controller{
     }
 
     public function index(){
-        $data['rs'] = $this->mongo_db->get_where('projects',array("user_id" => $this->session->userdata["logged_in"]["_id"]));
-        //$select = $this->mongo_db->
-        //$data['rs'] = $this->mongo_db->where_in_all('user_id', array($this->session->userdata["logged_in"]["_id"]))->get('projects');
-
+        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
+        $data['rs']  = $this->mongo_db->get_where('projects', array("user_id" => $this->session->userdata["logged_in"]["_id"]));
         $data['rs_user'] = $this->mongo_db->get('user_login');
-        $data['rs_mes'] = $this->mongo_db->get('messages');
+
         $this->load->view('header',$data);
         $this->load->view('all_projects',$data);
         $this->load->view('footer');

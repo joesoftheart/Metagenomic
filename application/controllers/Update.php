@@ -18,6 +18,7 @@ class Update extends CI_Controller{
 
     function  index(){
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
         $data['rs'] = $this->mongo_db->get('users');
         $this->load->view('header',$data);
         $this->load->view('update',$data);

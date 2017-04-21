@@ -21,7 +21,9 @@ class Backend_statistic extends CI_Controller{
     }
 
     public function index(){
-        $data['rs_mes'] = $this->mongo_db->get('messages');
+        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
+        $data['rs']  = $this->mongo_db->get_where('projects', array("user_id" => $this->session->userdata["logged_in"]["_id"]));
         $data['rs_cpu'] = shell_exec('lscpu');
 
         $this->load->view('header',$data);

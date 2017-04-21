@@ -231,9 +231,16 @@
                 <ul class="dropdown-menu dropdown-alerts">
                     <?php foreach ($rs_notifi as $r){ ?>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo  site_url('view_notification/view_notification/'.$r['_id'])?>">
                             <div>
-                                <i class="fa fa-envelope fa-fw"></i> <?php echo $r['subject'] ?>
+                                <?php if ($r['status'] == 'message'){ ?>
+                                    <i class="fa fa-envelope fa-fw"></i> <?php echo $r['subject'] ?>
+                                <?php } else if($r['status'] == 'reboot') {?>
+                                    <i class="fa fa-upload fa-fw"></i> <?php echo $r['subject'] ?>
+                                <?php } else if ($r['status'] == 'delay') {?>
+                                    <i class="fa fa-bolt fa-fw"></i> <?php echo $r['subject'] ?>
+                                <?php } ?>
+
                                 <span class="pull-right text-muted small">4 minutes ago</span>
                             </div>
                         </a>
@@ -241,7 +248,7 @@
                     <li class="divider"></li>
                     <?php } ?>
                     <li>
-                        <a class="text-center" href="#">
+                        <a class="text-center" href="<?php echo site_url('notification_all') ?>">
                             <strong>See All Alerts</strong>
                             <i class="fa fa-angle-right"></i>
                         </a>
