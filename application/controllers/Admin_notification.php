@@ -29,10 +29,13 @@ class Admin_notification extends CI_Controller{
 
     public function insert_noti()
     {
+        $time = new MongoTimestamp();
         $data = array("subject" => $this->input->post('subject'),
         "description" => $this->input->post('description'),
         "new" => $this->input->post('new'),
-        "status" => $this->input->post('status')
+        "status" => $this->input->post('status'),
+        "date" => $time
+
         );
 
         $this->mongo_db->insert('notification', $data);
