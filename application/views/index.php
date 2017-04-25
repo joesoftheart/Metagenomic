@@ -40,6 +40,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <br>
                                 </div></a>
                             </div>
+
                         <?php $i++; }  ?>
                         <?php  } ?>
 
@@ -59,11 +60,12 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <br>
                                     </div></a>
                                 </div>
+
                                 <?php   } $j++;  ?>
                         <?php } ?>
 
                     </div>
-                    <button id="text_pro" onclick="toggleTextPro()" href="#toggle-animation" class="uk-button uk-button-link uk-navbar-right" type="button" uk-toggle="target: #toggle-animation; animation: uk-animation-fade">show more >></button>
+                    <?php if ($j > 5) {?><button id="text_pro" onclick="toggleTextPro()" href="#toggle-animation" class="uk-button uk-button-link uk-navbar-right" type="button" uk-toggle="target: #toggle-animation; animation: uk-animation-fade">show more >></button><?php } ?>
                     <div id="show"></div>
 <!---->
 <!--                    <h5 class="page-header">samples</h5>-->

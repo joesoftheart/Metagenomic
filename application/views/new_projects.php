@@ -32,7 +32,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <input class="form-control" name="project_name" type="text" />
                                 <label>Title Name :</label>
                                 <input class="form-control" name="project_title" type="text" />
-                                <label>Detail samples :</label>
+                                <label>Detail project :</label>
                                 <textarea class="form-control" name="project_detail" ></textarea>
                                 <div class="form-group">
                                 <label>Permission :</label>

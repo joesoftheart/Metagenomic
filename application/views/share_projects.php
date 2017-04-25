@@ -51,6 +51,31 @@ if (isset($this->session->userdata['logged_in'])) {
             </table>
             <!-- /.table-responsive -->
 
+            <h4 class="page-header">share to you</h4>
+
+            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                <tr>
+                    <th>Owner Name</th>
+                    <th>Project Name</th>
+                    <th>Receiver Name</th>
+                    <th>Manage</th>
+                </tr>
+                </thead>
+                <tbody><?php if ($rs_to_u != null) { ?>
+                    <?php foreach ($rs_to_u as $r) { ?>
+
+                        <tr class="odd gradeX">
+                            <td><?php echo $r['receiver_name'];?></td>
+                            <td><?php echo  $r['project_name'];?></td>
+                            <td><?php echo $r['owner_name'] ?></td>
+                            <td class="center"><?php echo anchor('share_projects/delete_your_share/'.$r['id_share'],"Delete",array('class' => 'btn btn-default btn-sm')); ?></td>
+                        </tr>
+                    <?php  } ?>
+                <?php  } ?>
+                </tbody>
+            </table>
+
 
 
 

@@ -43,7 +43,7 @@ if (isset($this->session->userdata['logged_in'])) {
     header("location: http://localhost/Metagenomic/login/user_login_process");
 }
 ?>
-<body>
+<body background="<?php echo base_url();?>img/new.png">
 <?php
 if (isset($logout_message)) {
     echo "<div class='message'>";
