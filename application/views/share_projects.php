@@ -69,7 +69,7 @@ if (isset($this->session->userdata['logged_in'])) {
                             <td><?php echo $r['receiver_name'];?></td>
                             <td><?php echo  $r['project_name'];?></td>
                             <td><?php echo $r['owner_name'] ?></td>
-                            <td class="center"><?php echo anchor('share_projects/delete_your_share/'.$r['id_share'],"Delete",array('class' => 'btn btn-default btn-sm')); ?></td>
+                            <td class="center"><?php echo anchor('projects/index/'.$r['id_project'],"View",array('class' => 'btn btn-default btn-sm')); ?></td>
                         </tr>
                     <?php  } ?>
                 <?php  } ?>

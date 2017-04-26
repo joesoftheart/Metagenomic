@@ -36,6 +36,71 @@ if (isset($this->session->userdata['logged_in'])) {
                         <li><a href="#">Advance</a></li>
                     </ul>
                     <ul class="uk-switcher">
+
+                        <li>
+
+                            <form action="#" method="post" id="change">
+                                <div class="col-lg-8 col-lg-offset-2">
+                                    <label>Select option run yos project : </label>
+                                    <select class="uk-select uk-margin" disabled>
+                                        <option>silva.v4.fasta</option>
+                                    </select>
+                                    <div class="row">
+                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></div>
+                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></div>
+                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="260" disabled></div>
+                                    </div>
+                                    <div class="row uk-margin" >
+                                        <div class="col-lg-2">
+                                            <label>unique :</label>
+                                            <select class="uk-select" disabled>
+                                                <option>diffs=0</option>
+                                                <option>diffs=1</option>
+                                                <option>diffs=2</option>
+                                                <option>diffs=3 </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row uk-margin">
+
+                                        <p id="show_prepro"></p>
+                                    </div>
+
+                                    <label>classify :</label>
+                                    <div class="row uk-margin">
+                                        <div class="col-lg-2">
+                                                <select class="uk-select" disabled>
+                                                    <option>gg_13_8_99.fasta</option>
+                                                </select></div>
+                                        <div class="col-lg-2">
+                                            <select class="uk-select" disabled>
+                                                <option>gg_13_8_99.gg.tex</option>
+                                            </select></div>
+                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cutoff" value="" placeholder="80" disabled></div>
+                                    </div>
+                                    <label>taxon :</label>
+                                    <div class="row uk-margin">
+
+                                        <div class="col-lg-8">
+                                            <textarea class="uk-textarea" type="textarea" name="texonomy" value="" placeholder="Chloroplast-Mitochondria-Eukaryota-unknown" disabled></textarea>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="row uk-margin">
+
+                                        <p id="show_prephy"></p>
+                                    </div>
+                                    <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Run Prepro</button>
+                                </div>
+
+
+
+                </form>
+                </li>
+
                         <li>
                             <div>
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
@@ -46,7 +111,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                 </ul>
                                 <ul  class="uk-switcher uk-margin">
 
-                                    <li >
+                                    <li>
                                         <form action="#" method="post" id="change">
                                             <div class="col-lg-8 col-lg-offset-2">
                                                 <label>Select option run yos project : </label>
@@ -155,6 +220,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Run Analysis</button>
                                         </div>
                                     </li>
                                     <li >
@@ -163,18 +229,18 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <!--                    </div>-->
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/test.jpg">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/jclass.svg">
                                             </div>
                                             <div class="col-lg-6">
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/test.jpg">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/sharedsobs.svg">
                                             </div>
                                         </div><br>
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/test.jpg">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/">
                                             </div>
                                             <div class="col-lg-6">
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/test.jpg">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/thetayc.svg">
                                             </div>
                                         </div>
 
@@ -185,70 +251,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
                             </div>
                         </li>
-                        <li>
-                            Hello Advance
-                            <form action="#" method="post" id="change">
-                                <div class="col-lg-8 col-lg-offset-2">
-                                    <label>Select option run yos project : </label>
-                                    <select class="uk-select uk-margin" disabled>
-                                        <option>silva.v4.fasta</option>
-                                    </select>
-                                    <div class="row">
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="start" value="" placeholder="start" id="text"></div>
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="end" value="" placeholder="end"></div>
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="maxambig" ></div>
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="maxhomop" ></div>
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="maxlength" ></div>
-                                    </div>
-                                    <div class="row uk-margin" >
-                                        <div class="col-lg-2">
-                                            <label>unique :</label>
-                                            <select class="uk-select">
-                                                <option>diffs=0</option>
-                                                <option>diffs=1</option>
-                                                <option>diffs=2</option>
-                                                <option>diffs=3 </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row uk-margin">
 
-                                        <p id="show_prepro"></p>
-                                    </div>
-
-                                    <label>classify :</label>
-                                    <div class="row uk-margin">
-                                        <div class="col-lg-2">
-                                            <select class="uk-select">
-                                                <option>gg_13_8_99.fasta</option>
-                                            </select></div>
-                                        <div class="col-lg-2"><select class="uk-select">
-                                                <option>gg_13_8_99.gg.tex</option>
-                                            </select></div>
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cutoff" value="" placeholder="cutoff"></div>
-                                    </div>
-                                    <label>taxon :</label>
-                                    <div class="row uk-margin">
-
-                                        <div class="col-lg-8">
-                                            <textarea class="uk-textarea" type="textarea" name="texonomy" value="" placeholder="Chloroplast-Mitochondria-Eukaryota-unknown"></textarea>
-                                        </div>
-
-
-                                    </div>
-
-
-                                    <div class="row uk-margin">
-
-                                        <p id="show_prephy"></p>
-                                    </div>
-                                    <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Run Prepro</button>
-                                </div>
-
-                            </div>
-
-                            </form>
-                        </li>
 
                     </ul>
                 </div>

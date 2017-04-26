@@ -25,6 +25,23 @@ class Used_resource extends CI_Controller{
 //        $data_cpu = $this->get_server_cpu_usage();
 //        $data_ram = $this->get_server_memory_usage();
 //        $data['rs'] = array("data_cpu" => $data_cpu, "data_ram" => $data_ram);
+        $username = ($this->session->userdata['logged_in']['username']);
+        $disk_me = exec('du -sh  /var/www/html/owncloud/data/'.$username.'/files');
+        $disk_other = exec('du -sh  /var/www/html/owncloud/data/');
+        $disk_me = (string)$disk_me;
+        $disk_me = explode("\t", $disk_me);
+        $disk_me =  trim($disk_me[0],'G');
+        echo $disk_me;
+        $data['rs_dm'] = $disk_me;
+        $disk_other = (string)$disk_other;
+        $disk_other = explode("\t", $disk_other);
+        $disk_other = trim($disk_other[0], "G");
+        echo $disk_other;
+        $data['rs_do'] = $disk_other;
+
+
+
+
         $this->load->view('header',$data);
         $this->load->view('used_resource');
         $this->load->view('footer');

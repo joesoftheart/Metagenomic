@@ -12,7 +12,7 @@ if (isset($this->session->userdata['logged_in'])) {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Language', 'Speakers (in millions)'], ['Other', 13], ['Other user', 83], ['Company', 1.4], ['Dogri', 2.3], ['Your storeges', 80], ['Free storegse', 300]]);
+            ['Language', 'Speakers (in millions)'], ['Other', 13], ['Other user', <?php echo $rs_do; ?>], ['Company', 1.4], ['Dogri', 2.3], ['Your storeges', <?php echo $rs_dm;?>], ['Free storegse', 300]]);
 
         var options = {
             title: 'Storeges',
@@ -47,6 +47,7 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
     </div>
     <div class="row">
+
         <div class="col-lg-6">
                 <!-- /.panel-heading -->
             <h3 class="page-header">Pie chart</h3>

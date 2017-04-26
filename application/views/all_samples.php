@@ -15,10 +15,10 @@ if (isset($this->session->userdata['logged_in'])) {
             <ol class="breadcrumb">
                 <li <?php if ($controller_name == 'main'){
                     echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
-                <li class="active">New sample</li>
+                <li class="active">All sample</li>
 
             </ol>
-            <h1 class="page-header">New Projects</h1>
+            <h1 class="page-header">All samples</h1>
                 <div class="row">
                     <div class="col-lg-12">
                                    <a class="btn btn-primary" target="_blank" href="http://localhost/owncloud">upload to owncloud</a>
