@@ -28,7 +28,7 @@ class General_statistic extends CI_Controller{
 
 
 
-        $this->load->view('header');
+        $this->load->view('header',$data);
         $this->load->view('general_statistic',$data);
         $this->load->view('footer');
     }
