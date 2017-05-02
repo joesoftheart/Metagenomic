@@ -32,61 +32,97 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="uk-child-width-1-6\@xl" uk-grid>
                 <div>
                     <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
-                        <li class="uk-active"><a href="#">Custom</a></li>
+                        <li class="uk-active"><a href="#">Standard</a></li>
                         <li><a href="#">Advance</a></li>
                     </ul>
                     <ul class="uk-switcher">
 
                         <li>
-
+                            <!-- Standard run -->
                             <form action="#" method="post" id="change">
                                 <div class="col-lg-8 col-lg-offset-2">
-                                    <label>Select option run yos project : </label>
-                                    <select class="uk-select uk-margin" disabled>
-                                        <option>silva.v4.fasta</option>
-                                    </select>
+                                    <label>1. Preprocess & Prepare in taxonomy </label><br><br>
+
                                     <div class="row">
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></div>
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></div>
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="260" disabled></div>
-                                    </div>
-                                    <div class="row uk-margin" >
-                                        <div class="col-lg-2">
-                                            <label>unique :</label>
-                                            <select class="uk-select" disabled>
-                                                <option>diffs=0</option>
-                                                <option>diffs=1</option>
-                                                <option>diffs=2</option>
-                                                <option>diffs=3 </option>
+                                        <div class="col-lg-4">
+                                            <label>** Screen reads  :</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <table  border="0">
+                                                <tr>
+                                                    <td>maximum ambiguous :</td>
+                                                    <td><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ximum homopolymer :</td>
+                                                    <td><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>manimum reads length :</td>
+                                                    <td><input class="uk-input" type="text" name="cmd" value="" placeholder="260" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>maximum reads length :</td>
+                                                    <td><input class="uk-input" type="text" name="cmd" value="" placeholder="260" disabled></td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div><br>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                    <label>**Alignment step :</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <select class="uk-select uk-margin" disabled>
+                                                <option>silva.v4.fasta</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="row uk-margin">
 
-                                        <p id="show_prepro"></p>
                                     </div>
-
-                                    <label>classify :</label>
-                                    <div class="row uk-margin">
-                                        <div class="col-lg-2">
-                                                <select class="uk-select" disabled>
-                                                    <option>gg_13_8_99.fasta</option>
-                                                </select></div>
-                                        <div class="col-lg-2">
-                                            <select class="uk-select" disabled>
-                                                <option>gg_13_8_99.gg.tex</option>
-                                            </select></div>
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cutoff" value="" placeholder="80" disabled></div>
-                                    </div>
-                                    <label>taxon :</label>
-                                    <div class="row uk-margin">
-
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <label>**Pre-cluster step :</label>
+                                        </div>
                                         <div class="col-lg-8">
-                                            <textarea class="uk-textarea" type="textarea" name="texonomy" value="" placeholder="Chloroplast-Mitochondria-Eukaryota-unknown" disabled></textarea>
+                                            <select class="uk-select" disabled>
+                                                <option>diffs=2</option>
+
+                                            </select>
                                         </div>
 
 
+                                    </div><br><br>
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <label>**Prepare the taxonomy classification :</label>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <table>
+                                                <tr>
+                                                    <td>database :</td>
+                                                    <td>
+                                                            <select class="uk-select" disabled>
+                                                                <option>gg_13_8_99.fasta</option>
+                                                            </select>
+                                                       </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>cutoff :</td>
+                                                    <td><input class="uk-input" type="text" name="cutoff" value="" placeholder="80" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Test to remove taxon :</td>
+                                                    <td> <textarea class="uk-textarea" type="textarea" name="texonomy" value="" placeholder="Chloroplast-Mitochondria-Eukaryota-unknown" disabled></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
+
+
 
 
                                     <div class="row uk-margin">
@@ -99,6 +135,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                 </form>
+                            <!-- End Standard run -->
                 </li>
 
                         <li>

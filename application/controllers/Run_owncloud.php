@@ -24,9 +24,14 @@ class Run_owncloud extends CI_Controller {
         public function index()
         {
              
-             $jobname = "test_mo_own1";
-             $project = "data_mothur";
-             $user = "admin";
+//             $jobname = "test_mo_own1";
+//             $project = "data_mothur";
+//             $user = "admin";
+
+            $jobname = "test_mo_own1";
+            $project = "SAMPLE-WES1053";
+            $user = "joesoftheart";
+             $this->check_file($user,$project);
              
          
              #make.contigs
@@ -139,30 +144,31 @@ class Run_owncloud extends CI_Controller {
         public function run_makefile($user,$project){
 
           $jobname = $user."_makefile";
-      
+
          
            #make.file
-               $make = "make.file(inputdir=owncloud/data/$user/files/$project/data/input)";
+               $make = "make.file(inputdir=owncloud/data/$user/files/$project/data/input,outputdir=owncloud/data/$user/files/$project/data/input)";
 
                file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $make);
 
 
-               $cmd = "qsub -N '$jobname' -cwd -b y Mothur/mothur owncloud/data/$user/files/$project/data/input/run.batch ";
+               $cmd = "qsub -N '$jobname' -cwd -b y Mothur/mothur owncloud/data/$user/files/$project/data/input/run.batch";
 
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
                exec($check_qstat,$output);
-      
-               $id_job = "" ; # give job id 
+
+               $id_job = "" ; # give job id
                foreach ($output as $key_var => $value ) {
-              
+
                     if($key_var == "1"){
                         $data = explode(":", $value);
                         $id_job = $data[1];
-                    }        
+                    }
               }
               $loop = true;
               while ($loop) {
+                  echo "in loop";
 
                    $check_run = exec("qstat -u apache  '$id_job' ");
 
@@ -170,7 +176,7 @@ class Run_owncloud extends CI_Controller {
                       $loop = false;
                       return "0";
                    }
-              }  
+              }
 
         }
 

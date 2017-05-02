@@ -13,10 +13,10 @@ if (isset($this->session->userdata['logged_in'])) {
             <br>
             <ul class="breadcrumb">
                 <li><a href="#">Home</a> <span class="divider">/</span></li>
-                <li><a href="#">Library</a> <span class="divider">/</span></li>
-                <li class="active">Data</li>
+                <li class="active">Edit project<span class="divider">/</span></li>
+
             </ul>
-            <h1 class="page-header">Edit Projects</h1>
+            <h4 class="page-header">Edit Projects</h4>
 
 
             <div class="panel-body">
@@ -60,10 +60,32 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <option <?php if ($r['project_type'] == "16s"){
                                             echo "selected";
                                         } ?>>16s</option>
-                                        <option>its</option>
-                                    </select <?php if ($r['project_type'] == "its"){
-                                        echo "selected";
-                                    } ?>><br>
+                                        <option <?php if ($r['project_type'] == "its"){
+                                            echo "selected";
+                                        } ?>>its</option>
+                                    </select><br>
+
+                                    <label>Select program :</label>
+                                    <div class="form-group" >
+                                        <label class="radio-inline">
+                                            <input type="radio" name="project_program" id="mothur" value="mothur" <?php if ($r['project_program'] == "mothur"){ echo "checked";} ?>>mothur
+
+                                        </label>
+
+                                        <!--                                    <label>Select analysis :</label> -->
+                                        <select class="uk-select  uk-width-1-4 <?php if ($r['project_analysis'] == ""){ echo "hide";} ?>" id="program" name="project_analysis">
+                                            <option value=""><-Select Analysis-></option>
+                                            <option value="otu">OTU</option>
+                                            <option value="phylotype">Phylotype</option>
+                                        </select>
+                                        <br>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="project_program" id="qiime" value="qiime" <?php if ($r['project_program'] == "qiime"){ echo "checked";} ?>>Qiime
+                                        </label><br>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="project_program" id="uparse" value="uparse" <?php if ($r['project_program'] == "uparse"){ echo "checked"; } ?>>UPARSE
+                                        </label>
+                                    </div>
                                     <div>
                                         <?php
                                         $path_owncloud = "../owncloud/data/" . $username . "/files/";
@@ -128,3 +150,15 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
 </div>
+
+<script>
+    $('#mothur').on('change', function() {
+        $('#program').removeClass("hide");
+    });
+    $('#qiime').on('change', function() {
+        $('#program').addClass("hide");
+    });
+    $('#uparse').on('change', function() {
+        $('#program').addClass("hide");
+    });
+</script>

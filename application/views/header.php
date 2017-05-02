@@ -111,7 +111,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo site_url('main')?>"><i class="fa fa-codepen fa-1x"></i> Metagenomics</a>
+            <a class="navbar-brand" href="<?php echo site_url('main')?>"><i class="fa fa-codepen fa-1x"></i> Amplicon Metagenomic</a>
         </div>
         <!-- /.navbar-header -->
 
