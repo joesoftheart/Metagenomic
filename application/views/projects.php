@@ -39,15 +39,15 @@ if (isset($this->session->userdata['logged_in'])) {
 
                         <li>
                             <!-- Standard run -->
-                            <form action="#" method="post" id="change">
+                            <form action="<?php echo site_url('projects/run_process')?>" method="post" id="change">
                                 <div class="col-lg-8 col-lg-offset-2">
                                     <label>1. Preprocess & Prepare in taxonomy </label><br><br>
 
                                     <div class="row">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-4 col-lg-offset-1">
                                             <label>** Screen reads  :</label>
                                         </div>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-7">
                                             <table  border="0">
                                                 <tr>
                                                     <td>maximum ambiguous :</td>
@@ -71,10 +71,10 @@ if (isset($this->session->userdata['logged_in'])) {
                                     </div><br>
                                     <br>
                                     <div class="row">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-4 col-lg-offset-1">
                                     <label>**Alignment step :</label>
                                         </div>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-7">
                                             <select class="uk-select uk-margin" disabled>
                                                 <option>silva.v4.fasta</option>
                                             </select>
@@ -82,10 +82,10 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-4 col-lg-offset-1">
                                             <label>**Pre-cluster step :</label>
                                         </div>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-7">
                                             <select class="uk-select" disabled>
                                                 <option>diffs=2</option>
 
@@ -95,10 +95,10 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                     </div><br><br>
                                     <div class="row">
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-5 col-lg-offset-1">
                                             <label>**Prepare the taxonomy classification :</label>
                                         </div>
-                                        <div class="col-lg-7">
+                                        <div class="col-lg-6">
                                             <table>
                                                 <tr>
                                                     <td>database :</td>
@@ -120,7 +120,128 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 </tr>
                                             </table>
                                         </div>
+                                    </div><br><br>
+
+
+
+
+
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <label>2. Prepare phylotype</label>
+
+                                        </div>
+                                        <div class="col-lg-7">
+                                            **The number of total reads/group after the preprocess<br>
+                                            **subsample detect form file<br>
+                                            subsample :<input class="uk-input uk-width-1-4" value="5000" disabled>
+                                        </div>
+                                    </div><br>
+
+
+                                    <div class="row">
+
+                                        <div class="col-lg-5">
+                                            <label>3.Analysis :</label>
+                                        </div>
+
+                                        <div class="col-lg-7">
+                                          <table>
+                                              <tr>
+                                                  <td>
+                                                      Level 2 is used for analysis :
+                                                  </td>
+                                                  <td>
+                                                      <select class="uk-select" disabled>
+                                                          <option>1</option>
+                                                          <option selected>2</option>
+                                                          <option>3</option>
+                                                          <option>4</option>
+                                                          <option>5</option>
+                                                          <option>6</option>
+
+
+                                                      </select>
+                                                  </td>
+                                              </tr>
+                                          </table>
+                                        </div>
+
                                     </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-1">
+                                            <label>3.2 Beta diversity analysis</label>
+                                        </div>
+                                        <div class="col-lg-6">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-2">
+                                            <label>**calculators</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <ul>
+                                                <li>sobs</li>
+                                                <li>anao</li>
+                                                <li>shannon</li>
+                                                <li>simpson</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-1">
+                                            <label>3.1 Alpha diversity analysis</label>
+                                        </div>
+                                        <div class="col-lg-6">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-2">
+                                            <label></label>
+                                        </div>
+                                        <div class="col-lg-6">
+
+                                            <ul>
+                                                <li>venn diagram</li>
+                                                <li>UPGMA tree</li>
+                                                <ul>
+                                                    <li>Thetayc</li>
+                                                    <li>Jclass</li>
+                                                </ul>
+                                                <li>PCOA</li>
+                                                <ul>
+                                                    <li>Thetayc</li>
+                                                    <li>Jclass</li>
+                                                </ul>
+                                                <li>NMDS</li>
+                                                <ul>
+                                                    <li>Thetayc</li>
+                                                    <li>Jclass</li>
+                                                </ul>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-2">
+                                            <label>**optional</label>
+                                        </div>
+                                        <div class="col-lg-6">
+
+                                            <ul>
+                                                <li>Please upload file.design?    <?php echo form_upload('pictures'); ?></li>
+                                                <li>Please upload file.metadata?    <?php echo form_upload('pictures'); ?></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
 
 
 
@@ -129,7 +250,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                         <p id="show_prephy"></p>
                                     </div>
-                                    <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Run Prepro</button>
+                                    <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Submit</button>
                                 </div>
 
 
@@ -301,44 +422,44 @@ if (isset($this->session->userdata['logged_in'])) {
 
 </script>
     <script>
-        $(document).ready(function () {
-            $("#btn_prepro").click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url();?>projects/run_preprocess",
-                    data: {text: $("#text").val()},
-                    dataType: "text",
-                    cache:false,
-                    success:
-                        function(data){
-                            $("#show_prepro").html(data);
-                        }
-                });// you have missed this bracket
-                return false;
-            });
-
-        });
+//        $(document).ready(function () {
+//            $("#btn_prepro").click(function () {
+//                $.ajax({
+//                    type: "POST",
+//                    url: "<?php //echo base_url();?>//projects/run_preprocess",
+//                    data: {text: $("#text").val()},
+//                    dataType: "text",
+//                    cache:false,
+//                    success:
+//                        function(data){
+//                            $("#show_prepro").html(data);
+//                        }
+//                });// you have missed this bracket
+//                return false;
+//            });
+//
+//        });
 
     </script>
 
     <script>
         $(document).ready(function () {
-            $("#btn_prephy").click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url();?>projects/run_prepare_phylotype",
-                    data: {text: $("#text").val()},
-                    dataType: "text",
-                    cache:false,
-                    success:
-                        function(data){
-                            $("#show_prephy").html(data);
-                        }
-                });// you have missed this bracket
-                return false;
-            });
-
-        });
+//            $("#btn_prephy").click(function () {
+//                $.ajax({
+//                    type: "POST",
+//                    url: "<?php //echo base_url();?>//projects/run_prepare_phylotype",
+//                    data: {text: $("#text").val()},
+//                    dataType: "text",
+//                    cache:false,
+//                    success:
+//                        function(data){
+//                            $("#show_prephy").html(data);
+//                        }
+//                });// you have missed this bracket
+//                return false;
+//            });
+//
+//        });
 
     </script>
 
