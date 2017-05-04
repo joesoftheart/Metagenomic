@@ -39,7 +39,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
                         <li>
                             <!-- Standard run -->
-                            <form action="<?php echo site_url('projects/run_process')?>" method="post" id="change">
+                            <form action="<?php echo site_url('projects/run/'.$current_project)?>" method="post" id="change">
                                 <div class="col-lg-8 col-lg-offset-2">
                                     <label>1. Preprocess & Prepare in taxonomy </label><br><br>
 
