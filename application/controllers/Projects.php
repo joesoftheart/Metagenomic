@@ -44,6 +44,7 @@ class Projects extends CI_Controller{
     }
 
 
+
     public function run($id){
         $data = $this->mongo_db->get_where("projects",array("_id" => new MongoId($id)));
         foreach ($data as $r ){
@@ -51,8 +52,12 @@ class Projects extends CI_Controller{
         }
         $project =  basename($sample_folder);
         $user = $this->session->userdata['logged_in']['username'];
-        $this->check_file($user, $project);
 
+        if ($project != null){
+            $this->check_file($user, $project);
+        }else{
+            echo " This Project not have path to sample files";
+        }
 
     }
 
@@ -61,9 +66,6 @@ class Projects extends CI_Controller{
         echo "check file";
         $path = "owncloud/data/$user/files/$project/data/input/stability.files";
         $input_path = "inputdir=owncloud/data/$user/files/$project/data/input/";
-
-        $file_list = "fileList.paired.file";
-        $stability = "stability.files";
 
         $path_file = FCPATH."$path";
 
@@ -358,7 +360,7 @@ summary.seqs(fasta=current, count=current,$input_path,$output_path)";
         }
     }
     public function classify_system($user,$project){
-
+        $path_copy = "/var/www/html/owncloud/data/$user/files/$project/data/input/";
         $output_path = "outputdir=owncloud/data/$user/files/$project/data/input/";
         $input_path = "inputdir=owncloud/data/$user/files/$project/data/input/";
 
@@ -368,9 +370,9 @@ summary.seqs(fasta=current, count=current,$input_path,$output_path)";
 remove.lineage(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxon=taxon=Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified,$input_path,$output_path)
 summary.seqs(fasta=current, count=current,$input_path,$output_path)
 summary.tax(taxonomy=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,$input_path,$output_path)
-system(cp stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta final.fasta)
-system(cp stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table final.count_table)
-system(cp stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy final.taxonomy) ";
+system(cp /var/www/html/owncloud/data/$user/files/$project/data/input/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta final.fasta)
+system(cp /var/www/html/owncloud/data/$user/files/$project/data/input/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table final.count_table)
+system(cp /var/www/html/owncloud/data/$user/files/$project/data/input/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy final.taxonomy) ";
 
         file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
 
