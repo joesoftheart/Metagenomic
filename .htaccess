@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteCond $1 !^(index\.php|vendor|font-awesome|fonts|css|jquery|morrisjs|raphael|metisMenu|js|data|flot|raphael|uploads|flot-tooltip|datatables-responsive|databases-plugins|datatables|bootstrap-social|img|images|bootstrap|\.txt|png|css|less|scss|ttf|eot|woff2woff2|js)
+RewriteCond $1 !^(index\.php|vendor|font-awesome|fonts|css|jquery|morrisjs|raphael|metisMenu|js|data|flot|raphael|uploads|flot-tooltip|datatables-responsive|databases-plugins|datatables|bootstrap-social|img|images|bootstrap|\.txt|png|css|less|scss|ttf|eot|woff2woff2|js|design|metadata)
 RewriteRule ^(.*)$ index.php/$1 [L]
 Header set Access-Control-Allow-Origin "*"
 

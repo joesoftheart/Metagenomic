@@ -236,8 +236,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="col-lg-6">
 
                                             <ul>
-                                                <li>Please upload file.design?    <?php echo form_upload('pictures'); ?></li>
-                                                <li>Please upload file.metadata?    <?php echo form_upload('pictures'); ?></li>
+                                                <li>Please upload file.design?    <?php echo form_upload('design'); ?></li>
+                                                <li>Please upload file.metadata?    <?php echo form_upload('metadata'); ?></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -257,6 +257,13 @@ if (isset($this->session->userdata['logged_in'])) {
 
                 </form>
                             <!-- End Standard run -->
+
+                            <button class="btn btn-default" id="btn_test_run">Test Run</button>
+                            <div class="col-lg-6"  >
+                                <textarea id="show" style="height: 300px; width: 300px;"></textarea>
+
+                            </div>
+
                 </li>
 
                         <li>
@@ -422,23 +429,17 @@ if (isset($this->session->userdata['logged_in'])) {
 
 </script>
     <script>
-//        $(document).ready(function () {
-//            $("#btn_prepro").click(function () {
-//                $.ajax({
-//                    type: "POST",
-//                    url: "<?php //echo base_url();?>//projects/run_preprocess",
-//                    data: {text: $("#text").val()},
-//                    dataType: "text",
-//                    cache:false,
-//                    success:
-//                        function(data){
-//                            $("#show_prepro").html(data);
-//                        }
-//                });// you have missed this bracket
-//                return false;
-//            });
-//
-//        });
+        $(document).ready(function () {
+            $("#btn_test_run").click(function () {
+                    $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url();?>run/run/<?php echo $current_project;?>"
+                     });// you have missed this bracket
+                    return false;
+
+
+            });
+        });
 
     </script>
 

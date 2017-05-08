@@ -43,9 +43,21 @@ class Projects extends CI_Controller{
         $this->load->view('footer');
     }
 
+    public function test_run(){
+        $n = 1000;
+        while ($n > 0){
+
+            echo "55";
+            $n--;
+        }
+
+    }
+
 
 
     public function run($id){
+
+
         $data = $this->mongo_db->get_where("projects",array("_id" => new MongoId($id)));
         foreach ($data as $r ){
             $sample_folder =  $r['project_path'];
@@ -58,6 +70,31 @@ class Projects extends CI_Controller{
         }else{
             echo " This Project not have path to sample files";
         }
+
+        $path = "owncloud/data/$user/files/$project/data/input/";
+
+        $config['upload_path'] = $path;
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '3000';
+       // $config['max_width'] = '1024';
+       // $config['max_height'] = '1024';
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+
+        if ($this->upload->do_upload("design")) {
+            $data = $this->upload->data();
+
+        }else{
+            echo $this->upload->display_errors();
+        }
+
+        if ($this->upload->do_upload("metadata")) {
+            $data = $this->upload->data();
+
+        }else{
+            echo $this->upload->display_errors();
+        }
+
 
     }
 
@@ -212,7 +249,7 @@ class Projects extends CI_Controller{
 
             if($check_run == false){
                 $loop = false;
-                echo "Run make contigs oligos complete";
+               // echo "Run make contigs oligos complete";
                 $this->summary_seqs($user,$project);
             }
         }
@@ -253,7 +290,7 @@ class Projects extends CI_Controller{
 
             if($check_run == false){
                 $loop = false;
-                echo "Run make.contigs && summary.seqs complete"."<br/>";
+               // echo "Run make.contigs && summary.seqs complete"."<br/>";
                 $this->summary_seqs($user,$project);
 
             }
@@ -301,7 +338,7 @@ summary.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.tri
 
             if($check_run == false){
                 $loop = false;
-                echo "Run _summary_seqs"."<br/>";
+               // echo "Run _summary_seqs"."<br/>";
                 $this->screen_remove($user,$project);
 
             }
@@ -353,7 +390,7 @@ summary.seqs(fasta=current, count=current,$input_path,$output_path)";
 
             if($check_run == false){
                 $loop = false;
-                echo "Run screen_remove"."<br/>";
+             //   echo "Run screen_remove"."<br/>";
                 $this->classify_system($user,$project);
 
             }
@@ -397,7 +434,7 @@ system(cp /var/www/html/owncloud/data/$user/files/$project/data/input/stability.
 
             if($check_run == false){
                 $loop = false;
-                echo "Run classify_system"."<br/>";
+            //    echo "Run classify_system"."<br/>";
                 $this->phylotype_count($user,$project);
 
             }
@@ -443,7 +480,7 @@ count.groups(shared=final.tx.shared,$input_path,$output_path)";
 
             if($check_run == false){
                 $loop = false;
-                echo "Run phylotype_count"."<br/>";
+             //   echo "Run phylotype_count"."<br/>";
                 $this->sub_sample_sammary($user, $project);
 
             }
@@ -485,7 +522,7 @@ summary.single(shared=final.tx.shared, calc=nseqs-coverage-sobs-invsimpson-chao-
 
             if($check_run == false){
                 $loop = false;
-                echo "Run sub_sample_sammary"."<br/>";
+             //   echo "Run sub_sample_sammary"."<br/>";
                 $this->plot_graph($user, $project);
 
             }
@@ -548,7 +585,7 @@ corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, m
 
             if($check_run == false){
                 $loop = false;
-                echo "Run plot_graph"."<br/>";
+            //    echo "Run plot_graph"."<br/>";
 
             }
         }
