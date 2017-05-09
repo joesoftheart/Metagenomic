@@ -32,8 +32,8 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="uk-child-width-1-6\@xl" uk-grid>
                 <div>
                     <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
-                        <li class="uk-active"><a href="#">Custom</a></li>
-                        <li><a href="#">Advance</a></li>
+                        <li ><a href="#">Custom</a></li>
+                        <li class="uk-active"><a href="#">Advance</a></li>
                     </ul>
                     <ul class="uk-switcher">
 
@@ -95,16 +95,15 @@ if (isset($this->session->userdata['logged_in'])) {
                                     </div>
                                     <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Run Prepro</button>
                                 </div>
+                             </form>
+                       </li>
 
 
-
-                </form>
-                </li>
-
+                        <!-- ADVANCE  -->
                         <li>
                             <div>
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
-                                    <li ><a href="#">#preprocess&&#prepare in taxonomy</a></li>
+                                    <li ><a href="#">#preprocess && #prepare in taxonomy </a></li>
                                     <li><a href="#">#prepare phylotype analysis</a></li>
                                     <li><a href="#">#analysis</a></li>
                                     <li><a href="#">#result&graph</a></li>
@@ -112,60 +111,123 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <ul  class="uk-switcher uk-margin">
 
                                     <li>
-                                        <form action="#" method="post" id="change">
+                                         <form method="post"  action="<?php echo base_url('Run_advance/form_value');?>"  >
+
+                                           <input type="hidden" name="username" value="<?=$username?>">
+                                           <input type="hidden" name="project" value="<?=$current_project?>">
                                             <div class="col-lg-8 col-lg-offset-2">
-                                                <label>Select option run yos project : </label>
-                                                <select class="uk-select uk-margin" disabled>
-                                                    <option>silva.v4.fasta</option>
-                                                </select>
-                                                <div class="row">
-                                                    <div class="col-lg-2"><input class="uk-input" type="text" name="start" value="" placeholder="start" id="text"></div>
-                                                    <div class="col-lg-2"><input class="uk-input" type="text" name="end" value="" placeholder="end"></div>
-                                                    <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="maxambig" ></div>
-                                                    <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="maxhomop" ></div>
-                                                    <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="maxlength" ></div>
-                                                </div>
-                                                <div class="row uk-margin" >
-                                                    <div class="col-lg-2">
-                                                        <label>unique :</label>
-                                                        <select class="uk-select">
-                                                            <option>diffs=0</option>
-                                                            <option>diffs=1</option>
-                                                            <option>diffs=2</option>
-                                                            <option>diffs=3 </option>
+
+                                                <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Select option run your project  </label></div>
+                                               
+
+
+                                                 <div class="col-lg-10 col-lg-pull-1"><label> Screen reads </label></div>
+                                                 <div class="form-inline col-lg-12">
+                                                      <label class="col-lg-6"> maximum ambiguous : </label>
+                                                      <input class="form-control" type="number" name="maximum_ambiguous" min="0" placeholder="maximum ambiguous">
+                                                 </div>
+                                                 <div class="form-inline col-lg-12 uk-margin">
+                                                     <label class="col-lg-6"> maximum homopolymer : </label>
+                                                     <input class="form-control" type="number" name="maximum_homopolymer" min="0" placeholder="maximum homopolymer">
+                                                 </div>
+                                                 <div class="form-inline col-lg-12">
+                                                     <label class="col-lg-6"> minimum reads length : </label>
+                                                     <input class="form-control" type="number" name="minimum_reads_length" min="0" placeholder="minimum reads length" >
+                                                 </div>
+                                                 <div class="form-inline col-lg-12 uk-margin">
+                                                    <label class="col-lg-6"> maximum reads length : </label>
+                                                    <input class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" >
+                                                 </div>
+                                 
+                                              
+
+                                                 <div class="col-lg-10 col-lg-pull-1"><label> Alignment step :</label></div>
+                                                  <div class="col-lg-5">
+                                                      <select class="uk-select" name="alignment">
+                                                      <option value="silva"> Silva </option>
+                                                      <option value="gg"> GG </option>
+                                                      <option value="rpd"> RPD </option>
+                                                  </select>
+                                                  </div>
+                                                  <label class="col-lg-1"> OR </label>
+                                                  <div class="col-lg-5 ">    
+                                                    <input class="uk-input" type="text" name="customer" value="" placeholder="customer">  
+                                                  </div>
+                                                <div class="col-lg-12 uk-margin"></div>
+                                                <div class="col-lg-10 col-lg-pull-1"><label> Pre-cluster step :</label></div>
+                                                    <div class="col-lg-12">
+                                                        <select class="uk-select" name="diffs">
+                                                            <option value="0">diffs = 0</option>
+                                                            <option value="1">diffs = 1</option>
+                                                            <option value="2">diffs = 2</option>
+                                                            <option value="3">diffs = 3 </option>
                                                         </select>
                                                     </div>
-                                                </div>
-                                                <div class="row uk-margin">
+                                             
 
-                                                    <p id="show_prepro"></p>
-                                                </div>
 
-                                                <label>classify :</label>
-                                                <div class="row uk-margin">
-                                                    <div class="col-lg-2">
-                                                        <select class="uk-select">
-                                                            <option>gg_13_8_99.fasta</option>
-                                                        </select></div>
-                                                    <div class="col-lg-2"><select class="uk-select">
-                                                            <option>gg_13_8_99.gg.tex</option>
-                                                        </select></div>
-                                                    <div class="col-lg-2"><input class="uk-input" type="text" name="cutoff" value="" placeholder="cutoff"></div>
+                                                <div class="col-lg-12 uk-margin"> </div>
+                                                <label class="col-lg-10 col-lg-pull-1">Prepare the taxonomy classification :</label>
+                                                    <div class="col-lg-4">
+                                                        <select class="uk-select" name="classify">
+                                                             <option value="silva"> Silva </option>
+                                                             <option value="gg"> GG </option>
+                                                             <option value="rpd"> RPD </option>
+                                                        </select>
+                                                    </div>
+                                                <label class="col-lg-3"> with cutoff : </label>
+                                                <div class="col-lg-2">    
+                                                    <input class="uk-input" type="number" name="cutoff" min="50" value="50">   
                                                 </div>
-                                                <label>taxon :</label>
-                                                <div class="row uk-margin">
+                                                <label class="col-lg-2">(>=50)</label> 
 
-                                                    <div class="col-lg-8">
-                                                        <textarea class="uk-textarea" type="textarea" name="texonomy" value="" placeholder="Chloroplast-Mitochondria-Eukaryota-unknown"></textarea>
+
+
+                                               <div class="col-lg-12 uk-margin"> </div>
+
+
+                                              <label class="col-lg-10 col-lg-pull-1"> Remove sequences from multiple taxons.</label>
+                                              <label class="col-lg-10 col-lg-pull-1"> Please separating them with dashes : </label>
+
+                                                 <div class="col-lg-12">  
+                                                
+                                                     <div class="radio">
+                                                       <label>
+                                                           <input name="optionsRadios"  value="0" type="radio"> default 
+                                                      </label>
                                                     </div>
 
+                                                    <div class="radio">
+                                                       <label >
+                                                           <input name="optionsRadios" value="1" type="radio"> 
+                                                           <input class="uk-input" name="taxon" size="50" type="text" placeholder="Chloroplast-Mitochondria-Eukaryota-unknown"> 
+                                                      </label>
+                                                    </div>
                                                 </div>
-                                                <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Run Prepro</button>
 
+
+                                               <div class="col-lg-12 uk-margin"> </div>
+                                               <div class="col-lg-4">
+                                                  <button id=""  type="submit" class="btn btn-default">Run Preprocess</button>  
+                                               </div>
+                                               <div class="col-lg-8">
+                                                   <button id="" type="reset" class="btn btn-default">Clear</button>
+                                                </div>
+
+                                                <div class="col-lg-12 uk-margin"> </div>
                                             </div><!-- close row form -->
+                                        
                                         </form>
 
                                     </li>
+
+
+
+
+
+
+
+
 
                                     <li >
                                         <div class="col-lg-8 col-lg-offset-2">
@@ -251,6 +313,8 @@ if (isset($this->session->userdata['logged_in'])) {
 
                             </div>
                         </li>
+
+                        <!-- End EDVANCE  -->
 
 
                     </ul>
