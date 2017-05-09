@@ -32,74 +32,251 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="uk-child-width-1-6\@xl" uk-grid>
                 <div>
                     <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
+<<<<<<< HEAD
                         <li ><a href="#">Custom</a></li>
                         <li class="uk-active"><a href="#">Advance</a></li>
+=======
+                        <li class="uk-active"><a href="#">Standard</a></li>
+                        <li><a href="#">Advance</a></li>
+>>>>>>> 27075a3786494f9ab591716fb8caa7b403cd13ef
                     </ul>
                     <ul class="uk-switcher">
 
                         <li>
-
-                            <form action="#" method="post" id="change">
+                            <!-- Standard run -->
+                            <form action="<?php echo site_url('projects/run/'.$current_project)?>" method="post" id="change">
                                 <div class="col-lg-8 col-lg-offset-2">
-                                    <label>Select option run yos project : </label>
-                                    <select class="uk-select uk-margin" disabled>
-                                        <option>silva.v4.fasta</option>
-                                    </select>
+                                    <label>1. Preprocess & Prepare in taxonomy </label><br><br>
+
                                     <div class="row">
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></div>
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></div>
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cmd" value="" placeholder="260" disabled></div>
-                                    </div>
-                                    <div class="row uk-margin" >
-                                        <div class="col-lg-2">
-                                            <label>unique :</label>
-                                            <select class="uk-select" disabled>
-                                                <option>diffs=0</option>
-                                                <option>diffs=1</option>
-                                                <option>diffs=2</option>
-                                                <option>diffs=3 </option>
+                                        <div class="col-lg-4 col-lg-offset-1">
+                                            <label>** Screen reads  :</label>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <table  border="0">
+                                                <tr>
+                                                    <td>maximum ambiguous :</td>
+                                                    <td><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ximum homopolymer :</td>
+                                                    <td><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>manimum reads length :</td>
+                                                    <td><input class="uk-input" type="text" name="cmd" value="" placeholder="260" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>maximum reads length :</td>
+                                                    <td><input class="uk-input" type="text" name="cmd" value="" placeholder="260" disabled></td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div><br>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-1">
+                                    <label>**Alignment step :</label>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <select class="uk-select uk-margin" disabled>
+                                                <option>silva.v4.fasta</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="row uk-margin">
 
-                                        <p id="show_prepro"></p>
                                     </div>
-
-                                    <label>classify :</label>
-                                    <div class="row uk-margin">
-                                        <div class="col-lg-2">
-                                                <select class="uk-select" disabled>
-                                                    <option>gg_13_8_99.fasta</option>
-                                                </select></div>
-                                        <div class="col-lg-2">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-1">
+                                            <label>**Pre-cluster step :</label>
+                                        </div>
+                                        <div class="col-lg-7">
                                             <select class="uk-select" disabled>
-                                                <option>gg_13_8_99.gg.tex</option>
-                                            </select></div>
-                                        <div class="col-lg-2"><input class="uk-input" type="text" name="cutoff" value="" placeholder="80" disabled></div>
-                                    </div>
-                                    <label>taxon :</label>
-                                    <div class="row uk-margin">
+                                                <option>diffs=2</option>
 
-                                        <div class="col-lg-8">
-                                            <textarea class="uk-textarea" type="textarea" name="texonomy" value="" placeholder="Chloroplast-Mitochondria-Eukaryota-unknown" disabled></textarea>
+                                            </select>
                                         </div>
 
 
+                                    </div><br><br>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-lg-offset-1">
+                                            <label>**Prepare the taxonomy classification :</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <table>
+                                                <tr>
+                                                    <td>database :</td>
+                                                    <td>
+                                                            <select class="uk-select" disabled>
+                                                                <option>gg_13_8_99.fasta</option>
+                                                            </select>
+                                                       </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>cutoff :</td>
+                                                    <td><input class="uk-input" type="text" name="cutoff" value="" placeholder="80" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Test to remove taxon :</td>
+                                                    <td> <textarea class="uk-textarea" type="textarea" name="texonomy" value="" placeholder="Chloroplast-Mitochondria-Eukaryota-unknown" disabled></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div><br><br>
+
+
+
+
+
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <label>2. Prepare phylotype</label>
+
+                                        </div>
+                                        <div class="col-lg-7">
+                                            **The number of total reads/group after the preprocess<br>
+                                            **subsample detect form file<br>
+                                            subsample :<input class="uk-input uk-width-1-4" value="5000" disabled>
+                                        </div>
+                                    </div><br>
+
+
+                                    <div class="row">
+
+                                        <div class="col-lg-5">
+                                            <label>3.Analysis :</label>
+                                        </div>
+
+                                        <div class="col-lg-7">
+                                          <table>
+                                              <tr>
+                                                  <td>
+                                                      Level 2 is used for analysis :
+                                                  </td>
+                                                  <td>
+                                                      <select class="uk-select" disabled>
+                                                          <option>1</option>
+                                                          <option selected>2</option>
+                                                          <option>3</option>
+                                                          <option>4</option>
+                                                          <option>5</option>
+                                                          <option>6</option>
+
+
+                                                      </select>
+                                                  </td>
+                                              </tr>
+                                          </table>
+                                        </div>
+
                                     </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-1">
+                                            <label>3.2 Beta diversity analysis</label>
+                                        </div>
+                                        <div class="col-lg-6">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-2">
+                                            <label>**calculators</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <ul>
+                                                <li>sobs</li>
+                                                <li>anao</li>
+                                                <li>shannon</li>
+                                                <li>simpson</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-1">
+                                            <label>3.1 Alpha diversity analysis</label>
+                                        </div>
+                                        <div class="col-lg-6">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-2">
+                                            <label></label>
+                                        </div>
+                                        <div class="col-lg-6">
+
+                                            <ul>
+                                                <li>venn diagram</li>
+                                                <li>UPGMA tree</li>
+                                                <ul>
+                                                    <li>Thetayc</li>
+                                                    <li>Jclass</li>
+                                                </ul>
+                                                <li>PCOA</li>
+                                                <ul>
+                                                    <li>Thetayc</li>
+                                                    <li>Jclass</li>
+                                                </ul>
+                                                <li>NMDS</li>
+                                                <ul>
+                                                    <li>Thetayc</li>
+                                                    <li>Jclass</li>
+                                                </ul>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-2">
+                                            <label>**optional</label>
+                                        </div>
+                                        <div class="col-lg-6">
+
+                                            <ul>
+                                                <li>Please upload file.design?    <?php echo form_upload('design'); ?></li>
+                                                <li>Please upload file.metadata?    <?php echo form_upload('metadata'); ?></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+
 
 
                                     <div class="row uk-margin">
 
                                         <p id="show_prephy"></p>
                                     </div>
-                                    <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Run Prepro</button>
+                                    <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Submit</button>
                                 </div>
                              </form>
                        </li>
 
 
+<<<<<<< HEAD
                         <!-- ADVANCE  -->
+=======
+
+                </form>
+                            <!-- End Standard run -->
+
+                            <button class="btn btn-default" id="btn_test_run">Test Run</button>
+                            <div class="col-lg-6"  >
+                                <textarea id="show" style="height: 300px; width: 300px;"></textarea>
+
+                            </div>
+
+                </li>
+
+>>>>>>> 27075a3786494f9ab591716fb8caa7b403cd13ef
                         <li>
                             <div>
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
@@ -329,43 +506,37 @@ if (isset($this->session->userdata['logged_in'])) {
 </script>
     <script>
         $(document).ready(function () {
-            $("#btn_prepro").click(function () {
-                $.ajax({
+            $("#btn_test_run").click(function () {
+                    $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url();?>projects/run_preprocess",
-                    data: {text: $("#text").val()},
-                    dataType: "text",
-                    cache:false,
-                    success:
-                        function(data){
-                            $("#show_prepro").html(data);
-                        }
-                });// you have missed this bracket
-                return false;
-            });
+                    url: "<?php echo base_url();?>run/run/<?php echo $current_project;?>"
+                     });// you have missed this bracket
+                    return false;
 
+
+            });
         });
 
     </script>
 
     <script>
         $(document).ready(function () {
-            $("#btn_prephy").click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url();?>projects/run_prepare_phylotype",
-                    data: {text: $("#text").val()},
-                    dataType: "text",
-                    cache:false,
-                    success:
-                        function(data){
-                            $("#show_prephy").html(data);
-                        }
-                });// you have missed this bracket
-                return false;
-            });
-
-        });
+//            $("#btn_prephy").click(function () {
+//                $.ajax({
+//                    type: "POST",
+//                    url: "<?php //echo base_url();?>//projects/run_prepare_phylotype",
+//                    data: {text: $("#text").val()},
+//                    dataType: "text",
+//                    cache:false,
+//                    success:
+//                        function(data){
+//                            $("#show_prephy").html(data);
+//                        }
+//                });// you have missed this bracket
+//                return false;
+//            });
+//
+//        });
 
     </script>
 

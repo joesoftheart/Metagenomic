@@ -26,18 +26,28 @@ class Used_resource extends CI_Controller{
 //        $data_ram = $this->get_server_memory_usage();
 //        $data['rs'] = array("data_cpu" => $data_cpu, "data_ram" => $data_ram);
         $username = ($this->session->userdata['logged_in']['username']);
-        $disk_me = exec('du -sh  /var/www/html/owncloud/data/'.$username.'/files');
-        $disk_other = exec('du -sh  /var/www/html/owncloud/data/');
+        $disk_me = exec('du -sh  /var/www/html/owncloud/data/ | grep G'.$username.'/files');
+        $disk_other = exec('du -sh  /var/www/html/owncloud/data/ | grep G');
         $disk_me = (string)$disk_me;
         $disk_me = explode("\t", $disk_me);
         $disk_me =  trim($disk_me[0],'G');
-        echo $disk_me;
-        $data['rs_dm'] = $disk_me;
+
+
+        if ($disk_me != null){
+            $data['rs_dm'] = $disk_me;
+        }else{
+            $data['rs_dm'] = 0;
+        }
+
         $disk_other = (string)$disk_other;
         $disk_other = explode("\t", $disk_other);
         $disk_other = trim($disk_other[0], "G");
-        echo $disk_other;
-        $data['rs_do'] = $disk_other;
+
+        if ($disk_other != null){
+            $data['rs_do'] = $disk_other;
+        }else{
+            $data['rs_do'] = 0;
+        };
 
 
 

@@ -30,6 +30,8 @@ class  Edit_project extends CI_Controller {
                 "project_detail" => $this->input->post("project_detail"),
                 "project_permission" => $this->input->post("project_permission"),
                 "project_type" => $this->input->post("project_type"),
+                "project_program" => $this->input->post("project_program"),
+                "project_analysis" => $this->input->post("project_analysis"),
                 "project_path" => $this->input->post("project_path")
             );
 

@@ -36,6 +36,8 @@ class New_projects extends CI_Controller {
                 "project_title" => $this->input->post("project_title"),
                 "project_detail" => $this->input->post("project_detail"),
                 "project_type" => $this->input->post("project_type"),
+                "project_program" => $this->input->post("project_program"),
+                "project_analysis" => $this->input->post("project_analysis"),
                 "project_permission" => $this->input->post("project_permission"),
                 "project_path" => $this->input->post("project_path"),
                 "user_id" => $this->session->userdata["logged_in"]["_id"]);

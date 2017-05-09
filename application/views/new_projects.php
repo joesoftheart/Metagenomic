@@ -18,7 +18,7 @@ if (isset($this->session->userdata['logged_in'])) {
                 <li class="active">New project</li>
 
             </ol>
-            <h1 class="page-header">New Projects</h1>
+            <h4 class="page-header">New Projects</h4>
 
 
             <div class="panel-body">
@@ -48,11 +48,32 @@ if (isset($this->session->userdata['logged_in'])) {
                                 </div>
 
                                 <label>Project type :</label>
-                                <select class="uk-select" name="project_type">
-                                    <option>18s</option>
-                                    <option>16s</option>
-                                    <option>its</option>
+                                <select class="uk-select uk-width-1-4" name="project_type">
+                                    <option value="16s">16s</option>
+                                    <option value="18s">18s</option>
+                                    <option value="its">ITS</option>
                                 </select><br>
+                                <label>Select program :</label>
+                                <div class="form-group" >
+                                    <label class="radio-inline">
+                                        <input type="radio" name="project_program" id="mothur" value="mothur">mothur
+
+                                    </label>
+
+<!--                                    <label>Select analysis :</label> -->
+                                    <select class="uk-select  uk-width-1-4 hide" id="program" name="project_analysis">
+                                        <option value="otu">OTU</option>
+                                        <option value="phylotype">Phylotype</option>
+                                    </select>
+                                    <br>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="project_program" id="qiime" value="qiime">Qiime
+                                    </label><br>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="project_program" id="uparse" value="uparse">UPARSE
+                                    </label>
+                                </div>
+
                                 <div>
                                     <?php
                                     $path_owncloud = "../owncloud/data/" . $username . "/files/";
@@ -79,7 +100,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                                  <label>Select sample from owncloud :</label>
-                                    <select class="uk-select" name="project_path">
+                                    <select class="uk-select  uk-width-1-2" name="project_path">
                                         <?php if ($result_folder != null){ ?>
                                         <?php foreach ($result_folder as $r) { ?>
                                         <option  value="<?php echo $path_owncloud.$r;?>"><?php echo $r;?></option>
@@ -118,3 +139,15 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
 </div>
+
+<script>
+    $('#mothur').on('change', function() {
+        $('#program').removeClass("hide");
+    });
+    $('#qiime').on('change', function() {
+        $('#program').addClass("hide");
+    });
+    $('#uparse').on('change', function() {
+        $('#program').addClass("hide");
+    });
+</script>
