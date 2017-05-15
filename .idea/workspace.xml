@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51f65c25-9315-40cb-bcf2-9a9b2c1dd449" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/final.count_table" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/final.fasta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/final.taxonomy" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Scripts/loopp.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Scripts/newfile.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/controllers/Run.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/newfile.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/run_mothur.batch" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/test_run.php" afterPath="$PROJECT_DIR$/Scripts/standard_run.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Projects.php" afterPath="$PROJECT_DIR$/application/controllers/Projects.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/projects.php" afterPath="$PROJECT_DIR$/application/views/projects.php" />
@@ -29,58 +31,33 @@
       <file leaf-file-name="Projects.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Projects.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="210" column="9" lean-forward="true" selection-start-line="210" selection-start-column="9" selection-end-line="210" selection-end-column="9" />
+            <state relative-caret-position="340">
+              <caret line="20" column="5" lean-forward="false" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Run.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/Run.php">
+      <file leaf-file-name="projects.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/projects.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="655">
-              <caret line="43" column="31" lean-forward="true" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
-              <folding />
+            <state relative-caret-position="469">
+              <caret line="41" column="84" lean-forward="false" selection-start-line="41" selection-start-column="84" selection-end-line="41" selection-end-column="84" />
+              <folding>
+                <marker date="1494847018295" expanded="true" signature="2656:2807" ph="..." />
+                <marker date="1494847018295" expanded="true" signature="2987:3138" ph="..." />
+                <marker date="1494847018295" expanded="true" signature="3318:3472" ph="..." />
+                <marker date="1494847018295" expanded="true" signature="3654:3808" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loopp.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/loopp.php">
+      <file leaf-file-name="standard_run.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Scripts/standard_run.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="2" lean-forward="true" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="newfile.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/newfile.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="newfile.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/newfile.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_run.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/test_run.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+            <state relative-caret-position="91">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -90,15 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>find_</find>
-      <find>find</find>
-      <find>helper</find>
-      <find>sample</find>
-      <find>5x</find>
-      <find>where_or</find>
-      <find>form</find>
-      <find>select</find>
-      <find>$limit</find>
       <find>where</find>
       <find>limit</find>
       <find>ar</find>
@@ -120,7 +88,20 @@
       <find>picture</find>
       <find>pictures</find>
       <find>echo</find>
+      <find>.pick.pick</find>
+      <find>stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy</find>
+      <find>public</find>
+      <find>run_makefile</find>
+      <find>Test</find>
+      <find>btn_test_run</find>
+      <find>submit</find>
+      <find>$output_path</find>
+      <find>shell_exec</find>
     </findStrings>
+    <replaceStrings>
+      <replace>$path</replace>
+      <replace>exec</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -131,7 +112,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/controllers/Main.php" />
         <option value="$PROJECT_DIR$/application/controllers/Admin_main.php" />
         <option value="$PROJECT_DIR$/application/views/admin_main.php" />
         <option value="$PROJECT_DIR$/application/views/admin_footer.php" />
@@ -172,16 +152,17 @@
         <option value="$PROJECT_DIR$/joesoftheartclassify_system.o180" />
         <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/application/controllers/Read_file.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Projects.php" />
-        <option value="$PROJECT_DIR$/application/views/projects.php" />
         <option value="$PROJECT_DIR$/joesoftheart_makesummary.o204" />
         <option value="$PROJECT_DIR$/Scripts/test_run.batch" />
-        <option value="$PROJECT_DIR$/Scripts/test_run.php" />
         <option value="$PROJECT_DIR$/Scripts/loop.php" />
         <option value="$PROJECT_DIR$/newfile.txt" />
-        <option value="$PROJECT_DIR$/application/controllers/Run.php" />
         <option value="$PROJECT_DIR$/Scripts/loopp.php" />
         <option value="$PROJECT_DIR$/Scripts/newfile.txt" />
+        <option value="$PROJECT_DIR$/application/controllers/Run.php" />
+        <option value="$PROJECT_DIR$/Scripts/test_run.php" />
+        <option value="$PROJECT_DIR$/application/views/projects.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Projects.php" />
+        <option value="$PROJECT_DIR$/Scripts/standard_run.php" />
       </list>
     </option>
   </component>
@@ -228,6 +209,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -237,6 +219,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Metagenomic" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Metagenomic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Metagenomic" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -300,10 +296,27 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Metagenomic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Metagenomic" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -440,20 +453,22 @@
       <workItem from="1493891379252" duration="22920000" />
       <workItem from="1493979094660" duration="10320000" />
       <workItem from="1494238511160" duration="19821000" />
+      <workItem from="1494324165924" duration="12297000" />
+      <workItem from="1494842024357" duration="6289000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="334871000" />
+    <option name="totallyTimeSpent" value="353457000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1920" height="1030" extended-state="0" />
+    <frame x="0" y="25" width="1920" height="1030" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18267223" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -465,6 +480,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -481,52 +497,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/views/samples.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="46" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/share_projects.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="71" column="97" lean-forward="false" selection-start-line="71" selection-start-column="97" selection-end-line="71" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joesoftheartscreen_remove.e167" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartscreen_remove.o167" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartclassify_system.e171" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartclassify_system.e172" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartphylotype_count.o173" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartclassify_system.o171" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartclassify_system.o172" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartsub_sample_sammary.o178" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartclassify_system.o176" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartphylotype_count.o177" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartclassify_system.o180" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartplot_graph.e186" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartplot_graph.o179" />
-    <entry file="file://$PROJECT_DIR$/joesoftheartplot_graph.o186" />
-    <entry file="file://$PROJECT_DIR$/application/controllers/Update.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-127">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Edit_project.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="33" column="77" lean-forward="false" selection-start-line="33" selection-start-column="77" selection-end-line="33" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/Edit_profile.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -599,155 +569,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/joesoftheartscreen_remove.e201">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joesoftheartscreen_remove.o201">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-43091">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joe.o205">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joe.e205">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joe.e206">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joe.o206">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joesoftheart_makesummary.o204">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7275">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joe.e207">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joe.e208">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joe.e209">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/projects.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="438" column="0" lean-forward="false" selection-start-line="438" selection-start-column="0" selection-end-line="438" selection-end-column="0" />
-          <folding>
-            <marker date="1494244915536" expanded="true" signature="2647:2798" ph="..." />
-            <marker date="1494244915536" expanded="true" signature="2978:3129" ph="..." />
-            <marker date="1494244915536" expanded="true" signature="3309:3463" ph="..." />
-            <marker date="1494244915536" expanded="true" signature="3645:3799" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/joesoftheartscreen_remove.e201" />
+    <entry file="file://$PROJECT_DIR$/joesoftheartscreen_remove.o201" />
+    <entry file="file://$PROJECT_DIR$/joe.o205" />
+    <entry file="file://$PROJECT_DIR$/joe.e205" />
+    <entry file="file://$PROJECT_DIR$/joe.e206" />
+    <entry file="file://$PROJECT_DIR$/joe.o206" />
+    <entry file="file://$PROJECT_DIR$/joesoftheart_makesummary.o204" />
+    <entry file="file://$PROJECT_DIR$/joe.e207" />
+    <entry file="file://$PROJECT_DIR$/joe.e208" />
+    <entry file="file://$PROJECT_DIR$/joe.e209" />
     <entry file="file://$PROJECT_DIR$/owncloud/data/joesoftheart/files/SAMPLE-WES1053/stability.files">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/joesoftheart_php_run_makefile.e212">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/joesoftheart_php_run_makefile.o213">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/joesoftheart_php_run_makefile.o214">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/joesoftheart_php_run_makefile.o216">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/test_run.batch">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="13" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/test_run.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/joesoftheart_php_run_makefile.e212" />
+    <entry file="file://$PROJECT_DIR$/Scripts/joesoftheart_php_run_makefile.o213" />
+    <entry file="file://$PROJECT_DIR$/Scripts/joesoftheart_php_run_makefile.o214" />
+    <entry file="file://$PROJECT_DIR$/Scripts/joesoftheart_php_run_makefile.o216" />
+    <entry file="file://$PROJECT_DIR$/Scripts/test_run.batch" />
     <entry file="file://$PROJECT_DIR$/application/controllers/Run_owncloud.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1020">
@@ -756,42 +599,101 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/newfile.txt" />
+    <entry file="file://$PROJECT_DIR$/Scripts/newfile.txt" />
+    <entry file="file://$PROJECT_DIR$/joesoftheart_php_run_makefile.e218" />
+    <entry file="file://$PROJECT_DIR$/joesoftheart_php_run_makefile.o219" />
+    <entry file="file://$PROJECT_DIR$/application/controllers/Run.php" />
+    <entry file="file://$PROJECT_DIR$/Scripts/loopp.php" />
+    <entry file="file://$PROJECT_DIR$/q_test.o225" />
+    <entry file="file://$PROJECT_DIR$/q_test.e227" />
+    <entry file="file://$PROJECT_DIR$/joesoftheart_php_run_makefile001.o220" />
+    <entry file="file://$PROJECT_DIR$/q_test.e225" />
+    <entry file="file://$PROJECT_DIR$/joesoftheart_php_run_makefile.o224" />
+    <entry file="file://$PROJECT_DIR$/q_test.e228" />
+    <entry file="file://$PROJECT_DIR$/q_test.e229" />
+    <entry file="file://$PROJECT_DIR$/q_test.e230" />
+    <entry file="file://$PROJECT_DIR$/q_test.e231" />
+    <entry file="file://$PROJECT_DIR$/joesoftheartclassify_system.o236">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/q_test.e238">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/projects.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="41" column="84" lean-forward="false" selection-start-line="41" selection-start-column="84" selection-end-line="41" selection-end-column="84" />
+          <folding>
+            <marker date="1494847018295" expanded="true" signature="2656:2807" ph="..." />
+            <marker date="1494847018295" expanded="true" signature="2987:3138" ph="..." />
+            <marker date="1494847018295" expanded="true" signature="3318:3472" ph="..." />
+            <marker date="1494847018295" expanded="true" signature="3654:3808" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/q_test.e239">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/q_test.e240">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/q_test.e242">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="95" lean-forward="false" selection-start-line="2" selection-start-column="83" selection-end-line="2" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/q_test.e243">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="35" lean-forward="true" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/q_test.e244">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/Projects.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="210" column="9" lean-forward="true" selection-start-line="210" selection-start-column="9" selection-end-line="210" selection-end-column="9" />
+        <state relative-caret-position="340">
+          <caret line="20" column="5" lean-forward="false" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Run.php">
+    <entry file="file://$PROJECT_DIR$/Scripts/standard_run.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="43" column="31" lean-forward="true" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/loopp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="2" lean-forward="true" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/newfile.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newfile.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="91">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>

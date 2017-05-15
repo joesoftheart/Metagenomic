@@ -1,1 +1,0 @@
-make.contigs(file=stability.files, processors=8,inputdir=./owncloud/data/admin/files/data_mothur/data/input,outputdir=./owncloud/data/admin/files/data_mothur/output)
