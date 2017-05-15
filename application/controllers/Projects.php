@@ -54,7 +54,7 @@ class Projects extends CI_Controller{
         $project =  basename($sample_folder);
         $user = $this->session->userdata['logged_in']['username'];
 
-        $path = "../owncloud/data/$user/files/$project/data/input/";
+        $path = "owncloud/data/$user/files/$project/data/input/";
 //
 //        $config['upload_path'] = $path;
 //        $config['allowed_types'] = '*';
