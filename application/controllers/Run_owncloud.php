@@ -21,60 +21,30 @@ class Run_owncloud extends CI_Controller {
 
 
         
-        public function index()
+        public function index($user,$project)
         {
              
-//             $jobname = "test_mo_own1";
-//             $project = "data_mothur";
-//             $user = "admin";
+          // $user ."<br/>";
+          // $project ."<br/>";
 
-            $jobname = "test_mo_own1";
-            $project = "SAMPLE-WES1053";
-            $user = "joesoftheart";
-             $this->check_file($user,$project);
+          // $maximum_ambiguous."<br/>";
+          // $maximum_homopolymer."<br/>";
+          // $minimum_reads_length."<br/>";
+          // $maximum_reads_length."<br/>";
+
+          // $alignment."<br/>";
+          // $diffs."<br/>";
+        
+          // $classify."<br/>";
+          // $cutoff."<br/>";
+
+          // $optionsRadios."<br/>";
+          // $taxon."<br/>";
+          echo $user." ".$project;
+
+          $this->check_file($user,$project);
+
              
-             echo "Run Owncloud"."<br/>";
-    
-             // echo exec("qsub -N 'date_test' -cwd -b y /bin/date");
-           
-             $this->check_file($user,$project);
-
-         
-             #make.contigs
-               #$make = "make.contigs(file=stability.files, processors=8,inputdir=./owncloud/data/$user/files/data_mothur/data/input/,outputdir=./owncloud/data/$user/files/data_mothur/output/)";
-             
-               // file_put_contents('owncloud/data/admin/files/data_mothur/data/input/run.batch', $make);
-               // echo "Run ".$make."<br/>";
-
-
-             # Test run qsub mothur batch file
-             // $cmd = "qsub -N '$jobname' -cwd -b y Mothur/mothur run.batch ";
-
-             //   shell_exec($cmd);
-
-             //   $check_qstat = "qstat  -j '$jobname' ";
-
-             //   exec($check_qstat,$output);
-            
-              
-             //   $id_job = "" ;
-
-             //  foreach ($output as $key_var => $value ) {
-              
-             //        if($key_var == "1"){
-
-             //            $data = explode(":", $value);
-             //            $id_job = $data[1];
-             //        }
-                    
-                    
-             //  }
-
-             //  echo "Job number => ".$id_job."<br/>";
-
-             //  $check_jobs = exec("qstat -u apache  '$id_job' ");
-
-             //  echo $check_jobs;
 
         } 
 
@@ -83,14 +53,64 @@ class Run_owncloud extends CI_Controller {
             $file = file_get_contents(FCPATH.'admin_align_summary.o76');
             $search_for = 'Start';
             $pattern = preg_quote($search_for,'/');
+            
+            $start_array = array();
+            $end_array   = array();
+             
+            $start = 0;
+            $end =0; 
 
             $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum).*\$/m";
            
                    if(preg_match_all($pattern, $file, $matches)){
-                       echo implode("\n", $matches[0]);
-                   }
-               
-            
+                       $val = implode("\n", $matches[0]);
+                       $sum = explode("\n", $val);
+
+                       foreach ($sum as $key => $value) {
+                           //echo  $value ."<br/>";
+                            if($key >= "1"){
+                                 $va_ex = explode(":", $value);
+                                 $va_ex2 = explode("\t", trim($va_ex[1]));
+                                  array_push($start_array,$va_ex2[0]);
+                                  array_push($end_array,$va_ex2[1]);
+                            }
+                        }   
+                    }
+
+                    #start
+                    $count_start = array_count_values($start_array);
+                    $start_max = max($count_start);
+                    $start_min = min($count_start);
+
+                    #end
+                    $count_end = array_count_values($end_array);
+                    $end_max = max($count_end);
+                    $end_min = min($count_end);
+
+
+                     if(($start_min == $start_max) || ($end_min == $end_max)){
+
+                        foreach ($sum as $key => $value) {
+                           echo  $value ."<br/>";     
+                        }   
+
+                           
+                     }elseif (($start_min != $start_max) && ($end_min != $end_max) ) {
+                          #start
+                          foreach ($count_start as $key_start => $value_start) {
+                            if($start_max == $value_start){
+                                $start = $key_start;
+                              }
+                          }
+                         #end
+                         foreach ($count_end as $key_end => $value_end) {
+                             if($end_max == $value_end){
+                                 $end = $key_end;
+                               }
+                         } 
+
+                       echo   "Start : ".$start ."<br/>". " End : ".$end;    
+                    }
 
         } 
 
@@ -192,12 +212,7 @@ class Run_owncloud extends CI_Controller {
         public function run_makefile($user,$project){
 
           $jobname = $user."_makefile";
-<<<<<<< HEAD
-      
-=======
 
-         
->>>>>>> 27075a3786494f9ab591716fb8caa7b403cd13ef
            #make.file
                $make = "make.file(inputdir=owncloud/data/$user/files/$project/data/input,outputdir=owncloud/data/$user/files/$project/data/input)";
 
@@ -220,8 +235,7 @@ class Run_owncloud extends CI_Controller {
               }
               $loop = true;
               while ($loop) {
-                  echo "in loop";
-
+                
                    $check_run = exec("qstat -u apache  '$id_job' ");
 
                    if($check_run == false){
@@ -314,7 +328,7 @@ class Run_owncloud extends CI_Controller {
           
         }
 
-       
+     ///////////////////////////////////////////////////////////////////////////////////////  
 
 
        # screen.seqs && summary.seqs
@@ -434,6 +448,9 @@ class Run_owncloud extends CI_Controller {
         }
         
         
+        
+
+       #Start    #End 
 
         # screen.seqs = stat , end && summary.seqs
           #input maximum ambiguous , maximum homopolymer , maximum reads length

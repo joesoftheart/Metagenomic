@@ -32,13 +32,13 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="uk-child-width-1-6\@xl" uk-grid>
                 <div>
                     <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
-<<<<<<< HEAD
-                        <li ><a href="#">Custom</a></li>
-                        <li class="uk-active"><a href="#">Advance</a></li>
-=======
-                        <li class="uk-active"><a href="#">Standard</a></li>
-                        <li><a href="#">Advance</a></li>
->>>>>>> 27075a3786494f9ab591716fb8caa7b403cd13ef
+
+                        
+                        <li ><a href="#">Standard</a></li>
+                        <li class="uk-active" ><a href="#">Advance</a></li>
+
+                        
+
                     </ul>
                     <ul class="uk-switcher">
 
@@ -259,34 +259,26 @@ if (isset($this->session->userdata['logged_in'])) {
                                 </div>
                              </form>
                        </li>
+              <!-- End Standard run -->
 
 
-<<<<<<< HEAD
+
+
                         <!-- ADVANCE  -->
-=======
 
-                </form>
-                            <!-- End Standard run -->
 
-                            <button class="btn btn-default" id="btn_test_run">Test Run</button>
-                            <div class="col-lg-6"  >
-                                <textarea id="show" style="height: 300px; width: 300px;"></textarea>
-
-                            </div>
-
-                </li>
-
->>>>>>> 27075a3786494f9ab591716fb8caa7b403cd13ef
                         <li>
                             <div>
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
-                                    <li ><a href="#">#preprocess && #prepare in taxonomy </a></li>
-                                    <li><a href="#">#prepare phylotype analysis</a></li>
-                                    <li><a href="#">#analysis</a></li>
-                                    <li><a href="#">#result&graph</a></li>
+                                    <li ><a href="#">Preprocess && Prepare in taxonomy </a></li>
+                                    <li><a href="#">Prepare phylotype analysis</a></li>
+                                    <li><a href="#">Analysis</a></li>
+                                    <li><a href="#">Result && Graph</a></li>
                                 </ul>
                                 <ul  class="uk-switcher uk-margin">
 
+
+                                  <!--Preprocess && Prepare in taxonomy -->
                                     <li>
                                          <form method="post"  action="<?php echo base_url('Run_advance/form_value');?>"  >
 
@@ -301,19 +293,19 @@ if (isset($this->session->userdata['logged_in'])) {
                                                  <div class="col-lg-10 col-lg-pull-1"><label> Screen reads </label></div>
                                                  <div class="form-inline col-lg-12">
                                                       <label class="col-lg-6"> maximum ambiguous : </label>
-                                                      <input class="form-control" type="number" name="maximum_ambiguous" min="0" placeholder="maximum ambiguous">
+                                                      <input class="form-control" type="number" name="maximum_ambiguous" min="0" placeholder="maximum ambiguous" required>
                                                  </div>
                                                  <div class="form-inline col-lg-12 uk-margin">
                                                      <label class="col-lg-6"> maximum homopolymer : </label>
-                                                     <input class="form-control" type="number" name="maximum_homopolymer" min="0" placeholder="maximum homopolymer">
+                                                     <input class="form-control" type="number" name="maximum_homopolymer" min="0" placeholder="maximum homopolymer" required>
                                                  </div>
                                                  <div class="form-inline col-lg-12">
                                                      <label class="col-lg-6"> minimum reads length : </label>
-                                                     <input class="form-control" type="number" name="minimum_reads_length" min="0" placeholder="minimum reads length" >
+                                                     <input class="form-control" type="number" name="minimum_reads_length" min="0" placeholder="minimum reads length" required>
                                                  </div>
                                                  <div class="form-inline col-lg-12 uk-margin">
                                                     <label class="col-lg-6"> maximum reads length : </label>
-                                                    <input class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" >
+                                                    <input class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" required>
                                                  </div>
                                  
                                               
@@ -370,7 +362,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 
                                                      <div class="radio">
                                                        <label>
-                                                           <input name="optionsRadios"  value="0" type="radio"> default 
+                                                           <input name="optionsRadios"  value="0" type="radio" checked> default 
                                                       </label>
                                                     </div>
 
@@ -397,15 +389,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                         </form>
 
                                     </li>
+                                  <!--End Preprocess && Prepare in taxonomy -->
 
 
 
-
-
-
-
-
-
+                                  <!--Prepare phylotype analysis-->
                                     <li >
                                         <div class="col-lg-8 col-lg-offset-2">
                                             <label>sub sample :</label>
@@ -425,6 +413,11 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                         </div><!-- close row form -->
                                     </li>
+
+                                <!--End Prepare phylotype analysis-->
+
+
+                               <!-- Analysis -->
                                     <li >
                                         <div class="col-lg-8 col-lg-offset-2">
                                             <div class="row uk-margin">
@@ -462,6 +455,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Run Analysis</button>
                                         </div>
                                     </li>
+
+                                   <!-- End Analysis -->
+
+
+                                   <!-- Result && Graph -->
                                     <li >
                                         <!--                    <div class="uk-cover-container uk-height-large">-->
                                         <!--                        <iframe src="//www.youtube.com/embed/nJx4buMnn34?autoplay=1&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;loop=1&amp;modestbranding=1&amp;wmode=transparent" width="560" height="1000" frameborder="0" allowfullscreen uk-cover></iframe>-->
@@ -485,6 +483,8 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                     </li>
 
+                                    <!-- End Result && Graph -->
+
 
                                 </ul>
 
@@ -492,10 +492,11 @@ if (isset($this->session->userdata['logged_in'])) {
                         </li>
 
                         <!-- End EDVANCE  -->
-
-
                     </ul>
+
+                    <!-- end class="uk-switcher" -->
                 </div>
+                
             </div>
     </div>
 </div>
