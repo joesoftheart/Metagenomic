@@ -32,13 +32,8 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="uk-child-width-1-6\@xl" uk-grid>
                 <div>
                     <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
-<<<<<<< HEAD
-                        <li ><a href="#">Custom</a></li>
-                        <li class="uk-active"><a href="#">Advance</a></li>
-=======
                         <li class="uk-active"><a href="#">Standard</a></li>
                         <li><a href="#">Advance</a></li>
->>>>>>> 27075a3786494f9ab591716fb8caa7b403cd13ef
                     </ul>
                     <ul class="uk-switcher">
 
@@ -261,22 +256,14 @@ if (isset($this->session->userdata['logged_in'])) {
                        </li>
 
 
-<<<<<<< HEAD
-                        <!-- ADVANCE  -->
-=======
-
                 </form>
                             <!-- End Standard run -->
 
-                            <button class="btn btn-default" id="btn_test_run">Test Run</button>
-                            <div class="col-lg-6"  >
-                                <textarea id="show" style="height: 300px; width: 300px;"></textarea>
 
-                            </div>
 
                 </li>
 
->>>>>>> 27075a3786494f9ab591716fb8caa7b403cd13ef
+
                         <li>
                             <div>
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
@@ -420,9 +407,6 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 <p id="show_prephy"></p>
                                             </div>
                                             <button id="btn_prephy"  name="submit" class="btn btn-default pull-right">Run Prephy</button>
-
-
-
                                         </div><!-- close row form -->
                                     </li>
                                     <li >
@@ -490,10 +474,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
                             </div>
                         </li>
-
                         <!-- End EDVANCE  -->
-
-
                     </ul>
                 </div>
             </div>
