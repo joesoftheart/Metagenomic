@@ -43,19 +43,54 @@ class Projects extends CI_Controller{
         $this->load->view('footer');
     }
 
-    public function test_run(){
-        $n = 1000;
-        while ($n > 0){
 
-            echo "55";
-            $n--;
+
+    public function standard_run($id){
+        $data = $this->mongo_db->get_where("projects",array("_id" => new MongoId($id)));
+        foreach ($data as $r ){
+            $sample_folder =  $r['project_path'];
+            $id = $r['_id'];
         }
+        $project =  basename($sample_folder);
+        $user = $this->session->userdata['logged_in']['username'];
+
+        $path = "owncloud/data/$user/files/$project/data/input/";
+//
+//        $config['upload_path'] = $path;
+//        $config['allowed_types'] = '*';
+//        $config['max_size'] = '3000';
+//        // $config['max_width'] = '1024';
+//        // $config['max_height'] = '1024';
+//        $this->load->library('upload');
+//        $this->upload->initialize($config);
+//
+//        if ($this->upload->do_upload("design")) {
+//            $data = $this->upload->data();
+//
+//        }else{
+//            echo $this->upload->display_errors();
+//        }
+//
+//        if ($this->upload->do_upload("metadata")) {
+//            $data = $this->upload->data();
+//
+//        }else{
+//            echo $this->upload->display_errors();
+//        }
+
+
+        $id_project = "58ff5cca838488480e7759de";
+
+        $cmd = "qsub -N 'q_test' -cwd -b y /usr/bin/php -f Scripts/standard_run.php $user $id $project $path";
+
+        exec($cmd);
+
 
     }
 
 
 
-    public function run($id){
+    public function run_r($id){
 
 
         $data = $this->mongo_db->get_where("projects",array("_id" => new MongoId($id)));
@@ -71,29 +106,7 @@ class Projects extends CI_Controller{
             echo " This Project not have path to sample files";
         }
 
-        $path = "owncloud/data/$user/files/$project/data/input/";
 
-        $config['upload_path'] = $path;
-        $config['allowed_types'] = '*';
-        $config['max_size'] = '3000';
-       // $config['max_width'] = '1024';
-       // $config['max_height'] = '1024';
-        $this->load->library('upload');
-        $this->upload->initialize($config);
-
-        if ($this->upload->do_upload("design")) {
-            $data = $this->upload->data();
-
-        }else{
-            echo $this->upload->display_errors();
-        }
-
-        if ($this->upload->do_upload("metadata")) {
-            $data = $this->upload->data();
-
-        }else{
-            echo $this->upload->display_errors();
-        }
 
 
     }
