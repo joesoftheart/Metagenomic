@@ -11,10 +11,12 @@
   		$this->load->helper('form');
   		$this->load->library('form_validation');
 
+  		$this->load->controller('Run_owncloud');
+        
   	}
 
   	public function form_value(){
-        
+
         $user = $this->input->post('username');
         $id_project = $this->input->post('project');
         
@@ -33,14 +35,12 @@
   		$customer  = $this->input->post('customer');
 
   		if($customer != null){
-           echo "HAVE CUSTOMER";
+           $alignment = $customer;
   		}
 
   		$diffs = $this->input->post('diffs');
-
   		$classify = $this->input->post('classify');
   		$cutoff = $this->input->post('cutoff');
-
   		$optionsRadios = $this->input->post('optionsRadios');
 
   		if($optionsRadios == '1'){
@@ -61,14 +61,19 @@
   		echo $maximum_reads_length."<br/>";
 
   		echo $alignment."<br/>";
-  		echo $customer."<br/>";
-
   		echo $diffs."<br/>";
         
         echo $classify."<br/>";
         echo $cutoff."<br/>";
 
         echo $optionsRadios."<br/>";
+        echo $taxon."<br/>";
+
+
+        $this->Run_owncloud->index('admin','data_mothur');
+
+
+
 
 
   	}
