@@ -1,3 +1,4 @@
+<?ob_start();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +41,7 @@
 <?php
 if (isset($this->session->userdata['logged_in'])) {
 
-    header("location: http://localhost/Metagenomic/login/user_login_process");
+    header("location: login/user_login_process");
 }
 ?>
 <body background="<?php echo base_url();?>img/new.png">

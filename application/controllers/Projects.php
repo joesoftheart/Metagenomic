@@ -22,9 +22,11 @@ class Projects extends CI_Controller{
 
 
     public function index($id_project){
+        ob_start();
         $data['rs'] = $this->mongo_db->get_where('projects',array('_id' => new \MongoId($id_project)));
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
         $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
+        $data['rs_process'] = $this->mongo_db->limit(1)->get('status_process');
 
 
 
@@ -34,6 +36,8 @@ class Projects extends CI_Controller{
             }
             $this->session->set_userdata('current_project', $ar);
         }
+
+
 
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
 
@@ -84,6 +88,8 @@ class Projects extends CI_Controller{
         $cmd = "qsub -N 'q_test' -cwd -b y /usr/bin/php -f Scripts/standard_run.php $user $id $project $path";
 
         exec($cmd);
+
+
 
 
     }

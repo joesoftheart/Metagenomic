@@ -17,7 +17,7 @@ class General_statistic extends CI_Controller{
     }
 
     public function index(){
-
+        ob_start();
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
         $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
         $data['rs_users'] = $this->mongo_db->get('user_login');

@@ -1,3 +1,4 @@
+
 <?php
 if (isset($this->session->userdata['logged_in'])) {
     $username = ($this->session->userdata['logged_in']['username']);

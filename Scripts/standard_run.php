@@ -9,7 +9,7 @@ putenv("PATH=$PATH");
 
 
 if ($user != null && $project != null  && $path != null){
-    plot_graph($user,$id,$project,$path);
+   // plot_graph($user,$id,$project,$path);
     }
 
 

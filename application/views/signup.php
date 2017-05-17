@@ -40,7 +40,7 @@
 
 <?php
 if (isset($this->session->userdata['logged_in'])) {
-    header("location: http://localhost/Metagenomic/main/user_login_process");
+    header("location: main/user_login_process");
 }
 ?>
 <body>
@@ -78,7 +78,7 @@ if (isset($this->session->userdata['logged_in'])) {
                             <br/>
                             <br/>
                             <button class="btn btn-default" type="submit" name="submit">Signup</button>
-                            <a href="<?php echo base_url() ?> ">For Login Click Here</a>
+                            <a href="<?php echo base_url() ?>main/login">For Login Click Here</a>
                             <?php
                             echo form_close();
                             ?>
