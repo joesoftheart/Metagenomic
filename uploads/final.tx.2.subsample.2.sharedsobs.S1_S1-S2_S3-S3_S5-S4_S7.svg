@@ -1,0 +1,43 @@
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1500 1600 " >
+<g>
+<rect fill="white" stroke="white" x="0" y="0" width="1500" height="1600"/><text fill="black" class="seri" font-size="24" x="600" y="80" >Venn Diagram at distance 2</text>
+<text fill="black" class="seri"  font-size="24" x="375"  y="1000">The number of species in group S1_S1 is 344</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1040">The number of species in group S2_S3 is 336</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1080">The number of species in group S3_S5 is 236</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1120">The number of species in group S4_S7 is 408</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1160">The number of species shared between groups S1_S1 and S2_S3 is 241</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1200">The number of species shared between groups S1_S1 and S3_S5 is 105</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1240">The number of species shared between groups S1_S1 and S4_S7 is 243</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1280">The number of species shared between groups S2_S3 and S3_S5 is 95</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1320">The number of species shared between groups S2_S3 and S4_S7 is 251</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1360">The number of species shared between groups S3_S5 and S4_S7 is 122</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1400">The number of species shared between groups S1_S1, S2_S3 and S3_S5 is 75</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1440">The number of species shared between groups S1_S1, S2_S3 and S4_S7 is 200</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1480">The number of species shared between groups S1_S1, S3_S5 and S4_S7 is 83</text>
+<text fill="black" class="seri"  font-size="24" x="375" y="1520">The number of species shared between groups S2_S3, S3_S5 and S4_S7 is 87</text>
+<ellipse fill="red" stroke="black" opacity=".35" transform="rotate(-45 765 432) " cx="765" cy="432" rx="434" ry="224"/>
+ <ellipse fill="green" stroke="black" opacity=".35" transform="rotate(+45 765 432) " cx="765" cy="432" rx="434" ry="224"/>
+ <ellipse fill="blue" stroke="black" opacity=".35" transform="rotate(-40 945 576) " cx="945" cy="576" rx="434" ry="224"/>
+ <ellipse fill="yellow" stroke="black" opacity=".35" transform="rotate(+40 540 576) " cx="540" cy="576" rx="434" ry="224"/>
+ <text fill="black" class="seri" font-size="24" x="989" y="224">44</text>
+<text fill="black" class="seri" font-size="24" x="988" y="176">S1_S1</text>
+<text fill="black" class="seri" font-size="24" x="749"  y="320">35</text>
+<text fill="black" class="seri" font-size="24" x="539"  y="224">42</text>
+<text fill="black" class="seri" font-size="24" x="538"  y="176">S2_S3</text>
+<text fill="black" class="seri" font-size="24" x="1049"  y="384">16</text>
+<text fill="black" class="seri" font-size="24"  x="1176"   y="463">90</text>
+<text fill="black" class="seri" font-size="24"  x="1175"   y="416">S3_S5</text>
+<text fill="black" class="seri" font-size="24" x="464" y="384">33</text>
+<text fill="black" class="seri" font-size="24"  x="329"   y="463">93</text>
+<text fill="black" class="seri" font-size="24"  x="328"   y="416">S4_S7</text>
+<text fill="black" class="seri" font-size="24" x="509" y="656">29</text>
+<text fill="black" class="seri" font-size="24" x="1012" y="656">2</text>
+<text fill="black" class="seri" font-size="24" x="749" y="864">21</text>
+<text fill="black" class="seri" font-size="24" x="584" y="480">131</text>
+<text fill="black" class="seri" font-size="24" x="853" y="720">18</text>
+<text fill="black" class="seri" font-size="24" x="651" y="720">14</text>
+<text fill="black" class="seri" font-size="24" x="945"  y="480">6</text>
+<text fill="black" class="seri" font-size="24" x="749"  y="640">69</text>
+<text fill="black"  class="seri" font-size="24" x="375" y="1560">The total richness of all the groups is 643</text>
+</g>
+</svg>

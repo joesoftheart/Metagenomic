@@ -28,7 +28,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
     </div>
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="uk-child-width-1-6\@xl" uk-grid>
                 <div>
                     <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
@@ -47,7 +47,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <ul  class="uk-switcher uk-margin">
                                     <li>
                                         <!-- Standard run -->
-                                        <form action="<?php echo site_url('projects/standard_run/'.$current_project)?>" method="post" id="change">
+                                        <?php echo form_open_multipart('projects/standard_run/'.$current_project);?>
+
                                             <div class="col-lg-8 col-lg-offset-2">
                                                 <label>1. Preprocess & Prepare in taxonomy </label><br><br>
 
@@ -266,16 +267,59 @@ if (isset($this->session->userdata['logged_in'])) {
                                             </div>
                                         </form>
                                     </li>
-                                    <li></li>
+                                    <li>
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <b>Ven diagram</b>
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/sharedsobs.svg">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <b>Heatmap</b>
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig3_heatmaptest.jpg">
+                                            </div>
+                                        </div>
+
+                                        <hr class="uk-divider-icon">
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <b>*Heatmap-Jclass</b><br>
+                                                <img class="img-thumbnail" height="50%" width="50%" src="<?php echo base_url(); ?>uploads/final.tx.jclass.2.lt.ave.heatmap.sim.svg">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <b>*Heatmap-Thetayc</b><br>
+                                                <img class="img-thumbnail" height="50%" width="50%"  src="<?php echo base_url(); ?>uploads/final.tx.thetayc.2.lt.ave.heatmap.sim.svg">
+                                            </div>
+                                        </div>
+                                        <hr class="uk-divider-icon">
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <b>Rarefaction</b>
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig1_rarefactionSoil.jpg">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <b>RelativePhylum</b>
+                                                <img class="img-thumbnail"  src="<?php echo base_url(); ?>uploads/Rplot.jpeg">
+                                            </div>
+                                        </div>
+                                        <hr class="uk-divider-icon">
+                                        <b>NMDS</b>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-lg-offset-3">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig4_NMDS.jpg">
+                                            </div>
+
+                                        </div>
+
+                                    </li>
                                 </ul>
 
                             </div>
-
                        </li>
               <!-- End Standard run -->
-
-
-                </form>
+                <?php echo form_close();?>
                             <!-- End Standard run -->
 
                         <!-- ADVANCE  -->

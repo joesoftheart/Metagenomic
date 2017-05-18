@@ -9,7 +9,7 @@ putenv("PATH=$PATH");
 
 
 if ($user != null && $project != null  && $path != null){
-   // plot_graph($user,$id,$project,$path);
+    plot_graph($user,$id,$project,$path);
     }
 
 
@@ -399,8 +399,8 @@ summary.single(shared=final.tx.shared, calc=nseqs-coverage-sobs-invsimpson-chao-
 dist.shared(shared=final.tx.shared, calc=thetayc-jclass-lennon-morisitahorn-braycurtis, subsample=5000,inputdir=$path,outputdir=$path)
 heatmap.sim(phylip=final.tx.thetayc.2.lt.ave.dist,inputdir=$path,outputdir=$path) #No need
 heatmap.sim(phylip=final.tx.jclass.2.lt.ave.dist,inputdir=$path,outputdir=$path) #No need
-summary.shared(calc=lennon-jclass-morisitahorn-sorabund-thetan-thetayc-braycurtis, groups=soils1_1-soils2_1-soils3_1-soils4_1, all=T,inputdir=$path,outputdir=$path)
-venn(shared=final.tx.2.subsample.shared, groups=soils1_1-soils2_1-soils3_1-soils4_1,inputdir=$path,outputdir=$path)
+summary.shared(calc=lennon-jclass-morisitahorn-sorabund-thetan-thetayc-braycurtis, groups=S1_S1-S2_S3-S3_S5-S4_S7, all=T,inputdir=$path,outputdir=$path)
+venn(shared=final.tx.2.subsample.shared, groups=S1_S1-S2_S3-S3_S5-S4_S7,inputdir=$path,outputdir=$path)
 tree.shared(phylip=final.tx.thetayc.2.lt.ave.dist,inputdir=$path,outputdir=$path)
 tree.shared(phylip=final.tx.morisitahorn.2.lt.ave.dist,inputdir=$path,outputdir=$path)
 tree.shared(phylip=final.tx.jclass.2.lt.ave.dist,inputdir=$path,outputdir=$path)

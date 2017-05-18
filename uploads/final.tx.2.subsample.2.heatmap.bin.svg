@@ -2,10 +2,10 @@
 <g>
 <rect fill="white" stroke="white" x="0" y="0" width="1300" height="320"/><text fill="black" class="seri" font-size="24" text-anchor="middle" x="560" y="25">Heatmap at distance 2</text>
 <text fill="black" class="seri" font-size="24" x="51" y="50">OTU</text>
-<text fill="black" class="seri" font-size="24" x="198" y="50">S1_S1</text>
-<text fill="black" class="seri" font-size="24" x="498" y="50">S2_S3</text>
-<text fill="black" class="seri" font-size="24" x="798" y="50">S3_S5</text>
-<text fill="black" class="seri" font-size="24" x="1098" y="50">S4_S7</text>
+<text fill="black" class="seri" font-size="24" x="196" y="50">soils1_1</text>
+<text fill="black" class="seri" font-size="24" x="496" y="50">soils2_1</text>
+<text fill="black" class="seri" font-size="24" x="796" y="50">soils3_1</text>
+<text fill="black" class="seri" font-size="24" x="1096" y="50">soils4_1</text>
 <rect fill="#10000" stroke="#10000" x="10" y="303" width="1" height="10"/>
 <rect fill="#20000" stroke="#20000" x="11" y="303" width="1" height="10"/>
 <rect fill="#30000" stroke="#30000" x="12" y="303" width="1" height="10"/>
@@ -260,60 +260,60 @@
 <rect fill="#fc0000" stroke="#fc0000" x="261" y="303" width="1" height="10"/>
 <rect fill="#fd0000" stroke="#fd0000" x="262" y="303" width="1" height="10"/>
 <rect fill="#fe0000" stroke="#fe0000" x="263" y="303" width="1" height="10"/>
-<text fill="black" class="seri" x="10" y="300">0.167</text>
-<text fill="black" class="seri" x="70" y="300">0.196</text>
-<text fill="black" class="seri" x="130" y="300">0.213</text>
-<text fill="black" class="seri" x="190" y="300">0.225</text>
-<text fill="black" class="seri" x="250" y="300">0.235</text>
+<text fill="black" class="seri" x="10" y="300">0.166</text>
+<text fill="black" class="seri" x="70" y="300">0.195</text>
+<text fill="black" class="seri" x="130" y="300">0.212</text>
+<text fill="black" class="seri" x="190" y="300">0.224</text>
+<text fill="black" class="seri" x="250" y="300">0.234</text>
 <text fill="black" class="seri" font-size="24" x="0" y="70">Otu001</text>
-<rect fill="#2040000" stroke="#2040000" x="100" y="70" width="300" height="20"/>
-<rect fill="#2e30000" stroke="#2e30000" x="400" y="70" width="300" height="20"/>
+<rect fill="#2120000" stroke="#2120000" x="100" y="70" width="300" height="20"/>
+<rect fill="#2f70000" stroke="#2f70000" x="400" y="70" width="300" height="20"/>
 <rect fill="#ff0000" stroke="#ff0000" x="700" y="70" width="300" height="20"/>
-<rect fill="#2780000" stroke="#2780000" x="1000" y="70" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="90">Otu002</text>
-<rect fill="#13c0000" stroke="#13c0000" x="100" y="90" width="300" height="20"/>
-<rect fill="#1390000" stroke="#1390000" x="400" y="90" width="300" height="20"/>
-<rect fill="#25d0000" stroke="#25d0000" x="700" y="90" width="300" height="20"/>
-<rect fill="#ff0000" stroke="#ff0000" x="1000" y="90" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="110">Otu004</text>
-<rect fill="#ff0000" stroke="#ff0000" x="100" y="110" width="300" height="20"/>
-<rect fill="#ff0000" stroke="#ff0000" x="400" y="110" width="300" height="20"/>
-<rect fill="#FFFFFF" stroke="#FFFFFF" x="700" y="110" width="300" height="20"/>
-<rect fill="#1780000" stroke="#1780000" x="1000" y="110" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="130">Otu003</text>
-<rect fill="#1160000" stroke="#1160000" x="100" y="130" width="300" height="20"/>
-<rect fill="#1160000" stroke="#1160000" x="400" y="130" width="300" height="20"/>
-<rect fill="#5da0000" stroke="#5da0000" x="700" y="130" width="300" height="20"/>
-<rect fill="#1170000" stroke="#1170000" x="1000" y="130" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="150">Otu005</text>
-<rect fill="#1320000" stroke="#1320000" x="100" y="150" width="300" height="20"/>
-<rect fill="#16e0000" stroke="#16e0000" x="400" y="150" width="300" height="20"/>
-<rect fill="#5600000" stroke="#5600000" x="700" y="150" width="300" height="20"/>
-<rect fill="#16f0000" stroke="#16f0000" x="1000" y="150" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="170">Otu006</text>
-<rect fill="#1780000" stroke="#1780000" x="100" y="170" width="300" height="20"/>
-<rect fill="#16d0000" stroke="#16d0000" x="400" y="170" width="300" height="20"/>
-<rect fill="#5190000" stroke="#5190000" x="700" y="170" width="300" height="20"/>
-<rect fill="#12f0000" stroke="#12f0000" x="1000" y="170" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="190">Otu007</text>
-<rect fill="#2080000" stroke="#2080000" x="100" y="190" width="300" height="20"/>
-<rect fill="#2470000" stroke="#2470000" x="400" y="190" width="300" height="20"/>
-<rect fill="#2590000" stroke="#2590000" x="700" y="190" width="300" height="20"/>
-<rect fill="#11a0000" stroke="#11a0000" x="1000" y="190" width="300" height="20"/>
+<rect fill="#2b30000" stroke="#2b30000" x="1000" y="70" width="300" height="20"/>
+<text fill="black" class="seri" font-size="24" x="0" y="90">Otu004</text>
+<rect fill="#ff0000" stroke="#ff0000" x="100" y="90" width="300" height="20"/>
+<rect fill="#ff0000" stroke="#ff0000" x="400" y="90" width="300" height="20"/>
+<rect fill="#FFFFFF" stroke="#FFFFFF" x="700" y="90" width="300" height="20"/>
+<rect fill="#15c0000" stroke="#15c0000" x="1000" y="90" width="300" height="20"/>
+<text fill="black" class="seri" font-size="24" x="0" y="110">Otu003</text>
+<rect fill="#1130000" stroke="#1130000" x="100" y="110" width="300" height="20"/>
+<rect fill="#1160000" stroke="#1160000" x="400" y="110" width="300" height="20"/>
+<rect fill="#5d50000" stroke="#5d50000" x="700" y="110" width="300" height="20"/>
+<rect fill="#10a0000" stroke="#10a0000" x="1000" y="110" width="300" height="20"/>
+<text fill="black" class="seri" font-size="24" x="0" y="130">Otu002</text>
+<rect fill="#14f0000" stroke="#14f0000" x="100" y="130" width="300" height="20"/>
+<rect fill="#1260000" stroke="#1260000" x="400" y="130" width="300" height="20"/>
+<rect fill="#2630000" stroke="#2630000" x="700" y="130" width="300" height="20"/>
+<rect fill="#ff0000" stroke="#ff0000" x="1000" y="130" width="300" height="20"/>
+<text fill="black" class="seri" font-size="24" x="0" y="150">Otu006</text>
+<rect fill="#12d0000" stroke="#12d0000" x="100" y="150" width="300" height="20"/>
+<rect fill="#15e0000" stroke="#15e0000" x="400" y="150" width="300" height="20"/>
+<rect fill="#55c0000" stroke="#55c0000" x="700" y="150" width="300" height="20"/>
+<rect fill="#1640000" stroke="#1640000" x="1000" y="150" width="300" height="20"/>
+<text fill="black" class="seri" font-size="24" x="0" y="170">Otu007</text>
+<rect fill="#20f0000" stroke="#20f0000" x="100" y="170" width="300" height="20"/>
+<rect fill="#2350000" stroke="#2350000" x="400" y="170" width="300" height="20"/>
+<rect fill="#24e0000" stroke="#24e0000" x="700" y="170" width="300" height="20"/>
+<rect fill="#10c0000" stroke="#10c0000" x="1000" y="170" width="300" height="20"/>
+<text fill="black" class="seri" font-size="24" x="0" y="190">Otu005</text>
+<rect fill="#1890000" stroke="#1890000" x="100" y="190" width="300" height="20"/>
+<rect fill="#16a0000" stroke="#16a0000" x="400" y="190" width="300" height="20"/>
+<rect fill="#4bb0000" stroke="#4bb0000" x="700" y="190" width="300" height="20"/>
+<rect fill="#11e0000" stroke="#11e0000" x="1000" y="190" width="300" height="20"/>
 <text fill="black" class="seri" font-size="24" x="0" y="210">Otu009</text>
-<rect fill="#15b0000" stroke="#15b0000" x="100" y="210" width="300" height="20"/>
-<rect fill="#1660000" stroke="#1660000" x="400" y="210" width="300" height="20"/>
-<rect fill="#4450000" stroke="#4450000" x="700" y="210" width="300" height="20"/>
-<rect fill="#1660000" stroke="#1660000" x="1000" y="210" width="300" height="20"/>
+<rect fill="#1600000" stroke="#1600000" x="100" y="210" width="300" height="20"/>
+<rect fill="#1680000" stroke="#1680000" x="400" y="210" width="300" height="20"/>
+<rect fill="#4410000" stroke="#4410000" x="700" y="210" width="300" height="20"/>
+<rect fill="#15a0000" stroke="#15a0000" x="1000" y="210" width="300" height="20"/>
 <text fill="black" class="seri" font-size="24" x="0" y="230">Otu008</text>
-<rect fill="#14f0000" stroke="#14f0000" x="100" y="230" width="300" height="20"/>
-<rect fill="#19b0000" stroke="#19b0000" x="400" y="230" width="300" height="20"/>
-<rect fill="#4e60000" stroke="#4e60000" x="700" y="230" width="300" height="20"/>
-<rect fill="#16c0000" stroke="#16c0000" x="1000" y="230" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="250">Otu019</text>
-<rect fill="#2a20000" stroke="#2a20000" x="100" y="250" width="300" height="20"/>
-<rect fill="#3720000" stroke="#3720000" x="400" y="250" width="300" height="20"/>
-<rect fill="#1d10000" stroke="#1d10000" x="700" y="250" width="300" height="20"/>
-<rect fill="#2a70000" stroke="#2a70000" x="1000" y="250" width="300" height="20"/>
+<rect fill="#1570000" stroke="#1570000" x="100" y="230" width="300" height="20"/>
+<rect fill="#19e0000" stroke="#19e0000" x="400" y="230" width="300" height="20"/>
+<rect fill="#5140000" stroke="#5140000" x="700" y="230" width="300" height="20"/>
+<rect fill="#15e0000" stroke="#15e0000" x="1000" y="230" width="300" height="20"/>
+<text fill="black" class="seri" font-size="24" x="0" y="250">Otu022</text>
+<rect fill="#2a00000" stroke="#2a00000" x="100" y="250" width="300" height="20"/>
+<rect fill="#3670000" stroke="#3670000" x="400" y="250" width="300" height="20"/>
+<rect fill="#1d20000" stroke="#1d20000" x="700" y="250" width="300" height="20"/>
+<rect fill="#FFFFFF" stroke="#FFFFFF" x="1000" y="250" width="300" height="20"/>
 </g>
 </svg>
