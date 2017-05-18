@@ -9,7 +9,6 @@ if (isset($this->session->userdata['logged_in'])) {
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <?php echo "User :" . $username . "   Email :" . $email . "   ID :" . $id;?>
             <br>
             <ul class="breadcrumb">
                 <li><a href="#">Home</a> <span class="divider">/</span></li>

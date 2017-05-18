@@ -10,10 +10,10 @@ if (isset($this->session->userdata['logged_in'])) {
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12 ">
-            <?php echo "User :" . $username . "   Email :" . $email . "   ID :" . $id . "    PROJECT_SESS :" . $current_project ;?>
+            <?php// echo "User :" . $username . "   Email :" . $email . "   ID :" . $id . "    PROJECT_SESS :" . $current_project ;?>
             <br>
             <?php foreach ($rs as $r) {
-                echo "Name project :" . $r['project_name'];
+             //   echo "Name project :" . $r['project_name'];
             }
              ?>
             <?php $controller_name = $this->uri->segment(1); ?>

@@ -11,8 +11,8 @@ if (isset($this->session->userdata['logged_in'])) {
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <?php echo "User :" . $username . "   Email :" . $email . "   ID :" . $id;?>
-                    <?php echo "Current project" . $current_project ?>
+                    <?php //echo "User :" . $username . "   Email :" . $email . "   ID :" . $id;?>
+                    <?php // echo "Current project" . $current_project ?>
                     <?php $controller_name = $this->uri->segment(1); ?>
 
                     <br>
