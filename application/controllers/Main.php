@@ -11,11 +11,11 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-
+        ob_start();
             $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
             $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
             $data['rs']  = $this->mongo_db->get_where('projects', array("user_id" => $this->session->userdata["logged_in"]["_id"]));
-        
+
             $this->load->view('header', $data);
             $this->load->view('index', $data);
             $this->load->view('footer');
@@ -67,7 +67,7 @@ class Main extends CI_Controller {
             if(isset($this->session->userdata['logged_in'])){
                 $this->load->view('index');
             }else{
-                redirect("main", "refresh");
+                redirect("main/login", "refresh");
             }
         } else {
             $data = array(
@@ -119,10 +119,7 @@ class Main extends CI_Controller {
     public function logout() {
 
 // Removing session data
-        $sess_array = array(
-            'username' => ''
-        );
-        $this->session->unset_userdata('logged_in', $sess_array);
+        $this->session->sess_destroy();
         $this->session->unset_userdata('current_project','');
         $data['message_display'] = 'Successfully Logout';
         $this->load->view('login', $data);

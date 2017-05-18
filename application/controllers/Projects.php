@@ -22,9 +22,11 @@ class Projects extends CI_Controller{
 
 
     public function index($id_project){
+        ob_start();
         $data['rs'] = $this->mongo_db->get_where('projects',array('_id' => new \MongoId($id_project)));
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
         $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
+        $data['rs_process'] = $this->mongo_db->limit(1)->get('status_process');
 
 
 
@@ -34,6 +36,8 @@ class Projects extends CI_Controller{
             }
             $this->session->set_userdata('current_project', $ar);
         }
+
+
 
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
 
@@ -55,28 +59,28 @@ class Projects extends CI_Controller{
         $user = $this->session->userdata['logged_in']['username'];
 
         $path = "owncloud/data/$user/files/$project/data/input/";
-//
-//        $config['upload_path'] = $path;
-//        $config['allowed_types'] = '*';
-//        $config['max_size'] = '3000';
-//        // $config['max_width'] = '1024';
-//        // $config['max_height'] = '1024';
-//        $this->load->library('upload');
-//        $this->upload->initialize($config);
-//
-//        if ($this->upload->do_upload("design")) {
-//            $data = $this->upload->data();
-//
-//        }else{
-//            echo $this->upload->display_errors();
-//        }
-//
-//        if ($this->upload->do_upload("metadata")) {
-//            $data = $this->upload->data();
-//
-//        }else{
-//            echo $this->upload->display_errors();
-//        }
+
+        $config['upload_path'] = $path;
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '3000';
+        // $config['max_width'] = '1024';
+        // $config['max_height'] = '1024';
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+
+        if ($this->upload->do_upload("design")) {
+            $data = $this->upload->data();
+
+        }else{
+            echo "cannot upload design ";
+        }
+
+        if ($this->upload->do_upload("metadata")) {
+            $data = $this->upload->data();
+
+        }else{
+            echo "cannot upload metadata";
+        }
 
 
         $id_project = "58ff5cca838488480e7759de";
@@ -84,6 +88,8 @@ class Projects extends CI_Controller{
         $cmd = "qsub -N 'q_test' -cwd -b y /usr/bin/php -f Scripts/standard_run.php $user $id $project $path";
 
         exec($cmd);
+
+
 
 
     }
