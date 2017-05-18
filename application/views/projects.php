@@ -270,10 +270,10 @@ if (isset($this->session->userdata['logged_in'])) {
                         <li>
                             <div>
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
-                                    <li ><a href="#">Preprocess && Prepare in taxonomy </a></li>
-                                    <li><a href="#">Prepare phylotype analysis</a></li>
+                                    <li><a href="#">Preprocess & Prepare in taxonomy </a></li>
+                                    <li><a href="#">Prepare phylotype </a></li>
                                     <li><a href="#">Analysis</a></li>
-                                    <li><a href="#">Result && Graph</a></li>
+                                    <li><a href="#">Result & visualization</a></li>
                                 </ul>
                                 <ul  class="uk-switcher uk-margin">
 
@@ -393,9 +393,22 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
 
-                                  <!--Prepare phylotype analysis-->
+                                  <!--Prepare phylotype -->
                                     <li >
                                         <div class="col-lg-8 col-lg-offset-2">
+
+                                        <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>The number of total reads/group after the preprocess</label></div>
+                                             <div class="col-lg-10 col-lg-pull-1"><label> show data in count gruop :</label></div>
+                                             <div class="row uk-margin">
+                                                <div class="col-lg-9">
+                                                    <textarea class="form-control"  rows="5"  name="" ></textarea>
+                                                </div>
+                                                <div class="col-lg-8 col-lg-push-9">
+                                                     <button  type="submit" class="btn btn-default">Back</button>  
+                                                </div>
+                                             </div>
+
+                                        <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
                                             <label>sub sample :</label>
                                             <div class="row uk-margin">
                                                 <div class="col-lg-8">
@@ -403,12 +416,15 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 </div>
                                             </div>
 
-                                            <div class="row uk-margin">
-
-                                                <p id="show_prephy"></p>
+                                            <div class="col-lg-12 uk-margin"> </div>
+                                            <div class="col-lg-4">
+                                                  <button id=""  type="submit" class="btn btn-default">Run Preprocess</button>  
                                             </div>
-                                            <button id="btn_prephy"  name="submit" class="btn btn-default pull-right">Run Prephy</button>
+                                            <div class="col-lg-8">
+                                                   <button id="" type="reset" class="btn btn-default">Clear</button>
+                                            </div>
 
+                                            <div class="col-lg-12 uk-margin"> </div>
 
 
                                         </div><!-- close row form -->
@@ -417,46 +433,201 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <!--End Prepare phylotype analysis-->
 
 
+
                                <!-- Analysis -->
                                     <li >
                                         <div class="col-lg-8 col-lg-offset-2">
-                                            <div class="row uk-margin">
-                                                <label>subsample :</label>
-                                                <div class="row uk-margin">
-                                                    <div class="col-lg-8">
-                                                        <input class="uk-input" type="text" name="cutoff" value="" placeholder="5000">
+
+                                          <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please select level that you want to analyse :</label></div>
+                                            
+                                          <div class="col-lg-5 col-lg-pull-1"><label> GG : </label></div>
+                                                  <div class="col-lg-5 col-lg-pull-5">
+                                                      <select class="uk-select" name="">
+                                                             <option value="1"> 1 </option>
+                                                             <option value="2"> 2 </option>
+                                                             <option value="3"> 3 </option>
+                                                             <option value="4"> 4 </option>
+                                                             <option value="5"> 5 </option> 
+                                                             <option value="6"> 6 </option>   
+                                                        </select>
+                                                  </div>
+
+                                            <div class="col-lg-10 col-lg-pull-1 uk-margin"><label> 3.1 Alpha diversity analysis : </label></div>
+                                            <div class="col-lg-10 col-lg-push-1 "><label> Summary alpha statistical analysis </label></div>
+                                                <div class="col-lg-8 col-lg-push-2 ">  
+                                
+                                                    <div class="radio">
+                                                        <label >
+                                                           <input name="optionsRadios" value="1" type="radio"> set the size of your smallest group :
+                                                           <input class="uk-input" name="" type="number" > 
+                                                        </label>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row uk-margin">
-                                                <label>subsample :</label>
-                                                <div class="row uk-margin">
-                                                    <div class="col-lg-8">
-                                                        <input class="uk-input" type="text" name="cutoff" value="" placeholder="5000">
+                                                    <div class="radio">
+                                                        <label>
+                                                           <input name="optionsRadios"  value="0" type="radio" checked> No need set the size
+                                                        </label>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row uk-margin">
-                                                <label>groups :</label>
-                                                <div class="row uk-margin">
-                                                    <div class="col-lg-8">
-                                                        <input class="uk-input" type="text" name="cutoff" value="" placeholder="soils1_1-soils2_1-soils3_1-soils4_1">
+                                               </div>
+
+                                            <div class="col-lg-10 col-lg-pull-1 uk-margin"><label> 3.2 Beta diversity analysis : </label></div>
+                                            <div class="col-lg-10 col-lg-push-1 "><label> Summary beta statistical analysis </label></div>
+                                                <div class="col-lg-8 col-lg-push-2 ">  
+                                
+                                                    <div class="radio">
+                                                        <label >
+                                                           <input name="optionsRadios1" value="1" type="radio"> set the size of your smallest group :
+                                                           <input class="uk-input" name="" type="number" > 
+                                                        </label>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row uk-margin">
-                                                <label>groups :</label>
-                                                <div class="row uk-margin">
-                                                    <div class="col-lg-8">
-                                                        <input class="uk-input" type="text" name="cutoff" value="" placeholder="soils1_1-soils2_1-soils3_1-soils4_1">
+                                                    <div class="radio">
+                                                        <label>
+                                                           <input name="optionsRadios1"  value="0" type="radio" checked> No need set the size
+                                                        </label>
                                                     </div>
-                                                </div>
+                                               </div>
+
+                                               <div class="col-lg-10 col-lg-push-1 uk-margin"><label> Venn Diagram</label></div>
+                                                     <label class="col-lg-8 col-lg-push-2 ">
+                                                        Please put the sample name : <input class="uk-input" name="" type="text" > 
+                                                    </label>
+                                              
+                                              <div class="col-lg-12 uk-margin"> </div>
+                                              <div class="col-lg-10 col-lg-push-1"><label> UPGMA tree with calculator : </label></div>
+                                                    <div class="col-lg-5 col-lg-push-2 ">
+                                                      <select class="uk-select" name="">
+                                                             <option value="1"> thetayc </option>
+                                                             <option value="2"> morisitahorn </option>
+                                                             <option value="3"> jclass </option>
+                                                             <option value="4"> braycurtis</option>
+                                                             <option value="5"> lennon </option>
+                                                             <option value="5"> sorabund </option>     
+                                                        </select>
+                                                   </div>
+
+                                            <div class="col-lg-12 uk-margin"> </div>
+                                            <div class="col-lg-10 col-lg-push-1"><label> PCOA : </label></div>
+                                                   <div class="col-lg-5 col-lg-push-2 ">
+                                                      <select class="uk-select" name="">
+                                                             <option value="1"> thetayc </option>
+                                                             <option value="2"> morisitahorn </option>
+                                                             <option value="3"> jclass </option>
+                                                             <option value="4"> braycurtis</option>
+                                                             <option value="5"> lennon </option>
+                                                             <option value="5"> sorabund </option>     
+                                                        </select>
+                                                   </div>
+
+
+                                            <div class="col-lg-12 uk-margin"> </div>
+                                            <div class="col-lg-10 col-lg-push-1"><label> NMDS : </label></div>
+                                                   <div class="col-lg-4 col-lg-push-2 ">
+                                                      <select class="uk-select" name="">
+                                                             <option value="1"> 2D </option>
+                                                             <option value="2"> 3D </option>
+                                                                
+                                                        </select>
+                                                   </div>
+                                                   <div class="col-lg-5 col-lg-push-3 ">
+                                                      <select class="uk-select" name="">
+                                                             <option value="1"> thetayc </option>
+                                                             <option value="2"> morisitahorn </option>
+                                                             <option value="3"> jclass </option>
+                                                             <option value="4"> braycurtis</option>
+                                                             <option value="5"> lennon </option>
+                                                             <option value="5"> sorabund </option>     
+                                                        </select>
+                                                   </div>
+
+                                            <div class="col-lg-12 uk-margin"> </div>
+                                            <div class="col-lg-10 col-lg-push-1"><label> Optional : </label></div>
+
+                                            <div class="col-lg-8 col-lg-push-2 "> 
+                                                   <label> Please upload file design ? 
+                                                          <input type="file">
+                                                   </label>
+
                                             </div>
-                                            <button id="btn_prepro"  name="submit" class="btn btn-default pull-right">Run Analysis</button>
-                                        </div>
+
+                                            <div class="col-lg-8 col-lg-push-2 ">                
+                                                    <div class="radio">
+                                                        <label >
+                                                           <input name="optionsRadios2" value="1" type="radio"> Amora
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                           <input name="optionsRadios2"  value="0" type="radio"> Homova
+                                                        </label>
+                                                    </div>
+                                             </div>
+                                            
+                                            <div class="col-lg-10 col-lg-push-2 uk-margin"> 
+                                                   <label> Please upload file metadata ? 
+                                                          <input type="file">
+                                                   </label>
+                                            </div>
+
+                                                
+                                             <div class="col-lg-12 col-lg-push-2"> 
+                                                  <div class="radio">
+                                                        <label class="col-lg-6">
+                                                               <input name="optionsRadios3" value="1" type="radio"> correlation with metadata 
+                                                        </label>
+                                                        <label class="col-lg-6">
+                                                               <input name="optionsRadios3"  value="0" type="radio"> correlation of each OTU
+                                                        </label>
+                                                    </div>  
+                                             </div> 
+
+
+                                                 <div class="col-lg-12 col-lg-push-3 uk-margin"> 
+                                                 
+                                                    <div class="col-lg-2 col-lg-pull-1">
+                                                            Method 
+                                                     </div>
+                                                     <div class="col-lg-3 col-lg-pull-1">
+                                                         <select class="uk-select" name="">
+                                                             <option value="1"> spearman </option>
+                                                             <option value="2"> pearson </option>
+                                                                
+                                                        </select>
+                                                   </div>
+                                                
+                                                        <div class="col-lg-4 col-lg-pull-1">
+                                                               Number of axes 
+                                                        </div>
+                                                        <div class="col-lg-2 col-lg-pull-2">
+                                                            <select class="uk-select" name="">
+                                                                  <option value="2"> 2 </option>
+                                                                  <option value="3"> 3 </option>
+                                                             </select>
+                                                        </div>
+                                                 </div>
+
+
+                                             
+
+
+                                             <div class="col-lg-12 uk-margin"> </div>   
+
+                                             <div class="col-lg-4 col-lg-push-2">
+                                                  <button id=""  type="submit" class="btn btn-default">Run Preprocess</button>  
+                                            </div>
+                                            <div class="col-lg-8 col-lg-push-2">
+                                                   <button id="" type="reset" class="btn btn-default">Clear</button>
+                                            </div>
+
+                                            <div class="col-lg-12 uk-margin"> </div>
+
+
+                                        </div><!-- close row form -->
                                     </li>
 
                                    <!-- End Analysis -->
+
+
+
+
 
 
                                    <!-- Result && Graph -->

@@ -21,30 +21,28 @@ class Run_owncloud extends CI_Controller {
 
 
         
-        public function index($user,$project)
+        public function index($user,$project,$maximum_ambiguous,$maximum_homopolymer,$minimum_reads_length,$maximum_reads_length,$alignment,$diffs,$classify,$cutoff,$optionsRadios,$taxon,$path_in,$path_out)
         {
              
-          // $user ."<br/>";
-          // $project ."<br/>";
+         // $user 
+         // $project 
+         // $maximum_ambiguous
+         // $maximum_homopolymer
+         // $minimum_reads_length
+         // $maximum_reads_length
+         // $alignment
+         // $diffs
+         // $classify
+         // $cutoff
+         // $optionsRadios
+         // $taxon
 
-          // $maximum_ambiguous."<br/>";
-          // $maximum_homopolymer."<br/>";
-          // $minimum_reads_length."<br/>";
-          // $maximum_reads_length."<br/>";
-
-          // $alignment."<br/>";
-          // $diffs."<br/>";
         
-          // $classify."<br/>";
-          // $cutoff."<br/>";
+        $cmd = "qsub -N 'q_advance' -cwd -b y /usr/bin/php -f Scripts/advance_run.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classify $cutoff $optionsRadios $taxon $path_in $path_out";
+         
+        exec($cmd);
 
-          // $optionsRadios."<br/>";
-          // $taxon."<br/>";
-          echo $user." ".$project;
 
-          $this->check_file($user,$project);
-
-             
 
         } 
 

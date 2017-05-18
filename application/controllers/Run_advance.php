@@ -50,7 +50,9 @@
   		}
 
 
-
+        //Path
+         $path_in = "owncloud/data/admin/files/data_mothur/data/input";
+         $path_out = "owncloud/data/admin/files/data_mothur/output";
 
   		echo $user ."<br/>";
   		echo $project ."<br/>";
@@ -70,7 +72,7 @@
         echo $taxon."<br/>";
 
 
-        $this->Run_owncloud->index('admin','data_mothur');
+        $this->Run_owncloud->index('admin','data_mothur',$maximum_ambiguous,$maximum_homopolymer,$minimum_reads_length,$maximum_reads_length,$alignment,$diffs,$classify,$cutoff,$optionsRadios,$taxon,$path_in,$path_out);
 
 
 
