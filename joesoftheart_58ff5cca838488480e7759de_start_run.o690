@@ -1,0 +1,11 @@
+
+Run check_file :go to check file oligo ->
+Run check_oligos :go to makecontig_summary -> 
+Run makecontig_summarygo to align_seqs ->
+Run align_seqsgo to read_log_sungrid->joesoftheart_58ff5cca838488480e7759de_align_seqs.o692Start : 8<br/> End : 9582
+Run screen_remove :go to classify_system->
+Run classify_systemgo to phylotype_count->
+Run phylotype_count :go to sub_sample_sammary->
+Run sub_sample_summary :go to plot_graph->
+Run plot_graph :<-- Finish plot graph -->
+

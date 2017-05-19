@@ -1,0 +1,188 @@
+[H[J
+
+
+
+
+
+mothur v.1.39.1
+Last updated: 2/3/2017
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+For questions and analysis support, please visit our forum at https://www.mothur.org/forum
+
+Type 'quit()' to exit program
+
+
+
+mothur > sub.sample(shared=final.tx.shared, size=5000,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Sampling 5000 from each group.
+1
+2
+3
+4
+5
+6
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.1.subsample.shared
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.2.subsample.shared
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.3.subsample.shared
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.4.subsample.shared
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.5.subsample.shared
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.6.subsample.shared
+
+
+mothur > collect.single(shared=final.tx.shared, calc=chao, freq=100,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Processing group S1_S1
+
+1
+2
+3
+4
+5
+6
+
+Processing group S2_S3
+
+1
+2
+3
+4
+5
+6
+
+Processing group S3_S5
+
+1
+2
+3
+4
+5
+6
+
+Processing group S4_S7
+
+1
+2
+3
+4
+5
+6
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.S1_S1.chao
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.S2_S3.chao
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.S3_S5.chao
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.S4_S7.chao
+
+
+mothur > rarefaction.single(shared=final.tx.shared, calc=sobs, freq=100, processors=8,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Using 8 processors.
+
+Processing group S1_S1
+
+1
+2
+3
+4
+5
+6
+
+Processing group S2_S3
+
+1
+2
+3
+4
+5
+6
+
+Processing group S3_S5
+
+1
+2
+3
+4
+5
+6
+
+Processing group S4_S7
+
+1
+2
+3
+4
+5
+6
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.groups.rarefaction
+
+
+mothur > summary.single(shared=final.tx.shared, calc=nseqs-coverage-sobs-invsimpson-chao-shannon-npshannon, subsample=5000,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Processing group S1_S1
+
+1
+2
+3
+4
+5
+6
+
+Processing group S2_S3
+
+1
+2
+3
+4
+5
+6
+
+Processing group S3_S5
+
+1
+2
+3
+4
+5
+6
+
+Processing group S4_S7
+
+1
+2
+3
+4
+5
+6
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.groups.ave-std.summary
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.groups.summary
+
+
+mothur > quit()

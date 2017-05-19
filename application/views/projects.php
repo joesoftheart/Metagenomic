@@ -63,11 +63,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                                                 <td><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>ximum homopolymer :</td>
+                                                                <td>maximum homopolymer :</td>
                                                                 <td><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>manimum reads length :</td>
+                                                                <td>minimum reads length :</td>
                                                                 <td><input class="uk-input" type="text" name="cmd" value="" placeholder="260" disabled></td>
                                                             </tr>
                                                             <tr>
@@ -193,7 +193,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <div class="col-lg-6">
                                                         <ul>
                                                             <li>sobs</li>
-                                                            <li>anao</li>
+                                                            <li>chao</li>
                                                             <li>shannon</li>
                                                             <li>simpson</li>
                                                         </ul>
@@ -402,10 +402,10 @@ if (isset($this->session->userdata['logged_in'])) {
                                                         </select>
                                                     </div>
                                                 <label class="col-lg-3"> with cutoff : </label>
-                                                <div class="col-lg-2">    
+                                                <div class="col-lg-2 col-lg-pull-2">
                                                     <input class="uk-input" type="number" name="cutoff" min="50" value="50">   
                                                 </div>
-                                                <label class="col-lg-2">(>=50)</label> 
+                                                <label class="col-lg-2 col-lg-pull-1">(>=50)</label>
 
 
 
@@ -466,9 +466,10 @@ if (isset($this->session->userdata['logged_in'])) {
                                              </div>
 
                                         <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
-                                            <label>sub sample :</label>
+
                                             <div class="row uk-margin">
                                                 <div class="col-lg-8">
+                                                    <label>sub sample :</label>
                                                     <input class="uk-input" type="text" name="cutoff" value="" placeholder="5000">
                                                 </div>
                                             </div>
@@ -480,14 +481,9 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <div class="col-lg-8">
                                                    <button id="" type="reset" class="btn btn-default">Clear</button>
                                             </div>
-<<<<<<< HEAD
 
                                             <div class="col-lg-12 uk-margin"> </div>
 
-
-=======
-                                            <button id="btn_prephy"  name="submit" class="btn btn-default pull-right">Run Prephy</button>
->>>>>>> fa618ed49c021a36e803e1d13e6d71a6c350baa2
                                         </div><!-- close row form -->
                                     </li>
 
@@ -501,14 +497,16 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                           <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please select level that you want to analyse :</label></div>
                                             
-                                          <div class="col-lg-5 col-lg-pull-1"><label> GG : </label></div>
-                                                  <div class="col-lg-5 col-lg-pull-5">
+                                          <div class="col-lg-3 col-lg-pull-1">
+                                              <label> Greengenes :   </label>
+                                          </div>
+                                                  <div class="col-lg-5 col-lg-pull-2">
                                                       <select class="uk-select" name="">
                                                              <option value="1"> 1 </option>
                                                              <option value="2"> 2 </option>
                                                              <option value="3"> 3 </option>
                                                              <option value="4"> 4 </option>
-                                                             <option value="5"> 5 </option> 
+                                                             <option value="5"> 5 </option>
                                                              <option value="6"> 6 </option>   
                                                         </select>
                                                   </div>
@@ -612,7 +610,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <div class="col-lg-8 col-lg-push-2 ">                
                                                     <div class="radio">
                                                         <label >
-                                                           <input name="optionsRadios2" value="1" type="radio"> Amora
+                                                           <input name="optionsRadios2" value="1" type="radio"> Amova
                                                         </label>
                                                     </div>
                                                     <div class="radio">

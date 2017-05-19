@@ -1,0 +1,525 @@
+[H[J
+
+
+
+
+
+mothur v.1.39.1
+Last updated: 2/3/2017
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+For questions and analysis support, please visit our forum at https://www.mothur.org/forum
+
+Type 'quit()' to exit program
+
+
+
+mothur > heatmap.bin(shared=final.tx.2.subsample.shared, scale=log2, numotu=10,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+2
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.2.subsample.2.heatmap.bin.svg
+
+
+mothur > dist.shared(shared=final.tx.shared, calc=thetayc-jclass-lennon-morisitahorn-braycurtis, subsample=5000,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Using 1 processors.
+1
+100
+200
+300
+400
+500
+600
+700
+800
+900
+1000
+2
+100
+200
+300
+400
+500
+600
+700
+800
+900
+1000
+3
+100
+200
+300
+400
+500
+600
+700
+800
+900
+1000
+4
+100
+200
+300
+400
+500
+600
+700
+800
+900
+1000
+5
+100
+200
+300
+400
+500
+600
+700
+800
+900
+1000
+6
+100
+200
+300
+400
+500
+600
+700
+800
+900
+1000
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.1.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.1.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.1.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.1.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.1.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.1.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.1.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.1.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.1.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.1.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.1.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.1.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.1.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.1.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.1.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.2.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.2.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.2.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.2.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.2.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.2.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.2.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.2.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.2.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.2.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.2.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.2.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.3.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.3.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.3.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.3.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.3.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.3.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.3.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.3.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.3.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.3.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.3.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.3.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.3.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.3.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.3.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.4.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.4.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.4.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.4.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.4.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.4.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.4.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.4.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.4.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.4.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.4.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.4.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.4.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.4.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.4.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.5.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.5.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.5.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.5.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.5.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.5.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.5.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.5.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.5.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.5.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.5.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.5.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.5.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.5.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.5.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.6.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.6.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.6.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.6.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.6.lt.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.6.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.6.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.6.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.6.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.6.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.6.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.6.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.6.lt.std.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.6.lt.ave.dist
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.6.lt.std.dist
+
+
+mothur > heatmap.sim(phylip=final.tx.thetayc.2.lt.ave.dist,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/) #No need
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.heatmap.sim.svg
+
+
+mothur > heatmap.sim(phylip=final.tx.jclass.2.lt.ave.dist,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/) #No need
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.2.lt.ave.heatmap.sim.svg
+
+
+mothur > summary.shared(calc=lennon-jclass-morisitahorn-sorabund-thetan-thetayc-braycurtis, groups=S1_S1-S2_S3-S3_S5-S4_S7, all=T,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Using owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.shared as input file for the shared parameter.
+
+Using 1 processors.
+1
+2
+3
+4
+5
+6
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.summary
+
+
+mothur > venn(shared=final.tx.2.subsample.shared, groups=S1_S1-S2_S3-S3_S5-S4_S7,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+2
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.2.subsample.2.sharedsobs.S1_S1-S2_S3-S3_S5-S4_S7.svg
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.2.subsample.2.sharedsobs.S1_S1-S2_S3-S3_S5-S4_S7.sharedotus
+
+
+mothur > tree.shared(phylip=final.tx.thetayc.2.lt.ave.dist,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Using 1 processors.
+********************#****#****#****#****#****#****#****#****#****#****#
+Reading matrix:     ||||||||||||||||||||||||||||||||||||||||||||||||||||
+***********************************************************************
+Tree complete. 
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.tre
+
+
+mothur > tree.shared(phylip=final.tx.morisitahorn.2.lt.ave.dist,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Using 1 processors.
+********************#****#****#****#****#****#****#****#****#****#****#
+Reading matrix:     ||||||||||||||||||||||||||||||||||||||||||||||||||||
+***********************************************************************
+Tree complete. 
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.2.lt.ave.tre
+
+
+mothur > tree.shared(phylip=final.tx.jclass.2.lt.ave.dist,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Using 1 processors.
+********************#****#****#****#****#****#****#****#****#****#****#
+Reading matrix:     ||||||||||||||||||||||||||||||||||||||||||||||||||||
+***********************************************************************
+Tree complete. 
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.2.lt.ave.tre
+
+
+mothur > tree.shared(phylip=final.tx.braycurtis.2.lt.ave.dist,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Using 1 processors.
+********************#****#****#****#****#****#****#****#****#****#****#
+Reading matrix:     ||||||||||||||||||||||||||||||||||||||||||||||||||||
+***********************************************************************
+Tree complete. 
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.braycurtis.2.lt.ave.tre
+
+
+mothur > tree.shared(phylip=final.tx.lennon.2.lt.ave.dist,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Using 1 processors.
+********************#****#****#****#****#****#****#****#****#****#****#
+Reading matrix:     ||||||||||||||||||||||||||||||||||||||||||||||||||||
+***********************************************************************
+Tree complete. 
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.lennon.2.lt.ave.tre
+
+
+mothur > parsimony(tree=final.tx.thetayc.2.lt.ave.tre, group=soil.design,  groups=all,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/) #No need
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Using 1 processors.
+********************#****#****#****#****#****#****#****#****#****#****#
+Comparing to random:||||||||||||||||||||||||||||||||||||||||||||||||||||
+***********************************************************************
+Tree#	Groups	ParsScore	ParsSig
+1	withchem-withoutchem	1	0.321
+
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.tre.parsimony
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.tre.psummary
+
+
+mothur > unifrac.weighted(tree=final.tx.thetayc.2.lt.ave.tre, group=soil.design, random=T,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/) #No need
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Using 1 processors.
+Tree#	Groups	WScore	WSig
+1	withchem-withoutchem	0.738929	<0.001
+It took 0 secs to run unifrac.weighted.
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.trewsummary
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.tre1.weighted
+
+
+mothur > unifrac.unweighted(tree=final.tx.thetayc.2.lt.ave.tre, group=soil.design, random=T, groups=all,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/) #No need
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Using 1 processors.
+Tree#	Groups	UWScore	UWSig
+1	withchem-withoutchem	0.799395	0.339
+It took 0 secs to run unifrac.unweighted.
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.uwsummary
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.tre1.unweighted
+
+
+mothur > pcoa(phylip=final.tx.morisitahorn.2.lt.ave.dist,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Processing...
+Rsq 1 axis: 0.959487
+Rsq 2 axis: 0.99981
+Rsq 3 axis: 1
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.2.lt.ave.pcoa.axes
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.2.lt.ave.pcoa.loadings
+
+
+mothur > pcoa(phylip=final.tx.thetayc.2.lt.ave.dist,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Processing...
+Rsq 1 axis: 0.901466
+Rsq 2 axis: 0.997303
+Rsq 3 axis: 1
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.pcoa.axes
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.pcoa.loadings
+
+
+mothur > pcoa(phylip=final.tx.jclass.2.lt.ave.dist,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Processing...
+Rsq 1 axis: 0.986843
+Rsq 2 axis: 0.863094
+Rsq 3 axis: 1
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.2.lt.ave.pcoa.axes
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.2.lt.ave.pcoa.loadings
+
+
+mothur > nmds(phylip=final.tx.morisitahorn.2.lt.ave.dist, mindim=3, maxdim=3,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Processing Dimension: 3
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+Number of dimensions:	3
+Lowest stress :	1.18409e-11
+R-squared for configuration:	1
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.2.lt.ave.nmds.iters
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.2.lt.ave.nmds.stress
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.morisitahorn.2.lt.ave.nmds.axes
+
+
+mothur > nmds(phylip=final.tx.thetayc.2.lt.ave.dist, mindim=2, maxdim=2,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Processing Dimension: 2
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+Number of dimensions:	2
+Lowest stress :	0.0225974
+R-squared for configuration:	0.99799
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.nmds.iters
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.nmds.stress
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.nmds.axes
+
+
+mothur > nmds(phylip=final.tx.jclass.2.lt.ave.dist, mindim=3, maxdim=3,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Processing Dimension: 3
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+Number of dimensions:	3
+Lowest stress :	3.72415e-12
+R-squared for configuration:	1
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.2.lt.ave.nmds.iters
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.2.lt.ave.nmds.stress
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.jclass.2.lt.ave.nmds.axes
+
+
+mothur > amova(phylip=final.tx.thetayc.2.lt.ave.dist, design=soil.design,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/) #No need
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+withchem-withoutchem	Among	Within	Total
+SS	0.345062	0.460323	0.805384
+df	1	2	3
+MS	0.345062	0.230161
+
+Fs:	1.49922
+p-value: 0.33
+
+Experiment-wise error rate: 0.05
+If you have borderline P-values, you should try increasing the number of iterations
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.amova
+
+
+mothur > homova(phylip=final.tx.thetayc.2.lt.ave.dist, design=soil.design,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+HOMOVA	BValue	P-value	SSwithin/(Ni-1)_values
+withchem-withoutchem	1.85759	0.32	0.453116	0.00720684
+Experiment-wise error rate: 0.05
+If you have borderline P-values, you should try increasing the number of iterations
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.thetayc.2.lt.ave.homova
+
+
+mothur > corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, shared=final.tx.2.subsample.shared, method=spearman, numaxes=2, label=2,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.2.subsample.spearman.corr.axes
+
+
+mothur > corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, method=pearson, numaxes=2, label=2,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/soilpro.pearson.corr.axes
+
+
+mothur > quit()

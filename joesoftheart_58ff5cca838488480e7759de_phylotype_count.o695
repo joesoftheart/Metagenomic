@@ -1,0 +1,100 @@
+[H[J
+
+
+
+
+
+mothur v.1.39.1
+Last updated: 2/3/2017
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+For questions and analysis support, please visit our forum at https://www.mothur.org/forum
+
+Type 'quit()' to exit program
+
+
+
+mothur > phylotype(taxonomy=final.taxonomy,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+1
+2
+3
+4
+5
+6
+7
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.sabund
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.rabund
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.list
+
+
+mothur > make.shared(list=final.tx.list, count=final.count_table, label=1-2-3-4-5-6,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+1
+2
+3
+4
+5
+6
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.shared
+
+
+mothur > classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, label=1-2-3-4-5-6,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+1	871
+2	780
+3	511
+4	341
+5	171
+6	52
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.1.cons.taxonomy
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.1.cons.tax.summary
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.2.cons.taxonomy
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.2.cons.tax.summary
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.3.cons.taxonomy
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.3.cons.tax.summary
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.4.cons.taxonomy
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.4.cons.tax.summary
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.5.cons.taxonomy
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.5.cons.tax.summary
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.6.cons.taxonomy
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.6.cons.tax.summary
+
+
+mothur > count.groups(shared=final.tx.shared,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/
+S1_S1 contains 11822.
+S2_S3 contains 10364.
+S3_S5 contains 10688.
+S4_S7 contains 10789.
+
+Total seqs: 43663.
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.tx.count.summary
+
+
+mothur > quit()
