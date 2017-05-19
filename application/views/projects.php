@@ -263,7 +263,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     $status = $rs_p['number_process'];
 
                                                 } ?>
-                                                <button id="btn_prepro"  name="submit" class="btn btn-default pull-right" <?php if ($status == 0) { echo "disabled";} ?> >Submit</button>
+                                                <button id="btn_prepro"  name="submit" class="btn btn-default pull-right" >Submit</button>
                                             </div>
                                         </form>
                                     </li>
@@ -398,14 +398,14 @@ if (isset($this->session->userdata['logged_in'])) {
                                                         <select class="uk-select" name="classify">
                                                              <option value="silva"> Silva </option>
                                                              <option value="gg"> GG </option>
-                                                             <option value="rpd"> RPD </option>
+                                                             <option value="rdp"> RDP </option>
                                                         </select>
                                                     </div>
-                                                <label class="col-lg-3"> with cutoff : </label>
-                                                <div class="col-lg-2">    
+                                                <label class="col-lg-3 "> with cutoff : </label>
+                                                <div class="col-lg-2 col-lg-pull-1">    
                                                     <input class="uk-input" type="number" name="cutoff" min="50" value="50">   
                                                 </div>
-                                                <label class="col-lg-2">(>=50)</label> 
+                                                <label class="col-lg-2 col-lg-pull-1">(>=50)</label> 
 
 
 
@@ -466,9 +466,10 @@ if (isset($this->session->userdata['logged_in'])) {
                                              </div>
 
                                         <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
-                                            <label>sub sample :</label>
+                                            
                                             <div class="row uk-margin">
                                                 <div class="col-lg-8">
+                                                <label>sub sample :</label>
                                                     <input class="uk-input" type="text" name="cutoff" value="" placeholder="5000">
                                                 </div>
                                             </div>
@@ -480,14 +481,12 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <div class="col-lg-8">
                                                    <button id="" type="reset" class="btn btn-default">Clear</button>
                                             </div>
-<<<<<<< HEAD
+
 
                                             <div class="col-lg-12 uk-margin"> </div>
 
 
-=======
-                                            <button id="btn_prephy"  name="submit" class="btn btn-default pull-right">Run Prephy</button>
->>>>>>> fa618ed49c021a36e803e1d13e6d71a6c350baa2
+
                                         </div><!-- close row form -->
                                     </li>
 
@@ -693,24 +692,48 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                    <!-- Result && Graph -->
                                     <li >
-                                        <!--                    <div class="uk-cover-container uk-height-large">-->
-                                        <!--                        <iframe src="//www.youtube.com/embed/nJx4buMnn34?autoplay=1&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;loop=1&amp;modestbranding=1&amp;wmode=transparent" width="560" height="1000" frameborder="0" allowfullscreen uk-cover></iframe>-->
-                                        <!--                    </div>-->
-                                        <div class="row">
+                                       <div class="row">
                                             <div class="col-lg-6">
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/jclass.svg">
-                                            </div>
-                                            <div class="col-lg-6">
+                                                <b>Ven diagram</b>
                                                 <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/sharedsobs.svg">
                                             </div>
-                                        </div><br>
+                                            <div class="col-lg-6">
+                                                <b>Heatmap</b>
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig3_heatmaptest.jpg">
+                                            </div>
+                                        </div>
+
+                                        <hr class="uk-divider-icon">
+
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/">
+                                                <b>*Heatmap-Jclass</b><br>
+                                                <img class="img-thumbnail" height="50%" width="50%" src="<?php echo base_url(); ?>uploads/final.tx.jclass.2.lt.ave.heatmap.sim.svg">
                                             </div>
                                             <div class="col-lg-6">
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/thetayc.svg">
+                                                <b>*Heatmap-Thetayc</b><br>
+                                                <img class="img-thumbnail" height="50%" width="50%"  src="<?php echo base_url(); ?>uploads/final.tx.thetayc.2.lt.ave.heatmap.sim.svg">
                                             </div>
+                                        </div>
+                                        <hr class="uk-divider-icon">
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <b>Rarefaction</b>
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig1_rarefactionSoil.jpg">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <b>RelativePhylum</b>
+                                                <img class="img-thumbnail"  src="<?php echo base_url(); ?>uploads/Rplot.jpeg">
+                                            </div>
+                                        </div>
+                                        <hr class="uk-divider-icon">
+                                        <b>NMDS</b>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-lg-offset-3">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig4_NMDS.jpg">
+                                            </div>
+
                                         </div>
 
                                     </li>
