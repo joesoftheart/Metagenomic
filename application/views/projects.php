@@ -40,6 +40,12 @@ if (isset($this->session->userdata['logged_in'])) {
 
                         <li>
                             <div>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                                        40%
+                                    </div>
+                                </div>
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
                                     <li ><a href="#">Run</a></li>
                                     <li><a href="#">Result && Graph</a></li>
@@ -245,9 +251,64 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <div class="col-lg-6">
 
                                                         <ul>
+
+                                                            <?php
+                                                            foreach ($rs as $r) {
+                                                                $sample_folder = $r['project_path'];
+
+                                                            }
+                                                            $project = basename($sample_folder);
+                                                            $path_owncloud = "../owncloud/data/" . $username . "/files/" . $project ."/data/input/";
+                                                            $file_files = array( 'design');
+                                                            $file_metadata = array('metadata');
+                                                            $check_file = '0';
+                                                            $check_metadata = '0';
+                                                            $result_folder = array();
+                                                            $result_file = array();
+
+                                                            if (is_dir($path_owncloud)) {
+                                                                $select_folder = array_diff(scandir($path_owncloud, 1),array('.','..'));
+                                                                $cdir = scandir($path_owncloud);
+                                                                foreach ($cdir as $key => $value) {
+
+                                                                    if (!in_array($value, array('.', '..'))) {
+                                                                        if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                                                                            $result_folder[$value] = $value;
+
+                                                                        } else {
+
+                                                                            $type = explode( '.', $value );
+                                                                            $type = array_reverse( $type );
+                                                                            if(in_array( $type[0], $file_files ) ) {
+
+                                                                                $check_file = 'have_files';
+                                                                            }
+
+                                                                            if(in_array($type[0],$file_metadata)){
+
+                                                                                $check_metadata = 'have_metadata';
+
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+
+
+
+
+
+                                                            ?>
+
+                                                            <?php if ($check_file == '0') { ?>
                                                             <li>Please upload file.design?    <?php echo form_upload('design'); ?></li>
+                                                            <?php }  ?>
+
+                                                            <?php if ($check_metadata == '0') { ?>
                                                             <li>Please upload file.metadata?    <?php echo form_upload('metadata'); ?></li>
+                                                            <?php } ?>
                                                         </ul>
+
                                                     </div>
                                                 </div>
 

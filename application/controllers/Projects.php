@@ -84,7 +84,7 @@ class Projects extends CI_Controller
 
         $jobname = $user . "_" . $id . "_start_run";
 
-        $cmd = "qsub -N $jobname -cwd -b y /usr/bin/php -f Scripts/standard_run.php $user $id $project $path";
+        $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run.php $user $id $project $path";
 
         exec($cmd);
 
