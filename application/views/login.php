@@ -82,7 +82,7 @@ if (isset($message_display)) {
                                 <input class="form-control" placeholder="username" name="username" type="text" autofocus>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="*******" name="password" type="text" value="">
+                                <input class="form-control" placeholder="*******" name="password" type="password" value="">
                             </div>
                             <div class="checkbox">
                                 <label>

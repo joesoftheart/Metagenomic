@@ -22,8 +22,12 @@ class General_statistic extends CI_Controller{
         $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
         $data['rs_users'] = $this->mongo_db->get('user_login');
         $data['rs_projects'] = $this->mongo_db->get('projects');
+        $id_me = (string)$this->session->userdata['logged_in']['_id'];
+        $data['rs_your_p'] = $this->mongo_db->get_where('projects',array('user_id' => new MongoId($id_me)));
          $data['rs_ticket'] = $this->mongo_db->get('ticket_support');
+        $data['rs_u_ticket'] = $this->mongo_db->get_where('ticket_support',array('user_id' => $id_me));
         // $data['rs_user'] = $this->mongo_db->get('user_login');
+
 
 
 

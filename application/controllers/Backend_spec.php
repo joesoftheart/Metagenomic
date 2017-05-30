@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 
 
-class Backend_statistic extends CI_Controller{
+class Backend_spec extends CI_Controller{
 
 
 
@@ -28,7 +28,7 @@ class Backend_statistic extends CI_Controller{
         $data['rs_cpu'] = shell_exec('lscpu');
 
         $this->load->view('header',$data);
-        $this->load->view('backend_statistic',$data);
+        $this->load->view('backend_spec',$data);
         $this->load->view('footer');
 
     }

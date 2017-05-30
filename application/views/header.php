@@ -336,7 +336,7 @@
                                 <a href="<?php echo site_url('general_statistic')?>">General statistics</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('backend_statistic')?>">Backend statistics</a>
+                                <a href="<?php echo site_url('backend_spec')?>">Backend spec</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
