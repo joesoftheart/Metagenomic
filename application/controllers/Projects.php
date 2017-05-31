@@ -53,6 +53,7 @@ class Projects extends CI_Controller
         foreach ($data as $r) {
             $sample_folder = $r['project_path'];
             $id = $r['_id'];
+            $project_analysis = $r['project_analysis'];
         }
         $project = basename($sample_folder);
         $user = $this->session->userdata['logged_in']['username'];
@@ -84,10 +85,20 @@ class Projects extends CI_Controller
 
         $jobname = $user . "_" . $id . "_start_run";
 
-        $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run.php $user $id $project $path";
 
+
+
+        if ($project_analysis == "otu"){
+        $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run_otu.php $user $id $project $path";
         exec($cmd);
 
+        }else if ($project_analysis == "phylotype"){
+            $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run_phylotype.php $user $id $project $path";
+            exec($cmd);
+
+        }else {
+            echo "Not run";
+        }
     }
 
 

@@ -32,8 +32,8 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="uk-child-width-1-6\@xl" uk-grid>
                 <div>
                     <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
-                        <li class="uk-active"><a href="#"><span class="uk-label">Standard Mode</span></a></li>
-                        <li><a href="#"><span class="uk-label uk-label-success">Advance Mode</span></a></li>
+                        <li class="uk-active "><a class="uk-text-capitalize uk-text-large uk-text-bold" href="#">Standard Mode</a></li>
+                        <li><a class="uk-text-capitalize uk-text-large uk-text-bold" href="#">Advance Mode</a></li>
 
                     </ul>
                     <ul class="uk-switcher">
