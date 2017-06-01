@@ -15,7 +15,7 @@ if (isset($this->session->userdata['logged_in'])) {
                 <li <?php if ($controller_name == 'main'){
                     echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
                 <li>Statistics</li>
-                <li class="active">Backend statistic</li>
+                <li class="active">Backend spec</li>
 
             </ol>
         </div>

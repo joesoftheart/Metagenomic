@@ -33,14 +33,20 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="uk-child-width-1-6\@xl" uk-grid>
                 <div>
                     <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
-                        <li class="uk-active"><a href="#">Standard</a></li>
-                        <li><a href="#">Advance</a></li>
+                        <li class="uk-active "><a class="uk-text-capitalize uk-text-large uk-text-bold" href="#">Standard Mode</a></li>
+                        <li><a class="uk-text-capitalize uk-text-large uk-text-bold" href="#">Advance Mode</a></li>
 
                     </ul>
                     <ul class="uk-switcher">
 
                         <li>
                             <div>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                                        40%
+                                    </div>
+                                </div>
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
                                     <li ><a href="#">Run</a></li>
                                     <li><a href="#">Result && Graph</a></li>
@@ -64,11 +70,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                                                 <td><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>ximum homopolymer :</td>
+                                                                <td>maximum homopolymer :</td>
                                                                 <td><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>manimum reads length :</td>
+                                                                <td>minimum reads length :</td>
                                                                 <td><input class="uk-input" type="text" name="cmd" value="" placeholder="260" disabled></td>
                                                             </tr>
                                                             <tr>
@@ -194,7 +200,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <div class="col-lg-6">
                                                         <ul>
                                                             <li>sobs</li>
-                                                            <li>anao</li>
+                                                            <li>chao</li>
                                                             <li>shannon</li>
                                                             <li>simpson</li>
                                                         </ul>
@@ -246,9 +252,64 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <div class="col-lg-6">
 
                                                         <ul>
+
+                                                            <?php
+                                                            foreach ($rs as $r) {
+                                                                $sample_folder = $r['project_path'];
+
+                                                            }
+                                                            $project = basename($sample_folder);
+                                                            $path_owncloud = "../owncloud/data/" . $username . "/files/" . $project ."/data/input/";
+                                                            $file_files = array( 'design');
+                                                            $file_metadata = array('metadata');
+                                                            $check_file = '0';
+                                                            $check_metadata = '0';
+                                                            $result_folder = array();
+                                                            $result_file = array();
+
+                                                            if (is_dir($path_owncloud)) {
+                                                                $select_folder = array_diff(scandir($path_owncloud, 1),array('.','..'));
+                                                                $cdir = scandir($path_owncloud);
+                                                                foreach ($cdir as $key => $value) {
+
+                                                                    if (!in_array($value, array('.', '..'))) {
+                                                                        if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                                                                            $result_folder[$value] = $value;
+
+                                                                        } else {
+
+                                                                            $type = explode( '.', $value );
+                                                                            $type = array_reverse( $type );
+                                                                            if(in_array( $type[0], $file_files ) ) {
+
+                                                                                $check_file = 'have_files';
+                                                                            }
+
+                                                                            if(in_array($type[0],$file_metadata)){
+
+                                                                                $check_metadata = 'have_metadata';
+
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+
+
+
+
+
+                                                            ?>
+
+                                                            <?php if ($check_file == '0') { ?>
                                                             <li>Please upload file.design?    <?php echo form_upload('design'); ?></li>
+                                                            <?php }  ?>
+
+                                                            <?php if ($check_metadata == '0') { ?>
                                                             <li>Please upload file.metadata?    <?php echo form_upload('metadata'); ?></li>
+                                                            <?php } ?>
                                                         </ul>
+
                                                     </div>
                                                 </div>
 
@@ -323,7 +384,7 @@ if (isset($this->session->userdata['logged_in'])) {
                 <?php echo form_close();?>
               <!-- End Standard run -->
 
-                        <!-- ADVANCE  -->
+             <!-- ADVANCE  -->
 
                         <li>
                             <div>
@@ -405,11 +466,13 @@ if (isset($this->session->userdata['logged_in'])) {
                                                              <option value="rdp"> RDP </option>
                                                         </select>
                                                     </div>
+
                                                 <label class="col-lg-3 "> with cutoff : </label>
                                                 <div class="col-lg-2 col-lg-pull-1">    
                                                     <input class="uk-input" type="number" name="cutoff" min="50" value="50">   
                                                 </div>
                                                 <label class="col-lg-2 col-lg-pull-1">(>=50)</label> 
+
 
 
 
@@ -464,10 +527,10 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
 
-                            <!--Prepare phylotype -->
+                       <!--Prepare phylotype -->
                                     <li >
 
-                                     <form name="Phylotype-form" method="post" action="#" > 
+                                     
                                         <div class="col-lg-8 col-lg-offset-2">
 
                                           <input type="hidden" name="username" value="<?=$username?>">
@@ -480,7 +543,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <textarea class="form-control"  rows="5"  id="show_group" ></textarea>
                                                 </div>
                                                 <div class="col-lg-8 col-lg-push-9">
-                                                       <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                                                        <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
                                                             Back
                                                         </button>
                                                 </div>
@@ -503,10 +566,10 @@ if (isset($this->session->userdata['logged_in'])) {
                                                        <button id="" type="reset" class="btn btn-default">Clear</button>
                                                  </div>
 
+
                                                  <div class="col-lg-12 uk-margin"> </div>
                                          </div><!-- close row form -->
-                                     </form>
-
+                                    
 
                                           <!-- Modal -->
                                             <div class="panel-body">    
@@ -543,14 +606,16 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                           <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please select level that you want to analyse :</label></div>
                                             
-                                          <div class="col-lg-5 col-lg-pull-1"><label> GG : </label></div>
-                                                  <div class="col-lg-5 col-lg-pull-5">
+                                          <div class="col-lg-3 col-lg-pull-1">
+                                              <label> Greengenes :   </label>
+                                          </div>
+                                                  <div class="col-lg-5 col-lg-pull-2">
                                                       <select class="uk-select" name="">
                                                              <option value="1"> 1 </option>
                                                              <option value="2"> 2 </option>
                                                              <option value="3"> 3 </option>
                                                              <option value="4"> 4 </option>
-                                                             <option value="5"> 5 </option> 
+                                                             <option value="5"> 5 </option>
                                                              <option value="6"> 6 </option>   
                                                         </select>
                                                   </div>
@@ -654,7 +719,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <div class="col-lg-8 col-lg-push-2 ">                
                                                     <div class="radio">
                                                         <label >
-                                                           <input name="optionsRadios2" value="1" type="radio"> Amora
+                                                           <input name="optionsRadios2" value="1" type="radio"> Amova
                                                         </label>
                                                     </div>
                                                     <div class="radio">

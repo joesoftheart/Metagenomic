@@ -154,7 +154,7 @@
                         <a href="#">
                             <div>
                                 <p>
-                                    <strong>Project 1</strong>
+                                    <strong>Project wes-1055</strong>
                                     <span class="pull-right text-muted">40% Complete</span>
                                 </p>
                                 <div class="progress progress-striped active">
@@ -170,7 +170,7 @@
                         <a href="#">
                             <div>
                                 <p>
-                                    <strong>Project 2</strong>
+                                    <strong>Project wes-2203</strong>
                                     <span class="pull-right text-muted">20% Complete</span>
                                 </p>
                                 <div class="progress progress-striped active">
@@ -186,7 +186,7 @@
                         <a href="#">
                             <div>
                                 <p>
-                                    <strong>Project 3</strong>
+                                    <strong>Project wes-1158</strong>
                                     <span class="pull-right text-muted">60% Complete</span>
                                 </p>
                                 <div class="progress progress-striped active">
@@ -202,7 +202,7 @@
                         <a href="#">
                             <div>
                                 <p>
-                                    <strong>Project 4</strong>
+                                    <strong>Project wes 2322</strong>
                                     <span class="pull-right text-muted">80% Complete</span>
                                 </p>
                                 <div class="progress progress-striped active">
@@ -336,7 +336,7 @@
                                 <a href="<?php echo site_url('general_statistic')?>">General statistics</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('backend_statistic')?>">Backend statistics</a>
+                                <a href="<?php echo site_url('backend_spec')?>">Backend spec</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

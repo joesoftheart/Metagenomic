@@ -44,7 +44,7 @@ if (isset($this->session->userdata['logged_in'])) {
     header("location: login/user_login_process");
 }
 ?>
-<body background="<?php echo base_url();?>img/new.png">
+<body background="<?php echo base_url();?>images/backgroud-login-new.jpg">
 <?php
 if (isset($logout_message)) {
     echo "<div class='message'>";
@@ -82,7 +82,7 @@ if (isset($message_display)) {
                                 <input class="form-control" placeholder="username" name="username" type="text" autofocus>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="*******" name="password" type="text" value="">
+                                <input class="form-control" placeholder="*******" name="password" type="password" value="">
                             </div>
                             <div class="checkbox">
                                 <label>
@@ -95,7 +95,6 @@ if (isset($message_display)) {
                                 <?php echo form_close(); ?>
 <!--                                <input type="submit" name="signup" value="signup" class="btn  btn-primary "/>-->
                             </p>
-
                         </fieldset>
                     </form>
                 </div>

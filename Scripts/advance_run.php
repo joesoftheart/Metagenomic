@@ -27,7 +27,7 @@
 
          if($user != "" && $project != "" && $argv[3] != "" && $argv[4] != "" && $argv[5] != "" && $argv[6] != "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != "" && $argv[11] != "" && $argv[12] != "" && $argv[13] != ""){
             echo "check_parameter "."\n";
-            check_file($user,$project,$path_in,$path_out);
+            //check_file($user,$project,$path_in,$path_out);
           
          }else{
 

@@ -43,6 +43,17 @@ if (isset($this->session->userdata['logged_in'])) {
         }
 
 
+        $rs_u_p = 0;
+        foreach ($rs_your_p as $rs_your_pro){
+            $rs_u_p++;
+        }
+
+        $rs_u_t = 0;
+        foreach ($rs_u_ticket as $r_u_tt){
+            $rs_u_t++;
+        }
+
+
 
 
 
@@ -63,17 +74,17 @@ if (isset($this->session->userdata['logged_in'])) {
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="#" >
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <span class="pull-right"><i class="fa fa-ban" aria-hidden="true"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
                 </div>
                 <?php
-                $file_read = array( 'fastq','jpg');
+                $file_read = array( 'fastq');
                 $path_owncloud = "../owncloud/data/" . $username . "/files/";
                 $cdir = array();
                 $result_folder = array();
@@ -139,32 +150,15 @@ if (isset($this->session->userdata['logged_in'])) {
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="#" id="project">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">View Your <?php echo $rs_u_p;?> project </span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
                 </div>
-
-                <?php
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                ?>
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
@@ -201,9 +195,9 @@ if (isset($this->session->userdata['logged_in'])) {
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="#" id="ticket">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">View your <?php echo $rs_u_t;?> Ticket</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -211,6 +205,74 @@ if (isset($this->session->userdata['logged_in'])) {
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table hide" id="table_ticket">
+                        <thead>
+                        <tr>
+                            <td>Ticket name</td>
+                            <td>Ticket detail</td>
+                            <td>Ticket status</td>
+                            <td>Ticket respond</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($rs_u_ticket as $value) {?>
+                        <tr>
+                            <td><?php echo $value['ticket_name']?></td>
+                            <td><?php echo $value['ticket_detail']?></td>
+                            <td><?php echo $value['ticket_status']?></td>
+                            <td><?php echo $value['user_id']?></td>
+                        </tr>
+                        <?php } ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table " id="table_project">
+                        <thead>
+                        <tr>
+                            <td>Project name</td>
+                            <td>Project title</td>
+                            <td>Project detail</td>
+                            <td>Project type</td>
+                            <td>Project program</td>
+                            <td>project_analysis</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($rs_your_p as $value) {?>
+                            <tr>
+                                <td><?php echo $value['project_name']?></td>
+                                <td><?php echo $value['project_title']?></td>
+                                <td><?php echo $value['project_detail']?></td>
+                                <td><?php echo $value['project_type']?></td>
+                                <td><?php echo $value['project_program']?></td>
+                                <td><?php echo $value['project_analysis']?></td>
+                            </tr>
+                        <?php } ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    $("#project").click(function () {
+        $("#table_project").removeClass("hide");
+        $("#table_ticket").addClass("hide");
+    })
+
+    $("#ticket").click(function () {
+        $("#table_ticket").removeClass("hide");
+        $("#table_project").addClass("hide");
+    })
+
+</script>
