@@ -3,7 +3,7 @@
     putenv("SGE_ROOT=$SGE_ROOT");
     putenv("PATH=$PATH");
 
-
+    
 
          $user = $argv[1];
          $project = $argv[2];
@@ -17,35 +17,54 @@
          $GLOBALS['diffs'] = $argv[8];
          $GLOBALS['classify'] = $argv[9];
          $GLOBALS['cutoff'] = $argv[10];
-         $GLOBALS['optionsRadios'] = $argv[11];
-         $GLOBALS['variable'] = $argv[12]; 
+         $GLOBALS['taxon'] = $argv[11]; 
          
-         $path_in = $argv[13];
-         $path_out = $argv[14];
+         $path_in = $argv[12];
+         $path_out = $argv[13];
 
         
-           
+
+
+         if($user != "" && $project != "" && $argv[3] != "" && $argv[4] != "" && $argv[5] != "" && $argv[6] != "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != "" && $argv[11] != "" && $argv[12] != "" && $argv[13] != ""){
+            echo "check_parameter "."\n";
+            check_file($user,$project,$path_in,$path_out);
+          
+         }else{
+
+          echo "user : ".$user."\n";
+          echo "project : ".$project."\n";
+          echo "ambiguous : ".$GLOBALS['maximum_ambiguous']."\n";
+          echo "homopolymer : ".$GLOBALS['maximum_homopolymer']."\n";
+          echo "minimum_reads : ".$GLOBALS['minimum_reads_length']."\n";
+          echo "maximum_reads : ".$GLOBALS['maximum_reads_length']."\n";
+          echo "alignment : ".$GLOBALS['alignment']."\n";
+          echo "diffs : ".$GLOBALS['diffs']."\n";
+          echo "classify : ".$GLOBALS['classify']."\n";
+          echo "cutoff : ".$GLOBALS['cutoff']."\n";
+          echo "taxon : ".$GLOBALS['taxon']."\n";
+          echo "path_in : ".$path_in."\n";
+          echo "path_out : ".$path_out."\n";
+
+         }
          
-         check_file($user,$project,$path_in,$path_out);
+         
+ 
 
          function check_file($user,$project,$path_in,$path_out){
 
-            echo "check_file ->";
+            echo "check_file "."\n";
            
-            $path_file = $path_in."/stability.files";
+            $path_file = $path_in."stability.files";
 
-    
-           
             # stability.files ==> check oligos
             if(file_exists($path_file)) {
-                  echo "check_file_oligos ->"."\n";
+                  
                   check_oligos($user,$project,$path_in,$path_out);
 
             }
             # create stability.files
             else {
-                 echo "run_makefile ->"."\n";
-                 
+
                    run_makefile($user,$project,$path_in,$path_out);
           
             }
@@ -56,6 +75,7 @@
 
          function check_oligos($user,$project,$path_in,$path_out){
             
+           echo "check_file_oligos "."\n";
            $total_oligo = 0;
          
            $path_dir = $path_in;
@@ -86,7 +106,8 @@
 
         # make.file  stability.files
         function run_makefile($user,$project,$path_in,$path_out){
-
+          
+           echo "Run_makefile "."\n";
           $jobname = $user."_makefile";
 
            #make.file
@@ -116,7 +137,6 @@
 
                    if($check_run == false){
 
-                      echo  "Run makefile complete ->";
                       remove_logfile_mothur($path_in);
                       check_file($user,$project,$path_in,$path_out);
 
@@ -129,6 +149,7 @@
          # make.contigs oligos remove primer && summary.seqs
          function makecontigs_oligos_summary($file_oligo,$user,$project,$path_in,$path_out){
 
+            echo "Run makecontigs_oligos_summary  "."\n";
             $jobname = $user."_oligo";
 
             $cmd = "make.contigs(file=stability.files, oligos=$file_oligo ,processors=4 ,inputdir=$path_in,outputdir=$path_out)
@@ -158,7 +179,7 @@
                    $check_run = exec("qstat -j '$id_job' ");
 
                    if($check_run == false){
-                      echo "Run makecontigs_oligos_summary complete ->"."\n";
+                      
                       screen_summary($user,$project,$path_in,$path_out);
                       break;
                       
@@ -170,6 +191,7 @@
         # make.contigs && summary.seqs
         function makecontig_summary($user,$project,$path_in,$path_out){
           
+           echo "Run makecontigs_summary "."\n";
            $jobname = $user."_makesummary";
 
            $cmd ="make.contigs(file=stability.files,processors=8,inputdir=$path_in,outputdir=$path_out)
@@ -197,7 +219,7 @@
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
-                      echo "Run makecontigs_summary complete ->"."\n";
+                      
                       screen_summary($user,$project,$path_in,$path_out);
                       break;
                       
@@ -214,6 +236,7 @@
 
          function screen_summary($user,$project,$path_in,$path_out){
 
+            echo "Run screen_summary "."\n";
             $jobname = $user."_screen_summary";
 
             $cmd = "screen.seqs(fasta=stability.trim.contigs.fasta, group=stability.contigs.groups, summary=stability.trim.contigs.summary, maxambig=".$GLOBALS['maximum_ambiguous'].", minlength=".$GLOBALS['minimum_reads_length']." , maxlength=".$GLOBALS['maximum_reads_length'].", processors=8,inputdir=$path_in,outputdir=$path_out)
@@ -241,7 +264,6 @@
 
                    if($check_run == false){
                    
-                      echo "Run screen_summary complete ->"."\n";
                       unique_count_summary($user,$project,$path_in,$path_out);
 
                       break;
@@ -256,6 +278,7 @@
 
          function unique_count_summary($user,$project,$path_in,$path_out){
 
+             echo "Run unique_count_summary "."\n";
              $jobname = $user."_unique_count_summary"; 
 
              $cmd =" unique.seqs(fasta=stability.trim.contigs.good.fasta,inputdir=$path_in,outputdir=$path_out)
@@ -284,7 +307,7 @@
 
                    if($check_run == false){
                       
-                      echo "Run unique_count_summary complete ->"."\n";
+                      
                       align_summary($user,$project,$path_in,$path_out);
                       break;
                       
@@ -329,9 +352,9 @@
 
                    if($check_run == false){
                       
-                      echo "Run align_summary complete ->"."\n";
-                      echo $log."\n";
-                      //read_log_sungrid($user,$project,$path_in,$path_out,$log);
+                      echo "Run align_summary "."\n";
+                      //echo $log."\n";
+                      read_log_sungrid($user,$project,$path_in,$path_out,$log);
                       break;
                       
                    }
@@ -404,7 +427,7 @@
                                  $end = $key_end;
                                }
                          } 
-                       echo "read_log_sungrid"."\n";
+                       echo "Read_log_sungrid"."\n";
                        screen_summary_2($user,$project,$path_in,$path_out,$start,$end);    
                     }
 
@@ -420,6 +443,8 @@
           # input maximum ambiguous , maximum homopolymer , maximum reads length
 
          function screen_summary_2($user,$project,$path_in,$path_out,$start,$end){
+
+          echo "Run screen_summary_2  "."\n";
           $jobname = $user."_screen_summary_2";
 
           $cmd = "screen.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table, summary=stability.trim.contigs.good.unique.summary, start=$start, end=$end, maxambig=".$GLOBALS['maximum_ambiguous'].", maxhomop=".$GLOBALS['maximum_homopolymer'].", maxlength=".$GLOBALS['maximum_reads_length'].", processors=8,inputdir=$path_in,outputdir=$path_out)
@@ -447,8 +472,8 @@
 
                    if($check_run == false){
                    
-                      echo "Run screen_summary_2 complete ->"."\n";
-                      //filter_unique_cluster_vsearch_remove_summary($user,$project,$path_in,$path_out);
+                      
+                      filter_unique_cluster_vsearch_remove_summary($user,$project,$path_in,$path_out);
                       break;
                       
                    }
@@ -463,6 +488,8 @@
            # input diffs => pre.cluster
 
          function filter_unique_cluster_vsearch_remove_summary($user,$project,$path_in,$path_out){
+            
+            echo "Run filter_unique_cluster_vsearch_remove_summary  "."\n";
             $jobname = $user."_filter_unique_cluster_vsearch_remove_summary";
 
             $cmd = "filter.seqs(fasta=stability.trim.contigs.good.unique.good.align, vertical=T, trump=., processors=8,inputdir=$path_in,outputdir=$path_out)
@@ -494,7 +521,6 @@
 
                    if($check_run == false){
                      
-                      echo "Run filter_unique_cluster_vsearch_remove_summary complete ->"."\n";
                       classifly_removelineage_summary($user,$project,$path_in,$path_out);
                       break;
                    }
@@ -511,6 +537,7 @@
           # input reference , taxonomy , cutoff
          function classifly_removelineage_summary($user,$project,$path_in,$path_out){
 
+           echo "Run classifly_removelineage_summary "."\n";
            $jobname = $user."_classifly_removelineage_summary";
            $cmd = "classify.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=gg_13_8_99.fasta, taxonomy=gg_13_8_99.gg.tax, cutoff=".$GLOBALS['cutoff'].", processors=8,inputdir=$path_in,outputdir=$path_out)
                   remove.lineage(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxon=taxon=Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified,inputdir=&path_in,outputdir=$path_out)
@@ -538,7 +565,6 @@
 
                    if($check_run == false){
                       
-                      echo "Run classifly_removelineage_summary complete ->"."\n";
                       summary_tax($user,$project,$path_in,$path_out);
                       break;
                       
@@ -552,6 +578,7 @@
           
          function summary_tax($user,$project,$path_in,$path_out){
 
+          echo "Run summary_tax "."\n";
           $jobname = $user."_summary_tax";
           $cmd ="summary.tax(taxonomy=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=$path_in,outputdir=$path_out)";
                   
@@ -578,7 +605,7 @@
 
                    if($check_run == false){
                      
-                      echo "Run summary_tax complete ->"."\n";
+                      
                       system_cp($user,$project,$path_in,$path_out);
                       break;
                       
@@ -593,6 +620,7 @@
             // path file false stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta final.fasta
         function system_cp($user,$project,$path_in,$path_out){
 
+            echo "Run system_cp "."\n";
             $jobname = $user."_system_cp";
             $cmd = "system(cp ".$path_out."/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta ".$path_out."/final.fasta ,outputdir=$path_out)
                     system(cp ".$path_out."/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table ".$path_out."/final.count_table ,outputdir=$path_out)
@@ -620,8 +648,7 @@
 
                    if($check_run == false){
                       
-                      echo "Run system_cp complete ->"."\n";
-                      remove_logfile_mothur($path_out);
+                      dist_cluster_shared($user,$project,$path_in,$path_out);
                       break;
                       
                    }
@@ -630,8 +657,89 @@
 
         }
 
+       # OTUs Analysis
 
-        function remove_logfile_mothur($path_out){
+        function dist_cluster_shared($user,$project,$path_in,$path_out){
+
+          echo "Run dist_cluster_shared "."\n";
+          $jobname = $user."_dist_cluster_shared";
+          $cmd = " dist.seqs(fasta=final.fasta, cutoff=0.21, processors=8,inputdir=$path_in,outputdir=$path_out)
+          cluster(column=final.dist, count=final.count_table, method=opti, cutoff=0.03,inputdir=$path_in,outputdir=$path_out)
+          make.shared(list=final.opti_mcc.list, count=final.count_table, label=0.03,inputdir=$path_in,outputdir=$path_out) ";
+          
+          file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
+              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+          
+          shell_exec($cmd);
+               $check_qstat = "qstat  -j '$jobname' ";
+               exec($check_qstat,$output);
+               
+               $id_job = "" ; # give job id 
+               foreach ($output as $key_var => $value ) {
+              
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }        
+              }
+              $loop = true;
+              while ($loop) {
+
+                   $check_run = exec("qstat -j $id_job ");
+
+                   if($check_run == false){
+                      
+                      
+                      classify_count($user,$project,$path_in,$path_out);
+
+                      break;
+                      
+                   }
+              }  
+         
+        }
+
+
+        function classify_count ($user,$project,$path_in,$path_out){
+
+          echo "Run classify_count "."\n";
+          $jobname = $user."_classify_count";
+          $cmd = "classify.otu(list=final.opti_mcc.list, count=final.count_table, taxonomy=final.taxonomy, label=0.03,inputdir=$path_in,outputdir=$path_out)
+          count.groups(shared=final.opti_mcc.shared,inputdir=$path_in,outputdir=$path_out)";
+          
+          file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
+            $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+          
+          shell_exec($cmd);
+               $check_qstat = "qstat  -j '$jobname' ";
+               exec($check_qstat,$output);
+               
+               $id_job = "" ; # give job id 
+               foreach ($output as $key_var => $value ) {
+              
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }        
+              }
+              $loop = true;
+              while ($loop) {
+
+                   $check_run = exec("qstat -j $id_job ");
+
+                   if($check_run == false){
+                      
+                      remove_logfile_mothur($path_out);
+
+                      break;
+                      
+                   }
+              }  
+
+        }
+
+
+         function remove_logfile_mothur($path_out){ 
             
             $path_dir = $path_out;
             if (is_dir($path_dir)) {
@@ -650,22 +758,15 @@
                    closedir($read);
                 }
             }
-           echo "remove_logfile_mothur"; 
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+           echo "remove_logfile_mothur"."\n"; 
+           
+          }
 
 
 ?>
+
+
+
+
+
+

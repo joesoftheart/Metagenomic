@@ -7,6 +7,7 @@ if (isset($this->session->userdata['logged_in'])) {
 } else {
     header("location: main/login");
 } ?>
+
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12 ">
@@ -318,17 +319,17 @@ if (isset($this->session->userdata['logged_in'])) {
 
                             </div>
                        </li>
-              <!-- End Standard run -->
+     
                 <?php echo form_close();?>
-                            <!-- End Standard run -->
+              <!-- End Standard run -->
 
                         <!-- ADVANCE  -->
 
                         <li>
                             <div>
-                                <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
-                                    <li><a href="#">Preprocess & Prepare in taxonomy </a></li>
-                                    <li><a href="#">Prepare phylotype </a></li>
+                                <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade" >
+                                    <li class="pre"><a href="#">Preprocess & Prepare in taxonomy </a> </li>
+                                    <li class="pre2"><a href="#">Prepare phylotype </a></li>
                                     <li><a href="#">Analysis</a></li>
                                     <li><a href="#">Result & visualization</a></li>
                                 </ul>
@@ -336,8 +337,10 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                                   <!--Preprocess && Prepare in taxonomy -->
+                                  
                                     <li>
-                                         <form method="post"  action="<?php echo base_url('Run_advance/form_value');?>"  >
+                                        <div class="Pre-test">
+                                         <form name="Pre-form" method="post" action="#" > 
 
                                            <input type="hidden" name="username" value="<?=$username?>">
                                            <input type="hidden" name="project" value="<?=$current_project?>">
@@ -350,19 +353,20 @@ if (isset($this->session->userdata['logged_in'])) {
                                                  <div class="col-lg-10 col-lg-pull-1"><label> Screen reads </label></div>
                                                  <div class="form-inline col-lg-12">
                                                       <label class="col-lg-6"> maximum ambiguous : </label>
-                                                      <input class="form-control" type="number" name="maximum_ambiguous" min="0" placeholder="maximum ambiguous" required>
+                                                      <input id="mbig" class="form-control" type="number" name="maximum_ambiguous" min="0" placeholder="maximum ambiguous" onblur="checkvalue()">
+                                                    
                                                  </div>
                                                  <div class="form-inline col-lg-12 uk-margin">
                                                      <label class="col-lg-6"> maximum homopolymer : </label>
-                                                     <input class="form-control" type="number" name="maximum_homopolymer" min="0" placeholder="maximum homopolymer" required>
+                                                     <input id="mhomo" class="form-control" type="number" name="maximum_homopolymer" min="0" placeholder="maximum homopolymer" onblur="checkvalue2()">
                                                  </div>
                                                  <div class="form-inline col-lg-12">
                                                      <label class="col-lg-6"> minimum reads length : </label>
-                                                     <input class="form-control" type="number" name="minimum_reads_length" min="0" placeholder="minimum reads length" required>
+                                                     <input id="miniread" class="form-control" type="number" name="minimum_reads_length" min="0" placeholder="minimum reads length" onblur="checkvalue3()">
                                                  </div>
                                                  <div class="form-inline col-lg-12 uk-margin">
                                                     <label class="col-lg-6"> maximum reads length : </label>
-                                                    <input class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" required>
+                                                    <input id="maxread"class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" onblur="checkvalue4()">
                                                  </div>
                                  
                                               
@@ -434,60 +438,99 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                <div class="col-lg-12 uk-margin"> </div>
                                                <div class="col-lg-4">
-                                                  <button id=""  type="submit" class="btn btn-default">Run Preprocess</button>  
+                                                  <input id="sub-test"  class="btn btn-default" value="Run Preprocess "> 
                                                </div>
                                                <div class="col-lg-8">
-                                                   <button id="" type="reset" class="btn btn-default">Clear</button>
+                                                   <input type="reset" class="btn btn-default" value="Clear" >
                                                 </div>
 
                                                 <div class="col-lg-12 uk-margin"> </div>
                                             </div><!-- close row form -->
                                         
                                         </form>
+                                     </div>
 
+                                              <div class="Pre-show" style="display:none"> Process Queue 
+                                               <div id="time">30</div>
+                                               <div id="test_run">run queue</div>
+                                               <br/>
+                                                        
+                                                <button id="back-test" class="btn btn-default">back</button>
+                                            </div>
+                                       
                                     </li>
-                                  <!--End Preprocess && Prepare in taxonomy -->
+                                    
+                      <!--End Preprocess && Prepare in taxonomy -->
 
 
 
-                                  <!--Prepare phylotype -->
+                            <!--Prepare phylotype -->
                                     <li >
+
+                                     <form name="Phylotype-form" method="post" action="#" > 
                                         <div class="col-lg-8 col-lg-offset-2">
 
-                                        <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>The number of total reads/group after the preprocess</label></div>
-                                             <div class="col-lg-10 col-lg-pull-1"><label> show data in count gruop :</label></div>
+                                          <input type="hidden" name="username" value="<?=$username?>">
+                                          <input type="hidden" name="project" value="<?=$current_project?>">
+
+                                             <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>The number of total reads/group after the preprocess</label></div>
+                                             <div class="col-lg-10 col-lg-pull-1"><label> show data in count group :</label></div>
                                              <div class="row uk-margin">
                                                 <div class="col-lg-9">
-                                                    <textarea class="form-control"  rows="5"  name="" ></textarea>
+                                                    <textarea class="form-control"  rows="5"  id="show_group" ></textarea>
                                                 </div>
                                                 <div class="col-lg-8 col-lg-push-9">
-                                                     <button  type="submit" class="btn btn-default">Back</button>  
+                                                       <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                                                            Back
+                                                        </button>
                                                 </div>
                                              </div>
 
-                                        <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
+                                             <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
                                             
-                                            <div class="row uk-margin">
-                                                <div class="col-lg-8">
-                                                <label>sub sample :</label>
-                                                    <input class="uk-input" type="text" name="cutoff" value="" placeholder="5000">
+                                                <div class="row uk-margin">
+                                                    <div class="col-lg-8">
+                                                          <label>sub sample :</label>
+                                                          <input id="sub_sample" class="uk-input" type="text" name="subsample" >
+                                                    </div>
+                                                </div>
+
+                                                 <div class="col-lg-12 uk-margin"> </div>
+                                                 <div class="col-lg-4">
+                                                      <button id="" class="btn btn-default">Run Preprocess</button>  
+                                                 </div>
+                                                 <div class="col-lg-8">
+                                                       <button id="" type="reset" class="btn btn-default">Clear</button>
+                                                 </div>
+
+                                                 <div class="col-lg-12 uk-margin"> </div>
+                                         </div><!-- close row form -->
+                                     </form>
+
+
+                                          <!-- Modal -->
+                                            <div class="panel-body">    
+                                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                     <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                <h4 class="modal-title" id="myModalLabel">Preprocess</h4>
+                                                            </div>
+                                                         <div class="modal-body">
+                                                          Do you want to re-run preprocess again ?
+                                                         </div>
+                                                        <div class="modal-footer">                                        
+                                                            <button id="back_preprocess" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                                                            <button class="btn btn-default" data-dismiss="modal">No</button>
+                                                        </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                    </div>
+                                                     <!-- /.modal-dialog -->
                                                 </div>
                                             </div>
-
-                                            <div class="col-lg-12 uk-margin"> </div>
-                                            <div class="col-lg-4">
-                                                  <button id=""  type="submit" class="btn btn-default">Run Preprocess</button>  
-                                            </div>
-                                            <div class="col-lg-8">
-                                                   <button id="" type="reset" class="btn btn-default">Clear</button>
-                                            </div>
-
-
-                                            <div class="col-lg-12 uk-margin"> </div>
-
-
-
-                                        </div><!-- close row form -->
+                                             <!-- End Modal -->
                                     </li>
 
                                 <!--End Prepare phylotype analysis-->
@@ -755,10 +798,7 @@ if (isset($this->session->userdata['logged_in'])) {
     </div>
 </div>
 
-<script >
 
-
-</script>
     <script>
         $(document).ready(function () {
             $("#btn_test_run").click(function () {
@@ -775,7 +815,7 @@ if (isset($this->session->userdata['logged_in'])) {
     </script>
 
     <script>
-        $(document).ready(function () {
+       //$(document).ready(function () {
 //            $("#btn_prephy").click(function () {
 //                $.ajax({
 //                    type: "POST",
@@ -795,3 +835,177 @@ if (isset($this->session->userdata['logged_in'])) {
 
     </script>
 
+
+   <!--  Advance Script -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sub-test").click(function () {
+               
+                  var username = document.forms["Pre-form"]["username"].value;
+                  var project  = document.forms["Pre-form"]["project"].value;
+                  var maximum_ambiguous = document.forms["Pre-form"]["maximum_ambiguous"].value;
+                  var maximum_homopolymer = document.forms["Pre-form"]["maximum_homopolymer"].value;
+                  var minimum_reads_length = document.forms["Pre-form"]["minimum_reads_length"].value;
+                  var maximum_reads_length = document.forms["Pre-form"]["maximum_reads_length"].value;
+                  var alignment = document.forms["Pre-form"]["alignment"].value;
+                  var customer = document.forms["Pre-form"]["customer"].value;
+                  var diffs  = document.forms["Pre-form"]["diffs"].value;
+                  var classify = document.forms["Pre-form"]["classify"].value;
+                  var cutoff = document.forms["Pre-form"]["cutoff"].value;
+                  var optionsRadios = document.forms["Pre-form"]["optionsRadios"].value;
+                  var taxon = document.forms["Pre-form"]["taxon"].value;
+                  
+                  var array_data = new Array(username,project,maximum_ambiguous,maximum_homopolymer,minimum_reads_length,maximum_reads_length,alignment,customer,diffs,classify,cutoff,optionsRadios,taxon);
+      
+                  if(maximum_ambiguous != "" && maximum_homopolymer != "" && minimum_reads_length != "" && maximum_reads_length != ""){
+                        $(".Pre-test").hide();
+                        $(".Pre-show").show();
+                        getvalue(array_data);
+                   }    
+                
+            });
+
+            $("#back-test").click(function(){
+                 $(".Pre-show").hide();
+                 $(".Pre-test").show();
+            });
+
+          $("#back_preprocess").click(function(){
+              $('.uk-child-width-expand > .pre2').prev('li').find('a').trigger('click');   
+            });
+
+
+            
+        });
+
+        function getvalue(array_data){
+            var data_value = array_data;
+            $.ajax({ 
+                    type:"post",
+                    datatype:"json",
+                    url:"<?php echo base_url('Run_advance/get_json'); ?>",
+                    data:{data_array: data_value},
+                    success:function(data){
+                      var data_job = $.parseJSON(data);
+                      console.log("q_id :" + data_job[0]);
+                      console.log("q_name :" + data_job[1]);
+                     
+                      checkrun(data_job);
+                    },
+                    error:function(e){
+                      console.log(e.message);
+                    }
+            });
+            
+        }
+
+        function checkrun(job_val){
+         
+          var time = 30;
+          var interval = null;
+          interval = setInterval(function(){   
+              time--;
+              $('#time').html(time);
+              if(time === 0){
+                $.ajax({ 
+                    type:"post",
+                    datatype:"json",
+                    url:"<?php echo base_url('Run_advance/check_run'); ?>",
+                    data:{data_job: job_val },
+                    success:function(data){
+                      //console.log("data : " + JSON.parse(data));
+                     var data_up = $.parseJSON(data);
+                      if(data_up[0] == "0"){
+                           $('#test_run').html('Run queue complete');
+                            clearInterval(interval);
+                            get_prepare(data_up);
+                           
+                      }else{
+                         var show_data = data_up[0];
+                         $('#test_run').html(show_data);
+                         time = 30;  
+  
+                      }  
+                    },
+                    error:function(e){
+                      console.log(e.message);
+                    }
+                });
+              }
+          },1000);
+        }
+
+        function get_prepare(data){
+            $.ajax({ 
+                    type:"post",
+                    datatype:"json",
+                    url:"<?php echo base_url('Run_advance/read_count'); ?>",
+                    data:{data_count: data },
+                    success:function(data){
+                     var d_group  = "";  
+                     var d_count = $.parseJSON(data);
+                     for(var i=0;i < d_count.length; i++){
+               
+                         if(i == d_count.length-1 ){
+                             document.getElementById('sub_sample').value = d_count[i];
+                             document.getElementById('show_group').value = d_group;
+                             $('.uk-child-width-expand > .pre').next('li').find('a').trigger('click'); 
+                             $(".Pre-show").hide();
+                             $(".Pre-test").show();
+                         }else{
+                            d_group += d_count[i];
+                         }
+
+                     }
+                      
+                    },
+                    error:function(e){
+                      console.log(e.message);
+                    }
+                });
+
+            
+             //$('.uk-child-width-expand > .pre').next('li').find('a').trigger('click'); 
+            //$('.uk-child-width-expand > .uk-active').prev('li').find('a').trigger('click'); 
+        }
+        
+
+        function checkvalue(){
+             var mbig = document.getElementById('mbig');
+             if(mbig.value == ""){
+                $('#mbig').css("border","1px solid #FF0000");  
+             }else{
+                $('#mbig').css("border","1px solid #e1ede1");
+             }
+        }
+
+        function checkvalue2(){
+           var mhomo = document.getElementById('mhomo');
+            if(mhomo.value == ""){
+                $('#mhomo').css("border","1px solid #FF0000");  
+             }else{
+                $('#mhomo').css("border","1px solid #e1ede1");
+             }
+        }
+
+        function checkvalue3(){
+           var miniread = document.getElementById('miniread');
+            if(miniread.value == ""){
+                $('#miniread').css("border","1px solid #FF0000");  
+             }else{
+                $('#miniread').css("border","1px solid #e1ede1");
+             }
+        }
+
+        function checkvalue4(){
+           var maxread = document.getElementById('maxread');
+           if(maxread.value == ""){
+                $('#maxread').css("border","1px solid #FF0000");  
+             }else{
+                $('#maxread').css("border","1px solid #e1ede1");
+             }
+        }
+
+        
+    </script>
+<!--  End Advance Script -->

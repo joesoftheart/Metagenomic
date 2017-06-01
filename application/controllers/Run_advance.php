@@ -11,81 +11,167 @@
       $this->load->helper('form');
       $this->load->library('form_validation');
 
-      $this->load->controller('Run_owncloud');
+      //$this->load->controller('Run_owncloud');
+      include(APPPATH.'../setting_sge.php');
+        putenv("SGE_ROOT=$SGE_ROOT");
+        putenv("PATH=$PATH");
+
         
     }
 
-    public function form_value(){
 
-        $user = $this->input->post('username');
-        $id_project = $this->input->post('project');
-        
-        $array_project = $this->mongo_db->get_where('projects',array('_id' => new \MongoId($id_project)));
+    public function get_json(){
+      $value = $_REQUEST['data_array'];
+
+       $user = $value[0];
+       $id_project = $value[1];
+       $maximum_ambiguous = $value[2];
+       $maximum_homopolymer = $value[3];
+       $minimum_reads_length = $value[4];
+       $maximum_reads_length = $value[5];
+       $alignment = $value[6];
+       $customer = $value[7];
+       $diffs = $value[8];
+       $classify = $value[9];
+       $cutoff  = $value[10];
+       $optionsRadios = $value[11];
+       $taxon = $value[12];
+
+
+       $array_project = $this->mongo_db->get_where('projects',array('_id' => new \MongoId($id_project)));
         foreach ($array_project as $r) {
           
                 $project = $r['project_name'];
          }
 
-      $maximum_ambiguous = $this->input->post('maximum_ambiguous');
-      $maximum_homopolymer = $this->input->post('maximum_homopolymer');
-      $minimum_reads_length = $this->input->post('minimum_reads_length');
-      $maximum_reads_length = $this->input->post('maximum_reads_length');
 
-      $alignment = $this->input->post('alignment');
-      $customer  = $this->input->post('customer');
-
-      if($customer != null){
+        #aligment
+        if($customer != null){
            $alignment = $customer;
-      }
 
-      if($alignment == "silva"){
-          $alignment = "silva.v4.fasta";
-     }
-
-
-
-      $diffs = $this->input->post('diffs');
-      $classify = $this->input->post('classify');
-      $cutoff = $this->input->post('cutoff');
-      $optionsRadios = $this->input->post('optionsRadios');
-
-      if($optionsRadios == '1'){
-        $taxon = $this->input->post('taxon');
-      }else{
-        $taxon = "default";
-      }
-
-
-        //Path
-         $path_in = "owncloud/data/admin/files/data_mothur/data/input/";
-         $path_out = "owncloud/data/admin/files/data_mothur/data/output/";
-
-      echo $user ."<br/>";
-      echo $project ."<br/>";
-
-      echo $maximum_ambiguous."<br/>";
-      echo $maximum_homopolymer."<br/>";
-      echo $minimum_reads_length."<br/>";
-      echo $maximum_reads_length."<br/>";
-
-      echo $alignment."<br/>";
-      echo $diffs."<br/>";
+        }else if($alignment == "silva"){
+            $alignment = "silva.v4.fasta";
+        }else if ($alignment == "gg") {
+            $alignment = "";
+        }else if ($alignment == "rpd") {
+            $alignment = "";
+        }
+    
         
-        echo $classify."<br/>";
-        echo $cutoff."<br/>";
 
-        echo $optionsRadios."<br/>";
-        echo $taxon."<br/>";
+        #$classify
+         if($classify == "silva"){
+             $classify = 'silva';
+         }else if ($classify == "gg") {
+             $classify = '';
+         }else if ($classify == "rdp") {
+             $classify = '';
+         }
 
-  
-        $this->Run_owncloud->index('admin','data_mothur',$maximum_ambiguous,$maximum_homopolymer,$minimum_reads_length,$maximum_reads_length,$alignment,$diffs,$classify,$cutoff,$optionsRadios,$taxon,$path_in,$path_out);
 
+        #taxon
+        // if($optionsRadios == '1'){
+        //    $taxon = "";
+        // }else if($optionsRadios == '0'){
+        //    $taxon = "";
+        // }
 
+      $user = "admin";
+      $project = "data_mothur";
+      $taxon = "taxon";
 
+      $path_input = "owncloud/data/admin/files/data_mothur/data/input/";
+      $path_out = "owncloud/data/admin/files/data_mothur/data/output/";
+
+      $path_qadvance = "owncloud/data/admin/files/data_mothur/log/";
+      
+        $jobname = "q_advance";
+        $cmd = "qsub -N '$jobname' -o $path_qadvance -e $path_qadvance -cwd -b y /usr/bin/php -f Scripts/advance_run.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classify $cutoff $taxon $path_input $path_out";
+        shell_exec($cmd);
+
+        $check_qstat = "qstat  -j '$jobname' ";
+        exec($check_qstat,$output);
+              $id_job = "" ;
+              foreach ($output as $key_var => $value ) {
+
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }
+              }
+
+         $id_job = trim($id_job);
+         $data_job = array($id_job,$jobname,$path_qadvance,$user,$project);
+         echo json_encode($data_job);
+     
 
 
     }
+   
 
+    public function check_run(){
+
+                   //$da_job = json_decode($_REQUEST['data_job'],true);
+                   $da_job = $_REQUEST['data_job'];
+                   $id_job = $da_job[0];
+                   $name_job = $da_job[1];
+                   $path_job = $da_job[2];
+                   $user = $da_job[3];
+                   $project = $da_job[4];
+                   $check_run = exec("qstat -j $id_job ");
+
+                   if($check_run == false){
+                      $up = array(0,$user,$project);
+                      echo json_encode($up);
+
+                   }else{
+                       
+                       $file = FCPATH."$path_job$name_job.o$id_job";
+                       $count = 0 ;
+                       $myfile = fopen($file,'r') or die ("Unable to open file");
+                         while(($lines = fgets($myfile)) !== false){
+                            if($lines != "\n"){
+                                 $count++;
+                            } 
+                        }
+                       fclose($myfile);
+
+                       $line = file($file);
+                       $message = $line[$count-1];
+                       if($message == ""){
+                          $message = "run queue ".$name_job." ".$id_job;
+                       }
+                      $up = array($message);
+                      echo json_encode($up);
+                   }
+             
+
+     }
+
+      public function read_count(){
+           $da_count = $_REQUEST['data_count'];
+           $user = $da_count[1];
+           $project = $da_count[2];
+
+           $file = FCPATH."owncloud/data/$user/files/$project/data/output/final.opti_mcc.count.summary";
+           $data_read_count = array();
+           $count = array();
+
+            $myfile = fopen($file,'r') or die ("Unable to open file");
+               while(($lines = fgets($myfile)) !== false){
+                 
+                 $var =  explode("\t", $lines);
+                 array_push($data_read_count, $var[0]." : ".$var[1]);
+                 array_push($count, $var[1]);   
+
+              }
+           fclose($myfile);
+           $count_less = min($count);
+           array_push($data_read_count, $count_less);
+
+           echo json_encode($data_read_count);
+      }
+  
   }
 
 ?>
