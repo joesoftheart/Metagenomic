@@ -38,6 +38,46 @@ class Run_owncloud extends CI_Controller {
 
         } 
 
+
+       public function set_group(){
+          $file = FCPATH."owncloud/data/admin/files/data_mothur/data/input/soilpro.metadata";
+            $l = 0;
+            $va_array = array(); 
+            $myfile = fopen($file,'r') or die ("Unable to open file");
+            while(($lines = fgets($myfile)) !== false){
+                 
+                 $var =  explode("\t", $lines);
+                   if($l > 0){
+                      array_push($va_array, $var[0]); 
+                   }
+                  $l++;
+            }
+           fclose($myfile);
+           
+           $set_array = array();
+            
+
+           for($i = 0; $i < sizeof($va_array);$i++ ) {
+                
+                for($j = $i+1 ; $j < sizeof($va_array);$j++ ){
+                    echo $va_array[$i]."-".$va_array[$j]."<br/>";
+                }
+                echo "<br/>";
+               
+           }
+
+            for($i = 0; $i < sizeof($va_array);$i++ ) {
+                
+                for($j = $i+1 ; $j < sizeof($va_array);$j++ ){
+                    echo $va_array[$i]."-".$va_array[$j]."-".$va_array[$j]."<br/>";
+                }
+                echo "<br/>";
+               
+           }
+
+       }
+
+
         public function read_count(){
            $file = FCPATH."owncloud/data/admin/files/data_mothur/data/output/final.opti_mcc.count.summary";
            $count = array();

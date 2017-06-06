@@ -435,14 +435,14 @@ if (isset($this->session->userdata['logged_in'])) {
                                                  <div class="col-lg-10 col-lg-pull-1"><label> Alignment step :</label></div>
                                                   <div class="col-lg-5">
                                                       <select class="uk-select" name="alignment">
-                                                      <option value="silva"> Silva </option>
-                                                      <option value="gg"> GG </option>
-                                                      <option value="rpd"> RPD </option>
+                                                      <option value="silva" selected> Silva </option>
+                                                      <option value="gg"> Greengenes </option>
+                                                      <option value="rdp"> RDP </option>
                                                   </select>
                                                   </div>
                                                   <label class="col-lg-1"> OR </label>
                                                   <div class="col-lg-5 ">    
-                                                    <input class="uk-input" type="text" name="customer" value="" placeholder="customer">  
+                                                    <input class="uk-input" type="text" name="customer"  placeholder="customer">  
                                                   </div>
                                                 <div class="col-lg-12 uk-margin"></div>
                                                 <div class="col-lg-10 col-lg-pull-1"><label> Pre-cluster step :</label></div>
@@ -450,7 +450,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                         <select class="uk-select" name="diffs">
                                                             <option value="0">diffs = 0</option>
                                                             <option value="1">diffs = 1</option>
-                                                            <option value="2">diffs = 2</option>
+                                                            <option value="2" selected>diffs = 2</option>
                                                             <option value="3">diffs = 3 </option>
                                                         </select>
                                                     </div>
@@ -462,14 +462,14 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <div class="col-lg-4">
                                                         <select class="uk-select" name="classify">
                                                              <option value="silva"> Silva </option>
-                                                             <option value="gg"> GG </option>
+                                                             <option value="gg" selected> Greengenes </option>
                                                              <option value="rdp"> RDP </option>
                                                         </select>
                                                     </div>
 
                                                 <label class="col-lg-3 "> with cutoff : </label>
                                                 <div class="col-lg-2 col-lg-pull-1">    
-                                                    <input class="uk-input" type="number" name="cutoff" min="50" value="50">   
+                                                    <input class="uk-input" type="number" name="cutoff" min="50" value="80">   
                                                 </div>
                                                 <label class="col-lg-2 col-lg-pull-1">(>=50)</label> 
 
@@ -493,7 +493,13 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <div class="radio">
                                                        <label >
                                                            <input name="optionsRadios" value="1" type="radio"> 
-                                                           <input class="uk-input" name="taxon" size="50" type="text" placeholder="Chloroplast-Mitochondria-Eukaryota-unknown"> 
+                                                          
+                                                            <select class="uk-select" name="taxon">
+                                                                <option value="k__Bacteria;k__Bacteria_unclassified-k__Archaea">k__Bacteria;k__Bacteria_unclassified-k__Archaea</option>
+                                                                <option value="k__Archaea_unclassified">k__Archaea_unclassified</option>
+                                                                <option value="Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified" selected>Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified</option>
+                                                                
+                                                        </select>
                                                       </label>
                                                     </div>
                                                 </div>
@@ -511,7 +517,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                             </div><!-- close row form -->
                                         
                                         </form>
-                                     </div>
+                                     </div> <!-- Pre-test -->
 
                                               <div class="Pre-show" style="display:none"> Process Queue 
                                                <div id="time">30</div>
@@ -530,11 +536,8 @@ if (isset($this->session->userdata['logged_in'])) {
                        <!--Prepare phylotype -->
                                     <li >
 
-                                     
+                                       <div class="Pre-test2">
                                         <div class="col-lg-8 col-lg-offset-2">
-
-                                          <input type="hidden" name="username" value="<?=$username?>">
-                                          <input type="hidden" name="project" value="<?=$current_project?>">
 
                                              <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>The number of total reads/group after the preprocess</label></div>
                                              <div class="col-lg-10 col-lg-pull-1"><label> show data in count group :</label></div>
@@ -549,29 +552,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 </div>
                                              </div>
 
-                                             <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
-                                            
-                                                <div class="row uk-margin">
-                                                    <div class="col-lg-8">
-                                                          <label>sub sample :</label>
-                                                          <input id="sub_sample" class="uk-input" type="text" name="subsample" >
-                                                    </div>
-                                                </div>
-
-                                                 <div class="col-lg-12 uk-margin"> </div>
-                                                 <div class="col-lg-4">
-                                                      <button id="" class="btn btn-default">Run Preprocess</button>  
-                                                 </div>
-                                                 <div class="col-lg-8">
-                                                       <button id="" type="reset" class="btn btn-default">Clear</button>
-                                                 </div>
-
-
-                                                 <div class="col-lg-12 uk-margin"> </div>
-                                         </div><!-- close row form -->
-                                    
-
-                                          <!-- Modal -->
+                                             <!-- Modal -->
                                             <div class="panel-body">    
                                                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                                      <div class="modal-dialog">
@@ -594,6 +575,45 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 </div>
                                             </div>
                                              <!-- End Modal -->
+                                             
+                                             <!-- Phylotype-form -->
+                                             <form name="Phylotype-form" method="post"  > 
+
+                                                 <input type="hidden" name="username" value="<?=$username?>">
+                                                 <input type="hidden" name="project" value="<?=$current_project?>">
+                                                 <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
+                                             
+                                                 <div class="row uk-margin">
+                                                    <div class="col-lg-8">
+                                                          <label>sub sample :</label>
+                                                          <input id="sub_sample" class="uk-input" type="number" min="0" name="subsample" >
+                                                    </div>
+                                                 </div>
+
+                                                 <div class="col-lg-12 uk-margin"> </div>
+                                                 <div class="col-lg-4">
+                                                      <input  id="sub-test2" class="btn btn-default" value="Run Preprocess">
+                                                 </div>
+                                                 <div class="col-lg-8">
+                                                       <input type="reset" class="btn btn-default" value="Clear" >
+                                                 </div>
+
+                                            </form><!-- close  form -->
+
+                                                 <div class="col-lg-12 uk-margin"> </div>
+                                          </div>
+
+                                        </div> <!-- Pre-test2 -->
+
+                                            <div class="Pre-show2" style="display:none"> Process Queue Sub Sample 
+                                               <div id="time2">20</div>
+                                               <div id="test_run2">run sub sample </div>
+                                                <br/>
+                                                        
+                                                <button id="back-test2" class="btn btn-default">back subsample</button>
+            
+                                            </div>
+                       
                                     </li>
 
                                 <!--End Prepare phylotype analysis-->
@@ -606,17 +626,43 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                           <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please select level that you want to analyse :</label></div>
                                             
-                                          <div class="col-lg-3 col-lg-pull-1">
+                                          <div class="col-lg-5 col-lg-pull-1">
                                               <label> Greengenes :   </label>
                                           </div>
-                                                  <div class="col-lg-5 col-lg-pull-2">
+                                                  <div class="col-lg-5 col-lg-pull-4">
                                                       <select class="uk-select" name="">
-                                                             <option value="1"> 1 </option>
-                                                             <option value="2"> 2 </option>
-                                                             <option value="3"> 3 </option>
-                                                             <option value="4"> 4 </option>
-                                                             <option value="5"> 5 </option>
-                                                             <option value="6"> 6 </option>   
+                                                             <option value="1"> species </option>
+                                                             <option value="2" selected> genus </option>
+                                                             <option value="3"> family </option>
+                                                             <option value="4"> order </option>
+                                                             <option value="5"> class </option>
+                                                             <option value="6"> phylum </option>   
+                                                        </select>
+                                                  </div>
+
+                                            <div class="col-lg-5 col-lg-pull-1">
+                                              <label> Silva/RDP :   </label>
+                                            </div>
+                                                  <div class="col-lg-5 col-lg-pull-4">
+                                                      <select class="uk-select" name="">
+                                                             <option value="1"> genus </option>
+                                                             <option value="2"> family </option>
+                                                             <option value="3"> order </option>
+                                                             <option value="4"> class</option>
+                                                             <option value="5"> phylum </option>   
+                                                        </select>
+                                                  </div>
+
+                                             <div class="col-lg-5 col-lg-pull-1">
+                                              <label> OTU :   </label>
+                                            </div>
+                                                  <div class="col-lg-5 col-lg-pull-4">
+                                                      <select class="uk-select" name="">
+                                                             <option value=""> 0.03 </option>
+                                                             <option value=""> 0.05 </option>
+                                                             <option value=""> 0.10 </option>
+                                                             <option value=""> 0.20</option>
+                                                            
                                                         </select>
                                                   </div>
 
@@ -627,7 +673,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <div class="radio">
                                                         <label >
                                                            <input name="optionsRadios" value="1" type="radio"> set the size of your smallest group :
-                                                           <input class="uk-input" name="" type="number" > 
+                                                           <input class="uk-input" name="size_alpha" type="number" > 
                                                         </label>
                                                     </div>
                                                     <div class="radio">
@@ -644,7 +690,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <div class="radio">
                                                         <label >
                                                            <input name="optionsRadios1" value="1" type="radio"> set the size of your smallest group :
-                                                           <input class="uk-input" name="" type="number" > 
+                                                           <input class="uk-input" name="size_beta" type="number" > 
                                                         </label>
                                                     </div>
                                                     <div class="radio">
@@ -654,34 +700,76 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     </div>
                                                </div>
 
-                                               <div class="col-lg-10 col-lg-push-1 uk-margin"><label> Venn Diagram</label></div>
-                                                     <label class="col-lg-8 col-lg-push-2 ">
-                                                        Please put the sample name : <input class="uk-input" name="" type="text" > 
+                                               <div class="col-lg-11 col-lg-push-1 uk-margin"><label> Venn Diagram</label></div>
+                                                     <label class="col-lg-11 col-lg-push-2 ">Please put the sample name : </label>
+
+                                                     <label class="col-lg-2 col-lg-push-2 ">
+                                                         <select class="uk-select" name="venn1">
+                                                    
+                                                             <option value=""> soils1_1</option>
+                                                             <option value=""> soils2_1</option>
+                                                             <option value=""> soils3_1</option>
+                                                             <option value=""> soils4_1</option>
+                                                                 
+                                                        </select>
+                                                    </label>
+
+                                                     <label class="col-lg-2 col-lg-push-2 ">
+                                                         <select class="uk-select" name="venn2">
+                                                             
+                                                             <option value=""> soils1_1</option>
+                                                             <option value=""> soils2_1</option>
+                                                             <option value=""> soils3_1</option>
+                                                             <option value=""> soils4_1</option>
+
+                                                        </select>
+                                                    </label>
+
+                                                     <label class="col-lg-2 col-lg-push-2 ">
+                                                         <select class="uk-select" name="venn3">
+                                                             
+                                                             <option value=""> soils1_1</option>
+                                                             <option value=""> soils2_1</option>
+                                                             <option value=""> soils3_1</option>
+                                                             <option value=""> soils4_1</option> 
+
+                                                        </select>
+                                                    </label>
+
+                                                    <label class="col-lg-2 col-lg-push-2 ">
+                                                         <select class="uk-select" name="venn4">
+                                                            
+                                                             <option value=""> soils1_1</option>
+                                                             <option value=""> soils2_1</option>
+                                                             <option value=""> soils3_1</option>
+                                                             <option value=""> soils4_1</option>
+
+                                                        </select>
                                                     </label>
                                               
                                               <div class="col-lg-12 uk-margin"> </div>
                                               <div class="col-lg-10 col-lg-push-1"><label> UPGMA tree with calculator : </label></div>
                                                     <div class="col-lg-5 col-lg-push-2 ">
-                                                      <select class="uk-select" name="">
+                                                      <select class="uk-select" name="upgma">
                                                              <option value="1"> thetayc </option>
                                                              <option value="2"> morisitahorn </option>
                                                              <option value="3"> jclass </option>
                                                              <option value="4"> braycurtis</option>
                                                              <option value="5"> lennon </option>
-                                                             <option value="5"> sorabund </option>     
+                                                             <option value="6"> sorabund </option>     
                                                         </select>
                                                    </div>
 
                                             <div class="col-lg-12 uk-margin"> </div>
                                             <div class="col-lg-10 col-lg-push-1"><label> PCOA : </label></div>
                                                    <div class="col-lg-5 col-lg-push-2 ">
-                                                      <select class="uk-select" name="">
+                                                      <select class="uk-select" name="pcoa">
                                                              <option value="1"> thetayc </option>
                                                              <option value="2"> morisitahorn </option>
                                                              <option value="3"> jclass </option>
                                                              <option value="4"> braycurtis</option>
                                                              <option value="5"> lennon </option>
-                                                             <option value="5"> sorabund </option>     
+                                                             <option value="6"> sorabund </option>     
                                                         </select>
                                                    </div>
 
@@ -689,20 +777,20 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <div class="col-lg-12 uk-margin"> </div>
                                             <div class="col-lg-10 col-lg-push-1"><label> NMDS : </label></div>
                                                    <div class="col-lg-4 col-lg-push-2 ">
-                                                      <select class="uk-select" name="">
+                                                      <select class="uk-select" name="nmds">
                                                              <option value="1"> 2D </option>
                                                              <option value="2"> 3D </option>
                                                                 
                                                         </select>
                                                    </div>
                                                    <div class="col-lg-5 col-lg-push-3 ">
-                                                      <select class="uk-select" name="">
+                                                      <select class="uk-select" name="nmds_cal">
                                                              <option value="1"> thetayc </option>
                                                              <option value="2"> morisitahorn </option>
                                                              <option value="3"> jclass </option>
                                                              <option value="4"> braycurtis</option>
                                                              <option value="5"> lennon </option>
-                                                             <option value="5"> sorabund </option>     
+                                                             <option value="6"> sorabund </option>     
                                                         </select>
                                                    </div>
 
@@ -754,7 +842,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                             Method 
                                                      </div>
                                                      <div class="col-lg-3 col-lg-pull-1">
-                                                         <select class="uk-select" name="">
+                                                         <select class="uk-select" name="method">
                                                              <option value="1"> spearman </option>
                                                              <option value="2"> pearson </option>
                                                                 
@@ -765,7 +853,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                                Number of axes 
                                                         </div>
                                                         <div class="col-lg-2 col-lg-pull-2">
-                                                            <select class="uk-select" name="">
+                                                            <select class="uk-select" name="axes">
                                                                   <option value="2"> 2 </option>
                                                                   <option value="3"> 3 </option>
                                                              </select>
@@ -935,13 +1023,90 @@ if (isset($this->session->userdata['logged_in'])) {
                  $(".Pre-test").show();
             });
 
-          $("#back_preprocess").click(function(){
+            $("#back-test2").click(function(){
+                 $(".Pre-show2").hide();
+                 $(".Pre-test2").show();
+            });
+
+           $("#back_preprocess").click(function(){
               $('.uk-child-width-expand > .pre2').prev('li').find('a').trigger('click');   
             });
 
-
-            
+            $("#sub-test2").click(function () {
+               
+                  var username = document.forms["Phylotype-form"]["username"].value;
+                  var project  = document.forms["Phylotype-form"]["project"].value;
+                  var sample = document.forms["Phylotype-form"]["subsample"].value;
+                  var array_data = new Array(username,project,sample);
+                  
+                  if(sample != ""){
+                         $(".Pre-test2").hide();
+                         $(".Pre-show2").show();
+                         console.log(username+" "+project+" "+sample);
+                         get_subsample(array_data);
+                  }   
+    
+            });
+      
         });
+
+
+       function get_subsample(array_data){
+           var data_value = array_data;
+           $.ajax({
+                   type:"post",
+                   datatype:"json",
+                   url:"<?php echo base_url('Run_advance/run_sub_sample'); ?>",
+                   data:{data_sample: data_value},
+                   success:function(data){
+                        var job_sample = JSON.parse(data);
+                        console.log(job_sample);
+                        check_subsample(job_sample);
+                   },
+                   error:function(e){
+                     console.log(e.message);
+                   }
+           });
+   
+       }
+
+
+       function check_subsample(jobsample){
+         
+          var time = 20;
+          var interval = null;
+          interval = setInterval(function(){   
+              time--;
+              $('#time2').html(time);
+              if(time === 0){
+                $.ajax({ 
+                    type:"post",
+                    datatype:"json",
+                    url:"<?php echo base_url('Run_advance/check_subsample'); ?>",
+                    data:{job_sample: jobsample },
+                    success:function(data){
+                     var sample_data = JSON.parse(data);
+                      if(sample_data == "0"){
+
+                           $('#test_run2').html('Run queue sub sample complete');
+                            clearInterval(interval);
+                             $('.uk-child-width-expand > .pre2').next('li').find('a').trigger('click'); 
+                             $(".Pre-show2").hide();
+                             $(".Pre-test2").show();
+                           
+                      }else{
+                         
+                         time = 20;  
+  
+                      }  
+                    },
+                    error:function(e){
+                      console.log(e.message);
+                    }
+                });
+              }
+          },1000);
+        }
 
         function getvalue(array_data){
             var data_value = array_data;
@@ -1012,7 +1177,7 @@ if (isset($this->session->userdata['logged_in'])) {
                      for(var i=0;i < d_count.length; i++){
                
                          if(i == d_count.length-1 ){
-                             document.getElementById('sub_sample').value = d_count[i];
+                             document.getElementById('sub_sample').value = Number(d_count[i]);
                              document.getElementById('show_group').value = d_group;
                              $('.uk-child-width-expand > .pre').next('li').find('a').trigger('click'); 
                              $(".Pre-show").hide();
@@ -1028,10 +1193,6 @@ if (isset($this->session->userdata['logged_in'])) {
                       console.log(e.message);
                     }
                 });
-
-            
-             //$('.uk-child-width-expand > .pre').next('li').find('a').trigger('click'); 
-            //$('.uk-child-width-expand > .uk-active').prev('li').find('a').trigger('click'); 
         }
         
 
