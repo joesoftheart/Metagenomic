@@ -21,30 +21,109 @@ class Run_owncloud extends CI_Controller {
 
 
         
-        public function index($user,$project,$maximum_ambiguous,$maximum_homopolymer,$minimum_reads_length,$maximum_reads_length,$alignment,$diffs,$classify,$cutoff,$optionsRadios,$taxon,$path_in,$path_out)
+        public function index()
         {
-             
-         // $user 
-         // $project 
-         // $maximum_ambiguous
-         // $maximum_homopolymer
-         // $minimum_reads_length
-         // $maximum_reads_length
-         // $alignment
-         // $diffs
-         // $classify
-         // $cutoff
-         // $optionsRadios
-         // $taxon
-
-        
-        $cmd = "qsub -N 'q_advance' -cwd -b y /usr/bin/php -f Scripts/advance_run.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classify $cutoff $optionsRadios $taxon $path_in $path_out";
-         
-        exec($cmd);
-
-
+           $file = FCPATH."q_advance.o849";
+           $count = 0 ;
+           $myfile = fopen($file,'r') or die ("Unable to open file");
+            while(($lines = fgets($myfile)) !== false){
+              if($lines != "\n"){
+                $count++;
+              } 
+              
+            }
+           fclose($myfile);
+           $line = file($file);
+           echo $line[$count-1];
 
         } 
+
+
+       public function set_group(){
+          $file = FCPATH."owncloud/data/admin/files/data_mothur/data/input/soilpro.metadata";
+            $l = 0;
+            $va_array = array(); 
+            $myfile = fopen($file,'r') or die ("Unable to open file");
+            while(($lines = fgets($myfile)) !== false){
+                 
+                 $var =  explode("\t", $lines);
+                   if($l > 0){
+                      array_push($va_array, $var[0]); 
+                   }
+                  $l++;
+            }
+           fclose($myfile);
+           
+           $set_array = array();
+            
+
+           for($i = 0; $i < sizeof($va_array);$i++ ) {
+                
+                for($j = $i+1 ; $j < sizeof($va_array);$j++ ){
+                    echo $va_array[$i]."-".$va_array[$j]."<br/>";
+                }
+                echo "<br/>";
+               
+           }
+
+            for($i = 0; $i < sizeof($va_array);$i++ ) {
+                
+                for($j = $i+1 ; $j < sizeof($va_array);$j++ ){
+                    echo $va_array[$i]."-".$va_array[$j]."-".$va_array[$j]."<br/>";
+                }
+                echo "<br/>";
+               
+           }
+
+       }
+
+
+        public function read_count(){
+           $file = FCPATH."owncloud/data/admin/files/data_mothur/data/output/final.opti_mcc.count.summary";
+           $count = array();
+           $data_read_count = array();
+            $myfile = fopen($file,'r') or die ("Unable to open file");
+            while(($lines = fgets($myfile)) !== false){
+                 
+                 $var =  explode("\t", $lines);
+                 array_push($data_read_count, $var[0]." : ".$var[1]."<br/>");
+                 array_push($count, $var[1]);   
+            
+            }
+           fclose($myfile);
+           $count_less = min($count);
+          
+           array_push($data_read_count, $count_less);
+
+           for ($i = 0 ; $i < sizeof($data_read_count) ;$i++){
+                echo $data_read_count[$i]."<br/>";
+            
+           }
+           echo "final : ".end($data_read_count);
+
+         }
+
+  
+
+
+        public function check_run(){
+
+                   $id_string = $_REQUEST['id_job'];
+                   $id_job = (int)$id_string;
+                   $check_run = exec("qstat -j $id_job");
+
+                   if($check_run == false){
+                      $message = "run queue complete";
+                      echo json_encode($message);
+                   }else{
+                      $message = "run queue ".$id_job;
+                      echo json_encode($message);
+                   }
+             
+
+        }
+
+
 
         public function read_log_sungrid(){
             

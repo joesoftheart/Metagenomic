@@ -2,45 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51f65c25-9315-40cb-bcf2-9a9b2c1dd449" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Mothur/mothur.1495203848.logfile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/group_sample.bson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/group_sample.metadata.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/groups.bson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/groups.metadata.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/project_group.bson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/project_group.metadata.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/projects.bson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/projects.metadata.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/report.bson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/report.metadata.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/roles.bson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/roles.metadata.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/samples.bson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/samples.metadata.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/share_project.bson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/share_project.metadata.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/user_details.bson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/user_details.metadata.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/user_login.bson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/user_login.metadata.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/users.bson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/users.metadata.json" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Abundancebarplottest.R" afterPath="$PROJECT_DIR$/R_Script/Abundancebarplottest.R" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/NMDSpcoaplottest.R" afterPath="$PROJECT_DIR$/R_Script/NMDSpcoaplottest.R" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/RarefactionSoiltest.R" afterPath="$PROJECT_DIR$/R_Script/RarefactionSoiltest.R" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/heatmapPlottest.R" afterPath="$PROJECT_DIR$/R_Script/heatmapPlottest.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/messages.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/messages.bson" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/projects.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/projects.bson" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/roles.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/roles.bson" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/share_project.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/share_project.bson" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/ticket_support.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/ticket_support.bson" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/user_login.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/user_login.bson" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Metagenomic.iml" afterPath="$PROJECT_DIR$/.idea/Metagenomic.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/standard_run_otu.php" afterPath="$PROJECT_DIR$/Scripts/standard_run_otu.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" afterPath="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Projects.php" afterPath="$PROJECT_DIR$/application/controllers/Projects.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/advance_run_otu.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/advance_run_otu2.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/advance_run_otu3.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/advance_run_phylotype2.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/check_run_advance.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/jquery-1.8.3.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/advance_run.php" afterPath="$PROJECT_DIR$/Scripts/advance_run_phylotype.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/config.php" afterPath="$PROJECT_DIR$/application/config/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Run_advance.php" afterPath="$PROJECT_DIR$/application/controllers/Run_advance.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Run_owncloud.php" afterPath="$PROJECT_DIR$/application/controllers/Run_owncloud.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/projects.php" afterPath="$PROJECT_DIR$/application/views/projects.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/sb-admin-2.js" afterPath="$PROJECT_DIR$/js/sb-admin-2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/uikit-icons.js" afterPath="$PROJECT_DIR$/js/uikit-icons.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/uikit-icons.min.js" afterPath="$PROJECT_DIR$/js/uikit-icons.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/uikit.js" afterPath="$PROJECT_DIR$/js/uikit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/uikit.min.js" afterPath="$PROJECT_DIR$/js/uikit.min.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,9 +48,14 @@
       <file leaf-file-name="projects.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/projects.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="530" column="150" lean-forward="false" selection-start-line="530" selection-start-column="150" selection-end-line="530" selection-end-column="150" />
-              <folding />
+            <state relative-caret-position="403">
+              <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#li#0;n#ul#1;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#li#1;n#ul#1;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#li#1;n#ul#1;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/Scripts/standard_run_phylotype.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1394">
-              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+              <caret line="32" column="5" lean-forward="false" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -102,7 +84,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>makecontig_summary</find>
       <find>echo</find>
       <find>sess</find>
       <find>session</find>
@@ -132,6 +113,7 @@
       <find>inputdir=$pathinput/,outputdir=$pathoutput/</find>
       <find>screen.seqs</find>
       <find>&lt;&lt;</find>
+      <find>&gt;</find>
     </findStrings>
     <replaceStrings>
       <replace>exec</replace>
@@ -510,12 +492,12 @@
       <workItem from="1496421543569" duration="1144000" />
       <workItem from="1496657008301" duration="3012000" />
       <workItem from="1496660499322" duration="10641000" />
-      <workItem from="1496744850965" duration="16113000" />
+      <workItem from="1496744850965" duration="16341000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="579937000" />
+    <option name="totallyTimeSpent" value="580165000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="25" width="1924" height="1034" extended-state="6" />
@@ -936,7 +918,7 @@
     <entry file="file://$PROJECT_DIR$/Scripts/standard_run_phylotype.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1394">
-          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <caret line="32" column="5" lean-forward="false" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -951,9 +933,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/projects.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="530" column="150" lean-forward="false" selection-start-line="530" selection-start-column="150" selection-end-line="530" selection-end-column="150" />
-          <folding />
+        <state relative-caret-position="403">
+          <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#li#0;n#ul#1;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#li#1;n#ul#1;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#li#1;n#ul#1;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
