@@ -58,7 +58,7 @@ class Projects extends CI_Controller
         $project = basename($sample_folder);
         $user = $this->session->userdata['logged_in']['username'];
 
-        $path = "owncloud/data/$user/files/$project/data/input/";
+        $path = "owncloud/data/$user/files/$project/data";
 
         $config['upload_path'] = $path;
         $config['allowed_types'] = '*';
@@ -89,13 +89,11 @@ class Projects extends CI_Controller
 
 
         if ($project_analysis == "otu"){
-        $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run_otu.php $user $id $project $path";
-        exec($cmd);
-
+            $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run_otu.php $user $id $project $path";
+            exec($cmd);
         }else if ($project_analysis == "phylotype"){
             $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run_phylotype.php $user $id $project $path";
             exec($cmd);
-
         }else {
             echo "Not run";
         }

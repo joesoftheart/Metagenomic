@@ -32,8 +32,8 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="uk-child-width-1-6\@xl" uk-grid>
                 <div>
                     <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
-                        <li class="uk-active "><a class="uk-text-capitalize uk-text-large uk-text-bold" href="#">Standard Mode</a></li>
-                        <li><a class="uk-text-capitalize uk-text-large uk-text-bold" href="#">Advance Mode</a></li>
+                        <li class="uk-active "><a class="uk-text-capitalize uk-text-bold" href="#">Standard Mode</a></li>
+                        <li><a class="uk-text-capitalize uk-text-bold" href="#">Advance Mode</a></li>
 
                     </ul>
                     <ul class="uk-switcher">
@@ -529,17 +529,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                              </div>
 
                                         <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
-<<<<<<< HEAD
 
                                             <div class="row uk-margin">
                                                 <div class="col-lg-8">
                                                     <label>sub sample :</label>
-=======
-                                            
-                                            <div class="row uk-margin">
-                                                <div class="col-lg-8">
-                                                <label>sub sample :</label>
->>>>>>> 7bf5cc2e8c2329c99c989718aeaade9c56b26da5
+
                                                     <input class="uk-input" type="text" name="cutoff" value="" placeholder="5000">
                                                 </div>
                                             </div>
@@ -551,18 +545,10 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <div class="col-lg-8">
                                                    <button id="" type="reset" class="btn btn-default">Clear</button>
                                             </div>
-<<<<<<< HEAD
-
-                                            <div class="col-lg-12 uk-margin"> </div>
-
-=======
-
 
                                             <div class="col-lg-12 uk-margin"> </div>
 
 
-
->>>>>>> 7bf5cc2e8c2329c99c989718aeaade9c56b26da5
                                         </div><!-- close row form -->
                                     </li>
 

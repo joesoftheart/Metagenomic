@@ -2,8 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51f65c25-9315-40cb-bcf2-9a9b2c1dd449" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/standard_run.php" afterPath="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Mothur/mothur.1495203848.logfile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/group_sample.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/group_sample.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/groups.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/groups.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/project_group.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/project_group.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/projects.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/projects.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/report.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/report.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/roles.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/roles.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/samples.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/samples.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/share_project.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/share_project.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/user_details.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/user_details.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/user_login.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/user_login.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/users.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metagenomic_db/users.metadata.json" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Abundancebarplottest.R" afterPath="$PROJECT_DIR$/R_Script/Abundancebarplottest.R" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/NMDSpcoaplottest.R" afterPath="$PROJECT_DIR$/R_Script/NMDSpcoaplottest.R" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/RarefactionSoiltest.R" afterPath="$PROJECT_DIR$/R_Script/RarefactionSoiltest.R" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/heatmapPlottest.R" afterPath="$PROJECT_DIR$/R_Script/heatmapPlottest.R" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/messages.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/messages.bson" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/projects.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/projects.bson" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/roles.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/roles.bson" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/share_project.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/share_project.bson" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/ticket_support.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/ticket_support.bson" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump/metagenomic_db/user_login.bson" afterPath="$PROJECT_DIR$/dump/metagenomic_db/user_login.bson" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Metagenomic.iml" afterPath="$PROJECT_DIR$/.idea/Metagenomic.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/standard_run_otu.php" afterPath="$PROJECT_DIR$/Scripts/standard_run_otu.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" afterPath="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Projects.php" afterPath="$PROJECT_DIR$/application/controllers/Projects.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/projects.php" afterPath="$PROJECT_DIR$/application/views/projects.php" />
     </list>
@@ -23,23 +58,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="projects.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/projects.php">
+      <file leaf-file-name="Projects.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Projects.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding>
-                <marker date="1496228350187" expanded="true" signature="20617:20670" ph="..." />
-              </folding>
+            <state relative-caret-position="659">
+              <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Projects.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/controllers/Projects.php">
+      <file leaf-file-name="projects.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/views/projects.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+            <state relative-caret-position="267">
+              <caret line="530" column="150" lean-forward="false" selection-start-line="530" selection-start-column="150" selection-end-line="530" selection-end-column="150" />
               <folding />
             </state>
           </provider>
@@ -48,8 +81,8 @@
       <file leaf-file-name="standard_run_phylotype.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/standard_run_phylotype.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-73">
-              <caret line="344" column="34" lean-forward="false" selection-start-line="344" selection-start-column="25" selection-end-line="344" selection-end-column="34" />
+            <state relative-caret-position="-1394">
+              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -58,8 +91,8 @@
       <file leaf-file-name="standard_run_otu.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/standard_run_otu.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+            <state relative-caret-position="782">
+              <caret line="428" column="1" lean-forward="false" selection-start-line="428" selection-start-column="1" selection-end-line="428" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -69,15 +102,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>submit</find>
-      <find>$output_path</find>
-      <find>shell_exec</find>
-      <find>makesumm</find>
-      <find>$output</find>
-      <find>go to check file oligo</find>
-      <find>outputdir=$path</find>
-      <find>$path</find>
-      <find>&gt;&gt;</find>
       <find>makecontig_summary</find>
       <find>echo</find>
       <find>sess</find>
@@ -99,10 +123,20 @@
       <find>S1_</find>
       <find>run</find>
       <find>phylotype</find>
+      <find>66725</find>
+      <find>screen</find>
+      <find>screen.s</find>
+      <find>final.dist</find>
+      <find>g__Thalassospira</find>
+      <find>color</find>
+      <find>inputdir=$pathinput/,outputdir=$pathoutput/</find>
+      <find>screen.seqs</find>
+      <find>&lt;&lt;</find>
     </findStrings>
     <replaceStrings>
       <replace>exec</replace>
       <replace>$path</replace>
+      <replace>inputdir=$path/input/,outputdir=$path/output/</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -114,42 +148,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_classify_system.o665" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_screen_remove.o664" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759dealign_seqs.o671" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o670" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o672" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o674" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_align_seqs.o677" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o676" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o680" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o682" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o684" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_classify_system.o694" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_classify_system.o703" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o707" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o719" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o723" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o725" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o741" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o743" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o786" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_start_run.o792" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_plot_graph.o800" />
-        <option value="$PROJECT_DIR$/joesoftheart_58ff5cca838488480e7759de_classify_system.o818" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o842" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o847" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_makecontig_summary.o849" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_makecontig_summary.o851" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_align_seqs.o854" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_screen_remove.o855" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_classify_system.o860" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o870" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e871" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o872" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_makecontig_summary.o877" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_align_seqs.o878" />
-        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_screen_remove.o879" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_classify_system.o880" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_plot_graph.o894" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e886" />
@@ -161,10 +159,46 @@
         <option value="$PROJECT_DIR$/application/controllers/General_statistic.php" />
         <option value="$PROJECT_DIR$/application/views/general_statistic.php" />
         <option value="$PROJECT_DIR$/application/views/login.php" />
-        <option value="$PROJECT_DIR$/application/views/projects.php" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_classify_system.o900" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o915" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o917" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_screen_remove.o925" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_classify_system.o926" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o927" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_screen_remove.o932" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_classify_system.o933" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o934" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o936" />
+        <option value="$PROJECT_DIR$/Scripts/heatmapPlottest.R" />
+        <option value="$PROJECT_DIR$/R_Script/NMDSpcoaplottest.R" />
+        <option value="$PROJECT_DIR$/R_Script/RarefactionSoiltest.R" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o14" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_classify_system.o29" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_plot_graph.o32" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o24" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o34" />
+        <option value="$PROJECT_DIR$/mothur.1496671813.logfile" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_classify_system.o53" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_classify_system.o56" />
+        <option value="$PROJECT_DIR$/mothur.1496676418.logfile" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_start_run.o59" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_screen_remove.o69" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_screen_remove.o75" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_classify_system.o76" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_phylotype_count.o77" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_phylotype_count.o79" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_sub_sample_sammary.o112" />
         <option value="$PROJECT_DIR$/Scripts/standard_run_otu.php" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o113" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o115" />
+        <option value="$PROJECT_DIR$/R_Script/heatmapPlottest.R" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o124" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o132" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o134" />
+        <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o136" />
+        <option value="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" />
         <option value="$PROJECT_DIR$/application/controllers/Projects.php" />
+        <option value="$PROJECT_DIR$/application/views/projects.php" />
       </list>
     </option>
   </component>
@@ -212,7 +246,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -249,7 +282,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="R_Script" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -306,21 +339,23 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="RSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/uploads" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/R_Script" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Logs_sge" />
       <recent name="$PROJECT_DIR$/img" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/uploads" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -372,6 +407,14 @@
     </configuration>
     <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
       <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="RRunConfigurationType" factoryName="R">
+      <option name="SCRIPT_PATH" value="" />
+      <option name="SCRIPT_ARGS" value="" />
+      <option name="WORKING_DIRECTORY_PATH" value="" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
@@ -460,22 +503,30 @@
       <workItem from="1495806048716" duration="4139000" />
       <workItem from="1496050206566" duration="21901000" />
       <workItem from="1496138376900" duration="14135000" />
-      <workItem from="1496225935193" duration="9974000" />
+      <workItem from="1496225935193" duration="10571000" />
+      <workItem from="1496312587816" duration="3163000" />
+      <workItem from="1496315858389" duration="16225000" />
+      <workItem from="1496396930461" duration="11029000" />
+      <workItem from="1496421543569" duration="1144000" />
+      <workItem from="1496657008301" duration="3012000" />
+      <workItem from="1496660499322" duration="10641000" />
+      <workItem from="1496744850965" duration="16113000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="518013000" />
+    <option name="totallyTimeSpent" value="579937000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="25" width="1924" height="1034" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28854167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="1.0" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -484,10 +535,11 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,119 +555,379 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_screen_remove.o855" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_screen_remove.o859" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o861" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_sub_sample_sammary.o862" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_classify_system.o860" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o856" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_plot_graph.o863" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e864" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e865" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e866" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e867" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e868" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e869" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o870" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o872" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e873" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_run_makefile.o876" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_makecontig_summary.o877" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_align_seqs.o878" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_classify_system.o880" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_screen_remove.o879" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e870" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e871" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e875" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o875" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o884" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e874" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e884" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e885" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o886" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_run_makefile.o887" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_sub_sample_sammary.o893" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_plot_graph.o894" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o892" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_screen_remove.o890" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e886" />
-    <entry file="file://$PROJECT_DIR$/application/controllers/Backend_spec.php">
+    <entry file="file://$PROJECT_DIR$/Scripts/advance_run.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="1" lean-forward="true" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+        <state relative-caret-position="4826">
+          <caret line="583" column="22" lean-forward="false" selection-start-line="583" selection-start-column="22" selection-end-line="583" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/header.php">
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_classify_system.o76">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="778">
-          <caret line="349" column="0" lean-forward="true" selection-start-line="349" selection-start-column="0" selection-end-line="349" selection-end-column="0" />
+        <state relative-caret-position="-6180">
+          <caret line="291" column="25" lean-forward="true" selection-start-line="291" selection-start-column="25" selection-end-line="291" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/backend_spec.php">
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_start_run.o71">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+        <state relative-caret-position="136">
+          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/all_samples.php">
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_run_makefile.o72">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="22" column="112" lean-forward="false" selection-start-line="22" selection-start-column="112" selection-end-line="22" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/General_statistic.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/general_statistic.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="234" column="40" lean-forward="false" selection-start-line="234" selection-start-column="40" selection-end-line="234" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="999">
-          <caret line="94" column="59" lean-forward="true" selection-start-line="94" selection-start-column="59" selection-end-line="94" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/projects.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <marker date="1496228350187" expanded="true" signature="20617:20670" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_screen_remove.o899">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-43733">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_classify_system.o900">
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_makecontig_summary.o73">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7421">
+        <state relative-caret-position="-36882">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_phylotype_count.o77">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="866">
+          <caret line="463" column="0" lean-forward="true" selection-start-line="463" selection-start-column="0" selection-end-line="463" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_start_run.o78">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_phylotype_count.o79">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="917" column="0" lean-forward="false" selection-start-line="917" selection-start-column="0" selection-end-line="920" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_plot_graph.o81">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-539657">
+          <caret line="94" column="3" lean-forward="true" selection-start-line="94" selection-start-column="3" selection-end-line="94" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff72e08384884e0e7759de_sub_sample_sammary.o80">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="113" column="0" lean-forward="true" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o88">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o89">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o90">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o91">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o92">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o93">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o94">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="21" lean-forward="true" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o96">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o95">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o97">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o98">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o99">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o100">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o101">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o102">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o103">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o104">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="14" lean-forward="true" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o105">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o106">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o107">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o108">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o109">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o110">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_sub_sample_sammary.o112">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2380">
+          <caret line="140" column="1" lean-forward="true" selection-start-line="140" selection-start-column="1" selection-end-line="140" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o111">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/standard_run_otu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="428" column="1" lean-forward="false" selection-start-line="428" selection-start-column="1" selection-end-line="428" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o113">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o115">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R_Script/heatmapPlottest.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o124">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o132">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o134">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o136">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R_Script/Fig3_heatmaptest_joe.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R_Script/Fig3_heatmaptest_joe_qsub.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o140">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o138">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.e140">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -623,40 +935,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/standard_run_phylotype.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-73">
-          <caret line="344" column="34" lean-forward="false" selection-start-line="344" selection-start-column="25" selection-end-line="344" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/standard_run_otu.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o901">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2306">
-          <caret line="417" column="11" lean-forward="true" selection-start-line="417" selection-start-column="11" selection-end-line="417" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_phylotype_count.o903">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="397" column="11" lean-forward="true" selection-start-line="397" selection-start-column="11" selection-end-line="397" selection-end-column="11" />
+        <state relative-caret-position="-1394">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/Projects.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+        <state relative-caret-position="659">
+          <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/projects.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="530" column="150" lean-forward="false" selection-start-line="530" selection-start-column="150" selection-end-line="530" selection-end-column="150" />
           <folding />
         </state>
       </provider>
