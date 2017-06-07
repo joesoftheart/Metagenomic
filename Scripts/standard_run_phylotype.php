@@ -1,4 +1,5 @@
 <?php
+
 $user = $argv[1];
 $id = $argv[2];
 $project = $argv[3];
@@ -6,10 +7,11 @@ $path = $argv[4];
 include('setting_sge.php');
 putenv("SGE_ROOT=$SGE_ROOT");
 putenv("PATH=$PATH");
+//putenv("PATH=$PATH_R");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    plot_graph_r($user,$id,$project,$path);
+    plot_graph_r_heartmap($user,$id,$project,$path);
     }
 
 
@@ -541,11 +543,13 @@ corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, m
  }
 
 
- function plot_graph_r($user, $id, $project, $path){
+ function plot_graph_r_heartmap($user, $id, $project, $path){
      echo "\n";
-     echo "Run plot_graph_r :";
+     echo "Run plot_graph_r_heartmap :";
+     $path_input_csv = "owncloud/data/$user/files/$project/data/input/genusex3.csv";
+     $path_to_save = "owncloud/data/$user/files/$project/data/output/heartmap.png";
      $jobname = $user . "_" . $id . "_plot_graph_r";
-     $cmd = "qsub -N $jobname -o $path/logs/ -e $path/logs/  -cwd -b y  R_Script/Rscript heatmapPlottest.R";
+     $cmd = "qsub -N $jobname -o $path/logs/ -e $path/logs/  -cwd -b y /usr/bin/Rscript R_Script/heatmapPlottest.R $path_input_csv $path_to_save";
      exec($cmd);
      $check_qstat = "qstat  -j '$jobname' ";
      exec($check_qstat, $output);
@@ -560,14 +564,100 @@ corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, m
      while ($loop) {
          $check_run = exec("qstat -j $id_job");
          if ($check_run == false) {
-             echo "Go to delete logs ->";
+             echo "Go to plot_graph_r_NMD ->";
+             plot_graph_r_NMD($user, $id, $project, $path);
              break;
          }
      }
 
  }
 
+function plot_graph_r_NMD($user, $id, $project, $path){
+    echo "\n";
+    echo "Run plot_graph_r_NMD :";
+    $path_input_axes = "owncloud/data/$user/files/$project/data/output/final.tx.thetayc.2.lt.ave.nmds.axes";
+    $path_to_save = "owncloud/data/$user/files/$project/data/output/NMD.png";
+    $jobname = $user . "_" . $id . "plot_graph_r_NMD";
+    $cmd = "qsub -N $jobname -o $path/logs/ -e $path/logs/  -cwd -b y /usr/bin/Rscript  R_Script/NMDSpcoaplottest.R $path_input_axes $path_to_save";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Go to plot_graph_r_Rare->";
+            plot_graph_r_Rare($user, $id, $project, $path);
+            break;
+        }
+    }
 
+}
+
+function plot_graph_r_Rare($user, $id, $project, $path){
+    echo "\n";
+    echo "Run plot_graph_r_Rare :";
+    $path_input_rarefaction = "owncloud/data/$user/files/$project/data/output/final.tx.groups.rarefaction";
+    $path_to_save = "owncloud/data/$user/files/$project/data/output/Rare.png";
+    $jobname = $user . "_" . $id . "plot_graph_r_Rare";
+    $cmd = "qsub -N $jobname -o $path/logs/ -e $path/logs/  -cwd -b y /usr/bin/Rscript  R_Script/RarefactionSoiltest.R $path_input_rarefaction $path_to_save";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Go to plot_graph_r_Abun ->";
+            plot_graph_r_Abun($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
+
+
+function plot_graph_r_Abun($user, $id, $project, $path){
+    echo "\n";
+    echo "Run plot_graph_r_Abun :";
+    $path_input_phylumex = "owncloud/data/$user/files/$project/data/input/phylumex2.txt";
+    $path_to_save = "owncloud/data/$user/files/$project/data/output/Abun.png";
+    $jobname = $user . "_" . $id . "plot_graph_r_Abun";
+    $cmd = "qsub -N $jobname -o $path/logs/ -e $path/logs/  -cwd -b y /usr/bin/Rscript  R_Script/Abundancebarplottest.R $path_input_phylumex $path_to_save";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish Abun ->";
+            break;
+        }
+    }
+
+}
 
 ?>
 

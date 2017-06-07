@@ -1,3 +1,4 @@
+args<-commandArgs(TRUE)
 library(vegan)
 library(ggplot2)
 library(ellipse)
@@ -6,11 +7,11 @@ MyMeta = data.frame(
   sites = c(1,2,3,4),
   type=c("soilsource1", "soilsource2", "soilsource3", "soilsource4"),
   row.names = "sites")
-nmds<-read.table(file="final.tx.thetayc.2.lt.ave.nmds.axes", header=T)
+nmds<-read.table(file=args[1], header=T)
 NMDS = data.frame(MDS1 = nmds$axis1, MDS2 = nmds$axis2, group=MyMeta$type)
 group=MyMeta$type
 
-png('Fig4_NMDS_joe.png',width=8, height=6, units="in", res=300)
+png(args[2],width=8, height=6, units="in", res=300)
 drawout=ggplot(data = NMDS, aes(MDS1, MDS2)) + geom_point(aes(color = group),size=2.5, alpha=0.5)+
   geom_hline(yintercept=0, linetype="dashed", size=.2) + geom_vline(xintercept=0, linetype="dashed", size=.2)+
   geom_point(aes(color = group),size=2.5, alpha=0.5)+

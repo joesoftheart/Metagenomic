@@ -1,8 +1,8 @@
+args<-commandArgs(TRUE)
 library(gplots)
-#library(stats)
 library(vegan)
 library(RColorBrewer)
-all.data=read.csv("genusex3.csv",  header=T, check.names=FALSE)
+all.data=read.csv(args[1],  header=T, check.names=FALSE)
 dim(all.data)
 all.data[1:3,1:4]
 row.names(all.data)= all.data$taxon
@@ -19,7 +19,7 @@ n1 <- names(which(maxab < 0.01))
 n1
 data.prop.1 <- data.prop[, -which(names(data.prop) %in% n1)]
 
-png('Fig3_heatmaptest_joe_qsub.png',width=16, height=15, units="in", res=300)
+png(args[2],width=16, height=15, units="in", res=300)
 #No dendrogram and ordered label will the same in the original file
 heatmap.2(as.matrix(t(data.prop.1)), dendrogram='none', Rowv=FALSE,
           Colv = FALSE, col = scaleyellowred, breaks=col_breaks, 
