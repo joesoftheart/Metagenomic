@@ -540,7 +540,7 @@
            echo "Run classifly_removelineage_summary "."\n";
            $jobname = $user."_classifly_removelineage_summary";
            $cmd = "classify.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=gg_13_8_99.fasta, taxonomy=gg_13_8_99.gg.tax, cutoff=".$GLOBALS['cutoff'].", processors=8,inputdir=$path_in,outputdir=$path_out)
-                  remove.lineage(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxon=taxon=Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified,inputdir=&path_in,outputdir=$path_out)
+                  remove.lineage(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxon=".$GLOBALS['taxon'].",inputdir=&path_in,outputdir=$path_out)
                   summary.seqs(fasta=current, count=current,inputdir=$path_in,outputdir=$path_out)";
         
            file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);

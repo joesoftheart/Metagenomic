@@ -19,6 +19,28 @@
         
     }
 
+    public function test(){
+       
+      $data = array('user' => 'admin',
+                   'project_name' => 'mothur_phylotype',
+                   'id_project' => '5936621381b81380138b4567');
+               
+
+      $this->mongo_db->insert('advance_classifly', $data);
+
+
+      $this->mongo_db->where(array('id_project'=> '5936621381b81380138b4567'))->set('classifly', 'gg')->update('advance_classifly');     
+
+      
+        $array_project = $this->mongo_db->get_where('advance_classifly',array('id_project' => '5936621381b81380138b4567'));
+        foreach ($array_project as $r) {
+          
+                $project = $r['project_name'];
+                $classifly = $r['classifly'];
+                echo "Project : ".$project ."<br/>"."classifly : ".$classifly;
+         }
+
+    }
 
     public function get_json(){
       $value = $_REQUEST['data_array'];
@@ -38,66 +60,77 @@
        $taxon = $value[12];
 
          
-       $array_project = $this->mongo_db->get_where('projects',array('_id' => new \MongoId($id_project)));
+       $project = "";
+       $project_analysis = "";
+
+      # Query data Project By ID
+       $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
         foreach ($array_project as $r) {
           
                 $project = $r['project_name'];
+                $project_analysis = $r['project_analysis'];
          }
 
 
-        #aligment
-        if($customer != null){
-           $alignment = $customer;
-
-        }else if($alignment == "silva"){
-            $alignment = "silva.v4.fasta";
-        }else if ($alignment == "gg") {
-            $alignment = "";
-        }else if ($alignment == "rpd") {
-            $alignment = "";
-        }
+        # Check variable aligment
+            if($customer != null){
+                $alignment = $customer;
+            }
+            else if($alignment == "silva"){
+                $alignment = "silva.v4.fasta";
+            }
+            else if ($alignment == "gg") {
+                $alignment = "";
+            }
+            else if ($alignment == "rpd") {
+                $alignment = "";
+            }
     
         
 
-        #$classify
-         if($classify == "silva"){
+        # Check variable classify
+            if($classify == "silva"){
              $classify = 'silva';
-         }else if ($classify == "gg") {
+            }
+            else if($classify == "gg") {
              $classify = 'Greengenes';
-         }else if ($classify == "rdp") {
+            }
+             else if($classify == "rdp") {
              $classify = 'RDP';
-         }
+            }
 
 
-        #taxon
-        // if($optionsRadios == '1'){
-        //    $taxon;
-        // }else if($optionsRadios == '0'){
-        //    $taxon = "Chloroplast-Mitochondria-Eukaryota-unknown";
-        // }
+        # Check variable taxon
+            if($optionsRadios == '0'){
+               $taxon = "Chloroplast-Mitochondria-Eukaryota-unknown";
+            }
 
-      $user = "admin";
-      $project = "data_mothur";
-      $taxon = "taxon";
-
-      $path_input = "owncloud/data/admin/files/data_mothur/data/input/";
-      $path_out = "owncloud/data/admin/files/data_mothur/data/output/";
-
-      $path_qadvance = "owncloud/data/admin/files/data_mothur/log/";
       
-        $jobname = "q_advance";
+      
+        # Set Path => input ,output ,log
+            $path_input = "owncloud/data/$user/files/$project/data/input/";
+            $path_out = "owncloud/data/$user/files/$project/data/output/";
+            $path_log = "owncloud/data/$user/files/$project/log/";
+      
 
-        # Check type Project 
+        #Create  jobname  advance
+            $jobname = $user."-".$project."-".$project_analysis."-"."advance";
+
            
-           #Phylotype
-           $cmd = "qsub -N '$jobname' -o $path_qadvance -e $path_qadvance -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classify $cutoff $taxon $path_input $path_out";
-           #OTU
-           //$cmd = "qsub -N '$jobname' -o $path_qadvance -e $path_qadvance -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classify $cutoff $taxon $path_input $path_out";
-         
+        #Check type Project is Phylotype OR OTU
+            if($project_analysis == "phylotype"){
+              $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classify $cutoff $taxon $path_input $path_out";
+
+            }elseif ($project_analysis == "otu") {
+              $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classify $cutoff $taxon $path_input $path_out";
+            }
+
+           
+         # Run Qsub Advance 
          shell_exec($cmd);
 
-        $check_qstat = "qstat  -j '$jobname' ";
-        exec($check_qstat,$output);
+         $check_qstat = "qstat  -j '$jobname' ";
+         exec($check_qstat,$output);
               $id_job = "" ;
               foreach ($output as $key_var => $value ) {
 
@@ -108,7 +141,7 @@
               }
 
          $id_job = trim($id_job);
-         $data_job = array($id_job,$jobname,$path_qadvance,$user,$project);
+         $data_job = array($id_job,$jobname,$path_log,$user,$project);
          echo json_encode($data_job);
      
 
@@ -156,17 +189,29 @@
      }
 
       public function read_count(){
+
            $da_count = $_REQUEST['data_count'];
            $user = $da_count[1];
            $project = $da_count[2];
-          
-           # Check type Project 
+           
+           $project_analysis = ""; 
 
-           #Phylotype
-             $file = FCPATH."owncloud/data/$user/files/$project/data/output/final.tx.count.summary";
+             # Query data Project By project_name
+              $array_project = $this->mongo_db->get_where('projects',array('project_name' => $project));
+              foreach ($array_project as $r) {
+                    $project_analysis = $r['project_analysis'];
+              }
 
-           #OTU
-             //$file = FCPATH."owncloud/data/$user/files/$project/data/output/final.opti_mcc.count.summary";
+             # Check type Project Phylotype OTU
+             if($project_analysis == "phylotype"){
+
+                $file = FCPATH."owncloud/data/$user/files/$project/data/output/final.tx.count.summary";
+
+             }elseif ($project_analysis == "otu") {
+
+                $file = FCPATH."owncloud/data/$user/files/$project/data/output/final.opti_mcc.count.summary";
+             }
+   
            
            $data_read_count = array();
            $count = array();
@@ -183,6 +228,7 @@
            $count_less = min($count);
            array_push($data_read_count, $count_less);
 
+           # return data read file
            echo json_encode($data_read_count);
       }
 
@@ -192,31 +238,45 @@
 
       public function run_sub_sample(){
 
-        
-
         $data = $_REQUEST['data_sample'];
 
         $user = $data[0];
-        $project = $data[1];
+        $id_project = $data[1];
         $size = $data[2];
 
-        $path_input = "owncloud/data/admin/files/data_mothur/data/input/";
-        $path_out = "owncloud/data/admin/files/data_mothur/data/output/";
 
-        $user = "admin";
-        $project = "data_mothur";
+       $project = "";
+       $project_analysis = "";
 
-        $path_qadvance = "owncloud/data/admin/files/data_mothur/log/";
+        # Query data Project By ID
+        $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
+        foreach ($array_project as $r) {
+          
+                $project = $r['project_name'];
+                $project_analysis = $r['project_analysis'];
+         }
+
+
+       # Set Path input , output , log 
+        $path_input = "owncloud/data/$user/files/$project/data/input/";
+        $path_out = "owncloud/data/$user/files/$project/data/output/";
+        $path_log = "owncloud/data/$user/files/$project/log/";
       
-        $jobname = "q_advance_2";
-        # Check type Project 
-           
-           #Phylotype
-             $cmd = "qsub -N '$jobname' -o $path_qadvance -e $path_qadvance -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype2.php $user $project $path_input $path_out $size";
-       
-           #OTU
-            //$cmd = "qsub -N '$jobname' -o $path_qadvance -e $path_qadvance -cwd -b y /usr/bin/php -f Scripts/advance_run_otu2.php $user $project $path_input $path_out $size";
-       
+        #Create  jobname  advance
+            $jobname = $user."-".$project."-".$project_analysis."-"."advance2";
+
+        # Check type Project is Phylotype OR OTU
+
+           if ($project_analysis == "phylotype") {
+
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype2.php $user $project $path_input $path_out $size";
+           }
+           else if($project_analysis == "otu") {
+
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu2.php $user $project $path_input $path_out $size";
+           }
+             
+ 
         shell_exec($cmd);
 
         $check_qstat = "qstat  -j '$jobname' ";
@@ -231,6 +291,7 @@
               }
 
          $id_job = trim($id_job);
+
          echo json_encode($id_job);
 
       }
@@ -254,6 +315,8 @@
              
 
       }
+
+
   
   }
 

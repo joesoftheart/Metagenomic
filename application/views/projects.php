@@ -499,7 +499,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                                 <option value="k__Archaea_unclassified">k__Archaea_unclassified</option>
                                                                 <option value="Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified" selected>Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified</option>
                                                                 
-                                                        </select>
+                                                            </select>
                                                       </label>
                                                     </div>
                                                 </div>
@@ -551,53 +551,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                                         </button>
                                                 </div>
                                              </div>
-
-                                        <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
-
-                                            <div class="row uk-margin">
-                                                <div class="col-lg-8">
-                                                    <label>sub sample :</label>
-
-                                                    <input class="uk-input" type="text" name="cutoff" value="" placeholder="5000">
-                                             <!-- Modal -->
-                                            <div class="panel-body">    
-                                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                                     <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                                <h4 class="modal-title" id="myModalLabel">Preprocess</h4>
-                                                            </div>
-                                                         <div class="modal-body">
-                                                          Do you want to re-run preprocess again ?
-                                                         </div>
-                                                        <div class="modal-footer">                                        
-                                                            <button id="back_preprocess" class="btn btn-primary" data-dismiss="modal">Yes</button>
-                                                            <button class="btn btn-default" data-dismiss="modal">No</button>
-                                                        </div>
-                                                        </div>
-                                                        <!-- /.modal-content -->
-                                                    </div>
-                                                     <!-- /.modal-dialog -->
-                                                </div>
-                                            </div>
-                                             <!-- End Modal -->
+  
+                                           
                                              
                                              <!-- Phylotype-form -->
                                              <form name="Phylotype-form" method="post"  > 
-
-                                            <div class="col-lg-12 uk-margin"> </div>
-                                            <div class="col-lg-4">
-                                                  <button id=""  type="submit" class="btn btn-default">Run Preprocess</button>  
-                                            </div>
-                                            <div class="col-lg-8">
-                                                   <button id="" type="reset" class="btn btn-default">Clear</button>
-                                            </div>
-
-                                            <div class="col-lg-12 uk-margin"> </div>
-
-
-                                        </div><!-- close row form -->
 
                                                  <input type="hidden" name="username" value="<?=$username?>">
                                                  <input type="hidden" name="project" value="<?=$current_project?>">
@@ -621,6 +579,30 @@ if (isset($this->session->userdata['logged_in'])) {
                                             </form><!-- close  form -->
 
                                                  <div class="col-lg-12 uk-margin"> </div>
+                                            <!-- Modal -->
+                                                 <div class="panel-body">    
+                                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                     <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                <h4 class="modal-title" id="myModalLabel">Preprocess</h4>
+                                                            </div>
+                                                         <div class="modal-body">
+                                                          Do you want to re-run preprocess again ?
+                                                         </div>
+                                                        <div class="modal-footer">                                        
+                                                            <button id="back_preprocess" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                                                            <button class="btn btn-default" data-dismiss="modal">No</button>
+                                                        </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                    </div>
+                                                     <!-- /.modal-dialog -->
+                                                </div>
+                                                </div>
+                                             <!-- End Modal -->
+
                                           </div>
 
                                         </div> <!-- Pre-test2 -->
@@ -645,10 +627,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="col-lg-8 col-lg-offset-2">
 
                                           <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please select level that you want to analyse :</label></div>
-                                            
-                                          <div class="col-lg-5 col-lg-pull-1">
-                                              <label> Greengenes :   </label>
-                                          </div>
+                                           
+                                          <div class="Greengene">
+                                              <div class="col-lg-5 col-lg-pull-1">
+                                                    <label> Greengenes :   </label>
+                                              </div>
                                                   <div class="col-lg-5 col-lg-pull-4">
                                                       <select class="uk-select" name="">
                                                              <option value="1"> species </option>
@@ -659,10 +642,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                                              <option value="6"> phylum </option>   
                                                         </select>
                                                   </div>
-
-                                            <div class="col-lg-5 col-lg-pull-1">
-                                              <label> Silva/RDP :   </label>
-                                            </div>
+                                          </div>
+                                          <div class="Silva_RDP">
+                                                <div class="col-lg-5 col-lg-pull-1">
+                                                        <label> Silva/RDP :   </label>
+                                                </div>
                                                   <div class="col-lg-5 col-lg-pull-4">
                                                       <select class="uk-select" name="">
                                                              <option value="1"> genus </option>
@@ -673,11 +657,13 @@ if (isset($this->session->userdata['logged_in'])) {
                                                         </select>
                                                   </div>
 
-                                             <div class="col-lg-5 col-lg-pull-1">
-                                              <label> OTU :   </label>
-                                            </div>
+                                          </div>
+                                          <div class="Otu">
+                                                <div class="col-lg-5 col-lg-pull-1">
+                                                    <label> OTU :   </label>
+                                                </div>
                                                   <div class="col-lg-5 col-lg-pull-4">
-                                                      <select class="uk-select" name="">
+                                                       <select class="uk-select" name="">
                                                              <option value=""> 0.03 </option>
                                                              <option value=""> 0.05 </option>
                                                              <option value=""> 0.10 </option>
@@ -686,6 +672,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                                         </select>
                                                   </div>
 
+                                          </div>  
+                     
                                             <div class="col-lg-10 col-lg-pull-1 uk-margin"><label> 3.1 Alpha diversity analysis : </label></div>
                                             <div class="col-lg-10 col-lg-push-1 "><label> Summary alpha statistical analysis </label></div>
                                                 <div class="col-lg-8 col-lg-push-2 ">  
@@ -1136,6 +1124,7 @@ if (isset($this->session->userdata['logged_in'])) {
                     url:"<?php echo base_url('Run_advance/get_json'); ?>",
                     data:{data_array: data_value},
                     success:function(data){
+                     //console.log(data);
                       var data_job = $.parseJSON(data);
                       console.log("q_id :" + data_job[0]);
                       console.log("q_name :" + data_job[1]);
