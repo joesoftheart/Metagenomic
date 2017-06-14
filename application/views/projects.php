@@ -401,7 +401,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                   
                                     <li>
                                         <div class="Pre-test">
-                                         <form name="Pre-form" method="post" action="#" > 
+                                         <form name="Pre-form" method="post" action="#" enctype="multipart/form-data" > 
 
                                            <input type="hidden" name="username" value="<?=$username?>">
                                            <input type="hidden" name="project" value="<?=$current_project?>">
@@ -441,8 +441,15 @@ if (isset($this->session->userdata['logged_in'])) {
                                                   </select>
                                                   </div>
                                                   <label class="col-lg-1"> OR </label>
-                                                  <div class="col-lg-5 ">    
-                                                    <input class="uk-input" type="text" name="customer"  placeholder="customer">  
+                                                  <div class="col-lg-5 "> 
+                                                     Limit fasta size file 800 MB   
+                                                    <input type="file" name="customer" id="custo_mer"> 
+                                                    <div class="progress progress-striped active">
+                                                            <div id="bar" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"  style="width:0%;">
+                                                                <div class="percent">0%</div >
+                                                            </div>
+                                                    </div>
+                                                    <div id="status"></div>
                                                   </div>
                                                 <div class="col-lg-12 uk-margin"></div>
                                                 <div class="col-lg-10 col-lg-pull-1"><label> Pre-cluster step :</label></div>
@@ -623,16 +630,24 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                                <!-- Analysis -->
-                                    <li >
-                                        <div class="col-lg-8 col-lg-offset-2">
+                                 <li>
 
-                                          <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please select level that you want to analyse :</label></div>
-                                           
-                                          <div class="Greengene">
-                                              <div class="col-lg-5 col-lg-pull-1">
-                                                    <label> Greengenes :   </label>
-                                              </div>
-                                                  <div class="col-lg-5 col-lg-pull-4">
+                                     <div class="Pre-test3">
+
+                                            <!-- Analysis-form -->
+                                            <form name="Analysis-form" method="post" enctype="multipart/form-data"  > 
+
+                                                 <input type="hidden" name="username" value="<?=$username?>">
+                                                 <input type="hidden" name="project" value="<?=$current_project?>">
+
+                                                 <div class="col-lg-8 col-lg-offset-2">
+
+                                                    <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please select level that you want to analyse :</label></div>        
+                                                    <div class="Greengene" style="display:none">
+                                                    <div class="col-lg-5 col-lg-pull-1">
+                                                        <label> Greengenes :   </label>
+                                                    </div>
+                                                    <div class="col-lg-5 col-lg-pull-4">
                                                       <select class="uk-select" name="">
                                                              <option value="1"> species </option>
                                                              <option value="2" selected> genus </option>
@@ -641,13 +656,13 @@ if (isset($this->session->userdata['logged_in'])) {
                                                              <option value="5"> class </option>
                                                              <option value="6"> phylum </option>   
                                                         </select>
-                                                  </div>
-                                          </div>
-                                          <div class="Silva_RDP">
-                                                <div class="col-lg-5 col-lg-pull-1">
+                                                    </div>
+                                                    </div>
+                                                    <div class="Silva_RDP" style="display:none">
+                                                    <div class="col-lg-5 col-lg-pull-1">
                                                         <label> Silva/RDP :   </label>
-                                                </div>
-                                                  <div class="col-lg-5 col-lg-pull-4">
+                                                    </div>
+                                                    <div class="col-lg-5 col-lg-pull-4">
                                                       <select class="uk-select" name="">
                                                              <option value="1"> genus </option>
                                                              <option value="2"> family </option>
@@ -655,14 +670,13 @@ if (isset($this->session->userdata['logged_in'])) {
                                                              <option value="4"> class</option>
                                                              <option value="5"> phylum </option>   
                                                         </select>
-                                                  </div>
-
-                                          </div>
-                                          <div class="Otu">
-                                                <div class="col-lg-5 col-lg-pull-1">
-                                                    <label> OTU :   </label>
-                                                </div>
-                                                  <div class="col-lg-5 col-lg-pull-4">
+                                                    </div>
+                                                    </div>
+                                                    <div class="Otu" style="display:none">
+                                                    <div class="col-lg-5 col-lg-pull-1">
+                                                        <label> OTU :   </label>
+                                                    </div>
+                                                    <div class="col-lg-5 col-lg-pull-4">
                                                        <select class="uk-select" name="">
                                                              <option value=""> 0.03 </option>
                                                              <option value=""> 0.05 </option>
@@ -670,13 +684,12 @@ if (isset($this->session->userdata['logged_in'])) {
                                                              <option value=""> 0.20</option>
                                                             
                                                         </select>
-                                                  </div>
-
-                                          </div>  
+                                                    </div>
+                                                    </div>  
                      
-                                            <div class="col-lg-10 col-lg-pull-1 uk-margin"><label> 3.1 Alpha diversity analysis : </label></div>
-                                            <div class="col-lg-10 col-lg-push-1 "><label> Summary alpha statistical analysis </label></div>
-                                                <div class="col-lg-8 col-lg-push-2 ">  
+                                                 <div class="col-lg-10 col-lg-pull-1 uk-margin"><label> 3.1 Alpha diversity analysis : </label></div>
+                                                 <div class="col-lg-10 col-lg-push-1 "><label> Summary alpha statistical analysis </label></div>
+                                                 <div class="col-lg-8 col-lg-push-2 ">  
                                 
                                                     <div class="radio">
                                                         <label >
@@ -689,39 +702,36 @@ if (isset($this->session->userdata['logged_in'])) {
                                                            <input name="optionsRadios"  value="0" type="radio" checked> No need set the size
                                                         </label>
                                                     </div>
-                                               </div>
+                                                 </div>
 
-                                            <div class="col-lg-10 col-lg-pull-1 uk-margin"><label> 3.2 Beta diversity analysis : </label></div>
-                                            <div class="col-lg-10 col-lg-push-1 "><label> Summary beta statistical analysis </label></div>
-                                                <div class="col-lg-8 col-lg-push-2 ">  
+                                                 <div class="col-lg-10 col-lg-pull-1 uk-margin"><label> 3.2 Beta diversity analysis : </label></div>
+                                                 <div class="col-lg-10 col-lg-push-1 "><label> Summary beta statistical analysis </label></div>
+                                                 <div class="col-lg-8 col-lg-push-2 ">  
                                 
-                                                    <div class="radio">
+                                                     <div class="radio">
                                                         <label >
                                                            <input name="optionsRadios1" value="1" type="radio"> set the size of your smallest group :
                                                            <input class="uk-input" name="size_beta" type="number" > 
                                                         </label>
-                                                    </div>
-                                                    <div class="radio">
+                                                     </div>
+                                                     <div class="radio">
                                                         <label>
                                                            <input name="optionsRadios1"  value="0" type="radio" checked> No need set the size
                                                         </label>
-                                                    </div>
-                                               </div>
+                                                     </div>
+                                                 </div>
 
-                                               <div class="col-lg-11 col-lg-push-1 uk-margin"><label> Venn Diagram</label></div>
+                                                 <div class="col-lg-11 col-lg-push-1 uk-margin"><label> Venn Diagram</label></div>
                                                      <label class="col-lg-11 col-lg-push-2 ">Please put the sample name : </label>
-
                                                      <label class="col-lg-2 col-lg-push-2 ">
                                                          <select class="uk-select" name="venn1">
                                                     
                                                              <option value=""> soils1_1</option>
                                                              <option value=""> soils2_1</option>
                                                              <option value=""> soils3_1</option>
-                                                             <option value=""> soils4_1</option>
-                                                                 
+                                                             <option value=""> soils4_1</option>    
                                                         </select>
-                                                    </label>
-
+                                                     </label>
                                                      <label class="col-lg-2 col-lg-push-2 ">
                                                          <select class="uk-select" name="venn2">
                                                              
@@ -729,10 +739,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                                              <option value=""> soils2_1</option>
                                                              <option value=""> soils3_1</option>
                                                              <option value=""> soils4_1</option>
-
                                                         </select>
-                                                    </label>
-
+                                                     </label>
                                                      <label class="col-lg-2 col-lg-push-2 ">
                                                          <select class="uk-select" name="venn3">
                                                              
@@ -740,154 +748,138 @@ if (isset($this->session->userdata['logged_in'])) {
                                                              <option value=""> soils2_1</option>
                                                              <option value=""> soils3_1</option>
                                                              <option value=""> soils4_1</option> 
-
-                                                        </select>
-                                                    </label>
-
-                                                    <label class="col-lg-2 col-lg-push-2 ">
+                                                         </select>
+                                                     </label>
+                                                     <label class="col-lg-2 col-lg-push-2 ">
                                                          <select class="uk-select" name="venn4">
                                                             
                                                              <option value=""> soils1_1</option>
                                                              <option value=""> soils2_1</option>
                                                              <option value=""> soils3_1</option>
                                                              <option value=""> soils4_1</option>
-
-                                                        </select>
-                                                    </label>
+                                                         </select>
+                                                     </label>
                                               
-                                              <div class="col-lg-12 uk-margin"> </div>
-                                              <div class="col-lg-10 col-lg-push-1"><label> UPGMA tree with calculator : </label></div>
-                                                    <div class="col-lg-5 col-lg-push-2 ">
-                                                      <select class="uk-select" name="upgma">
+                                                     <div class="col-lg-12 uk-margin"> </div>
+                                                     <div class="col-lg-10 col-lg-push-1"><label> UPGMA tree with calculator : </label></div>
+                                                     <div class="col-lg-5 col-lg-push-2 ">
+                                                         <select class="uk-select" name="upgma">
                                                              <option value="1"> thetayc </option>
                                                              <option value="2"> morisitahorn </option>
                                                              <option value="3"> jclass </option>
                                                              <option value="4"> braycurtis</option>
                                                              <option value="5"> lennon </option>
                                                              <option value="6"> sorabund </option>     
-                                                        </select>
-                                                   </div>
-
-                                            <div class="col-lg-12 uk-margin"> </div>
-                                            <div class="col-lg-10 col-lg-push-1"><label> PCOA : </label></div>
-                                                   <div class="col-lg-5 col-lg-push-2 ">
-                                                      <select class="uk-select" name="pcoa">
+                                                         </select>
+                                                     </div>
+                                                     <div class="col-lg-12 uk-margin"> </div>
+                                                     <div class="col-lg-10 col-lg-push-1"><label> PCOA : </label></div>
+                                                     <div class="col-lg-5 col-lg-push-2 ">
+                                                         <select class="uk-select" name="pcoa">
                                                              <option value="1"> thetayc </option>
                                                              <option value="2"> morisitahorn </option>
                                                              <option value="3"> jclass </option>
                                                              <option value="4"> braycurtis</option>
                                                              <option value="5"> lennon </option>
                                                              <option value="6"> sorabund </option>     
-                                                        </select>
-                                                   </div>
-
-
-                                            <div class="col-lg-12 uk-margin"> </div>
-                                            <div class="col-lg-10 col-lg-push-1"><label> NMDS : </label></div>
-                                                   <div class="col-lg-4 col-lg-push-2 ">
-                                                      <select class="uk-select" name="nmds">
+                                                         </select>
+                                                     </div>
+                                                     <div class="col-lg-12 uk-margin"> </div>
+                                                     <div class="col-lg-10 col-lg-push-1"><label> NMDS : </label></div>
+                                                     <div class="col-lg-4 col-lg-push-2 ">
+                                                         <select class="uk-select" name="nmds">
                                                              <option value="1"> 2D </option>
-                                                             <option value="2"> 3D </option>
-                                                                
-                                                        </select>
-                                                   </div>
-                                                   <div class="col-lg-5 col-lg-push-3 ">
-                                                      <select class="uk-select" name="nmds_cal">
+                                                             <option value="2"> 3D </option>        
+                                                         </select>
+                                                     </div>
+                                                     <div class="col-lg-5 col-lg-push-3 ">
+                                                         <select class="uk-select" name="nmds_cal">
                                                              <option value="1"> thetayc </option>
                                                              <option value="2"> morisitahorn </option>
                                                              <option value="3"> jclass </option>
                                                              <option value="4"> braycurtis</option>
                                                              <option value="5"> lennon </option>
                                                              <option value="6"> sorabund </option>     
-                                                        </select>
-                                                   </div>
+                                                         </select>
+                                                     </div>
+                                                     <div class="col-lg-12 uk-margin"> </div>
+                                                     <div class="col-lg-10 col-lg-push-1"><label> Optional : </label></div>
 
-                                            <div class="col-lg-12 uk-margin"> </div>
-                                            <div class="col-lg-10 col-lg-push-1"><label> Optional : </label></div>
-
-                                            <div class="col-lg-8 col-lg-push-2 "> 
-                                                   <label> Please upload file design ? 
-                                                          <input type="file">
-                                                   </label>
-
-                                            </div>
-
-                                            <div class="col-lg-8 col-lg-push-2 ">                
-                                                    <div class="radio">
-                                                        <label >
-                                                           <input name="optionsRadios2" value="1" type="radio"> Amova
-                                                        </label>
-                                                    </div>
-                                                    <div class="radio">
-                                                        <label>
-                                                           <input name="optionsRadios2"  value="0" type="radio"> Homova
-                                                        </label>
-                                                    </div>
-                                             </div>
-                                            
-                                            <div class="col-lg-10 col-lg-push-2 uk-margin"> 
-                                                   <label> Please upload file metadata ? 
-                                                          <input type="file">
-                                                   </label>
-                                            </div>
-
-                                                
-                                             <div class="col-lg-12 col-lg-push-2"> 
-                                                  <div class="radio">
-                                                        <label class="col-lg-6">
-                                                               <input name="optionsRadios3" value="1" type="radio"> correlation with metadata 
-                                                        </label>
-                                                        <label class="col-lg-6">
-                                                               <input name="optionsRadios3"  value="0" type="radio"> correlation of each OTU
-                                                        </label>
-                                                    </div>  
-                                             </div> 
-
-
-                                                 <div class="col-lg-12 col-lg-push-3 uk-margin"> 
-                                                 
-                                                    <div class="col-lg-2 col-lg-pull-1">
+                                                     <div class="col-lg-8 col-lg-push-2 "> 
+                                                         <label> Please upload file design ? 
+                                                         <input type="file">
+                                                         </label>
+                                                     </div>
+                                                     <div class="col-lg-8 col-lg-push-2 ">                
+                                                     <div class="radio">
+                                                         <label >
+                                                         <input name="optionsRadios2" value="1" type="radio"> Amova
+                                                         </label>
+                                                     </div>
+                                                     <div class="radio">
+                                                         <label>
+                                                         <input name="optionsRadios2"  value="0" type="radio"> Homova
+                                                         </label>
+                                                     </div>
+                                                     </div>
+                                                     <div class="col-lg-10 col-lg-push-2 uk-margin"> 
+                                                         <label> Please upload file metadata ? 
+                                                         <input type="file">
+                                                         </label>
+                                                     </div>
+                                                     <div class="col-lg-12 col-lg-push-2"> 
+                                                     <div class="radio">
+                                                         <label class="col-lg-6">
+                                                             <input name="optionsRadios3" value="1" type="radio"> correlation with metadata 
+                                                         </label>
+                                                         <label class="col-lg-6">
+                                                             <input name="optionsRadios3"  value="0" type="radio"> correlation of each OTU
+                                                         </label>
+                                                     </div>  
+                                                     </div> 
+                                                     <div class="col-lg-12 col-lg-push-3 uk-margin"> 
+                                                     <div class="col-lg-2 col-lg-pull-1">
                                                             Method 
                                                      </div>
                                                      <div class="col-lg-3 col-lg-pull-1">
                                                          <select class="uk-select" name="method">
                                                              <option value="1"> spearman </option>
-                                                             <option value="2"> pearson </option>
-                                                                
-                                                        </select>
-                                                   </div>
-                                                
-                                                        <div class="col-lg-4 col-lg-pull-1">
+                                                             <option value="2"> pearson </option>     
+                                                         </select>
+                                                     </div>
+                                                         <div class="col-lg-4 col-lg-pull-1">
                                                                Number of axes 
-                                                        </div>
-                                                        <div class="col-lg-2 col-lg-pull-2">
+                                                         </div>
+                                                         <div class="col-lg-2 col-lg-pull-2">
                                                             <select class="uk-select" name="axes">
                                                                   <option value="2"> 2 </option>
                                                                   <option value="3"> 3 </option>
                                                              </select>
-                                                        </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="col-lg-12 uk-margin"> </div>   
+                                                     <div class="col-lg-4 col-lg-push-2">
+                                                          <input  id="sub-test3" class="btn btn-default" value="Run Preprocess">
+                                                     </div>
+                                                     <div class="col-lg-8 col-lg-push-2">
+                                                          <input type="reset" class="btn btn-default" value="Clear" >
+                                                     </div>
+                                                     <div class="col-lg-12 uk-margin"> </div>
                                                  </div>
 
+                                             </form>  <!-- end Analysis form-->  
+                                     </div> <!-- Pre-test3 -->
 
-                                             
+                                             <div class="Pre-show3" style="display:none"> Process Queue Analysis
+                                                <div id="time3">30</div>
+                                                <div id="test_run3">run analysis </div>
+                                                <br/>
+                                                        
+                                                <button id="back-test3" class="btn btn-default">back analysis</button>
+                                             </div>
+                                 </li>
 
-
-                                             <div class="col-lg-12 uk-margin"> </div>   
-
-                                             <div class="col-lg-4 col-lg-push-2">
-                                                  <button id=""  type="submit" class="btn btn-default">Run Preprocess</button>  
-                                            </div>
-                                            <div class="col-lg-8 col-lg-push-2">
-                                                   <button id="" type="reset" class="btn btn-default">Clear</button>
-                                            </div>
-
-                                            <div class="col-lg-12 uk-margin"> </div>
-
-
-                                        </div><!-- close row form -->
-                                    </li>
-
-                                   <!-- End Analysis -->
+                                <!-- End Analysis -->
 
 
 
@@ -1036,6 +1028,11 @@ if (isset($this->session->userdata['logged_in'])) {
                  $(".Pre-test2").show();
             });
 
+            $("#back-test3").click(function(){
+                 $(".Pre-show3").hide();
+                 $(".Pre-test3").show();
+            });
+
            $("#back_preprocess").click(function(){
               $('.uk-child-width-expand > .pre2').prev('li').find('a').trigger('click');   
             });
@@ -1050,13 +1047,171 @@ if (isset($this->session->userdata['logged_in'])) {
                   if(sample != ""){
                          $(".Pre-test2").hide();
                          $(".Pre-show2").show();
-                         console.log(username+" "+project+" "+sample);
+                         //console.log(username+" "+project+" "+sample);
                          get_subsample(array_data);
                   }   
     
             });
+
+            $("#sub-test3").click(function () {
+                  var username = document.forms["Analysis-form"]["username"].value;
+                  var project  = document.forms["Analysis-form"]["project"].value;
+                  var array_data = new Array(username,project);
+                  $(".Pre-test3").hide();
+                  $(".Pre-show3").show();
+                  get_analysis(array_data);
+            });
+
+
+            
       
         });
+         
+        $(document).on('change', '#custo_mer', function(){
+               
+               var file_data = $('#custo_mer').prop('files')[0];
+                    var form_data = new FormData();
+                    form_data.append('file', file_data);
+
+                   var file_name = file_data.name;
+                   var file_size = file_data.size;
+                   var file_mb = (file_data.size/1024/1024).toFixed(0); // MB
+                   
+                   var type = file_name.substring(file_name.lastIndexOf('.')+1);
+                   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                     var i = parseInt(Math.floor(Math.log(file_size) / Math.log(1024)));
+                     var f_size = Math.round(file_size / Math.pow(1024, i), 2) + ' ' + sizes[i];
+                  
+                   if(type == 'fasta' || type == 'align'){
+                        if(file_size == 0){
+                            alert('Size : '+file_size +' Bytes');
+                            document.getElementById('custo_mer').value = ""; 
+                        }
+                        else if(file_mb <= 800){
+                          //alert(file_name+' '+f_size+' '+type);
+                          get_fasta(form_data);
+                        }else{
+                            alert('file is too large : '+ f_size);
+                            document.getElementById('custo_mer').value = ""; 
+                        } 
+
+                    }
+                    else{ 
+                        alert('file is not fasta or align');
+                        document.getElementById('custo_mer').value = ""; 
+                     }
+                 
+       });
+
+        function get_fasta(file_data){
+
+            var bar = $('#bar');
+            var percent = $('.percent');
+            var status = $('#status');
+          
+           $.ajax({
+                   type:"post",
+                   dataType: 'text',
+                   url:"<?php echo base_url('Run_advance/check_fasta'); ?>",
+                   data: file_data,
+                   cache: false,
+                   processData: false,
+                   contentType: false,
+                    beforeSend: function () {
+                        console.log("beforeSend");
+                        status.empty();
+                        var percentVal = '0%';
+                        bar.width(percentVal);
+                        percent.html(percentVal);
+                    },
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        //Download progress
+                        xhr.upload.addEventListener("progress", function (evt) {
+                             //console.log(evt.loaded);
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                bar.width(Math.round(percentComplete * 100) + "%");
+                                percent.html(Math.round(percentComplete * 100) + "%");
+                                
+                            }
+                        }, false);
+                       return xhr;
+                    },
+                    complete: function (xhr) {
+                         
+                          if(xhr.responseText == '0'){
+                                alert("File is not fasta");
+                                status.html("File is not fasta");
+                                document.getElementById('custo_mer').value = ""; 
+                                bar.width(Math.round(0) + "%");
+                                percent.html(Math.round(0) + "%");
+                          }else { 
+                               alert(xhr.responseText); 
+                               status.html(xhr.responseText);
+                               bar.width(Math.round(0) + "%");
+                               percent.html(Math.round(0) + "%");
+                          }
+                         
+                                
+                    },   
+                   error:function(e){
+                      console.log(e.message);
+                   }
+           });
+        }
+
+        function get_analysis(array_data){
+           var data_value = array_data;
+           $.ajax({
+                   type:"post",
+                   datatype:"json",
+                   url:"<?php echo base_url('Run_advance/run_analysis'); ?>",
+                   data:{data_analysis: data_value},
+                   success:function(data){
+                        //var job_sample = $.parseJSON(data);
+                        var job_analysis = JSON.parse(data);
+                        ckeck_analysis(job_analysis);
+                   },
+                   error:function(e){
+                     console.log(e.message);
+                   }
+           });
+  
+        }
+
+        function ckeck_analysis(job_analy){
+
+          var time = 30;
+          var interval = null;
+          interval = setInterval(function(){   
+              time--;
+              $('#time3').html(time);
+              if(time === 0){
+                $.ajax({ 
+                    type:"post",
+                    datatype:"json",
+                    url:"<?php echo base_url('Run_advance/check_analysis'); ?>",
+                    data:{job_analysis: job_analy },
+                    success:function(data){
+                      var analysis = JSON.parse(data);
+                     //var sample_data = $.parseJSON(data);
+                      if( analysis == "0"){
+                         clearInterval(interval);
+                      }else{
+                         
+                         time = 30;  
+                      }  
+                    },
+                    error:function(e){
+                      console.log(e.message);
+                    }
+                });
+              }
+          },1000);
+
+
+        }
 
 
        function get_subsample(array_data){
@@ -1067,8 +1222,7 @@ if (isset($this->session->userdata['logged_in'])) {
                    url:"<?php echo base_url('Run_advance/run_sub_sample'); ?>",
                    data:{data_sample: data_value},
                    success:function(data){
-                        var job_sample = JSON.parse(data);
-                        console.log(job_sample);
+                        var job_sample = $.parseJSON(data);
                         check_subsample(job_sample);
                    },
                    error:function(e){
@@ -1093,8 +1247,27 @@ if (isset($this->session->userdata['logged_in'])) {
                     url:"<?php echo base_url('Run_advance/check_subsample'); ?>",
                     data:{job_sample: jobsample },
                     success:function(data){
-                     var sample_data = JSON.parse(data);
-                      if(sample_data == "0"){
+
+                     var sample_data = $.parseJSON(data);
+                      if(sample_data[0] == "0"){
+
+                           if(sample_data[1] =="gg"){
+                               $('.Greengene').show();
+                               $('.Silva_RDP').hide();
+                               $('.Otu').hide();
+
+                           }else if((sample_data[1] == "silva") || (sample_data[1] == "rdp")) {
+                               $('.Greengene').hide();
+                               $('.Silva_RDP').show();
+                               $('.Otu').hide();
+                           }
+                           else{
+
+                               $('.Greengene').hide();
+                               $('.Silva_RDP').hide();
+                               $('.Otu').show();
+
+                           }
 
                            $('#test_run2').html('Run queue sub sample complete');
                             clearInterval(interval);
@@ -1126,8 +1299,8 @@ if (isset($this->session->userdata['logged_in'])) {
                     success:function(data){
                      //console.log(data);
                       var data_job = $.parseJSON(data);
-                      console.log("q_id :" + data_job[0]);
-                      console.log("q_name :" + data_job[1]);
+                      //console.log("q_id :" + data_job[0]);
+                      //console.log("q_name :" + data_job[1]);
                      
                       checkrun(data_job);
                     },
@@ -1241,6 +1414,9 @@ if (isset($this->session->userdata['logged_in'])) {
              }
         }
 
+
+
         
     </script>
 <!--  End Advance Script -->
+

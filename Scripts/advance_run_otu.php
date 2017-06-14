@@ -15,7 +15,7 @@
          $GLOBALS['maximum_reads_length'] = $argv[6];
          $GLOBALS['alignment'] = $argv[7];
          $GLOBALS['diffs'] = $argv[8];
-         $GLOBALS['classify'] = $argv[9];
+         $GLOBALS['classifly'] = $argv[9];
          $GLOBALS['cutoff'] = $argv[10];
          $GLOBALS['taxon'] = $argv[11]; 
          
@@ -39,7 +39,7 @@
           echo "maximum_reads : ".$GLOBALS['maximum_reads_length']."\n";
           echo "alignment : ".$GLOBALS['alignment']."\n";
           echo "diffs : ".$GLOBALS['diffs']."\n";
-          echo "classify : ".$GLOBALS['classify']."\n";
+          echo "classifly : ".$GLOBALS['classifly']."\n";
           echo "cutoff : ".$GLOBALS['cutoff']."\n";
           echo "taxon : ".$GLOBALS['taxon']."\n";
           echo "path_in : ".$path_in."\n";
