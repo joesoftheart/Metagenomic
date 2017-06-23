@@ -321,10 +321,10 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                     <p id="show_prephy"></p>
                                                 </div>
-                                                <?php foreach ($rs_process as $rs_p){
-                                                    $status = $rs_p['number_process'];
-
-                                                } ?>
+<!--                                                --><?php //foreach ($rs_process as $rs_p){
+//                                                    $status = $rs_p['number_process'];
+//
+//                                                } ?>
                                                 <button id="btn_prepro"  name="submit" class="btn btn-default pull-right" >Submit</button>
                                             </div>
                                         </form>

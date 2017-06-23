@@ -51,6 +51,7 @@
       <w>.POSIXlt</w>
       <w>.Platform</w>
       <w>.Primitive</w>
+      <w>.RtangleCodeLabel</w>
       <w>.S3PrimitiveGenerics</w>
       <w>.S3methods</w>
       <w>.S4methods</w>
@@ -326,6 +327,7 @@
       <w>.colMeans</w>
       <w>.colSums</w>
       <w>.data</w>
+      <w>.debugMethod</w>
       <w>.decode_numeric_version</w>
       <w>.dense2sy</w>
       <w>.deparseOpts</w>
@@ -357,6 +359,7 @@
       <w>.gtn</w>
       <w>.handleSimpleError</w>
       <w>.hasSlot</w>
+      <w>.isMethodDebugged</w>
       <w>.isMethodsDispatchOn</w>
       <w>.isOpen</w>
       <w>.kappa_tri</w>
@@ -406,9 +409,12 @@
       <w>.subset2</w>
       <w>.symDiagonal</w>
       <w>.traceback</w>
+      <w>.tryResumeInterrupt</w>
+      <w>.undebugMethod</w>
       <w>.untracedFunction</w>
       <w>.updateCHMfactor</w>
       <w>.userHooksEnv</w>
+      <w>.valid.factor</w>
       <w>.validateCsparse</w>
       <w>.valueClassTest</w>
       <w>ACF</w>
@@ -445,6 +451,10 @@
       <w>CIDFont</w>
       <w>CO2</w>
       <w>CRAN.packages</w>
+      <w>CRAN_check_details</w>
+      <w>CRAN_check_results</w>
+      <w>CRAN_memtest_notes</w>
+      <w>CRAN_package_db</w>
       <w>Cars93</w>
       <w>Cefamandole</w>
       <w>ChickWeight</w>
@@ -572,6 +582,7 @@
       <w>LETTERS</w>
       <w>LUV</w>
       <w>La.svd</w>
+      <w>La_library</w>
       <w>La_version</w>
       <w>LakeHuron</w>
       <w>LdFlags</w>
@@ -862,7 +873,9 @@
       <w>USArrests</w>
       <w>USCounties</w>
       <w>USJudgeRatings</w>
+      <w>USMortality</w>
       <w>USPersonalExpenditure</w>
+      <w>USRegionalMortality</w>
       <w>USSouthPolygon</w>
       <w>UScereal</w>
       <w>UScitiesD</w>
@@ -1162,6 +1175,7 @@
       <w>`f_env&lt;-`</w>
       <w>`f_lhs&lt;-`</w>
       <w>`f_rhs&lt;-`</w>
+      <w>`first&lt;-`</w>
       <w>`fn_env&lt;-`</w>
       <w>`formals&lt;-`</w>
       <w>`functionBody&lt;-`</w>
@@ -1170,6 +1184,7 @@
       <w>`is.na&lt;-.numeric_version`</w>
       <w>`is.na&lt;-`</w>
       <w>`languageEl&lt;-`</w>
+      <w>`last&lt;-`</w>
       <w>`length&lt;-.factor`</w>
       <w>`length&lt;-`</w>
       <w>`levels&lt;-.factor`</w>
@@ -1283,6 +1298,7 @@
       <w>adonis</w>
       <w>adonis2</w>
       <w>adply</w>
+      <w>aeqSurv</w>
       <w>aes</w>
       <w>aes_</w>
       <w>aes_all</w>
@@ -1774,6 +1790,7 @@
       <w>c.difftime</w>
       <w>c.noquote</w>
       <w>c.numeric_version</w>
+      <w>c.sparseVector</w>
       <w>c.warnings</w>
       <w>cBind</w>
       <w>cIndexKM</w>
@@ -1876,6 +1893,7 @@
       <w>check_mnsl</w>
       <w>check_packages_in_dir</w>
       <w>check_packages_in_dir_changes</w>
+      <w>check_packages_in_dir_details</w>
       <w>check_tzones</w>
       <w>chem</w>
       <w>chickwts</w>
@@ -1898,6 +1916,7 @@
       <w>chroma_slice</w>
       <w>chull</w>
       <w>ci2d</w>
+      <w>cipoisson</w>
       <w>circleGrob</w>
       <w>citEntry</w>
       <w>citFooter</w>
@@ -2210,6 +2229,7 @@
       <w>debug</w>
       <w>debug_fseq</w>
       <w>debug_pipe</w>
+      <w>debugcall</w>
       <w>debugger</w>
       <w>debuggingState</w>
       <w>debugonce</w>
@@ -3131,6 +3151,7 @@
       <w>hasLoadAction</w>
       <w>hasMethod</w>
       <w>hasMethods</w>
+      <w>hasName</w>
       <w>hasTsp</w>
       <w>has_args</w>
       <w>has_attr</w>
@@ -3370,8 +3391,10 @@
       <w>isNamespace</w>
       <w>isNamespaceLoaded</w>
       <w>isOpen</w>
+      <w>isRematched</w>
       <w>isRestart</w>
       <w>isS3method</w>
+      <w>isS3stdGeneric</w>
       <w>isS4</w>
       <w>isSealedClass</w>
       <w>isSealedMethod</w>
@@ -3946,6 +3969,7 @@
       <w>mut_utf8_locale</w>
       <w>mutate</w>
       <w>muted</w>
+      <w>mv</w>
       <w>mvfft</w>
       <w>mvn</w>
       <w>mvrnorm</w>
@@ -4173,6 +4197,7 @@
       <w>packageStatus</w>
       <w>packageVersion</w>
       <w>package_dependencies</w>
+      <w>package_native_routine_registration_skeleton</w>
       <w>package_version</w>
       <w>packet.number</w>
       <w>packet.panel.default</w>
@@ -4487,6 +4512,7 @@
       <w>print.data.frame</w>
       <w>print.default</w>
       <w>print.difftime</w>
+      <w>print.eigen</w>
       <w>print.factor</w>
       <w>print.function</w>
       <w>print.gam</w>
@@ -5406,6 +5432,7 @@
       <w>str_which</w>
       <w>str_wrap</w>
       <w>strata</w>
+      <w>strcapture</w>
       <w>stressplot</w>
       <w>strftime</w>
       <w>strheight</w>
@@ -5653,6 +5680,7 @@
       <w>sumexact</w>
       <w>summarise</w>
       <w>summarize</w>
+      <w>summarize_CRAN_check_status</w>
       <w>summarize_check_packages_in_dir_depends</w>
       <w>summarize_check_packages_in_dir_results</w>
       <w>summarize_check_packages_in_dir_timings</w>
@@ -6168,6 +6196,7 @@
       <w>unclass</w>
       <w>undebug</w>
       <w>undebug_fseq</w>
+      <w>undebugcall</w>
       <w>undoc</w>
       <w>union</w>
       <w>uniqTsparse</w>
@@ -6213,6 +6242,7 @@
       <w>update</w>
       <w>update.default</w>
       <w>update.formula</w>
+      <w>update.list</w>
       <w>update.packageStatus</w>
       <w>update.packages</w>
       <w>update_geom_defaults</w>
@@ -6323,6 +6353,7 @@
       <w>wisconsin</w>
       <w>with</w>
       <w>with.default</w>
+      <w>withAutoprint</w>
       <w>withCallingHandlers</w>
       <w>withRestarts</w>
       <w>withVisible</w>
