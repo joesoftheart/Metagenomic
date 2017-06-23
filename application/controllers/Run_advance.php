@@ -7,7 +7,7 @@
 
     public function __construct(){
       parent::__construct();
-      $this->load->helper(array('url','path'));
+      $this->load->helper(array('url','path','file'));
       $this->load->helper('form');
       $this->load->library('form_validation');
 
@@ -19,28 +19,66 @@
         
     }
 
-    public function test(){
-       
-      $data = array('user' => 'admin',
-                   'project_name' => 'mothur_phylotype',
-                   'id_project' => '5936621381b81380138b4567');
-               
-
-      $this->mongo_db->insert('advance_classifly', $data);
-
-
-      $this->mongo_db->where(array('id_project'=> '5936621381b81380138b4567'))->set('classifly', 'gg')->update('advance_classifly');     
-
+    public function check_fasta(){
       
-        $array_project = $this->mongo_db->get_where('advance_classifly',array('id_project' => '5936621381b81380138b4567'));
-        foreach ($array_project as $r) {
-          
-                $project = $r['project_name'];
-                $classifly = $r['classifly'];
-                echo "Project : ".$project ."<br/>"."classifly : ".$classifly;
-         }
 
+      $config['upload_path'] = 'Mothur/';
+      $config['allowed_types'] = '*';
+      $config['max_filename'] = '255';
+      $config['remove_spaces'] = TRUE;
+      //$config['encrypt_name'] = TRUE;
+      //$config['overwrite'] = FALSE; # overwrite file
+      
+
+      if(isset($_FILES['file'])){
+
+         if(file_exists('Mothur/'.$_FILES['file']['name'])){
+
+             echo 'File already exists : '. $_FILES['file']['name'];
+
+         }else{
+            #upload file to upload_path
+            $this->load->library('upload',$config);
+
+               if (!$this->upload->do_upload('file')) {
+                   echo $this->upload->display_errors();
+               } 
+               else {
+
+                    $check_fasta = $this->fasta_read($_FILES['file']['name']);
+                    if($check_fasta){
+                         echo 'File successfully uploaded ';
+                    }else{
+                         echo '0';
+                    }
+                  
+               }
+         } 
+      }
+   
+    
     }
+    public function fasta_read($file){
+           $file = FCPATH."Mothur/$file"; 
+           $check = "";
+           $myfile = fopen($file,'r') or die ("Unable to open file");
+           while(($lines = fgets($myfile)) !== false){
+                 
+                 $check = substr($lines,0,1);
+                 break;
+            }
+           fclose($myfile);
+
+           if($check == '>'){
+               return true;
+           }else{ 
+             unlink($file);
+             return false;
+          }
+
+    } 
+
+
 
     public function get_json(){
       $value = $_REQUEST['data_array'];
@@ -54,7 +92,7 @@
        $alignment = $value[6];
        $customer = $value[7];
        $diffs = $value[8];
-       $classify = $value[9];
+       $classifly = $value[9];
        $cutoff  = $value[10];
        $optionsRadios = $value[11];
        $taxon = $value[12];
@@ -80,23 +118,23 @@
                 $alignment = "silva.v4.fasta";
             }
             else if ($alignment == "gg") {
-                $alignment = "";
+                $alignment = "gg";
             }
-            else if ($alignment == "rpd") {
-                $alignment = "";
+            else if ($alignment == "rdp") {
+                $alignment = "rdp";
             }
     
         
 
-        # Check variable classify
-            if($classify == "silva"){
-             $classify = 'silva';
+        # Check variable classifly
+            if($classifly == "silva"){
+             $classifly = 'silva';
             }
-            else if($classify == "gg") {
-             $classify = 'Greengenes';
+            else if($classifly == "gg") {
+             $classifly = 'gg';
             }
-             else if($classify == "rdp") {
-             $classify = 'RDP';
+             else if($classifly == "rdp") {
+             $classifly = 'rdp';
             }
 
 
@@ -119,10 +157,38 @@
            
         #Check type Project is Phylotype OR OTU
             if($project_analysis == "phylotype"){
-              $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classify $cutoff $taxon $path_input $path_out";
 
-            }elseif ($project_analysis == "otu") {
-              $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classify $cutoff $taxon $path_input $path_out";
+                $count = $this->mongo_db->where(array('id_project'=> $id_project))->count('advance_classifly');
+                  if($count == 0){
+                        $data = array('user' => $user,'project_name' => $project,'id_project' => $id_project,'classifly' => $classifly);
+    
+                        # insert data project
+                          $this->mongo_db->insert('advance_classifly', $data);
+                  }else{
+
+                        # update classifly
+                        $this->mongo_db->where(array('id_project'=> $id_project))->set('classifly', $classifly)->update('advance_classifly');     
+                  }
+
+       
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classifly $cutoff $taxon $path_input $path_out";
+
+            }
+            elseif ($project_analysis == "otu") {
+
+                $count = $this->mongo_db->where(array('id_project'=> $id_project))->count('advance_classifly');
+                  if($count == 0){
+                        $data = array('user' => $user,'project_name' => $project,'id_project' => $id_project,'classifly' => $project_analysis);
+    
+                        # insert data project
+                          $this->mongo_db->insert('advance_classifly', $data);
+                  }else{
+
+                        # update classifly
+                        $this->mongo_db->where(array('id_project'=> $id_project))->set('classifly', $project_analysis)->update('advance_classifly');     
+                  }
+
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classifly $cutoff $taxon $path_input $path_out";
             }
 
            
@@ -244,6 +310,16 @@
         $id_project = $data[1];
         $size = $data[2];
 
+        $classifly = "";
+
+        # Query type classifly
+        $array_classifly = $this->mongo_db->get_where('advance_classifly',array('id_project' => $id_project));
+         foreach ($array_classifly as $r) {
+                           
+                $classifly = $r['classifly'];
+               
+         }
+       
 
        $project = "";
        $project_analysis = "";
@@ -291,8 +367,10 @@
               }
 
          $id_job = trim($id_job);
+         
+         $sample_array = array($id_job,$classifly);
 
-         echo json_encode($id_job);
+         echo json_encode($sample_array);
 
       }
 
@@ -300,11 +378,99 @@
 
       public function check_subsample(){
 
-        $id_job = $_REQUEST['job_sample'];
+
+        $sample_job = $_REQUEST['job_sample'];
+        $id_job = $sample_job[0];
+        $classifly = $sample_job[1];
+        
         $check_run = exec("qstat -j $id_job ");
 
             if($check_run == false){
-                 $up = 0;
+                  $up = array(0,$classifly);
+                 echo json_encode($up);
+
+            }else{
+
+               $up = array(1,$classifly);
+               echo json_encode($up);
+            }
+             
+
+      }
+
+
+      public function run_analysis(){
+
+
+
+         $data = $_REQUEST['data_analysis'];
+         $user = $data[0];
+         $id_project = $data[1];
+
+        $project = "";
+        $project_analysis = "";
+
+        # Query data Project By ID
+        $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
+        foreach ($array_project as $r) {
+          
+                $project = $r['project_name'];
+                $project_analysis = $r['project_analysis'];
+         }
+
+
+       # Set Path input , output , log 
+        $path_input = "owncloud/data/$user/files/$project/data/input/";
+        $path_out = "owncloud/data/$user/files/$project/data/output/";
+        $path_log = "owncloud/data/$user/files/$project/log/";
+      
+        # Create  jobname  advance
+            $jobname = $user."-".$project."-".$project_analysis."-"."advance3";
+
+        # Check type Project is Phylotype OR OTU
+
+           if ($project_analysis == "phylotype") {
+
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project $path_input $path_out ";
+           }
+           else if($project_analysis == "otu") {
+
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project $path_input $path_out ";
+           }
+             
+ 
+        shell_exec($cmd);
+
+        $check_qstat = "qstat  -j '$jobname' ";
+        exec($check_qstat,$output);
+              $id_job = "" ;
+              foreach ($output as $key_var => $value ) {
+
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }
+              }
+
+         $id_job = trim($id_job);
+
+         echo json_encode($id_job);
+
+
+      }
+
+
+      public function check_analysis(){
+
+
+        $analysis_job = $_REQUEST['job_analysis'];
+        $id_job = $analysis_job;
+     
+        
+        $check_run = exec("qstat -j $id_job ");
+
+            if($check_run == false){
+                  $up = 0;
                  echo json_encode($up);
 
             }else{

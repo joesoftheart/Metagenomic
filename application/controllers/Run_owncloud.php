@@ -21,7 +21,7 @@ class Run_owncloud extends CI_Controller {
 
 
         
-        public function index()
+        public function show_log_last_line()
         {
            $file = FCPATH."q_advance.o849";
            $count = 0 ;
@@ -36,7 +36,69 @@ class Run_owncloud extends CI_Controller {
            $line = file($file);
            echo $line[$count-1];
 
+        }
+
+
+        public function fasta_read(){
+           $file = FCPATH."img/trainset16_022016.rdp.fasta"; 
+           $check = "";
+           $myfile = fopen($file,'r') or die ("Unable to open file");
+           while(($lines = fgets($myfile)) !== false){
+                 
+                 $check = substr($lines,0,1);
+                 echo $check;
+                 break;
+            }
+           fclose($myfile);
+           
+           if($check == '>'){
+              echo "Fasta";
+           }else{ echo "No fasta";}
+
         } 
+
+
+       public function test(){
+      
+         $user = 'admin';
+         $project = 'mothur_phylotype';
+         $id_project = '5936621381b81380138b4567';
+         $classifly = 'gg'; 
+
+       $count = $this->mongo_db->where(array('id_project'=> $id_project))->count('advance_classifly');
+       
+       if($count == 0){
+          
+           $data = array('user' => $user,
+                         'project_name' => $project,
+                         'id_project' => $id_project,
+                         'classifly' => $classifly);
+               
+           # insert data project
+           $this->mongo_db->insert('advance_classifly', $data);
+
+       }else{
+
+             # update classifly
+            $this->mongo_db->where(array('id_project'=> $id_project))->set('classifly', $classifly)->update('advance_classifly');     
+       }
+      
+
+        $array_project = $this->mongo_db->get_where('advance_classifly',array('id_project' => $id_project));
+        foreach ($array_project as $r) {
+                
+                $id = $r['_id'];
+                $project = $r['project_name'];
+                $classifly = $r['classifly'];
+                echo "ID : ".$id."<br/>"."Project : ".$project ."<br/>"."classifly : ".$classifly;
+         }
+       
+
+        # Delete data project
+        //$this->mongo_db->where(array("_id" => new MongoId('5938ca7081b8133f138b4568')))->delete('advance_classifly');
+
+   
+       }
 
 
        public function set_group(){

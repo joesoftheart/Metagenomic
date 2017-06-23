@@ -1,6 +1,6 @@
 <?php  
 
-     include('setting_sge.php');
+    include('setting_sge.php');
     putenv("SGE_ROOT=$SGE_ROOT");
     putenv("PATH=$PATH");
 
@@ -12,7 +12,8 @@
          $GLOBALS['size']= $argv[5];
 
          if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != ""){
-             sub_sample($user,$project,$path_in,$path_out);
+             
+             //sub_sample($user,$project,$path_in,$path_out);
 
          }else{
               echo "user : ".$user."\n";
