@@ -1,10 +1,10 @@
 <?php
 
 set_time_limit(60);
-$path_file_original = "C:/xampp/htdocs/CreateInput/input_file/output_plot/final.tx.2.cons.tax.plot.summary";
-$file_index_phylum = 'C:/xampp/htdocs/CreateInput/php_file/file_index_phylum.txt';
-$file_phylum_count = 'C:/xampp/htdocs/CreateInput/php_file/file_phylum_count.txt';
-$file_after_reverse = 'C:/xampp/htdocs/CreateInput/php_file/file_after_reverse.csv';
+$path_file_original = "../owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output_plot/final.tx.2.cons.tax.plot.summary";
+$file_index_phylum = 'owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_index_phylum.txt';
+$file_phylum_count = 'owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_phylum_count.txt';
+// $file_after_reverse = 'C:/xampp/htdocs/CreateInput/php_file/file_after_reverse.csv';
 
 if ($file_original = fopen($path_file_original, "r")) {
     $keywords_split_line = preg_split("/[\n]/", fread($file_original, filesize($path_file_original)));
@@ -88,7 +88,8 @@ if ($file_original = fopen($path_file_original, "r")) {
                         if ($keywords_index_line[$o] == $name_index_k[1]) {
 //                    echo $keywords_o[$o] . "\t" . $line_split_k[2] . "\t" . $line_split_k[3] . "\t" . $line_split_k[4] . "\t" . $line_split_k[5];
 
-                            $line_split_out1 = $keywords_index_line[$o];
+                            $line_split_out1 = preg_split('/[__]/',$keywords_index_line[$o]);
+                            $line_split_out1 = $line_split_out1[2];
                             $line_split_out2 = $line_split_out2 + $line_split_k[2];
                             $line_split_out3 = $line_split_out3 + $line_split_k[3];
                             $line_split_out4 = $line_split_out4 + $line_split_k[4];
@@ -106,22 +107,22 @@ if ($file_original = fopen($path_file_original, "r")) {
                     if ($line_split_out2 == 0) {
                         $line_split_out2 = 0;
                     } else {
-                        $line_split_out2 = round($line_split_out2 / $a, 10);
+                        $line_split_out2 = round($line_split_out2*100 / $a, 10);
                     }
                     if ($line_split_out3 == 0) {
                         $line_split_out3 = 0;
                     } else {
-                        $line_split_out3 = round($line_split_out3 / $b, 10);
+                        $line_split_out3 = round($line_split_out3*100 / $b, 10);
                     }
                     if ($line_split_out4 == 0) {
                         $line_split_out4 = 0;
                     } else {
-                        $line_split_out4 = round($line_split_out4 / $c, 10);
+                        $line_split_out4 = round($line_split_out4*100 / $c, 10);
                     }
                     if ($line_split_out5 == 0) {
                         $line_split_out5 = 0;
                     } else {
-                        $line_split_out5 = round($line_split_out5 / $d, 10);
+                        $line_split_out5 = round($line_split_out5*100 / $d, 10);
                     }
                 }
 

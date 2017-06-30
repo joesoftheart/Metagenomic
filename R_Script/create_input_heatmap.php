@@ -1,10 +1,9 @@
 <?php
-
 set_time_limit(60);
-$path_file_original = "C:/xampp/htdocs/CreateInput/input_file/output_plot/final.tx.2.cons.tax.plot.summary";
-$file_index = 'C:/xampp/htdocs/CreateInput/php_file/file_index.txt';
-$file_before_reverse = 'C:/xampp/htdocs/CreateInput/php_file/file_before_reverse.txt';
-$file_after_reverse = 'C:/xampp/htdocs/CreateInput/php_file/file_after_reverse.csv';
+$path_file_original = "../owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output_plot/final.tx.2.cons.tax.plot.summary";
+$file_index = 'owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_index.txt';
+$file_before_reverse = 'owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_before_reverse.txt';
+$file_after_reverse = 'owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_after_reverse.csv';
 
 if ($file_original = fopen($path_file_original, "r")) {
     $keywords_split_line = preg_split("/[\n]/", fread($file_original, filesize($path_file_original)));
@@ -107,15 +106,22 @@ if ($file_cs = fopen($file_before_reverse, "r")) {
     $keywords_last = preg_split("/[\n]/", fread($file_cs, filesize($file_before_reverse)));
     $line_num = preg_split("/[\t]/", $keywords_last[0]);
     file_put_contents($file_after_reverse, "");
-    for($f =0;$f < count($line_num);$f++){
-        for ($j = 0; $j < count($keywords_last); $j++) {
+    for($f =0;$f <= count($line_num)-1;$f++){
+        for ($j = 0; $j < count($keywords_last)-1; $j++) {
             $str = str_replace("\r", '', $keywords_last[$j]);
             $line_split_num = preg_split("/[\t]/", $str);
             $strt = str_replace("\r", '', $line_split_num[$f]);
-            file_put_contents($file_after_reverse,$strt. "\t",FILE_APPEND);
+            if ($j == count($keywords_last)-2) {
+                file_put_contents($file_after_reverse, $strt, FILE_APPEND);
+            }else{
 
-        }
+                file_put_contents($file_after_reverse, $strt . ",", FILE_APPEND);
+            }
+            }
+
+
         file_put_contents($file_after_reverse, "\n",FILE_APPEND);
     }
+    echo "Create file complete";
 }
 ?>

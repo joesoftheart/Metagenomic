@@ -1,0 +1,2 @@
+PHP Notice:  Undefined offset: 4 in /var/www/html/Metagenomic/Scripts/standard_run_phylotype.php on line 6
+Segmentation fault (core dumped)

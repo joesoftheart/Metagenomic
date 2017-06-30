@@ -11,7 +11,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    plot_graph_r_heartmap($user,$id,$project,$path);
+    classify_system($user,$id,$project,$path);
     }
 
 
@@ -34,6 +34,9 @@ function run($user,$id,$project,$path){
         check_oligos($user,$id, $project,$path);
     }
     else {
+
+
+
         echo "go to run make file ->";
         run_makefile($user,$id, $project,$path);
     }
@@ -356,7 +359,7 @@ system(cp owncloud/data/$user/files/$project/data/output/stability.trim.contigs.
     $cmd ="phylotype(taxonomy=final.taxonomy,inputdir=$path/input/,outputdir=$path/output/)
 make.shared(list=final.tx.list, count=final.count_table, label=1-2-3-4-5-6,inputdir=$path/input/,outputdir=$path/output/)
 classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, label=1-2-3-4-5-6,inputdir=$path/input/,outputdir=$path/output/)
-classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=2,inputdir=$path/input/,outputdir=$path/output/)
+classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=2,inputdir=$path/input/,outputdir=$path/output_plot/)
 count.groups(shared=final.tx.shared,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
@@ -531,8 +534,8 @@ corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, m
      while ($loop) {
          $check_run = exec("qstat -j $id_job");
          if ($check_run == false) {
-             echo "Go to plot graph r ->";
-           //  plot_graph_r($user, $id, $project, $path);
+             echo "Go to create_file_input_heatmap ->";
+             create_file_input_heatmap($user, $id, $project, $path);
              break;
          }
      }
@@ -543,10 +546,67 @@ corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, m
  }
 
 
+
+ function create_file_input_heatmap($user, $id, $project, $path){
+     echo "\n";
+     echo "Run create_file_input_heatmap :";
+     $jobname = $user . "_" . $id . "_create_file_input";
+     $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_heatmap.php";
+     exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat, $output);
+     $id_job = ""; # give job id
+     foreach ($output as $key_var => $value) {
+         if ($key_var == "1") {
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if ($check_run == false) {
+             echo "Go to create_file_input_abun ->";
+             create_file_input_abun($user, $id, $project, $path);
+             break;
+         }
+     }
+
+ }
+
+
+function create_file_input_abun($user, $id, $project, $path){
+    echo "\n";
+    echo "Run create_file_input_abun :";
+    $jobname = $user . "_" . $id . "_create_file_input_abun";
+    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_abundance.php";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Go to plot_graph_r_heartmap ->";
+              plot_graph_r_heartmap($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
+
+
  function plot_graph_r_heartmap($user, $id, $project, $path){
      echo "\n";
      echo "Run plot_graph_r_heartmap :";
-     $path_input_csv = "owncloud/data/$user/files/$project/data/input/file_after_reverse.csv";
+     $path_input_csv = "owncloud/data/$user/files/$project/data/output/file_after_reverse.csv";
      $path_to_save = "owncloud/data/$user/files/$project/data/output/heartmap.png";
      $jobname = $user . "_" . $id . "_plot_graph_r";
      $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript R_Script/heatmapPlottest.R $path_input_csv $path_to_save";

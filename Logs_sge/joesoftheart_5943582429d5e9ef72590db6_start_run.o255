@@ -1,0 +1,18 @@
+
+Run classify_system :go to phylotype_count->
+Run phylotype_count :go to read_log_sungrid_phylotype_count->
+Run read_log_sungrid_phylotype_count :10393<br>Go to sub_sample_sammary->
+Run sub_sample_summary :go to plot_graph->S1_S1
+S2_S3
+S3_S5
+S4_S7
+
+
+Run plot_graph :Go to create_file_input_heatmap ->
+Run create_file_input_heatmap :Go to create_file_input_abun ->
+Run create_file_input_abun :Go to plot_graph_r_heartmap ->
+Run plot_graph_r_heartmap :Go to plot_graph_r_NMD ->
+Run plot_graph_r_NMD :Go to plot_graph_r_Rare->
+Run plot_graph_r_Rare :Go to plot_graph_r_Abun ->
+Run plot_graph_r_Abun :Finish Abun ->
+
