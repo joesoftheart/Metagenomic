@@ -723,40 +723,25 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                  <div class="col-lg-11 col-lg-push-1 uk-margin"><label> Venn Diagram</label></div>
                                                      <label class="col-lg-11 col-lg-push-2 ">Please put the sample name : </label>
-                                                     <label class="col-lg-2 col-lg-push-2 ">
-                                                         <select class="uk-select" name="venn1">
                                                     
-                                                             <option value=""> soils1_1</option>
-                                                             <option value=""> soils2_1</option>
-                                                             <option value=""> soils3_1</option>
-                                                             <option value=""> soils4_1</option>    
+                                                     <label class="col-lg-2 col-lg-push-2 ">
+                                                         <select class="uk-select" name="venn1" id="venn1">
+                 
                                                         </select>
                                                      </label>
                                                      <label class="col-lg-2 col-lg-push-2 ">
-                                                         <select class="uk-select" name="venn2">
-                                                             
-                                                             <option value=""> soils1_1</option>
-                                                             <option value=""> soils2_1</option>
-                                                             <option value=""> soils3_1</option>
-                                                             <option value=""> soils4_1</option>
+                                                         <select class="uk-select" name="venn2" id="venn2">
+   
                                                         </select>
                                                      </label>
                                                      <label class="col-lg-2 col-lg-push-2 ">
-                                                         <select class="uk-select" name="venn3">
-                                                             
-                                                             <option value=""> soils1_1</option>
-                                                             <option value=""> soils2_1</option>
-                                                             <option value=""> soils3_1</option>
-                                                             <option value=""> soils4_1</option> 
+                                                         <select class="uk-select" name="venn3" id="venn3">
+                                                            
                                                          </select>
                                                      </label>
                                                      <label class="col-lg-2 col-lg-push-2 ">
-                                                         <select class="uk-select" name="venn4">
-                                                            
-                                                             <option value=""> soils1_1</option>
-                                                             <option value=""> soils2_1</option>
-                                                             <option value=""> soils3_1</option>
-                                                             <option value=""> soils4_1</option>
+                                                         <select class="uk-select" name="venn4" id="venn4">
+                                                           
                                                          </select>
                                                      </label>
                                               
@@ -1061,9 +1046,6 @@ if (isset($this->session->userdata['logged_in'])) {
                   $(".Pre-show3").show();
                   get_analysis(array_data);
             });
-
-
-            
       
         });
          
@@ -1247,7 +1229,7 @@ if (isset($this->session->userdata['logged_in'])) {
                     url:"<?php echo base_url('Run_advance/check_subsample'); ?>",
                     data:{job_sample: jobsample },
                     success:function(data){
-
+                   
                      var sample_data = $.parseJSON(data);
                       if(sample_data[0] == "0"){
 
@@ -1274,7 +1256,19 @@ if (isset($this->session->userdata['logged_in'])) {
                              $('.uk-child-width-expand > .pre2').next('li').find('a').trigger('click'); 
                              $(".Pre-show2").hide();
                              $(".Pre-test2").show();
-                           
+                             
+                             var group = "";
+                             group += "<option value=0> </option>";
+                             for (var i=0; i < sample_data[2].length; i++) {
+                                   group += "<option value="+sample_data[2][i]+">"+sample_data[2][i]+"</option>"; 
+                                   
+                             }
+
+                             $('#venn1').html(group);
+                             $('#venn2').html(group);
+                             $('#venn3').html(group);
+                             $('#venn4').html(group);
+
                       }else{
                          
                          time = 20;  

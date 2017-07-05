@@ -118,23 +118,29 @@
                 $alignment = "silva.v4.fasta";
             }
             else if ($alignment == "gg") {
-                $alignment = "gg";
+                $alignment = "gg_13_8_99.fasta";
             }
             else if ($alignment == "rdp") {
-                $alignment = "rdp";
+                $alignment = "trainset16_022016.rdp.fasta";
             }
     
         
 
+         $reference = '';
+         $taxonomy ='';
         # Check variable classifly
+
             if($classifly == "silva"){
-             $classifly = 'silva';
+              $reference = 'silva.nr_v128.align';
+              $taxonomy ='silva.nr_v128.tax';
             }
             else if($classifly == "gg") {
-             $classifly = 'gg';
+              $reference = 'gg_13_8_99.fasta';
+              $taxonomy ='gg_13_8_99.gg.tax';
             }
              else if($classifly == "rdp") {
-             $classifly = 'rdp';
+              $reference = 'trainset16_022016.rdp.fasta';
+              $taxonomy = 'trainset16_022016.rdp.tax';
             }
 
 
@@ -170,9 +176,9 @@
                         $this->mongo_db->where(array('id_project'=> $id_project))->set('classifly', $classifly)->update('advance_classifly');     
                   }
 
-       
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classifly $cutoff $taxon $path_input $path_out";
-
+                   $taxon = str_replace(";", ",", $taxon);
+                   $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out";
+                  
             }
             elseif ($project_analysis == "otu") {
 
@@ -187,8 +193,9 @@
                         # update classifly
                         $this->mongo_db->where(array('id_project'=> $id_project))->set('classifly', $project_analysis)->update('advance_classifly');     
                   }
-
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $classifly $cutoff $taxon $path_input $path_out";
+                  
+                  $taxon = str_replace(";", ",", $taxon); 
+                  $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out";
             }
 
            
@@ -296,6 +303,7 @@
 
            # return data read file
            echo json_encode($data_read_count);
+
       }
 
 
@@ -368,7 +376,7 @@
 
          $id_job = trim($id_job);
          
-         $sample_array = array($id_job,$classifly);
+         $sample_array = array($id_job,$classifly,$project_analysis,$user,$project);
 
          echo json_encode($sample_array);
 
@@ -378,17 +386,39 @@
 
       public function check_subsample(){
 
-
         $sample_job = $_REQUEST['job_sample'];
         $id_job = $sample_job[0];
         $classifly = $sample_job[1];
+        $project_analysis = $sample_job[2];
+        $user = $sample_job[3];
+        $project = $sample_job[4];
         
         $check_run = exec("qstat -j $id_job ");
 
             if($check_run == false){
-                  $up = array(0,$classifly);
-                 echo json_encode($up);
 
+               # Check type Project Phylotype OTU
+               if($project_analysis == "phylotype"){
+
+                  $file = FCPATH."owncloud/data/$user/files/$project/data/output/final.tx.count.summary";
+
+                 }
+               elseif ($project_analysis == "otu") {
+
+                  $file = FCPATH."owncloud/data/$user/files/$project/data/output/final.opti_mcc.count.summary";
+               }
+
+                $sam_name = array();
+                $myfile = fopen($file,'r') or die ("Unable to open file");
+                while(($lines = fgets($myfile)) !== false){
+                       $var =  explode("\t", $lines);
+                       array_push($sam_name, $var[0]);
+                }
+                fclose($myfile);
+
+                $up = array(0,$classifly,$sam_name);
+                echo json_encode($up);
+ 
             }else{
 
                $up = array(1,$classifly);
@@ -398,9 +428,8 @@
 
       }
 
-
+     
       public function run_analysis(){
-
 
 
          $data = $_REQUEST['data_analysis'];

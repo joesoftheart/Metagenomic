@@ -13,7 +13,8 @@
 
 
          if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != ""){
-             sub_sample($user,$project,$path_in,$path_out);
+             
+             //sub_sample($user,$project,$path_in,$path_out);
 
          }else{
               echo "user : ".$user."\n";
@@ -32,7 +33,7 @@
   	   $cmd = "sub.sample(shared=final.opti_mcc.shared, size=".$GLOBALS['size'].",inputdir=$path_in,outputdir=$path_out)";
 
         file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-            $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+            $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur1391/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
 
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";

@@ -13,7 +13,7 @@
 
          if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != ""){
              
-             //sub_sample($user,$project,$path_in,$path_out);
+             sub_sample($user,$project,$path_in,$path_out);
 
          }else{
               echo "user : ".$user."\n";
