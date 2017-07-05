@@ -2,11 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51f65c25-9315-40cb-bcf2-9a9b2c1dd449" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" afterPath="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Projects.php" afterPath="$PROJECT_DIR$/application/controllers/Projects.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/projects.php" afterPath="$PROJECT_DIR$/application/views/projects.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_align_seqs.e283" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_align_seqs.o283" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_classify_system.e285" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_classify_system.o285" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input.e289" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input.o289" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input_abun.e290" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input_abun.o290" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_makecontig_summary.e282" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_makecontig_summary.o282" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_phylotype_count.e286" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_phylotype_count.o286" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_plot_graph.e288" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_plot_graph.o288" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_plot_graph_r.e291" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_plot_graph_r.o291" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_run_makefile.e281" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_run_makefile.o281" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_screen_remove.e284" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_screen_remove.o284" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.e280" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o280" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_sub_sample_sammary.e287" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_sub_sample_sammary.o287" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Abun.e294" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Abun.o294" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_NMD.e292" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_NMD.o292" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Rare.e293" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Rare.o293" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core.24503" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core.25079" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core.29885" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,7 +55,7 @@
       <file leaf-file-name="standard_run_phylotype.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Scripts/standard_run_phylotype.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
+            <state relative-caret-position="-228">
               <caret line="653" column="30" lean-forward="false" selection-start-line="653" selection-start-column="30" selection-end-line="653" selection-end-column="30" />
               <folding />
             </state>
@@ -497,18 +525,17 @@
       <workItem from="1498718079184" duration="5655000" />
       <workItem from="1498790049778" duration="15113000" />
       <workItem from="1499222115615" duration="25000" />
-      <workItem from="1499222178872" duration="12397000" />
+      <workItem from="1499222178872" duration="12459000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="716754000" />
+    <option name="totallyTimeSpent" value="716816000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="25" width="1604" height="1154" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2775" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2775" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -670,7 +697,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/standard_run_phylotype.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
+        <state relative-caret-position="-228">
           <caret line="653" column="30" lean-forward="false" selection-start-line="653" selection-start-column="30" selection-end-line="653" selection-end-column="30" />
           <folding />
         </state>
