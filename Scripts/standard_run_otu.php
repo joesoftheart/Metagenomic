@@ -9,7 +9,7 @@ putenv("PATH=$PATH");
 
 
 if ($user != null && $project != null  && $path != null && $id != null){
-    phylotype_count($user,$id,$project,$path);
+    run($user,$id,$project,$path);
 
 
 }
