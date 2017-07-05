@@ -2,39 +2,64 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51f65c25-9315-40cb-bcf2-9a9b2c1dd449" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_align_seqs.e283" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_align_seqs.o283" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_classify_system.e285" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_classify_system.o285" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input.e289" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input.o289" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input_abun.e290" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input_abun.o290" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_makecontig_summary.e282" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_makecontig_summary.o282" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_phylotype_count.e286" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_phylotype_count.o286" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_plot_graph.e288" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_plot_graph.o288" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_plot_graph_r.e291" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_plot_graph_r.o291" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_run_makefile.e281" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_run_makefile.o281" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_screen_remove.e284" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_screen_remove.o284" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.e280" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o280" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_sub_sample_sammary.e287" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_sub_sample_sammary.o287" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Abun.e294" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Abun.o294" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_NMD.e292" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_NMD.o292" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Rare.e293" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Rare.o293" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core.24503" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core.25079" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core.29885" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_align_seqs.e1426" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_classify_system.e1428" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_create_file_input.o1432" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_create_file_input_abun.o1433" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_makecontig_summary.e1425" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_phylotype_count.e1429" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_plot_graph.e1431" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_plot_graph_r.o1434" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_run_makefile.e1424" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_sub_sample_sammary.e1430" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624plot_graph_r_Abun.o1437" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624plot_graph_r_NMD.o1435" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624plot_graph_r_Rare.e1436" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/CatchAllCmdL.exe" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/bl2seq" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/blastall" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/blastclust" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/blastpgp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/copymat" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/fastacmd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/formatdb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/formatrpsdb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/impala" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/makemat" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/megablast" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/rpsblast" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/blast/bin/seedtop" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/mothur" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/uchime" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/vsearch" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_align_seqs.o1426" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_classify_system.o1428" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_create_file_input.e1432" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_create_file_input_abun.e1433" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_makecontig_summary.o1425" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_phylotype_count.o1429" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_plot_graph.o1431" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_plot_graph_r.e1434" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_screen_remove.e1427" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_screen_remove.o1427" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_start_run.e1423" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_start_run.o1423" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_sub_sample_sammary.o1430" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624plot_graph_r_Abun.e1437" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624plot_graph_r_NMD.e1435" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624plot_graph_r_Rare.o1436" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Mothur1391/LICENSE" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Mothur/mothur.1498531239.logfile" afterPath="$PROJECT_DIR$/Logs_sge/aumza_595c570881b8133e0fead624_run_makefile.o1424" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/advance_run_otu.php" afterPath="$PROJECT_DIR$/Scripts/advance_run_otu.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/advance_run_otu2.php" afterPath="$PROJECT_DIR$/Scripts/advance_run_otu2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/advance_run_phylotype.php" afterPath="$PROJECT_DIR$/Scripts/advance_run_phylotype.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/advance_run_phylotype2.php" afterPath="$PROJECT_DIR$/Scripts/advance_run_phylotype2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/advance_run_phylotype3.php" afterPath="$PROJECT_DIR$/Scripts/advance_run_phylotype3.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" afterPath="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/config.php" afterPath="$PROJECT_DIR$/application/config/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Run_advance.php" afterPath="$PROJECT_DIR$/application/controllers/Run_advance.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Run_owncloud.php" afterPath="$PROJECT_DIR$/application/controllers/Run_owncloud.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/projects.php" afterPath="$PROJECT_DIR$/application/views/projects.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -55,8 +80,8 @@
       <file leaf-file-name="standard_run_phylotype.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Scripts/standard_run_phylotype.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-228">
-              <caret line="653" column="30" lean-forward="false" selection-start-line="653" selection-start-column="30" selection-end-line="653" selection-end-column="30" />
+            <state relative-caret-position="357">
+              <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -85,9 +110,54 @@
       <file leaf-file-name="projects.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/projects.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="905" column="118" lean-forward="false" selection-start-line="905" selection-start-column="114" selection-end-line="905" selection-end-column="118" />
-              <folding />
+            <state relative-caret-position="-238">
+              <caret line="890" column="118" lean-forward="false" selection-start-line="890" selection-start-column="118" selection-end-line="890" selection-end-column="118" />
+              <folding>
+                <marker date="1499251781879" expanded="true" signature="77971:77995" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="77971:78115" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="77971:78241" ph="{&quot;type&quot;: &quot;post&quot;...}" />
+                <marker date="1499251781879" expanded="true" signature="77971:78259" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="77971:78271" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="77971:78288" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="77971:82828" ph="..." />
+                <marker date="1499251781879" expanded="true" signature="77999:78091" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="78154:78223" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="78327:79086" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="78389:79061" ph="{&quot;type&quot;: &quot;post&quot;...}" />
+                <marker date="1499251781879" expanded="true" signature="78492:78532" ph="..." />
+                <marker date="1499251781879" expanded="true" signature="78630:78939" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="78752:78853" ph="//..." />
+                <marker date="1499251781879" expanded="true" signature="78978:79047" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="79122:80357" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="79233:80340" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="79325:80328" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="79350:80310" ph="{&quot;type&quot;: &quot;post&quot;...}" />
+                <marker date="1499251781879" expanded="true" signature="79453:79494" ph="..." />
+                <marker date="1499251781879" expanded="true" signature="79588:80184" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="79754:79980" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="79984:80160" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="80223:80292" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="80393:81581" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="80414:81569" ph="{&quot;type&quot;: &quot;post&quot;...}" />
+                <marker date="1499251781879" expanded="true" signature="80517:80559" ph="..." />
+                <marker date="1499251781879" expanded="true" signature="80652:81443" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="80807:81398" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="80876:81291" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="81295:81374" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="81482:81551" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="81621:81885" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="81713:81793" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="81797:81875" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="81917:82183" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="82009:82090" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="82094:82173" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="82215:82496" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="82316:82400" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="82404:82486" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="82528:82803" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="82625:82708" ph="{...}" />
+                <marker date="1499251781879" expanded="true" signature="82712:82793" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -210,11 +280,11 @@
         <option value="$PROJECT_DIR$/R_Script/Abundancebarplottest.R" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_classify_system.o253" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o255" />
-        <option value="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" />
         <option value="$PROJECT_DIR$/application/controllers/Projects.php" />
         <option value="$PROJECT_DIR$/application/views/projects.php" />
         <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/R_Script/create_input_abundance.php" />
+        <option value="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" />
       </list>
     </option>
   </component>
@@ -525,17 +595,18 @@
       <workItem from="1498718079184" duration="5655000" />
       <workItem from="1498790049778" duration="15113000" />
       <workItem from="1499222115615" duration="25000" />
-      <workItem from="1499222178872" duration="12459000" />
+      <workItem from="1499222178872" duration="12543000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="716816000" />
+    <option name="totallyTimeSpent" value="716900000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="25" width="1604" height="1154" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2775" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2775" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -673,9 +744,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/projects.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="905" column="118" lean-forward="false" selection-start-line="905" selection-start-column="114" selection-end-line="905" selection-end-column="118" />
-          <folding />
+        <state relative-caret-position="-238">
+          <caret line="890" column="118" lean-forward="false" selection-start-line="890" selection-start-column="118" selection-end-line="890" selection-end-column="118" />
+          <folding>
+            <marker date="1499251781879" expanded="true" signature="77971:77995" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="77971:78115" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="77971:78241" ph="{&quot;type&quot;: &quot;post&quot;...}" />
+            <marker date="1499251781879" expanded="true" signature="77971:78259" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="77971:78271" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="77971:78288" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="77971:82828" ph="..." />
+            <marker date="1499251781879" expanded="true" signature="77999:78091" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="78154:78223" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="78327:79086" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="78389:79061" ph="{&quot;type&quot;: &quot;post&quot;...}" />
+            <marker date="1499251781879" expanded="true" signature="78492:78532" ph="..." />
+            <marker date="1499251781879" expanded="true" signature="78630:78939" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="78752:78853" ph="//..." />
+            <marker date="1499251781879" expanded="true" signature="78978:79047" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="79122:80357" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="79233:80340" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="79325:80328" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="79350:80310" ph="{&quot;type&quot;: &quot;post&quot;...}" />
+            <marker date="1499251781879" expanded="true" signature="79453:79494" ph="..." />
+            <marker date="1499251781879" expanded="true" signature="79588:80184" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="79754:79980" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="79984:80160" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="80223:80292" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="80393:81581" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="80414:81569" ph="{&quot;type&quot;: &quot;post&quot;...}" />
+            <marker date="1499251781879" expanded="true" signature="80517:80559" ph="..." />
+            <marker date="1499251781879" expanded="true" signature="80652:81443" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="80807:81398" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="80876:81291" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="81295:81374" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="81482:81551" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="81621:81885" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="81713:81793" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="81797:81875" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="81917:82183" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="82009:82090" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="82094:82173" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="82215:82496" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="82316:82400" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="82404:82486" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="82528:82803" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="82625:82708" ph="{...}" />
+            <marker date="1499251781879" expanded="true" signature="82712:82793" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -697,8 +813,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/standard_run_phylotype.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-228">
-          <caret line="653" column="30" lean-forward="false" selection-start-line="653" selection-start-column="30" selection-end-line="653" selection-end-column="30" />
+        <state relative-caret-position="357">
+          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
           <folding />
         </state>
       </provider>

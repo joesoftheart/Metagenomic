@@ -19,9 +19,37 @@ class Run_owncloud extends CI_Controller {
   
     }
 
+    public function ex_string(){
+        $lable = explode('_', "gg_13_8_99.fasta");
+        echo $lable[0];
+    }
+     
+
+     public function replace_group(){
+
+       $file = "owncloud/data/admin/files/mothurphylotype/data/output/stability.contigs.groups";
+
+       $data_w = array();
+
+       $lines = file($file);
+
+        foreach($lines as $line) {
+
+               $out = explode("\t", $line);
+              
+               $out[1] =  str_replace("-", "_", $out[1]);
+
+               $data = $out[0]."\t".$out[1];
+               array_push($data_w,$data);
+
+         }
+
+            file_put_contents($file, $data_w);
+
+     }
 
         
-        public function show_log_last_line()
+      public function show_log_last_line()
         {
            $file = FCPATH."q_advance.o849";
            $count = 0 ;
@@ -39,7 +67,7 @@ class Run_owncloud extends CI_Controller {
         }
 
 
-        public function fasta_read(){
+      public function fasta_read(){
            $file = FCPATH."img/trainset16_022016.rdp.fasta"; 
            $check = "";
            $myfile = fopen($file,'r') or die ("Unable to open file");
@@ -101,46 +129,9 @@ class Run_owncloud extends CI_Controller {
        }
 
 
-       public function set_group(){
-          $file = FCPATH."owncloud/data/admin/files/data_mothur/data/input/soilpro.metadata";
-            $l = 0;
-            $va_array = array(); 
-            $myfile = fopen($file,'r') or die ("Unable to open file");
-            while(($lines = fgets($myfile)) !== false){
-                 
-                 $var =  explode("\t", $lines);
-                   if($l > 0){
-                      array_push($va_array, $var[0]); 
-                   }
-                  $l++;
-            }
-           fclose($myfile);
-           
-           $set_array = array();
-            
 
-           for($i = 0; $i < sizeof($va_array);$i++ ) {
-                
-                for($j = $i+1 ; $j < sizeof($va_array);$j++ ){
-                    echo $va_array[$i]."-".$va_array[$j]."<br/>";
-                }
-                echo "<br/>";
-               
-           }
-
-            for($i = 0; $i < sizeof($va_array);$i++ ) {
-                
-                for($j = $i+1 ; $j < sizeof($va_array);$j++ ){
-                    echo $va_array[$i]."-".$va_array[$j]."-".$va_array[$j]."<br/>";
-                }
-                echo "<br/>";
-               
-           }
-
-       }
-
-
-        public function read_count(){
+       public function read_count(){
+        
            $file = FCPATH."owncloud/data/admin/files/data_mothur/data/output/final.opti_mcc.count.summary";
            $count = array();
            $data_read_count = array();
@@ -163,7 +154,7 @@ class Run_owncloud extends CI_Controller {
            }
            echo "final : ".end($data_read_count);
 
-         }
+       }
 
   
 

@@ -11,7 +11,8 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    run($user,$id,$project,$path);
+     #classify_system($user,$id,$project,$path);
+     run($user,$id,$project,$path);
     }
 
 
@@ -327,9 +328,9 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
 remove.lineage(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxon=taxon=Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/output/)
 summary.tax(taxonomy=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=$path/input/,outputdir=$path/output/)
-system(cp owncloud/data/$user/files/$project/data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta owncloud/data/joesoftheart/files/$project/data/output/final.fasta)
-system(cp owncloud/data/$user/files/$project/data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table owncloud/data/joesoftheart/files/$project/data/output/final.count_table)
-system(cp owncloud/data/$user/files/$project/data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy owncloud/data/joesoftheart/files/$project/data/output/final.taxonomy)";
+system(cp owncloud/data/$user/files/$project/data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta owncloud/data/$user/files/$project/data/output/final.fasta)
+system(cp owncloud/data/$user/files/$project/data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table owncloud/data/$user/files/$project/data/output/final.count_table)
+system(cp owncloud/data/$user/files/$project/data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy owncloud/data/$user/files/$project/data/output/final.taxonomy)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
      exec($cmd);
