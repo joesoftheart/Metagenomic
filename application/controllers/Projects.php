@@ -30,6 +30,8 @@ class Projects extends CI_Controller
         $data['rs_process'] = $this->mongo_db->limit(1)->get('status_process');
 
 
+
+
         if ($data != null) {
             foreach ($data['rs'] as $r) {
                 $ar = (string)$r['_id'];

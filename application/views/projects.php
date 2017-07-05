@@ -880,7 +880,19 @@ if (isset($this->session->userdata['logged_in'])) {
                                  </li>
 
                                 <!-- End Analysis -->
+                                    <?php
 
+                                    foreach ($rs as $r) {
+                                        $sample_folder = $r['project_path'];
+                                    }
+                                    $project = basename($sample_folder);
+                                    $user = $this->session->userdata['logged_in']['username'];
+
+                                    $path = "owncloud/data/$user/files/$project/data/output/";
+
+
+
+                                    ?>
 
 
 
@@ -891,7 +903,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                        <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Ven diagram</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/sharedsobs.svg">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/Rare.png">
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>Heatmap</b>

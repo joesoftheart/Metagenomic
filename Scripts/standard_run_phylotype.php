@@ -11,7 +11,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    classify_system($user,$id,$project,$path);
+    run($user,$id,$project,$path);
     }
 
 
@@ -170,8 +170,6 @@ summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/
 }
 
 
-
-
 // Summary-seqs
  function align_seqs($user,$id,$project,$path){
      echo "\n";
@@ -272,7 +270,13 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
         echo "Start : ".$start;
         echo " End : ".$end;
         echo "go to screen_remove->";
-        screen_remove($user,$id, $project,$path,$start,$end);
+        if ($start != null && $end != null){
+            screen_remove($user,$id, $project,$path,$start,$end);
+        }else{
+            echo "\n";
+            echo "Start and End null value";
+        }
+
     }
 
 }
@@ -312,6 +316,8 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
          }
      }
 }
+
+
 // Classify_system
  function classify_system($user,$id, $project,$path){
      echo "\n";
@@ -359,7 +365,7 @@ system(cp owncloud/data/$user/files/$project/data/output/stability.trim.contigs.
     $cmd ="phylotype(taxonomy=final.taxonomy,inputdir=$path/input/,outputdir=$path/output/)
 make.shared(list=final.tx.list, count=final.count_table, label=1-2-3-4-5-6,inputdir=$path/input/,outputdir=$path/output/)
 classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, label=1-2-3-4-5-6,inputdir=$path/input/,outputdir=$path/output/)
-classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=2,inputdir=$path/input/,outputdir=$path/output_plot/)
+classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=2,inputdir=$path/output/,outputdir=$path/output_plot/)
 count.groups(shared=final.tx.shared,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
@@ -386,6 +392,7 @@ count.groups(shared=final.tx.shared,inputdir=$path/input/,outputdir=$path/output
 
 
 function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job){
+
     echo "\n";
     echo "Run read_log_sungrid_phylotype_count :";
     $path_logs = $path . "/logs/";

@@ -2,33 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51f65c25-9315-40cb-bcf2-9a9b2c1dd449" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/Test.R" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/Test.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/file_after_reverse.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/file_before_reverse.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/file_index.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/file_index_phylum.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/file_phylum_count.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/final.tx.groups.rarefaction" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/final.tx.thetayc.2.lt.ave.nmds.axes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/genus.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/genusex1.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/genusex2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/genusex3.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/headgenus.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/heartmap.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/phylum.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/phylumex1.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/phylumex1.xlsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/R_Script/phylumex2.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Mothur/mothur" afterPath="$PROJECT_DIR$/Mothur/mothur" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/root.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/root.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/R_Script/Abundancebarplottest.R" afterPath="$PROJECT_DIR$/R_Script/Abundancebarplottest.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/R_Script/RarefactionSoiltest.R" afterPath="$PROJECT_DIR$/R_Script/RarefactionSoiltest.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/R_Script/create_input_abundance.php" afterPath="$PROJECT_DIR$/R_Script/create_input_abundance.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/R_Script/create_input_heatmap.php" afterPath="$PROJECT_DIR$/R_Script/create_input_heatmap.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" afterPath="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Projects.php" afterPath="$PROJECT_DIR$/application/controllers/Projects.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/projects.php" afterPath="$PROJECT_DIR$/application/views/projects.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,51 +24,61 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Abundancebarplottest.R" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/R_Script/Abundancebarplottest.R">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="standard_run_phylotype.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="standard_run_phylotype.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Scripts/standard_run_phylotype.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="27">
+              <caret line="653" column="30" lean-forward="false" selection-start-line="653" selection-start-column="30" selection-end-line="653" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="joesoftheart_5943582429d5e9ef72590db6_start_run.o255" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o255">
+      <file leaf-file-name="NMDSpcoaplottest.R" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/R_Script/NMDSpcoaplottest.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="joesoftheart_5943582429d5e9ef72590db6_classify_system.o253" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_classify_system.o253">
+      <file leaf-file-name="Projects.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Projects.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="906">
-              <caret line="789" column="0" lean-forward="false" selection-start-line="789" selection-start-column="0" selection-end-line="789" selection-end-column="0" />
+            <state relative-caret-position="527">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_input_abundance.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/R_Script/create_input_abundance.php">
+      <file leaf-file-name="projects.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/projects.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2210">
-              <caret line="130" column="40" lean-forward="false" selection-start-line="130" selection-start-column="40" selection-end-line="130" selection-end-column="40" />
+            <state relative-caret-position="17">
+              <caret line="905" column="118" lean-forward="false" selection-start-line="905" selection-start-column="114" selection-end-line="905" selection-end-column="118" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.htaccess">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="standard_run_otu.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Scripts/standard_run_otu.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="966">
+              <caret line="360" column="29" lean-forward="false" selection-start-line="360" selection-start-column="29" selection-end-line="360" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -100,7 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Total</find>
       <find>final.tx.s</find>
       <find>S1_S1-S2_S3-S3_S5-S4_S7</find>
       <find>S1_</find>
@@ -130,6 +117,7 @@
       <find>col</find>
       <find>cols</find>
       <find>taxon</find>
+      <find>result</find>
     </findStrings>
     <replaceStrings>
       <replace>exec</replace>
@@ -155,7 +143,6 @@
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o132" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o134" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o136" />
-        <option value="$PROJECT_DIR$/application/controllers/Projects.php" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o153" />
         <option value="$PROJECT_DIR$/setting_r.php" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o158" />
@@ -163,10 +150,8 @@
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o184" />
         <option value="$PROJECT_DIR$/R_Script/NMDSpcoaplottest.R" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_58ff5cca838488480e7759de_start_run.o205" />
-        <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/Scripts/standard_run_otu.php" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_594207593cce16f50ea6443c_phylotype_count.o5" />
-        <option value="$PROJECT_DIR$/application/views/projects.php" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_594207853cce16ef0ea6443c_start_run.o17" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o19" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o22" />
@@ -192,13 +177,16 @@
         <option value="$PROJECT_DIR$/R_Script/create_input_heatmap.php" />
         <option value="$PROJECT_DIR$/owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/final.tx.2.subsample.2.heatmap.bin.svg" />
         <option value="$PROJECT_DIR$/R_Script/RarefactionSoiltest.R" />
-        <option value="$PROJECT_DIR$/R_Script/create_input_abundance.php" />
         <option value="$PROJECT_DIR$/owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_phylum_count.txt" />
         <option value="$PROJECT_DIR$/R_Script/Test.R" />
         <option value="$PROJECT_DIR$/R_Script/Abundancebarplottest.R" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_classify_system.o253" />
-        <option value="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" />
         <option value="$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o255" />
+        <option value="$PROJECT_DIR$/Scripts/standard_run_phylotype.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Projects.php" />
+        <option value="$PROJECT_DIR$/application/views/projects.php" />
+        <option value="$PROJECT_DIR$/.htaccess" />
+        <option value="$PROJECT_DIR$/R_Script/create_input_abundance.php" />
       </list>
     </option>
   </component>
@@ -246,8 +234,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -298,7 +286,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Logs_sge" />
+              <option name="myItemId" value="owncloud" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -313,24 +301,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Metagenomic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Metagenomic" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -525,18 +495,20 @@
       <workItem from="1498208626245" duration="33109000" />
       <workItem from="1498622800299" duration="15699000" />
       <workItem from="1498718079184" duration="5655000" />
-      <workItem from="1498790049778" duration="8353000" />
+      <workItem from="1498790049778" duration="15113000" />
+      <workItem from="1499222115615" duration="25000" />
+      <workItem from="1499222178872" duration="12397000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="697572000" />
+    <option name="totallyTimeSpent" value="716754000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="25" width="1604" height="1154" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2775" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -577,11 +549,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.e131" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o131" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input.o134" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input_abun.e135" />
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.e133" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o133" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input.o137" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input_abun.e138" />
@@ -593,20 +560,11 @@
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input.e155" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input.e170" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input_abun.e171" />
-    <entry file="file://$PROJECT_DIR$/R_Script/create_input_heatmap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_NMD.e173" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Abun.e175" />
     <entry file="file://$PROJECT_DIR$/owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/final.tx.2.subsample.2.heatmap.bin.svg" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o176" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o178" />
-    <entry file="file://$PROJECT_DIR$/owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/Rare.png" />
     <entry file="file://$PROJECT_DIR$/R_Script/RarefactionSoiltest.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -619,14 +577,6 @@
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Abun.e183" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Abun.o186" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6plot_graph_r_Abun.e186" />
-    <entry file="file://$PROJECT_DIR$/application/controllers/Projects.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="863">
-          <caret line="91" column="20" lean-forward="false" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/Abun.png" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input.e190" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input.o190" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input_abun.e191" />
@@ -638,14 +588,6 @@
     <entry file="file://$PROJECT_DIR$/owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/final.count_table" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input.e226" />
     <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_create_file_input_abun.e227" />
-    <entry file="file://$PROJECT_DIR$/R_Script/create_input_abundance.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2210">
-          <caret line="130" column="40" lean-forward="false" selection-start-line="130" selection-start-column="40" selection-end-line="130" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_phylum_count.txt" />
     <entry file="file://$PROJECT_DIR$/R_Script/JOEDDDD.png" />
     <entry file="file://$PROJECT_DIR$/R_Script/Test.R" />
@@ -653,27 +595,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_classify_system.o253">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="906">
-          <caret line="789" column="0" lean-forward="false" selection-start-line="789" selection-start-column="0" selection-end-line="789" selection-end-column="0" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_classify_system.o253" />
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o248" />
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o255" />
+    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_phylotype_count.o271" />
+    <entry file="file://$PROJECT_DIR$/owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/Abun.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/standard_run_phylotype.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/Rare.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o248">
+    <entry file="file://$PROJECT_DIR$/R_Script/NMDSpcoaplottest.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -681,10 +620,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Logs_sge/joesoftheart_5943582429d5e9ef72590db6_start_run.o255">
+    <entry file="file://$PROJECT_DIR$/Scripts/standard_run_otu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="966">
+          <caret line="360" column="29" lean-forward="false" selection-start-line="360" selection-start-column="29" selection-end-line="360" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Projects.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/projects.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="905" column="118" lean-forward="false" selection-start-line="905" selection-start-column="114" selection-end-line="905" selection-end-column="118" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R_Script/create_input_abundance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="51" lean-forward="true" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R_Script/create_input_heatmap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/standard_run_phylotype.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="653" column="30" lean-forward="false" selection-start-line="653" selection-start-column="30" selection-end-line="653" selection-end-column="30" />
           <folding />
         </state>
       </provider>
