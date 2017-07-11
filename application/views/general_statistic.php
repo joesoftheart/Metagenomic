@@ -84,7 +84,7 @@ if (isset($this->session->userdata['logged_in'])) {
                     </div>
                 </div>
                 <?php
-                $file_read = array( 'fastq');
+                $file_read = array('fastq');
                 $path_owncloud = "../owncloud/data/" . $username . "/files/";
                 $cdir = array();
                 $result_folder = array();

@@ -15,7 +15,7 @@ png(args[2],width=8, height=6, units="in", res=300)
 drawout=ggplot(data = NMDS, aes(MDS1, MDS2)) + geom_point(aes(color = group),size=2.5, alpha=0.5)+
   geom_hline(yintercept=0, linetype="dashed", size=.2) + geom_vline(xintercept=0, linetype="dashed", size=.2)+
   geom_point(aes(color = group),size=2.5, alpha=0.5)+
-  scale_color_manual(labels = c("Soil1", "Soil2","Soil3","Soil4"), values=c("red","green3","orange","blue"))+
+  scale_color_manual(labels = nmds$group, values=c("red","green3","orange","blue"))+
   guides(color=guide_legend("Source"))+
   geom_text_repel(aes(label = nmds$group), box.padding = unit(0.35, "lines"), segment.color=NA, size=3.5)+
   theme_bw()+
