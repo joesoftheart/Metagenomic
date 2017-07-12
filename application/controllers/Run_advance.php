@@ -19,6 +19,34 @@
         
     }
 
+
+    public function create_file_design(){
+
+      $this->load->view('excel_test');
+    }
+
+    public function create_file_metadata(){
+      
+    }
+
+    public function write_excel(){
+
+       $design_json = $_REQUEST['data_excel'];
+      
+       $file = FCPATH."Mothur1391/text.design";
+
+       file_put_contents($file, $design_json); 
+
+       echo json_encode($design_json);
+
+       
+
+
+
+
+
+    }
+
     public function check_fasta(){
       
 
