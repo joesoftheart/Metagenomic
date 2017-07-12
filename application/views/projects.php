@@ -705,10 +705,10 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     </div>
                                                     <div class="col-lg-5 col-lg-pull-4">
                                                        <select class="uk-select" name="">
-                                                             <option value=""> 0.03 </option>
-                                                             <option value=""> 0.05 </option>
-                                                             <option value=""> 0.10 </option>
-                                                             <option value=""> 0.20</option>
+                                                             <option value="0.03" selected> 0.03 </option>
+                                                             <option value="0.05"> 0.05 </option>
+                                                             <option value="0.10"> 0.10 </option>
+                                                             <option value="0.20"> 0.20</option>
                                                             
                                                         </select>
                                                     </div>
@@ -721,12 +721,12 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <div class="radio">
                                                         <label >
                                                            <input name="optionsRadios" value="1" type="radio"> set the size of your smallest group :
-                                                           <input class="uk-input" name="size_alpha" type="number" > 
+                                                           <input class="uk-input" name="size_alpha" type="number" min="0"> 
                                                         </label>
                                                     </div>
                                                     <div class="radio">
                                                         <label>
-                                                           <input name="optionsRadios"  value="0" type="radio" checked> No need set the size
+                                                           <input name="optionsRadios" value="0" type="radio" checked> No need set the size
                                                         </label>
                                                     </div>
                                                  </div>
@@ -738,12 +738,12 @@ if (isset($this->session->userdata['logged_in'])) {
                                                      <div class="radio">
                                                         <label >
                                                            <input name="optionsRadios1" value="1" type="radio"> set the size of your smallest group :
-                                                           <input class="uk-input" name="size_beta" type="number" > 
+                                                           <input class="uk-input" name="size_beta" type="number" min="0" > 
                                                         </label>
                                                      </div>
                                                      <div class="radio">
                                                         <label>
-                                                           <input name="optionsRadios1"  value="0" type="radio" checked> No need set the size
+                                                           <input name="optionsRadios1" value="0" type="radio" checked> No need set the size
                                                         </label>
                                                      </div>
                                                  </div>
@@ -815,12 +815,28 @@ if (isset($this->session->userdata['logged_in'])) {
                                                          </select>
                                                      </div>
                                                      <div class="col-lg-12 uk-margin"> </div>
-                                                     <div class="col-lg-10 col-lg-push-1"><label> Optional : </label></div>
+                                                    
+                                                    
+                                                     <div class="col-lg-10 col-lg-push-1" id="plus">
+                                                           <label> Optional <span class="glyphicon glyphicon-plus-sign" id="plus_option"> </span> </label>
+                                                           
+                                                     </div>
+                                                     <div class="col-lg-10 col-lg-push-1" id="move" style="display:none">
+                                                           <label> Optional <span class="glyphicon glyphicon-minus-sign" id="move_option"></span> </label>
+                                                           
+                                                     </div>
 
+                                                     <div class="optional" style="display:none">
                                                      <div class="col-lg-8 col-lg-push-2 "> 
-                                                         <label> Please upload file design ? 
-                                                         <input type="file">
+                                                         <label> Create file design           
+                                                          <a href="<?php echo site_url('Run_advance/create_file_design');?>" target="_blank">
+                                                               <input type="button" value="create design" id="check_design">  
+                                                          </a>
                                                          </label>
+                                                         <div>
+                                                         <p id="pass_design" class="fa fa-file-text-o"> No file design </p>
+                                                         </div>
+
                                                      </div>
                                                      <div class="col-lg-8 col-lg-push-2 ">                
                                                      <div class="radio">
@@ -835,9 +851,14 @@ if (isset($this->session->userdata['logged_in'])) {
                                                      </div>
                                                      </div>
                                                      <div class="col-lg-10 col-lg-push-2 uk-margin"> 
-                                                         <label> Please upload file metadata ? 
-                                                         <input type="file">
+                                                         <label> Create file metadata  
+                                                             <a href="<?php echo base_url('Run_advance/create_file_metadata'); ?>"  target="_blank">
+                                                               <input type="button" value="create metadata" id="check_metadata">  
+                                                          </a>
                                                          </label>
+                                                         <div>
+                                                           <p id="pass_metadata" class="fa fa-file-text-o"> No file metadata </p>
+                                                         </div>
                                                      </div>
                                                      <div class="col-lg-12 col-lg-push-2"> 
                                                      <div class="radio">
@@ -869,6 +890,9 @@ if (isset($this->session->userdata['logged_in'])) {
                                                              </select>
                                                          </div>
                                                      </div>
+                                                     </div>
+
+
                                                      <div class="col-lg-12 uk-margin"> </div>   
                                                      <div class="col-lg-4 col-lg-push-2">
                                                           <input  id="sub-test3" class="btn btn-default" value="Run Preprocess">
@@ -1028,6 +1052,18 @@ if (isset($this->session->userdata['logged_in'])) {
                 
             });
 
+            $("#plus_option").click(function(){
+                 $(".optional").show();
+                 $("#move").show();
+                 $("#plus").hide();
+            });
+
+            $("#move_option").click(function(){
+                $(".optional").hide();
+                 $("#move").hide();
+                 $("#plus").show();
+            });
+
             $("#back-test").click(function(){
                  $(".Pre-show").hide();
                  $(".Pre-test").show();
@@ -1071,7 +1107,62 @@ if (isset($this->session->userdata['logged_in'])) {
                   $(".Pre-show3").show();
                   get_analysis(array_data);
             });
-      
+
+            $("#check_design").click(function () {
+
+                 var time = 10;
+                 var interval = null;
+                 interval = setInterval(function(){   
+                 time--;
+                    if(time === 0){
+                     $.ajax({ 
+                       type:"post",
+                       datatype:"json",
+                       url:"<?php echo base_url('Run_advance/check_file_design');?>",
+                         success:function(data){
+                             var design = JSON.parse(data);
+                             if(design != "0"){
+                                   clearInterval(interval);
+                                   $('#pass_design').text(" "+design);
+                             }
+                             else{  
+                                  time = 5;  
+                             } 
+                         }
+                     });
+                   }
+
+                 },1000);      
+            });
+
+             $("#check_metadata").click(function(){
+
+                 var time = 10;
+                 var interval = null;
+                 interval = setInterval(function(){   
+                 time--;
+                    if(time === 0){
+                     $.ajax({ 
+                       type:"post",
+                       datatype:"json",
+                       url:"<?php echo base_url('Run_advance/check_file_metadata');?>",
+                         success:function(data){
+                             var metadata = JSON.parse(data);
+                             if(metadata  != "0"){
+                                   clearInterval(interval);
+                                   $('#pass_metadata').text(" "+metadata);
+                             }
+                             else{  
+                                  time = 5;  
+                             } 
+                         }
+                     });
+                   }
+
+                 },1000);      
+                  
+            });
+
         });
          
         $(document).on('change', '#custo_mer', function(){
@@ -1395,8 +1486,8 @@ if (isset($this->session->userdata['logged_in'])) {
                     }
                 });
         }
-        
 
+        
         function checkvalue(){
              var mbig = document.getElementById('mbig');
              if(mbig.value == ""){

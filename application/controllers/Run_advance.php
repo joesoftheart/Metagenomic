@@ -22,27 +22,84 @@
 
     public function create_file_design(){
 
-      $this->load->view('excel_test');
+      $this->load->view('excel_design');
     }
 
     public function create_file_metadata(){
-      
+      $this->load->view('excel_metadata');
     }
 
-    public function write_excel(){
+    public function write_design(){
+       
+       $user = $_REQUEST['user'];
+       $id_project = $_REQUEST['project_id'];
+       $project = "";
+
+       # Query data Project By ID
+       $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
+        foreach ($array_project as $r) {
+          
+                $project = $r['project_name'];
+               
+         }
+
 
        $design_json = $_REQUEST['data_excel'];
       
-       $file = FCPATH."Mothur1391/text.design";
+       $file = FCPATH."Mothur1391/file.design";
 
        file_put_contents($file, $design_json); 
 
-       echo json_encode($design_json);
+       echo json_encode($user);
 
-       
+    }
 
+    public function check_file_design(){
+      
+      $path_file = FCPATH."Mothur1391/file.design";
 
+            if(file_exists($path_file)) {
+              echo json_encode("file.design");
+            }
+            else {
+              echo json_encode("0");
+            }
+    }
 
+     public function check_file_metadata(){
+      
+      $path_file = FCPATH."Mothur1391/file.metadata";
+
+            if(file_exists($path_file)) {
+              echo json_encode("file.metadata");
+            }
+            else {
+              echo json_encode("0");
+            }
+    }
+
+   
+     public function write_metadata(){
+
+       $user = $_REQUEST['user'];
+       $id_project = $_REQUEST['project_id'];
+       $project = "";
+
+       # Query data Project By ID
+       $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
+        foreach ($array_project as $r) {
+          
+                $project = $r['project_name'];
+               
+         }
+
+       $metadata_json = $_REQUEST['data_excel'];
+      
+       $file = FCPATH."Mothur1391/file.metadata";
+
+       file_put_contents($file, $metadata_json); 
+
+       echo json_encode($user);
 
 
     }

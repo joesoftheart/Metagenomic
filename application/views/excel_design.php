@@ -1,6 +1,24 @@
-<h1>Excel Test</h1>
+
+<?php
+if (isset($this->session->userdata['logged_in'])) {
+    $username = ($this->session->userdata['logged_in']['username']);
+    $email = ($this->session->userdata['logged_in']['email']);
+    $id = ($this->session->userdata['logged_in']['_id']);
+    $current_project = ($this->session->userdata['current_project']);
+
+} 
+else {
+    header("location: main/login");
+} 
+
+?>
+
+
+<h2>Create file design</h2>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!--<form>-->
+
+
 
 <button type="button" id="btnAdd">Add new Rows </button>
 <button type="button" id="btnRemoveRow">Remove Rows</button>
@@ -98,7 +116,8 @@ $(document).ready(function () {
 
 
 function getExcel(){
-
+    var user = "<?php echo $username ?>";
+    var project = "<?php echo $current_project ?>";
     var excel = "";
     $("#blacklistgrid").find("tr").each(function () {
         var sep = "";
@@ -112,11 +131,11 @@ function getExcel(){
     $.ajax({
             type:"post",
             datatype:"json",
-            url:"<?php echo base_url('Run_advance/write_excel'); ?>",
+            url:"<?php echo base_url('Run_advance/write_design');?>?user="+user+"&project_id="+project,
             data:{data_excel: excel},
             success:function(data){
-                        var ex = $.parseJSON(data);
-                        //alert(ex);
+                        var ex_u = $.parseJSON(data);
+                        alert("Create design "+ex_u+" success");
                         
              },error:function(e){
                      console.log(e.message);
