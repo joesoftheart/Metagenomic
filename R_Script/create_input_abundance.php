@@ -1,9 +1,10 @@
 <?php
-
+$user = $argv[1];
+$project = $argv[2];
 set_time_limit(60);
-$path_file_original = "../owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output_plot/final.tx.2.cons.tax.plot.summary";
-$file_index_phylum = 'owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_index_phylum.txt';
-$file_phylum_count = 'owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_phylum_count.txt';
+$path_file_original = "../owncloud/data/$user/files/$project/output_plot/final.tx.2.cons.tax.summary";
+$file_index_phylum = "owncloud/data/$user/files/$project/output/file_index_phylum.txt";
+$file_phylum_count = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";
 // $file_after_reverse = 'C:/xampp/htdocs/CreateInput/php_file/file_after_reverse.csv';
 
 if ($file_original = fopen($path_file_original, "r")) {

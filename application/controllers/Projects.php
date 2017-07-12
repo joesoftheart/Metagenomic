@@ -30,6 +30,8 @@ class Projects extends CI_Controller
         $data['rs_process'] = $this->mongo_db->limit(1)->get('status_process');
 
 
+
+
         if ($data != null) {
             foreach ($data['rs'] as $r) {
                 $ar = (string)$r['_id'];
@@ -58,7 +60,7 @@ class Projects extends CI_Controller
         $project = basename($sample_folder);
         $user = $this->session->userdata['logged_in']['username'];
 
-        $path = "owncloud/data/$user/files/$project/data";
+        $path = "owncloud/data/$user/files/$project";
 
         $config['upload_path'] = $path;
         $config['allowed_types'] = '*';

@@ -8,6 +8,9 @@ if (isset($this->session->userdata['logged_in'])) {
     header("location: main/login");
 } ?>
 
+
+
+
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12 ">
@@ -92,7 +95,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     </div>
                                                     <div class="col-lg-7">
                                                         <select class="uk-select uk-margin" disabled>
-                                                            <option>silva.v4.fasta</option>
+                              <option>silva.v4.fasta</option>
                                                         </select>
                                                     </div>
 
@@ -331,14 +334,30 @@ if (isset($this->session->userdata['logged_in'])) {
                                     </li>
                                     <li>
 
+                                        <?php
+
+                                        foreach ($rs as $r) {
+                                            $sample_folder = $r['project_path'];
+                                        }
+                                        $project = basename($sample_folder);
+                                        $user = $this->session->userdata['logged_in']['username'];
+
+                                        $path = "../owncloud/data/$user/files/$project/output/";
+
+
+
+                                        ?>
+
+
+
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Ven diagram</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/sharedsobs.svg">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>final.tx.2.subsample.2.sharedsobs.S1_1_16s_S1-S2_1_16s_S3-S3_1_16s_S5-S4_1_16s_S7.svg">
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>Heatmap</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig3_heatmaptest.jpg">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>heartmap.png">
                                             </div>
                                         </div>
 
@@ -359,18 +378,26 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Rarefaction</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig1_rarefactionSoil.jpg">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>Rare.png">
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>RelativePhylum</b>
-                                                <img class="img-thumbnail"  src="<?php echo base_url(); ?>uploads/Rplot.jpeg">
+                                                <img class="img-thumbnail"  src="<?php echo base_url(); ?><?php echo $path ?>Abun.png">
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">
                                         <b>NMDS</b>
                                         <div class="row">
                                             <div class="col-lg-6 col-lg-offset-3">
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig4_NMDS.jpg">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>NMD.png">
+                                            </div>
+
+                                        </div>
+                                        <hr class="uk-divider-icon">
+                                        <b>Alpha</b>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-lg-offset-3">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>Alpha.png">
                                             </div>
 
                                         </div>
@@ -869,14 +896,12 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
 
-
-
                                    <!-- Result && Graph -->
                                     <li >
                                        <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Ven diagram</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/sharedsobs.svg">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/Rare.png">
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>Heatmap</b>

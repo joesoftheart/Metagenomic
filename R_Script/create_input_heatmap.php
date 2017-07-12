@@ -1,9 +1,11 @@
 <?php
 set_time_limit(60);
-$path_file_original = "../owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output_plot/final.tx.2.cons.tax.plot.summary";
-$file_index = 'owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_index.txt';
-$file_before_reverse = 'owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_before_reverse.txt';
-$file_after_reverse = 'owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_after_reverse.csv';
+$user = $argv[1];
+$project = $argv[2];
+$path_file_original = "../owncloud/data/$user/files/$project/output_plot/final.tx.2.cons.tax.summary";
+$file_index = "owncloud/data/$user/files/$project/output/file_index.txt";
+$file_before_reverse = "owncloud/data/$user/files/$project/output/file_before_reverse.txt";
+$file_after_reverse = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";
 
 if ($file_original = fopen($path_file_original, "r")) {
     $keywords_split_line = preg_split("/[\n]/", fread($file_original, filesize($path_file_original)));

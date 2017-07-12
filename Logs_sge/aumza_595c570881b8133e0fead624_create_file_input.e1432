@@ -1,2 +1,0 @@
-PHP Warning:  fopen(../owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output_plot/final.tx.2.cons.tax.plot.summary): failed to open stream: No such file or directory in /var/www/html/Metagenomic/R_Script/create_input_heatmap.php on line 8
-PHP Warning:  fopen(owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/file_before_reverse.txt): failed to open stream: No such file or directory in /var/www/html/Metagenomic/R_Script/create_input_heatmap.php on line 105
