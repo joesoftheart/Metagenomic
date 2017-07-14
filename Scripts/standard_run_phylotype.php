@@ -12,7 +12,7 @@ putenv("PATH=$PATH");
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
      #classify_system($user,$id,$project,$path);
-    plot_graph_r_NMD($user,$id,$project,$path);
+    run($user,$id,$project,$path);
     }
 
 
@@ -23,9 +23,10 @@ function run($user,$id,$project,$path){
 
 
 
-
+$progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
 // Check file 
  function check_file($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "check_file"."\n", FILE_APPEND);
      echo "\n";
      echo "Run check_file :";
     $path_stability = "../owncloud/data/$user/files/$project/output/stability.files";
@@ -45,6 +46,7 @@ function run($user,$id,$project,$path){
 
 // check file oligos
  function check_oligos($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "check_oligos"."\n", FILE_APPEND);
      echo "\n";
      echo "Run check_oligos :";
     $total_oligo = 0;
@@ -65,13 +67,14 @@ function run($user,$id,$project,$path){
     }
     if($total_oligo == 0){
         echo "go to makecontig_summary -> ";
-        makecontig_summary($user,$id, $project,$path);
+        make_contig_summary($user,$id, $project,$path);
     }
 }
 
 
 // Make file
  function run_makefile($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "run_makefile"."\n", FILE_APPEND);
      echo "\n";
      echo "Run run_makefile :";
     $jobname = $user."_".$id."_run_makefile";
@@ -102,6 +105,7 @@ function run($user,$id,$project,$path){
 
 // Make contig oligos
  function make_contigs_oligos($file_oligo,$user,$id,$project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make_contigs_oligos"."\n", FILE_APPEND);
      echo "\n";
      echo "Run make_contigs_oligos :";
     $path = $path;
@@ -133,10 +137,11 @@ function run($user,$id,$project,$path){
 }
 
 // make.contigs && summary.seqs
- function makecontig_summary($user,$id,$project,$path){
+ function make_contigs_summary($user,$id,$project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make_contigs_summary"."\n", FILE_APPEND);
      echo "\n";
-     echo "Run makecontig_summary";
-    $jobname = $user."_".$id."_makecontig_summary";
+     echo "Run make_contigs_summary";
+    $jobname = $user."_".$id."_make_contigs_summary";
     $cmd ="make.contigs(file=stability.files,processors=8,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
@@ -186,6 +191,7 @@ function replace_group($user,$id, $project,$path){
 
 // make.contigs && summary.seqs
 function screen_seqs($user,$id,$project,$path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "screen_seqs"."\n", FILE_APPEND);
     echo "\n";
     echo "Run screen_seqs";
     $jobname = $user."_".$id."_screen_seqs";
@@ -222,6 +228,9 @@ summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/
 
 // Summary-seqs
  function align_seqs($user,$id,$project,$path){
+     $path_logs = $path . "/logs/";
+     $name = $user."_".$id."_align_seqs.o".$id_job;
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "align_seqs"."\n", FILE_APPEND);
      echo "\n";
      echo "Run align_seqs";
 
@@ -333,6 +342,7 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
 
 // Screen remove
  function screen_remove($user,$id, $project,$path,$start,$end){
+     ile_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "screen_remove"."\n", FILE_APPEND);
      echo "\n";
      echo "Run screen_remove :";
     $jobname = $user."_".$id."_screen_remove";
@@ -374,6 +384,7 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
 
 // Classify_system
  function classify_system($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify_system"."\n", FILE_APPEND);
      echo "\n";
      echo "Run classify_system :";
     $jobname = $user."_".$id."_classify_system";
@@ -412,6 +423,7 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
 
 // Phylotype count
  function phylotype_count($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "phylotype_count"."\n", FILE_APPEND);
      echo "\n";
      echo "Run phylotype_count :";
     $jobname = $user."_".$id."_phylotype_count";

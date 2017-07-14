@@ -3,7 +3,7 @@
 set_time_limit(60);
 $user = $argv[1];
 $project = $argv[2];
-$path_file_original = "../owncloud/data/$user/files/$project/output/final.tx.groups.ave-std.summary";
+$path_file_original = "../owncloud/data/$user/files/$project/output/final.opti_mcc.groups.ave-std.summary";
 $file_after_chao = "owncloud/data/$user/files/$project/output/file_after_chao.txt";
 
 if ($file_original = fopen($path_file_original, "r")) {
