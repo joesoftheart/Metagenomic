@@ -675,7 +675,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                         <label> Greengenes :   </label>
                                                     </div>
                                                     <div class="col-lg-5 col-lg-pull-4">
-                                                      <select class="uk-select" name="">
+                                                      <select class="uk-select" id="g_level">
                                                              <option value="1"> species </option>
                                                              <option value="2" selected> genus </option>
                                                              <option value="3"> family </option>
@@ -690,7 +690,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                         <label> Silva/RDP :   </label>
                                                     </div>
                                                     <div class="col-lg-5 col-lg-pull-4">
-                                                      <select class="uk-select" name="">
+                                                      <select class="uk-select" id="sr_level">
                                                              <option value="1"> genus </option>
                                                              <option value="2"> family </option>
                                                              <option value="3"> order </option>
@@ -704,7 +704,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                         <label> OTU :   </label>
                                                     </div>
                                                     <div class="col-lg-5 col-lg-pull-4">
-                                                       <select class="uk-select" name="">
+                                                       <select class="uk-select" id="o_level">
                                                              <option value="0.03" selected> 0.03 </option>
                                                              <option value="0.05"> 0.05 </option>
                                                              <option value="0.10"> 0.10 </option>
@@ -721,12 +721,12 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <div class="radio">
                                                         <label >
                                                            <input name="optionsRadios" value="1" type="radio"> set the size of your smallest group :
-                                                           <input class="uk-input" name="size_alpha" type="number" min="0"> 
+                                                           <input class="uk-input" id="alpha" name="size_alpha" type="number" min="0"> 
                                                         </label>
                                                     </div>
                                                     <div class="radio">
                                                         <label>
-                                                           <input name="optionsRadios" value="0" type="radio" checked> No need set the size
+                                                           <input name="optionsRadios" id="myradio"  type="radio" checked> No need set the size
                                                         </label>
                                                     </div>
                                                  </div>
@@ -738,12 +738,12 @@ if (isset($this->session->userdata['logged_in'])) {
                                                      <div class="radio">
                                                         <label >
                                                            <input name="optionsRadios1" value="1" type="radio"> set the size of your smallest group :
-                                                           <input class="uk-input" name="size_beta" type="number" min="0" > 
+                                                           <input class="uk-input" id="beta" name="size_beta" type="number" min="0" > 
                                                         </label>
                                                      </div>
                                                      <div class="radio">
                                                         <label>
-                                                           <input name="optionsRadios1" value="0" type="radio" checked> No need set the size
+                                                           <input name="optionsRadios1" id="myradio1" type="radio" checked> No need set the size
                                                         </label>
                                                      </div>
                                                  </div>
@@ -1026,6 +1026,7 @@ if (isset($this->session->userdata['logged_in'])) {
    <!--  Advance Script -->
     <script type="text/javascript">
         $(document).ready(function () {
+
             $("#sub-test").click(function () {
                
                   var username = document.forms["Pre-form"]["username"].value;
@@ -1094,6 +1095,10 @@ if (isset($this->session->userdata['logged_in'])) {
                          $(".Pre-test2").hide();
                          $(".Pre-show2").show();
                          //console.log(username+" "+project+" "+sample);
+                         document.getElementById('alpha').value = sample;
+                         document.getElementById('beta').value = sample;
+                         document.getElementById('myradio').value = sample;
+                         document.getElementById('myradio1').value = sample;
                          get_subsample(array_data);
                   }   
     
@@ -1102,14 +1107,27 @@ if (isset($this->session->userdata['logged_in'])) {
             $("#sub-test3").click(function () {
                   var username = document.forms["Analysis-form"]["username"].value;
                   var project  = document.forms["Analysis-form"]["project"].value;
+                  var level    = document.forms["Analysis-form"]["level"].value;
+                  var optionsRadios ;
+                  var size_alpha;
+                  var optionsRadios1;
+                  var size_beta;
+                  var venn1 , venn2, venn3 ,venn4;
+                  var upgma;
+                  var pcoa;
+                  var nmds, nmds_cal;
+
                   var array_data = new Array(username,project);
-                  $(".Pre-test3").hide();
-                  $(".Pre-show3").show();
-                  get_analysis(array_data);
+
+                  alert("level : "+level);
+                  //$(".Pre-test3").hide();
+                  //$(".Pre-show3").show();
+                 // get_analysis(array_data);
             });
 
             $("#check_design").click(function () {
-
+                 var user = "<?php echo $username ?>";
+                 var project = "<?php echo $current_project ?>";
                  var time = 10;
                  var interval = null;
                  interval = setInterval(function(){   
@@ -1118,7 +1136,7 @@ if (isset($this->session->userdata['logged_in'])) {
                      $.ajax({ 
                        type:"post",
                        datatype:"json",
-                       url:"<?php echo base_url('Run_advance/check_file_design');?>",
+                       url:"<?php echo base_url('Run_advance/check_file_design');?>?user="+user+"&project_id="+project,
                          success:function(data){
                              var design = JSON.parse(data);
                              if(design != "0"){
@@ -1136,7 +1154,8 @@ if (isset($this->session->userdata['logged_in'])) {
             });
 
              $("#check_metadata").click(function(){
-
+                 var user = "<?php echo $username ?>";
+                 var project = "<?php echo $current_project ?>";
                  var time = 10;
                  var interval = null;
                  interval = setInterval(function(){   
@@ -1145,7 +1164,7 @@ if (isset($this->session->userdata['logged_in'])) {
                      $.ajax({ 
                        type:"post",
                        datatype:"json",
-                       url:"<?php echo base_url('Run_advance/check_file_metadata');?>",
+                       url:"<?php echo base_url('Run_advance/check_file_metadata');?>?user="+user+"&project_id="+project,
                          success:function(data){
                              var metadata = JSON.parse(data);
                              if(metadata  != "0"){
@@ -1353,17 +1372,20 @@ if (isset($this->session->userdata['logged_in'])) {
                                $('.Greengene').show();
                                $('.Silva_RDP').hide();
                                $('.Otu').hide();
+                               document.getElementById('g_level').setAttribute("name","level");
 
                            }else if((sample_data[1] == "silva") || (sample_data[1] == "rdp")) {
                                $('.Greengene').hide();
                                $('.Silva_RDP').show();
                                $('.Otu').hide();
+                               document.getElementById('sr_level').setAttribute("name","level");
                            }
                            else{
 
                                $('.Greengene').hide();
                                $('.Silva_RDP').hide();
                                $('.Otu').show();
+                               document.getElementById('o_level').setAttribute("name","level");
 
                            }
 

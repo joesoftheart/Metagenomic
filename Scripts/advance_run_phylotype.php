@@ -19,6 +19,7 @@
          $GLOBALS['taxon'] = $argv[12];      
          $path_in = $argv[13];
          $path_out = $argv[14];
+         $GLOBALS['path_log'] = $argv[15];
 
          $GLOBALS['taxon'] = str_replace(',', ';',$GLOBALS['taxon']);
 
@@ -37,7 +38,7 @@
           }
 
 
-        if($user != "" && $project != "" && $argv[3] != "" && $argv[4] != "" && $argv[5] != "" && $argv[6] != "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != "" && $argv[11] != "" && $argv[12] != "" && $argv[13] != "" && $argv[14] != ""){
+        if($user != "" && $project != "" && $argv[3] != "" && $argv[4] != "" && $argv[5] != "" && $argv[6] != "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != "" && $argv[11] != "" && $argv[12] != "" && $argv[13] != "" && $argv[14] != "" && $argv[15] != ""){
             echo "Check Parameter Success"."\n";
             check_file($user,$project,$path_in,$path_out);
 
@@ -57,6 +58,7 @@
           echo "taxon : ".$GLOBALS['taxon']."\n";
           echo "path_in : ".$path_in."\n";
           echo "path_out : ".$path_out."\n";
+          echo "path_log : ".$GLOBALS['path_log']."\n";
 
         }
          
@@ -121,15 +123,14 @@
         function run_makefile($user,$project,$path_in,$path_out){
           
            echo "Run_makefile "."\n";
-          $jobname = $user."_makefile";
-
+           $jobname = $user."_makefile";
+           
            #make.file
                $make = "make.file(inputdir=$path_in,outputdir=$path_in)";
 
-               file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $make);
-
-
-               $cmd = "qsub  -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch";
+            file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
 
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
@@ -150,8 +151,8 @@
 
                    if($check_run == false){
                      
-                      remove_logfile_mothur($path_in);
-                      check_file($user,$project,$path_in,$path_out);
+                       remove_logfile_mothur($path_in);
+                       check_file($user,$project,$path_in,$path_out);
                       break;
                    }
               }
@@ -164,15 +165,14 @@
             echo "Run makecontigs_oligos_summary  "."\n";
             $jobname = $user."_oligo";
 
-            $cmd = "make.contigs(file=stability.files, oligos=$file_oligo ,processors=4 ,inputdir=$path_in,outputdir=$path_out)
+            $make = "make.contigs(file=stability.files, oligos=$file_oligo ,processors=4 ,inputdir=$path_in,outputdir=$path_out)
                     summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path_in,outputdir=$path_out)";
            
-             file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
+             file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
 
-
-
-             $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+               
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
                exec($check_qstat,$output);
@@ -207,13 +207,13 @@
            echo "Run makecontigs_summary "."\n";
            $jobname = $user."_makesummary";
 
-           $cmd ="make.contigs(file=stability.files,processors=8,inputdir=$path_in,outputdir=$path_out)
+           $make ="make.contigs(file=stability.files,processors=8,inputdir=$path_in,outputdir=$path_out)
                  summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path_in,outputdir=$path_out)";
 
-           file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-
-           $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-
+           file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+               
                shell_exec($cmd);
                $check_qstat = "qnable to open Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.stat  -j '$jobname' ";
                exec($check_qstat,$output);
@@ -278,11 +278,13 @@
             echo "Run screen_summary "."\n";
             $jobname = $user."_screen_summary";
 
-            $cmd = "screen.seqs(fasta=stability.trim.contigs.fasta, group=stability.contigs.groups, summary=stability.trim.contigs.summary, maxambig=".$GLOBALS['maximum_ambiguous'].", minlength=".$GLOBALS['minimum_reads_length']." , maxlength=".$GLOBALS['maximum_reads_length'].", processors=8,inputdir=$path_in,outputdir=$path_out)
+            $make = "screen.seqs(fasta=stability.trim.contigs.fasta, group=stability.contigs.groups, summary=stability.trim.contigs.summary, maxambig=".$GLOBALS['maximum_ambiguous'].", minlength=".$GLOBALS['minimum_reads_length']." , maxlength=".$GLOBALS['maximum_reads_length'].", processors=8,inputdir=$path_in,outputdir=$path_out)
                     summary.seqs(fasta=stability.trim.contigs.good.fasta, processors=8,inputdir=$path_in,outputdir=$path_out)";
             
-            file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-            $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+             file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+               
 
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
@@ -320,13 +322,14 @@
              echo "Run unique_count_summary "."\n";
              $jobname = $user."_unique_count_summary"; 
 
-             $cmd =" unique.seqs(fasta=stability.trim.contigs.good.fasta,inputdir=$path_in,outputdir=$path_out)
+             $make =" unique.seqs(fasta=stability.trim.contigs.good.fasta,inputdir=$path_in,outputdir=$path_out)
                      count.seqs(name=stability.trim.contigs.good.names, group=stability.contigs.good.groups,inputdir=$path_in,outputdir=$path_out)
                      summary.seqs(count=stability.trim.contigs.good.count_table ,inputdir=$path_in,outputdir=$path_out)";
              
-              file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-
+              file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+               
                shell_exec($cmd);
                $check_qstat = "qstat -j $jobname ";
                exec($check_qstat,$output);
@@ -364,12 +367,13 @@
          function align_summary($user,$project,$path_in,$path_out){
           $jobname = $user."_align_summary"; 
           
-          $cmd = "align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=".$GLOBALS['alignment'].", processors=8,inputdir=$path_in,outputdir=$path_out)
+          $make = "align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=".$GLOBALS['alignment'].", processors=8,inputdir=$path_in,outputdir=$path_out)
                   summary.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table,inputdir=$path_in,outputdir=$path_out)";
        
-          file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-
+          file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+               
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
                exec($check_qstat,$output);
@@ -383,7 +387,7 @@
                     }        
               }
               $id_j = trim($id_job);
-              $log = "owncloud/data/$user/files/$project/log/".$jobname.".o".$id_j;
+              $log_read = $log."/".$jobname.".o".$id_j;
               $loop = true;
               while ($loop) {
 
@@ -393,7 +397,7 @@
                       
                       echo "Run align_summary "."\n";
                       //echo $log."\n";
-                      read_log_sungrid($user,$project,$path_in,$path_out,$log);
+                      read_log_sungrid($user,$project,$path_in,$path_out,$log_read);
                       break;
                       
                    }
@@ -406,9 +410,9 @@
 
 
 
-        function read_log_sungrid($user,$project,$path_in,$path_out,$log){
+        function read_log_sungrid($user,$project,$path_in,$path_out,$log_read){
             
-            $file = file_get_contents($log);
+            $file = file_get_contents($log_read);
             $search_for = 'Start';
             $pattern = preg_quote($search_for,'/');
             
@@ -486,12 +490,13 @@
           echo "Run screen_summary_2  "."\n";
           $jobname = $user."_screen_summary_2";
 
-          $cmd = "screen.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table, summary=stability.trim.contigs.good.unique.summary, start=$start, end=$end, maxambig=".$GLOBALS['maximum_ambiguous'].", maxhomop=".$GLOBALS['maximum_homopolymer'].", maxlength=".$GLOBALS['maximum_reads_length'].", processors=8,inputdir=$path_in,outputdir=$path_out)
+          $make = "screen.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table, summary=stability.trim.contigs.good.unique.summary, start=$start, end=$end, maxambig=".$GLOBALS['maximum_ambiguous'].", maxhomop=".$GLOBALS['maximum_homopolymer'].", maxlength=".$GLOBALS['maximum_reads_length'].", processors=8,inputdir=$path_in,outputdir=$path_out)
                   summary.seqs(fasta=current, count=current,inputdir=$path_in,outputdir=$path_out)";
-       
-          file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-
+           
+           file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+               
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
                exec($check_qstat,$output);
@@ -531,15 +536,17 @@
             echo "Run filter_unique_cluster_vsearch_remove_summary  "."\n";
             $jobname = $user."_filter_unique_cluster_vsearch_remove_summary";
 
-            $cmd = "filter.seqs(fasta=stability.trim.contigs.good.unique.good.align, vertical=T, trump=., processors=8,inputdir=$path_in,outputdir=$path_out)
+            $make = "filter.seqs(fasta=stability.trim.contigs.good.unique.good.align, vertical=T, trump=., processors=8,inputdir=$path_in,outputdir=$path_out)
                     unique.seqs(fasta=stability.trim.contigs.good.unique.good.filter.fasta, count=stability.trim.contigs.good.good.count_table,inputdir=$path_in,outputdir=$path_out)
                     pre.cluster(fasta=stability.trim.contigs.good.unique.good.filter.unique.fasta, count=stability.trim.contigs.good.unique.good.filter.count_table, diffs=".$GLOBALS['diffs'].",inputdir=$path_in,outputdir=$path_out)
                     chimera.vsearch(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.count_table, dereplicate=t, processors=8,inputdir=$path_in,outputdir=$path_out)
                     remove.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.fasta, accnos=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.accnos,inputdir=$path_in,outputdir=$path_out)
                     summary.seqs(fasta=current, count=current,inputdir=$path_in,outputdir=$path_out)";
        
-           file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+           file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+               
 
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
@@ -578,12 +585,14 @@
 
            echo "Run classifly_removelineage_summary "."\n";
            $jobname = $user."_classifly_removelineage_summary";
-           $cmd = "classify.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=".$GLOBALS['reference'].", taxonomy=".$GLOBALS['taxonomy'].", cutoff=".$GLOBALS['cutoff'].", processors=8,inputdir=$path_in,outputdir=$path_out)
+           $make = "classify.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=".$GLOBALS['reference'].", taxonomy=".$GLOBALS['taxonomy'].", cutoff=".$GLOBALS['cutoff'].", processors=8,inputdir=$path_in,outputdir=$path_out)
                   remove.lineage(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxon=".$GLOBALS['taxon'].",inputdir=$path_in,outputdir=$path_out)
                   summary.seqs(fasta=current, count=current,inputdir=$path_in,outputdir=$path_out)";
         
-           file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+             file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+               
 
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
@@ -619,12 +628,13 @@
 
           echo "Run summary_tax "."\n";
           $jobname = $user."_summary_tax";
-          $cmd ="summary.tax(taxonomy=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=$path_in,outputdir=$path_out)";
+          $make ="summary.tax(taxonomy=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=$path_in,outputdir=$path_out)";
                   
-        
-           file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-
+             file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+               
+           
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
                exec($check_qstat,$output);
@@ -661,12 +671,14 @@
 
             echo "Run system_cp "."\n";
             $jobname = $user."_system_cp";
-            $cmd = "system(cp ".$path_out."stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta ".$path_out."/final.fasta ,outputdir=$path_out)
+            $make = "system(cp ".$path_out."stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta ".$path_out."/final.fasta ,outputdir=$path_out)
                     system(cp ".$path_out."stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table ".$path_out."/final.count_table ,outputdir=$path_out)
                     system(cp ".$path_out."stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy ".$path_out."/final.taxonomy ,outputdir=$path_out)"; 
         
-             file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+             file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+               
 
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
@@ -703,14 +715,15 @@
           echo "Run phylotype_make_class_count"."\n";
           $jobname = $user."_phylotype_make_class_count";
           
-          $cmd = "phylotype(taxonomy=final.taxonomy,inputdir=$path_in,outputdir=$path_out)
+          $make = "phylotype(taxonomy=final.taxonomy,inputdir=$path_in,outputdir=$path_out)
                   make.shared(list=final.tx.list, count=final.count_table, label=".$GLOBALS['lable'].",inputdir=$path_in,outputdir=$path_out)
                   classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, label=".$GLOBALS['lable'].",inputdir=$path_in,outputdir=$path_out)
                   count.groups(shared=final.tx.shared,inputdir=$path_in,outputdir=$path_out)";
 
-          
-          file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+           file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+               
           
           shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
@@ -767,7 +780,7 @@
         
         # hide output
         //function classify_otu(){
-          # $cmd = "classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=".$GLOBALS['lable_get_taxon'].")"; #get taxon
+          # $make = "classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=".$GLOBALS['lable_get_taxon'].")"; #get taxon
        // }
 
 

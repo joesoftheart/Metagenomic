@@ -10,8 +10,9 @@
          $path_in = $argv[3];
          $path_out = $argv[4];
          $GLOBALS['size']= $argv[5];
+         $GLOBALS['path_log'] = $argv[6];
 
-         if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != ""){
+         if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != "" && $argv[6] != ""){
              
              sub_sample($user,$project,$path_in,$path_out);
 
@@ -20,7 +21,8 @@
               echo "project : ".$project."\n"; 
               echo "path_in : ".$path_in."\n";
               echo "path_out : ".$path_out."\n";
-              echo "size : ".$GLOBALS['size'];
+              echo "size : ".$GLOBALS['size']."\n";
+              echo "path_log : ".$GLOBALS['path_log'];
          }
 
 
@@ -30,11 +32,12 @@
        echo "Run sub_sample_phylotype "."\n";
        $jobname = $user."_sub_sample_phylotype";
 
-  	   $cmd = "sub.sample(shared=final.tx.shared,size=".$GLOBALS['size'].",inputdir=$path_in,outputdir=$path_out)";
+  	   $make = "sub.sample(shared=final.tx.shared,size=".$GLOBALS['size'].",inputdir=$path_in,outputdir=$path_out)";
 
-        file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-            $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-
+          file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+              
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
                exec($check_qstat,$output);
