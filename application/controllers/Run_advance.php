@@ -559,6 +559,43 @@
          $user = $data[0];
          $id_project = $data[1];
 
+         $level = $data[2];
+
+         $ch_alpha = $data[3];
+         $size_alpha = $data[4];
+
+         if($ch_alpha != "1"){
+            $size_alpha = $ch_alpha;
+         }
+
+         $ch_beta = $data[5];
+         $size_beta = $data[6];
+
+         if($ch_beta != "1"){
+            $size_beta = $ch_beta;
+         }
+
+         $venn1 = $data[7];
+         $venn2 = $data[8];
+         $venn3 = $data[9];
+         $venn4 = $data[10];
+
+         $upgma = $data[11];
+         $pcoa  = $data[12];
+
+         $nmds = $data[13];
+         $nmds_cal = $data[14];
+
+         $file_design = $data[15];
+         $file_metadata = $data[16];
+
+         $ah_mova = $data[17];
+         $correlation = $data[18];
+         
+         $method = $data[19];
+         $axes  = $data[20];
+
+
         $project = "";
         $project_analysis = "";
 

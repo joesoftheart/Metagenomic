@@ -544,20 +544,20 @@ if (isset($this->session->userdata['logged_in'])) {
                                                  <div class="col-lg-10 col-lg-pull-1"><label> Screen reads </label></div>
                                                  <div class="form-inline col-lg-12">
                                                       <label class="col-lg-6"> maximum ambiguous : </label>
-                                                      <input id="mbig" class="form-control" type="number" name="maximum_ambiguous" min="0" placeholder="maximum ambiguous" onblur="checkvalue()">
+                                                      <input id="mbig" class="form-control" type="number" name="maximum_ambiguous" min="0" placeholder="maximum ambiguous" onblur="checkvalue()" onkeypress='return validateNumber(event)'>
                                                     
                                                  </div>
                                                  <div class="form-inline col-lg-12 uk-margin">
                                                      <label class="col-lg-6"> maximum homopolymer : </label>
-                                                     <input id="mhomo" class="form-control" type="number" name="maximum_homopolymer" min="0" placeholder="maximum homopolymer" onblur="checkvalue2()">
+                                                     <input id="mhomo" class="form-control" type="number" name="maximum_homopolymer" min="0" placeholder="maximum homopolymer" onblur="checkvalue2()" onkeypress='return validateNumber(event)'>
                                                  </div>
                                                  <div class="form-inline col-lg-12">
                                                      <label class="col-lg-6"> minimum reads length : </label>
-                                                     <input id="miniread" class="form-control" type="number" name="minimum_reads_length" min="0" placeholder="minimum reads length" onblur="checkvalue3()">
+                                                     <input id="miniread" class="form-control" type="number" name="minimum_reads_length" min="0" placeholder="minimum reads length" onblur="checkvalue3()" onkeypress='return validateNumber(event)'>
                                                  </div>
                                                  <div class="form-inline col-lg-12 uk-margin">
                                                     <label class="col-lg-6"> maximum reads length : </label>
-                                                    <input id="maxread"class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" onblur="checkvalue4()">
+                                                    <input id="maxread"class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" onblur="checkvalue4()" onkeypress='return validateNumber(event)' >
                                                  </div>
                                  
                                               
@@ -701,7 +701,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                  <div class="row uk-margin">
                                                     <div class="col-lg-8">
                                                           <label>sub sample :</label>
-                                                          <input id="sub_sample" class="uk-input" type="number" min="0" name="subsample" >
+                                                          <input id="sub_sample" class="uk-input" type="number" min="0" name="subsample" onkeypress='return validateNumber(event)' >
                                                     </div>
                                                  </div>
 
@@ -824,7 +824,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     <div class="radio">
                                                         <label >
                                                            <input name="optionsRadios" value="1" type="radio"> set the size of your smallest group :
-                                                           <input class="uk-input" id="alpha" name="size_alpha" type="number" min="0"> 
+                                                           <input class="uk-input" id="alpha" name="size_alpha" type="number" min="0" onkeypress='return validateNumber(event)' > 
                                                         </label>
                                                     </div>
                                                     <div class="radio">
@@ -841,7 +841,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                      <div class="radio">
                                                         <label >
                                                            <input name="optionsRadios1" value="1" type="radio"> set the size of your smallest group :
-                                                           <input class="uk-input" id="beta" name="size_beta" type="number" min="0" > 
+                                                           <input class="uk-input" id="beta" name="size_beta" type="number" min="0" onkeypress='return validateNumber(event)' > 
                                                         </label>
                                                      </div>
                                                      <div class="radio">
@@ -879,42 +879,42 @@ if (isset($this->session->userdata['logged_in'])) {
                                                      <div class="col-lg-10 col-lg-push-1"><label> UPGMA tree with calculator : </label></div>
                                                      <div class="col-lg-5 col-lg-push-2 ">
                                                          <select class="uk-select" name="upgma">
-                                                             <option value="1"> thetayc </option>
-                                                             <option value="2"> morisitahorn </option>
-                                                             <option value="3"> jclass </option>
-                                                             <option value="4"> braycurtis</option>
-                                                             <option value="5"> lennon </option>
-                                                             <option value="6"> sorabund </option>     
+                                                             <option value="thetayc"> thetayc </option>
+                                                             <option value="morisitahorn"> morisitahorn </option>
+                                                             <option value="jclass"> jclass </option>
+                                                             <option value="braycurtis"> braycurtis</option>
+                                                             <option value="lennon"> lennon </option>
+                                                             <option value="sorabund"> sorabund </option>     
                                                          </select>
                                                      </div>
                                                      <div class="col-lg-12 uk-margin"> </div>
                                                      <div class="col-lg-10 col-lg-push-1"><label> PCOA : </label></div>
                                                      <div class="col-lg-5 col-lg-push-2 ">
                                                          <select class="uk-select" name="pcoa">
-                                                             <option value="1"> thetayc </option>
-                                                             <option value="2"> morisitahorn </option>
-                                                             <option value="3"> jclass </option>
-                                                             <option value="4"> braycurtis</option>
-                                                             <option value="5"> lennon </option>
-                                                             <option value="6"> sorabund </option>     
+                                                             <option value="thetayc"> thetayc </option>
+                                                             <option value="morisitahorn"> morisitahorn </option>
+                                                             <option value="jclass"> jclass </option>
+                                                             <option value="braycurtis"> braycurtis</option>
+                                                             <option value="lennon"> lennon </option>
+                                                             <option value="sorabund"> sorabund </option>     
                                                          </select>
                                                      </div>
                                                      <div class="col-lg-12 uk-margin"> </div>
                                                      <div class="col-lg-10 col-lg-push-1"><label> NMDS : </label></div>
                                                      <div class="col-lg-4 col-lg-push-2 ">
                                                          <select class="uk-select" name="nmds">
-                                                             <option value="1"> 2D </option>
-                                                             <option value="2"> 3D </option>        
+                                                             <option value="2"> 2D </option>
+                                                             <option value="3"> 3D </option>        
                                                          </select>
                                                      </div>
                                                      <div class="col-lg-5 col-lg-push-3 ">
                                                          <select class="uk-select" name="nmds_cal">
-                                                             <option value="1"> thetayc </option>
-                                                             <option value="2"> morisitahorn </option>
-                                                             <option value="3"> jclass </option>
-                                                             <option value="4"> braycurtis</option>
-                                                             <option value="5"> lennon </option>
-                                                             <option value="6"> sorabund </option>     
+                                                             <option value="thetayc"> thetayc </option>
+                                                             <option value="morisitahorn"> morisitahorn </option>
+                                                             <option value="jclass"> jclass </option>
+                                                             <option value="braycurtis"> braycurtis</option>
+                                                             <option value="lennon"> lennon </option>
+                                                             <option value="sorabund"> sorabund </option>     
                                                          </select>
                                                      </div>
                                                      <div class="col-lg-12 uk-margin"> </div>
@@ -937,19 +937,20 @@ if (isset($this->session->userdata['logged_in'])) {
                                                           </a>
                                                          </label>
                                                          <div>
-                                                         <p id="pass_design" class="fa fa-file-text-o"> No file design </p>
+                                                         <p id="pass_design" class="fa fa-file-text-o" > No file design </p>
+                                                         <input type="hidden" id="p_design" name="f_design" value="nodesign">
                                                          </div>
 
                                                      </div>
                                                      <div class="col-lg-8 col-lg-push-2 ">                
                                                      <div class="radio">
                                                          <label >
-                                                         <input name="optionsRadios2" value="1" type="radio"> Amova
+                                                         <input name="optionsRadios2" value="amova" type="radio"> Amova
                                                          </label>
                                                      </div>
                                                      <div class="radio">
                                                          <label>
-                                                         <input name="optionsRadios2"  value="0" type="radio"> Homova
+                                                         <input name="optionsRadios2"  value="homova" type="radio" > Homova
                                                          </label>
                                                      </div>
                                                      </div>
@@ -961,15 +962,16 @@ if (isset($this->session->userdata['logged_in'])) {
                                                          </label>
                                                          <div>
                                                            <p id="pass_metadata" class="fa fa-file-text-o"> No file metadata </p>
+                                                           <input type="hidden" id="p_metadata" name="f_metadata" value="nometadata">
                                                          </div>
                                                      </div>
                                                      <div class="col-lg-12 col-lg-push-2"> 
                                                      <div class="radio">
                                                          <label class="col-lg-6">
-                                                             <input name="optionsRadios3" value="1" type="radio"> correlation with metadata 
+                                                             <input name="optionsRadios3" value="meta" type="radio"> correlation with metadata 
                                                          </label>
                                                          <label class="col-lg-6">
-                                                             <input name="optionsRadios3"  value="0" type="radio"> correlation of each OTU
+                                                             <input name="optionsRadios3"  value="otu" type="radio"> correlation of each OTU
                                                          </label>
                                                      </div>  
                                                      </div> 
@@ -979,8 +981,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                                      </div>
                                                      <div class="col-lg-3 col-lg-pull-1">
                                                          <select class="uk-select" name="method">
-                                                             <option value="1"> spearman </option>
-                                                             <option value="2"> pearson </option>     
+                                                             <option value="spearman"> spearman </option>
+                                                             <option value="pearson"> pearson </option>     
                                                          </select>
                                                      </div>
                                                          <div class="col-lg-4 col-lg-pull-1">
@@ -1202,8 +1204,8 @@ if (isset($this->session->userdata['logged_in'])) {
                          $(".Pre-test2").hide();
                          $(".Pre-show2").show();
                          //console.log(username+" "+project+" "+sample);
-                         document.getElementById('alpha').value = sample;
-                         document.getElementById('beta').value = sample;
+                         document.getElementById('alpha').value = Number(sample);
+                         document.getElementById('beta').value = Number(sample);
                          document.getElementById('myradio').value = sample;
                          document.getElementById('myradio1').value = sample;
                          get_subsample(array_data);
@@ -1215,21 +1217,36 @@ if (isset($this->session->userdata['logged_in'])) {
                   var username = document.forms["Analysis-form"]["username"].value;
                   var project  = document.forms["Analysis-form"]["project"].value;
                   var level    = document.forms["Analysis-form"]["level"].value;
-                  var optionsRadios ;
-                  var size_alpha;
-                  var optionsRadios1;
-                  var size_beta;
-                  var venn1 , venn2, venn3 ,venn4;
-                  var upgma;
-                  var pcoa;
-                  var nmds, nmds_cal;
+                  var  ch_alpha = document.forms["Analysis-form"]["optionsRadios"].value,
+                       size_alpha = document.forms["Analysis-form"]["size_alpha"].value;
+                   var ch_beta = document.forms["Analysis-form"]["optionsRadios1"].value, 
+                       size_beta = document.forms["Analysis-form"]["size_beta"].value;
+                   var venn1 = document.forms["Analysis-form"]["venn1"].value ,
+                       venn2 = document.forms["Analysis-form"]["venn2"].value, 
+                       venn3 = document.forms["Analysis-form"]["venn3"].value,
+                       venn4 = document.forms["Analysis-form"]["venn4"].value;
+                   var upgma = document.forms["Analysis-form"]["upgma"].value;
+                   var pcoa = document.forms["Analysis-form"]["pcoa"].value;
+                   var nmds = document.forms["Analysis-form"]["nmds"].value ,
+                       nmds_cal = document.forms["Analysis-form"]["nmds_cal"].value;
+                   
+                   var file_design = document.forms["Analysis-form"]["f_design"].value;
+                   var file_metadata = document.forms["Analysis-form"]["f_metadata"].value;
 
-                  var array_data = new Array(username,project);
+                   var ah_mova = document.forms["Analysis-form"]["optionsRadios2"].value;
+                   var correlation = document.forms["Analysis-form"]["optionsRadios3"].value;
+                   var method = document.forms["Analysis-form"]["method"].value;
+                   var axes = document.forms["Analysis-form"]["axes"].value;
+                  
+                   
+                  
+                  var array_data = new Array(username,project,level,ch_alpha,size_alpha,ch_beta,size_beta,venn1,venn2,venn3,venn4,upgma,pcoa,nmds,nmds_cal,file_design,file_metadata,ah_mova,correlation,method,axes);
+                  
+                        $(".Pre-test3").hide();
+                        $(".Pre-show3").show();
+                        get_analysis(array_data);
+                 
 
-                  alert("level : "+level);
-                  //$(".Pre-test3").hide();
-                  //$(".Pre-show3").show();
-                 // get_analysis(array_data);
             });
 
             $("#check_design").click(function () {
@@ -1249,6 +1266,7 @@ if (isset($this->session->userdata['logged_in'])) {
                              if(design != "0"){
                                    clearInterval(interval);
                                    $('#pass_design').text(" "+design);
+                                   document.getElementById('p_design').value = design;
                              }
                              else{  
                                   time = 5;  
@@ -1277,6 +1295,7 @@ if (isset($this->session->userdata['logged_in'])) {
                              if(metadata  != "0"){
                                    clearInterval(interval);
                                    $('#pass_metadata').text(" "+metadata);
+                                   document.getElementById('p_metadata').value = metadata;
                              }
                              else{  
                                   time = 5;  
@@ -1387,20 +1406,26 @@ if (isset($this->session->userdata['logged_in'])) {
 
         function get_analysis(array_data){
            var data_value = array_data;
-           $.ajax({
-                   type:"post",
-                   datatype:"json",
-                   url:"<?php echo base_url('Run_advance/run_analysis'); ?>",
-                   data:{data_analysis: data_value},
-                   success:function(data){
-                        //var job_sample = $.parseJSON(data);
-                        var job_analysis = JSON.parse(data);
-                        ckeck_analysis(job_analysis);
-                   },
-                   error:function(e){
-                     console.log(e.message);
-                   }
-           });
+           var data = "";
+           for(var i = 0 ; i < data_value.length; i++){
+              data += i+" > "+data_value[i]+ "\t";
+           }
+           $("#test_run3").text(data);
+             
+           // $.ajax({
+           //         type:"post",
+           //         datatype:"json",
+           //         url:"<?php echo base_url('Run_advance/run_analysis'); ?>",
+           //         data:{data_analysis: data_value},
+           //         success:function(data){
+           //              //var job_sample = $.parseJSON(data);
+           //              var job_analysis = JSON.parse(data);
+           //              ckeck_analysis(job_analysis);
+           //         },
+           //         error:function(e){
+           //           console.log(e.message);
+           //         }
+           // });
   
         }
 
@@ -1614,6 +1639,17 @@ if (isset($this->session->userdata['logged_in'])) {
                       console.log(e.message);
                     }
                 });
+        }
+
+       function validateNumber(event) {
+            var key = window.event ? event.keyCode : event.which;
+            if (event.keyCode === 8 || event.keyCode === 46) {
+                    return true;
+            } else if ( key < 48 || key > 57 ) {
+                return false;
+            } else {
+                return true;
+            }
         }
 
         

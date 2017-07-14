@@ -113,17 +113,20 @@ $(document).ready(function () {
 function getExcel(){
     var user = "<?php echo $username ?>";
     var project = "<?php echo $current_project ?>";
-    var excel = "";
+    var excel = "",
+        check_val = "";
     $("#blacklistgrid").find("tr").each(function () {
         var sep = "";
         $(this).find("input").each(function () {
             excel += sep + $(this).val();
+            check_val += $(this).val();
             sep = "\t";
         });
         excel += "\n";
     });
-
-    $.ajax({
+   
+   if(check_val != ""){
+     $.ajax({
             type:"post",
             datatype:"json",
             url:"<?php echo base_url('Run_advance/write_design');?>?user="+user+"&project_id="+project,
@@ -137,6 +140,13 @@ function getExcel(){
                    }
    
     });
+
+   }else{
+
+     alert("Please insert value");
+
+   }
+    
 
 }
 
