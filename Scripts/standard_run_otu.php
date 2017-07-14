@@ -1,4 +1,5 @@
 <?php
+
 $user = $argv[1];
 $id = $argv[2];
 $project = $argv[3];
@@ -6,13 +7,15 @@ $path = $argv[4];
 include('setting_sge.php');
 putenv("SGE_ROOT=$SGE_ROOT");
 putenv("PATH=$PATH");
+//putenv("PATH=$PATH_R");
 
 
+
+// check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    run($user,$id,$project,$path);
-
-
-}
+     #classify_system($user,$id,$project,$path);
+    create_file_input_heatmap($user,$id,$project,$path);
+    }
 
 
 // Run Program
@@ -22,28 +25,32 @@ function run($user,$id,$project,$path){
 
 
 
-
+$progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
 // Check file
-function check_file($user,$id, $project,$path){
-    echo "\n";
-    echo "Run check_file :";
-    $path_stability = "../owncloud/data/$user/files/$project/data/output/stability.files";
+ function check_file($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "check_file"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run check_file :";
+    $path_stability = "../owncloud/data/$user/files/$project/output/stability.files";
     $path_file = $path_stability;
     if(file_exists($path_file)) {
         echo "go to check file oligo ->";
         check_oligos($user,$id, $project,$path);
     }
     else {
+
+
+
         echo "go to run make file ->";
         run_makefile($user,$id, $project,$path);
     }
-}
-
+ }
 
 // check file oligos
-function check_oligos($user,$id, $project,$path){
-    echo "\n";
-    echo "Run check_oligos :";
+ function check_oligos($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "check_oligos"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run check_oligos :";
     $total_oligo = 0;
     $path_dir = $path;
     if (is_dir($path_dir)) {
@@ -62,92 +69,141 @@ function check_oligos($user,$id, $project,$path){
     }
     if($total_oligo == 0){
         echo "go to makecontig_summary -> ";
-        makecontig_summary($user,$id, $project,$path);
+        make_contigs_summary($user,$id, $project,$path);
     }
-
 }
 
 
 // Make file
-function run_makefile($user,$id, $project,$path){
-    echo "\n";
-    echo "Run run_makefile :";
+ function run_makefile($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "run_makefile"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run run_makefile :";
     $jobname = $user."_".$id."_run_makefile";
     $make = "make.file(inputdir=$path/input/,outputdir=$path/output/)";
-    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $make);
-    $cmd = "qsub  -N   '$jobname' -o Logs_sge -e Logs_sge -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch";
+    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $make);
+    $cmd = "qsub  -N   '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch";
     exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat,$output);
-    $id_job = "" ; # give job id
-    foreach ($output as $key_var => $value ) {
-        if($key_var == "1"){
-            $data = explode(":", $value);
-            $id_job = $data[1];
-        }
-    }
-    $loop = true;
-    while ($loop) {
-        $check_run = exec("qstat -j $id_job");
-        if($check_run == false){
-            echo "check file again ->";
-            check_file($user,$id, $project,$path);
-            break;
-        }
-    }
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+     $id_job = "" ; # give job id
+     foreach ($output as $key_var => $value ) {
+         if($key_var == "1"){
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if($check_run == false){
+             echo "check file again ->";
+             check_file($user,$id, $project,$path);
+             break;
+         }
+     }
 }
 
 
 // Make contig oligos
-function make_contigs_oligos($file_oligo,$user,$id,$project,$path){
-    echo "\n";
-    echo "Run make_contigs_oligos :";
+ function make_contigs_oligos($file_oligo,$user,$id,$project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make_contigs_oligos"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run make_contigs_oligos :";
     $path = $path;
     $jobname = $user."_".$id."_oligo";
     $cmd = "make.contigs(file=stability.files, oligos=$file_oligo ,processors=8 ,inputdir=$path/input/,outputdir=$path/output/)
-screen.seqs(fasta=stability.trim.contigs.fasta, group=stability.contigs.groups, summary=stability.trim.contigs.summary, maxambig=8, minlength=100, maxlength=260, processors=8,inputdir=$path/input/,outputdir=$path/output/)
-summary.seqs(fasta=stability.trim.contigs.good.fasta, processors=8,inputdir=$path/input/,outputdir=$path/output/)
-unique.seqs(fasta=stability.trim.contigs.good.fasta,inputdir=$path/input/,outputdir=$path/output/)
-count.seqs(name=stability.trim.contigs.good.names, group=stability.contigs.good.groups,inputdir=$path/input/,outputdir=$path/output/)
-summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/,outputdir=$path/output/)";
-    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-    $cmd = "qsub -N '$jobname' -o Logs_sge -e Logs_sge -cwd -b y Mothur/mothur owncloud/data/$user/files/$project/data/input/run.batch ";
-    exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat,$output);
-    $id_job = "" ; # give job id
-    foreach ($output as $key_var => $value ) {
-        if($key_var == "1"){
-            $data = explode(":", $value);
-            $id_job = $data[1];
-        }
-    }
-    $loop = true;
-    while ($loop) {
-        $check_run = exec("qstat -j $id_job");
-        if($check_run == false){
-            echo "go to align_seqs ->";
-            align_seqs($user,$id, $project,$path);
-            break;
-        }
-    }
-}
+            summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/input/,outputdir=$path/output/)";
+    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur owncloud/data/$user/files/$project/input/run.batch ";
+     exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+     $id_job = "" ; # give job id
+     foreach ($output as $key_var => $value ) {
+         if($key_var == "1"){
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if($check_run == false){
+             echo "go to replace_group ->";
+             replace_group($user, $id, $project, $path);
 
+             break;
+         }
+     }
+}
 
 // make.contigs && summary.seqs
-function makecontig_summary($user,$id,$project,$path){
-    echo "\n";
-    echo "Run makecontig_summary";
-    $jobname = $user."_".$id."_makecontig_summary";
+ function make_contigs_summary($user,$id,$project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make_contigs_summary"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run make_contigs_summary";
+    $jobname = $user."_".$id."_make_contigs_summary";
     $cmd ="make.contigs(file=stability.files,processors=8,inputdir=$path/input/,outputdir=$path/output/)
-summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/input/,outputdir=$path/output/)
-screen.seqs(fasta=stability.trim.contigs.fasta, group=stability.contigs.groups, summary=stability.trim.contigs.summary, maxambig=8, minlength=100, maxlength=260, processors=8,inputdir=$path/input/,outputdir=$path/output/)
+summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/input/,outputdir=$path/output/)";
+    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
+    exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+     $id_job = "" ; # give job id
+     foreach ($output as $key_var => $value ) {
+         if($key_var == "1"){
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if($check_run == false){
+             echo "go to align_seqs ->";
+             replace_group($user, $id, $project, $path);
+             break;
+         }
+     }
+}
+
+
+function replace_group($user,$id, $project,$path){
+    echo "\n";
+    echo "Run Replace_group :";
+
+    $file = $path."/output/stability.contigs.groups";
+
+    $data_w = array();
+    $lines = file($file);
+
+    foreach($lines as $line) {
+
+        $out = explode("\t", $line);
+        $out[1] =  str_replace("-", "_", $out[1]);
+
+        $data = $out[0]."\t".$out[1];
+        array_push($data_w,$data);
+    }
+    file_put_contents($file, $data_w);
+    screen_seqs($user,$id, $project,$path);
+}
+
+// make.contigs && summary.seqs
+function screen_seqs($user,$id,$project,$path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "screen_seqs"."\n", FILE_APPEND);
+    echo "\n";
+    echo "Run screen_seqs";
+    $jobname = $user."_".$id."_screen_seqs";
+    $cmd ="screen.seqs(fasta=stability.trim.contigs.fasta, group=stability.contigs.groups, summary=stability.trim.contigs.summary, maxambig=8, minlength=100, maxlength=260, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=stability.trim.contigs.good.fasta, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 unique.seqs(fasta=stability.trim.contigs.good.fasta,inputdir=$path/input/,outputdir=$path/output/)
 count.seqs(name=stability.trim.contigs.good.names, group=stability.contigs.good.groups,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/,outputdir=$path/output/)";
-    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-    $cmd = "qsub -N '$jobname' -o Logs_sge -e Logs_sge -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat,$output);
@@ -163,56 +219,53 @@ summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/
         $check_run = exec("qstat -j $id_job");
         if($check_run == false){
             echo "go to align_seqs ->";
-            align_seqs($user,$id, $project,$path);
+            align_seqs($user, $id, $project, $path);
+
             break;
         }
     }
 }
-
 
 
 
 // Summary-seqs
-function align_seqs($user,$id,$project,$path){
-    echo "\n";
-    echo "Run align_seqs";
+ function align_seqs($user,$id,$project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "align_seqs"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run align_seqs";
 
     $jobname = $user."_".$id."_align_seqs";
     $cmd ="align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=silva.v4.fasta, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table,inputdir=$path/input/,outputdir=$path/output/)";
-    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-    $cmd = "qsub -N '$jobname' -o Logs_sge -e Logs_sge -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-    exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat,$output);
-    $id_job = "" ; # give job id
-    foreach ($output as $key_var => $value ) {
-        if($key_var == "1"){
-            $data = explode(":", $value);
-            $id_job = $data[1];
-        }
-    }
-    $loop = true;
-    while ($loop) {
-        $check_run = exec("qstat -j $id_job");
-        if($check_run == false){
-            echo "go to read_log_sungrid->";
-            read_log_sungrid($user,$id,$project,$path,$id_job);
-            break;
-        }
-    }
-
+    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
+     exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+     $id_job = "" ; # give job id
+     foreach ($output as $key_var => $value ) {
+         if($key_var == "1"){
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if($check_run == false){
+             echo "go to read_log_sungrid->";
+             read_log_sungrid($user,$id,$project,$path,$id_job);
+             break;
+         }
+     }
 }
 
 
-
 function read_log_sungrid($user,$id,$project,$path,$id_job){
-    $name = $user."_".$id."_align_seqs.o".$id_job;
+    $path_logs = $path . "/logs/";
+     $name = $user."_".$id."_align_seqs.o".$id_job;
     $file_name = str_replace(' ', '', $name) ;
-
-    echo $file_name;
-
-    $file = file_get_contents('Logs_sge/'.$file_name);
+    $file = file_get_contents("Logs_sge/".$file_name);
     //echo var_dump($file);
     $search_for = 'Start';
     $pattern = preg_quote($search_for,'/');
@@ -272,16 +325,26 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
             }
         }
 
-        echo   "Start : ".$start ."<br/>". " End : ".$end;
-        screen_remove($user,$id, $project,$path,$start,$end);
+        echo "\n";
+        echo "Start : ".$start;
+        echo " End : ".$end;
+        echo "go to screen_remove->";
+        if ($start != null && $end != null){
+            screen_remove($user,$id, $project,$path,$start,$end);
+        }else{
+            echo "\n";
+            echo "Start and End null value";
+        }
+
     }
 
 }
 
 // Screen remove
-function screen_remove($user,$id, $project,$path,$start,$end){
-    echo "\n";
-    echo "Run screen_remove :";
+ function screen_remove($user,$id, $project,$path,$start,$end){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "screen_remove"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run screen_remove :";
     $jobname = $user."_".$id."_screen_remove";
     $cmd ="screen.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table, summary=stability.trim.contigs.good.unique.summary, start=$start, end=$end, maxambig=8, maxhomop=8, maxlength=260, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/output/)
@@ -291,112 +354,119 @@ pre.cluster(fasta=stability.trim.contigs.good.unique.good.filter.unique.fasta, c
 chimera.vsearch(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.count_table, dereplicate=t, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 remove.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.fasta, accnos=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.accnos,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/output/)";
-    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-    $cmd = "qsub -N '$jobname' -o Logs_sge -e Logs_sge -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-    exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat,$output);
-    $id_job = "" ; # give job id
-    foreach ($output as $key_var => $value ) {
-        if($key_var == "1"){
-            $data = explode(":", $value);
-            $id_job = $data[1];
-        }
-    }
-    $loop = true;
-    while ($loop) {
-        $check_run = exec("qstat -j $id_job");
-        if($check_run == false){
-            echo "go to classify_system->";
-            classify_system($user,$id, $project,$path);
-            break;
-        }
-    }
+    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
+     exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+     $id_job = "" ; # give job id
+     foreach ($output as $key_var => $value ) {
+         if($key_var == "1"){
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if($check_run == false){
+             echo "go to classify_system->";
+
+             classify_system($user,$id, $project,$path);
+             break;
+         }
+     }
 }
+
+
+
+
+
 // Classify_system
-function classify_system($user,$id, $project,$path){
-    echo "\n";
-    echo "Run classify_system";
+ function classify_system($user,$id, $project,$path){
+
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify_system"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run classify_system :";
     $jobname = $user."_".$id."_classify_system";
     $cmd ="classify.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=gg_13_8_99.fasta, taxonomy=gg_13_8_99.gg.tax, cutoff=80, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 remove.lineage(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxon=taxon=Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/output/)
 summary.tax(taxonomy=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=$path/input/,outputdir=$path/output/)
-system(cp owncloud/data/$user/files/$project/data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.fasta)
-system(cp owncloud/data/$user/files/$project/data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.count_table)
-system(cp owncloud/data/$user/files/$project/data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy owncloud/data/joesoftheart/files/SAMPLE-WES1053/data/input/final.taxonomy)";
-    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-    $cmd = "qsub -N '$jobname' -o Logs_sge -e Logs_sge -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-    exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat,$output);
-    $id_job = "" ; # give job id
-    foreach ($output as $key_var => $value ) {
+system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta owncloud/data/$user/files/$project/output/final.fasta)
+system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table owncloud/data/$user/files/$project/output/final.count_table)
+system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy owncloud/data/$user/files/$project/output/final.taxonomy)";
+    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
+     exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+     $id_job = "" ; # give job id
+     foreach ($output as $key_var => $value ) {
 
-        if($key_var == "1"){
-            $data = explode(":", $value);
-            $id_job = $data[1];
-        }
-    }
-    $loop = true;
-    while ($loop) {
-        $check_run = exec("qstat -j $id_job");
-        if($check_run == false){
-            echo "go to phylotype_count->";
-            phylotype_count($user,$id, $project,$path);
-            break;
-        }
-    }
+         if($key_var == "1"){
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if($check_run == false){
+             echo "go to phylotype_count->";
+             phylotype_count($user,$id, $project,$path);
+             break;
+         }
+     }
 }
 
 
 
 // Phylotype count
-function phylotype_count($user,$id, $project,$path){
-    echo "\n";
-    echo "Run phylotype_count :";
-    $path_cus = "owncloud/data/$user/files/$project/data/output/";
+ function phylotype_count($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "phylotype_count"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run phylotype_count :";
     $jobname = $user."_".$id."_phylotype_count";
     $cmd ="dist.seqs(fasta=final.fasta, cutoff=0.21, processors=8,inputdir=$path/input/,outputdir=$path/output/)
-cluster(column=final.dist, count=final.count_table, method=opti, cutoff=0.03,inputdir=$path/input/,outputdir=$path/output/)
-dist.seqs(fasta=final.fasta, cutoff=0.21, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 cluster(column=final.dist, count=final.count_table, method=opti, cutoff=0.03,inputdir=$path/input/,outputdir=$path/output/)
 make.shared(list=final.opti_mcc.list, count=final.count_table, label=0.03,inputdir=$path/input/,outputdir=$path/output/)
 classify.otu(list=final.opti_mcc.list, count=final.count_table, taxonomy=final.taxonomy, label=0.03,inputdir=$path/input/,outputdir=$path/output/)
 count.groups(shared=final.opti_mcc.shared,inputdir=$path/input/,outputdir=$path/output/)";
-    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-    $cmd = "qsub -N '$jobname' -o Logs_sge -e Logs_sge -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
     exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat,$output);
-    $id_job = "" ; # give job id
-    foreach ($output as $key_var => $value ) {
-        if($key_var == "1"){
-            $data = explode(":", $value);
-            $id_job = $data[1];
-        }
-    }
-    $loop = true;
-    while ($loop) {
-        $check_run = exec("qstat -j $id_job");
-        if($check_run == false){
-            echo "go to sub_sample_sammary->";
-            //
-            read_log_sungrid_phylotype_count($user, $id, $project, $path, $id_job);
-            break;
-        }
-    }
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+     $id_job = "" ; # give job id
+     foreach ($output as $key_var => $value ) {
+         if($key_var == "1"){
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if($check_run == false){
+             echo "go to read_log_sungrid_phylotype_count->";
+             read_log_sungrid_phylotype_count($user, $id, $project, $path, $id_job);
+             break;
+         }
+     }
 }
 
 
 function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job){
+
     echo "\n";
     echo "Run read_log_sungrid_phylotype_count :";
+    $path_logs = $path . "/logs/";
     $name = $user."_".$id."_phylotype_count.o".$id_job;
 
     $file_name = str_replace(' ', '', $name) ;
     $searchfor = 'contains';
-    $file = file_get_contents('Logs_sge/'.$file_name);
+    $file = file_get_contents("Logs_sge/".$file_name);
 
 
     $pattern = preg_quote($searchfor, '/');
@@ -419,7 +489,7 @@ function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job){
         echo $total;
         echo "<br>";
         echo "Go to sub_sample_sammary->";
-        sub_sample_sammary($user,$id, $project,$path,$total);
+        sub_sample_summary($user,$id, $project,$path,$total);
     }
     else{
         echo "No matches found";
@@ -429,78 +499,76 @@ function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job){
 }
 
 
-
-
-
 // Sub samplr sammary
-function sub_sample_sammary($user,$id, $project,$path,$total){
-    echo "\n";
-    echo "Run sub_sample_summary :";
+ function sub_sample_summary($user,$id, $project,$path,$total){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "sub_sample_summary"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run sub_sample_summary :";
     $jobname = $user."_".$id."_sub_sample_sammary";
     $cmd ="sub.sample(shared=final.opti_mcc.shared, size=$total,inputdir=$path/input/,outputdir=$path/output/)
 collect.single(shared=final.opti_mcc.shared, calc=chao, freq=100, label=0.03,inputdir=$path/input/,outputdir=$path/output/)
 rarefaction.single(shared=final.opti_mcc.shared, calc=sobs, freq=100, label=0.03, processors=8,inputdir=$path/input/,outputdir=$path/output/)
-summary.single(shared=final.opti_mcc.shared, calc=nseqs-coverage-sobs-invsimpson-chao-shannon-npshannon-simpson, subsample=$total, label=0.03,inputdir=$path/input/,outputdir=$path/output/)";
-    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-    $cmd = "qsub -N '$jobname' -o Logs_sge -e Logs_sge -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-    exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat,$output);
-    $id_job = "" ; # give job id
-    foreach ($output as $key_var => $value ) {
-        if($key_var == "1"){
-            $data = explode(":", $value);
-            $id_job = $data[1];
-        }
-    }
-    $loop = true;
-    while ($loop) {
-        $check_run = exec("qstat -j $id_job");
-        if($check_run == false){
-            echo "go to plot_graph->";
-            read_name_sample($user,$id, $project,$path,$total);
-            break;
-        }
-    }
+summary.single(shared=final.opti_mcc.shared, calc=nseqs-coverage-sobs-invsimpson-chao-shannon-npshannon-simpson, subsample=10000, label=0.03,inputdir=$path/input/,outputdir=$path/output/)";
+    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
+     exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+     $id_job = "" ; # give job id
+     foreach ($output as $key_var => $value ) {
+         if($key_var == "1"){
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if($check_run == false){
+             echo "go to plot_graph->";
+             read_name_sample($user,$id, $project,$path,$total);
+             break;
+         }
+     }
 }
 
 function read_name_sample($user,$id, $project,$path,$total){
     $group_sample = array();
     $name_sample = null;
-    if ($file = fopen('../owncloud/data/'.$user.'/files/'.$project.'/data/output/stability.files', "r")) {
-        $i = 0;
-        while(!feof($file)) {
-            $line = fgets($file);
-            $parts = preg_split('/\s+/', $line);
-            echo $parts[0];
-            echo "\n";
-            if ($parts[0] != null){
-                $group_sample[$i] = $parts[0];
-                $i++;
+if ($file = fopen('../owncloud/data/'.$user.'/files/'.$project.'/output/stability.files', "r")) {
+    $i = 0;
+    while(!feof($file)) {
+        $line = fgets($file);
+        $parts = preg_split('/\s+/', $line);
+        echo $parts[0];
+        echo "\n";
+        if ($parts[0] != null){
+            $group_sample[$i] = $parts[0];
+            $i++;
 
-            }
         }
-        fclose($file);
-
-        foreach ($group_sample as $value){
-            if ($name_sample == null){
-                $name_sample = $value;
-            }else {
-                $name_sample = $name_sample . "-" . $value;
-            }
-        }
-        plot_graph($user, $id, $project, $path, $total, $name_sample);
     }
+    fclose($file);
 
+    foreach ($group_sample as $value){
+        $sample =  str_replace("-", "_", $value);
+        if ($name_sample == null){
+            $name_sample = $sample;
+        }else {
+            $name_sample = $name_sample . "-" . $sample;
+        }
+    }
+    plot_graph($user, $id, $project, $path, $total, $name_sample);
 }
 
+}
 // Last funtion plot graph
-function plot_graph($user,$id, $project,$path,$total,$name_sample)
-{
-    echo "\n";
-    echo "Run plot_graph :";
-    $jobname = $user . "_" . $id . "_plot_graph";
-    $cmd = "heatmap.bin(shared=final.opti_mcc.0.03.subsample.shared, scale=log2, numotu=50,inputdir=$path/input/,outputdir=$path/output/)
+ function plot_graph($user,$id, $project,$path,$total,$name_sample){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run plot_graph :";
+     $jobname = $user . "_" . $id . "_plot_graph";
+     $cmd = "heatmap.bin(shared=final.opti_mcc.0.03.subsample.shared, scale=log2, numotu=50,inputdir=$path/input/,outputdir=$path/output/)
 dist.shared(shared=final.opti_mcc.shared, calc=lennon-jclass-morisitahorn-sorabund-thetan-thetayc-braycurtis, subsample=$total, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 heatmap.sim(phylip=final.opti_mcc.thetayc.0.03.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
 heatmap.sim(phylip=final.opti_mcc.jclass.0.03.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
@@ -522,8 +590,68 @@ homova(phylip=final.opti_mcc.thetayc.0.03.lt.ave.dist, design=soil.design,inputd
 corr.axes(axes=final.opti_mcc.thetayc.0.03.lt.ave.pcoa.axes, shared=final.opti_mcc.0.03.subsample.shared, method=spearman, numaxes=3, label=0.03,inputdir=$path/input/,outputdir=$path/output/)
 system(mv final.opti_mcc.0.03.subsample.spearman.corr.axes final.opti_mcc.0.03.subsample.spearman.corr.axesThetayc3D,inputdir=$path/input/,outputdir=$path/output/)
 corr.axes(axes=final.opti_mcc.thetayc.0.03.lt.ave.pcoa.axes, metadata=soilpro.metadata, method=pearson, numaxes=3, label=0.03,inputdir=$path/input/,outputdir=$path/output/)";
-    file_put_contents('owncloud/data/' . $user . '/files/' . $project . '/data/input/run.batch', $cmd);
-    $cmd = "qsub -N '$jobname' -o Logs_sge -e Logs_sge -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+     file_put_contents('owncloud/data/' . $user . '/files/' . $project . '/input/run.batch', $cmd);
+     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
+     exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat, $output);
+     $id_job = ""; # give job id
+     foreach ($output as $key_var => $value) {
+         if ($key_var == "1") {
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if ($check_run == false) {
+             echo "Go to create_file_input_heatmap ->";
+             create_file_input_heatmap($user, $id, $project, $path);
+             break;
+         }
+     }
+
+
+
+
+ }
+
+
+
+ function create_file_input_heatmap($user, $id, $project, $path){
+     echo "\n";
+     echo "Run create_file_input_heatmap :";
+     $jobname = $user . "_" . $id . "_create_file_input";
+     $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_heatmap.php $user $project";
+     exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat, $output);
+     $id_job = ""; # give job id
+     foreach ($output as $key_var => $value) {
+         if ($key_var == "1") {
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if ($check_run == false) {
+             echo "Go to create_file_input_abun ->";
+             create_file_input_abun($user, $id, $project, $path);
+             break;
+         }
+     }
+
+ }
+
+
+function create_file_input_abun($user, $id, $project, $path){
+    echo "\n";
+    echo "Run create_file_input_abun :";
+    $jobname = $user . "_" . $id . "_create_file_input_abun";
+    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_abundance.php $user $project";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -538,14 +666,223 @@ corr.axes(axes=final.opti_mcc.thetayc.0.03.lt.ave.pcoa.axes, metadata=soilpro.me
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-            echo "<-- Finish plot graph -->";
+            echo "Go to create_input_alphash ->";
+            create_input_alphash($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
+
+function create_input_alphash($user, $id, $project, $path){
+    echo "\n";
+    echo "Run create_input_alphash :";
+    $jobname = $user . "_" . $id . "_create_input_alphash";
+    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_alphash.php $user $project";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Go to plot_graph_r_heartmap ->";
+            plot_graph_r_heatmap($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
+
+
+ function plot_graph_r_heatmap($user, $id, $project, $path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_heatmap"."\n", FILE_APPEND);
+     echo "\n";
+     echo "Run plot_graph_r_heatmap :";
+     $path_input_csv = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";
+     $path_to_save = "owncloud/data/$user/files/$project/output/heatmap.png";
+     $jobname = $user . "_" . $id . "_plot_graph_r_heartmap";
+     $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript R_Script/heatmapPlottest.R $path_input_csv $path_to_save";
+     exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat, $output);
+     $id_job = ""; # give job id
+     foreach ($output as $key_var => $value) {
+         if ($key_var == "1") {
+             $data = explode(":", $value);
+             $id_job = $data[1];
+         }
+     }
+     $loop = true;
+     while ($loop) {
+         $check_run = exec("qstat -j $id_job");
+         if ($check_run == false) {
+             echo "Go to plot_graph_r_NMD ->";
+             plot_graph_r_NMD($user, $id, $project, $path);
+             break;
+         }
+     }
+
+ }
+
+function plot_graph_r_NMD($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_NMD"."\n", FILE_APPEND);
+    echo "\n";
+    echo "Run plot_graph_r_NMD :";
+    $path_input_axes = "owncloud/data/$user/files/$project/output/final.tx.thetayc.2.lt.ave.nmds.axes";
+    $path_to_save = "owncloud/data/$user/files/$project/output/NMD.png";
+    $jobname = $user . "_" . $id . "plot_graph_r_NMD";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/NMDSpcoaplottest.R $path_input_axes $path_to_save";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Go to plot_graph_r_Rare->";
+            plot_graph_r_Rare($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
+
+function plot_graph_r_Rare($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Rare"."\n", FILE_APPEND);
+    echo "\n";
+    echo "Run plot_graph_r_Rare :";
+    $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.opti_mcc.groups.rarefaction";
+    $path_to_save = "owncloud/data/$user/files/$project/output/Rare.png";
+    $jobname = $user . "_" . $id . "plot_graph_r_Rare";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/RarefactionSoiltest.R $path_input_rarefaction $path_to_save";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Go to plot_graph_r_Abun ->";
+            plot_graph_r_Abun($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
+
+
+function plot_graph_r_Abun($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Abun"."\n", FILE_APPEND);
+    echo "\n";
+    echo "Run plot_graph_r_Abun :";
+    $path_input_phylumex = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";
+    $path_to_save = "owncloud/data/$user/files/$project/output/Abun.png";
+    $jobname = $user . "_" . $id . "plot_graph_r_Abun";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/Abundancebarplottest.R $path_input_phylumex $path_to_save";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Go to plot_graph_r_Alphash ->";
+            plot_graph_r_Alphash($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
+
+
+function plot_graph_r_Alphash($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Alphash"."\n", FILE_APPEND);
+    echo "\n";
+    echo "Run plot_graph_r_Alphash :";
+    $path_input_chao_shannon = "owncloud/data/$user/files/$project/output/file_after_chao.txt";
+    $path_to_save = "owncloud/data/$user/files/$project/output/Alpha.png";
+    $jobname = $user . "_" . $id . "plot_graph_r_Alphash";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/AlphachaoshannonSoil.R $path_input_chao_shannon $path_to_save";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish Alphash ->";
+            break;
+        }
+    }
+
+}
+
+function chang_name($user, $id, $project, $path){
+    echo "\n";
+    echo "Run chang_name :";
+    $jobname = $user . "_" . $id . "_chang_name";
+    $cmd = "";
+    file_put_contents('owncloud/data/' . $user . '/files/' . $project . '/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Go to stop";
             break;
         }
     }
 
 
-
 }
+
+
 
 ?>
 

@@ -31,6 +31,114 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
 
     </div>
+
+    <?php
+
+    foreach ($rs as $r) {
+        $sample_folder = $r['project_path'];
+    }
+    $project = basename($sample_folder);
+    $user = $this->session->userdata['logged_in']['username'];
+
+    $path = "../owncloud/data/$user/files/$project/output/";
+
+
+
+    ?>
+
+    <?php
+    $keywords_split_line = array();
+    $progress = "owncloud/data/$user/files/$project/output/progress.txt";
+
+
+    if(file_exists($progress)){
+        if ($file_progress = fopen($progress, "r")) {
+            $keywords_split_line = preg_split("/[\n]/", fread($file_progress, filesize($progress)));
+            print_r($keywords_split_line);
+
+
+        }
+        $num = count($keywords_split_line);
+        echo "Runinggggggggggggggg";
+        echo $num;
+
+        ?>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar"
+                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                40%
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table"  width="100%" border="0">
+
+                     <tr>
+                         <td><?php if(in_array("check_file",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>check_file</td>
+                     </tr>
+                     <tr>
+                         <td><?php if(in_array("check_oligos",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>check_oligos</td>
+                     </tr>
+                     <tr>
+                         <td><?php if(in_array("make_contigs_oligos",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>make_contigs_oligos</td>
+                     </tr>
+                     <tr>
+                         <td><?php if(in_array("make_contigs_summary",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>make_contigs_summary</td>
+                     </tr>
+                     <tr>
+                         <td><?php if(in_array("screen_seqs",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>screen_seqs</td>
+                     </tr>
+                     <tr>
+                         <td><?php if(in_array("classify_system",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>classify_system</td>
+                     </tr>
+                     <tr>
+                         <td><?php if(in_array("phylotype_count",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>phylotype_count</td>
+                     </tr>
+                     <tr>
+                         <td><?php if(in_array("sub_sample_summary",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>sub_sample_summary</td>
+                     </tr>
+                     <tr>
+                         <td><?php if(in_array("plot_graph",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>plot_graph</td>
+                     </tr>
+                     <tr>
+                         <td><?php if(in_array("plot_graph_r_heatmap",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>plot_graph_r_heartmap</td>
+                     </tr>
+                     <tr>
+                         <td><?php if(in_array("plot_graph_r_NMD",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>plot_graph_r_NMD</td>
+                     </tr>
+                     <tr>
+                         <td><?php if(in_array("plot_graph_r_Rare",$keywords_split_line)){?><i class="fa fa-check"><?php }?></td>
+                         <td>plot_graph_r_Rare</td>
+                     </tr>
+
+
+
+                </table>
+            </div>
+
+
+        </div>
+
+
+
+
+        <?php
+    }else{
+        echo "No Runinggggggggggg";
+
+
+    ?>
     <div class="row">
         <div class="col-lg-12">
             <div class="uk-child-width-1-6\@xl" uk-grid>
@@ -44,12 +152,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
                         <li>
                             <div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped active" role="progressbar"
-                                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                                        40%
-                                    </div>
-                                </div>
+
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
                                     <li ><a href="#">Run</a></li>
                                     <li><a href="#">Result && Graph</a></li>
@@ -983,7 +1086,11 @@ if (isset($this->session->userdata['logged_in'])) {
                 
             </div>
     </div>
+        <?php }  ?>
 </div>
+
+
+
 
 
     <script>

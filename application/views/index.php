@@ -34,8 +34,9 @@ if (isset($this->session->userdata['logged_in'])) {
                             <?php if ($i <= 4) {  ?>
                             <div  class="uk-animation-toggle">
                                 <a href="<?php echo  site_url('projects/index/'.$r['_id'])?>">
-                                <div  class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">
-                                    <h5 class="uk-card-title uk-text-small uk-text-center"><?=$r['project_name'];?></h5>
+                                <div  class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast uk-card-hover">
+                                    <div class="uk-card-badge uk-label">10/11/12</div>
+                                    <div class="uk-card-title uk-text-small uk-text-center"><?=$r['project_name'];?></div>
                                     <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div>
                                     <br>
                                 </div></a>
@@ -54,7 +55,7 @@ if (isset($this->session->userdata['logged_in'])) {
                         <?php if ($j > 4) {  ?>
                                 <div  class="uk-animation-toggle">
                                     <a href="<?php echo site_url('projects/index/'.$rt['_id'])?>">
-                                    <div id="toggle-animation" class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">
+                                    <div id="toggle-animation" class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast uk-card-hover">
                                         <h5 class="uk-card-title uk-text-small uk-text-center"><?=$rt['project_name'];?></h5>
                                         <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div>
                                         <br>

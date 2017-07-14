@@ -93,6 +93,7 @@ class Projects extends CI_Controller
         if ($project_analysis == "otu"){
             $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run_otu.php $user $id $project $path";
             exec($cmd);
+            redirect("/projects/index/".$id);
         }else if ($project_analysis == "phylotype"){
             $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run_phylotype.php $user $id $project $path";
             exec($cmd);
