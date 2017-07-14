@@ -30,6 +30,13 @@ class Projects extends CI_Controller
         $data['rs_process'] = $this->mongo_db->limit(1)->get('status_process');
 
 
+foreach ($data['rs'] as $r) {
+    $sample_folder = $r['project_path'];
+}
+$project = basename($sample_folder);
+$user = $this->session->userdata['logged_in']['username'];
+
+
 
 
         if ($data != null) {
@@ -41,11 +48,24 @@ class Projects extends CI_Controller
 
 
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
+        $num = null;
+        $keywords_split_line = array();
+        $progress = "owncloud/data/$user/files/$project/output/progress.txt";
+        if (file_exists($progress)) {
+            $file_progress = fopen($progress, "r");
+            $keywords_split_line = preg_split("/[\n]/", fread($file_progress, filesize($progress)));
+            print_r($keywords_split_line);
+            $num = count($keywords_split_line);
+        }
+        echo $num;
+        if(file_exists($progress) and $num < 18){
+            redirect("/process/index/" . $id_project, 'refresh');
+        }else {
 
-
-        $this->load->view('header', $data);
-        $this->load->view('projects', $data);
-        $this->load->view('footer');
+            $this->load->view('header', $data);
+            $this->load->view('projects', $data);
+            $this->load->view('footer');
+        }
     }
 
 
@@ -93,10 +113,11 @@ class Projects extends CI_Controller
         if ($project_analysis == "otu"){
             $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run_otu.php $user $id $project $path";
             exec($cmd);
-            redirect("/projects/index/".$id);
+            redirect("/process/index/".$id);
         }else if ($project_analysis == "phylotype"){
             $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run_phylotype.php $user $id $project $path";
             exec($cmd);
+            redirect("/process/index/".$id);
         }else {
             echo "Not run";
         }
