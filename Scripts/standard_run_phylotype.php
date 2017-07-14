@@ -67,7 +67,7 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
     }
     if($total_oligo == 0){
         echo "go to makecontig_summary -> ";
-        make_contig_summary($user,$id, $project,$path);
+        make_contigs_summary($user,$id, $project,$path);
     }
 }
 
@@ -342,7 +342,7 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
 
 // Screen remove
  function screen_remove($user,$id, $project,$path,$start,$end){
-     ile_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "screen_remove"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "screen_remove"."\n", FILE_APPEND);
      echo "\n";
      echo "Run screen_remove :";
     $jobname = $user."_".$id."_screen_remove";
@@ -488,7 +488,7 @@ function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job){
         echo $total;
         echo "<br>";
         echo "Go to sub_sample_sammary->";
-        sub_sample_sammary($user,$id, $project,$path,$total);
+        sub_sample_summary($user,$id, $project,$path,$total);
     }
     else{
         echo "No matches found";
@@ -499,10 +499,12 @@ function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job){
 
 
 // Sub samplr sammary
- function sub_sample_sammary($user,$id, $project,$path,$total){
+ function sub_sample_summary($user,$id, $project,$path,$total){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "sub_sample_summary"."\n", FILE_APPEND);
+
      echo "\n";
      echo "Run sub_sample_summary :";
-    $jobname = $user."_".$id."_sub_sample_sammary";
+    $jobname = $user."_".$id."_sub_sample_summary";
     $cmd ="sub.sample(shared=final.tx.shared, size=$total,inputdir=$path/input/,outputdir=$path/output/)
 collect.single(shared=final.tx.shared, calc=chao, freq=100,inputdir=$path/input/,outputdir=$path/output/)
 rarefaction.single(shared=final.tx.shared, calc=sobs, freq=100, processors=8,inputdir=$path/input/,outputdir=$path/output/)
@@ -564,6 +566,8 @@ if ($file = fopen('../owncloud/data/'.$user.'/files/'.$project.'/output/stabilit
 // Last funtion plot graph
  function plot_graph($user,$id, $project,$path,$total,$name_sample)
  {
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph"."\n", FILE_APPEND);
+
      echo "\n";
      echo "Run plot_graph :";
      $jobname = $user . "_" . $id . "_plot_graph";
@@ -679,7 +683,7 @@ function create_input_alphash($user, $id, $project, $path){
     echo "\n";
     echo "Run create_input_alphash :";
     $jobname = $user . "_" . $id . "_create_input_alphash";
-    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_alphash.php $user $project";
+    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_alphash_phylotype.php $user $project";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -695,7 +699,7 @@ function create_input_alphash($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Go to plot_graph_r_heartmap ->";
-            plot_graph_r_heartmap($user, $id, $project, $path);
+            plot_graph_r_heatmap($user, $id, $project, $path);
             break;
         }
     }
@@ -703,9 +707,11 @@ function create_input_alphash($user, $id, $project, $path){
 }
 
 
- function plot_graph_r_heartmap($user, $id, $project, $path){
+ function plot_graph_r_heatmap($user, $id, $project, $path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_heatmap"."\n", FILE_APPEND);
+
      echo "\n";
-     echo "Run plot_graph_r_heartmap :";
+     echo "Run plot_graph_r_heatmap :";
      $path_input_csv = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";
      $path_to_save = "owncloud/data/$user/files/$project/output/heartmap.png";
      $jobname = $user . "_" . $id . "_plot_graph_r_heartmap";
@@ -733,6 +739,8 @@ function create_input_alphash($user, $id, $project, $path){
  }
 
 function plot_graph_r_NMD($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_NMD"."\n", FILE_APPEND);
+
     echo "\n";
     echo "Run plot_graph_r_NMD :";
     $path_input_axes = "owncloud/data/$user/files/$project/output/final.tx.thetayc.2.lt.ave.nmds.axes";
@@ -762,6 +770,8 @@ function plot_graph_r_NMD($user, $id, $project, $path){
 }
 
 function plot_graph_r_Rare($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Rare"."\n", FILE_APPEND);
+
     echo "\n";
     echo "Run plot_graph_r_Rare :";
     $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.tx.groups.rarefaction";
@@ -792,6 +802,8 @@ function plot_graph_r_Rare($user, $id, $project, $path){
 
 
 function plot_graph_r_Abun($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Abun"."\n", FILE_APPEND);
+
     echo "\n";
     echo "Run plot_graph_r_Abun :";
     $path_input_phylumex = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";
@@ -822,6 +834,8 @@ function plot_graph_r_Abun($user, $id, $project, $path){
 
 
 function plot_graph_r_Alphash($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Aphash"."\n", FILE_APPEND);
+
     echo "\n";
     echo "Run plot_graph_r_Alphash :";
     $path_input_chao_shannon = "owncloud/data/$user/files/$project/output/file_after_chao.txt";

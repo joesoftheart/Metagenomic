@@ -44,7 +44,7 @@ if (isset($this->session->userdata['logged_in'])) {
     header("location: login/user_login_process");
 }
 ?>
-<body background="<?php echo base_url();?>images/backgroud-login-new.jpg">
+<body background="<?php echo base_url();?>images/backgroud-login-blur.jpg">
 <?php
 if (isset($logout_message)) {
     echo "<div class='message'>";

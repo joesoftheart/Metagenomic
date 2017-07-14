@@ -14,7 +14,7 @@ putenv("PATH=$PATH");
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
      #classify_system($user,$id,$project,$path);
-    create_file_input_heatmap($user,$id,$project,$path);
+    run($user,$id,$project,$path);
     }
 
 
@@ -678,7 +678,7 @@ function create_input_alphash($user, $id, $project, $path){
     echo "\n";
     echo "Run create_input_alphash :";
     $jobname = $user . "_" . $id . "_create_input_alphash";
-    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_alphash.php $user $project";
+    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_alphash_otu.php $user $project";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
