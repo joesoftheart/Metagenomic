@@ -551,6 +551,24 @@
 
       }
 
+      public function ch_ven_val(){
+         $venn1 = "file1";
+         $venn2 = "file2";
+         $venn3 = "file3";
+         $venn4 = "file4";
+
+         $group_venn = "";
+         $check_venn = array($venn1,$venn2,$venn3,$venn4);
+         foreach ($check_venn as $val_venn) {
+           
+           if($val_venn != "0"){
+               $group_venn += $val_venn+"-";
+              
+           }   
+           
+         }
+      }
+
      
       public function run_analysis(){
 
@@ -559,7 +577,7 @@
          $user = $data[0];
          $id_project = $data[1];
 
-         $level = $data[2];
+         $level = $data[2]; //check
 
          $ch_alpha = $data[3];
          $size_alpha = $data[4];
@@ -579,6 +597,12 @@
          $venn2 = $data[8];
          $venn3 = $data[9];
          $venn4 = $data[10];
+
+         $group_venn = "";
+         $check_venn = array($venn1,$venn2,$venn3,$venn4);
+         foreach ($check_venn as $val_venn) {
+           echo $val_venn."<br/>";
+         }
 
          $upgma = $data[11];
          $pcoa  = $data[12];
