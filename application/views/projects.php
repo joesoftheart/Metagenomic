@@ -369,7 +369,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>Heatmap</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>heartmap.png">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>heatmap.png">
                                             </div>
                                         </div>
 

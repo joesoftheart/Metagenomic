@@ -44,19 +44,25 @@ if (isset($this->session->userdata['logged_in'])) {
         if (file_exists($progress)) {
             $file_progress = fopen($progress, "r");
             $keywords_split_line = preg_split("/[\n]/", fread($file_progress, filesize($progress)));
-            print_r($keywords_split_line);
+            //print_r($keywords_split_line);
             $num = count($keywords_split_line);
         }
-        echo $num;
+        // echo $num;
         if(file_exists($progress) and $num < 18){
             ?>
+            <br/>
+            <div class="row">
+                <div class="col-lg-12">
             <div class="progress">
                 <div class="progress-bar progress-bar-striped active" role="progressbar"
                      aria-valuenow="<?php echo $num/18*100; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $num/18*100; ?>%">
                     <?php echo round($num/18*100); ?>%
                 </div>
             </div>
+                </div>
+            </div>
             <div class="row">
+
                 <div class="col-lg-12">
                     <table class="table"  width="100%" border="0">
 
@@ -122,7 +128,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
             <?php
         }else {
-           // redirect("/projects/index/" . $current_project, 'refresh');
+            redirect("/projects/index/" . $current_project, 'refresh');
         }?>
 
 

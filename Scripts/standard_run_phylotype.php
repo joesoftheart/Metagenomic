@@ -681,7 +681,7 @@ function create_input_alphash($user, $id, $project, $path){
      echo "\n";
      echo "Run plot_graph_r_heatmap :";
      $path_input_csv = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";
-     $path_to_save = "owncloud/data/$user/files/$project/output/heartmap.png";
+     $path_to_save = "owncloud/data/$user/files/$project/output/heatmap.png";
      $jobname = $user . "_" . $id . "_plot_graph_r_heartmap";
      $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript R_Script/heatmapPlottest.R $path_input_csv $path_to_save";
      exec($cmd);
@@ -745,7 +745,7 @@ function plot_graph_r_Rare($user, $id, $project, $path){
     $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.tx.groups.rarefaction";
     $path_to_save = "owncloud/data/$user/files/$project/output/Rare.png";
     $jobname = $user . "_" . $id . "plot_graph_r_Rare";
-    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/RarefactionSoiltest.R $path_input_rarefaction $path_to_save";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/RarefactionSoiltest_phtlotype.R $path_input_rarefaction $path_to_save";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
