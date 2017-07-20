@@ -17,7 +17,7 @@ if (isset($this->session->userdata['logged_in'])) {
                 <li <?php if ($controller_name == 'main'){
                     echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
                 <li <?php if ($controller_name == 'process'){
-                    echo "class=active";} ?>><?php if ($controller_name == 'process'){?>process project<?php } else {?><a href="<?php echo site_url('projects/index/'.$current_project)?>">Current project</a><?php } ?></li>
+                    echo "class=active";} ?>><?php if ($controller_name == 'process'){?>processing<?php } else {?><a href="<?php echo site_url('projects/index/'.$current_project)?>">Current project</a><?php } ?></li>
             </ol>
 
         </div>
@@ -53,7 +53,7 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="progress">
                 <div class="progress-bar progress-bar-striped active" role="progressbar"
                      aria-valuenow="<?php echo $num/18*100; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $num/18*100; ?>%">
-                    <?php echo $num/18*100; ?>%
+                    <?php echo round($num/18*100); ?>%
                 </div>
             </div>
             <div class="row">
