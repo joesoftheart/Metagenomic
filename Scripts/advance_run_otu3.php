@@ -8,6 +8,7 @@
          $project = $argv[2];
          $path_in = $argv[3];
          $path_out = $argv[4];
+         $GLOBALS['path_log'] = $argv[5];
 
 
 // collect.single(shared=final.opti_mcc.shared, calc=chao, freq=100, label=0.03)

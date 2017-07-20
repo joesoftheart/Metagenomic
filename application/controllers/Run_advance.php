@@ -39,14 +39,14 @@
        $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
         foreach ($array_project as $r) {
           
-                $project = $r['project_name'];
-               
+                $project = $r['project_name'];     
          }
 
-
        $design_json = $_REQUEST['data_excel'];
+
+       $path_input = "owncloud/data/$user/files/$project/input/file.design";
       
-       $file = FCPATH."Mothur1391/file.design";
+       $file = FCPATH."$path_input";
 
        file_put_contents($file, $design_json); 
 
@@ -55,8 +55,19 @@
     }
 
     public function check_file_design(){
-      
-      $path_file = FCPATH."Mothur1391/file.design";
+
+       $user = $_REQUEST['user'];
+       $id_project = $_REQUEST['project_id'];
+       $project = "";
+
+       # Query data Project By ID
+       $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
+        foreach ($array_project as $r) {
+          
+                $project = $r['project_name'];     
+         }
+      $path_input = "owncloud/data/$user/files/$project/input/file.design";
+      $path_file = FCPATH."$path_input";
 
             if(file_exists($path_file)) {
               echo json_encode("file.design");
@@ -66,17 +77,7 @@
             }
     }
 
-     public function check_file_metadata(){
-      
-      $path_file = FCPATH."Mothur1391/file.metadata";
-
-            if(file_exists($path_file)) {
-              echo json_encode("file.metadata");
-            }
-            else {
-              echo json_encode("0");
-            }
-    }
+    
 
    
      public function write_metadata(){
@@ -94,8 +95,10 @@
          }
 
        $metadata_json = $_REQUEST['data_excel'];
+       $path_input = "owncloud/data/$user/files/$project/input/file.metadata";
       
-       $file = FCPATH."Mothur1391/file.metadata";
+       $file = FCPATH."$path_input";
+
 
        file_put_contents($file, $metadata_json); 
 
@@ -103,6 +106,33 @@
 
 
     }
+
+
+     public function check_file_metadata(){
+
+       $user = $_REQUEST['user'];
+       $id_project = $_REQUEST['project_id'];
+       $project = "";
+
+       # Query data Project By ID
+       $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
+        foreach ($array_project as $r) {
+          
+                $project = $r['project_name'];     
+         }
+      
+      $path_input = "owncloud/data/$user/files/$project/input/file.metadata";
+      $path_file = FCPATH."$path_input";
+
+            if(file_exists($path_file)) {
+              echo json_encode("file.metadata");
+            }
+            else {
+              echo json_encode("0");
+            }
+    }
+
+
 
     public function check_fasta(){
       
@@ -237,10 +267,18 @@
       
       
         # Set Path => input ,output ,log
-            $path_input = "owncloud/data/$user/files/$project/data/input/";
-            $path_out = "owncloud/data/$user/files/$project/data/output/";
+            $path_input = "owncloud/data/$user/files/$project/input/";
+            $path_out = "owncloud/data/$user/files/$project/output/";
             $path_log = "owncloud/data/$user/files/$project/log/";
       
+            $file_batch = FCPATH."$path_input/advance.batch";
+
+            if(!file_exists($file_batch)) {
+                file_put_contents($file_batch, "No command !" ); 
+            }
+
+        
+
 
         #Create  jobname  advance
             $jobname = $user."-".$project."-".$project_analysis."-"."advance";
@@ -262,7 +300,7 @@
                   }
 
                    $taxon = str_replace(";", ",", $taxon);
-                   $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out";
+                   $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
                   
             }
             elseif ($project_analysis == "otu") {
@@ -280,7 +318,7 @@
                   }
                   
                   $taxon = str_replace(";", ",", $taxon); 
-                  $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out";
+                  $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
             }
 
            
@@ -363,11 +401,11 @@
              # Check type Project Phylotype OTU
              if($project_analysis == "phylotype"){
 
-                $file = FCPATH."owncloud/data/$user/files/$project/data/output/final.tx.count.summary";
+                $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
 
              }elseif ($project_analysis == "otu") {
 
-                $file = FCPATH."owncloud/data/$user/files/$project/data/output/final.opti_mcc.count.summary";
+                $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
              }
    
            
@@ -427,8 +465,8 @@
 
 
        # Set Path input , output , log 
-        $path_input = "owncloud/data/$user/files/$project/data/input/";
-        $path_out = "owncloud/data/$user/files/$project/data/output/";
+        $path_input = "owncloud/data/$user/files/$project/input/";
+        $path_out = "owncloud/data/$user/files/$project/output/";
         $path_log = "owncloud/data/$user/files/$project/log/";
       
         #Create  jobname  advance
@@ -438,11 +476,11 @@
 
            if ($project_analysis == "phylotype") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype2.php $user $project $path_input $path_out $size";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype2.php $user $project $path_input $path_out $size $path_log";
            }
            else if($project_analysis == "otu") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu2.php $user $project $path_input $path_out $size";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu2.php $user $project $path_input $path_out $size $path_log";
            }
              
  
@@ -485,12 +523,12 @@
                # Check type Project Phylotype OTU
                if($project_analysis == "phylotype"){
 
-                  $file = FCPATH."owncloud/data/$user/files/$project/data/output/final.tx.count.summary";
+                  $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
 
                  }
                elseif ($project_analysis == "otu") {
 
-                  $file = FCPATH."owncloud/data/$user/files/$project/data/output/final.opti_mcc.count.summary";
+                  $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
                }
 
                 $sam_name = array();
@@ -521,6 +559,43 @@
          $user = $data[0];
          $id_project = $data[1];
 
+         $level = $data[2];
+
+         $ch_alpha = $data[3];
+         $size_alpha = $data[4];
+
+         if($ch_alpha != "1"){
+            $size_alpha = $ch_alpha;
+         }
+
+         $ch_beta = $data[5];
+         $size_beta = $data[6];
+
+         if($ch_beta != "1"){
+            $size_beta = $ch_beta;
+         }
+
+         $venn1 = $data[7];
+         $venn2 = $data[8];
+         $venn3 = $data[9];
+         $venn4 = $data[10];
+
+         $upgma = $data[11];
+         $pcoa  = $data[12];
+
+         $nmds = $data[13];
+         $nmds_cal = $data[14];
+
+         $file_design = $data[15];
+         $file_metadata = $data[16];
+
+         $ah_mova = $data[17];
+         $correlation = $data[18];
+         
+         $method = $data[19];
+         $axes  = $data[20];
+
+
         $project = "";
         $project_analysis = "";
 
@@ -534,8 +609,8 @@
 
 
        # Set Path input , output , log 
-        $path_input = "owncloud/data/$user/files/$project/data/input/";
-        $path_out = "owncloud/data/$user/files/$project/data/output/";
+        $path_input = "owncloud/data/$user/files/$project/input/";
+        $path_out = "owncloud/data/$user/files/$project/output/";
         $path_log = "owncloud/data/$user/files/$project/log/";
       
         # Create  jobname  advance
@@ -545,11 +620,11 @@
 
            if ($project_analysis == "phylotype") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project $path_input $path_out ";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project $path_input $path_out $path_log";
            }
            else if($project_analysis == "otu") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project $path_input $path_out ";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project $path_input $path_out $path_log";
            }
              
  

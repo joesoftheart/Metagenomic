@@ -34,27 +34,26 @@ else {
  <form name="myform" id="myform" method="post" >
     <table id="blacklistgrid">
         <tr id="Row1">
-            <td><input type="text" name="head[]" placeholder="Header 1"  /></td>
-            <td><input type="text" name="head[]" placeholder="Header 2" /></td>
-            <td><input type="text" name="head[]" placeholder="Header 3" /></td>
+            <td><input type="text"  placeholder="Header 1"  /></td>
+            <td><input type="text"  placeholder="Header 2" /></td>
+            <td><input type="text"  placeholder="Header 3" /></td>
             
         </tr>
 
         <tr id="Row2">
             <td>
-                <input type="text" name="col[]" />
+                <input type="text"   placeholder="sample" />
             </td>
             <td>
-                <input type="text" name="col[]" />
+                <input type="text" onkeypress='return validateNumber(event)' placeholder="number"/>
             </td>
             <td>
-                <input type="text" name="col[]" />
+                <input type="text" onkeypress='return validateNumber(event)' placeholder="number"/>
             </td>
           
         </tr>
     </table>
-    
-    
+   
 </form>
 
 
@@ -67,6 +66,7 @@ else {
 
 $(document).ready(function () {
 
+     
      $('#btnAdd').click(function () {
          var count = 1,
              first_row = $('#Row2');
@@ -81,9 +81,9 @@ $(document).ready(function () {
          myform.find('tr').each(function(){
            var trow = $(this);
              if(trow.index() === 0){
-                 trow.append('<td><input type="text" name="head[]" placeholder=Header'+col_num+'></td>');
+                 trow.append('<td><input type="text"  placeholder=Header'+col_num+'></td>');
              }else{
-                trow.append('<td><input type="text" name="col[]"/></td>');
+                trow.append('<td><input type="text" onkeypress="return validateNumber(event)" placeholder="number"/></td>');
              }
             
          });
@@ -101,16 +101,29 @@ $(document).ready(function () {
      
      $('#btnRemoveCol').click(function () {
 
-      	  var column_count = $('#blacklistgrid  #Row2 td').length;
-      	  if (column_count > 1){
+      	  var column_count = $('#blacklistgrid #Row1 td').length;
+      	  if (column_count > 2){
               $('table tr').find('td:eq(-1),th:eq(-1)').remove();
 
               col_num -= 1;
       	  }
      });
-     
- 
+
+
  });
+
+
+
+function validateNumber(event) {
+    var key = window.event ? event.keyCode : event.which;
+    if (event.keyCode === 8 || event.keyCode === 46) {
+        return true;
+    } else if ( key < 48 || key > 57 ) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 
 
@@ -118,17 +131,22 @@ function getExcel(){
 
     var user = "<?php echo $username ?>";
     var project = "<?php echo $current_project ?>";
-    var excel = "";
+    var excel = "" , 
+        check_val ="";
+
     $("#blacklistgrid").find("tr").each(function () {
         var sep = "";
         $(this).find("input").each(function () {
             excel += sep + $(this).val();
+            check_val += $(this).val(); 
             sep = "\t";
         });
         excel += "\n";
     });
 
-    $.ajax({
+
+    if(check_val != ""){
+         $.ajax({
             type:"post",
             datatype:"json",
             url:"<?php echo base_url('Run_advance/write_metadata');?>?user="+user+"&project_id="+project,
@@ -141,9 +159,19 @@ function getExcel(){
                      console.log(e.message);
                    }
    
-    });
+       });
+
+    }else{
+      
+       alert("Please insert value");
+   
+    }
+   
 
 }
+
+
+
 
 
 </script>

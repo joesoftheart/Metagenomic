@@ -8,10 +8,11 @@
          $project = $argv[2];
          $path_in = $argv[3];
          $path_out = $argv[4];
+         $GLOBALS['path_log'] = $argv[5];
 
 
 
-         if($user != "" && $project != "" && $path_in != "" && $path_out != "" ){
+         if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != ""){
              
              //collect_rarefaction_summary($user,$project,$path_in,$path_out);
 
@@ -20,6 +21,7 @@
               echo "project : ".$project."\n"; 
               echo "path_in : ".$path_in."\n";
               echo "path_out : ".$path_out."\n";
+              echo "path_log : ".$GLOBALS['path_log'];
               
          }
     
@@ -32,12 +34,14 @@
 
            $jobname = $user."_collect_rarefaction_summary";
 
-            $cmd = "collect.single(shared=final.tx.shared, calc=chao, freq=100,inputdir=$path_in,outputdir=$path_out)
+            $make = "collect.single(shared=final.tx.shared, calc=chao, freq=100,inputdir=$path_in,outputdir=$path_out)
                     rarefaction.single(shared=final.tx.shared, calc=sobs, freq=100, processors=8,inputdir=$path_in,outputdir=$path_out)
-                    summary.single(shared=final.tx.shared, calc=nseqs-coverage-sobs-invsimpson-chao-shannon-npshannon, subsample=5000,inputdir=$path_in,outputdir=$path_out)";
+                    summary.single(shared=final.tx.shared, calc=nseqs-coverage-sobs-invsimpson-chao-shannon-npshannon, subsample="..",inputdir=$path_in,outputdir=$path_out)";
         
-             file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+            file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+              
 
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
@@ -75,11 +79,13 @@
               echo "dist_summary_shared"."\n";
               $jobname = $user."_dist_summary_shared";
 
-              $cmd = "dist.shared(shared=final.tx.shared, calc=thetayc-jclass-lennon-morisitahorn-braycurtis, subsample=5000,inputdir=$path_in,outputdir=$path_out)
-                      summary.shared(calc=lennon-jclass-morisitahorn-sorabund-thetan-thetayc-braycurtis, groups=soils1_1-soils2_1-soils3_1-soils4_1, all=T,inputdir=$path_in,outputdir=$path_out)";
+              $make= "dist.shared(shared=final.tx.shared, calc=thetayc-jclass-lennon-morisitahorn-braycurtis, subsample="..",inputdir=$path_in,outputdir=$path_out)
+                      summary.shared(calc=lennon-jclass-morisitahorn-sorabund-thetan-thetayc-braycurtis, groups="..", all=T,inputdir=$path_in,outputdir=$path_out)";
           
-              file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
+               file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+              
 
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
@@ -117,11 +123,13 @@
 
               $jobname = $user."_venn";
 
-              $cmd = "venn(shared=final.tx.2.subsample.shared, groups=soils1_1-soils2_1-soils3_1-soils4_1,inputdir=$path_in,outputdir=$path_out)";
-
-              file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/data/input/run.batch', $cmd);
-              $cmd = "qsub -N '$jobname' -o owncloud/data/$user/files/$project/log  -cwd -j y -b y Mothur/mothur ../owncloud/data/$user/files/$project/data/input/run.batch ";
-
+              $make = "venn(shared=final.tx.2.subsample.shared, groups="..",inputdir=$path_in,outputdir=$path_out)";
+              
+              file_put_contents($path_in.'/advance.batch', $make);
+               $log = $GLOBALS['path_log'];
+               $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+              
+             
                shell_exec($cmd);
                $check_qstat = "qstat  -j '$jobname' ";
                exec($check_qstat,$output);
