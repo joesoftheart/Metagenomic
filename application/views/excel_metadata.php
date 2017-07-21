@@ -45,10 +45,10 @@ else {
                 <input type="text"   placeholder="sample" />
             </td>
             <td>
-                <input type="text" onkeypress='return validateNumber(event)' placeholder="number"/>
+                <input type="number"  step="0.01" onkeypress='return validateNumber(event)' placeholder="number"/>
             </td>
             <td>
-                <input type="text" onkeypress='return validateNumber(event)' placeholder="number"/>
+                <input type="number" step="0.01" onkeypress='return validateNumber(event)' placeholder="number"/>
             </td>
           
         </tr>
@@ -83,7 +83,7 @@ $(document).ready(function () {
              if(trow.index() === 0){
                  trow.append('<td><input type="text"  placeholder=Header'+col_num+'></td>');
              }else{
-                trow.append('<td><input type="text" onkeypress="return validateNumber(event)" placeholder="number"/></td>');
+                trow.append('<td><input type="number" step="0.01"  onkeypress="return validateNumber(event)" placeholder="number"/></td>');
              }
             
          });
@@ -116,7 +116,7 @@ $(document).ready(function () {
 
 function validateNumber(event) {
     var key = window.event ? event.keyCode : event.which;
-    if (event.keyCode === 8 || event.keyCode === 46) {
+    if (event.keyCode === 8 || event.keyCode === 46 ) {
         return true;
     } else if ( key < 48 || key > 57 ) {
         return false;
