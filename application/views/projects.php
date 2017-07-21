@@ -965,11 +965,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                        <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Ven diagram</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/Rare.png">
+                                                <img class="img-thumbnail" src="">
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>Heatmap</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig3_heatmaptest.jpg">
+                                                <img class="img-thumbnail" src="">
                                             </div>
                                         </div>
 
@@ -978,30 +978,30 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>*Heatmap-Jclass</b><br>
-                                                <img class="img-thumbnail" height="50%" width="50%" src="<?php echo base_url(); ?>uploads/final.tx.jclass.2.lt.ave.heatmap.sim.svg">
+                                                <img class="img-thumbnail" height="50%" width="50%" src="">
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>*Heatmap-Thetayc</b><br>
-                                                <img class="img-thumbnail" height="50%" width="50%"  src="<?php echo base_url(); ?>uploads/final.tx.thetayc.2.lt.ave.heatmap.sim.svg">
+                                                <img class="img-thumbnail" height="50%" width="50%"  src="">
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">
-
+ 
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Rarefaction</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig1_rarefactionSoil.jpg">
+                                                <img class="img-thumbnail" src="">
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>RelativePhylum</b>
-                                                <img class="img-thumbnail"  src="<?php echo base_url(); ?>uploads/Rplot.jpeg">
+                                                <img class="img-thumbnail"  src="">
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">
                                         <b>NMDS</b>
                                         <div class="row">
                                             <div class="col-lg-6 col-lg-offset-3">
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig4_NMDS.jpg">
+                                                <img class="img-thumbnail" src="">
                                             </div>
 
                                         </div>

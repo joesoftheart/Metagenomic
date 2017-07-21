@@ -711,7 +711,8 @@
 
         }
 
-       # Phylotype Analysis
+       # Phylotype Analysis  
+         #output_plot
 
         function phylotype_make_class_count($user,$project,$path_in,$path_out){
 
@@ -721,6 +722,7 @@
           $make = "phylotype(taxonomy=final.taxonomy,inputdir=$path_in,outputdir=$path_out)
                   make.shared(list=final.tx.list, count=final.count_table, label=".$GLOBALS['lable'].",inputdir=$path_in,outputdir=$path_out)
                   classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, label=".$GLOBALS['lable'].",inputdir=$path_in,outputdir=$path_out)
+                  classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=".$GLOBALS['lable_get_taxon'].",inputdir=$path_out,outputdir=owncloud/data/$user/files/$project/output_plot/)
                   count.groups(shared=final.tx.shared,inputdir=$path_in,outputdir=$path_out)";
 
            file_put_contents($path_in.'/advance.batch', $make);
