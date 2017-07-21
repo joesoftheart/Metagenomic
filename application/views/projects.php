@@ -365,11 +365,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Ven diagram</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>final.tx.2.subsample.2.sharedsobs.S1_1_16s_S1-S2_1_16s_S3-S3_1_16s_S5-S4_1_16s_S7.svg">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>sharedsobs.svg">
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>Heatmap</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>heartmap.png">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>heatmap.png">
                                             </div>
                                         </div>
 
@@ -378,11 +378,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>*Heatmap-Jclass</b><br>
-                                                <img class="img-thumbnail" height="50%" width="50%" src="<?php echo base_url(); ?>uploads/final.tx.jclass.2.lt.ave.heatmap.sim.svg">
+                                                <img class="img-thumbnail" height="50%" width="50%" src="<?php echo base_url(); ?><?php echo $path ?>jclass.svg">
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>*Heatmap-Thetayc</b><br>
-                                                <img class="img-thumbnail" height="50%" width="50%"  src="<?php echo base_url(); ?>uploads/final.tx.thetayc.2.lt.ave.heatmap.sim.svg">
+                                                <img class="img-thumbnail" height="50%" width="50%"  src="<?php echo base_url(); ?><?php echo $path ?>thetayc.svg">
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">

@@ -1,17 +1,18 @@
 <?php
-
+// *** argument input
 $user = $argv[1];
 $id = $argv[2];
 $project = $argv[3];
 $path = $argv[4];
+
+//setting cmd sungrid engine
 include('setting_sge.php');
 putenv("SGE_ROOT=$SGE_ROOT");
 putenv("PATH=$PATH");
-//putenv("PATH=$PATH_R");
+
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-     #classify_system($user,$id,$project,$path);
     run($user,$id,$project,$path);
     }
 
@@ -22,8 +23,6 @@ function run($user,$id,$project,$path){
 }
 
 
-
-$progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
 // Check file 
  function check_file($user,$id, $project,$path){
      file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "check_file"."\n", FILE_APPEND);
@@ -36,13 +35,11 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
         check_oligos($user,$id, $project,$path);
     }
     else {
-
-
-
         echo "go to run make file ->";
         run_makefile($user,$id, $project,$path);
     }
  }
+
 
 // check file oligos
  function check_oligos($user,$id, $project,$path){
@@ -108,7 +105,6 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
      file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make_contigs_oligos"."\n", FILE_APPEND);
      echo "\n";
      echo "Run make_contigs_oligos :";
-    $path = $path;
     $jobname = $user."_".$id."_oligo";
     $cmd = "make.contigs(file=stability.files, oligos=$file_oligo ,processors=8 ,inputdir=$path/input/,outputdir=$path/output/)
             summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/input/,outputdir=$path/output/)";
@@ -130,11 +126,11 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
          if($check_run == false){
              echo "go to align_seqs ->";
              replace_group($user, $id, $project, $path);
-
              break;
          }
      }
 }
+
 
 // make.contigs && summary.seqs
  function make_contigs_summary($user,$id,$project,$path){
@@ -171,9 +167,7 @@ summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/inpu
 function replace_group($user,$id, $project,$path){
     echo "\n";
     echo "Run Replace_group :";
-
     $file = $path."/output/stability.contigs.groups";
-
     $data_w = array();
     $lines = file($file);
 
@@ -186,8 +180,10 @@ function replace_group($user,$id, $project,$path){
         array_push($data_w,$data);
     }
     file_put_contents($file, $data_w);
+    echo "go to screen_seqs ->";
     screen_seqs($user,$id, $project,$path);
 }
+
 
 // make.contigs && summary.seqs
 function screen_seqs($user,$id,$project,$path){
@@ -218,22 +214,17 @@ summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/
         if($check_run == false){
             echo "go to align_seqs ->";
             align_seqs($user, $id, $project, $path);
-
             break;
         }
     }
 }
 
 
-
 // Summary-seqs
  function align_seqs($user,$id,$project,$path){
-     $path_logs = $path . "/logs/";
-     $name = $user."_".$id."_align_seqs.o".$id_job;
      file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "align_seqs"."\n", FILE_APPEND);
      echo "\n";
      echo "Run align_seqs";
-
     $jobname = $user."_".$id."_align_seqs";
     $cmd ="align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=silva.v4.fasta, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table,inputdir=$path/input/,outputdir=$path/output/)";
@@ -262,26 +253,19 @@ summary.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.tri
 
 
 function read_log_sungrid($user,$id,$project,$path,$id_job){
-    $path_logs = $path . "/logs/";
-     $name = $user."_".$id."_align_seqs.o".$id_job;
+    echo "\n";
+    echo "Run read_log_sungrid :";
+    $name = $user."_".$id."_align_seqs.o".$id_job;
     $file_name = str_replace(' ', '', $name) ;
     $file = file_get_contents("Logs_sge/".$file_name);
-    //echo var_dump($file);
-    $search_for = 'Start';
-    $pattern = preg_quote($search_for,'/');
-
     $start_array = array();
     $end_array   = array();
-
     $start = 0;
     $end =0;
-
     $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum).*\$/m";
-
     if(preg_match_all($pattern, $file, $matches)){
         $val = implode("\n", $matches[0]);
         $sum = explode("\n", $val);
-
         foreach ($sum as $key => $value) {
             //echo  $value ."<br/>";
             if($key >= "1"){
@@ -292,25 +276,19 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
             }
         }
     }
-
     #start
     $count_start = array_count_values($start_array);
     $start_max = max($count_start);
     $start_min = min($count_start);
-
     #end
     $count_end = array_count_values($end_array);
     $end_max = max($count_end);
     $end_min = min($count_end);
-
-
     if(($start_min == $start_max) || ($end_min == $end_max)){
 
         foreach ($sum as $key => $value) {
             echo  $value ."<br/>";
         }
-
-
     }elseif (($start_min != $start_max) && ($end_min != $end_max) ) {
         #start
         foreach ($count_start as $key_start => $value_start) {
@@ -324,7 +302,6 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
                 $end = $key_end;
             }
         }
-
         echo "\n";
         echo "Start : ".$start;
         echo " End : ".$end;
@@ -339,6 +316,7 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
     }
 
 }
+
 
 // Screen remove
  function screen_remove($user,$id, $project,$path,$start,$end){
@@ -379,9 +357,6 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
 }
 
 
-
-
-
 // Classify_system
  function classify_system($user,$id, $project,$path){
      file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify_system"."\n", FILE_APPEND);
@@ -420,7 +395,6 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
 }
 
 
-
 // Phylotype count
  function phylotype_count($user,$id, $project,$path){
      file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "phylotype_count"."\n", FILE_APPEND);
@@ -430,7 +404,7 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
     $cmd ="phylotype(taxonomy=final.taxonomy,inputdir=$path/input/,outputdir=$path/output/)
 make.shared(list=final.tx.list, count=final.count_table, label=1-2-3-4-5-6,inputdir=$path/input/,outputdir=$path/output/)
 classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, label=1-2-3-4-5-6,inputdir=$path/input/,outputdir=$path/output/)
-classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=2,inputdir=$path/output/,outputdir=$path/output_plot/)
+classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=1,inputdir=$path/output/,outputdir=$path/output_plot/)
 count.groups(shared=final.tx.shared,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
@@ -457,17 +431,12 @@ count.groups(shared=final.tx.shared,inputdir=$path/input/,outputdir=$path/output
 
 
 function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job){
-
     echo "\n";
     echo "Run read_log_sungrid_phylotype_count :";
-    $path_logs = $path . "/logs/";
     $name = $user."_".$id."_phylotype_count.o".$id_job;
-
     $file_name = str_replace(' ', '', $name) ;
     $searchfor = 'contains';
     $file = file_get_contents("Logs_sge/".$file_name);
-
-
     $pattern = preg_quote($searchfor, '/');
 // finalise the regular expression, matching the whole line
     $pattern = "/^.*$pattern.*\$/m";
@@ -493,15 +462,12 @@ function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job){
     else{
         echo "No matches found";
     }
-
-
 }
 
 
 // Sub samplr sammary
  function sub_sample_summary($user,$id, $project,$path,$total){
      file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "sub_sample_summary"."\n", FILE_APPEND);
-
      echo "\n";
      echo "Run sub_sample_summary :";
     $jobname = $user."_".$id."_sub_sample_summary";
@@ -533,6 +499,8 @@ summary.single(shared=final.tx.shared, calc=nseqs-coverage-sobs-invsimpson-chao-
 }
 
 function read_name_sample($user,$id, $project,$path,$total){
+    echo "\n";
+    echo "Run read_name_sample :";
     $group_sample = array();
     $name_sample = null;
 if ($file = fopen('../owncloud/data/'.$user.'/files/'.$project.'/output/stability.files', "r")) {
@@ -558,16 +526,17 @@ if ($file = fopen('../owncloud/data/'.$user.'/files/'.$project.'/output/stabilit
             $name_sample = $name_sample . "-" . $sample;
         }
     }
+    echo "go to plot_graph->";
+    echo "Name sample : ".$name_sample;
     plot_graph($user, $id, $project, $path, $total, $name_sample);
+    }
 }
 
-}
 
 // Last funtion plot graph
  function plot_graph($user,$id, $project,$path,$total,$name_sample)
  {
      file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph"."\n", FILE_APPEND);
-
      echo "\n";
      echo "Run plot_graph :";
      $jobname = $user . "_" . $id . "_plot_graph";
@@ -582,9 +551,9 @@ tree.shared(phylip=final.tx.morisitahorn.2.lt.ave.dist,inputdir=$path/input/,out
 tree.shared(phylip=final.tx.jclass.2.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
 tree.shared(phylip=final.tx.braycurtis.2.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
 tree.shared(phylip=final.tx.lennon.2.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
-#parsimony(tree=final.tx.thetayc.2.lt.ave.tre, group=soil.design,  groups=all,inputdir=$path/input/,outputdir=$path/output/) #No need
-#unifrac.weighted(tree=final.tx.thetayc.2.lt.ave.tre, group=soil.design, random=T,inputdir=$path/input/,outputdir=$path/output/) #No need
-#unifrac.unweighted(tree=final.tx.thetayc.2.lt.ave.tre, group=soil.design, random=T, groups=all,inputdir=$path/input/,outputdir=$path/output/) #No need
+parsimony(tree=final.tx.thetayc.2.lt.ave.tre, group=soil.design,  groups=all,inputdir=$path/input/,outputdir=$path/output/) #No need
+unifrac.weighted(tree=final.tx.thetayc.2.lt.ave.tre, group=soil.design, random=T,inputdir=$path/input/,outputdir=$path/output/) #No need
+unifrac.unweighted(tree=final.tx.thetayc.2.lt.ave.tre, group=soil.design, random=T, groups=all,inputdir=$path/input/,outputdir=$path/output/) #No need
 pcoa(phylip=final.tx.morisitahorn.2.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
 pcoa(phylip=final.tx.thetayc.2.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
 pcoa(phylip=final.tx.jclass.2.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
@@ -619,7 +588,6 @@ corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, m
 
 
 
-
  }
 
 
@@ -627,8 +595,8 @@ corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, m
  function create_file_input_heatmap($user, $id, $project, $path){
      echo "\n";
      echo "Run create_file_input_heatmap :";
-     $jobname = $user . "_" . $id . "_create_file_input";
-     $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_heatmap.php $user $project";
+     $jobname = $user . "_" . $id . "_create_file_input_heatmap";
+     $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_heatmap_phylotype.php $user $project";
      exec($cmd);
      $check_qstat = "qstat  -j '$jobname' ";
      exec($check_qstat, $output);
@@ -656,7 +624,7 @@ function create_file_input_abun($user, $id, $project, $path){
     echo "\n";
     echo "Run create_file_input_abun :";
     $jobname = $user . "_" . $id . "_create_file_input_abun";
-    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_abundance.php $user $project";
+    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_abundance_phylotype.php $user $project";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -713,7 +681,7 @@ function create_input_alphash($user, $id, $project, $path){
      echo "\n";
      echo "Run plot_graph_r_heatmap :";
      $path_input_csv = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";
-     $path_to_save = "owncloud/data/$user/files/$project/output/heartmap.png";
+     $path_to_save = "owncloud/data/$user/files/$project/output/heatmap.png";
      $jobname = $user . "_" . $id . "_plot_graph_r_heartmap";
      $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript R_Script/heatmapPlottest.R $path_input_csv $path_to_save";
      exec($cmd);
@@ -777,7 +745,7 @@ function plot_graph_r_Rare($user, $id, $project, $path){
     $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.tx.groups.rarefaction";
     $path_to_save = "owncloud/data/$user/files/$project/output/Rare.png";
     $jobname = $user . "_" . $id . "plot_graph_r_Rare";
-    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/RarefactionSoiltest.R $path_input_rarefaction $path_to_save";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/RarefactionSoiltest_phtlotype.R $path_input_rarefaction $path_to_save";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -856,41 +824,60 @@ function plot_graph_r_Alphash($user, $id, $project, $path){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-            echo "Finish Alphash ->";
+            echo "Go to change name ->";
+            change_name($user, $id, $project, $path);
             break;
         }
     }
 
 }
 
-function chang_name($user, $id, $project, $path){
-    echo "\n";
-    echo "Run chang_name :";
-    $jobname = $user . "_" . $id . "_chang_name";
-    $cmd = "";
-    file_put_contents('owncloud/data/' . $user . '/files/' . $project . '/input/run.batch', $cmd);
-    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
-    exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat, $output);
-    $id_job = ""; # give job id
-    foreach ($output as $key_var => $value) {
-        if ($key_var == "1") {
-            $data = explode(":", $value);
-            $id_job = $data[1];
-        }
-    }
-    $loop = true;
-    while ($loop) {
-        $check_run = exec("qstat -j $id_job");
-        if ($check_run == false) {
-            echo "Go to stop";
-            break;
-        }
-    }
+function change_name($user, $id, $project, $path){
+    $dir = $path."/output";
+    $file_read = array( 'svg');
+    $dir_ignore = array();
+    $scan_result = scandir( $dir );
+
+    foreach ( $scan_result as $key => $value ) {
+
+        if (!in_array($value, array('.', '..'))) {
+
+            if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
+
+                if (in_array($value, $dir_ignore)) {
+                    continue;
+                }
 
 
+            } else {
+
+                $type = explode('.', $value);
+                $type = array_reverse($type);
+                if (in_array($type[0], $file_read)) {
+                    echo $value;
+                    $file_name = preg_split("/[.]/",$value );
+                    if (in_array("bin", $file_name)) {
+                        rename($dir . "/" . $value, $dir . "/" . "bin.svg");
+                        echo "change bin";
+                    }
+                    if (in_array("sharedsobs", $file_name)) {
+                        rename($dir . "/" . $value, $dir . "/" . "sharedsobs.svg");
+                        echo "change sharedsobs";
+                    }
+                    if (in_array("jclass", $file_name)) {
+                        rename($dir . "/" . $value, $dir . "/" . "jclass.svg");
+                        echo "change jclass";
+                    }
+                    if (in_array("thetayc", $file_name)) {
+                        rename($dir . "/" . $value, $dir . "/" . "thetayc.svg");
+                        echo "change thetayc";
+                    }
+                }
+            }
+        }
+    }
 }
+
 
 
 

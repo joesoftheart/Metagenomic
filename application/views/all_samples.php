@@ -77,7 +77,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <div id="collapseOne<?php echo $r?>" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                         <div class="panel-body">
                                             <?php
-                                            $path_owncloud_files = "../owncloud/data/" . $username . "/files/".$r."/data/output/";
+                                            $path_owncloud_files = "../owncloud/data/" . $username . "/files/".$r."/output/";
                                             if (is_dir($path_owncloud_files)) {
                                                 $select_files_in_folder = array_diff(scandir($path_owncloud_files, 1), array('.', '..'));
 

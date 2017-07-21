@@ -54,10 +54,10 @@ $user = $this->session->userdata['logged_in']['username'];
         if (file_exists($progress)) {
             $file_progress = fopen($progress, "r");
             $keywords_split_line = preg_split("/[\n]/", fread($file_progress, filesize($progress)));
-            print_r($keywords_split_line);
+           // print_r($keywords_split_line);
             $num = count($keywords_split_line);
         }
-        echo $num;
+       // echo $num;
         if(file_exists($progress) and $num < 18){
             redirect("/process/index/" . $id_project, 'refresh');
         }else {
