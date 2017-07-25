@@ -429,8 +429,8 @@ if (isset($this->session->userdata['logged_in'])) {
                             <div>
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade" >
                                     <li class="pre"><a href="#">Preprocess & Prepare in taxonomy </a> </li>
-                                    <li class="pre2"><a href="#">Prepare phylotype </a></li>
-                                    <li><a href="#">Analysis</a></li>
+                                    <li class="pre2"><a href="#">Prepare <?=$project_analysis?> </a></li>
+                                    <li class="pre3"><a href="#">Analysis</a></li>
                                     <li><a href="#">Result & visualization</a></li>
                                 </ul>
                                 <ul  class="uk-switcher uk-margin">
@@ -565,7 +565,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                         </form>
                                      </div> <!-- Pre-test -->
 
-                                              <div class="Pre-show" style="display:none"> Process Queue 
+                                               <div class="Pre-show" style="display:none"> Process Queue 
                                                <div id="time">30</div>
                                                <div id="test_run">run queue</div>
                                                <br/>
@@ -965,11 +965,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                        <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Ven diagram</b>
-                                                <img class="img-thumbnail" src="">
+                                                <?php echo img('img_user/sharedsobs.svg'); ?>
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>Heatmap</b>
-                                                <img class="img-thumbnail" src="">
+                                                <?php echo img('img_user/heartmap.png'); ?>
                                             </div>
                                         </div>
 
@@ -978,11 +978,13 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>*Heatmap-Jclass</b><br>
-                                                <img class="img-thumbnail" height="50%" width="50%" src="">
+                                                <?php echo img('img_user/jclass.svg', 'height="80%"', 'width="80%"'); ?>
+                                                <!-- <img class="img-thumbnail" height="50%" width="50%" src=""> -->
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>*Heatmap-Thetayc</b><br>
-                                                <img class="img-thumbnail" height="50%" width="50%"  src="">
+                                                <?php echo img('img_user/thetayc.svg' , 'height="80%"', 'width="80%"'); ?>
+                                               <!--  <img class="img-thumbnail" height="50%" width="50%"  src=""> -->
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">
@@ -990,18 +992,26 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Rarefaction</b>
-                                                <img class="img-thumbnail" src="">
+                                                <?php echo img('img_user/Rare.png'); ?>
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>RelativePhylum</b>
-                                                <img class="img-thumbnail"  src="">
+                                                <?php echo img('img_user/Abun.png'); ?>
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">
                                         <b>NMDS</b>
                                         <div class="row">
                                             <div class="col-lg-6 col-lg-offset-3">
-                                                <img class="img-thumbnail" src="">
+                                                <?php echo img('img_user/NMD.png'); ?>
+                                            </div>
+
+                                        </div>
+                                         <hr class="uk-divider-icon">
+                                        <b>Alpha</b>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-lg-offset-3">
+                                               <?php echo img('img_user/Alpha.png'); ?>
                                             </div>
 
                                         </div>
@@ -1445,6 +1455,9 @@ if (isset($this->session->userdata['logged_in'])) {
                      //var sample_data = $.parseJSON(data);
                       if( analysis == "0"){
                          clearInterval(interval);
+                            $('.uk-child-width-expand > .pre3').next('li').find('a').trigger('click'); 
+                             $(".Pre-show3").hide();
+                             $(".Pre-test3").show();
                       }else{
                          
                          time = 30;  
@@ -1561,8 +1574,8 @@ if (isset($this->session->userdata['logged_in'])) {
                     success:function(data){
                      //console.log(data);
                       var data_job = $.parseJSON(data);
-                      //console.log("q_id :" + data_job[0]);
-                      //console.log("q_name :" + data_job[1]);
+                      console.log("q_id :" + data_job[0]);
+                      console.log("q_name :" + data_job[1]);
                      
                       checkrun(data_job);
                     },

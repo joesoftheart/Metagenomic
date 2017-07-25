@@ -1084,7 +1084,7 @@ function create_input_alphash($user,$project,$path_in,$path_out){
     #file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_NMD"."\n", FILE_APPEND);
 
     echo "Run plot_graph_r_NMD "."\n";
-    $path_input_axes = "owncloud/data/$user/files/$project/output/final.tx.thetayc.2.lt.ave.nmds.axes";
+    $path_input_axes = "owncloud/data/$user/files/$project/output/final.tx.thetayc.".$GLOBALS['level'].".lt.ave.nmds.axes";
     $path_to_save = "owncloud/data/$user/files/$project/output/NMD.png";
     $jobname = $user."_plot_graph_r_NMD";
      

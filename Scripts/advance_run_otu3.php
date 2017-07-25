@@ -581,7 +581,7 @@
                     $d_pcoa_st = explode(",", $GLOBALS['d_pcoa_st']);
                     for($i = 0 ; $i < sizeof($d_pcoa_st); $i++){
 
-                       $make .= "corr.axes(axes=final.tx.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                       $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
 
                     }
                   }
@@ -590,7 +590,7 @@
                       $d_pcoa_me = explode(",", $GLOBALS['d_pcoa_me']);
                       for($i = 0 ; $i < sizeof($d_pcoa_me); $i++){
 
-                         $make .= "corr.axes(axes=final.tx.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                         $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
 
                       }
                   }
@@ -603,7 +603,7 @@
                       $d_nmds_st = explode(",", $GLOBALS['d_nmds_st']);
                       for($i = 0 ; $i < sizeof($d_nmds_st); $i++){
 
-                         $make .= "corr.axes(axes=final.tx.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                         $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
 
                        }
                   }
@@ -612,7 +612,7 @@
                       $d_nmds_me = explode(",", $GLOBALS['d_nmds_me']);
                       for($i = 0 ; $i < sizeof($d_nmds_me); $i++){
                         
-                         $make .= "corr.axes(axes=final.tx.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                         $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
  
                         
                       }
@@ -629,7 +629,7 @@
                     $d_pcoa_st = explode(",", $GLOBALS['d_pcoa_st']);
                     for($i = 0 ; $i < sizeof($d_pcoa_st); $i++){
 
-                        $make .= "corr.axes(axes=final.tx.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                        $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
 
                     }
                   }
@@ -638,7 +638,7 @@
                       $d_pcoa_me = explode(",", $GLOBALS['d_pcoa_me']);
                       for($i = 0 ; $i < sizeof($d_pcoa_me); $i++){
 
-                        $make .= "corr.axes(axes=final.tx.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                        $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
 
 
                       }
@@ -652,7 +652,7 @@
                       $d_nmds_st = explode(",", $GLOBALS['d_nmds_st']);
                       for($i = 0 ; $i < sizeof($d_nmds_st); $i++){
 
-                          $make .= "corr.axes(axes=final.tx.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                          $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
 
 
                        }
@@ -662,7 +662,7 @@
                       $d_nmds_me = explode(",", $GLOBALS['d_nmds_me']);
                       for($i = 0 ; $i < sizeof($d_nmds_me); $i++){
                         
-                          $make .= "corr.axes(axes=final.tx.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                          $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method'].", numaxes=".$GLOBALS['axes'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
 
                         
                       }
@@ -768,7 +768,7 @@
 
                    if($check_run == false){
                      
-                      heatmap_bin_sim($user,$project,$path_in,$path_out)
+                      heatmap_bin_sim($user,$project,$path_in,$path_out);
                       break;
                      
                       
@@ -777,7 +777,7 @@
          }elseif ($make == "") {
 
              echo "Not command parsimony !"."\n";
-             heatmap_bin_sim($user,$project,$path_in,$path_out)
+             heatmap_bin_sim($user,$project,$path_in,$path_out);
              break;
            
          }          
@@ -893,7 +893,7 @@
                    if($check_run == false){
 
                       remove_logfile_mothur($path_out);
-                      //create_file_input_heatmap($user,$project,$path_in,$path_out);
+                      create_file_input_heatmap($user,$project,$path_in,$path_out);
                       break;
                      
                       
@@ -904,7 +904,7 @@
              echo "Not command unifrac !"."\n";
 
              remove_logfile_mothur($path_out);
-             //create_file_input_heatmap($user,$project,$path_in,$path_out);
+             create_file_input_heatmap($user,$project,$path_in,$path_out);
              break;
            
          }          
@@ -942,8 +942,8 @@
 
     function create_file_input_heatmap($user,$project,$path_in,$path_out){
      
-     echo "Run create_file_input_heatmap "."\n";
-     $jobname = $user ."_create_file_input";
+     echo "Run create_file_input_heatmap"."\n";
+     $jobname = $user."_create_file_input_heatmap";
 
      $log = $GLOBALS['path_log'];
      $cmd = "qsub -N $jobname -o $log  -cwd -j y -b y /usr/bin/php -f R_Script/create_input_heatmap_otu.php $user $project";
@@ -1077,7 +1077,7 @@ function create_input_alphash($user,$project,$path_in,$path_out){
     #file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_NMD"."\n", FILE_APPEND);
 
     echo "Run plot_graph_r_NMD "."\n";
-    $path_input_axes = "owncloud/data/$user/files/$project/output/final.tx.thetayc.2.lt.ave.nmds.axes";
+    $path_input_axes = "owncloud/data/$user/files/$project/output/final.opti_mcc.thetayc.".$GLOBALS['level'].".lt.ave.nmds.axes";
     $path_to_save = "owncloud/data/$user/files/$project/output/NMD.png";
     $jobname = $user."_plot_graph_r_NMD";
      
@@ -1113,7 +1113,7 @@ function plot_graph_r_Rare($user,$project,$path_in,$path_out){
     #file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Rare"."\n", FILE_APPEND);
 
     echo "Run plot_graph_r_Rare "."\n";
-    $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.tx.groups.rarefaction";
+    $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.opti_mcc.groups.rarefaction";
     $path_to_save = "owncloud/data/$user/files/$project/output/Rare.png";
     $jobname = $user."_plot_graph_r_Rare";
     

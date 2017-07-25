@@ -274,7 +274,7 @@
             
 
          # create advance.batch
-            $file_batch = FCPATH."$path_input/advance.batch";
+            $file_batch = FCPATH."$path_input"."advance.batch";
             if(!file_exists($file_batch)) {
                 file_put_contents($file_batch, "No command !" ); 
             }
@@ -753,7 +753,7 @@
            }
            else if($project_analysis == "otu") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation $method $axes";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation $method $axes";
            }
              
  
@@ -797,6 +797,31 @@
                echo json_encode($up);
             }
              
+
+      }
+
+
+      public function on_move(){
+   
+          $path_img = FCPATH."img_user/";
+
+          $path_dir = FCPATH."owncloud/data/aumza/files/test_run/output/";
+            if (is_dir($path_dir)) {
+                if ($read = opendir($path_dir)){
+                      while (($img = readdir($read)) !== false) {
+                        
+                        $allowed =  array('png','svg');
+                        $ext = pathinfo($img, PATHINFO_EXTENSION);
+
+                        if(in_array($ext,$allowed)) {
+                           
+                           copy($path_dir.$img,$path_img.$img);
+                        }
+                      }
+     
+                   closedir($read);
+                }
+            } 
 
       }
 
