@@ -14,6 +14,7 @@ class Projects extends CI_Controller
     {
         parent::__construct();
         $this->load->helper('url');
+        $this->load->helper('html');
         $CI = &get_instance();
         $CI->load->library("session");
         include(APPPATH . '../setting_sge.php');
@@ -32,6 +33,7 @@ class Projects extends CI_Controller
 
 foreach ($data['rs'] as $r) {
     $sample_folder = $r['project_path'];
+    $data['project_analysis'] = $r['project_analysis'];
 }
 $project = basename($sample_folder);
 $user = $this->session->userdata['logged_in']['username'];

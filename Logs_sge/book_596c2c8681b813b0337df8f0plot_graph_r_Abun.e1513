@@ -1,0 +1,6 @@
+Error in file(file, "rt") : cannot open the connection
+Calls: read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file 'owncloud/data/book/files/Test-run_data/output/file_phylum_count.txt': No such file or directory
+Execution halted

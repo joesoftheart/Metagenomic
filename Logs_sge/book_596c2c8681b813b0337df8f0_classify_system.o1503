@@ -1,0 +1,848 @@
+[H[J
+
+
+
+
+
+mothur v.1.39.1
+Last updated: 2/3/2017
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+For questions and analysis support, please visit our forum at https://www.mothur.org/forum
+
+Type 'quit()' to exit program
+
+
+
+mothur > classify.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=gg_13_8_99.fasta, taxonomy=gg_13_8_99.gg.tax, cutoff=80, processors=8,inputdir=owncloud/data/book/files/Test-run_data/input/,outputdir=owncloud/data/book/files/Test-run_data/output/)
+Setting output directory to: owncloud/data/book/files/Test-run_data/output/
+Setting input directory to: owncloud/data/book/files/Test-run_data/input/
+Unable to open owncloud/data/book/files/Test-run_data/input/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta. Trying default Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta
+Unable to open Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta. Trying output directory owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta
+Unable to open owncloud/data/book/files/Test-run_data/input/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table. Trying default Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table
+Unable to open Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table. Trying output directory owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table
+
+Using 8 processors.
+Generating search database...    DONE.
+It took 132 seconds generate search database. 
+
+Reading in the owncloud/data/book/files/Test-run_data/input/gg_13_8_99.gg.tax taxonomy...	DONE.
+Calculating template taxonomy tree...     DONE.
+Calculating template probabilities...     DONE.
+It took 625 seconds get probabilities. 
+Classifying sequences from owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta ...
+[WARNING]: M00218_26_000000000-AH31Y_1_1111_14326_11776 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_24771_11820 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 100
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_10250_15719 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 100
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_12548_18699 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_4400_16739 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 200
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_25162_15315 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_17325_23752 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 100
+Processing sequence: 200
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_22165_25221 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 300
+[WARNING]: M00218_26_000000000-AH31Y_1_1107_18927_28509 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 100
+Processing sequence: 200
+Processing sequence: 300
+Processing sequence: 400
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_11243_11471 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 100
+Processing sequence: 200
+Processing sequence: 300
+Processing sequence: 400
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_16162_17467 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 400
+[WARNING]: M00218_26_000000000-AH31Y_1_2102_10705_22120 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 100
+Processing sequence: 200
+Processing sequence: 300
+Processing sequence: 400
+[WARNING]: M00218_26_000000000-AH31Y_1_1111_14565_20102 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 200
+Processing sequence: 300
+Processing sequence: 400
+Processing sequence: 500
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_19505_19635 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 300
+Processing sequence: 400
+Processing sequence: 500
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_19139_7395 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 500
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_7122_6629 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 600
+[WARNING]: M00218_26_000000000-AH31Y_1_2102_13520_24458 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 500
+Processing sequence: 600
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_4456_7918 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_17839_3420 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 500
+Processing sequence: 600
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_22162_15816 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 700
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_28514_11730 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_4679_15504 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 100
+Processing sequence: 200
+Processing sequence: 300
+Processing sequence: 400
+Processing sequence: 500
+Processing sequence: 600
+Processing sequence: 700
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_3288_19067 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 700
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_9657_18925 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 800
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_11297_17827 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 600
+Processing sequence: 700
+Processing sequence: 800
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_20678_12805 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 900
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_19256_6877 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 800
+[WARNING]: M00218_26_000000000-AH31Y_1_1103_15905_6278 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1111_9650_25656 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_14219_20849 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 900
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_25592_13263 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 100
+Processing sequence: 200
+Processing sequence: 300
+Processing sequence: 400
+Processing sequence: 500
+Processing sequence: 600
+Processing sequence: 700
+Processing sequence: 800
+Processing sequence: 900
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_29006_17575 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 900
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_23543_8217 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1000
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_15049_21967 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 700
+Processing sequence: 800
+Processing sequence: 900
+Processing sequence: 1000
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_15224_10109 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1000
+Processing sequence: 1100
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_16752_20809 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 600
+Processing sequence: 700
+Processing sequence: 800
+Processing sequence: 900
+Processing sequence: 1000
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_28049_8828 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_9017_20604 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1100
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_9178_25249 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_12092_5350 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_9353_10933 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1111_9220_8757 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_27921_16217 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1200
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_2439_12387 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_28543_14425 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_10627_21695 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 800
+Processing sequence: 900
+Processing sequence: 1000
+Processing sequence: 1100
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_9875_19473 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_18825_16445 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1200
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_17605_24586 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1000
+Processing sequence: 1100
+Processing sequence: 1200
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_10922_24764 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_22976_24606 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_23590_15271 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 500
+Processing sequence: 600
+Processing sequence: 700
+Processing sequence: 800
+Processing sequence: 900
+Processing sequence: 1000
+Processing sequence: 1100
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_16502_6695 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1300
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_15749_9275 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_16445_9671 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_19923_16767 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1300
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_24264_15671 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_2494_16249 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1100
+Processing sequence: 1200
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_25252_20238 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1400
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_17202_26391 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_21469_12489 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_17904_4388 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_2102_24469_10273 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1200
+Processing sequence: 1300
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_14322_2990 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1300
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_26280_21432 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1500
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_8758_24233 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1200
+Processing sequence: 1300
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_2770_14096 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1100
+Processing sequence: 1200
+Processing sequence: 1300
+Processing sequence: 1400
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_24335_25299 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_23011_11448 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1400
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_7486_10906 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1400
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_20531_9278 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1600
+[WARNING]: M00218_26_000000000-AH31Y_1_1107_6364_5204 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1500
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_14191_7290 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1700
+[WARNING]: M00218_26_000000000-AH31Y_1_1107_18353_11745 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1300
+Processing sequence: 1400
+Processing sequence: 1500
+Processing sequence: 1600
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_15407_19918 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1400
+Processing sequence: 1500
+Processing sequence: 1600
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_24633_10640 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1800
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_23094_15422 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1107_25739_10347 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1700
+Processing sequence: 1800
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_22847_12684 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_15787_12871 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_23197_12943 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_15775_12362 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1900
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_12007_23311 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_11496_21209 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1500
+Processing sequence: 1600
+Processing sequence: 1700
+Processing sequence: 1800
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_22737_20661 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1000
+Processing sequence: 1100
+Processing sequence: 1200
+Processing sequence: 1300
+Processing sequence: 1400
+Processing sequence: 1500
+Processing sequence: 1600
+Processing sequence: 1700
+Processing sequence: 1800
+Processing sequence: 1900
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_8822_22699 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1900
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_19627_8917 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1900
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_8619_8511 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1400
+Processing sequence: 1500
+Processing sequence: 1600
+Processing sequence: 1700
+Processing sequence: 1800
+Processing sequence: 1900
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_24016_5636 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2000
+Processing sequence: 2100
+Processing sequence: 2200
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_10934_27945 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_7122_11977 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2000
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_29066_14753 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2000
+Processing sequence: 2100
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_7829_10354 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2000
+Processing sequence: 2100
+Processing sequence: 2200
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_19895_18891 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2200
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_25100_16605 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2300
+Processing sequence: 2400
+[WARNING]: M00218_26_000000000-AH31Y_1_2102_24200_7608 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2300
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_23615_4186 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2300
+Processing sequence: 2400
+Processing sequence: 2500
+Processing sequence: 2600
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_27187_8623 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_14749_5928 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2500
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_9177_6213 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2000
+Processing sequence: 2100
+Processing sequence: 2200
+Processing sequence: 2300
+Processing sequence: 2400
+Processing sequence: 2500
+Processing sequence: 2600
+Processing sequence: 2700
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_12255_18232 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2400
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_7179_5827 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_11304_6460 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2500
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_24216_17672 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2700
+Processing sequence: 2800
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_9102_11941 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2600
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_10805_16863 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_18001_10708 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_16011_9465 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2700
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_6512_19847 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2100
+Processing sequence: 2200
+Processing sequence: 2300
+Processing sequence: 2400
+Processing sequence: 2500
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_25218_20141 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1111_12951_8261 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1700
+Processing sequence: 1800
+Processing sequence: 1900
+Processing sequence: 2000
+Processing sequence: 2100
+Processing sequence: 2200
+Processing sequence: 2300
+Processing sequence: 2400
+Processing sequence: 2500
+Processing sequence: 2600
+Processing sequence: 2700
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_24530_15515 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2600
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_4316_14433 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2900
+Processing sequence: 3000
+Processing sequence: 3100
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_20623_9034 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2800
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_3279_13515 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2900
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_10190_12350 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2600
+Processing sequence: 2700
+Processing sequence: 2800
+Processing sequence: 2900
+Processing sequence: 3000
+[WARNING]: M00218_26_000000000-AH31Y_1_1107_25476_18957 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3200
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_11892_6254 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_4992_7668 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2700
+Processing sequence: 2800
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_19823_27076 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3000
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_10122_16124 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1500
+Processing sequence: 1600
+Processing sequence: 1700
+Processing sequence: 1800
+Processing sequence: 1900
+Processing sequence: 2000
+Processing sequence: 2100
+Processing sequence: 2200
+Processing sequence: 2300
+Processing sequence: 2400
+Processing sequence: 2500
+Processing sequence: 2600
+Processing sequence: 2700
+Processing sequence: 2800
+Processing sequence: 2900
+Processing sequence: 3000
+Processing sequence: 3100
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_18012_22681 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2900
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_12232_8210 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_9025_21819 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3300
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_22186_19442 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3000
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_8081_24353 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3400
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_17159_25380 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3100
+Processing sequence: 3200
+Processing sequence: 3300
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_21995_14661 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3500
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_22866_23222 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_15506_13579 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3600
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_12843_27052 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_21378_27302 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_16519_27413 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_16517_27431 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_13648_3011 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2800
+Processing sequence: 2900
+Processing sequence: 3000
+Processing sequence: 3100
+Processing sequence: 3200
+Processing sequence: 3300
+Processing sequence: 3400
+Processing sequence: 3500
+Processing sequence: 3600
+Processing sequence: 3700
+Processing sequence: 3800
+[WARNING]: M00218_26_000000000-AH31Y_1_1111_9857_6554 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_9367_26431 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3100
+Processing sequence: 3200
+Processing sequence: 3300
+[WARNING]: M00218_26_000000000-AH31Y_1_1103_4036_13330 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3700
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_27334_15871 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3400
+Processing sequence: 3500
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_13210_5658 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_16956_21177 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3800
+[WARNING]: M00218_26_000000000-AH31Y_1_1111_22842_9807 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3400
+[WARNING]: M00218_26_000000000-AH31Y_1_1103_4960_15570 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3100
+Processing sequence: 3200
+Processing sequence: 3300
+Processing sequence: 3400
+Processing sequence: 3500
+Processing sequence: 3600
+Processing sequence: 3700
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_13029_9240 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3600
+Processing sequence: 3700
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_15922_7227 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3900
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_11867_5233 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_6062_7937 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3800
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_8585_11696 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3500
+Processing sequence: 3600
+[WARNING]: M00218_26_000000000-AH31Y_1_1103_3637_10428 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1103_3619_10429 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3800
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_18130_24779 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_25771_13769 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3700
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_24812_21882 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3900
+Processing sequence: 4000
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_28694_15908 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 2800
+Processing sequence: 2900
+Processing sequence: 3000
+Processing sequence: 3100
+Processing sequence: 3200
+Processing sequence: 3300
+Processing sequence: 3400
+Processing sequence: 3500
+Processing sequence: 3600
+Processing sequence: 3700
+Processing sequence: 3800
+[WARNING]: M00218_26_000000000-AH31Y_1_1103_22784_8803 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3900
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_13350_26785 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_18697_17478 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_20129_2160 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3200
+Processing sequence: 3300
+Processing sequence: 3400
+Processing sequence: 3500
+Processing sequence: 3600
+Processing sequence: 3700
+Processing sequence: 3800
+Processing sequence: 3900
+Processing sequence: 4000
+Processing sequence: 4100
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_3774_17814 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4000
+Processing sequence: 4100
+Processing sequence: 4200
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_18680_26103 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3900
+[WARNING]: M00218_26_000000000-AH31Y_1_1103_5482_8266 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4000
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_10321_8017 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_2102_26149_21531 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3900
+Processing sequence: 4000
+Processing sequence: 4100
+Processing sequence: 4200
+Processing sequence: 4300
+Processing sequence: 4400
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_8263_10845 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4100
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_2043_13538 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1101_13013_25358 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4300
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_21587_19581 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4100
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_26100_18371 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4200
+Processing sequence: 4300
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_8037_11557 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4200
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_20180_16812 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4300
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_9443_20275 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4200
+Processing sequence: 4300
+Processing sequence: 4400
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_19206_17721 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4400
+Processing sequence: 4500
+[WARNING]: M00218_26_000000000-AH31Y_1_2102_16973_11353 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1104_20436_21092 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_22405_24856 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_12058_23110 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_15404_19064 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4500
+Processing sequence: 4600
+Processing sequence: 4700
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_17375_13522 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4600
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_3723_20662 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4400
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_13849_10123 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4500
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_9959_19536 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4400
+Processing sequence: 4500
+Processing sequence: 4600
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_2413_12462 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4700
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_6658_11065 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_2102_3885_12496 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_5899_11431 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4800
+Processing sequence: 4900
+Processing sequence: 5000
+[WARNING]: M00218_26_000000000-AH31Y_1_1111_10121_10032 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4800
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_24534_15699 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4700
+Processing sequence: 4800
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_20468_19932 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4900
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_9201_15092 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_5641_12765 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_21733_13170 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4600
+Processing sequence: 4700
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_24350_22593 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_5160_13188 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4800
+[WARNING]: M00218_26_000000000-AH31Y_1_1102_20277_23269 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4500
+Processing sequence: 4600
+Processing sequence: 4700
+Processing sequence: 4800
+Processing sequence: 4900
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_15348_15598 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5000
+[WARNING]: M00218_26_000000000-AH31Y_1_1107_25330_20998 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 3800
+Processing sequence: 3900
+Processing sequence: 4000
+Processing sequence: 4100
+Processing sequence: 4200
+Processing sequence: 4300
+Processing sequence: 4400
+Processing sequence: 4500
+Processing sequence: 4600
+Processing sequence: 4700
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_27391_18418 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4900
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_9973_19551 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4800
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_3082_9525 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5100
+[WARNING]: M00218_26_000000000-AH31Y_1_1107_18864_20798 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_26078_24550 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5200
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_22523_22624 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_5372_18961 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5000
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_22225_3027 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4900
+Processing sequence: 5000
+Processing sequence: 5100
+Processing sequence: 5200
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_14688_14508 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5100
+[WARNING]: M00218_26_000000000-AH31Y_1_1111_11556_24305 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5000
+Processing sequence: 5100
+Processing sequence: 5200
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_25282_21848 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 4900
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_2960_11086 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5100
+Processing sequence: 5200
+Processing sequence: 5300
+Processing sequence: 5400
+Processing sequence: 5500
+[WARNING]: M00218_26_000000000-AH31Y_1_2101_12966_23616 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_22737_8184 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5300
+[WARNING]: M00218_26_000000000-AH31Y_1_1107_1994_14919 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_10408_22415 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_4343_21513 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5200
+[WARNING]: M00218_26_000000000-AH31Y_1_1109_22034_27598 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5300
+Processing sequence: 5400
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_9297_7098 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1112_19581_5961 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5400
+[WARNING]: M00218_26_000000000-AH31Y_1_1107_3397_15299 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5000
+Processing sequence: 5100
+[WARNING]: M00218_26_000000000-AH31Y_1_1106_7145_14295 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5600
+Processing sequence: 5700
+Processing sequence: 5774
+[WARNING]: M00218_26_000000000-AH31Y_1_1111_14786_20749 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 1600
+Processing sequence: 1700
+Processing sequence: 1800
+Processing sequence: 1900
+Processing sequence: 2000
+Processing sequence: 2100
+Processing sequence: 2200
+Processing sequence: 2300
+Processing sequence: 2400
+Processing sequence: 2500
+Processing sequence: 2600
+Processing sequence: 2700
+Processing sequence: 2800
+Processing sequence: 2900
+Processing sequence: 3000
+Processing sequence: 3100
+Processing sequence: 3200
+Processing sequence: 3300
+Processing sequence: 3400
+Processing sequence: 3500
+Processing sequence: 3600
+Processing sequence: 3700
+Processing sequence: 3800
+Processing sequence: 3900
+Processing sequence: 4000
+Processing sequence: 4100
+Processing sequence: 4200
+Processing sequence: 4300
+Processing sequence: 4400
+Processing sequence: 4500
+Processing sequence: 4600
+Processing sequence: 4700
+Processing sequence: 4800
+Processing sequence: 4900
+Processing sequence: 5000
+Processing sequence: 5100
+Processing sequence: 5200
+Processing sequence: 5300
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_24663_22509 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5500
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_14294_16683 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5200
+Processing sequence: 5300
+[WARNING]: M00218_26_000000000-AH31Y_1_1105_25160_6828 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5300
+[WARNING]: M00218_26_000000000-AH31Y_1_1103_15272_22529 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1114_21957_25037 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5600
+Processing sequence: 5700
+Processing sequence: 5773
+Processing sequence: 5400
+[WARNING]: M00218_26_000000000-AH31Y_1_1103_9093_12825 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1103_21005_12835 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5500
+Processing sequence: 5600
+[WARNING]: M00218_26_000000000-AH31Y_1_1108_14032_13270 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5400
+Processing sequence: 5500
+Processing sequence: 5600
+[WARNING]: M00218_26_000000000-AH31Y_1_1113_12236_8229 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5300
+Processing sequence: 5400
+Processing sequence: 5500
+Processing sequence: 5600
+Processing sequence: 5700
+Processing sequence: 5773
+Processing sequence: 5500
+[WARNING]: M00218_26_000000000-AH31Y_1_1111_17981_22353 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5700
+Processing sequence: 5773
+Processing sequence: 5700
+Processing sequence: 5773
+Processing sequence: 5600
+[WARNING]: M00218_26_000000000-AH31Y_1_1103_8106_16216 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00218_26_000000000-AH31Y_1_1110_22244_23490 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+Processing sequence: 5400
+Processing sequence: 5500
+Processing sequence: 5600
+Processing sequence: 5700
+Processing sequence: 5773
+Processing sequence: 5700
+Processing sequence: 5773
+Processing sequence: 4000
+Processing sequence: 4100
+Processing sequence: 4200
+Processing sequence: 4300
+Processing sequence: 4400
+Processing sequence: 4500
+Processing sequence: 4600
+Processing sequence: 4700
+Processing sequence: 4800
+Processing sequence: 4900
+Processing sequence: 5000
+Processing sequence: 5100
+Processing sequence: 5200
+Processing sequence: 5300
+Processing sequence: 5400
+Processing sequence: 5500
+Processing sequence: 5600
+Processing sequence: 5700
+Processing sequence: 5773
+
+It took 283 secs to classify 46185 sequences.
+
+
+It took 2 secs to create the summary file for 46185 sequences.
+
+
+Output File Names: 
+owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.taxonomy
+owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.tax.summary
+
+
+mothur > remove.lineage(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxon=taxon=Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified,inputdir=owncloud/data/book/files/Test-run_data/input/,outputdir=owncloud/data/book/files/Test-run_data/output/)
+Setting output directory to: owncloud/data/book/files/Test-run_data/output/
+Setting input directory to: owncloud/data/book/files/Test-run_data/input/
+Unable to open owncloud/data/book/files/Test-run_data/input/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta. Trying default Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta
+Unable to open Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta. Trying mothur's location Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta
+Unable to open Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta. Trying output directory owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta
+Using owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.taxonomy as input file for the taxonomy parameter.
+Unable to open owncloud/data/book/files/Test-run_data/input/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table. Trying default Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table
+Unable to open Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table. Trying mothur's location Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table
+Unable to open Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table. Trying output directory owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table
+
+[NOTE]: The count file should contain only unique names, so mothur assumes your fasta, list and taxonomy files also contain only uniques.
+
+
+Output File Names: 
+owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy
+owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta
+owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table
+
+
+mothur > summary.seqs(fasta=current, count=current,inputdir=owncloud/data/book/files/Test-run_data/input/,outputdir=owncloud/data/book/files/Test-run_data/output/)
+Setting output directory to: owncloud/data/book/files/Test-run_data/output/
+Setting input directory to: owncloud/data/book/files/Test-run_data/input/
+Using owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table as input file for the count parameter.
+Using owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta as input file for the fasta parameter.
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	525	243	3	3	1
+2.5%-tile:	1	525	252	3	3	1091
+25%-tile:	1	525	252	4	4	10909
+Median: 	1	525	252	5	4	21818
+75%-tile:	1	525	252	6	5	32727
+97.5%-tile:	1	525	253	8	8	42545
+Maximum:	1	525	259	8	8	43635
+Mean:	1	525	252.182	5.25058	4.6305
+# of unique seqs:	36464
+total # of seqs:	43635
+
+Output File Names: 
+owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.summary
+
+It took 1 secs to summarize 43635 sequences.
+
+mothur > summary.tax(taxonomy=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=owncloud/data/book/files/Test-run_data/input/,outputdir=owncloud/data/book/files/Test-run_data/output/)
+Setting output directory to: owncloud/data/book/files/Test-run_data/output/
+Setting input directory to: owncloud/data/book/files/Test-run_data/input/
+Unable to open owncloud/data/book/files/Test-run_data/input/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy. Trying default Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy
+Unable to open Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy. Trying mothur's location Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy
+Unable to open Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy. Trying output directory owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy
+Unable to open owncloud/data/book/files/Test-run_data/input/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table. Trying default Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table
+Unable to open Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table. Trying mothur's location Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table
+Unable to open Mothur/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table. Trying output directory owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table
+
+It took 1 secs to create the summary file for 0 sequences.
+
+
+Output File Names: 
+owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.tax.summary
+
+
+mothur > system(cp owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta owncloud/data/book/files/Test-run_data/output/final.fasta)
+
+
+mothur > system(cp owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table owncloud/data/book/files/Test-run_data/output/final.count_table)
+
+
+mothur > system(cp owncloud/data/book/files/Test-run_data/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy owncloud/data/book/files/Test-run_data/output/final.taxonomy)
+
+
+mothur > quit()
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Detected 8 [WARNING] messages, please review.
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

@@ -73,7 +73,7 @@
               echo json_encode("file.design");
             }
             else {
-              echo json_encode("0");
+              echo json_encode("No File");
             }
     }
 
@@ -128,7 +128,7 @@
               echo json_encode("file.metadata");
             }
             else {
-              echo json_encode("0");
+              echo json_encode("No File");
             }
     }
 
@@ -271,12 +271,18 @@
             $path_out = "owncloud/data/$user/files/$project/output/";
             $path_log = "owncloud/data/$user/files/$project/log/";
       
-            $file_batch = FCPATH."$path_input/advance.batch";
+            
 
+         # create advance.batch
+            $file_batch = FCPATH."$path_input"."advance.batch";
             if(!file_exists($file_batch)) {
                 file_put_contents($file_batch, "No command !" ); 
             }
-
+         # create folder log
+         $folder_log = FCPATH."$path_log";   
+            if (!file_exists($folder_log)) {
+                   mkdir($folder_log, 0777, true);
+            }
         
 
 
@@ -551,53 +557,172 @@
 
       }
 
+      public function ven_val($venn1,$venn2,$venn3,$venn4){
+         
+         # Replace venn
+         $group_venn = "" ;
+         $index = "";
+         $check_venn = array($venn1,$venn2,$venn3,$venn4);
+         foreach ($check_venn as $val_venn) {
+
+             if($val_venn != "0"){
+                $index .= $val_venn." ";
+             }
+          }
+             $index = trim($index);
+             $group_venn =  str_replace(" ", "-", $index);
+             return $group_venn;
+   
+      }
+
+      public function read_name_sameple($project_analysis,$user,$project){
+
+
+        # Check type Project Phylotype OTU
+               if($project_analysis == "phylotype"){
+
+                  $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
+
+                 }
+                 elseif ($project_analysis == "otu") {
+
+                  $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
+                 }
+
+              $sam_name = array();
+              $myfile = fopen($file,'r') or die ("Unable to open file");
+                while(($lines = fgets($myfile)) !== false){
+                       $var =  explode("\t", $lines);
+                       array_push($sam_name, $var[0]);
+                }
+
+                fclose($myfile);
+
+         # Replace sample
+         $group_sample = "" ;
+         $index = "";
+         
+         foreach ($sam_name as  $val) {
+
+             if($val != "0"){
+                $index .= $val." ";
+             }
+          }
+
+         $index = trim($index);
+         $group_sample =  str_replace(" ", "-", $index);
+         return $group_sample;
+
+      }
+
      
       public function run_analysis(){
 
 
          $data = $_REQUEST['data_analysis'];
-         $user = $data[0];
-         $id_project = $data[1];
+         $user = $data[0]; # username
+         $id_project = $data[1]; # id_project
 
-         $level = $data[2];
+         $level = $data[2]; #level database
 
-         $ch_alpha = $data[3];
-         $size_alpha = $data[4];
+         $ch_alpha = $data[3];   #size alpah default
+         $size_alpha = $data[4]; #size alpah insert
 
          if($ch_alpha != "1"){
             $size_alpha = $ch_alpha;
          }
 
-         $ch_beta = $data[5];
-         $size_beta = $data[6];
+         $ch_beta = $data[5];  #size beta default
+         $size_beta = $data[6];  #size beta insert
 
          if($ch_beta != "1"){
             $size_beta = $ch_beta;
          }
+
 
          $venn1 = $data[7];
          $venn2 = $data[8];
          $venn3 = $data[9];
          $venn4 = $data[10];
 
-         $upgma = $data[11];
-         $pcoa  = $data[12];
+       #Venn Diagram
+         $group_ven = $this->ven_val($venn1,$venn2,$venn3,$venn4);
+      
+          
+        #UPGMA tree with calculator 
+          $d_upgma_st = $data[11];
+          $d_upgma_me = $data[12];
 
-         $nmds = $data[13];
-         $nmds_cal = $data[14];
-
-         $file_design = $data[15];
-         $file_metadata = $data[16];
-
-         $ah_mova = $data[17];
-         $correlation = $data[18];
-         
-         $method = $data[19];
-         $axes  = $data[20];
+            if($d_upgma_st == null){
+                $d_upgma_st = "0";
+            }
+            if($d_upgma_me == null){
+                $d_upgma_me = "0";
+            }
 
 
-        $project = "";
-        $project_analysis = "";
+        #PCOA 
+          $d_pcoa_st = $data[13];
+          $d_pcoa_me = $data[14];
+
+            if($d_pcoa_st == null){
+               $d_pcoa_st = "0";
+            }
+            if($d_pcoa_me == null){
+              $d_pcoa_me = "0";
+            }
+
+        #NMDS 
+          $nmds = $data[15]; 
+
+         #NMDS Calculator
+           $d_nmds_st = $data[16];
+           $d_nmds_me = $data[17];
+             
+             if($d_nmds_st == null){
+                  $d_nmds_st = "0";
+             }
+             if($d_nmds_me == null){
+                  $d_nmds_me = "0";
+             }
+
+        # Options 
+
+        #file design & metadata
+           $file_design = $data[18];
+           $file_metadata = $data[19];
+
+        #Amova & Homova
+           $ah_mova = $data[20];
+
+        #correlation with metadata & correlation of each OTU 
+           $correlation = $data[21];
+           
+        #Method & Number of axes
+           $method = $data[22];
+           $axes  = $data[23];
+     
+        #check variable
+          if($file_design == "nodesign"){
+
+                $file_design = "0";
+          }
+          if($file_metadata =="nometadata"){
+
+              $file_metadata = "0";
+          }
+          if($ah_mova == ""){
+
+              $ah_mova = "0";
+          }
+          if($correlation ==""){
+
+              $correlation = "0";
+          }
+
+
+        $project = "";  # projectname
+        $project_analysis = ""; # type project
 
         # Query data Project By ID
         $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
@@ -606,6 +731,9 @@
                 $project = $r['project_name'];
                 $project_analysis = $r['project_analysis'];
          }
+
+         # return name sample 
+         $group_sam = $this->read_name_sameple($project_analysis,$user,$project);
 
 
        # Set Path input , output , log 
@@ -620,11 +748,12 @@
 
            if ($project_analysis == "phylotype") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project $path_input $path_out $path_log";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation $method $axes";
+               
            }
            else if($project_analysis == "otu") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project $path_input $path_out $path_log";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation $method $axes";
            }
              
  
@@ -668,6 +797,31 @@
                echo json_encode($up);
             }
              
+
+      }
+
+
+      public function on_move(){
+   
+          $path_img = FCPATH."img_user/";
+
+          $path_dir = FCPATH."owncloud/data/aumza/files/test_run/output/";
+            if (is_dir($path_dir)) {
+                if ($read = opendir($path_dir)){
+                      while (($img = readdir($read)) !== false) {
+                        
+                        $allowed =  array('png','svg');
+                        $ext = pathinfo($img, PATHINFO_EXTENSION);
+
+                        if(in_array($ext,$allowed)) {
+                           
+                           copy($path_dir.$img,$path_img.$img);
+                        }
+                      }
+     
+                   closedir($read);
+                }
+            } 
 
       }
 

@@ -354,7 +354,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                         $project = basename($sample_folder);
                                         $user = $this->session->userdata['logged_in']['username'];
 
-                                        $path = "../owncloud/data/$user/files/$project/output/";
+                                        $path = "owncloud/data/$user/files/$project/output/";
 
 
 
@@ -429,8 +429,8 @@ if (isset($this->session->userdata['logged_in'])) {
                             <div>
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade" >
                                     <li class="pre"><a href="#">Preprocess & Prepare in taxonomy </a> </li>
-                                    <li class="pre2"><a href="#">Prepare phylotype </a></li>
-                                    <li><a href="#">Analysis</a></li>
+                                    <li class="pre2"><a href="#">Prepare <?=$project_analysis?> </a></li>
+                                    <li class="pre3"><a href="#">Analysis</a></li>
                                     <li><a href="#">Result & visualization</a></li>
                                 </ul>
                                 <ul  class="uk-switcher uk-margin">
@@ -565,7 +565,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                         </form>
                                      </div> <!-- Pre-test -->
 
-                                              <div class="Pre-show" style="display:none"> Process Queue 
+                                               <div class="Pre-show" style="display:none"> Process Queue 
                                                <div id="time">30</div>
                                                <div id="test_run">run queue</div>
                                                <br/>
@@ -786,46 +786,72 @@ if (isset($this->session->userdata['logged_in'])) {
                                               
                                                      <div class="col-lg-12 uk-margin"> </div>
                                                      <div class="col-lg-10 col-lg-push-1"><label> UPGMA tree with calculator : </label></div>
-                                                     <div class="col-lg-5 col-lg-push-2 ">
-                                                         <select class="uk-select" name="upgma">
-                                                             <option value="thetayc"> thetayc </option>
-                                                             <option value="morisitahorn"> morisitahorn </option>
-                                                             <option value="jclass"> jclass </option>
-                                                             <option value="braycurtis"> braycurtis</option>
-                                                             <option value="lennon"> lennon </option>
-                                                             <option value="sorabund"> sorabund </option>     
-                                                         </select>
+                                                     <div class="col-lg-7 col-lg-push-2 ">
+                                                             <div>Community structure</div>
+                                                               <div class="col-lg-7 col-lg-push-1 ">
+                                                                <input type='checkbox' name='upgma_st[]' value='braycurtis'> braycurtis <br/>
+                                                                <input type='checkbox' name='upgma_st[]' value='thetan'> thetan     <br/>
+                                                                <input type='checkbox' name='upgma_st[]' value='thetayc'> thetayc    <br/>
+                                                                <input type='checkbox' name='upgma_st[]' value='morisitahorn'> morisitahorn <br/>
+                                                                <input type='checkbox' name='upgma_st[]' value='sorabund'> sorabund    
+                                                                </div>
+                                                             
+                                                     </div>
+                                                     <div class="col-lg-7 col-lg-push-2">
+                                                           Community membership
+                                                              <div class="col-lg-7 col-lg-push-1 ">
+                                                                 <input type='checkbox' name='upgma_me[]' value='jclass'> jclass <br/>
+                                                                 <input type='checkbox' name='upgma_me[]' value='lennon '> lennon 
+                                                               </div>
+                                                                 
                                                      </div>
                                                      <div class="col-lg-12 uk-margin"> </div>
-                                                     <div class="col-lg-10 col-lg-push-1"><label> PCOA : </label></div>
-                                                     <div class="col-lg-5 col-lg-push-2 ">
-                                                         <select class="uk-select" name="pcoa">
-                                                             <option value="thetayc"> thetayc </option>
-                                                             <option value="morisitahorn"> morisitahorn </option>
-                                                             <option value="jclass"> jclass </option>
-                                                             <option value="braycurtis"> braycurtis</option>
-                                                             <option value="lennon"> lennon </option>
-                                                             <option value="sorabund"> sorabund </option>     
-                                                         </select>
+                                                     <div class="col-lg-10 col-lg-push-1"><label> PCoA :  <input name="func"  type="radio" id="radio_pcoa" > Use PCoA</label></div>
+                                                     <div class="col-lg-7 col-lg-push-2 ">
+                                                          <div>  Community structure</div>
+                                                               <div class="col-lg-7 col-lg-push-1 ">
+                                                                <input type='checkbox' name='pcoa_st[]' value='braycurtis' class="pcoa" disabled> braycurtis <br/>
+                                                                <input type='checkbox' name='pcoa_st[]' value='thetan' class="pcoa" disabled> thetan     <br/>
+                                                                <input type='checkbox' name='pcoa_st[]' value='thetayc' class="pcoa" disabled> thetayc    <br/>
+                                                                <input type='checkbox' name='pcoa_st[]' value='morisitahorn' class="pcoa" disabled> morisitahorn <br/>
+                                                                <input type='checkbox' name='pcoa_st[]' value='sorabund' class="pcoa" disabled> sorabund 
+                                                                </div>
+                                                     </div>
+                                                     <div class="col-lg-7 col-lg-push-2 ">
+                                                            Community membership
+                                                              <div class="col-lg-7 col-lg-push-1 ">
+                                                                 <input type='checkbox' name='pcoa_me[]' value='jclass' class="pcoa" disabled> jclass <br/>
+                                                                 <input type='checkbox' name='pcoa_me[]' value='lennon ' class="pcoa" disabled> lennon 
+                                                               </div>
                                                      </div>
                                                      <div class="col-lg-12 uk-margin"> </div>
-                                                     <div class="col-lg-10 col-lg-push-1"><label> NMDS : </label></div>
+                                                     <div class="col-lg-10 col-lg-push-1"><label> NMDS : <input name="func"  type="radio" id="radio_nmds" > Use NMDS</label></div>
                                                      <div class="col-lg-4 col-lg-push-2 ">
                                                          <select class="uk-select" name="nmds">
                                                              <option value="2"> 2D </option>
                                                              <option value="3"> 3D </option>        
                                                          </select>
                                                      </div>
-                                                     <div class="col-lg-5 col-lg-push-3 ">
-                                                         <select class="uk-select" name="nmds_cal">
-                                                             <option value="thetayc"> thetayc </option>
-                                                             <option value="morisitahorn"> morisitahorn </option>
-                                                             <option value="jclass"> jclass </option>
-                                                             <option value="braycurtis"> braycurtis</option>
-                                                             <option value="lennon"> lennon </option>
-                                                             <option value="sorabund"> sorabund </option>     
-                                                         </select>
+                                                     <div class="col-lg-9 col-lg-push-2 ">
+                                                           Community structure
+                                                               <div class="col-lg-9 col-lg-push-1 ">
+                                                                <input type='checkbox' name='nmds_st[]' value='braycurtis' class="nmds" disabled> braycurtis <br/>
+                                                                <input type='checkbox' name='nmds_st[]' value='thetan' class="nmds" disabled> thetan     <br/>
+                                                                <input type='checkbox' name='nmds_st[]' value='thetayc' class="nmds" disabled> thetayc    <br/>
+                                                                <input type='checkbox' name='nmds_st[]' value='morisitahorn' class="nmds" disabled> morisitahorn <br/>
+                                                                <input type='checkbox' name='nmds_st[]' value='sorabund' class="nmds" disabled> sorabund  
+                                                                </div>
                                                      </div>
+
+                                                      <div class="col-lg-9 col-lg-push-2 ">
+                                                           Community membership
+                                                               <div class="col-lg-9 col-lg-push-1 ">
+                                                                 <input type='checkbox' name='nmds_me[]' value='jclass' class="nmds" disabled> jclass <br/>
+                                                                 <input type='checkbox' name='nmds_me[]' value='lennon 'class="nmds" disabled> lennon 
+                                                                </div>
+                                                     </div>
+
+
                                                      <div class="col-lg-12 uk-margin"> </div>
                                                     
                                                     
@@ -939,11 +965,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                        <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Ven diagram</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>owncloud/data/joesoftheart/files/SAMPLE-WES-2023/data/output/Rare.png">
+                                                <?php echo img('img_user/sharedsobs.svg'); ?>
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>Heatmap</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig3_heatmaptest.jpg">
+                                                <?php echo img('img_user/heartmap.png'); ?>
                                             </div>
                                         </div>
 
@@ -952,30 +978,40 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>*Heatmap-Jclass</b><br>
-                                                <img class="img-thumbnail" height="50%" width="50%" src="<?php echo base_url(); ?>uploads/final.tx.jclass.2.lt.ave.heatmap.sim.svg">
+                                                <?php echo img('img_user/jclass.svg', 'height="80%"', 'width="80%"'); ?>
+                                                <!-- <img class="img-thumbnail" height="50%" width="50%" src=""> -->
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>*Heatmap-Thetayc</b><br>
-                                                <img class="img-thumbnail" height="50%" width="50%"  src="<?php echo base_url(); ?>uploads/final.tx.thetayc.2.lt.ave.heatmap.sim.svg">
+                                                <?php echo img('img_user/thetayc.svg' , 'height="80%"', 'width="80%"'); ?>
+                                               <!--  <img class="img-thumbnail" height="50%" width="50%"  src=""> -->
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">
-
+ 
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Rarefaction</b>
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig1_rarefactionSoil.jpg">
+                                                <?php echo img('img_user/Rare.png'); ?>
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>RelativePhylum</b>
-                                                <img class="img-thumbnail"  src="<?php echo base_url(); ?>uploads/Rplot.jpeg">
+                                                <?php echo img('img_user/Abun.png'); ?>
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">
                                         <b>NMDS</b>
                                         <div class="row">
                                             <div class="col-lg-6 col-lg-offset-3">
-                                                <img class="img-thumbnail" src="<?php echo base_url(); ?>uploads/Fig4_NMDS.jpg">
+                                                <?php echo img('img_user/NMD.png'); ?>
+                                            </div>
+
+                                        </div>
+                                         <hr class="uk-divider-icon">
+                                        <b>Alpha</b>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-lg-offset-3">
+                                               <?php echo img('img_user/Alpha.png'); ?>
                                             </div>
 
                                         </div>
@@ -1043,7 +1079,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
    <!--  Advance Script -->
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function () {            
 
             $("#sub-test").click(function () {
                
@@ -1121,44 +1157,73 @@ if (isset($this->session->userdata['logged_in'])) {
                   }   
     
             });
-
+           
+            var design_stop = "";
+            var metadata_stop = "";
             $("#sub-test3").click(function () {
-                  var username = document.forms["Analysis-form"]["username"].value;
-                  var project  = document.forms["Analysis-form"]["project"].value;
-                  var level    = document.forms["Analysis-form"]["level"].value;
-                  var  ch_alpha = document.forms["Analysis-form"]["optionsRadios"].value,
-                       size_alpha = document.forms["Analysis-form"]["size_alpha"].value;
-                   var ch_beta = document.forms["Analysis-form"]["optionsRadios1"].value, 
-                       size_beta = document.forms["Analysis-form"]["size_beta"].value;
-                   var venn1 = document.forms["Analysis-form"]["venn1"].value ,
-                       venn2 = document.forms["Analysis-form"]["venn2"].value, 
-                       venn3 = document.forms["Analysis-form"]["venn3"].value,
-                       venn4 = document.forms["Analysis-form"]["venn4"].value;
-                   var upgma = document.forms["Analysis-form"]["upgma"].value;
-                   var pcoa = document.forms["Analysis-form"]["pcoa"].value;
-                   var nmds = document.forms["Analysis-form"]["nmds"].value ,
-                       nmds_cal = document.forms["Analysis-form"]["nmds_cal"].value;
-                   
-                   var file_design = document.forms["Analysis-form"]["f_design"].value;
-                   var file_metadata = document.forms["Analysis-form"]["f_metadata"].value;
+                var username = document.forms["Analysis-form"]["username"].value;
+                var project  = document.forms["Analysis-form"]["project"].value;
+                var level    = document.forms["Analysis-form"]["level"].value;
+                
+                var ch_alpha = document.forms["Analysis-form"]["optionsRadios"].value,
+                      size_alpha = document.forms["Analysis-form"]["size_alpha"].value;
 
-                   var ah_mova = document.forms["Analysis-form"]["optionsRadios2"].value;
-                   var correlation = document.forms["Analysis-form"]["optionsRadios3"].value;
-                   var method = document.forms["Analysis-form"]["method"].value;
-                   var axes = document.forms["Analysis-form"]["axes"].value;
+                var ch_beta = document.forms["Analysis-form"]["optionsRadios1"].value, 
+                      size_beta = document.forms["Analysis-form"]["size_beta"].value;
                   
-                   
+                var venn1 = document.forms["Analysis-form"]["venn1"].value ,
+                      venn2 = document.forms["Analysis-form"]["venn2"].value, 
+                      venn3 = document.forms["Analysis-form"]["venn3"].value,
+                      venn4 = document.forms["Analysis-form"]["venn4"].value;
                   
-                  var array_data = new Array(username,project,level,ch_alpha,size_alpha,ch_beta,size_beta,venn1,venn2,venn3,venn4,upgma,pcoa,nmds,nmds_cal,file_design,file_metadata,ah_mova,correlation,method,axes);
-                  
-                        $(".Pre-test3").hide();
-                        $(".Pre-show3").show();
-                        get_analysis(array_data);
+                var nmds = document.forms["Analysis-form"]["nmds"].value ;  
                  
+                var file_design = document.forms["Analysis-form"]["f_design"].value;
+                var file_metadata = document.forms["Analysis-form"]["f_metadata"].value;
 
+                var ah_mova = document.forms["Analysis-form"]["optionsRadios2"].value;
+                var correlation = document.forms["Analysis-form"]["optionsRadios3"].value;
+                var method = document.forms["Analysis-form"]["method"].value;
+                var axes = document.forms["Analysis-form"]["axes"].value;
+                  
+                   var upgma_st = document.getElementsByName('upgma_st[]');
+                   var upgma_me = document.getElementsByName('upgma_me[]');
+
+                   var pcoa_st = document.getElementsByName('pcoa_st[]');
+                   var pcoa_me = document.getElementsByName('pcoa_me[]');
+
+                   var nmds_st = document.getElementsByName('nmds_st[]');
+                   var nmds_me = document.getElementsByName('nmds_me[]');
+
+                   var d_upgma_st = create_var(upgma_st);
+                   var d_upgma_me = create_var(upgma_me);
+
+                   var d_pcoa_st = create_var(pcoa_st);
+                   var d_pcoa_me = create_var(pcoa_me);
+
+                   var d_nmds_st = create_var(nmds_st);
+                   var d_nmds_me = create_var(nmds_me);
+                   
+                 
+                  design_stop = "stop";
+                  metadata_stop = "stop";
+
+                 if(username != "" && project != "" &&  level != "" && venn1 != "" && venn2 != "" && venn3 != "" && venn4 != "" ){
+
+                     var array_data = new Array(username,project,level,ch_alpha,size_alpha,ch_beta,size_beta,venn1,venn2,venn3,venn4,d_upgma_st,d_upgma_me,d_pcoa_st,d_pcoa_me,nmds,d_nmds_st,d_nmds_me,file_design,file_metadata,ah_mova,correlation,method,axes);
+                  
+                      $(".Pre-test3").hide();
+                      $(".Pre-show3").show();
+                      get_analysis(array_data);
+
+                 }
+                  
             });
 
+            
+
             $("#check_design").click(function () {
+                 design_stop = "start";
                  var user = "<?php echo $username ?>";
                  var project = "<?php echo $current_project ?>";
                  var time = 10;
@@ -1171,8 +1236,8 @@ if (isset($this->session->userdata['logged_in'])) {
                        datatype:"json",
                        url:"<?php echo base_url('Run_advance/check_file_design');?>?user="+user+"&project_id="+project,
                          success:function(data){
-                             var design = JSON.parse(data);
-                             if(design != "0"){
+                            var design = JSON.parse(data);
+                             if(design != "No File" || design_stop == "stop"){
                                    clearInterval(interval);
                                    $('#pass_design').text(" "+design);
                                    document.getElementById('p_design').value = design;
@@ -1188,6 +1253,7 @@ if (isset($this->session->userdata['logged_in'])) {
             });
 
              $("#check_metadata").click(function(){
+                 metadata_stop = "start";
                  var user = "<?php echo $username ?>";
                  var project = "<?php echo $current_project ?>";
                  var time = 10;
@@ -1201,7 +1267,7 @@ if (isset($this->session->userdata['logged_in'])) {
                        url:"<?php echo base_url('Run_advance/check_file_metadata');?>?user="+user+"&project_id="+project,
                          success:function(data){
                              var metadata = JSON.parse(data);
-                             if(metadata  != "0"){
+                             if(metadata  != "No File" || metadata_stop == "stop"){
                                    clearInterval(interval);
                                    $('#pass_metadata').text(" "+metadata);
                                    document.getElementById('p_metadata').value = metadata;
@@ -1217,7 +1283,44 @@ if (isset($this->session->userdata['logged_in'])) {
                   
             });
 
-        });
+
+            $('#radio_pcoa').on('change', function() {
+
+                //alert($('#radio_pcoa').val());
+                $(".nmds").attr("disabled", true); 
+                $(".nmds").prop('checked', false);
+                $(".pcoa").removeAttr("disabled");
+
+                
+
+            });
+
+             $('#radio_nmds').on('change', function() {
+
+                //alert($('#radio_nmds').val()); 
+                $(".pcoa").attr("disabled", true);
+                $(".pcoa").prop('checked', false);
+                $(".nmds").removeAttr("disabled");
+                
+              });
+       });
+
+
+        function create_var(checkboxes){
+
+             var vals = "";
+                    for (var i=0, n=checkboxes.length;i<n;i++){
+                       if (checkboxes[i].checked){ 
+                         
+                            vals += checkboxes[i].value+" ";
+                        }
+                    }
+             var str = vals.trim();
+             var data_var = str.replace(/ /g,",");
+
+             return data_var;
+
+        }
          
         $(document).on('change', '#custo_mer', function(){
                
@@ -1315,26 +1418,22 @@ if (isset($this->session->userdata['logged_in'])) {
 
         function get_analysis(array_data){
            var data_value = array_data;
-           var data = "";
-           for(var i = 0 ; i < data_value.length; i++){
-              data += i+" > "+data_value[i]+ "\t";
-           }
-           $("#test_run3").text(data);
-             
-           // $.ajax({
-           //         type:"post",
-           //         datatype:"json",
-           //         url:"<?php echo base_url('Run_advance/run_analysis'); ?>",
-           //         data:{data_analysis: data_value},
-           //         success:function(data){
-           //              //var job_sample = $.parseJSON(data);
-           //              var job_analysis = JSON.parse(data);
-           //              ckeck_analysis(job_analysis);
-           //         },
-           //         error:function(e){
-           //           console.log(e.message);
-           //         }
-           // });
+
+           $.ajax({
+                   type:"post",
+                   datatype:"json",
+                   url:"<?php echo base_url('Run_advance/run_analysis'); ?>",
+                   data:{data_analysis: data_value},
+                   success:function(data){
+                        var job_sample = $.parseJSON(data);
+                        var job_analysis = JSON.parse(data);
+                        ckeck_analysis(job_analysis);
+                      
+                   },
+                   error:function(e){
+                     console.log(e.message);
+                   }
+           });
   
         }
 
@@ -1356,6 +1455,9 @@ if (isset($this->session->userdata['logged_in'])) {
                      //var sample_data = $.parseJSON(data);
                       if( analysis == "0"){
                          clearInterval(interval);
+                            $('.uk-child-width-expand > .pre3').next('li').find('a').trigger('click'); 
+                             $(".Pre-show3").hide();
+                             $(".Pre-test3").show();
                       }else{
                          
                          time = 30;  
@@ -1472,8 +1574,8 @@ if (isset($this->session->userdata['logged_in'])) {
                     success:function(data){
                      //console.log(data);
                       var data_job = $.parseJSON(data);
-                      //console.log("q_id :" + data_job[0]);
-                      //console.log("q_name :" + data_job[1]);
+                      console.log("q_id :" + data_job[0]);
+                      console.log("q_name :" + data_job[1]);
                      
                       checkrun(data_job);
                     },
