@@ -19,22 +19,14 @@ if (isset($this->session->userdata['logged_in'])) {
                 <li <?php if ($controller_name == 'process'){
                     echo "class=active";} ?>><?php if ($controller_name == 'process'){?>processing<?php } else {?><a href="<?php echo site_url('projects/index/'.$current_project)?>">Current project</a><?php } ?></li>
             </ol>
-
         </div>
-
-
         <?php
-
         foreach ($rs as $r) {
             $sample_folder = $r['project_path'];
         }
         $project = basename($sample_folder);
         $user = $this->session->userdata['logged_in']['username'];
-
         $path = "../owncloud/data/$user/files/$project/output/";
-
-
-
         ?>
 
         <?php
@@ -62,7 +54,6 @@ if (isset($this->session->userdata['logged_in'])) {
                 </div>
             </div>
             <div class="row">
-
                 <div class="col-lg-12">
                     <table class="table"  width="100%" border="0">
 

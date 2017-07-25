@@ -42,7 +42,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script>
+    <script>collection mongodb
         $(document).ready(function(){
             $("#search-box").keyup(function(){
                 $.ajax({

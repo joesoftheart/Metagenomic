@@ -167,19 +167,40 @@ summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/inpu
 function replace_group($user,$id, $project,$path){
     echo "\n";
     echo "Run Replace_group :";
-    $file = $path."/output/stability.contigs.groups";
+    $file_path_test = $path."/output/stability.contigs.groups.txt";
+    $file_path = $path."/output/stability.contigs.groups";
     $data_w = array();
-    $lines = file($file);
-
-    foreach($lines as $line) {
-
+if ($file = fopen($file_path, "r")) {
+    $i = 0;
+    while(!feof($file)) {
+        $line = fgets($file);
         $out = explode("\t", $line);
-        $out[1] =  str_replace("-", "_", $out[1]);
 
-        $data = $out[0]."\t".$out[1];
-        array_push($data_w,$data);
+        if ($out[0] == "" or $out[1] == ""){
+            echo "out[0] =====" . "null";
+            echo "\n";
+            echo "out[1] =====" . "null";
+        }else {
+            $out[1] =  str_replace("-", "_", $out[1]);
+            $data = $out[0] . "\t" . $out[1];
+            array_push($data_w, $data);
+        }
     }
-    file_put_contents($file, $data_w);
+    fclose($file);
+        if (file_exists($file_path)){
+            file_put_contents($file_path, "");
+            foreach ($data_w as $value){
+                file_put_contents($file_path, $value ,FILE_APPEND);
+            }
+
+        }else{
+            foreach ($data_w as $value){
+                file_put_contents($file_path, $value ,FILE_APPEND);
+            }
+        }
+
+    }
+
     echo "go to screen_seqs ->";
     screen_seqs($user,$id, $project,$path);
 }
@@ -226,7 +247,7 @@ summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/
      echo "\n";
      echo "Run align_seqs";
     $jobname = $user."_".$id."_align_seqs";
-    $cmd ="align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=silva.v4.fasta, processors=8,inputdir=$path/input/,outputdir=$path/output/)
+    $cmd ="align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=silva.nr_v128.align, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
@@ -243,6 +264,7 @@ summary.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.tri
      $loop = true;
      while ($loop) {
          $check_run = exec("qstat -j $id_job");
+         sleep(120);
          if($check_run == false){
              echo "go to read_log_sungrid->";
              read_log_sungrid($user,$id,$project,$path,$id_job);
