@@ -772,7 +772,7 @@
 
          $id_job = trim($id_job);
 
-         echo json_encode($id_job);
+         echo json_encode(array($id_job,$user,$project));
 
 
       }
@@ -782,14 +782,19 @@
 
 
         $analysis_job = $_REQUEST['job_analysis'];
-        $id_job = $analysis_job;
+        $id_job = $analysis_job[0];
+        $user = $analysis_job[1];
+        $project = $analysis_job[2];
      
         
         $check_run = exec("qstat -j $id_job ");
 
             if($check_run == false){
-                  $up = 0;
+              
+                 $this->on_move($user,$project);
+                 $up = 0;
                  echo json_encode($up);
+                 
 
             }else{
 
@@ -801,11 +806,15 @@
       }
 
 
-      public function on_move(){
-   
-          $path_img = FCPATH."img_user/";
+      public function on_move($user,$project){
 
-          $path_dir = FCPATH."owncloud/data/aumza/files/test_run/output/";
+         # check & create folder user
+         $path_img = FCPATH."img_user/$user/$project/";   
+         if (!file_exists($path_img)) {
+                mkdir($path_img, 0777, true);
+         }
+         
+         $path_dir = FCPATH."owncloud/data/$user/files/$project/output/";
             if (is_dir($path_dir)) {
                 if ($read = opendir($path_dir)){
                       while (($img = readdir($read)) !== false) {

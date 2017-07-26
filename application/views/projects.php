@@ -349,6 +349,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <?php
 
                                         foreach ($rs as $r) {
+
                                             $sample_folder = $r['project_path'];
                                         }
                                         $project = basename($sample_folder);
@@ -423,7 +424,7 @@ if (isset($this->session->userdata['logged_in'])) {
                 <?php echo form_close();?>
               <!-- End Standard run -->
 
-             <!-- ADVANCE  -->
+              <!-- ADVANCE  -->
 
                         <li>
                             <div>
@@ -963,55 +964,78 @@ if (isset($this->session->userdata['logged_in'])) {
                                    <!-- Result && Graph -->
                                     <li >
                                        <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6" >
                                                 <b>Ven diagram</b>
-                                                <?php echo img('img_user/sharedsobs.svg'); ?>
+                                                 <div id="sharedsobs_img">
+                                                     
+                                                 </div>
+                                                
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>Heatmap</b>
-                                                <?php echo img('img_user/heartmap.png'); ?>
+                                                 <div id="heartmap_img">
+                                                     
+                                                 </div>
+                                                 
                                             </div>
                                         </div>
 
                                         <hr class="uk-divider-icon">
 
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6" >
                                                 <b>*Heatmap-Jclass</b><br>
-                                                <?php echo img('img_user/jclass.svg', 'height="80%"', 'width="80%"'); ?>
-                                                <!-- <img class="img-thumbnail" height="50%" width="50%" src=""> -->
+                                                 <div id="jclass_img">
+                                                     
+                                                 </div>
+                                               
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6" >
                                                 <b>*Heatmap-Thetayc</b><br>
-                                                <?php echo img('img_user/thetayc.svg' , 'height="80%"', 'width="80%"'); ?>
-                                               <!--  <img class="img-thumbnail" height="50%" width="50%"  src=""> -->
+                                                <div id="thetayc_img">
+                                                    
+                                                </div>
+                                              
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">
  
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6" >
                                                 <b>Rarefaction</b>
-                                                <?php echo img('img_user/Rare.png'); ?>
+                                                <div id="rare_img">
+                                                    
+                                                </div>
+                                                
+                                              
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6"  >
                                                 <b>RelativePhylum</b>
-                                                <?php echo img('img_user/Abun.png'); ?>
+                                                <div id="abun_img">
+                                                    
+                                                </div>  
+                                              
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">
                                         <b>NMDS</b>
                                         <div class="row">
-                                            <div class="col-lg-6 col-lg-offset-3">
-                                                <?php echo img('img_user/NMD.png'); ?>
+                                            <div class="col-lg-6 col-lg-offset-3" >
+                                               <div id="nmd_img">
+                                                   
+                                               </div>
+                                              
                                             </div>
 
                                         </div>
                                          <hr class="uk-divider-icon">
                                         <b>Alpha</b>
                                         <div class="row">
-                                            <div class="col-lg-6 col-lg-offset-3">
-                                               <?php echo img('img_user/Alpha.png'); ?>
+                                            <div class="col-lg-6 col-lg-offset-3" >
+                                                <div id="alpha_img">
+                                                    
+                                                </div> 
+                                                
                                             </div>
 
                                         </div>
@@ -1425,8 +1449,8 @@ if (isset($this->session->userdata['logged_in'])) {
                    url:"<?php echo base_url('Run_advance/run_analysis'); ?>",
                    data:{data_analysis: data_value},
                    success:function(data){
-                        var job_sample = $.parseJSON(data);
-                        var job_analysis = JSON.parse(data);
+                        var job_analysis = $.parseJSON(data);
+                        //var job_analysis = JSON.parse(data);
                         ckeck_analysis(job_analysis);
                       
                    },
@@ -1438,7 +1462,8 @@ if (isset($this->session->userdata['logged_in'])) {
         }
 
         function ckeck_analysis(job_analy){
-
+            var user = "<?php echo $username ?>";
+            var project = "<?php echo $project ?>";
           var time = 30;
           var interval = null;
           interval = setInterval(function(){   
@@ -1455,7 +1480,20 @@ if (isset($this->session->userdata['logged_in'])) {
                      //var sample_data = $.parseJSON(data);
                       if( analysis == "0"){
                          clearInterval(interval);
-                            $('.uk-child-width-expand > .pre3').next('li').find('a').trigger('click'); 
+
+                             $('#sharedsobs_img').html('<img id="sharedsobs_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/sharedsobs.svg");?>">');
+                             $('#heartmap_img').html('<img id="heartmap_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/heartmap.png");?>">');
+                             
+                             $('#jclass_img').html('<img id="jclass_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/jclass.svg"); ?> ">'); 
+                             $('#thetayc_img').html('<img id="thetayc_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/thetayc.svg"); ?> ">'); 
+
+                             $('#rare_img').html('<img id="rare_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Rare.png");?>">');
+                             $('#abun_img').html('<img id="abun_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Abun.png");?>">');
+                            
+                             $('#nmd_img').html('<img id="nmd_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/NMD.png");?>">');
+                             $('#alpha_img').html('<img id="alpha_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/Alpha.png");?>">');
+                           
+                             $('.uk-child-width-expand > .pre3').next('li').find('a').trigger('click'); 
                              $(".Pre-show3").hide();
                              $(".Pre-test3").show();
                       }else{
