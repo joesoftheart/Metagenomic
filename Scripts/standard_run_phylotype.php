@@ -239,7 +239,7 @@ summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/
         }
     }
 }
-    
+
 
 // Summary-seqs
  function align_seqs($user,$id,$project,$path){
