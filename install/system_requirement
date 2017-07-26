@@ -1,0 +1,68 @@
+#install Metagenomic
+1.ssh-keygen -t rsa -b 4096 -C "<email>" // keygen in folder .ssh
+2.create file name "config"
+	Host github.com
+		HostName github.com
+		User git
+		IdentityFile ~/.ssh/id_rsa
+3. open file id_rsa.pub and copy key
+4.eval "$(ssh-agent -s)"
+5.ssh-add ~/.ssh/id_rsa
+6.go to github click setting->SSH and GPG keys->New SSH key plase key
+7.git clone <link in github> // clone repository to local
+
+#install R program 
+1.yum install R
+  -install.packages("ggplot2")
+  -install.packages("ggplots")
+  -install.packages("reshape2")
+  -install.packages("grid")
+  -install.packages("vegan")
+  -install.packages("ellipse")
+  -install.packages("ggrepel")
+  -install.packages("ggplot")
+  
+#install Php
+1. For CentOS/RHEL 7:
+  -rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm
+  -rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+2. For CentOS/RHEL 6:
+  -rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
+3. yum remove php-common
+4. Now we install PHP 5.5 using following command:
+  -yum install -y php56w php56w-opcache php56w-xml php56w-mcrypt php56w-gd php56w-devel php56w-mysql php56w-intl php56w-mbstring php-devel php-pear
+5. After installing PHP 5.6, we need to restart Apache service.
+  -/etc/init.d/httpd restart
+
+#install mongodb
+1. create a /etc/yum.repos.d/mongodb-org-3.4.repo
+  [mongodb-org-3.4]
+  name=MongoDB Repository
+  baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.4/x86_64/
+  gpgcheck=1
+  enabled=1
+  gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc
+2. yum install -y mongodb-org
+3. Disable SELinux by setting the SELINUX setting to disabled in /etc/selinux/config.
+   -SELINUX=disabled
+4. service mongod start
+5. chkconfig mongod on
+
+#install php use 
+1. pecl install mongo
+2. insert "extention=mongo.so" in /etc/php.ini
+2. Go to /usr/lib64/php/modules/
+3. chmod 755 mongo.so
+
+#install owncloud https://doc.owncloud.org/server/9.1/admin_manual/installation/source_installation.html
+1. download owncloud server
+2. unzip owncloud.x.x.x.zip 
+3. cp owncloud/ /var/www/html/
+4. chown -R apache:apache owncloud/
+5. mysql -u root -p
+mysql> CREATE DATABASE owncloud;
+mysql> GRANT ALL ON owncloud.* to 'owncloud'@'localhost' IDENTIFIED BY 'set_database_password';
+mysql> FLUSH PRIVILEGES;
+mysql> exit
+6. https://server_domain_or_IP/owncloud
+
