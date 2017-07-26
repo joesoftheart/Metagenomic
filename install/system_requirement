@@ -10,6 +10,13 @@
 5.ssh-add ~/.ssh/id_rsa
 6.go to github click setting->SSH and GPG keys->New SSH key plase key
 7.git clone <link in github> // clone repository to local
+8. /etc/httpd/conf/httpd.conf
+9. <Directory /var/www/html/Metagenomic/>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    allow from all
+</Directory>
 
 #install R program 
 1.yum install R
@@ -66,3 +73,17 @@ mysql> FLUSH PRIVILEGES;
 mysql> exit
 6. https://server_domain_or_IP/owncloud
 
+#install sun gride engine
+1. Go to /var/www/html/Metagenomic/install/sge62u5/
+2. rpm -ivh sun-sge-common-6.2-5.noarch.rpm
+3. rpm -ivh sun-sge-bin-linux24-x64-6.2-5.x86_64.rpm
+4. add user
+	 groupadd sgeadmin
+	 useradd -g sgeadmin sgeadmin
+	 id sgeadmin
+	 uid=502(sgeadmin) gid=500(sgeadmin) groups=500(sgeadmin)
+5. export SGE_ROOT=/gridware/sge
+6. echo $SGE_ROOT
+7. chown sgeadmin:sgeadmin /gridware/sge
+8. cat /etc/hosts // view host for sge
+9. cd /grideware/sge/
