@@ -1,9 +1,0 @@
-Loading required package: permute
-Loading required package: lattice
-This is vegan 2.4-3
-Error in file(file, "rt") : cannot open the connection
-Calls: read.table -> file
-In addition: Warning message:
-In file(file, "rt") :
-  cannot open file 'owncloud/data/book/files/Test-run_data/output/final.tx.thetayc.2.lt.ave.nmds.axes': No such file or directory
-Execution halted
