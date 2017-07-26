@@ -1,1 +1,1 @@
-{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "name" : "_id_", "ns" : "metagenomic_db.status_process" } ] }
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"metagenomic_db.status_process"}]}

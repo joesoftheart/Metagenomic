@@ -1,3 +1,0 @@
-Error in legend("topleft", c(a, b, c, d), pch = c(16, 16, 16, 16), lty = c(1,  : 
-  object 'a' not found
-Execution halted
