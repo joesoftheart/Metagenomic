@@ -51,17 +51,19 @@ class Run_owncloud extends CI_Controller {
         
       public function show_log_last_line()
         {
-           $file = FCPATH."q_advance.o849";
+           $file = FCPATH."aumza-test_run-phylotype-advance3.o2457";
            $count = 0 ;
            $myfile = fopen($file,'r') or die ("Unable to open file");
             while(($lines = fgets($myfile)) !== false){
               if($lines != "\n"){
                 $count++;
+                echo $count." ".$lines."<br/>";
               } 
               
             }
            fclose($myfile);
            $line = file($file);
+
            echo $line[$count-1];
 
         }

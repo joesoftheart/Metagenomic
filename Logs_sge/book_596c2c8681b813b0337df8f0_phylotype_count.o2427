@@ -1,0 +1,35 @@
+[H[J
+
+
+
+
+
+mothur v.1.39.1
+Last updated: 2/3/2017
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+For questions and analysis support, please visit our forum at https://www.mothur.org/forum
+
+Type 'quit()' to exit program
+
+
+
+mothur > dist.seqs(fasta=final.fasta, cutoff=0.21, processors=8,inputdir=owncloud/data/book/files/Test-run_data/input/,outputdir=owncloud/data/book/files/Test-run_data/output/)
+Setting output directory to: owncloud/data/book/files/Test-run_data/output/
+Setting input directory to: owncloud/data/book/files/Test-run_data/input/
+Unable to open owncloud/data/book/files/Test-run_data/input/final.fasta. Trying default Mothur/final.fasta
+Unable to open Mothur/final.fasta. Trying mothur's location Mothur/final.fasta
+Unable to open Mothur/final.fasta. Trying output directory owncloud/data/book/files/Test-run_data/output/final.fasta

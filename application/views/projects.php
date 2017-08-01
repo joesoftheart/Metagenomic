@@ -568,10 +568,16 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                <div class="Pre-show" style="display:none"> Process Queue 
                                                <div id="time">30</div>
+
+                                                <div class="progress progress-striped active">
+                                                            <div id="bar_pre" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"  style="width:0%;">
+                                                                <div class="percent_pre">0%</div >
+                                                            </div>
+                                                </div>
                                                <div id="test_run">run queue</div>
                                                <br/>
                                                         
-                                                <button id="back-test" class="btn btn-default">back</button>
+                                                <!-- <button id="back-test" class="btn btn-default">back</button> -->
                                             </div>
                                        
                                     </li>
@@ -655,11 +661,18 @@ if (isset($this->session->userdata['logged_in'])) {
                                         </div> <!-- Pre-test2 -->
 
                                             <div class="Pre-show2" style="display:none"> Process Queue Sub Sample 
-                                               <div id="time2">20</div>
-                                               <div id="test_run2">run sub sample </div>
-                                                <br/>
+                                                 <div id="time2">20</div>
+
+                                                    <div class="progress progress-striped active">
+                                                            <div id="bar_pre2" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"  style="width:0%;">
+                                                                <div class="percent_pre2">0%</div >
+                                                            </div>
+                                                    </div>
+
+                                                 <div id="test_run2">run sub sample </div>
+                                                 <br/>
                                                         
-                                                <button id="back-test2" class="btn btn-default">back subsample</button>
+                                                <!-- <button id="back-test2" class="btn btn-default">back subsample</button> -->
             
                                             </div>
 
@@ -949,10 +962,17 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                              <div class="Pre-show3" style="display:none"> Process Queue Analysis
                                                 <div id="time3">30</div>
+
+                                                    <div class="progress progress-striped active">
+                                                            <div id="bar_pre3" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"  style="width:0%;">
+                                                                <div class="percent_pre3">0%</div >
+                                                            </div>
+                                                    </div>
+
                                                 <div id="test_run3">run analysis </div>
                                                 <br/>
                                                         
-                                                <button id="back-test3" class="btn btn-default">back analysis</button>
+                                                <!-- <button id="back-test3" class="btn btn-default">back analysis</button> -->
                                              </div>
                                  </li>
 
@@ -1159,8 +1179,10 @@ if (isset($this->session->userdata['logged_in'])) {
             });
 
            $("#back_preprocess").click(function(){
-              $('.uk-child-width-expand > .pre2').prev('li').find('a').trigger('click');   
-            });
+
+                 $('.uk-child-width-expand > .pre2').prev('li').find('a').trigger('click'); 
+             
+          });
 
             $("#sub-test2").click(function () {
                
@@ -1476,9 +1498,9 @@ if (isset($this->session->userdata['logged_in'])) {
                     url:"<?php echo base_url('Run_advance/check_analysis'); ?>",
                     data:{job_analysis: job_analy },
                     success:function(data){
-                      var analysis = JSON.parse(data);
-                     //var sample_data = $.parseJSON(data);
-                      if( analysis == "0"){
+                      //var analysis = JSON.parse(data);
+                      var analysis = $.parseJSON(data);
+                      if( analysis[0] == "0"){
                          clearInterval(interval);
 
                              $('#sharedsobs_img').html('<img id="sharedsobs_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/sharedsobs.svg");?>">');
@@ -1496,8 +1518,15 @@ if (isset($this->session->userdata['logged_in'])) {
                              $('.uk-child-width-expand > .pre3').next('li').find('a').trigger('click'); 
                              $(".Pre-show3").hide();
                              $(".Pre-test3").show();
+
+                             $('#bar_pre3').width(0+"%");
+                             $('.percent_pre3').html(0+"%");
+
                       }else{
-                         
+
+                         var num = analysis[1];
+                         $('#bar_pre3').width(num+"%");
+                         $('.percent_pre3').html(num+"%");
                          time = 30;  
                       }  
                     },
@@ -1575,7 +1604,8 @@ if (isset($this->session->userdata['logged_in'])) {
                              $('.uk-child-width-expand > .pre2').next('li').find('a').trigger('click'); 
                              $(".Pre-show2").hide();
                              $(".Pre-test2").show();
-                             
+
+                            
                              var group = "";
                              group += "<option value=0> </option>";
                              for (var i=0; i < sample_data[2].length; i++) {
@@ -1588,9 +1618,16 @@ if (isset($this->session->userdata['logged_in'])) {
                              $('#venn3').html(group);
                              $('#venn4').html(group);
 
+                              $('#bar_pre2').width(0+"%");
+                              $('.percent_pre2').html(0+"%");
+                             
+                            
                       }else{
-                         
-                         time = 20;  
+
+                          var num = sample_data[2];
+                            $('#bar_pre2').width(num+"%");
+                            $('.percent_pre2').html(num+"%");
+                            time = 20;  
   
                       }  
                     },
@@ -1647,6 +1684,9 @@ if (isset($this->session->userdata['logged_in'])) {
                            
                       }else{
                          var show_data = data_up[0];
+                         var show_num  = data_up[1];
+                         $('#bar_pre').width(show_num+"%");
+                         $('.percent_pre').html(show_num+"%");
                          $('#test_run').html(show_data);
                          time = 30;  
   
@@ -1677,6 +1717,11 @@ if (isset($this->session->userdata['logged_in'])) {
                              $('.uk-child-width-expand > .pre').next('li').find('a').trigger('click'); 
                              $(".Pre-show").hide();
                              $(".Pre-test").show();
+                               
+                               $('#test_run').html("run queue"); 
+                               $('#bar_pre').width(Math.round(0) +"%");
+                               $('.percent_pre').html(Math.round(0) +"%"); 
+
                          }else{
                             d_group += d_count[i];
                          }

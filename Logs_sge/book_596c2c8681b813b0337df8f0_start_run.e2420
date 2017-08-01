@@ -1,0 +1,14 @@
+PHP Warning:  file_put_contents(owncloud/data/book/files/Test-run_data/output/progress.txt): failed to open stream: No such file or directory in /var/www/html/Metagenomic/Scripts/standard_run_otu.php on line 31
+PHP Warning:  file_put_contents(owncloud/data/book/files/Test-run_data/output/progress.txt): failed to open stream: No such file or directory in /var/www/html/Metagenomic/Scripts/standard_run_otu.php on line 79
+Following jobs do not exist: 
+2421
+Following jobs do not exist: 
+2422
+Following jobs do not exist: 
+2423
+Following jobs do not exist: 
+2424
+Following jobs do not exist: 
+2425
+Following jobs do not exist: 
+2426
