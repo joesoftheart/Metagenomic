@@ -1,0 +1,2 @@
+PHP Warning:  filesize(): stat failed for owncloud/data/joesoftheart/files/SAMPLE_OTU/output/file_after_chao.txt in /var/www/html/Metagenomic/R_Script/create_input_alphash_otu.php on line 18
+Segmentation fault (core dumped)

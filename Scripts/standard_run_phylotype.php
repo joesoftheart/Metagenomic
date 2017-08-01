@@ -247,7 +247,7 @@ summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/
      echo "\n";
      echo "Run align_seqs";
     $jobname = $user."_".$id."_align_seqs";
-    $cmd ="align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=silva.nr_v128.align, processors=8,inputdir=$path/input/,outputdir=$path/output/)
+    $cmd ="align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=silva.v4.fasta, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";

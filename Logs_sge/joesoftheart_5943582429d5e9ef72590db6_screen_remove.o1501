@@ -1,0 +1,98 @@
+[H[J
+
+
+
+
+
+mothur v.1.39.1
+Last updated: 2/3/2017
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+For questions and analysis support, please visit our forum at https://www.mothur.org/forum
+
+Type 'quit()' to exit program
+
+
+
+mothur > screen.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table, summary=stability.trim.contigs.good.unique.summary, start=8, end=9582, maxambig=8, maxhomop=8, maxlength=260, processors=8,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/
+Unable to open owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/stability.trim.contigs.good.unique.align. Trying default Mothur/stability.trim.contigs.good.unique.align
+Unable to open Mothur/stability.trim.contigs.good.unique.align. Trying mothur's location Mothur/stability.trim.contigs.good.unique.align
+Unable to open Mothur/stability.trim.contigs.good.unique.align. Trying output directory owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.trim.contigs.good.unique.align
+Unable to open owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/stability.trim.contigs.good.count_table. Trying default Mothur/stability.trim.contigs.good.count_table
+Unable to open Mothur/stability.trim.contigs.good.count_table. Trying mothur's location Mothur/stability.trim.contigs.good.count_table
+Unable to open Mothur/stability.trim.contigs.good.count_table. Trying output directory owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.trim.contigs.good.count_table
+Unable to open owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/stability.trim.contigs.good.unique.summary. Trying default Mothur/stability.trim.contigs.good.unique.summary
+Unable to open Mothur/stability.trim.contigs.good.unique.summary. Trying mothur's location Mothur/stability.trim.contigs.good.unique.summary
+Unable to open Mothur/stability.trim.contigs.good.unique.summary. Trying output directory owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.trim.contigs.good.unique.summary
+
+Using 8 processors.
+Processing sequence: 100
+Processing sequence: 200
+Processing sequence: 300
+Processing sequence: 400
+Processing sequence: 500
+Processing sequence: 600
+Processing sequence: 700
+Processing sequence: 800
+Processing sequence: 900
+Processing sequence: 1000
+Processing sequence: 1100
+Processing sequence: 1200
+Processing sequence: 1300
+Processing sequence: 1400
+Processing sequence: 1500
+Processing sequence: 1600
+Processing sequence: 1700
+Processing sequence: 1800
+Processing sequence: 1900
+Processing sequence: 2000
+Processing sequence: 2100
+Processing sequence: 2200
+Processing sequence: 2300
+Processing sequence: 2400
+Processing sequence: 2500
+Processing sequence: 2600
+Processing sequence: 2700
+Processing sequence: 2800
+Processing sequence: 2900
+Processing sequence: 3000
+Processing sequence: 3100
+Processing sequence: 3200
+Processing sequence: 3300
+Processing sequence: 3400
+Processing sequence: 3500
+Processing sequence: 3600
+Processing sequence: 3700
+Processing sequence: 3800
+Processing sequence: 3900
+Processing sequence: 4000
+Processing sequence: 4100
+Processing sequence: 4200
+Processing sequence: 4300
+Processing sequence: 4400
+Processing sequence: 4500
+Processing sequence: 4600
+Processing sequence: 4700
+Processing sequence: 4800
+Processing sequence: 4900
+Processing sequence: 5000
+Processing sequence: 5100
+Processing sequence: 5200
+Processing sequence: 5300
+Processing sequence: 5400
+Processi

@@ -1,0 +1,481 @@
+[H[J
+
+
+
+
+
+mothur v.1.39.1
+Last updated: 2/3/2017
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+For questions and analysis support, please visit our forum at https://www.mothur.org/forum
+
+Type 'quit()' to exit program
+
+
+
+mothur > make.contigs(file=stability.files,processors=8,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/
+Unable to open owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/stability.files. Trying default Mothur/stability.files
+Unable to open Mothur/stability.files. Trying mothur's location Mothur/stability.files
+Unable to open Mothur/stability.files. Trying output directory owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.files
+
+Using 8 processors.
+
+[WARNING]: group S1-1-16s_S1 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S2-1-16s_S3 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S3-1-16s_S5 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S4-1-16s_S7 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R2_001sub.fastq (files 1 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+Using 8 processors.
+
+[WARNING]: group S1-1-16s_S1 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S2-1-16s_S3 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S3-1-16s_S5 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S4-1-16s_S7 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R2_001sub.fastq (files 1 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+Using 8 processors.
+
+[WARNING]: group S1-1-16s_S1 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S2-1-16s_S3 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S3-1-16s_S5 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S4-1-16s_S7 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R2_001sub.fastq (files 1 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+4999
+
+Using 8 processors.
+
+[WARNING]: group S1-1-16s_S1 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S2-1-16s_S3 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S3-1-16s_S5 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S4-1-16s_S7 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R2_001sub.fastq (files 1 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+Using 8 processors.
+
+[WARNING]: group S1-1-16s_S1 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S2-1-16s_S3 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S3-1-16s_S5 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S4-1-16s_S7 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R2_001sub.fastq (files 1 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+Using 8 processors.
+
+[WARNING]: group S1-1-16s_S1 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S2-1-16s_S3 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S3-1-16s_S5 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S4-1-16s_S7 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R2_001sub.fastq (files 1 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+Using 8 processors.
+
+[WARNING]: group S1-1-16s_S1 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S2-1-16s_S3 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S3-1-16s_S5 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S4-1-16s_S7 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R2_001sub.fastq (files 1 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+4999
+
+Using 8 processors.
+
+[WARNING]: group S1-1-16s_S1 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S2-1-16s_S3 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S3-1-16s_S5 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+[WARNING]: group S4-1-16s_S7 contains illegal characters in the name. Group names should not include :, -, or / characters.  The ':' character is a special character used in trees. Using ':' will result in your tree being unreadable by tree reading software.  The '-' character is a special character used by mothur to parse group names.  Using the '-' character will prevent you from selecting groups. The '/' character will created unreadable filenames when mothur includes the group in an output filename.  
+
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S1-1-16s_S1_L001_R2_001sub.fastq (files 1 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+5000
+5002
+Done.
+
+It took 5 secs to assemble 40000 reads.
+
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R2_001sub.fastq (files 2 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+4999
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R2_001sub.fastq (files 2 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+5000
+5001
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R2_001sub.fastq (files 2 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+5000
+5001
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R2_001sub.fastq (files 2 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R2_001sub.fastq (files 2 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+4999
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R2_001sub.fastq (files 2 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R2_001sub.fastq (files 2 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+4999
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S2-1-16s_S3_L001_R2_001sub.fastq (files 2 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+5000
+5001
+Done.
+
+It took 5 secs to assemble 40000 reads.
+
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R2_001sub.fastq (files 3 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R2_001sub.fastq (files 3 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+4999
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R2_001sub.fastq (files 3 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+4999
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R2_001sub.fastq (files 3 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R2_001sub.fastq (files 3 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+5000
+5001
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R2_001sub.fastq (files 3 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R2_001sub.fastq (files 3 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S3-1-16s_S5_L001_R2_001sub.fastq (files 3 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+5000
+5001
+Done.
+
+It took 6 secs to assemble 40000 reads.
+
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R2_001sub.fastq (files 4 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+5000
+5001
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R2_001sub.fastq (files 4 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R2_001sub.fastq (files 4 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R2_001sub.fastq (files 4 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+4999
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R2_001sub.fastq (files 4 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+4999
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R2_001sub.fastq (files 4 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R2_001sub.fastq (files 4 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+
+>>>>>	Processing file pair owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R1_001sub.fastq - owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/S4-1-16s_S7_L001_R2_001sub.fastq (files 4 of 4)	<<<<<
+Making contigs...
+1000
+2000
+3000
+4000
+5000
+5001
+Done.
+
+It took 5 secs to assemble 40000 reads.
+
+It took 21 secs to process 160000 sequences.
+
+Group count: 
+S1-1-16s_S1	40000
+S2-1-16s_S3	40000
+S3-1-16s_S5	40000
+S4-1-16s_S7	40000
+
+Total of all groups is 160000
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.trim.contigs.fasta
+owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.trim.contigs.qual
+owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.contigs.report
+owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.scrap.contigs.fasta
+owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.scrap.contigs.qual
+owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.contigs.groups
+
+[WARNING]: your sequence names contained ':'.  I changed them to '_' to avoid problems in your downstream analysis.
+
+mothur > summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/,outputdir=owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/)
+Setting output directory to: owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/
+Setting input directory to: owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/
+Unable to open owncloud/data/joesoftheart/files/SAMPLE-WES-2023/input/stability.trim.contigs.fasta. Trying default Mothur/stability.trim.contigs.fasta
+Unable to open Mothur/stability.trim.contigs.fasta. Trying mothur's location Mothur/stability.trim.contigs.fasta
+Unable to open Mothur/stability.trim.contigs.fasta. Trying output directory owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.trim.contigs.fasta
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+Using 8 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	35	35	0	3	1
+2.5%-tile:	1	245	245	3	3	4001
+25%-tile:	1	253	253	5	4	40001
+Median: 	1	253	253	8	5	80001
+75%-tile:	1	271	271	13	6	120001
+97.5%-tile:	1	300	300	19	8	156001
+Maximum:	1	306	306	50	81	160000
+Mean:	1	263.05	263.05	9.26404	5.05444
+# of Seqs:	160000
+
+Output File Names: 
+owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/stability.trim.contigs.summary
+
+It took 1 secs to summarize 160000 sequences.
+
+mothur > quit()
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Detected 5 [WARNING] messages, please review.
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<^>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
