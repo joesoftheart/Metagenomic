@@ -355,7 +355,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                         $project = basename($sample_folder);
                                         $user = $this->session->userdata['logged_in']['username'];
 
-                                        $path = "owncloud/data/$user/files/$project/output/";
+                                        $path = "../owncloud/data/$user/files/$project/output/";
 
 
 
@@ -379,11 +379,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>*Heatmap-Jclass</b><br>
-                                                <img class="img-thumbnail" height="50%" width="50%" src="<?php echo base_url(); ?><?php echo $path ?>jclass.svg">
+                                                <img class="img-thumbnail"  src="<?php echo base_url(); ?><?php echo $path ?>NewNMDS_withBiplotwithOTU.png">
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>*Heatmap-Thetayc</b><br>
-                                                <img class="img-thumbnail" height="50%" width="50%"  src="<?php echo base_url(); ?><?php echo $path ?>thetayc.svg">
+                                                <img class="img-thumbnail"   src="<?php echo base_url(); ?><?php echo $path ?>NewNMDS_withBiplotwithMetadata.png">
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">
