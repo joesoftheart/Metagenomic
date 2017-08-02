@@ -247,7 +247,7 @@ summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/
      echo "\n";
      echo "Run align_seqs";
     $jobname = $user."_".$id."_align_seqs";
-    $cmd ="align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=silva.nr_v128.align, processors=8,inputdir=$path/input/,outputdir=$path/output/)
+    $cmd ="align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=silva.v4.fasta, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
@@ -688,6 +688,34 @@ function create_input_alphash($user, $id, $project, $path){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
+            echo "Go to create_input_biplot ->";
+            create_input_biplot($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
+
+
+function create_input_biplot($user, $id, $project, $path){
+    echo "\n";
+    echo "Run create_input_biplot :";
+    $jobname = $user . "_" . $id . "_create_input_biplot";
+    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_biplot_phylotype.php $user $project";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
             echo "Go to plot_graph_r_heartmap ->";
             plot_graph_r_heatmap($user, $id, $project, $path);
             break;
@@ -832,6 +860,41 @@ function plot_graph_r_Alphash($user, $id, $project, $path){
     $path_to_save = "owncloud/data/$user/files/$project/output/Alpha.png";
     $jobname = $user . "_" . $id . "plot_graph_r_Alphash";
     $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/AlphachaoshannonSoil.R $path_input_chao_shannon $path_to_save";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Go to change name ->";
+            plot_graph_r_Biplot($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
+
+
+function plot_graph_r_Biplot($user, $id, $project, $path){
+   // file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Biplot"."\n", FILE_APPEND);
+
+    echo "\n";
+    echo "Run plot_graph_r_Biplot :";
+    $path_input_biplot_nmds = "owncloud/data/$user/files/$project/output/final.tx.thetayc.2.lt.ave.nmds.axes";
+    $path_output_biplot_withBiplotwithOTU = "owncloud/data/$user/files/$project/output/NewNMDS_withBiplotwithOTU.png";
+    $path_input_biplot = "owncloud/data/$user/files/$project/output/output_bioplot.txt";
+    $path_output_biplot_withBiplotwithMetadata = "owncloud/data/$user/files/$project/output/NewNMDS_withBiplotwithMetadata.png";
+    $path_input_soilpro = "owncloud/data/$user/files/$project/output/soilpro.pearson.corr.axes";
+    $jobname = $user . "_" . $id . "_plot_graph_r_Biplot";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/ScatterPlotwithbiplot_phylotype.R $path_input_biplot_nmds $path_output_biplot_withBiplotwithOTU $path_input_biplot $path_output_biplot_withBiplotwithMetadata $path_input_soilpro";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
