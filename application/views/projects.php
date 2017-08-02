@@ -54,7 +54,7 @@ if (isset($this->session->userdata['logged_in'])) {
                 <div>
                     <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
                         <li class="uk-active "><a class="uk-text-capitalize uk-text-bold" href="#">Standard Mode</a></li>
-                        <li><a class="uk-text-capitalize uk-text-bold" href="#">Advance Mode</a></li>
+                        <li ><a class="uk-text-capitalize uk-text-bold" href="1" onclick="advance_mode(this);">Advance Mode</a></li>
 
                     </ul>
                     <ul class="uk-switcher">
@@ -1119,12 +1119,85 @@ if (isset($this->session->userdata['logged_in'])) {
 //        });
 
     </script>
-
+    <input type="hidden" id="advance_num" value="0">
 
    <!--  Advance Script -->
     <script type="text/javascript">
-        $(document).ready(function () {            
 
+        function advance_mode(obj){
+            var pid = "<?php echo $current_project ?>";
+            var user = "<?php echo $username ?>";
+            var project = "<?php echo $project ?>";
+
+            var va_num = 0;
+                 va_num += Number(obj.getAttribute("href"));
+            var num = $('#advance_num').val();
+            var check = va_num-num;
+            if(check == 1){
+                 document.getElementById('advance_num').value = va_num ;
+             }
+            
+            $.ajax({
+                   type:"post",
+                   datatype:"json",
+                   url:"<?php echo base_url('Run_advance/recheck'); ?>",
+                   data:{data_status: pid},
+                   success:function(data){
+                        var status = $.parseJSON(data);
+                        if(status[0] == "0" && status[1] == "4"){
+                           alert('No Run Queue');
+
+                             $('#sharedsobs_img').html('<img id="sharedsobs_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/sharedsobs.svg");?>">');
+                             $('#heartmap_img').html('<img id="heartmap_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/heartmap.png");?>">');
+                             
+                             $('#jclass_img').html('<img id="jclass_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/jclass.svg"); ?> ">'); 
+                             $('#thetayc_img').html('<img id="thetayc_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/thetayc.svg"); ?> ">'); 
+
+                             $('#rare_img').html('<img id="rare_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Rare.png");?>">');
+                             $('#abun_img').html('<img id="abun_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Abun.png");?>">');
+                            
+                             $('#nmd_img').html('<img id="nmd_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/NMD.png");?>">');
+                             $('#alpha_img').html('<img id="alpha_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/Alpha.png");?>">');
+                        
+                        }else if(status[0] != "0" && status[1] == "1" && check == 1){
+                           alert('Run step '+status[1] );
+                                 $(".Pre-test").hide();
+                                 $(".Pre-show").show();
+                                 var data = new Array(status[2],pid);
+                                 checkrun(data);
+                                 $('#test_run').html('Ckecking Process Queue');
+
+                        }else if(status[0] != "0" && status[1] == "2" && check == 1){
+                            alert('Run step '+status[1] );
+                            $('.uk-child-width-expand > .pre').next('li').find('a').trigger('click');
+                                 $(".Pre-test2").hide();
+                                 $(".Pre-show2").show();
+                                 var data = new Array(status[2],pid);
+                                 check_subsample(data);
+                                 $('#test_run2').html('Ckecking Process Queue');
+
+
+                        }else if(status[0] != "0" && status[1] == "3" && check == 1){
+                            alert('Run step '+status[1] );
+                            $('.uk-child-width-expand > .pre2').next('li').find('a').trigger('click');
+                               $(".Pre-test3").hide();
+                               $(".Pre-show3").show();
+                               var data = new Array(status[2],pid);
+                               ckeck_analysis(data);
+                               $('#test_run3').html('Ckecking Process Queue');
+                        } 
+                      
+                   },
+                   error:function(e){
+                     console.log(e.message);
+                   }
+           });
+            
+        }
+
+
+        $(document).ready(function () { 
+   
             $("#sub-test").click(function () {
                
                   var username = document.forms["Pre-form"]["username"].value;
@@ -1194,11 +1267,6 @@ if (isset($this->session->userdata['logged_in'])) {
                   if(sample != ""){
                          $(".Pre-test2").hide();
                          $(".Pre-show2").show();
-                         //console.log(username+" "+project+" "+sample);
-                         document.getElementById('alpha').value = Number(sample);
-                         document.getElementById('beta').value = Number(sample);
-                         document.getElementById('myradio').value = sample;
-                         document.getElementById('myradio1').value = sample;
                          get_subsample(array_data);
                   }   
     
@@ -1211,16 +1279,16 @@ if (isset($this->session->userdata['logged_in'])) {
                 var project  = document.forms["Analysis-form"]["project"].value;
                 var level    = document.forms["Analysis-form"]["level"].value;
                 
-                var ch_alpha = document.forms["Analysis-form"]["optionsRadios"].value,
-                      size_alpha = document.forms["Analysis-form"]["size_alpha"].value;
+                var ch_alpha = document.forms["Analysis-form"]["optionsRadios"].value;
+                var size_alpha = document.forms["Analysis-form"]["size_alpha"].value;
 
-                var ch_beta = document.forms["Analysis-form"]["optionsRadios1"].value, 
-                      size_beta = document.forms["Analysis-form"]["size_beta"].value;
+                var ch_beta = document.forms["Analysis-form"]["optionsRadios1"].value; 
+                var size_beta = document.forms["Analysis-form"]["size_beta"].value;
                   
-                var venn1 = document.forms["Analysis-form"]["venn1"].value ,
-                      venn2 = document.forms["Analysis-form"]["venn2"].value, 
-                      venn3 = document.forms["Analysis-form"]["venn3"].value,
-                      venn4 = document.forms["Analysis-form"]["venn4"].value;
+                var venn1 = document.forms["Analysis-form"]["venn1"].value;
+                var venn2 = document.forms["Analysis-form"]["venn2"].value; 
+                var venn3 = document.forms["Analysis-form"]["venn3"].value;
+                var venn4 = document.forms["Analysis-form"]["venn4"].value;
                   
                 var nmds = document.forms["Analysis-form"]["nmds"].value ;  
                  
@@ -1331,18 +1399,14 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
             $('#radio_pcoa').on('change', function() {
-
                 //alert($('#radio_pcoa').val());
                 $(".nmds").attr("disabled", true); 
                 $(".nmds").prop('checked', false);
                 $(".pcoa").removeAttr("disabled");
 
-                
-
             });
 
              $('#radio_nmds').on('change', function() {
-
                 //alert($('#radio_nmds').val()); 
                 $(".pcoa").attr("disabled", true);
                 $(".pcoa").prop('checked', false);
@@ -1353,19 +1417,15 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
         function create_var(checkboxes){
-
              var vals = "";
                     for (var i=0, n=checkboxes.length;i<n;i++){
                        if (checkboxes[i].checked){ 
-                         
                             vals += checkboxes[i].value+" ";
                         }
                     }
              var str = vals.trim();
              var data_var = str.replace(/ /g,",");
-
              return data_var;
-
         }
          
         $(document).on('change', '#custo_mer', function(){
@@ -1373,7 +1433,6 @@ if (isset($this->session->userdata['logged_in'])) {
                var file_data = $('#custo_mer').prop('files')[0];
                     var form_data = new FormData();
                     form_data.append('file', file_data);
-
                    var file_name = file_data.name;
                    var file_size = file_data.size;
                    var file_mb = (file_data.size/1024/1024).toFixed(0); // MB
@@ -1395,7 +1454,6 @@ if (isset($this->session->userdata['logged_in'])) {
                             alert('file is too large : '+ f_size);
                             document.getElementById('custo_mer').value = ""; 
                         } 
-
                     }
                     else{ 
                         alert('file is not fasta or align');
@@ -1474,6 +1532,7 @@ if (isset($this->session->userdata['logged_in'])) {
                         var job_analysis = $.parseJSON(data);
                         //var job_analysis = JSON.parse(data);
                         ckeck_analysis(job_analysis);
+                        //console.log(job_analysis);
                       
                    },
                    error:function(e){
@@ -1484,11 +1543,11 @@ if (isset($this->session->userdata['logged_in'])) {
         }
 
         function ckeck_analysis(job_analy){
-            var user = "<?php echo $username ?>";
-            var project = "<?php echo $project ?>";
-          var time = 30;
-          var interval = null;
-          interval = setInterval(function(){   
+             var user = "<?php echo $username ?>";
+             var project = "<?php echo $project ?>";
+             var time = 30;
+             var interval = null;
+            interval = setInterval(function(){   
               time--;
               $('#time3').html(time);
               if(time === 0){
@@ -1537,7 +1596,6 @@ if (isset($this->session->userdata['logged_in'])) {
               }
           },1000);
 
-
         }
 
 
@@ -1559,7 +1617,7 @@ if (isset($this->session->userdata['logged_in'])) {
    
        }
 
-
+                                 
        function check_subsample(jobsample){
          
           var time = 20;
@@ -1574,14 +1632,14 @@ if (isset($this->session->userdata['logged_in'])) {
                     url:"<?php echo base_url('Run_advance/check_subsample'); ?>",
                     data:{job_sample: jobsample },
                     success:function(data){
-                   
                      var sample_data = $.parseJSON(data);
                       if(sample_data[0] == "0"){
-
+                           
                            if(sample_data[1] =="gg"){
                                $('.Greengene').show();
                                $('.Silva_RDP').hide();
                                $('.Otu').hide();
+                               
                                document.getElementById('g_level').setAttribute("name","level");
 
                            }else if((sample_data[1] == "silva") || (sample_data[1] == "rdp")) {
@@ -1599,32 +1657,54 @@ if (isset($this->session->userdata['logged_in'])) {
 
                            }
 
-                           $('#test_run2').html('Run queue sub sample complete');
-                            clearInterval(interval);
+                            /*start div value vene*/
+                             var group = "";
+                                 group += "<option value=0> </option>";
+                                 for (var i=0; i < sample_data[2].length; i++) {
+                                   group += "<option value="+sample_data[2][i]+">"+sample_data[2][i]+"</option>";    
+                                 }
+
+                                 $('#venn1').html(group);
+                                 $('#venn2').html(group);
+                                 $('#venn3').html(group);
+                                 $('#venn4').html(group);
+
+                             /*end div value vene*/
+
+   
+                             var sam_group  = "";  
+                             for(var i=0 ;i < sample_data[3].length; i++){
+                                
+                                console.log(i+": "+sample_data[3][i]);
+                                if(i == sample_data[3].length-1){
+
+                                    console.log(sample_data[3][i]);
+                                  document.getElementById('sub_sample').value = Number(sample_data[3][i]);
+                                  document.getElementById('show_group').value = sam_group; 
+                                   document.getElementById('alpha').value = Number(sample_data[3][i]);
+                                   document.getElementById('beta').value = Number(sample_data[3][i]);
+                                   document.getElementById('myradio').value = sample_data[3][i];
+                                   document.getElementById('myradio1').value = sample_data[3][i];
+                                   
+                                }else{
+                                    sam_group += sample_data[3][i];
+                                   }
+                              }
+
+                             $('#test_run2').html('Run queue sub sample complete');
+                             clearInterval(interval);
                              $('.uk-child-width-expand > .pre2').next('li').find('a').trigger('click'); 
                              $(".Pre-show2").hide();
                              $(".Pre-test2").show();
 
+                               /* set processbar 0   */
+                               $('#bar_pre2').width(0+"%");
+                               $('.percent_pre2').html(0+"%"); 
                             
-                             var group = "";
-                             group += "<option value=0> </option>";
-                             for (var i=0; i < sample_data[2].length; i++) {
-                                   group += "<option value="+sample_data[2][i]+">"+sample_data[2][i]+"</option>"; 
-                                   
-                             }
 
-                             $('#venn1').html(group);
-                             $('#venn2').html(group);
-                             $('#venn3').html(group);
-                             $('#venn4').html(group);
-
-                              $('#bar_pre2').width(0+"%");
-                              $('.percent_pre2').html(0+"%");
-                             
-                            
                       }else{
 
-                          var num = sample_data[2];
+                            var num = sample_data[1];
                             $('#bar_pre2').width(num+"%");
                             $('.percent_pre2').html(num+"%");
                             time = 20;  
@@ -1647,10 +1727,9 @@ if (isset($this->session->userdata['logged_in'])) {
                     url:"<?php echo base_url('Run_advance/get_json'); ?>",
                     data:{data_array: data_value},
                     success:function(data){
-                     //console.log(data);
                       var data_job = $.parseJSON(data);
-                      console.log("q_id :" + data_job[0]);
-                      console.log("q_name :" + data_job[1]);
+                      console.log("jid :" + data_job[0]);
+                      console.log("pid :" + data_job[1]);
                      
                       checkrun(data_job);
                     },
@@ -1714,6 +1793,7 @@ if (isset($this->session->userdata['logged_in'])) {
                          if(i == d_count.length-1 ){
                              document.getElementById('sub_sample').value = Number(d_count[i]);
                              document.getElementById('show_group').value = d_group;
+
                              $('.uk-child-width-expand > .pre').next('li').find('a').trigger('click'); 
                              $(".Pre-show").hide();
                              $(".Pre-test").show();
