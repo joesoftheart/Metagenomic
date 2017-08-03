@@ -25,14 +25,14 @@ if (isset($this->session->userdata['logged_in'])) {
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <h4 class="page-header">your share</h4>
+            <h4 class="page-header">You shared</h4>
 
             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                 <tr>
-                    <th>Owner Name</th>
+                    <th>Owners Name</th>
                     <th>Project Name<</th>
-                    <th>Receiver Name</th>
+                    <th>Receivers Name</th>
                     <th>Manage</th>
                 </tr>
                 </thead>
@@ -51,14 +51,14 @@ if (isset($this->session->userdata['logged_in'])) {
             </table>
             <!-- /.table-responsive -->
 
-            <h4 class="page-header">share to you</h4>
+            <h4 class="page-header">Shared to you</h4>
 
             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                 <tr>
-                    <th>Owner Name</th>
+                    <th>Owners Name</th>
                     <th>Project Name</th>
-                    <th>Receiver Name</th>
+                    <th>Receivers Name</th>
                     <th>Manage</th>
                 </tr>
                 </thead>

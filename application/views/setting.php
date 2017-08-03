@@ -72,7 +72,7 @@
                 <table>
                     <?php foreach ($rs_st as $st) ?>
                     <tbody>
-                    <tr><td><p>Noti when run project success </p></td>
+                    <tr><td><p>Notification when run project success </p></td>
                     <td><label class="switch">
                             <input type="checkbox" name="noti_process" id="toggle-one"  <?php if ($st['noti_process'] == "on"){ echo "checked";} else{ } ?>>
                             <div class="slider round"></div>
@@ -98,7 +98,7 @@
 
                     </tr>
                     <tr>
-                        <td>Logout automatic when not use 1 hour</td>
+                        <td>Automatic Logout after of inactivity</td>
                         <td>
                     <label class="switch">
                         <input type="checkbox" name="auto_logout" id="toggle-four"  value="<?php echo $st['auto_logout'];?>" <?php if ($st['auto_logout'] == "on"){ echo "checked";} else{ } ?>>
@@ -107,7 +107,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Send to E-mail</td>
+                        <td>Send  E-mail</td>
                         <td>
                             <label class="switch">
                                 <input type="checkbox" name="noti_email" id="toggle-five"  value="<?php echo $st['noti_email'];?>"<?php if ($st['noti_email'] == "on"){ echo "checked";} else{ } ?>>

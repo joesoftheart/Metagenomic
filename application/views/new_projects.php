@@ -32,10 +32,10 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <input class="form-control" name="project_name" type="text" />
                                 <label>Title Name :</label>
                                 <input class="form-control" name="project_title" type="text" />
-                                <label>Detail project :</label>
+                                <label>Project detail:</label>
                                 <textarea class="form-control" name="project_detail" ></textarea>
                                 <div class="form-group">
-                                <label>Permission :</label>
+                                <label>Project permission :</label>
                                 <label class="radio-inline">
                                     <input type="radio" name="project_permission" id="" value="private">private
                                 </label>
@@ -56,7 +56,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <label>Select program :</label>
                                 <div class="form-group" >
                                     <label class="radio-inline">
-                                        <input type="radio" name="project_program" id="mothur" value="mothur">mothur
+                                        <input type="radio" name="project_program" id="mothur" value="mothur">Mothur
 
                                     </label>
 

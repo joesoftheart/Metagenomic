@@ -27,7 +27,7 @@ if (isset($this->session->userdata['logged_in'])) {
                 <li <?php if ($controller_name == 'main'){
                     echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
                 <li <?php if ($controller_name == 'projects'){
-                    echo "class=active";} ?>><?php if ($controller_name == 'projects'){?>Current project<?php } else {?><a href="<?php echo site_url('projects/index/'.$current_project)?>">Current project</a><?php } ?></li>
+                    echo "class=active";} ?>><?php if ($controller_name == 'projects'){?>Current projects<?php } else {?><a href="<?php echo site_url('projects/index/'.$current_project)?>">Current project</a><?php } ?></li>
             </ol>
         </div>
 
@@ -64,22 +64,24 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
                                     <li ><a href="#">Run</a></li>
-                                    <li><a href="#">Result && Graph</a></li>
+                                    <li><a href="#">Result & Graph</a></li>
                                 </ul>
                                 <ul  class="uk-switcher uk-margin">
                                     <li>
                                         <!-- Standard run -->
                                         <?php echo form_open_multipart('projects/standard_run/'.$current_project);?>
 
-                                            <div class="col-lg-8 col-lg-offset-2">
+                                            <div class="col-lg-8 ">
                                                 <label>1. Preprocess & Prepare in taxonomy </label><br><br>
 
                                                 <div class="row">
-                                                    <div class="col-lg-4 col-lg-offset-1">
-                                                        <label>** Screen reads  :</label>
+                                                    <div class="col-lg-1">
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label>Screen reads     </label>
                                                     </div>
                                                     <div class="col-lg-7">
-                                                        <table  border="0">
+                                                        <table  border="0" class="uk-table uk-table-middle">
                                                             <tr>
                                                                 <td>maximum ambiguous :</td>
                                                                 <td><input class="uk-input" type="text" name="cmd" value="" placeholder="8" disabled></td>
@@ -102,8 +104,10 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 </div><br>
                                                 <br>
                                                 <div class="row">
-                                                    <div class="col-lg-4 col-lg-offset-1">
-                                                        <label>**Alignment step :</label>
+                                                    <div class="col-lg-1">
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label>Alignment step </label>
                                                     </div>
                                                     <div class="col-lg-7">
                                                         <select class="uk-select uk-margin" disabled>
@@ -113,8 +117,10 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-4 col-lg-offset-1">
-                                                        <label>**Pre-cluster step :</label>
+                                                    <div class="col-lg-1">
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label>Pre-cluster step</label>
                                                     </div>
                                                     <div class="col-lg-7">
                                                         <select class="uk-select" disabled>
@@ -126,13 +132,15 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                 </div><br><br>
                                                 <div class="row">
-                                                    <div class="col-lg-5 col-lg-offset-1">
-                                                        <label>**Prepare the taxonomy classification :</label>
+                                                    <div class="col-lg-1">
+                                                    </div>
+                                                    <div class="col-lg-5 ">
+                                                        <label>Prepare for taxonomy classification </label>
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <table>
+                                                        <table class="uk-table uk-table-middle">
                                                             <tr>
-                                                                <td>database :</td>
+                                                                <td>database </td>
                                                                 <td>
                                                                     <select class="uk-select" disabled>
                                                                         <option>gg_13_8_99.fasta</option>
@@ -141,11 +149,11 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                             </tr>
                                                             <tr>
-                                                                <td>cutoff :</td>
+                                                                <td>cutoff </td>
                                                                 <td><input class="uk-input" type="text" name="cutoff" value="" placeholder="80" disabled></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Test to remove taxon :</td>
+                                                                <td>taxon elimination</td>
                                                                 <td> <textarea class="uk-textarea" type="textarea" name="texonomy" value="" placeholder="Chloroplast-Mitochondria-Eukaryota-unknown" disabled></textarea>
                                                                 </td>
                                                             </tr>
@@ -158,22 +166,22 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                                                 <div class="row">
-                                                    <div class="col-lg-5">
+                                                    <div class="col-lg-3">
                                                         <label>2. Prepare phylotype</label>
 
                                                     </div>
                                                     <div class="col-lg-7">
-                                                        **The number of total reads/group after the preprocess<br>
-                                                        **subsample detect form file<br>
-                                                        subsample :<input class="uk-input uk-width-1-4" value="5000" disabled>
+                                                        **The number of total reads/groups after the preprocess<br>
+                                                        **subsamples detect from files<br>
+                                                        subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>
                                                     </div>
                                                 </div><br>
 
 
                                                 <div class="row">
 
-                                                    <div class="col-lg-5">
-                                                        <label>3.Analysis :</label>
+                                                    <div class="col-lg-2">
+                                                        <label>3.Analysis </label>
                                                     </div>
 
                                                     <div class="col-lg-7">
@@ -200,17 +208,17 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-4 col-lg-offset-1">
-                                                        <label>3.2 Beta diversity analysis</label>
+                                                    <div class="col-lg-1"></div>
+                                                    <div class="col-lg-4 ">
+                                                        <label>3.1 Beta diversity analysis</label>
                                                     </div>
-                                                    <div class="col-lg-6">
 
-                                                    </div>
 
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-4 col-lg-offset-2">
-                                                        <label>**calculators</label>
+                                                    <div class="col-lg-2"></div>
+                                                    <div class="col-lg-2 ">
+                                                        <label>Calculators</label>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <ul>
@@ -224,8 +232,9 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                                                 <div class="row">
-                                                    <div class="col-lg-4 col-lg-offset-1">
-                                                        <label>3.1 Alpha diversity analysis</label>
+                                                    <div class="col-lg-1"></div>
+                                                    <div class="col-lg-4 ">
+                                                        <label>3.2 Alpha diversity analysis</label>
                                                     </div>
                                                     <div class="col-lg-6">
 
@@ -233,7 +242,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-4 col-lg-offset-2">
+                                                    <div class="col-lg-4">
                                                         <label></label>
                                                     </div>
                                                     <div class="col-lg-6">
@@ -261,8 +270,9 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                                                 <div class="row">
-                                                    <div class="col-lg-4 col-lg-offset-2">
-                                                        <label>**optional</label>
+                                                    <div class="col-lg-2"></div>
+                                                    <div class="col-lg-2">
+                                                        <label>Option</label>
                                                     </div>
                                                     <div class="col-lg-6">
 
@@ -378,11 +388,11 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <b>*Heatmap-Jclass</b><br>
+                                                <b>*Biplot</b><br>
                                                 <img class="img-thumbnail"  src="<?php echo base_url(); ?><?php echo $path ?>NewNMDS_withBiplotwithOTU.png">
                                             </div>
                                             <div class="col-lg-6">
-                                                <b>*Heatmap-Thetayc</b><br>
+                                                <b>*Biplot</b><br>
                                                 <img class="img-thumbnail"   src="<?php echo base_url(); ?><?php echo $path ?>NewNMDS_withBiplotwithMetadata.png">
                                             </div>
                                         </div>
@@ -432,7 +442,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <li class="pre"><a href="#">Preprocess & Prepare in taxonomy </a> </li>
                                     <li class="pre2"><a href="#">Prepare <?=$project_analysis?> </a></li>
                                     <li class="pre3"><a href="#">Analysis</a></li>
-                                    <li><a href="#">Result & visualization</a></li>
+                                    <li><a href="#">Result & graph</a></li>
                                 </ul>
                                 <ul  class="uk-switcher uk-margin">
 
@@ -445,55 +455,69 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                            <input type="hidden" name="username" value="<?=$username?>">
                                            <input type="hidden" name="project" value="<?=$current_project?>">
-                                            <div class="col-lg-8 col-lg-offset-2">
-
-                                                <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Select option run your project  </label></div>
-                                               
-
-
-                                                 <div class="col-lg-10 col-lg-pull-1"><label> Screen reads </label></div>
-                                                 <div class="form-inline col-lg-12">
-                                                      <label class="col-lg-6"> maximum ambiguous : </label>
-                                                      <input id="mbig" class="form-control" type="number" name="maximum_ambiguous" min="0" placeholder="maximum ambiguous" onblur="checkvalue()" onkeypress='return validateNumber(event)'>
-                                                    
-                                                 </div>
-                                                 <div class="form-inline col-lg-12 uk-margin">
-                                                     <label class="col-lg-6"> maximum homopolymer : </label>
-                                                     <input id="mhomo" class="form-control" type="number" name="maximum_homopolymer" min="0" placeholder="maximum homopolymer" onblur="checkvalue2()" onkeypress='return validateNumber(event)'>
-                                                 </div>
-                                                 <div class="form-inline col-lg-12">
-                                                     <label class="col-lg-6"> minimum reads length : </label>
-                                                     <input id="miniread" class="form-control" type="number" name="minimum_reads_length" min="0" placeholder="minimum reads length" onblur="checkvalue3()" onkeypress='return validateNumber(event)'>
-                                                 </div>
-                                                 <div class="form-inline col-lg-12 uk-margin">
-                                                    <label class="col-lg-6"> maximum reads length : </label>
-                                                    <input id="maxread"class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" onblur="checkvalue4()" onkeypress='return validateNumber(event)' >
-                                                 </div>
-                                 
-                                              
-
-                                                 <div class="col-lg-10 col-lg-pull-1"><label> Alignment step :</label></div>
-                                                  <div class="col-lg-5">
-                                                      <select class="uk-select" name="alignment">
-                                                      <option value="silva" selected> Silva </option>
-                                                      <option value="gg"> Greengenes </option>
-                                                      <option value="rdp"> RDP </option>
-                                                  </select>
-                                                  </div>
-                                                  <label class="col-lg-1"> OR </label>
-                                                  <div class="col-lg-5 "> 
-                                                     Limit fasta size file 800 MB   
-                                                    <input type="file" name="customer" id="custo_mer"> 
-                                                    <div class="progress progress-striped active">
+                                            <div class="col-lg-12 ">
+                                                <label>1. Preprocess & Prepare in taxonomy </label><br><br>
+                                                <div class="row">
+                                                    <div class="col-lg-1"></div>
+                                                    <div class="col-lg-5"><label> Screen reads </label></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3"></div>
+                                                    <div class="form-inline col-lg-7">
+                                                        <table  border="0" class="uk-table uk-table-middle">
+                                                            <tr>
+                                                                <td>maximum ambiguous :</td>
+                                                                <td>  <input id="mbig" class="form-control" type="number" name="maximum_ambiguous" min="0" placeholder="maximum ambiguous" onblur="checkvalue()" onkeypress='return validateNumber(event)'>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>maximum homopolymer :</td>
+                                                                <td><input id="mhomo" class="form-control" type="number" name="maximum_homopolymer" min="0" placeholder="maximum homopolymer" onblur="checkvalue2()" onkeypress='return validateNumber(event)'>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>minimum reads length : </td>
+                                                                <td>  <input id="miniread" class="form-control" type="number" name="minimum_reads_length" min="0" placeholder="minimum reads length" onblur="checkvalue3()" onkeypress='return validateNumber(event)'>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td> maximum reads length : </td>
+                                                                <td> <input id="maxread"class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" onblur="checkvalue4()" onkeypress='return validateNumber(event)' >
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-1"></div>
+                                                    <div class="col-lg-2 "><label> Alignment step   </label></div>
+                                                    <div class="col-lg-4">
+                                                        <select class="uk-select" name="alignment">
+                                                            <option value="silva" selected> Silva </option>
+                                                            <option value="gg"> Greengenes </option>
+                                                            <option value="rdp"> RDP </option>
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-lg-1"> OR </label>
+                                                    <div class="col-lg-4">
+                                                        Limit fasta size file 800 MB
+                                                        <input type="file" name="customer" id="custo_mer">
+                                                        <div class="progress progress-striped active">
                                                             <div id="bar" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"  style="width:0%;">
                                                                 <div class="percent">0%</div >
                                                             </div>
+                                                        </div>
+                                                        <div id="status"></div>
                                                     </div>
-                                                    <div id="status"></div>
-                                                  </div>
+                                                </div>
+
+
+
                                                 <div class="col-lg-12 uk-margin"></div>
-                                                <div class="col-lg-10 col-lg-pull-1"><label> Pre-cluster step :</label></div>
-                                                    <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-1"></div>
+                                                    <div class="col-lg-2"><label> Pre-cluster step </label></div>
+                                                    <div class="col-lg-5">
                                                         <select class="uk-select" name="diffs">
                                                             <option value="0">diffs = 0</option>
                                                             <option value="1">diffs = 1</option>
@@ -501,64 +525,69 @@ if (isset($this->session->userdata['logged_in'])) {
                                                             <option value="3">diffs = 3 </option>
                                                         </select>
                                                     </div>
-                                             
+                                                </div>
+
+                                                <div class="row uk-margin">
+                                                    <div class="col-lg-1 "></div>
+                                                    <div class="col-lg-3"><label>Prepare the taxonomy classification</label> </div>
+                                                    <div class="col-lg-3">
+                                                            <select class="uk-select" name="classify">
+                                                                <option value="silva"> Silva </option>
+                                                                <option value="gg" selected> Greengenes </option>
+                                                                <option value="rdp"> RDP </option>
+                                                            </select></div>
+                                                    <div class="col-lg-2"><label> with cutoff</label></div>
+                                                    <div class="col-lg-2 ">
+                                                        <input class="uk-input" type="number" name="cutoff" min="50" value="80">
+                                                    </div>
+                                                    <label class="col-lg-1">(>=50)</label>
+                                                </div>
 
 
-                                                <div class="col-lg-12 uk-margin"> </div>
-                                                <label class="col-lg-10 col-lg-pull-1">Prepare the taxonomy classification :</label>
+                                                <div class="row">
+                                                    <div class="col-lg-1"></div>
+                                                    <label class="col-lg-3 "> taxon elimination</label>
+                                                    <div class="col-lg-8">
+
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input name="optionsRadios"  value="0" type="radio" checked> default
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="radio">
+                                                            <label >
+                                                                <input name="optionsRadios" value="1" type="radio">
+
+                                                                <select class="uk-select" name="taxon">
+                                                                    <option value="k__Bacteria;k__Bacteria_unclassified-k__Archaea">k__Bacteria;k__Bacteria_unclassified-k__Archaea</option>
+                                                                    <option value="k__Archaea_unclassified">k__Archaea_unclassified</option>
+                                                                    <option value="Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified" selected>Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified</option>
+
+                                                                </select>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+
+
+
+
+                                               <div class="col-lg-12 uk-margin"> </div>
+                                                <div class="row">
+                                                    <div class="col-lg-1"></div>
                                                     <div class="col-lg-4">
-                                                        <select class="uk-select" name="classify">
-                                                             <option value="silva"> Silva </option>
-                                                             <option value="gg" selected> Greengenes </option>
-                                                             <option value="rdp"> RDP </option>
-                                                        </select>
+                                                        <input id="sub-test"  class="btn btn-default" value="Run Preprocess ">
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <input type="reset" class="btn btn-default" value="Clear" >
                                                     </div>
 
-                                                <label class="col-lg-3 "> with cutoff : </label>
-                                                <div class="col-lg-2 col-lg-pull-1">    
-                                                    <input class="uk-input" type="number" name="cutoff" min="50" value="80">   
-                                                </div>
-                                                <label class="col-lg-2 col-lg-pull-1">(>=50)</label> 
-
-
-
-
-                                               <div class="col-lg-12 uk-margin"> </div>
-
-
-                                              <label class="col-lg-10 col-lg-pull-1"> Remove sequences from multiple taxons.</label>
-                                              <label class="col-lg-10 col-lg-pull-1"> Please separating them with dashes : </label>
-
-                                                 <div class="col-lg-12">  
-                                                
-                                                     <div class="radio">
-                                                       <label>
-                                                           <input name="optionsRadios"  value="0" type="radio" checked> default 
-                                                      </label>
-                                                    </div>
-
-                                                    <div class="radio">
-                                                       <label >
-                                                           <input name="optionsRadios" value="1" type="radio"> 
-                                                          
-                                                            <select class="uk-select" name="taxon">
-                                                                <option value="k__Bacteria;k__Bacteria_unclassified-k__Archaea">k__Bacteria;k__Bacteria_unclassified-k__Archaea</option>
-                                                                <option value="k__Archaea_unclassified">k__Archaea_unclassified</option>
-                                                                <option value="Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified" selected>Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified</option>
-                                                                
-                                                            </select>
-                                                      </label>
-                                                    </div>
                                                 </div>
 
-
-                                               <div class="col-lg-12 uk-margin"> </div>
-                                               <div class="col-lg-4">
-                                                  <input id="sub-test"  class="btn btn-default" value="Run Preprocess "> 
-                                               </div>
-                                               <div class="col-lg-8">
-                                                   <input type="reset" class="btn btn-default" value="Clear" >
-                                                </div>
 
                                                 <div class="col-lg-12 uk-margin"> </div>
                                             </div><!-- close row form -->
@@ -584,15 +613,25 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <li >
 
                                        <div class="Pre-test2">
-                                        <div class="col-lg-8 col-lg-offset-2">
-
-                                             <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>The number of total reads/group after the preprocess</label></div>
-                                             <div class="col-lg-10 col-lg-pull-1"><label> show data in count group :</label></div>
+                                           <div class="row">
+                                               <label>2.Prepare </label><br><br>
+                                           </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-1"></div>
+                                             <div class="col-lg-10 uk-margin"><label>The number of total reads/groups after the preprocess</label></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-1"></div>
+                                                <div class="col-lg-3"><label> show data in count group :</label></div>
                                              <div class="row uk-margin">
-                                                <div class="col-lg-9">
+                                                <div class="col-lg-7">
                                                     <textarea class="form-control"  rows="5"  id="show_group" ></textarea>
                                                 </div>
-                                                <div class="col-lg-8 col-lg-push-9">
+                                             </div>
+                                            </div>
+
+                                                <div class="col-lg-8     col-lg-push-9">
                                                         <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
                                                             Back
                                                         </button>
@@ -606,14 +645,17 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                  <input type="hidden" name="username" value="<?=$username?>">
                                                  <input type="hidden" name="project" value="<?=$current_project?>">
-                                                 <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
-                                             
-                                                 <div class="row uk-margin">
-                                                    <div class="col-lg-8">
-                                                          <label>sub sample :</label>
-                                                          <input id="sub_sample" class="uk-input" type="number" min="0" name="subsample" onkeypress='return validateNumber(event)' >
-                                                    </div>
+                                                 <div class="row">
+                                                  <div class="col-lg-1"></div>
+                                                 <div class="col-lg-10 uk-margin"><label>Please put the number to subsampled file  </label></div>
                                                  </div>
+                                                 <div class="row">
+                                                         <div class="col-lg-1"></div>
+                                                    <div class="col-lg-2"><label>sub sample :</label></div>
+                                                     <div class="col-lg-3"> <input id="sub_sample" class="uk-input" type="number" min="0" name="subsample" onkeypress='return validateNumber(event)' >
+                                                     </div>
+                                                 </div>
+
 
                                                  <div class="col-lg-12 uk-margin"> </div>
                                                  <div class="col-lg-4">

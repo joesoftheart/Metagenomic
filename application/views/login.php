@@ -44,7 +44,7 @@ if (isset($this->session->userdata['logged_in'])) {
     header("location: login/user_login_process");
 }
 ?>
-<body background="<?php echo base_url();?>images/backgroud-login-blur.jpg">
+<body background="<?php echo base_url();?>images/new.jpg">
 <?php
 if (isset($logout_message)) {
     echo "<div class='message'>";
@@ -64,7 +64,7 @@ if (isset($message_display)) {
         <div class="col-md-6 col-md-offset-3">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Please Sign In</h3>
+                    <h3 class="panel-title">Login</h3>
                 </div>
                 <div class="panel-body">
                     <?php echo form_open('main/user_login_process'); ?>
@@ -91,7 +91,7 @@ if (isset($message_display)) {
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <p> <input type="submit" name="login" value="login" class="btn  btn-success "/>
-                                <a href="<?php echo base_url() ?>main/user_registration_show">To SignUp Click Here</a>
+                                <a href="<?php echo base_url() ?>main/user_registration_show">Create an account</a>
                                 <?php echo form_close(); ?>
 <!--                                <input type="submit" name="signup" value="signup" class="btn  btn-primary "/>-->
                             </p>

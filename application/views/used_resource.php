@@ -12,10 +12,10 @@ if (isset($this->session->userdata['logged_in'])) {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Language', 'Speakers (in millions)'], ['Other', 13], ['Other user', <?php echo $rs_do; ?>], ['Company', 1.4], ['Dogri', 2.3], ['Your storeges', <?php echo $rs_dm;?>], ['Free storegse', 300]]);
+            ['Language', 'Speakers (in millions)'], ['Other', 13], ['Other user', <?php echo $rs_do; ?>], ['Company', 1.4], ['Dogri', 2.3], ['Your storages', <?php echo $rs_dm;?>], ['Free storagse', 300]]);
 
         var options = {
-            title: 'Storeges',
+            title: 'Storages',
             legend: 'none',
             pieSliceText: 'label',
             slices: {  4: {offset: 0.2},
