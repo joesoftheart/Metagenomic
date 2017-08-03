@@ -436,8 +436,10 @@
 
                         foreach ($sum as $key => $value) {
                            echo  $value ."\n";     
-                        }   
+                        }
 
+                        echo "Variable start Equal Variable end "."\n"; 
+                        break; 
                            
                      }elseif (($start_min != $start_max) && ($end_min != $end_max) ) {
                           #start
@@ -763,7 +765,7 @@
 
                    if($check_run == false){
                       
-                      remove_logfile_mothur($path_out);
+                      on_check_remove($path_in,$path_out);
 
                       break;
                       
@@ -773,7 +775,35 @@
         }
 
 
-         function remove_logfile_mothur($path_out){ 
+     
+
+      function on_check_remove($path_in,$path_out){
+         
+         echo "on_check_remove"."\n"; 
+         $path_dir = $path_in;
+            if (is_dir($path_dir)) {
+                if ($read = opendir($path_dir)){
+                      while (($file = readdir($read)) !== false) {
+                        
+                        $allowed =  array('8mer','sum','train','numNonZero','prob','files');
+                        $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+                        if(in_array($ext,$allowed)) {
+
+                           unlink($path_dir.$file);
+                        }
+                      }
+     
+                   closedir($read);
+                }
+            }
+
+        remove_logfile_mothur($path_out); 
+
+      }
+
+
+       function remove_logfile_mothur($path_out){ 
             
             $path_dir = $path_out;
             if (is_dir($path_dir)) {
@@ -792,9 +822,11 @@
                    closedir($read);
                 }
             }
-           echo "remove_logfile_mothur"."\n"; 
+           echo "remove_logfile_mothur"."\n";
+             
            
-          }
+      }
+
 
 
 ?>

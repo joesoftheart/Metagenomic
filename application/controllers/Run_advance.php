@@ -20,6 +20,29 @@
     }
 
 
+    public function recheck(){
+
+      $id_project = $_REQUEST['data_status'];
+       $status   = "";
+       $step_run = "";
+       $id_job   = "";
+
+
+      #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+           foreach ($array_status as $r) {
+             
+             $status   = $r['status'];
+             $step_run = $r['step_run'];              
+             $id_job = $r['job_id'];
+     
+           }
+
+        echo json_encode(array($status,$step_run,$id_job));
+
+    }
+
+
     public function create_file_design(){
 
       $this->load->view('excel_design');
@@ -343,28 +366,50 @@
               }
 
          $id_job = trim($id_job);
-         $data_job = array($id_job,$jobname,$path_log,$user,$project);
-         echo json_encode($data_job);
+         
+         echo json_encode(array($id_job,$id_project));
      
+   
 
+     #Check data status-process
+
+       $count = $this->mongo_db->where(array('project_id'=> $id_project))->count('status_process');
+       if($count == 0){
+           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' );
+           $this->insert_status($data);
+       }else{
+
+           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' );
+           $this->update_status($id_project,$data);
+       }
+       
 
     }
    
 
     public function check_run(){
 
-                   //$da_job = json_decode($_REQUEST['data_job'],true);
-                   $da_job = $_REQUEST['data_job'];
-                   $id_job = $da_job[0];
-                   $name_job = $da_job[1];
-                   $path_job = $da_job[2];
-                   $user = $da_job[3];
-                   $project = $da_job[4];
-                   $check_run = exec("qstat -j $id_job ");
+             $da_job = $_REQUEST['data_job'];
+               $id_job = $da_job[0];
+               $id_project = $da_job[1];
 
+               $name_job = "";
+               $path_job = "";
+              
+               #Query data status-process
+                $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+                   foreach ($array_status as $r) {
+                           
+                     $name_job = $r['job_name'];
+                     $path_job = $r['path_log'];
+               
+                    }
+
+                   $check_run = exec("qstat -j $id_job ");
+      
                    if($check_run == false){
-                      $up = array(0,$user,$project);
-                      echo json_encode($up);
+                     
+                      echo json_encode(array(0,$id_project));
 
                    }else{
                        
@@ -383,27 +428,40 @@
                        if($message == ""){
                           $message = "run queue ".$name_job." ".$id_job;
                        }
-                      $up = array($message);
+
+                       if($count != 0){
+                           $percent = (($count/19)*100);
+                           $percent_round = round($percent,0);
+
+                       }
+
+                      $up = array($message,$percent_round);
                       echo json_encode($up);
                    }
              
 
      }
 
+
+
       public function read_count(){
 
            $da_count = $_REQUEST['data_count'];
-           $user = $da_count[1];
-           $project = $da_count[2];
+           $id_project = $da_count[1];
            
+           $user = "";
+           $project = "";
            $project_analysis = ""; 
 
-             # Query data Project By project_name
-              $array_project = $this->mongo_db->get_where('projects',array('project_name' => $project));
-              foreach ($array_project as $r) {
-                    $project_analysis = $r['project_analysis'];
-              }
-
+             # Query data status-process by id_project
+                $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+                   foreach ($array_status as $r) {
+                     $user = $r['user'];
+                     $project = $r['project'];      
+                     $project_analysis = $r['project_analysis'];
+               
+                    }
+ 
              # Check type Project Phylotype OTU
              if($project_analysis == "phylotype"){
 
@@ -505,9 +563,15 @@
 
          $id_job = trim($id_job);
          
-         $sample_array = array($id_job,$classifly,$project_analysis,$user,$project);
+         $sample_array = array($id_job,$id_project);
 
          echo json_encode($sample_array);
+
+         
+      # Update data status-process Step 2
+
+         $data = array('status' => '1' ,'step_run' => '2' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log);
+         $this->update_status($id_project,$data);
 
       }
 
@@ -517,45 +581,139 @@
 
         $sample_job = $_REQUEST['job_sample'];
         $id_job = $sample_job[0];
-        $classifly = $sample_job[1];
-        $project_analysis = $sample_job[2];
-        $user = $sample_job[3];
-        $project = $sample_job[4];
+        $id_project = $sample_job[1];
+ 
+         $name_job ="";
+         $path_job ="";
+        
+         $user = "";
+         $project = "";
+         $project_analysis = "";
+         $classifly ="";
+
+
+      #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {
+                           
+                $name_job = $r['job_name'];
+                $path_job = $r['path_log'];
+                $user = $r['user'];
+                $project = $r['project'];
+                $project_analysis = $r['project_analysis'];
+                $classifly = $r['classifly'];
+               
+         }
         
         $check_run = exec("qstat -j $id_job ");
 
             if($check_run == false){
+                
+                # call function read_min_sample
+                $count_min = $this->read_min_sample($id_project);
 
                # Check type Project Phylotype OTU
-               if($project_analysis == "phylotype"){
+                  if($project_analysis == "phylotype"){
 
-                  $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
+                    $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
 
-                 }
-               elseif ($project_analysis == "otu") {
+                  }
+                  elseif ($project_analysis == "otu") {
 
-                  $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
-               }
+                    $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
+                  }
 
-                $sam_name = array();
-                $myfile = fopen($file,'r') or die ("Unable to open file");
-                while(($lines = fgets($myfile)) !== false){
+                  $sam_name = array();
+                  $myfile = fopen($file,'r') or die ("Unable to open file");
+                   while(($lines = fgets($myfile)) !== false){
                        $var =  explode("\t", $lines);
                        array_push($sam_name, $var[0]);
-                }
-                fclose($myfile);
+                  }
+                  fclose($myfile);
 
-                $up = array(0,$classifly,$sam_name);
-                echo json_encode($up);
+                   echo json_encode(array(0,$classifly,$sam_name,$count_min));
  
-            }else{
+            }
+             else
+                 {
 
-               $up = array(1,$classifly);
-               echo json_encode($up);
+                     $file = FCPATH."$path_job$name_job.o$id_job";
+                     $count = 0 ;
+                     $myfile = fopen($file,'r') or die ("Unable to open file");
+                         while(($lines = fgets($myfile)) !== false){
+                            if($lines != "\n"){
+                                 $count++;
+                            } 
+                         }
+                      fclose($myfile);
+
+                     $line = file($file);
+                     $message = $line[$count-1];
+                       if($message == ""){
+                          $message = "run subsample";
+                       }
+
+                       if($count != 0){
+                           $percent = ((0.5/$count)*100);
+                           $percent_round = round($percent,0);
+                       }
+
+               echo json_encode(array(1,$percent_round));
             }
              
 
       }
+
+
+      public function read_min_sample($p_id){
+
+           $id_project = $p_id;    
+           $user = "";
+           $project = "";
+           $project_analysis = ""; 
+
+             # Query data status-process by id_project
+                $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+                   foreach ($array_status as $r) {
+                     $user = $r['user'];
+                     $project = $r['project'];      
+                     $project_analysis = $r['project_analysis'];
+               
+                    }
+ 
+             # Check type Project Phylotype OTU
+             if($project_analysis == "phylotype"){
+
+                $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
+
+             }elseif ($project_analysis == "otu") {
+
+                $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
+             }
+
+           $data_read_count = array();
+           $count = array();
+
+            $myfile = fopen($file,'r') or die ("Unable to open file");
+               while(($lines = fgets($myfile)) !== false){
+                 
+                 $var =  explode("\t", $lines);
+                 array_push($data_read_count, $var[0]." : ".$var[1]);
+                 array_push($count, $var[1]);   
+
+              }
+           fclose($myfile);
+           $count_less = min($count);
+           array_push($data_read_count, $count_less);
+
+           # return data read file
+           return $data_read_count;
+
+      }
+
+
+
+
 
       public function ven_val($venn1,$venn2,$venn3,$venn4){
          
@@ -629,14 +787,14 @@
          $size_alpha = $data[4]; #size alpah insert
 
          if($ch_alpha != "1"){
-            $size_alpha = $ch_alpha;
+            $size_alpha = trim($ch_alpha);
          }
 
          $ch_beta = $data[5];  #size beta default
          $size_beta = $data[6];  #size beta insert
 
          if($ch_beta != "1"){
-            $size_beta = $ch_beta;
+            $size_beta = trim($ch_beta);
          }
 
 
@@ -772,7 +930,15 @@
 
          $id_job = trim($id_job);
 
-         echo json_encode(array($id_job,$user,$project));
+
+         echo json_encode(array($id_job,$id_project));
+
+        //echo json_encode(array($user, $project ,$path_input, $path_out ,$path_log, $level ,$size_alpha ,$size_beta ,$group_sam ,$group_ven, $d_upgma_st ,$d_upgma_me ,$d_pcoa_st ,$d_pcoa_me, $nmds ,$d_nmds_st ,$d_nmds_me ,$file_design ,$file_metadata, $ah_mova ,$correlation, $method ,$axes));
+       # Update data status-process Step 3
+
+         $data = array('status' => '1' ,'step_run' => '3' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'f_design' => $file_design ,'f_metadata' => $file_metadata);
+         $this->update_status($id_project,$data);
+
 
 
       }
@@ -783,23 +949,82 @@
 
         $analysis_job = $_REQUEST['job_analysis'];
         $id_job = $analysis_job[0];
-        $user = $analysis_job[1];
-        $project = $analysis_job[2];
-     
+        $id_project = $analysis_job[1];
+
+          $name_job ="";
+          $path_job ="";
+
+          $user = "";
+          $project = "" ;
+
+          $file_design = "";
+          $file_metadata = "";
+
+
+      #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {
+                           
+                $name_job = $r['job_name'];
+                $path_job = $r['path_log'];
+                $user = $r['user'];
+                $project = $r['project'];
+                $file_design = $r['f_design'];
+                $file_metadata = $r['f_metadata'];
+    
+         }
         
+      #Check number command 
+        $divisor = 0;
+        
+        if($file_design == "0" && $file_metadata == "0"){
+             $divisor = 31 ;
+        }else if($file_design != "0" || $file_metadata != "0"){
+             $divisor = 31 ;
+        }
+
+         
+
         $check_run = exec("qstat -j $id_job ");
 
             if($check_run == false){
               
                  $this->on_move($user,$project);
+
+                 # Update data status-process Step 4
+                     $data = array('status' => '0' ,'step_run' => '4' ,'job_id' => $id_job , 'project' => $project);
+                     $this->update_status($id_project,$data);
+
                  $up = 0;
-                 echo json_encode($up);
+                 echo json_encode(array($up,$divisor));
                  
 
-            }else{
+            }
+            else{
+
+               $file = FCPATH."$path_job$name_job.o$id_job";
+                     $count = 0 ;
+                     $myfile = fopen($file,'r') or die ("Unable to open file");
+                         while(($lines = fgets($myfile)) !== false){
+                            if($lines != "\n"){
+                                 $count++;
+                            } 
+                         }
+                      fclose($myfile);
+
+                     $line = file($file);
+                     $message = $line[$count-1];
+                       if($message == ""){
+                          $message = "run analysis";
+                       }
+
+                       if($count != 0){
+                           $percent = (($count/$divisor)*100);
+                           $percent_round = round($percent,0);
+                       }
 
                $up = 1;
-               echo json_encode($up);
+               echo json_encode(array($up,$percent_round));
             }
              
 
@@ -833,6 +1058,26 @@
             } 
 
       }
+
+
+
+
+      public function insert_status($data){
+      
+            # insert data status-process
+            $this->mongo_db->insert('status_process', $data);
+
+
+     }
+
+     public function update_status($id_project,$data){
+          
+           # update data status-process
+            $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('status_process'); 
+           
+          
+
+     }
 
 
   

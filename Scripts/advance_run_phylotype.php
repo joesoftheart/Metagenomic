@@ -41,6 +41,7 @@
         if($user != "" && $project != "" && $argv[3] != "" && $argv[4] != "" && $argv[5] != "" && $argv[6] != "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != "" && $argv[11] != "" && $argv[12] != "" && $argv[13] != "" && $argv[14] != "" && $argv[15] != ""){
             echo "Check Parameter Success"."\n";
             check_file($user,$project,$path_in,$path_out);
+            
 
           }else{
 
@@ -749,7 +750,7 @@
 
                    if($check_run == false){
                       
-                      remove_logfile_mothur($path_out);
+                      on_check_remove($path_in,$path_out); 
 
                       break;
                       
@@ -759,7 +760,35 @@
         }
 
 
-         function remove_logfile_mothur($path_out){ 
+
+      function on_check_remove($path_in,$path_out){
+
+         echo "on_check_remove"."\n"; 
+         $path_dir = $path_in;
+            if (is_dir($path_dir)) {
+                if ($read = opendir($path_dir)){
+                      while (($file = readdir($read)) !== false) {
+                        
+                        $allowed =  array('8mer','sum','train','numNonZero','prob','files');
+                        $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+                        if(in_array($ext,$allowed)) {
+                           
+                           unlink($path_dir.$file);
+                        }
+                      }
+     
+                   closedir($read);
+                }
+            } 
+
+            remove_logfile_mothur($path_out);
+
+      }
+
+
+
+     function remove_logfile_mothur($path_out){ 
             
             $path_dir = $path_out;
             if (is_dir($path_dir)) {
@@ -778,16 +807,13 @@
                    closedir($read);
                 }
             }
-           echo "remove_logfile_mothur"."\n"; 
+           echo "remove_logfile_mothur"."\n";
+          
            
-          }
+      }
 
         
-        # hide output
-        //function classify_otu(){
-          # $make = "classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=".$GLOBALS['lable_get_taxon'].")"; #get taxon
-       // }
-
+     
 
 ?>
 

@@ -25,7 +25,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 //$config['base_url'] = 'http://localhost/Metagenomic/';
+<<<<<<< HEAD
+$config['base_url'] = 'http://10.226.76.90/Metagenomic/';
+=======
 $config['base_url'] = 'http://10.226.76.82/Metagenomic/';
+>>>>>>> 0361239ea18f0886ab936c1cbafb1c49ead545b0
 
 /*
 |--------------------------------------------------------------------------

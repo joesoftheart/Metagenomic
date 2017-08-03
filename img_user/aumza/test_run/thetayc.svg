@@ -9,11 +9,11 @@
 <text fill="black" class="seri" font-size="24" y="445" x="50">S3_1_16s_S5</text>
 <text fill="black" class="seri" font-size="24" x="595" y="50">S4_1_16s_S7</text>
 <text fill="black" class="seri" font-size="24" y="595" x="50">S4_1_16s_S7</text>
-<rect fill="rgb(254,0,0)" stroke="rgb(254,0,0)" x="80" y="225" width="150" height="150"/>
-<rect fill="rgb(10,0,0)" stroke="rgb(10,0,0)" x="80" y="375" width="150" height="150"/>
-<rect fill="rgb(152,0,0)" stroke="rgb(152,0,0)" x="80" y="525" width="150" height="150"/>
+<rect fill="rgb(255,0,0)" stroke="rgb(255,0,0)" x="80" y="225" width="150" height="150"/>
+<rect fill="rgb(11,0,0)" stroke="rgb(11,0,0)" x="80" y="375" width="150" height="150"/>
+<rect fill="rgb(150,0,0)" stroke="rgb(150,0,0)" x="80" y="525" width="150" height="150"/>
 <rect fill="rgb(7,0,0)" stroke="rgb(7,0,0)" x="230" y="375" width="150" height="150"/>
-<rect fill="rgb(164,0,0)" stroke="rgb(164,0,0)" x="230" y="525" width="150" height="150"/>
+<rect fill="rgb(161,0,0)" stroke="rgb(161,0,0)" x="230" y="525" width="150" height="150"/>
 <rect fill="rgb(13,0,0)" stroke="rgb(13,0,0)" x="380" y="525" width="150" height="150"/>
 <rect fill="#10000" stroke="#10000" x="10" y="720" width="3" height="30"/>
 <rect fill="#20000" stroke="#20000" x="13" y="720" width="3" height="30"/>
@@ -270,10 +270,10 @@
 <rect fill="#fd0000" stroke="#fd0000" x="766" y="720" width="3" height="30"/>
 <rect fill="#fe0000" stroke="#fe0000" x="769" y="720" width="3" height="30"/>
 <text fill="black" class="seri" font-size="24" x="0" y="717">0.000</text>
-<text fill="black" class="seri" font-size="24" x="153" y="717">0.172</text>
-<text fill="black" class="seri" font-size="24" x="306" y="717">0.344</text>
-<text fill="black" class="seri" font-size="24" x="459" y="717">0.516</text>
-<text fill="black" class="seri" font-size="24" x="612" y="717">0.688</text>
-<text fill="black" class="seri" font-size="24" x="765" y="717">0.860</text>
+<text fill="black" class="seri" font-size="24" x="153" y="717">0.173</text>
+<text fill="black" class="seri" font-size="24" x="306" y="717">0.345</text>
+<text fill="black" class="seri" font-size="24" x="459" y="717">0.518</text>
+<text fill="black" class="seri" font-size="24" x="612" y="717">0.691</text>
+<text fill="black" class="seri" font-size="24" x="765" y="717">0.864</text>
 </g>
 </svg>
