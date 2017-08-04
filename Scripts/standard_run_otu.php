@@ -910,13 +910,44 @@ function plot_graph_r_Biplot($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Go to change name ->";
-            change_name($user, $id, $project, $path);
+            plot_graph_r_Tree($user, $id, $project, $path);
             break;
         }
     }
 
 }
 
+function plot_graph_r_Tree($user, $id, $project, $path){
+    // file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Biplot"."\n", FILE_APPEND);
+
+    echo "\n";
+    echo "Run plot_graph_r_Tree :";
+    $path_input_tree = "owncloud/data/$user/files/$project/output/final.tx.morisitahorn.2.lt.ave.tre";
+    $path_output_tree = "owncloud/data/$user/files/$project/output/Tree.png";
+
+    $jobname = $user . "_" . $id . "_plot_graph_r_Tree";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/PlotTreeGraph.R $path_input_tree $path_output_tree";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Go to change name ->";
+            change_name($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
 function change_name($user, $id, $project, $path){
     $dir = $path."/output";
     $file_read = array( 'svg');

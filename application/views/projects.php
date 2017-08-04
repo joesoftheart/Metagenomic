@@ -424,6 +424,14 @@ if (isset($this->session->userdata['logged_in'])) {
                                             </div>
 
                                         </div>
+                                        <hr class="uk-divider-icon">
+                                        <b>Tree</b>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-lg-offset-3">
+                                                <img class="img-thumbnail" src="<?php echo base_url(); ?><?php echo $path ?>Tree.png">
+                                            </div>
+
+                                        </div>
 
                                     </li>
                                 </ul>
