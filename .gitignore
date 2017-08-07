@@ -9,6 +9,8 @@
 # Program picrust
 /Joe/*
 /picrust-1.1.1/*
+/Mothur/*
+/Logs_sge/*
 
 
 # User-specific stuff:
