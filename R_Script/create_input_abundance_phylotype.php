@@ -1,7 +1,7 @@
 <?php
 $user = $argv[1];
 $project = $argv[2];
-set_time_limit(60);
+//set_time_limit(60);
 $path_file_original = "../owncloud/data/$user/files/$project/output_plot/final.tx.2.cons.tax.summary";
 $file_index_phylum = "owncloud/data/$user/files/$project/output/file_index_phylum.txt";
 $file_phylum_count = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";

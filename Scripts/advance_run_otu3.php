@@ -943,8 +943,8 @@
     function create_file_input_heatmap($user,$project,$path_in,$path_out){
      
      echo "Run create_file_input_heatmap"."\n";
-     $jobname = $user."_create_file_input_heatmap";
 
+     $jobname = $user."_create_file_input_heatmap";
      $log = $GLOBALS['path_log'];
      $cmd = "qsub -N $jobname -o $log  -cwd -j y -b y /usr/bin/php -f R_Script/create_input_heatmap_otu.php $user $project";
      
@@ -963,7 +963,6 @@
          $check_run = exec("qstat -j $id_job");
          if ($check_run == false) {
 
-             echo "Go to create_file_input_abun ->"."\n";
              create_file_input_abun($user,$project,$path_in,$path_out);
              break;
          }
@@ -975,8 +974,8 @@
  function create_file_input_abun($user,$project,$path_in,$path_out){
     
     echo "Run create_file_input_abun "."\n";
-    $jobname = $user ."_create_file_input_abun";
 
+    $jobname = $user ."_create_file_input_abun";
     $log = $GLOBALS['path_log'];
     $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/create_input_abundance_otu.php $user $project";
     
@@ -995,7 +994,6 @@
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
 
-            echo "Go to create_input_alphash ->"."\n";
             create_input_alphash($user,$project,$path_in,$path_out);
             break;
         }
@@ -1006,8 +1004,8 @@
 function create_input_alphash($user,$project,$path_in,$path_out){
    
     echo "Run create_input_alphash "."\n";
-    $jobname = $user ."_create_input_alphash";
 
+    $jobname = $user ."_create_input_alphash";
     $log = $GLOBALS['path_log'];
     $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/create_input_alphash_otu.php $user $project";
     
@@ -1026,7 +1024,37 @@ function create_input_alphash($user,$project,$path_in,$path_out){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
 
-            echo "Go to plot_graph_r_heartmap ->"."\n";
+            create_input_biplot($user,$project,$path_in,$path_out);
+            break;
+        }
+    }
+
+}
+
+
+function create_input_biplot($user,$project,$path_in,$path_out){
+    
+    echo "Run create_input_biplot "."\n";
+
+    $jobname = $user."_create_input_biplot";
+    $log = $GLOBALS['path_log'];
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/create_input_biplot_otu.php $user $project";
+   
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+
             plot_graph_r_heatmap($user,$project,$path_in,$path_out);
             break;
         }
@@ -1039,13 +1067,13 @@ function create_input_alphash($user,$project,$path_in,$path_out){
 
     function plot_graph_r_heatmap($user,$project,$path_in,$path_out){
 
-     #file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_heatmap"."\n", FILE_APPEND);
 
      echo "Run plot_graph_r_heatmap "."\n";
+
      $path_input_csv = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";
      $path_to_save = "owncloud/data/$user/files/$project/output/heartmap.png";
-     $jobname = $user ."_plot_graph_r_heartmap";
      
+     $jobname = $user ."_plot_graph_r_heartmap";  
      $log = $GLOBALS['path_log'];
      $cmd = "qsub -N $jobname -o $log  -cwd -j y -b y /usr/bin/Rscript R_Script/heatmapPlottest.R $path_input_csv $path_to_save";
      
@@ -1064,7 +1092,6 @@ function create_input_alphash($user,$project,$path_in,$path_out){
          $check_run = exec("qstat -j $id_job");
          if ($check_run == false) {
 
-             echo "Go to plot_graph_r_NMD ->"."\n"; 
              plot_graph_r_NMD($user,$project,$path_in,$path_out);
              break;
          }
@@ -1074,13 +1101,13 @@ function create_input_alphash($user,$project,$path_in,$path_out){
 
  function plot_graph_r_NMD($user,$project,$path_in,$path_out){
 
-    #file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_NMD"."\n", FILE_APPEND);
-
+   
     echo "Run plot_graph_r_NMD "."\n";
+
     $path_input_axes = "owncloud/data/$user/files/$project/output/final.opti_mcc.thetayc.".$GLOBALS['level'].".lt.ave.nmds.axes";
     $path_to_save = "owncloud/data/$user/files/$project/output/NMD.png";
-    $jobname = $user."_plot_graph_r_NMD";
-     
+    
+    $jobname = $user."_plot_graph_r_NMD"; 
     $log = $GLOBALS['path_log'];
     $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/NMDSpcoaplottest.R $path_input_axes $path_to_save";
    
@@ -1099,7 +1126,6 @@ function create_input_alphash($user,$project,$path_in,$path_out){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
 
-            echo "Go to plot_graph_r_Rare->"."\n";
             plot_graph_r_Rare($user,$project,$path_in,$path_out);
             break;
         }
@@ -1110,13 +1136,13 @@ function create_input_alphash($user,$project,$path_in,$path_out){
 
 function plot_graph_r_Rare($user,$project,$path_in,$path_out){
 
-    #file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Rare"."\n", FILE_APPEND);
 
     echo "Run plot_graph_r_Rare "."\n";
+
     $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.opti_mcc.groups.rarefaction";
     $path_to_save = "owncloud/data/$user/files/$project/output/Rare.png";
-    $jobname = $user."_plot_graph_r_Rare";
     
+    $jobname = $user."_plot_graph_r_Rare";
     $log = $GLOBALS['path_log'];
     $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/RarefactionSoiltest_otu.R $path_input_rarefaction $path_to_save";
    
@@ -1135,7 +1161,6 @@ function plot_graph_r_Rare($user,$project,$path_in,$path_out){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
 
-            echo "Go to plot_graph_r_Abun ->"."\n";
             plot_graph_r_Abun($user,$project,$path_in,$path_out);
             break;
         }
@@ -1146,14 +1171,13 @@ function plot_graph_r_Rare($user,$project,$path_in,$path_out){
 
 function plot_graph_r_Abun($user,$project,$path_in,$path_out){
 
-    #file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Abun"."\n", FILE_APPEND);
-
     
     echo "Run plot_graph_r_Abun "."\n";
+
     $path_input_phylumex = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";
     $path_to_save = "owncloud/data/$user/files/$project/output/Abun.png";
-    $jobname = $user ."_plot_graph_r_Abun";
     
+    $jobname = $user ."_plot_graph_r_Abun";
     $log = $GLOBALS['path_log'];
     $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/Abundancebarplottest.R $path_input_phylumex $path_to_save";
    
@@ -1172,7 +1196,6 @@ function plot_graph_r_Abun($user,$project,$path_in,$path_out){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
 
-            echo "Go to plot_graph_r_Alphash ->"."\n";
             plot_graph_r_Alphash($user,$project,$path_in,$path_out);
             break;
         }
@@ -1183,10 +1206,8 @@ function plot_graph_r_Abun($user,$project,$path_in,$path_out){
 
 function plot_graph_r_Alphash($user,$project,$path_in,$path_out){
 
-    #file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Aphash"."\n", FILE_APPEND);
-
-    
     echo "Run plot_graph_r_Alphash "."\n";
+
     $path_input_chao_shannon = "owncloud/data/$user/files/$project/output/file_after_chao.txt";
     $path_to_save = "owncloud/data/$user/files/$project/output/Alpha.png";
     $jobname = $user."_plot_graph_r_Alphash";
@@ -1208,8 +1229,44 @@ function plot_graph_r_Alphash($user,$project,$path_in,$path_out){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-            
-            echo "Go to change name ->"."\n";
+
+            plot_graph_r_Biplot($user,$project,$path_in,$path_out);
+            break;
+        }
+    }
+
+}
+
+
+
+function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
+   
+    echo "Run plot_graph_r_Biplot"."\n";
+
+    $path_input_biplot_nmds = "owncloud/data/$user/files/$project/output/final.opti_mcc.thetayc.0.03.lt.ave.nmds.axes";
+    $path_output_biplot_withBiplotwithOTU = "owncloud/data/$user/files/$project/output/NewNMDS_withBiplotwithOTU.png";
+    $path_input_biplot = "owncloud/data/$user/files/$project/output/output_bioplot.txt";
+    $path_output_biplot_withBiplotwithMetadata = "owncloud/data/$user/files/$project/output/NewNMDS_withBiplotwithMetadata.png";
+    $path_input_file_meta = "owncloud/data/$user/files/$project/output/file.pearson.corr.axes";
+    
+    $jobname = $user. "_plot_graph_r_Biplot";
+    $log = $GLOBALS['path_log'];
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/ScatterPlotwithbiplot_otu.R $path_input_biplot_nmds $path_output_biplot_withBiplotwithOTU $path_input_biplot $path_output_biplot_withBiplotwithMetadata $path_input_file_meta";
+    
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
             change_name($user,$project,$path_in,$path_out);
             break;
         }
@@ -1243,19 +1300,19 @@ function change_name($user,$project,$path_in,$path_out){
                     $file_name = preg_split("/[.]/",$value );
                     if (in_array("bin", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "bin.svg");
-                        echo $value." change to  bin.svg";
+                        echo $value." => "." change to  bin.svg"."\n";
                     }
                     if (in_array("sharedsobs", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "sharedsobs.svg");
-                        echo $value." change to sharedsobs.svg";
+                        echo $value." => "." change to sharedsobs.svg"."\n";
                     }
                     if (in_array("jclass", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "jclass.svg");
-                        echo $value." change to jclass.svg";
+                        echo $value." => "." change to jclass.svg"."\n";
                     }
                     if (in_array("thetayc", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "thetayc.svg");
-                        echo $value." change to thetayc.svg";
+                        echo $value." => "." change to thetayc.svg"."\n";
                     }
                 }
             }

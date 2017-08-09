@@ -1,10 +1,10 @@
 <?php
-set_time_limit(60);
+//set_time_limit(60);
 $user = $argv[1];
 $project = $argv[2];
 $file_subsample = "../owncloud/data/$user/files/$project/output/final.tx.2.subsample.spearman.corr.axes";
 $file_taxonomy = "../owncloud/data/$user/files/$project/output/final.tx.2.cons.taxonomy";
-$file_output_bioplot = "owncloud/data/$user/files/$project/output/output_bioplot.txt";
+$file_output_bioplot = "../owncloud/data/$user/files/$project/output/output_bioplot.txt";
 
 
 

@@ -62,7 +62,8 @@
        $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
         foreach ($array_project as $r) {
           
-                $project = $r['project_name'];     
+                #$project = $r['project_name']; 
+                $project = basename($r['project_path']);         
          }
 
        $design_json = $_REQUEST['data_excel'];
@@ -87,7 +88,8 @@
        $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
         foreach ($array_project as $r) {
           
-                $project = $r['project_name'];     
+                #$project = $r['project_name']; 
+                $project = basename($r['project_path']);        
          }
       $path_input = "owncloud/data/$user/files/$project/input/file.design";
       $path_file = FCPATH."$path_input";
@@ -113,7 +115,8 @@
        $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
         foreach ($array_project as $r) {
           
-                $project = $r['project_name'];
+                #$project = $r['project_name']; 
+                $project = basename($r['project_path']);    
                
          }
 
@@ -141,7 +144,8 @@
        $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
         foreach ($array_project as $r) {
           
-                $project = $r['project_name'];     
+                #$project = $r['project_name']; 
+                $project = basename($r['project_path']);    
          }
       
       $path_input = "owncloud/data/$user/files/$project/input/file.metadata";
@@ -238,6 +242,7 @@
          
        $project = "";
        $project_analysis = "";
+       $project_data = "";
 
       # Query data Project By ID
        $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
@@ -245,6 +250,7 @@
           
                 $project = $r['project_name'];
                 $project_analysis = $r['project_analysis'];
+                $project_data = basename($r['project_path']);
          }
 
 
@@ -290,9 +296,9 @@
       
       
         # Set Path => input ,output ,log
-            $path_input = "owncloud/data/$user/files/$project/input/";
-            $path_out = "owncloud/data/$user/files/$project/output/";
-            $path_log = "owncloud/data/$user/files/$project/log/";
+            $path_input = "owncloud/data/$user/files/$project_data/input/";
+            $path_out = "owncloud/data/$user/files/$project_data/output/";
+            $path_log = "owncloud/data/$user/files/$project_data/log/";
       
             
 
@@ -329,7 +335,7 @@
                   }
 
                    $taxon = str_replace(";", ",", $taxon);
-                   $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
+                   $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project_data $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
                   
             }
             elseif ($project_analysis == "otu") {
@@ -347,7 +353,7 @@
                   }
                   
                   $taxon = str_replace(";", ",", $taxon); 
-                  $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
+                  $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project_data $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
             }
 
            
@@ -368,18 +374,18 @@
          $id_job = trim($id_job);
          
          echo json_encode(array($id_job,$id_project));
-     
-   
+
+        
 
      #Check data status-process
 
        $count = $this->mongo_db->where(array('project_id'=> $id_project))->count('status_process');
        if($count == 0){
-           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' );
+           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data);
            $this->insert_status($data);
        }else{
 
-           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' );
+           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data );
            $this->update_status($id_project,$data);
        }
        
@@ -450,26 +456,26 @@
            $id_project = $da_count[1];
            
            $user = "";
-           $project = "";
+           $project_data = "";
            $project_analysis = ""; 
 
              # Query data status-process by id_project
                 $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
                    foreach ($array_status as $r) {
                      $user = $r['user'];
-                     $project = $r['project'];      
                      $project_analysis = $r['project_analysis'];
+                     $project_data = $r['project_data'];    
                
                     }
  
              # Check type Project Phylotype OTU
              if($project_analysis == "phylotype"){
 
-                $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
+                $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
 
              }elseif ($project_analysis == "otu") {
 
-                $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
+                $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
              }
    
            
@@ -518,6 +524,7 @@
 
        $project = "";
        $project_analysis = "";
+       $project_data = "";
 
         # Query data Project By ID
         $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
@@ -525,13 +532,14 @@
           
                 $project = $r['project_name'];
                 $project_analysis = $r['project_analysis'];
+                $project_data = basename($r['project_path']);
          }
 
 
        # Set Path input , output , log 
-        $path_input = "owncloud/data/$user/files/$project/input/";
-        $path_out = "owncloud/data/$user/files/$project/output/";
-        $path_log = "owncloud/data/$user/files/$project/log/";
+        $path_input = "owncloud/data/$user/files/$project_data/input/";
+        $path_out = "owncloud/data/$user/files/$project_data/output/";
+        $path_log = "owncloud/data/$user/files/$project_data/log/";
       
         #Create  jobname  advance
             $jobname = $user."-".$project."-".$project_analysis."-"."advance2";
@@ -540,11 +548,11 @@
 
            if ($project_analysis == "phylotype") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype2.php $user $project $path_input $path_out $size $path_log";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype2.php $user $project_data $path_input $path_out $size $path_log";
            }
            else if($project_analysis == "otu") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu2.php $user $project $path_input $path_out $size $path_log";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu2.php $user $project_data $path_input $path_out $size $path_log";
            }
              
  
@@ -570,7 +578,7 @@
          
       # Update data status-process Step 2
 
-         $data = array('status' => '1' ,'step_run' => '2' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log);
+         $data = array('status' => '1' ,'step_run' => '2' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'project_data' => $project_data);
          $this->update_status($id_project,$data);
 
       }
@@ -587,9 +595,10 @@
          $path_job ="";
         
          $user = "";
-         $project = "";
+         $project_data = "";
          $project_analysis = "";
          $classifly ="";
+       
 
 
       #Query data status-process
@@ -598,11 +607,11 @@
                            
                 $name_job = $r['job_name'];
                 $path_job = $r['path_log'];
-                $user = $r['user'];
-                $project = $r['project'];
+                $user = $r['user']; 
                 $project_analysis = $r['project_analysis'];
                 $classifly = $r['classifly'];
-               
+                $project_data = $r['project_data'];
+      
          }
         
         $check_run = exec("qstat -j $id_job ");
@@ -615,12 +624,12 @@
                # Check type Project Phylotype OTU
                   if($project_analysis == "phylotype"){
 
-                    $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
+                    $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
 
                   }
                   elseif ($project_analysis == "otu") {
 
-                    $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
+                    $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
                   }
 
                   $sam_name = array();
@@ -669,26 +678,26 @@
 
            $id_project = $p_id;    
            $user = "";
-           $project = "";
+           $project_data = "";
            $project_analysis = ""; 
 
              # Query data status-process by id_project
                 $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
                    foreach ($array_status as $r) {
                      $user = $r['user'];
-                     $project = $r['project'];      
                      $project_analysis = $r['project_analysis'];
+                     $project_data = $r['project_data']; 
                
                     }
  
              # Check type Project Phylotype OTU
              if($project_analysis == "phylotype"){
 
-                $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
+                $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
 
              }elseif ($project_analysis == "otu") {
 
-                $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
+                $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
              }
 
            $data_read_count = array();
@@ -733,7 +742,7 @@
    
       }
 
-      public function read_name_sameple($project_analysis,$user,$project){
+      public function read_name_sample($project_analysis,$user,$project){
 
 
         # Check type Project Phylotype OTU
@@ -846,19 +855,29 @@
 
         # Options 
 
-        #file design & metadata
+        #file design & metadata 
            $file_design = $data[18];
            $file_metadata = $data[19];
 
         #Amova & Homova
            $ah_mova = $data[20];
 
-        #correlation with metadata & correlation of each OTU 
-           $correlation = $data[21];
+        #correlation with Metadata 
+           $correlation_meta = $data[21];
            
-        #Method & Number of axes
-           $method = $data[22];
-           $axes  = $data[23];
+        #Method & Number of axes Metadata 
+           $method_meta = $data[22];
+           $axes_meta  = $data[23];
+
+
+        # correlation of each OTU 
+           $correlation_otu = $data[24];
+           
+        #Method & Number of axes OTU 
+           $method_otu = $data[25];
+           $axes_otu  = $data[26];
+
+
      
         #check variable
           if($file_design == "nodesign"){
@@ -873,14 +892,25 @@
 
               $ah_mova = "0";
           }
-          if($correlation ==""){
 
-              $correlation = "0";
+          if($correlation_meta == null){
+
+              $correlation_meta = "0";
+               $method_meta = "0";
+               $axes_meta  = "0";
+          }
+
+          if($correlation_otu == null){
+
+               $correlation_otu = "0";
+               $method_otu = "0";
+               $axes_otu  = "0";
           }
 
 
         $project = "";  # projectname
         $project_analysis = ""; # type project
+        $project_data = "";
 
         # Query data Project By ID
         $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
@@ -888,16 +918,17 @@
           
                 $project = $r['project_name'];
                 $project_analysis = $r['project_analysis'];
+                $project_data = basename($r['project_path']);
          }
 
          # return name sample 
-         $group_sam = $this->read_name_sameple($project_analysis,$user,$project);
+         $group_sam = $this->read_name_sample($project_analysis,$user,$project_data);
 
 
        # Set Path input , output , log 
-        $path_input = "owncloud/data/$user/files/$project/input/";
-        $path_out = "owncloud/data/$user/files/$project/output/";
-        $path_log = "owncloud/data/$user/files/$project/log/";
+        $path_input = "owncloud/data/$user/files/$project_data/input/";
+        $path_out = "owncloud/data/$user/files/$project_data/output/";
+        $path_log = "owncloud/data/$user/files/$project_data/log/";
       
         # Create  jobname  advance
             $jobname = $user."-".$project."-".$project_analysis."-"."advance3";
@@ -906,12 +937,12 @@
 
            if ($project_analysis == "phylotype") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation $method $axes";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu";
                
            }
            else if($project_analysis == "otu") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation $method $axes";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu";
            }
              
  
@@ -936,7 +967,7 @@
         //echo json_encode(array($user, $project ,$path_input, $path_out ,$path_log, $level ,$size_alpha ,$size_beta ,$group_sam ,$group_ven, $d_upgma_st ,$d_upgma_me ,$d_pcoa_st ,$d_pcoa_me, $nmds ,$d_nmds_st ,$d_nmds_me ,$file_design ,$file_metadata, $ah_mova ,$correlation, $method ,$axes));
        # Update data status-process Step 3
 
-         $data = array('status' => '1' ,'step_run' => '3' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'f_design' => $file_design ,'f_metadata' => $file_metadata);
+         $data = array('status' => '1' ,'step_run' => '3' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'f_design' => $file_design ,'f_metadata' => $file_metadata , 'project_data' => $project_data );
          $this->update_status($id_project,$data);
 
 
@@ -960,6 +991,9 @@
           $file_design = "";
           $file_metadata = "";
 
+          $project_data = "";
+
+
 
       #Query data status-process
         $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
@@ -971,6 +1005,7 @@
                 $project = $r['project'];
                 $file_design = $r['f_design'];
                 $file_metadata = $r['f_metadata'];
+                $project_data = $r['project_data'];
     
          }
         
@@ -978,9 +1013,9 @@
         $divisor = 0;
         
         if($file_design == "0" && $file_metadata == "0"){
-             $divisor = 31 ;
+             $divisor = 25 ;
         }else if($file_design != "0" || $file_metadata != "0"){
-             $divisor = 31 ;
+             $divisor = 32 ;
         }
 
          
@@ -989,10 +1024,10 @@
 
             if($check_run == false){
               
-                 $this->on_move($user,$project);
+                 $this->on_move($user,$project,$project_data);
 
                  # Update data status-process Step 4
-                     $data = array('status' => '0' ,'step_run' => '4' ,'job_id' => $id_job , 'project' => $project);
+                     $data = array('status' => '0' ,'step_run' => '4' ,'job_id' => $id_job , 'project' => $project , 'project_data' => $project_data);
                      $this->update_status($id_project,$data);
 
                  $up = 0;
@@ -1031,7 +1066,7 @@
       }
 
 
-      public function on_move($user,$project){
+      public function on_move($user,$project,$project_data){
 
          # check & create folder user
          $path_img = FCPATH."img_user/$user/$project/";   
@@ -1039,7 +1074,7 @@
                 mkdir($path_img, 0777, true);
          }
          
-         $path_dir = FCPATH."owncloud/data/$user/files/$project/output/";
+         $path_dir = FCPATH."owncloud/data/$user/files/$project_data/output/";
             if (is_dir($path_dir)) {
                 if ($read = opendir($path_dir)){
                       while (($img = readdir($read)) !== false) {
@@ -1049,7 +1084,7 @@
 
                         if(in_array($ext,$allowed)) {
                            
-                           copy($path_dir.$img,$path_img.$img);
+                          copy($path_dir.$img,$path_img.$img);
                         }
                       }
      

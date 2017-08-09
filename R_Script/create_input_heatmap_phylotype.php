@@ -1,5 +1,5 @@
 <?php
-set_time_limit(60);
+//set_time_limit(60);
 $user = $argv[1];
 $project = $argv[2];
 $path_file_original = "../owncloud/data/$user/files/$project/output_plot/final.tx.2.cons.tax.summary";

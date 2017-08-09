@@ -1,6 +1,6 @@
 <?php
 
-set_time_limit(60);
+//set_time_limit(60);
 $user = $argv[1];
 $project = $argv[2];
 $path_file_original = "../owncloud/data/$user/files/$project/output/final.tx.groups.ave-std.summary";
