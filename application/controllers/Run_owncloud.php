@@ -19,17 +19,6 @@ class Run_owncloud extends CI_Controller {
   
     }
 
-
-    public function if_el(){
-      $num = 1;
-      if($num == 1){
-        echo "if"."<br/>";
-      }
-      if ($num == 1) {
-        echo "elseif";
-      }
-    }
-
     public function ex_string(){
         $lable = explode('_', "gg_13_8_99.fasta");
         echo $lable[0];
