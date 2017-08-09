@@ -32,7 +32,17 @@ if (isset($this->session->userdata['logged_in'])) {
                     <p>Last Name :<input class="uk-input" type="text" name="last_name" value="<?php echo $r['last_name']; ?>"></p>
                     <p>Addess :<input class="uk-input" type="text" name="address" value="<?php echo $r['address']; ?>"></p>
                     <p>Tel : <input class="uk-input" type="text" name="tel" value="<?php echo $r['tel']; ?>"></p>
-                    <p>Gender : <input class="uk-input" type="text" name="gender" value="<?php echo $r['gender']; ?>"></p>
+                    <div class="form-group">
+                        Gender :
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" id="" value="Male" <?php if ($r['gender'] == "Male"){
+                                echo "checked";} ?>>Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" id="" value="Female" <?php if ($r['gender'] == "Female"){
+                                echo "checked";} ?>>Female
+                        </label>
+                    </div>
                 <?php  } ?>
                 <button class="btn btn-default right">Update profile</button>
                 <?php form_close() ?>

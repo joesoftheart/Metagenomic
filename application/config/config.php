@@ -30,6 +30,7 @@ $config['base_url'] = 'http://10.226.76.90/Metagenomic/';
 
 //$config['base_url'] = 'http://10.226.76.82/Metagenomic/';
 
+
 /*
 |--------------------------------------------------------------------------
 | Index File

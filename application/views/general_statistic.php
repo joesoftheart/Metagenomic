@@ -152,7 +152,7 @@ if (isset($this->session->userdata['logged_in'])) {
                         </div>
                         <a href="#" id="project">
                             <div class="panel-footer">
-                                <span class="pull-left">View Your <?php echo $rs_u_p;?> project </span>
+                                <span class="pull-left">View <?php echo $rs_u_p;?> projects </span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -197,7 +197,7 @@ if (isset($this->session->userdata['logged_in'])) {
                         </div>
                         <a href="#" id="ticket">
                             <div class="panel-footer">
-                                <span class="pull-left">View your <?php echo $rs_u_t;?> Ticket</span>
+                                <span class="pull-left">View  <?php echo $rs_u_t;?> Tickets</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>

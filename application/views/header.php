@@ -327,7 +327,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('used_resource')?>"><i class="fa fa-usb"></i> Used Resource</a>
+                        <a href="<?php echo site_url('used_resource')?>"><i class="fa fa-usb"></i> Used Resources</a>
                     </li>
                     <li>
                         <a href="#stat"><i class="fa fa-files-o fa-fw"></i> Statistics<span class="fa arrow"></span></a>

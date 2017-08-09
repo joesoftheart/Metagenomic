@@ -9,11 +9,15 @@ if (isset($this->session->userdata['logged_in'])) {
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12"><br>
-            <ul class="breadcrumb">
-                <li><a href="#">Home</a><span class="divider">/</span></li>
-                <li><a href="#">Library</a><span class="divider">/</span></li>
-                <li><a href="#">data</a><span class="divider">/</span></li>
-            </ul>
+            <?php $controller_name = $this->uri->segment(1); ?>
+            <br>
+            <ol class="breadcrumb">
+                <li <?php if ($controller_name == 'main'){
+                    echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
+                <li class="active">Profile</li>
+
+
+            </ol>
         </div>
     </div>
     <div class="row">
@@ -47,7 +51,15 @@ if (isset($this->session->userdata['logged_in'])) {
                     <p>Last Name :<input class="uk-input" type="text" name="last_name" value=""></p>
                     <p>Addess :<input class="uk-input" type="text" name="address" value=""></p>
                     <p>Tel : <input class="uk-input" type="text" name="tel" value=""></p>
-                    <p>Gender : <input class="uk-input" type="text" name="gender" value=""></p>
+                <div class="form-group">
+                    Gender :
+                <label class="radio-inline">
+                    <input type="radio" name="gender" id="" value="Male">Male
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="gender" id="" value="Female">Female
+                </label>
+                </div>
                 <button class="btn btn-default right" name="update">Update profile</button>
                 <?php form_close() ?>
             </div>
