@@ -952,39 +952,51 @@ if (isset($this->session->userdata['logged_in'])) {
                                                            <input type="hidden" id="p_metadata" name="f_metadata" value="nometadata">
                                                          </div>
                                                      </div>
+
                                                      <div class="col-lg-12 col-lg-push-2"> 
-                                                     <div class="radio">
+                                                    
                                                          <label class="col-lg-6">
-                                                             <input name="optionsRadios3" value="meta" type="radio"> correlation with metadata 
+                                                             <input type="checkbox" id="correlation_meta"  value="meta" > correlation with metadata 
                                                          </label>
-                                                         <label class="col-lg-6">
-                                                             <input name="optionsRadios3"  value="otu" type="radio"> correlation of each OTU
-                                                         </label>
-                                                     </div>  
-                                                     </div> 
-                                                     <div class="col-lg-12 col-lg-push-3 uk-margin"> 
-                                                     <div class="col-lg-2 col-lg-pull-1">
-                                                            Method 
-                                                     </div>
-                                                     <div class="col-lg-3 col-lg-pull-1">
-                                                         <select class="uk-select" name="method">
+
+                                                         <div class="col-lg-3 col-lg-pull-1">
+                                                             <select class="uk-select" name="method_meta">
                                                              <option value="spearman"> spearman </option>
                                                              <option value="pearson"> pearson </option>     
-                                                         </select>
-                                                     </div>
-                                                         <div class="col-lg-4 col-lg-pull-1">
-                                                               Number of axes 
+                                                             </select>
                                                          </div>
-                                                         <div class="col-lg-2 col-lg-pull-2">
-                                                            <select class="uk-select" name="axes">
+                                                         <div class="col-lg-2 col-lg-pull-1">
+                                                            <select class="uk-select" name="axes_meta">
                                                                   <option value="2"> 2 </option>
                                                                   <option value="3"> 3 </option>
                                                              </select>
                                                          </div>
-                                                     </div>
-                                                     </div>
 
+                                                      
+                                                     </div> 
 
+                                                     <div class="col-lg-12 col-lg-push-2"> 
+                                                    
+                                                         <label class="col-lg-6">
+                                                            <input type="checkbox" id="correlation_otu"  value="otu" > correlation of each OTU
+                                                         </label>
+
+                                                         <div class="col-lg-3 col-lg-pull-1">
+                                                            <select class="uk-select" name="method_otu">
+                                                             <option value="spearman"> spearman </option>
+                                                             <option value="pearson"> pearson </option>     
+                                                             </select>
+                                                         </div>
+                                                         <div class="col-lg-2 col-lg-pull-1">
+                                                            <select class="uk-select" name="axes_otu">
+                                                                  <option value="2"> 2 </option>
+                                                                  <option value="3"> 3 </option>
+                                                             </select>
+                                                         </div>
+                                                      </div> 
+
+                                                    </div> <!-- class="optional" style="display:none" -->
+                                                    
                                                      <div class="col-lg-12 uk-margin"> </div>   
                                                      <div class="col-lg-4 col-lg-push-2">
                                                           <input  id="sub-test3" class="btn btn-default" value="Run Preprocess">
@@ -1017,9 +1029,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <!-- End Analysis -->
 
 
-
-
-                                   <!-- Result && Graph -->
+                                <!-- Result && Graph -->
                                     <li >
                                        <div class="row">
                                             <div class="col-lg-6" >
@@ -1101,6 +1111,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                     </li>
 
                                     <!-- End Result && Graph -->
+
+                                  
 
 
                                 </ul>
