@@ -627,25 +627,15 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <li >
 
                                        <div class="Pre-test2">
-                                           <div class="row">
-                                               <label>2.Prepare </label><br><br>
-                                           </div>
-                                        <div class="col-lg-12">
-                                            <div class="row">
-                                                <div class="col-lg-1"></div>
-                                             <div class="col-lg-10 uk-margin"><label>The number of total reads/groups after the preprocess</label></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-1"></div>
-                                                <div class="col-lg-3"><label> show data in count group :</label></div>
+                                        <div class="col-lg-8 col-lg-offset-2">
+
+                                             <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>The number of total reads/group after the preprocess</label></div>
+                                             <div class="col-lg-10 col-lg-pull-1"><label> show data in count group :</label></div>
                                              <div class="row uk-margin">
-                                                <div class="col-lg-7">
+                                                <div class="col-lg-9">
                                                     <textarea class="form-control"  rows="5"  id="show_group" ></textarea>
                                                 </div>
-                                             </div>
-                                            </div>
-
-                                                <div class="col-lg-8     col-lg-push-9">
+                                                <div class="col-lg-8 col-lg-push-9">
                                                         <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
                                                             Back
                                                         </button>
@@ -659,17 +649,14 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                  <input type="hidden" name="username" value="<?=$username?>">
                                                  <input type="hidden" name="project" value="<?=$current_project?>">
-                                                 <div class="row">
-                                                  <div class="col-lg-1"></div>
-                                                 <div class="col-lg-10 uk-margin"><label>Please put the number to subsampled file  </label></div>
+                                                 <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
+                                             
+                                                 <div class="row uk-margin">
+                                                    <div class="col-lg-8">
+                                                          <label>sub sample :</label>
+                                                          <input id="sub_sample" class="uk-input" type="number" min="0" name="subsample" onkeypress='return validateNumber(event)' >
+                                                    </div>
                                                  </div>
-                                                 <div class="row">
-                                                         <div class="col-lg-1"></div>
-                                                    <div class="col-lg-2"><label>sub sample :</label></div>
-                                                     <div class="col-lg-3"> <input id="sub_sample" class="uk-input" type="number" min="0" name="subsample" onkeypress='return validateNumber(event)' >
-                                                     </div>
-                                                 </div>
-
 
                                                  <div class="col-lg-12 uk-margin"> </div>
                                                  <div class="col-lg-4">
@@ -729,6 +716,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                     </li>
 
                                 <!--End Prepare phylotype analysis-->
+
 
 
 
@@ -964,39 +952,51 @@ if (isset($this->session->userdata['logged_in'])) {
                                                            <input type="hidden" id="p_metadata" name="f_metadata" value="nometadata">
                                                          </div>
                                                      </div>
+
                                                      <div class="col-lg-12 col-lg-push-2"> 
-                                                     <div class="radio">
+                                                    
                                                          <label class="col-lg-6">
-                                                             <input name="optionsRadios3" value="meta" type="radio"> correlation with metadata 
+                                                             <input type="checkbox" id="correlation_meta"  value="meta" > correlation with metadata 
                                                          </label>
-                                                         <label class="col-lg-6">
-                                                             <input name="optionsRadios3"  value="otu" type="radio"> correlation of each OTU
-                                                         </label>
-                                                     </div>  
-                                                     </div> 
-                                                     <div class="col-lg-12 col-lg-push-3 uk-margin"> 
-                                                     <div class="col-lg-2 col-lg-pull-1">
-                                                            Method 
-                                                     </div>
-                                                     <div class="col-lg-3 col-lg-pull-1">
-                                                         <select class="uk-select" name="method">
+
+                                                         <div class="col-lg-3 col-lg-pull-1">
+                                                             <select class="uk-select" name="method_meta">
                                                              <option value="spearman"> spearman </option>
                                                              <option value="pearson"> pearson </option>     
-                                                         </select>
-                                                     </div>
-                                                         <div class="col-lg-4 col-lg-pull-1">
-                                                               Number of axes 
+                                                             </select>
                                                          </div>
-                                                         <div class="col-lg-2 col-lg-pull-2">
-                                                            <select class="uk-select" name="axes">
+                                                         <div class="col-lg-2 col-lg-pull-1">
+                                                            <select class="uk-select" name="axes_meta">
                                                                   <option value="2"> 2 </option>
                                                                   <option value="3"> 3 </option>
                                                              </select>
                                                          </div>
-                                                     </div>
-                                                     </div>
 
+                                                      
+                                                     </div> 
 
+                                                     <div class="col-lg-12 col-lg-push-2"> 
+                                                    
+                                                         <label class="col-lg-6">
+                                                            <input type="checkbox" id="correlation_otu"  value="otu" > correlation of each OTU
+                                                         </label>
+
+                                                         <div class="col-lg-3 col-lg-pull-1">
+                                                            <select class="uk-select" name="method_otu">
+                                                             <option value="spearman"> spearman </option>
+                                                             <option value="pearson"> pearson </option>     
+                                                             </select>
+                                                         </div>
+                                                         <div class="col-lg-2 col-lg-pull-1">
+                                                            <select class="uk-select" name="axes_otu">
+                                                                  <option value="2"> 2 </option>
+                                                                  <option value="3"> 3 </option>
+                                                             </select>
+                                                         </div>
+                                                      </div> 
+
+                                                    </div> <!-- class="optional" style="display:none" -->
+                                                    
                                                      <div class="col-lg-12 uk-margin"> </div>   
                                                      <div class="col-lg-4 col-lg-push-2">
                                                           <input  id="sub-test3" class="btn btn-default" value="Run Preprocess">
@@ -1029,9 +1029,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <!-- End Analysis -->
 
 
-
-
-                                   <!-- Result && Graph -->
+                                <!-- Result && Graph -->
                                     <li >
                                        <div class="row">
                                             <div class="col-lg-6" >
@@ -1114,6 +1112,8 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                     <!-- End Result && Graph -->
 
+                                  
+
 
                                 </ul>
 
@@ -1171,7 +1171,7 @@ if (isset($this->session->userdata['logged_in'])) {
     </script>
     <input type="hidden" id="advance_num" value="0">
 
-   <!--  Advance Script -->
+  <!--  Advance Script -->
     <script type="text/javascript">
 
         function advance_mode(obj){
@@ -1200,8 +1200,8 @@ if (isset($this->session->userdata['logged_in'])) {
                              $('#sharedsobs_img').html('<img id="sharedsobs_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/sharedsobs.svg");?>">');
                              $('#heartmap_img').html('<img id="heartmap_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/heartmap.png");?>">');
                              
-                             $('#jclass_img').html('<img id="jclass_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/jclass.svg"); ?> ">'); 
-                             $('#thetayc_img').html('<img id="thetayc_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/thetayc.svg"); ?> ">'); 
+                             $('#jclass_img').html('<img id="jclass_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithOTU.png"); ?> ">'); 
+                             $('#thetayc_img').html('<img id="thetayc_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithMetadata.png"); ?> ">'); 
 
                              $('#rare_img').html('<img id="rare_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Rare.png");?>">');
                              $('#abun_img').html('<img id="abun_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Abun.png");?>">');
@@ -1286,20 +1286,20 @@ if (isset($this->session->userdata['logged_in'])) {
                  $("#plus").show();
             });
 
-            $("#back-test").click(function(){
-                 $(".Pre-show").hide();
-                 $(".Pre-test").show();
-            });
+            // $("#back-test").click(function(){
+            //      $(".Pre-show").hide();
+            //      $(".Pre-test").show();
+            // });
 
-            $("#back-test2").click(function(){
-                 $(".Pre-show2").hide();
-                 $(".Pre-test2").show();
-            });
+            // $("#back-test2").click(function(){
+            //      $(".Pre-show2").hide();
+            //      $(".Pre-test2").show();
+            // });
 
-            $("#back-test3").click(function(){
-                 $(".Pre-show3").hide();
-                 $(".Pre-test3").show();
-            });
+            // $("#back-test3").click(function(){
+            //      $(".Pre-show3").hide();
+            //      $(".Pre-test3").show();
+            // });
 
            $("#back_preprocess").click(function(){
 
@@ -1322,8 +1322,32 @@ if (isset($this->session->userdata['logged_in'])) {
     
             });
            
+            var correlation_meta = null;
+            var correlation_otu  = null;
+
+           $('#correlation_meta').change(function(){
+                     if($(this).is(':checked')){
+                        correlation_meta = $('#correlation_meta').val();
+                        console.log(correlation_meta);
+                     }else{
+                        correlation_meta = null;
+                        console.log(correlation_meta)
+                     }
+            });
+
+           $('#correlation_otu').change(function(){
+                     if($(this).is(':checked')){
+                        correlation_otu = $('#correlation_otu').val();
+                        console.log(correlation_otu);
+                     }else{
+                        correlation_otu = null;
+                        console.log(correlation_otu);
+                     }
+            });
+
             var design_stop = "";
             var metadata_stop = "";
+
             $("#sub-test3").click(function () {
                 var username = document.forms["Analysis-form"]["username"].value;
                 var project  = document.forms["Analysis-form"]["project"].value;
@@ -1346,10 +1370,14 @@ if (isset($this->session->userdata['logged_in'])) {
                 var file_metadata = document.forms["Analysis-form"]["f_metadata"].value;
 
                 var ah_mova = document.forms["Analysis-form"]["optionsRadios2"].value;
-                var correlation = document.forms["Analysis-form"]["optionsRadios3"].value;
-                var method = document.forms["Analysis-form"]["method"].value;
-                var axes = document.forms["Analysis-form"]["axes"].value;
-                  
+
+                var method_meta = document.forms["Analysis-form"]["method_meta"].value;
+                var axes_meta = document.forms["Analysis-form"]["axes_meta"].value;
+
+                var method_otu = document.forms["Analysis-form"]["method_otu"].value;
+                var axes_otu = document.forms["Analysis-form"]["axes_otu"].value;
+
+
                    var upgma_st = document.getElementsByName('upgma_st[]');
                    var upgma_me = document.getElementsByName('upgma_me[]');
 
@@ -1371,15 +1399,20 @@ if (isset($this->session->userdata['logged_in'])) {
                  
                   design_stop = "stop";
                   metadata_stop = "stop";
-
-                 if(username != "" && project != "" &&  level != "" && venn1 != "" && venn2 != "" && venn3 != "" && venn4 != "" ){
-
-                     var array_data = new Array(username,project,level,ch_alpha,size_alpha,ch_beta,size_beta,venn1,venn2,venn3,venn4,d_upgma_st,d_upgma_me,d_pcoa_st,d_pcoa_me,nmds,d_nmds_st,d_nmds_me,file_design,file_metadata,ah_mova,correlation,method,axes);
                   
-                      $(".Pre-test3").hide();
-                      $(".Pre-show3").show();
-                      get_analysis(array_data);
 
+
+                 if(username != "" && project != "" &&  level != "" && venn1 != "" && venn2 != "" && venn3 != "" && venn4 != "" && venn1 != "0" && venn2 != "0"){
+
+                     if((upgma_st != "" || upgma_me != "")){
+
+                         var array_data = new Array(username,project,level,ch_alpha,size_alpha,ch_beta,size_beta,venn1,venn2,venn3,venn4,d_upgma_st,d_upgma_me,d_pcoa_st,d_pcoa_me,nmds,d_nmds_st,d_nmds_me,file_design,file_metadata,ah_mova,correlation_meta,method_meta,axes_meta,correlation_otu,method_otu,axes_otu);
+                     
+                         $(".Pre-test3").hide();
+                         $(".Pre-show3").show();
+                         get_analysis(array_data);
+                     }
+                      
                  }
                   
             });
@@ -1615,8 +1648,8 @@ if (isset($this->session->userdata['logged_in'])) {
                              $('#sharedsobs_img').html('<img id="sharedsobs_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/sharedsobs.svg");?>">');
                              $('#heartmap_img').html('<img id="heartmap_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/heartmap.png");?>">');
                              
-                             $('#jclass_img').html('<img id="jclass_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/jclass.svg"); ?> ">'); 
-                             $('#thetayc_img').html('<img id="thetayc_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/thetayc.svg"); ?> ">'); 
+                             $('#jclass_img').html('<img id="jclass_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithOTU.png"); ?> ">'); 
+                             $('#thetayc_img').html('<img id="thetayc_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithMetadata.png"); ?> ">'); 
 
                              $('#rare_img').html('<img id="rare_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Rare.png");?>">');
                              $('#abun_img').html('<img id="abun_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Abun.png");?>">');
@@ -1725,10 +1758,10 @@ if (isset($this->session->userdata['logged_in'])) {
                              var sam_group  = "";  
                              for(var i=0 ;i < sample_data[3].length; i++){
                                 
-                                console.log(i+": "+sample_data[3][i]);
+                                //console.log(i+": "+sample_data[3][i]);
                                 if(i == sample_data[3].length-1){
 
-                                    console.log(sample_data[3][i]);
+                                    //console.log(sample_data[3][i]);
                                   document.getElementById('sub_sample').value = Number(sample_data[3][i]);
                                   document.getElementById('show_group').value = sam_group; 
                                    document.getElementById('alpha').value = Number(sample_data[3][i]);
@@ -1778,9 +1811,8 @@ if (isset($this->session->userdata['logged_in'])) {
                     data:{data_array: data_value},
                     success:function(data){
                       var data_job = $.parseJSON(data);
-                      console.log("jid :" + data_job[0]);
-                      console.log("pid :" + data_job[1]);
-                     
+                      // console.log("jid :" + data_job[0]);
+                      // console.log("pid :" + data_job[1]);
                       checkrun(data_job);
                     },
                     error:function(e){
@@ -1918,4 +1950,5 @@ if (isset($this->session->userdata['logged_in'])) {
         
     </script>
 <!--  End Advance Script -->
+
 
