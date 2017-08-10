@@ -627,25 +627,15 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <li >
 
                                        <div class="Pre-test2">
-                                           <div class="row">
-                                               <label>2.Prepare </label><br><br>
-                                           </div>
-                                        <div class="col-lg-12">
-                                            <div class="row">
-                                                <div class="col-lg-1"></div>
-                                             <div class="col-lg-10 uk-margin"><label>The number of total reads/groups after the preprocess</label></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-1"></div>
-                                                <div class="col-lg-3"><label> show data in count group :</label></div>
+                                        <div class="col-lg-8 col-lg-offset-2">
+
+                                             <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>The number of total reads/group after the preprocess</label></div>
+                                             <div class="col-lg-10 col-lg-pull-1"><label> show data in count group :</label></div>
                                              <div class="row uk-margin">
-                                                <div class="col-lg-7">
+                                                <div class="col-lg-9">
                                                     <textarea class="form-control"  rows="5"  id="show_group" ></textarea>
                                                 </div>
-                                             </div>
-                                            </div>
-
-                                                <div class="col-lg-8     col-lg-push-9">
+                                                <div class="col-lg-8 col-lg-push-9">
                                                         <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
                                                             Back
                                                         </button>
@@ -659,17 +649,14 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                                  <input type="hidden" name="username" value="<?=$username?>">
                                                  <input type="hidden" name="project" value="<?=$current_project?>">
-                                                 <div class="row">
-                                                  <div class="col-lg-1"></div>
-                                                 <div class="col-lg-10 uk-margin"><label>Please put the number to subsampled file  </label></div>
+                                                 <div class="col-lg-10 col-lg-pull-2 uk-margin"><label>Please put the number to subsampled file  </label></div>
+                                             
+                                                 <div class="row uk-margin">
+                                                    <div class="col-lg-8">
+                                                          <label>sub sample :</label>
+                                                          <input id="sub_sample" class="uk-input" type="number" min="0" name="subsample" onkeypress='return validateNumber(event)' >
+                                                    </div>
                                                  </div>
-                                                 <div class="row">
-                                                         <div class="col-lg-1"></div>
-                                                    <div class="col-lg-2"><label>sub sample :</label></div>
-                                                     <div class="col-lg-3"> <input id="sub_sample" class="uk-input" type="number" min="0" name="subsample" onkeypress='return validateNumber(event)' >
-                                                     </div>
-                                                 </div>
-
 
                                                  <div class="col-lg-12 uk-margin"> </div>
                                                  <div class="col-lg-4">
@@ -729,6 +716,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                     </li>
 
                                 <!--End Prepare phylotype analysis-->
+
 
 
 
