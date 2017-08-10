@@ -13,7 +13,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    make_biom($user,$id,$project,$path);
+    phylotype_picrust($user,$id,$project,$path);
     }
 
 
@@ -1019,6 +1019,38 @@ function make_biom($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Finish make biom ->";
+
+            break;
+        }
+    }
+
+
+
+
+}
+
+
+function phylotype_picrust($user, $id, $project, $path){
+    echo "\n";
+    echo "Run phylotype_picrust :";
+
+    $jobname = $user . "_" . $id . "_phylotype_picrust";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y picrust-1.1.1/scripts/normalize_by_copy_number.py -i final.tx.1.biom -o normalized_otus.1.biom ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish phylotype_picrust ->";
 
             break;
         }

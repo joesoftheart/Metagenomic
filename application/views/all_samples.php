@@ -20,7 +20,7 @@ if (isset($this->session->userdata['logged_in'])) {
             <h1 class="page-header">All samples</h1>
                 <div class="row">
                     <div class="col-lg-12">
-                                   <a class="btn btn-primary" target="_blank" href="http://localhost/owncloud">Open on owncloud</a>
+                                   <a class="btn btn-primary" target="_blank" href="<?php base_url() ?>/owncloud">Open on owncloud</a>
                     </div>
                 </div>
             <br>
