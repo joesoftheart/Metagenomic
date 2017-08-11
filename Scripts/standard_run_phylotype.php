@@ -1035,7 +1035,7 @@ function phylotype_picrust($user, $id, $project, $path){
     echo "Run phylotype_picrust :";
 
     $jobname = $user . "_" . $id . "_phylotype_picrust";
-    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y picrust-1.1.1/scripts/normalize_by_copy_number.py -i final.tx.1.biom -o normalized_otus.1.biom ";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y picrust-1.1.1/scripts/qsubMoPhylo5andpicrust_norm";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
