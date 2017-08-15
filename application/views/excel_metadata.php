@@ -19,8 +19,8 @@ else {
 
 
 
-<button type="button" id="btnAdd">Add new Rows </button>
-<button type="button" id="btnRemoveRow">Remove Rows</button>
+<!-- <button type="button" id="btnAdd">Add new Rows </button>
+<button type="button" id="btnRemoveRow">Remove Rows</button> -->
 
 <button type="button" id="btnAddCol">Add new Column</button>
 <button type="button" id="btnRemoveCol">Remove Column</button>
@@ -34,15 +34,17 @@ else {
  <form name="myform" id="myform" method="post" >
     <table id="blacklistgrid">
         <tr id="Row1">
-            <td><input type="text"  placeholder="Header 1"  /></td>
+            <td><input type="text"  value="Source"  /></td>
             <td><input type="text"  placeholder="Header 2" /></td>
             <td><input type="text"  placeholder="Header 3" /></td>
             
         </tr>
 
-        <tr id="Row2">
+       <?php foreach ($sample_name as $key => $value) { ?>
+
+         <tr id="Row2">
             <td>
-                <input type="text"   placeholder="sample" />
+                <input type="text"   value="<?=$value?>" />
             </td>
             <td>
                 <input type="number"  step="0.01" onkeypress='return validateNumber(event)' placeholder="number"/>
@@ -51,7 +53,10 @@ else {
                 <input type="number" step="0.01" onkeypress='return validateNumber(event)' placeholder="number"/>
             </td>
           
-        </tr>
+         </tr>
+
+      <?php   }  ?>
+
     </table>
    
 </form>
@@ -67,11 +72,11 @@ else {
 $(document).ready(function () {
 
      
-     $('#btnAdd').click(function () {
-         var count = 1,
-             first_row = $('#Row2');
-         while (count-- > 0) first_row.clone().appendTo('#blacklistgrid');
-     });
+     // $('#btnAdd').click(function () {
+     //     var count = 1,
+     //         first_row = $('#Row2');
+     //     while (count-- > 0) first_row.clone().appendTo('#blacklistgrid');
+     // });
 
      
      var myform = $('#myform'),
@@ -90,13 +95,13 @@ $(document).ready(function () {
          col_num += 1;
      });
      
-     $('#btnRemoveRow').click(function () {
-       var row_count = $('#blacklistgrid  #Row2').length;
-       if(row_count > 1){
-           $('#Row2').remove();
-       }
+     // $('#btnRemoveRow').click(function () {
+     //   var row_count = $('#blacklistgrid  #Row2').length;
+     //   if(row_count > 1){
+     //       $('#Row2').remove();
+     //   }
 
-     });
+     // });
 
      
      $('#btnRemoveCol').click(function () {

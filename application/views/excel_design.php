@@ -20,13 +20,12 @@ else {
 
 
 
-<button type="button" id="btnAdd">Add new Rows </button>
-<button type="button" id="btnRemoveRow">Remove Rows</button>
+<!-- <button type="button" id="btnAdd">Add new Rows </button>
+<button type="button" id="btnRemoveRow">Remove Rows</button> -->
 
 <!-- <button type="button" id="btnAddCol">Add new Column</button>
 <button type="button" id="btnRemoveCol">Remove Column</button> -->
 
-<br/><br/>
 <button onclick="getExcel()">create file</button>
    
 <br/><br/>
@@ -34,20 +33,22 @@ else {
 
  <form name="myform" id="myform" method="post" >
     <table id="blacklistgrid">
-        <tr id="Row1">
+        <!-- <tr id="Row1">
             <td><input type="text" name="head[]" placeholder="Header 1"  /></td>
             <td><input type="text" name="head[]" placeholder="Header 2" /></td>
           
-        </tr>
-
+        </tr> -->
+       <?php foreach ($sample_name as $key => $value) { ?>
         <tr id="Row2">
             <td>
-                <input type="text" name="col[]" placeholder="sample" />
+                <input type="text" name="col[]"  value="<?=$value?>" />
             </td>
             <td>
                 <input type="text" name="col[]" />
             </td>
         </tr>
+       <?php  } ?>
+
     </table>
     
     
@@ -70,21 +71,21 @@ $(document).ready(function () {
      });
 
      
-     var myform = $('#myform'),
-         col_num = 4;
+     // var myform = $('#myform'),
+     //     col_num = 4;
 
-     $('#btnAddCol').click(function () {
-         myform.find('tr').each(function(){
-           var trow = $(this);
-             if(trow.index() === 0){
-                 trow.append('<td><input type="text" name="head[]" placeholder=Header'+col_num+'></td>');
-             }else{
-                trow.append('<td><input type="text" name="col[]"/></td>');
-             }
+     // $('#btnAddCol').click(function () {
+     //     myform.find('tr').each(function(){
+     //       var trow = $(this);
+     //         if(trow.index() === 0){
+     //             trow.append('<td><input type="text" name="head[]" placeholder=Header'+col_num+'></td>');
+     //         }else{
+     //            trow.append('<td><input type="text" name="col[]"/></td>');
+     //         }
             
-         });
-         col_num += 1;
-     });
+     //     });
+     //     col_num += 1;
+     // });
      
      $('#btnRemoveRow').click(function () {
        var row_count = $('#blacklistgrid  #Row2').length;
@@ -95,15 +96,15 @@ $(document).ready(function () {
      });
 
      
-     $('#btnRemoveCol').click(function () {
+     // $('#btnRemoveCol').click(function () {
 
-      	  var column_count = $('#blacklistgrid  #Row1 td').length;
-      	  if (column_count > 2){
-              $('table tr').find('td:eq(-1),th:eq(-1)').remove();
+     //  	  var column_count = $('#blacklistgrid  #Row1 td').length;
+     //  	  if (column_count > 2){
+     //          $('table tr').find('td:eq(-1),th:eq(-1)').remove();
 
-              col_num -= 1;
-      	  }
-     });
+     //          col_num -= 1;
+     //  	  }
+     // });
      
  
  });

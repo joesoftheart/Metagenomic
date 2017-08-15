@@ -919,13 +919,14 @@ if (isset($this->session->userdata['logged_in'])) {
                                                      <div class="optional" style="display:none">
                                                      <div class="col-lg-8 col-lg-push-2 "> 
                                                          <label> Create file design           
-                                                          <a href="<?php echo site_url('Run_advance/create_file_design');?>" target="_blank">
+                                                          <a href="<?php echo site_url('Run_advance/create_file_design');?>?current=<?=$current_project?>" target="_blank">
                                                                <input type="button" value="create design" id="check_design">  
                                                           </a>
                                                          </label>
                                                          <div>
-                                                         <p id="pass_design" class="fa fa-file-text-o" > No file design </p>
+                                                         <p id="pass_design" class="fa fa-file-text-o" > No file design </p> 
                                                          <input type="hidden" id="p_design" name="f_design" value="nodesign">
+                                                         <img id="img_design" src="">
                                                          </div>
 
                                                      </div>
@@ -943,13 +944,14 @@ if (isset($this->session->userdata['logged_in'])) {
                                                      </div>
                                                      <div class="col-lg-10 col-lg-push-2 uk-margin"> 
                                                          <label> Create file metadata  
-                                                             <a href="<?php echo base_url('Run_advance/create_file_metadata'); ?>"  target="_blank">
+                                                             <a href="<?php echo base_url('Run_advance/create_file_metadata');?>?current=<?=$current_project?>"  target="_blank">
                                                                <input type="button" value="create metadata" id="check_metadata">  
                                                           </a>
                                                          </label>
                                                          <div>
                                                            <p id="pass_metadata" class="fa fa-file-text-o"> No file metadata </p>
                                                            <input type="hidden" id="p_metadata" name="f_metadata" value="nometadata">
+                                                           <img id="img_metadata" src="">
                                                          </div>
                                                      </div>
 
@@ -1035,14 +1037,14 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <div class="col-lg-6" >
                                                 <b>Ven diagram</b>
                                                  <div id="sharedsobs_img">
-                                                     
+                                                   <img id="sharedsobs_img_pass" src="#"/>
                                                  </div>
                                                 
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>Heatmap</b>
                                                  <div id="heartmap_img">
-                                                     
+                                                     <img id="heartmap_img_pass" src="#" />
                                                  </div>
                                                  
                                             </div>
@@ -1052,16 +1054,16 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                         <div class="row">
                                             <div class="col-lg-6" >
-                                                <b>*Heatmap-Jclass</b><br>
-                                                 <div id="jclass_img">
-                                                     
+                                                <b>Bioplot</b><br>
+                                                 <div id="bioplot_otu_img">
+                                                     <img id="bioplot_otu_img_pass"  src="#" /> 
                                                  </div>
                                                
                                             </div>
                                             <div class="col-lg-6" >
-                                                <b>*Heatmap-Thetayc</b><br>
-                                                <div id="thetayc_img">
-                                                    
+                                                <b>Bioplot</b><br>
+                                                <div id="bioplot_meta_img">
+                                                     <img id="bioplot_meta_img_pass"  src=""/>
                                                 </div>
                                               
                                             </div>
@@ -1072,7 +1074,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <div class="col-lg-6" >
                                                 <b>Rarefaction</b>
                                                 <div id="rare_img">
-                                                    
+                                                  <img id="rare_img_pass"  src="#" /> 
                                                 </div>
                                                 
                                               
@@ -1080,7 +1082,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <div class="col-lg-6"  >
                                                 <b>RelativePhylum</b>
                                                 <div id="abun_img">
-                                                    
+                                                   <img id="abun_img_pass"  src="#" />
+                              
                                                 </div>  
                                               
                                             </div>
@@ -1090,7 +1093,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="row">
                                             <div class="col-lg-6 col-lg-offset-3" >
                                                <div id="nmd_img">
-                                                   
+                                                   <img id="nmd_img_pass" src="#" />;  
                                                </div>
                                               
                                             </div>
@@ -1101,7 +1104,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="row">
                                             <div class="col-lg-6 col-lg-offset-3" >
                                                 <div id="alpha_img">
-                                                    
+                                                   <img id="alpha_img_pass" src="#" />
+                                                       
                                                 </div> 
                                                 
                                             </div>
@@ -1149,26 +1153,6 @@ if (isset($this->session->userdata['logged_in'])) {
 
     </script>
 
-    <script>
-       //$(document).ready(function () {
-//            $("#btn_prephy").click(function () {
-//                $.ajax({
-//                    type: "POST",
-//                    url: "<?php //echo base_url();?>//projects/run_prepare_phylotype",
-//                    data: {text: $("#text").val()},
-//                    dataType: "text",
-//                    cache:false,
-//                    success:
-//                        function(data){
-//                            $("#show_prephy").html(data);
-//                        }
-//                });// you have missed this bracket
-//                return false;
-//            });
-//
-//        });
-
-    </script>
     <input type="hidden" id="advance_num" value="0">
 
   <!--  Advance Script -->
@@ -1196,18 +1180,18 @@ if (isset($this->session->userdata['logged_in'])) {
                         var status = $.parseJSON(data);
                         if(status[0] == "0" && status[1] == "4"){
                            alert('No Run Queue');
-
-                             $('#sharedsobs_img').html('<img id="sharedsobs_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/sharedsobs.svg");?>">');
-                             $('#heartmap_img').html('<img id="heartmap_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/heartmap.png");?>">');
+    
+                             $('#sharedsobs_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/sharedsobs.svg')?>");
+                             $('#heartmap_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/heartmap.png')?>");
                              
-                             $('#jclass_img').html('<img id="jclass_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithOTU.png"); ?> ">'); 
-                             $('#thetayc_img').html('<img id="thetayc_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithMetadata.png"); ?> ">'); 
+                             $('#bioplot_otu_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/NewNMDS_withBiplotwithOTU.png')?>");
+                             $('#bioplot_meta_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/NewNMDS_withBiplotwithMetadata.png')?>");
+                             
+                             $('#rare_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Rare.png')?>");
+                             $('#abun_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Abun.png')?>");
 
-                             $('#rare_img').html('<img id="rare_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Rare.png");?>">');
-                             $('#abun_img').html('<img id="abun_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Abun.png");?>">');
-                            
-                             $('#nmd_img').html('<img id="nmd_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/NMD.png");?>">');
-                             $('#alpha_img').html('<img id="alpha_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/Alpha.png");?>">');
+                             $('#nmd_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/NMD.png')?>");
+                             $('#alpha_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Alpha.png')?>");
                         
                         }else if(status[0] != "0" && status[1] == "1" && check == 1){
                            alert('Run step '+status[1] );
@@ -1286,21 +1270,7 @@ if (isset($this->session->userdata['logged_in'])) {
                  $("#plus").show();
             });
 
-            // $("#back-test").click(function(){
-            //      $(".Pre-show").hide();
-            //      $(".Pre-test").show();
-            // });
-
-            // $("#back-test2").click(function(){
-            //      $(".Pre-show2").hide();
-            //      $(".Pre-test2").show();
-            // });
-
-            // $("#back-test3").click(function(){
-            //      $(".Pre-show3").hide();
-            //      $(".Pre-test3").show();
-            // });
-
+          
            $("#back_preprocess").click(function(){
 
                  $('.uk-child-width-expand > .pre2').prev('li').find('a').trigger('click'); 
@@ -1328,22 +1298,82 @@ if (isset($this->session->userdata['logged_in'])) {
            $('#correlation_meta').change(function(){
                      if($(this).is(':checked')){
                         correlation_meta = $('#correlation_meta').val();
-                        console.log(correlation_meta);
+                        //console.log(correlation_meta);
                      }else{
                         correlation_meta = null;
-                        console.log(correlation_meta)
+                        //console.log(correlation_meta)
                      }
             });
 
            $('#correlation_otu').change(function(){
                      if($(this).is(':checked')){
                         correlation_otu = $('#correlation_otu').val();
-                        console.log(correlation_otu);
+                        //console.log(correlation_otu);
                      }else{
                         correlation_otu = null;
-                        console.log(correlation_otu);
+                        //console.log(correlation_otu);
                      }
             });
+
+
+             var ven1,ven2,ven3,ven4;
+             var check_ven_all = null;
+   
+             $('#venn1').change(function(){
+                 ven1 = $('#venn1').val();
+                 if(ven1 != '0'){
+                     if(ven1 === ven2 || ven1 === ven3 || ven1 === ven4){
+                         alert('Duplicate value');
+                         check_ven_all = "stop";
+                     }else{
+                         check_ven_all = "start";
+                     }
+                 }
+                
+                 
+             });
+              $('#venn2').change(function(){
+                 ven2 = $('#venn2').val();
+                  if(ven2 != '0'){
+                     if(ven2 === ven1 || ven2 === ven3 ||ven2 === ven4){
+                         alert('Duplicate value');
+                         check_ven_all = "stop";
+                    }else{
+                         check_ven_all = "start";
+                    }
+                    
+                 }
+                
+             });
+             $('#venn3').change(function(){
+                 ven3 = $('#venn3').val();
+                  if(ven3 != '0'){
+                     if(ven3 === ven1 || ven3 === ven2 || ven3 === ven4 ){
+                          alert('Duplicate value');
+                         check_ven_all = "stop";
+                    }else{
+                         check_ven_all = "start";
+                    } 
+                 }
+                 
+             });
+              $('#venn4').change(function(){
+                 ven4 = $('#venn4').val();
+                  if(ven4 != '0'){
+                    if(ven4 === ven1 || ven4 === ven2 || ven4 === ven3){
+                          alert('Duplicate value');
+                         check_ven_all = "stop";
+                     }else{
+                         check_ven_all = "start";
+                     }
+                 }
+                
+             });
+
+            
+
+              
+            
 
             var design_stop = "";
             var metadata_stop = "";
@@ -1401,16 +1431,16 @@ if (isset($this->session->userdata['logged_in'])) {
                   metadata_stop = "stop";
                   
 
+                 if(username != "" && project != "" &&  level != "" &&  venn1 != "0" && venn2 != "0" && check_ven_all == "start" ){
 
-                 if(username != "" && project != "" &&  level != "" && venn1 != "" && venn2 != "" && venn3 != "" && venn4 != "" && venn1 != "0" && venn2 != "0"){
-
-                     if((upgma_st != "" || upgma_me != "")){
+                     if((d_upgma_st != 0 || d_upgma_me != 0 ) && (d_pcoa_st != 0 || d_pcoa_me != 0 || d_nmds_st != 0 || d_nmds_me != 0 )){
 
                          var array_data = new Array(username,project,level,ch_alpha,size_alpha,ch_beta,size_beta,venn1,venn2,venn3,venn4,d_upgma_st,d_upgma_me,d_pcoa_st,d_pcoa_me,nmds,d_nmds_st,d_nmds_me,file_design,file_metadata,ah_mova,correlation_meta,method_meta,axes_meta,correlation_otu,method_otu,axes_otu);
-                     
+                        
                          $(".Pre-test3").hide();
                          $(".Pre-show3").show();
                          get_analysis(array_data);
+                         //alert('Get Analysis');
                      }
                       
                  }
@@ -1427,6 +1457,8 @@ if (isset($this->session->userdata['logged_in'])) {
                  var interval = null;
                  interval = setInterval(function(){   
                  time--;
+                   $('#img_design').attr("src","<?php echo base_url('images/ajax-loader.gif')?>");
+                    
                     if(time === 0){
                      $.ajax({ 
                        type:"post",
@@ -1438,9 +1470,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                    clearInterval(interval);
                                    $('#pass_design').text(" "+design);
                                    document.getElementById('p_design').value = design;
+                                   $('#img_design').attr("src","<?php echo base_url('images/check.png')?>");
                              }
                              else{  
-                                  time = 5;  
+                                  time = 5; 
+
                              } 
                          }
                      });
@@ -1457,6 +1491,8 @@ if (isset($this->session->userdata['logged_in'])) {
                  var interval = null;
                  interval = setInterval(function(){   
                  time--;
+                  $('#img_metadata').attr("src","<?php echo base_url('images/ajax-loader.gif')?>");
+                    
                     if(time === 0){
                      $.ajax({ 
                        type:"post",
@@ -1468,6 +1504,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                    clearInterval(interval);
                                    $('#pass_metadata').text(" "+metadata);
                                    document.getElementById('p_metadata').value = metadata;
+                                   $('#img_metadata').attr("src","<?php echo base_url('images/check.png')?>");
                              }
                              else{  
                                   time = 5;  
@@ -1482,7 +1519,6 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
             $('#radio_pcoa').on('change', function() {
-                //alert($('#radio_pcoa').val());
                 $(".nmds").attr("disabled", true); 
                 $(".nmds").prop('checked', false);
                 $(".pcoa").removeAttr("disabled");
@@ -1490,12 +1526,13 @@ if (isset($this->session->userdata['logged_in'])) {
             });
 
              $('#radio_nmds').on('change', function() {
-                //alert($('#radio_nmds').val()); 
                 $(".pcoa").attr("disabled", true);
                 $(".pcoa").prop('checked', false);
                 $(".nmds").removeAttr("disabled");
                 
               });
+
+
        });
 
 
@@ -1648,11 +1685,12 @@ if (isset($this->session->userdata['logged_in'])) {
                              $('#sharedsobs_img').html('<img id="sharedsobs_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/sharedsobs.svg");?>">');
                              $('#heartmap_img').html('<img id="heartmap_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/heartmap.png");?>">');
                              
-                             $('#jclass_img').html('<img id="jclass_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithOTU.png"); ?> ">'); 
-                             $('#thetayc_img').html('<img id="thetayc_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithMetadata.png"); ?> ">'); 
+                             $('#bioplot_otu_img').html('<img id="bioplot_otu_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithOTU.png"); ?> ">'); 
+                             $('#bioplot_meta_img').html('<img id="bioplot_meta_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithMetadata.png"); ?> ">'); 
 
                              $('#rare_img').html('<img id="rare_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Rare.png");?>">');
                              $('#abun_img').html('<img id="abun_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Abun.png");?>">');
+
                             
                              $('#nmd_img').html('<img id="nmd_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/NMD.png");?>">');
                              $('#alpha_img').html('<img id="alpha_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/Alpha.png");?>">');
@@ -1768,6 +1806,9 @@ if (isset($this->session->userdata['logged_in'])) {
                                    document.getElementById('beta').value = Number(sample_data[3][i]);
                                    document.getElementById('myradio').value = sample_data[3][i];
                                    document.getElementById('myradio1').value = sample_data[3][i];
+                                   $('#sub_sample').attr({'max': Number(sample_data[3][i])});
+                                   $('#alpha').attr({'max': Number(sample_data[3][i])});
+                                   $('#beta').attr({'max': Number(sample_data[3][i])});
                                    
                                 }else{
                                     sam_group += sample_data[3][i];
