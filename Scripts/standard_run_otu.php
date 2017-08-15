@@ -14,7 +14,7 @@ putenv("PATH=$PATH");
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
      #classify_system($user,$id,$project,$path);
-    plot_graph_r_Biplot($user,$id,$project,$path);
+    run($user,$id,$project,$path);
     }
 
 
@@ -942,12 +942,49 @@ function plot_graph_r_Tree($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Go to change name ->";
-            change_name($user, $id, $project, $path);
+            make_biom($user, $id, $project, $path);
             break;
         }
     }
 
 }
+
+
+function make_biom($user, $id, $project, $path){
+    echo "\n";
+    echo "Run make_biom :";
+
+    $jobname = $user . "_" . $id . "_make_biom";
+    $cmd = "make.biom(shared=final.opti.mcc.shared, label=0.03,constaxonomy=final.opti_mcc.0.03.cons.taxonomy, reftaxonomy=gg_13_8_99.gg.tax, picrust=99_otu_map.txt,inputdir=$path/input/,outputdir=$path/output/)";
+    file_put_contents('owncloud/data/' . $user . '/files/' . $project . '/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish make biom ->";
+
+            break;
+        }
+    }
+}
+
+
+
+
+
+
+
 function change_name($user, $id, $project, $path){
     $dir = $path."/output";
     $file_read = array( 'svg');
@@ -992,39 +1029,6 @@ function change_name($user, $id, $project, $path){
             }
         }
     }
-}
-
-function make_biom($user, $id, $project, $path){
-    echo "\n";
-    echo "Run make_biom :";
-
-    $jobname = $user . "_" . $id . "_make_biom";
-    $cmd = "make.biom(shared=final.opti.mcc.shared, label=0.03,constaxonomy=final.opti_mcc.0.03.cons.taxonomy, reftaxonomy=gg_13_8_99.gg.tax, picrust=99_otu_map.txt,inputdir=$path/input/,outputdir=$path/output/)";
-    file_put_contents('owncloud/data/' . $user . '/files/' . $project . '/input/run.batch', $cmd);
-    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
-    exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat, $output);
-    $id_job = ""; # give job id
-    foreach ($output as $key_var => $value) {
-        if ($key_var == "1") {
-            $data = explode(":", $value);
-            $id_job = $data[1];
-        }
-    }
-    $loop = true;
-    while ($loop) {
-        $check_run = exec("qstat -j $id_job");
-        if ($check_run == false) {
-            echo "Finish make biom ->";
-
-            break;
-        }
-    }
-
-
-
-
 }
 
 

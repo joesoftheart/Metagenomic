@@ -13,7 +13,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    phylotype_picrust($user,$id,$project,$path);
+    make_biom($user,$id,$project,$path);
     }
 
 
@@ -942,12 +942,102 @@ function plot_graph_r_Tree($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Go to change name ->";
-            change_name($user, $id, $project, $path);
+            make_biom($user, $id, $project, $path);
             break;
         }
     }
 
 }
+
+
+function make_biom($user, $id, $project, $path){
+    echo "\n";
+    echo "Run make_biom :";
+    $jobname = $user . "_" . $id . "_make_biom";
+    $cmd = "make.biom(shared=final.tx.shared, label=1,constaxonomy=final.tx.1.cons.taxonomy, reftaxonomy=gg_13_8_99.gg.tax, picrust=99_otu_map.txt,inputdir=$path/input/,outputdir=$path/output/)";
+    file_put_contents('owncloud/data/' . $user . '/files/' . $project . '/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish make biom ->";
+            convert_biom($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
+function convert_biom($user, $id, $project, $path){
+    echo "\n";
+    echo "Run convert_biom :";
+
+    $jobname = $user . "_" . $id . "_convert_biom";
+    $path_input = "owncloud/data/$user/files/$project/output/final.tx.1.biom";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/normalized_otus.1.biom";
+    $path_output_txt = "owncloud/data/$user/files/$project/output/final.tx.1.txt";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y picrust-1.1.1/scripts/convert_biom $path_input $path_output_biom $path_output_txt";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish convert_biom ->";
+            phylotype_picrust($user, $id, $project, $path);
+            break;
+        }
+    }
+
+}
+
+function phylotype_picrust($user, $id, $project, $path){
+    echo "\n";
+    echo "Run phylotype_picrust :";
+
+    $path_input = "owncloud/data/$user/files/$project/output/final.tx.1.biom";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/final.biom";
+    $jobname = $user . "_" . $id . "_phylotype_picrust";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y picrust-1.1.1/scripts/qsubMoPhylo5andpicrust_norm $path_input $path_output_biom ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish phylotype_picrust ->";
+            change_name($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+
 
 function change_name($user, $id, $project, $path){
     $dir = $path."/output";
@@ -994,79 +1084,6 @@ function change_name($user, $id, $project, $path){
         }
     }
 }
-
-
-function make_biom($user, $id, $project, $path){
-    echo "\n";
-    echo "Run make_biom :";
-
-    $jobname = $user . "_" . $id . "_make_biom";
-    $cmd = "make.biom(shared=final.tx.shared, label=1,constaxonomy=final.tx.1.cons.taxonomy, reftaxonomy=gg_13_8_99.gg.tax, picrust=99_otu_map.txt,inputdir=$path/input/,outputdir=$path/output/)";
-    file_put_contents('owncloud/data/' . $user . '/files/' . $project . '/input/run.batch', $cmd);
-    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
-    exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat, $output);
-    $id_job = ""; # give job id
-    foreach ($output as $key_var => $value) {
-        if ($key_var == "1") {
-            $data = explode(":", $value);
-            $id_job = $data[1];
-        }
-    }
-    $loop = true;
-    while ($loop) {
-        $check_run = exec("qstat -j $id_job");
-        if ($check_run == false) {
-            echo "Finish make biom ->";
-
-            break;
-        }
-    }
-
-
-
-
-}
-
-
-function phylotype_picrust($user, $id, $project, $path){
-    echo "\n";
-    echo "Run phylotype_picrust :";
-
-    $jobname = $user . "_" . $id . "_phylotype_picrust";
-    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y picrust-1.1.1/scripts/qsubMoPhylo5andpicrust_norm";
-    exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat, $output);
-    $id_job = ""; # give job id
-    foreach ($output as $key_var => $value) {
-        if ($key_var == "1") {
-            $data = explode(":", $value);
-            $id_job = $data[1];
-        }
-    }
-    $loop = true;
-    while ($loop) {
-        $check_run = exec("qstat -j $id_job");
-        if ($check_run == false) {
-            echo "Finish phylotype_picrust ->";
-
-            break;
-        }
-    }
-
-
-
-
-}
-
-
-
-
-
-
-
 ?>
 
 
