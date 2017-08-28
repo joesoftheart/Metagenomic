@@ -41,6 +41,11 @@ if ($file_original = fopen($path_file_original, "r")) {
         file_put_contents($file_index_phylum, "");
     }
 
+     if (file_exists($file_phylum_count )) {
+        file_put_contents($file_phylum_count , "");
+    }
+
+
 
     for ($j = 0; $j <= $key;$j++){
         if (isset($array[$j])) {

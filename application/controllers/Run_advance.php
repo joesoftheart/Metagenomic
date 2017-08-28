@@ -45,11 +45,33 @@
 
     public function create_file_design(){
 
-      $this->load->view('excel_design');
+      $id_project = $_REQUEST['current'];
+
+      #Query data Sample_Name
+        $array_samples = $this->mongo_db->get_where('sample_name',array('project_id' => $id_project));
+           foreach ($array_samples as $r) {
+             
+             $data['sample_name'] = $r['name_sample'];
+     
+           }
+
+
+      $this->load->view('excel_design',$data);
     }
 
     public function create_file_metadata(){
-      $this->load->view('excel_metadata');
+
+      $id_project = $_REQUEST['current'];
+
+      #Query data Sample_Name
+        $array_samples = $this->mongo_db->get_where('sample_name',array('project_id' => $id_project));
+           foreach ($array_samples as $r) {
+             
+             $data['sample_name'] = $r['name_sample'];
+           }
+
+
+      $this->load->view('excel_metadata',$data);
     }
 
     public function write_design(){
@@ -456,6 +478,7 @@
            $id_project = $da_count[1];
            
            $user = "";
+           $project = "";
            $project_data = "";
            $project_analysis = ""; 
 
@@ -463,6 +486,7 @@
                 $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
                    foreach ($array_status as $r) {
                      $user = $r['user'];
+                     $project = $r['project'];
                      $project_analysis = $r['project_analysis'];
                      $project_data = $r['project_data'];    
                
@@ -482,6 +506,9 @@
            $data_read_count = array();
            $count = array();
 
+           # Name Sample
+           $name_sample = array();
+
             $myfile = fopen($file,'r') or die ("Unable to open file");
                while(($lines = fgets($myfile)) !== false){
                  
@@ -489,13 +516,32 @@
                  array_push($data_read_count, $var[0]." : ".$var[1]);
                  array_push($count, $var[1]);   
 
+                 array_push($name_sample, $var[0]);
+
               }
+
            fclose($myfile);
            $count_less = min($count);
            array_push($data_read_count, $count_less);
 
            # return data read file
            echo json_encode($data_read_count);
+
+
+       #Check count data Sample_name
+
+        $count_sample = $this->mongo_db->where(array('project_id'=> $id_project))->count('sample_name');
+
+          if($count_sample == 0){
+             $data = array('project_id' => $id_project ,'user' => $user, 'project' => $project,'project_data' => $project_data,'name_sample' => $name_sample);
+             
+             $this->insert_name_sample($data);
+
+          }else{
+
+           $data = array('name_sample' => $name_sample);
+           $this->update_name_sample($id_project,$data);
+         }
 
       }
 
@@ -630,6 +676,9 @@
                   elseif ($project_analysis == "otu") {
 
                     $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
+                    
+                    #set classifly = otu
+                    $classifly = $project_analysis;
                   }
 
                   $sam_name = array();
@@ -964,7 +1013,7 @@
 
          echo json_encode(array($id_job,$id_project));
 
-        //echo json_encode(array($user, $project ,$path_input, $path_out ,$path_log, $level ,$size_alpha ,$size_beta ,$group_sam ,$group_ven, $d_upgma_st ,$d_upgma_me ,$d_pcoa_st ,$d_pcoa_me, $nmds ,$d_nmds_st ,$d_nmds_me ,$file_design ,$file_metadata, $ah_mova ,$correlation, $method ,$axes));
+     
        # Update data status-process Step 3
 
          $data = array('status' => '1' ,'step_run' => '3' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'f_design' => $file_design ,'f_metadata' => $file_metadata , 'project_data' => $project_data );
@@ -1096,8 +1145,8 @@
 
 
 
-
-      public function insert_status($data){
+    
+     public function insert_status($data){
       
             # insert data status-process
             $this->mongo_db->insert('status_process', $data);
@@ -1109,6 +1158,24 @@
           
            # update data status-process
             $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('status_process'); 
+           
+          
+
+     }
+
+
+    public function insert_name_sample($data){
+      
+            # insert data sample_name
+            $this->mongo_db->insert('sample_name', $data);
+
+
+     }
+
+     public function update_name_sample($id_project,$data){
+          
+           # update data sample_name
+            $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('sample_name'); 
            
           
 

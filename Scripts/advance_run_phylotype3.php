@@ -1083,14 +1083,13 @@ function create_input_biplot($user,$project,$path_in,$path_out){
         }
     }
 
-   
 
 }
 
 
 
 
-    function plot_graph_r_heatmap($user,$project,$path_in,$path_out){
+  function plot_graph_r_heatmap($user,$project,$path_in,$path_out){
 
 
      echo "Run plot_graph_r_heatmap "."\n";
@@ -1298,8 +1297,41 @@ function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
              
-              change_name($user,$project,$path_in,$path_out);
+              plot_graph_r_Tree($user,$project,$path_in,$path_out);
 
+            break;
+        }
+    }
+
+}
+
+
+function plot_graph_r_Tree($user,$project,$path_in,$path_out){
+
+    echo "Run plot_graph_r_Tree "."\n";
+    $path_input_tree = "owncloud/data/$user/files/$project/output/final.tx.morisitahorn.2.lt.ave.tre";
+    $path_output_tree = "owncloud/data/$user/files/$project/output/Tree.png";
+
+    $jobname = $user."_plot_graph_r_Tree";
+    $log = $GLOBALS['path_log'];
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/PlotTreeGraph.R $path_input_tree $path_output_tree";
+   
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+
+            change_name($user,$project,$path_in,$path_out);
             break;
         }
     }

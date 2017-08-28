@@ -19,6 +19,11 @@ if (isset($this->session->userdata['logged_in'])) {
 
 <button type="button" id="btnAdd">Add new Rows</button>
 <button type="button" id="btnRemoveRow">Remove Rows</button>
+=======
+
+<!-- <button type="button" id="btnAdd">Add new Rows </button>
+<button type="button" id="btnRemoveRow">Remove Rows</button> -->
+
 
 <button type="button" id="btnAddCol">Add new Column</button>
 <button type="button" id="btnRemoveCol">Remove Column</button>
@@ -32,15 +37,21 @@ if (isset($this->session->userdata['logged_in'])) {
 <form name="myform" id="myform" method="post">
     <table id="blacklistgrid">
         <tr id="Row1">
-            <td><input type="text" placeholder="Header 1"/></td>
-            <td><input type="text" placeholder="Header 2"/></td>
-            <td><input type="text" placeholder="Header 3"/></td>
 
+            <td><input type="text"  value="Source"  /></td>
+            <td><input type="text"  placeholder="Header 2" /></td>
+            <td><input type="text"  placeholder="Header 3" /></td>
+            
+>
         </tr>
 
-        <tr id="Row2">
+       <?php foreach ($sample_name as $key => $value) { ?>
+
+         <tr id="Row2">
             <td>
-                <input type="text" placeholder="sample"/>
+
+                <input type="text"   value="<?=$value?>" />
+
             </td>
             <td>
                 <input type="number" step="0.01" onkeypress='return validateNumber(event)' placeholder="number"/>
@@ -49,7 +60,10 @@ if (isset($this->session->userdata['logged_in'])) {
                 <input type="number" step="0.01" onkeypress='return validateNumber(event)' placeholder="number"/>
             </td>
 
-        </tr>
+         </tr>
+
+      <?php   }  ?>
+
     </table>
 
 </form>
@@ -60,37 +74,68 @@ if (isset($this->session->userdata['logged_in'])) {
 
 <script>
 
-    $(document).ready(function () {
+
+$(document).ready(function () {
+
+     
+     // $('#btnAdd').click(function () {
+     //     var count = 1,
+     //         first_row = $('#Row2');
+     //     while (count-- > 0) first_row.clone().appendTo('#blacklistgrid');
+     // });
+
+     
+     var myform = $('#myform'),
+         col_num = 4;
+
+     $('#btnAddCol').click(function () {
+         myform.find('tr').each(function(){
+           var trow = $(this);
+             if(trow.index() === 0){
+                 trow.append('<td><input type="text"  placeholder=Header'+col_num+'></td>');
+             }else{
+                trow.append('<td><input type="number" step="0.01"  onkeypress="return validateNumber(event)" placeholder="number"/></td>');
+             }
+            
+         });
+         col_num += 1;
+     });
+     
+     // $('#btnRemoveRow').click(function () {
+     //   var row_count = $('#blacklistgrid  #Row2').length;
+     //   if(row_count > 1){
+     //       $('#Row2').remove();
+     //   }
+
+     // });
+
+     
+     $('#btnRemoveCol').click(function () {
+
+      	  var column_count = $('#blacklistgrid #Row1 td').length;
+      	  if (column_count > 2){
+              $('table tr').find('td:eq(-1),th:eq(-1)').remove();
+
+              col_num -= 1;
+      	  }
+     });
 
 
-        $('#btnAdd').click(function () {
-            var count = 1,
-                first_row = $('#Row2');
-            while (count-- > 0) first_row.clone().appendTo('#blacklistgrid');
-        });
+ });
 
 
-        var myform = $('#myform'),
-            col_num = 4;
 
-        $('#btnAddCol').click(function () {
-            myform.find('tr').each(function () {
-                var trow = $(this);
-                if (trow.index() === 0) {
-                    trow.append('<td><input type="text"  placeholder=Header' + col_num + '></td>');
-                } else {
-                    trow.append('<td><input type="number" step="0.01"  onkeypress="return validateNumber(event)" placeholder="number"/></td>');
-                }
-
-            });
-            col_num += 1;
-        });
-
-        $('#btnRemoveRow').click(function () {
-            var row_count = $('#blacklistgrid  #Row2').length;
-            if (row_count > 1) {
-                $('#Row2').remove();
-            }
+function validateNumber(event) {
+    var key = window.event ? event.keyCode : event.which;
+    if (event.keyCode === 8 || event.keyCode === 46 ) {
+        return true;
+    } else if ( key < 48 || key > 57 ) {
+        return false;
+    } else {
+        return true;
+    }
+}
+>>>>>>> 78a410303ff1cee517a5c7bd8cb8b384609891c9
 
         });
 

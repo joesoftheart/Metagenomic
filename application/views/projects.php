@@ -1161,6 +1161,107 @@ if (isset($this->session->userdata['logged_in'])) {
                                                         </div>
                                                     </div>
 
+                                                      <div class="col-lg-9 col-lg-push-2 ">
+                                                           Community membership
+                                                               <div class="col-lg-9 col-lg-push-1 ">
+                                                                 <input type='checkbox' name='nmds_me[]' value='jclass' class="nmds" disabled> jclass <br/>
+                                                                 <input type='checkbox' name='nmds_me[]' value='lennon 'class="nmds" disabled> lennon 
+                                                                </div>
+                                                     </div>
+
+
+                                                     <div class="col-lg-12 uk-margin"> </div>
+                                                    
+                                                    
+                                                     <div class="col-lg-10 col-lg-push-1" id="plus">
+                                                           <label> Optional <span class="glyphicon glyphicon-plus-sign" id="plus_option"> </span> </label>
+                                                           
+                                                     </div>
+                                                     <div class="col-lg-10 col-lg-push-1" id="move" style="display:none">
+                                                           <label> Optional <span class="glyphicon glyphicon-minus-sign" id="move_option"></span> </label>
+                                                           
+                                                     </div>
+
+                                                     <div class="optional" style="display:none">
+                                                     <div class="col-lg-8 col-lg-push-2 "> 
+                                                         <label> Create file design           
+                                                          <a href="<?php echo site_url('Run_advance/create_file_design');?>?current=<?=$current_project?>" target="_blank">
+                                                               <input type="button" value="create design" id="check_design">  
+                                                          </a>
+                                                         </label>
+                                                         <div>
+                                                         <p id="pass_design" class="fa fa-file-text-o" > No file design </p> 
+                                                         <input type="hidden" id="p_design" name="f_design" value="nodesign">
+                                                         <img id="img_design" src="">
+                                                         </div>
+
+                                                     </div>
+                                                     <div class="col-lg-8 col-lg-push-2 ">                
+                                                     <div class="radio">
+                                                         <label >
+                                                         <input name="optionsRadios2" value="amova" type="radio"> Amova
+                                                         </label>
+                                                     </div>
+                                                     <div class="radio">
+                                                         <label>
+                                                         <input name="optionsRadios2"  value="homova" type="radio" > Homova
+                                                         </label>
+                                                     </div>
+                                                     </div>
+                                                     <div class="col-lg-10 col-lg-push-2 uk-margin"> 
+                                                         <label> Create file metadata  
+                                                             <a href="<?php echo base_url('Run_advance/create_file_metadata');?>?current=<?=$current_project?>"  target="_blank">
+                                                               <input type="button" value="create metadata" id="check_metadata">  
+                                                          </a>
+                                                         </label>
+                                                         <div>
+                                                           <p id="pass_metadata" class="fa fa-file-text-o"> No file metadata </p>
+                                                           <input type="hidden" id="p_metadata" name="f_metadata" value="nometadata">
+                                                           <img id="img_metadata" src="">
+                                                         </div>
+                                                     </div>
+
+                                                     <div class="col-lg-12 col-lg-push-2"> 
+                                                    
+                                                         <label class="col-lg-6">
+                                                             <input type="checkbox" id="correlation_meta"  value="meta" > correlation with metadata 
+                                                         </label>
+
+                                                         <div class="col-lg-3 col-lg-pull-1">
+                                                             <select class="uk-select" name="method_meta">
+                                                             <option value="spearman"> spearman </option>
+                                                             <option value="pearson"> pearson </option>     
+                                                             </select>
+                                                         </div>
+                                                         <div class="col-lg-2 col-lg-pull-1">
+                                                            <select class="uk-select" name="axes_meta">
+                                                                  <option value="2"> 2 </option>
+                                                                  <option value="3"> 3 </option>
+                                                             </select>
+                                                         </div>
+
+                                                      
+                                                     </div> 
+
+                                                     <div class="col-lg-12 col-lg-push-2"> 
+                                                    
+                                                         <label class="col-lg-6">
+                                                            <input type="checkbox" id="correlation_otu"  value="otu" > correlation of each OTU
+                                                         </label>
+
+                                                         <div class="col-lg-3 col-lg-pull-1">
+                                                            <select class="uk-select" name="method_otu">
+                                                             <option value="spearman"> spearman </option>
+                                                             <option value="pearson"> pearson </option>     
+                                                             </select>
+                                                         </div>
+                                                         <div class="col-lg-2 col-lg-pull-1">
+                                                            <select class="uk-select" name="axes_otu">
+                                                                  <option value="2"> 2 </option>
+                                                                  <option value="3"> 3 </option>
+                                                             </select>
+                                                         </div>
+                                                      </div>
 
                                                     <div class="col-lg-12 uk-margin"></div>
 
@@ -1309,16 +1410,18 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <b>Ven diagram</b>
-                                                <div id="sharedsobs_img">
 
-                                                </div>
-
+                                                 <div id="sharedsobs_img">
+                                                   <img id="sharedsobs_img_pass" src="#"/>
+                                                 </div>
+                                                
                                             </div>
                                             <div class="col-lg-6">
                                                 <b>Heatmap</b>
-                                                <div id="heartmap_img">
+                                                 <div id="heartmap_img">
+                                                     <img id="heartmap_img_pass" src="#" />
+                                                 </div>
 
-                                                </div>
 
                                             </div>
                                         </div>
@@ -1326,16 +1429,18 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <hr class="uk-divider-icon">
 
                                         <div class="row">
-                                            <div class="col-lg-6">
-                                                <b>*Heatmap-Jclass</b><br>
-                                                <div id="jclass_img">
 
-                                                </div>
-
+                                            <div class="col-lg-6" >
+                                                <b>Bioplot</b><br>
+                                                 <div id="bioplot_otu_img">
+                                                     <img id="bioplot_otu_img_pass"  src="#" /> 
+                                                 </div>
+                                               
                                             </div>
-                                            <div class="col-lg-6">
-                                                <b>*Heatmap-Thetayc</b><br>
-                                                <div id="thetayc_img">
+                                            <div class="col-lg-6" >
+                                                <b>Bioplot</b><br>
+                                                <div id="bioplot_meta_img">
+                                                     <img id="bioplot_meta_img_pass"  src=""/>
 
                                                 </div>
 
@@ -1348,6 +1453,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 <b>Rarefaction</b>
                                                 <div id="rare_img">
 
+                                                  <img id="rare_img_pass"  src="#" /> 
+
                                                 </div>
 
 
@@ -1356,17 +1463,20 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 <b>RelativePhylum</b>
                                                 <div id="abun_img">
 
-                                                </div>
+                                                   <img id="abun_img_pass"  src="#" />
+                              
+                                                </div>  
 
                                             </div>
                                         </div>
                                         <hr class="uk-divider-icon">
                                         <b>NMDS</b>
                                         <div class="row">
-                                            <div class="col-lg-6 col-lg-offset-3">
-                                                <div id="nmd_img">
 
-                                                </div>
+                                            <div class="col-lg-6 col-lg-offset-3" >
+                                               <div id="nmd_img">
+                                                   <img id="nmd_img_pass" src="#" />;  
+                                               </div>
 
                                             </div>
 
@@ -1377,7 +1487,9 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <div class="col-lg-6 col-lg-offset-3">
                                                 <div id="alpha_img">
 
-                                                </div>
+                                                   <img id="alpha_img_pass" src="#" />
+                                                       
+                                                </div> 
 
                                             </div>
 
@@ -1419,26 +1531,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
     </script>
 
-    <script>
-        //$(document).ready(function () {
-        //            $("#btn_prephy").click(function () {
-        //                $.ajax({
-        //                    type: "POST",
-        //                    url: "<?php //echo base_url();?>//projects/run_prepare_phylotype",
-        //                    data: {text: $("#text").val()},
-        //                    dataType: "text",
-        //                    cache:false,
-        //                    success:
-        //                        function(data){
-        //                            $("#show_prephy").html(data);
-        //                        }
-        //                });// you have missed this bracket
-        //                return false;
-        //            });
-        //
-        //        });
 
-    </script>
     <input type="hidden" id="advance_num" value="0">
 
     <!--  Advance Script -->
@@ -1458,61 +1551,62 @@ if (isset($this->session->userdata['logged_in'])) {
             }
 
             $.ajax({
-                type: "post",
-                datatype: "json",
-                url: "<?php echo base_url('Run_advance/recheck'); ?>",
-                data: {data_status: pid},
-                success: function (data) {
-                    var status = $.parseJSON(data);
-                    if (status[0] == "0" && status[1] == "4") {
-                        alert('No Run Queue');
 
-                        $('#sharedsobs_img').html('<img id="sharedsobs_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/sharedsobs.svg");?>">');
-                        $('#heartmap_img').html('<img id="heartmap_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/heartmap.png");?>">');
+                   type:"post",
+                   datatype:"json",
+                   url:"<?php echo base_url('Run_advance/recheck'); ?>",
+                   data:{data_status: pid},
+                   success:function(data){
+                        var status = $.parseJSON(data);
+                        if(status[0] == "0" && status[1] == "4"){
+                           alert('No Run Queue');
+    
+                             $('#sharedsobs_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/sharedsobs.svg')?>");
+                             $('#heartmap_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/heartmap.png')?>");
+                             
+                             $('#bioplot_otu_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/NewNMDS_withBiplotwithOTU.png')?>");
+                             $('#bioplot_meta_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/NewNMDS_withBiplotwithMetadata.png')?>");
+                             
+                             $('#rare_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Rare.png')?>");
+                             $('#abun_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Abun.png')?>");
 
-                        $('#jclass_img').html('<img id="jclass_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithOTU.png"); ?> ">');
-                        $('#thetayc_img').html('<img id="thetayc_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithMetadata.png"); ?> ">');
+                             $('#nmd_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/NMD.png')?>");
+                             $('#alpha_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Alpha.png')?>");
+                        
+                        }else if(status[0] != "0" && status[1] == "1" && check == 1){
+                           alert('Run step '+status[1] );
+                                 $(".Pre-test").hide();
+                                 $(".Pre-show").show();
+                                 var data = new Array(status[2],pid);
+                                 checkrun(data);
+                                 $('#test_run').html('Ckecking Process Queue');
 
-                        $('#rare_img').html('<img id="rare_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Rare.png");?>">');
-                        $('#abun_img').html('<img id="abun_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Abun.png");?>">');
-
-                        $('#nmd_img').html('<img id="nmd_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/NMD.png");?>">');
-                        $('#alpha_img').html('<img id="alpha_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/Alpha.png");?>">');
-
-                    } else if (status[0] != "0" && status[1] == "1" && check == 1) {
-                        alert('Run step ' + status[1]);
-                        $(".Pre-test").hide();
-                        $(".Pre-show").show();
-                        var data = new Array(status[2], pid);
-                        checkrun(data);
-                        $('#test_run').html('Ckecking Process Queue');
-
-                    } else if (status[0] != "0" && status[1] == "2" && check == 1) {
-                        alert('Run step ' + status[1]);
-                        $('.uk-child-width-expand > .pre').next('li').find('a').trigger('click');
-                        $(".Pre-test2").hide();
-                        $(".Pre-show2").show();
-                        var data = new Array(status[2], pid);
-                        check_subsample(data);
-                        $('#test_run2').html('Ckecking Process Queue');
+                        }else if(status[0] != "0" && status[1] == "2" && check == 1){
+                            alert('Run step '+status[1] );
+                            $('.uk-child-width-expand > .pre').next('li').find('a').trigger('click');
+                                 $(".Pre-test2").hide();
+                                 $(".Pre-show2").show();
+                                 var data = new Array(status[2],pid);
+                                 check_subsample(data);
+                                 $('#test_run2').html('Ckecking Process Queue');
 
 
-                    } else if (status[0] != "0" && status[1] == "3" && check == 1) {
-                        alert('Run step ' + status[1]);
-                        $('.uk-child-width-expand > .pre2').next('li').find('a').trigger('click');
-                        $(".Pre-test3").hide();
-                        $(".Pre-show3").show();
-                        var data = new Array(status[2], pid);
-                        ckeck_analysis(data);
-                        $('#test_run3').html('Ckecking Process Queue');
-                    }
-
-                },
-                error: function (e) {
-                    console.log(e.message);
-                }
-            });
-
+                        }else if(status[0] != "0" && status[1] == "3" && check == 1){
+                            alert('Run step '+status[1] );
+                            $('.uk-child-width-expand > .pre2').next('li').find('a').trigger('click');
+                               $(".Pre-test3").hide();
+                               $(".Pre-show3").show();
+                               var data = new Array(status[2],pid);
+                               ckeck_analysis(data);
+                               $('#test_run3').html('Ckecking Process Queue');
+                        } 
+                      
+                   },
+                   error:function(e){
+                     console.log(e.message);
+                   }
+           });
+            
         }
 
 
@@ -1556,22 +1650,10 @@ if (isset($this->session->userdata['logged_in'])) {
                 $("#plus").show();
             });
 
-            // $("#back-test").click(function(){
-            //      $(".Pre-show").hide();
-            //      $(".Pre-test").show();
-            // });
 
-            // $("#back-test2").click(function(){
-            //      $(".Pre-show2").hide();
-            //      $(".Pre-test2").show();
-            // });
+          
+           $("#back_preprocess").click(function(){
 
-            // $("#back-test3").click(function(){
-            //      $(".Pre-show3").hide();
-            //      $(".Pre-test3").show();
-            // });
-
-            $("#back_preprocess").click(function () {
 
                 $('.uk-child-width-expand > .pre2').prev('li').find('a').trigger('click');
 
@@ -1592,28 +1674,88 @@ if (isset($this->session->userdata['logged_in'])) {
 
             });
 
-            var correlation_meta = null;
-            var correlation_otu = null;
+            var correlation_otu  = null;
 
-            $('#correlation_meta').change(function () {
-                if ($(this).is(':checked')) {
-                    correlation_meta = $('#correlation_meta').val();
-                    console.log(correlation_meta);
-                } else {
-                    correlation_meta = null;
-                    console.log(correlation_meta)
-                }
+           $('#correlation_meta').change(function(){
+                     if($(this).is(':checked')){
+                        correlation_meta = $('#correlation_meta').val();
+                        //console.log(correlation_meta);
+                     }else{
+                        correlation_meta = null;
+                        //console.log(correlation_meta)
+                     }
             });
 
-            $('#correlation_otu').change(function () {
-                if ($(this).is(':checked')) {
-                    correlation_otu = $('#correlation_otu').val();
-                    console.log(correlation_otu);
-                } else {
-                    correlation_otu = null;
-                    console.log(correlation_otu);
-                }
+           $('#correlation_otu').change(function(){
+                     if($(this).is(':checked')){
+                        correlation_otu = $('#correlation_otu').val();
+                        //console.log(correlation_otu);
+                     }else{
+                        correlation_otu = null;
+                        //console.log(correlation_otu);
+                     }
+
             });
+
+
+             var ven1,ven2,ven3,ven4;
+             var check_ven_all = null;
+   
+             $('#venn1').change(function(){
+                 ven1 = $('#venn1').val();
+                 if(ven1 != '0'){
+                     if(ven1 === ven2 || ven1 === ven3 || ven1 === ven4){
+                         alert('Duplicate value');
+                         check_ven_all = "stop";
+                     }else{
+                         check_ven_all = "start";
+                     }
+                 }
+                
+                 
+             });
+              $('#venn2').change(function(){
+                 ven2 = $('#venn2').val();
+                  if(ven2 != '0'){
+                     if(ven2 === ven1 || ven2 === ven3 ||ven2 === ven4){
+                         alert('Duplicate value');
+                         check_ven_all = "stop";
+                    }else{
+                         check_ven_all = "start";
+                    }
+                    
+                 }
+                
+             });
+             $('#venn3').change(function(){
+                 ven3 = $('#venn3').val();
+                  if(ven3 != '0'){
+                     if(ven3 === ven1 || ven3 === ven2 || ven3 === ven4 ){
+                          alert('Duplicate value');
+                         check_ven_all = "stop";
+                    }else{
+                         check_ven_all = "start";
+                    } 
+                 }
+                 
+             });
+              $('#venn4').change(function(){
+                 ven4 = $('#venn4').val();
+                  if(ven4 != '0'){
+                    if(ven4 === ven1 || ven4 === ven2 || ven4 === ven3){
+                          alert('Duplicate value');
+                         check_ven_all = "stop";
+                     }else{
+                         check_ven_all = "start";
+                     }
+                 }
+                
+             });
+
+            
+
+              
+            
 
             var design_stop = "";
             var metadata_stop = "";
@@ -1670,98 +1812,110 @@ if (isset($this->session->userdata['logged_in'])) {
                 design_stop = "stop";
                 metadata_stop = "stop";
 
+                 if(username != "" && project != "" &&  level != "" &&  venn1 != "0" && venn2 != "0" && check_ven_all == "start" ){
 
-                if (username != "" && project != "" && level != "" && venn1 != "" && venn2 != "" && venn3 != "" && venn4 != "" && venn1 != "0" && venn2 != "0") {
 
-                    if ((upgma_st != "" || upgma_me != "")) {
+                     if((d_upgma_st != 0 || d_upgma_me != 0 ) && (d_pcoa_st != 0 || d_pcoa_me != 0 || d_nmds_st != 0 || d_nmds_me != 0 )){
 
-                        var array_data = new Array(username, project, level, ch_alpha, size_alpha, ch_beta, size_beta, venn1, venn2, venn3, venn4, d_upgma_st, d_upgma_me, d_pcoa_st, d_pcoa_me, nmds, d_nmds_st, d_nmds_me, file_design, file_metadata, ah_mova, correlation_meta, method_meta, axes_meta, correlation_otu, method_otu, axes_otu);
-
-                        $(".Pre-test3").hide();
-                        $(".Pre-show3").show();
-                        get_analysis(array_data);
-                    }
-
-                }
+                         var array_data = new Array(username,project,level,ch_alpha,size_alpha,ch_beta,size_beta,venn1,venn2,venn3,venn4,d_upgma_st,d_upgma_me,d_pcoa_st,d_pcoa_me,nmds,d_nmds_st,d_nmds_me,file_design,file_metadata,ah_mova,correlation_meta,method_meta,axes_meta,correlation_otu,method_otu,axes_otu);
+                        
+                         $(".Pre-test3").hide();
+                         $(".Pre-show3").show();
+                         get_analysis(array_data);
+                         //alert('Get Analysis');
+                     }
+                      
+                 }
 
             });
 
 
             $("#check_design").click(function () {
-                design_stop = "start";
-                var user = "<?php echo $username ?>";
-                var project = "<?php echo $current_project ?>";
-                var time = 10;
-                var interval = null;
-                interval = setInterval(function () {
-                    time--;
-                    if (time === 0) {
-                        $.ajax({
-                            type: "post",
-                            datatype: "json",
-                            url: "<?php echo base_url('Run_advance/check_file_design');?>?user=" + user + "&project_id=" + project,
-                            success: function (data) {
-                                var design = JSON.parse(data);
-                                if (design != "No File" || design_stop == "stop") {
-                                    clearInterval(interval);
-                                    $('#pass_design').text(" " + design);
-                                    document.getElementById('p_design').value = design;
-                                }
-                                else {
-                                    time = 5;
-                                }
-                            }
-                        });
-                    }
+                 design_stop = "start";
+                 var user = "<?php echo $username ?>";
+                 var project = "<?php echo $current_project ?>";
+                 var time = 10;
+                 var interval = null;
+                 interval = setInterval(function(){   
+                 time--;
+                   $('#img_design').attr("src","<?php echo base_url('images/ajax-loader.gif')?>");
+                    
+                    if(time === 0){
+                     $.ajax({ 
+                       type:"post",
+                       datatype:"json",
+                       url:"<?php echo base_url('Run_advance/check_file_design');?>?user="+user+"&project_id="+project,
+                         success:function(data){
+                            var design = JSON.parse(data);
+                             if(design != "No File" || design_stop == "stop"){
+                                   clearInterval(interval);
+                                   $('#pass_design').text(" "+design);
+                                   document.getElementById('p_design').value = design;
+                                   $('#img_design').attr("src","<?php echo base_url('images/check.png')?>");
+                             }
+                             else{  
+                                  time = 5; 
 
-                }, 1000);
+                             } 
+                         }
+                     });
+                   }
+
+                 },1000);      
             });
 
-            $("#check_metadata").click(function () {
-                metadata_stop = "start";
-                var user = "<?php echo $username ?>";
-                var project = "<?php echo $current_project ?>";
-                var time = 10;
-                var interval = null;
-                interval = setInterval(function () {
-                    time--;
-                    if (time === 0) {
-                        $.ajax({
-                            type: "post",
-                            datatype: "json",
-                            url: "<?php echo base_url('Run_advance/check_file_metadata');?>?user=" + user + "&project_id=" + project,
-                            success: function (data) {
-                                var metadata = JSON.parse(data);
-                                if (metadata != "No File" || metadata_stop == "stop") {
-                                    clearInterval(interval);
-                                    $('#pass_metadata').text(" " + metadata);
-                                    document.getElementById('p_metadata').value = metadata;
-                                }
-                                else {
-                                    time = 5;
-                                }
-                            }
-                        });
-                    }
+             $("#check_metadata").click(function(){
+                 metadata_stop = "start";
+                 var user = "<?php echo $username ?>";
+                 var project = "<?php echo $current_project ?>";
+                 var time = 10;
+                 var interval = null;
+                 interval = setInterval(function(){   
+                 time--;
+                  $('#img_metadata').attr("src","<?php echo base_url('images/ajax-loader.gif')?>");
+                    
+                    if(time === 0){
+                     $.ajax({ 
+                       type:"post",
+                       datatype:"json",
+                       url:"<?php echo base_url('Run_advance/check_file_metadata');?>?user="+user+"&project_id="+project,
+                         success:function(data){
+                             var metadata = JSON.parse(data);
+                             if(metadata  != "No File" || metadata_stop == "stop"){
+                                   clearInterval(interval);
+                                   $('#pass_metadata').text(" "+metadata);
+                                   document.getElementById('p_metadata').value = metadata;
+                                   $('#img_metadata').attr("src","<?php echo base_url('images/check.png')?>");
+                             }
+                             else{  
+                                  time = 5;  
+                             } 
+                         }
+                     });
+                   }
 
-                }, 1000);
-
+                 },1000);      
+                  
             });
 
 
-            $('#radio_pcoa').on('change', function () {
-                //alert($('#radio_pcoa').val());
+            $('#radio_pcoa').on('change', function() {
                 $(".nmds").attr("disabled", true);
                 $(".nmds").prop('checked', false);
                 $(".pcoa").removeAttr("disabled");
 
             });
 
-            $('#radio_nmds').on('change', function () {
-                //alert($('#radio_nmds').val()); 
+             $('#radio_nmds').on('change', function() {
                 $(".pcoa").attr("disabled", true);
                 $(".pcoa").prop('checked', false);
                 $(".nmds").removeAttr("disabled");
+                
+              });
+
+
+       });
+
 
             });
         });
@@ -1893,181 +2047,187 @@ if (isset($this->session->userdata['logged_in'])) {
 
         }
 
-        function ckeck_analysis(job_analy) {
-            var user = "<?php echo $username ?>";
-            var project = "<?php echo $project ?>";
-            var time = 30;
-            var interval = null;
-            interval = setInterval(function () {
-                time--;
-                $('#time3').html(time);
-                if (time === 0) {
-                    $.ajax({
-                        type: "post",
-                        datatype: "json",
-                        url: "<?php echo base_url('Run_advance/check_analysis'); ?>",
-                        data: {job_analysis: job_analy},
-                        success: function (data) {
-                            //var analysis = JSON.parse(data);
-                            var analysis = $.parseJSON(data);
-                            if (analysis[0] == "0") {
-                                clearInterval(interval);
 
-                                $('#sharedsobs_img').html('<img id="sharedsobs_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/sharedsobs.svg");?>">');
-                                $('#heartmap_img').html('<img id="heartmap_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/heartmap.png");?>">');
+        function ckeck_analysis(job_analy){
+             var user = "<?php echo $username ?>";
+             var project = "<?php echo $project ?>";
+             var time = 30;
+             var interval = null;
+            interval = setInterval(function(){   
+              time--;
+              $('#time3').html(time);
+              if(time === 0){
+                $.ajax({ 
+                    type:"post",
+                    datatype:"json",
+                    url:"<?php echo base_url('Run_advance/check_analysis'); ?>",
+                    data:{job_analysis: job_analy },
+                    success:function(data){
+                      //var analysis = JSON.parse(data);
+                      var analysis = $.parseJSON(data);
+                      if( analysis[0] == "0"){
+                         clearInterval(interval);
 
-                                $('#jclass_img').html('<img id="jclass_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithOTU.png"); ?> ">');
-                                $('#thetayc_img').html('<img id="thetayc_img_pass" height="80%" width="80%"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithMetadata.png"); ?> ">');
+                             $('#sharedsobs_img').html('<img id="sharedsobs_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/sharedsobs.svg");?>">');
+                             $('#heartmap_img').html('<img id="heartmap_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/heartmap.png");?>">');
+                             
+                             $('#bioplot_otu_img').html('<img id="bioplot_otu_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithOTU.png"); ?> ">'); 
+                             $('#bioplot_meta_img').html('<img id="bioplot_meta_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/NewNMDS_withBiplotwithMetadata.png"); ?> ">'); 
 
-                                $('#rare_img').html('<img id="rare_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Rare.png");?>">');
-                                $('#abun_img').html('<img id="abun_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Abun.png");?>">');
+                             $('#rare_img').html('<img id="rare_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Rare.png");?>">');
+                             $('#abun_img').html('<img id="abun_img_pass"  src="<?php echo base_url("img_user/'+user+'/'+project+'/Abun.png");?>">');
 
-                                $('#nmd_img').html('<img id="nmd_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/NMD.png");?>">');
-                                $('#alpha_img').html('<img id="alpha_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/Alpha.png");?>">');
+                            
+                             $('#nmd_img').html('<img id="nmd_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/NMD.png");?>">');
+                             $('#alpha_img').html('<img id="alpha_img_pass" src="<?php echo base_url("img_user/'+user+'/'+project+'/Alpha.png");?>">');
+                           
+                             $('.uk-child-width-expand > .pre3').next('li').find('a').trigger('click'); 
+                             $(".Pre-show3").hide();
+                             $(".Pre-test3").show();
 
-                                $('.uk-child-width-expand > .pre3').next('li').find('a').trigger('click');
-                                $(".Pre-show3").hide();
-                                $(".Pre-test3").show();
+                             $('#bar_pre3').width(0+"%");
+                             $('.percent_pre3').html(0+"%");
 
-                                $('#bar_pre3').width(0 + "%");
-                                $('.percent_pre3').html(0 + "%");
+                      }else{
 
-                            } else {
+                         var num = analysis[1];
+                         $('#bar_pre3').width(num+"%");
+                         $('.percent_pre3').html(num+"%");
+                         time = 30;  
+                      }  
+                    },
+                    error:function(e){
+                      console.log(e.message);
+                    }
+                });
+              }
+          },1000);
 
-                                var num = analysis[1];
-                                $('#bar_pre3').width(num + "%");
-                                $('.percent_pre3').html(num + "%");
-                                time = 30;
-                            }
-                        },
-                        error: function (e) {
-                            console.log(e.message);
-                        }
-                    });
-                }
-            }, 1000);
 
         }
 
+       function get_subsample(array_data){
+           var data_value = array_data;
+           $.ajax({
+                   type:"post",
+                   datatype:"json",
+                   url:"<?php echo base_url('Run_advance/run_sub_sample'); ?>",
+                   data:{data_sample: data_value},
+                   success:function(data){
+                        var job_sample = $.parseJSON(data);
+                        check_subsample(job_sample);
+                   },
+                   error:function(e){
+                     console.log(e.message);
+                   }
+           });
+   
+       }
 
-        function get_subsample(array_data) {
-            var data_value = array_data;
-            $.ajax({
-                type: "post",
-                datatype: "json",
-                url: "<?php echo base_url('Run_advance/run_sub_sample'); ?>",
-                data: {data_sample: data_value},
-                success: function (data) {
-                    var job_sample = $.parseJSON(data);
-                    check_subsample(job_sample);
-                },
-                error: function (e) {
-                    console.log(e.message);
-                }
-            });
+                                 
+       function check_subsample(jobsample){
+         
+          var time = 20;
+          var interval = null;
+          interval = setInterval(function(){   
+              time--;
+              $('#time2').html(time);
+              if(time === 0){
+                $.ajax({ 
+                    type:"post",
+                    datatype:"json",
+                    url:"<?php echo base_url('Run_advance/check_subsample'); ?>",
+                    data:{job_sample: jobsample },
+                    success:function(data){
+                     var sample_data = $.parseJSON(data);
+                      if(sample_data[0] == "0"){
+                           
+                           if(sample_data[1] =="gg"){
+                               $('.Greengene').show();
+                               $('.Silva_RDP').hide();
+                               $('.Otu').hide();
+                               
+                               document.getElementById('g_level').setAttribute("name","level");
 
-        }
+                           }else if((sample_data[1] == "silva") || (sample_data[1] == "rdp")) {
+                               $('.Greengene').hide();
+                               $('.Silva_RDP').show();
+                               $('.Otu').hide();
+                               document.getElementById('sr_level').setAttribute("name","level");
+                           }
+                           else{
 
+                               $('.Greengene').hide();
+                               $('.Silva_RDP').hide();
+                               $('.Otu').show();
+                               document.getElementById('o_level').setAttribute("name","level");
 
-        function check_subsample(jobsample) {
+                           }
 
-            var time = 20;
-            var interval = null;
-            interval = setInterval(function () {
-                time--;
-                $('#time2').html(time);
-                if (time === 0) {
-                    $.ajax({
-                        type: "post",
-                        datatype: "json",
-                        url: "<?php echo base_url('Run_advance/check_subsample'); ?>",
-                        data: {job_sample: jobsample},
-                        success: function (data) {
-                            var sample_data = $.parseJSON(data);
-                            if (sample_data[0] == "0") {
+                            /*start div value vene*/
+                             var group = "";
+                                 group += "<option value=0> </option>";
+                                 for (var i=0; i < sample_data[2].length; i++) {
+                                   group += "<option value="+sample_data[2][i]+">"+sample_data[2][i]+"</option>";    
+                                 }
 
-                                if (sample_data[1] == "gg") {
-                                    $('.Greengene').show();
-                                    $('.Silva_RDP').hide();
-                                    $('.Otu').hide();
+                                 $('#venn1').html(group);
+                                 $('#venn2').html(group);
+                                 $('#venn3').html(group);
+                                 $('#venn4').html(group);
 
-                                    document.getElementById('g_level').setAttribute("name", "level");
+                             /*end div value vene*/
 
-                                } else if ((sample_data[1] == "silva") || (sample_data[1] == "rdp")) {
-                                    $('.Greengene').hide();
-                                    $('.Silva_RDP').show();
-                                    $('.Otu').hide();
-                                    document.getElementById('sr_level').setAttribute("name", "level");
-                                }
-                                else {
+   
+                             var sam_group  = "";  
+                             for(var i=0 ;i < sample_data[3].length; i++){
+                                
+                                //console.log(i+": "+sample_data[3][i]);
+                                if(i == sample_data[3].length-1){
 
-                                    $('.Greengene').hide();
-                                    $('.Silva_RDP').hide();
-                                    $('.Otu').show();
-                                    document.getElementById('o_level').setAttribute("name", "level");
+                                    //console.log(sample_data[3][i]);
+                                  document.getElementById('sub_sample').value = Number(sample_data[3][i]);
+                                  document.getElementById('show_group').value = sam_group; 
+                                   document.getElementById('alpha').value = Number(sample_data[3][i]);
+                                   document.getElementById('beta').value = Number(sample_data[3][i]);
+                                   document.getElementById('myradio').value = sample_data[3][i];
+                                   document.getElementById('myradio1').value = sample_data[3][i];
+                                   $('#sub_sample').attr({'max': Number(sample_data[3][i])});
+                                   $('#alpha').attr({'max': Number(sample_data[3][i])});
+                                   $('#beta').attr({'max': Number(sample_data[3][i])});
+                                   
+                                }else{
+                                    sam_group += sample_data[3][i];
+                                   }
+                              }
 
-                                }
+                             $('#test_run2').html('Run queue sub sample complete');
+                             clearInterval(interval);
+                             $('.uk-child-width-expand > .pre2').next('li').find('a').trigger('click'); 
+                             $(".Pre-show2").hide();
+                             $(".Pre-test2").show();
 
-                                /*start div value vene*/
-                                var group = "";
-                                group += "<option value=0> </option>";
-                                for (var i = 0; i < sample_data[2].length; i++) {
-                                    group += "<option value=" + sample_data[2][i] + ">" + sample_data[2][i] + "</option>";
-                                }
+                               /* set processbar 0   */
+                               $('#bar_pre2').width(0+"%");
+                               $('.percent_pre2').html(0+"%"); 
+                            
 
-                                $('#venn1').html(group);
-                                $('#venn2').html(group);
-                                $('#venn3').html(group);
-                                $('#venn4').html(group);
+                      }else{
 
-                                /*end div value vene*/
-
-
-                                var sam_group = "";
-                                for (var i = 0; i < sample_data[3].length; i++) {
-
-                                    //console.log(i+": "+sample_data[3][i]);
-                                    if (i == sample_data[3].length - 1) {
-
-                                        //console.log(sample_data[3][i]);
-                                        document.getElementById('sub_sample').value = Number(sample_data[3][i]);
-                                        document.getElementById('show_group').value = sam_group;
-                                        document.getElementById('alpha').value = Number(sample_data[3][i]);
-                                        document.getElementById('beta').value = Number(sample_data[3][i]);
-                                        document.getElementById('myradio').value = sample_data[3][i];
-                                        document.getElementById('myradio1').value = sample_data[3][i];
-
-                                    } else {
-                                        sam_group += sample_data[3][i];
-                                    }
-                                }
-
-                                $('#test_run2').html('Run queue sub sample complete');
-                                clearInterval(interval);
-                                $('.uk-child-width-expand > .pre2').next('li').find('a').trigger('click');
-                                $(".Pre-show2").hide();
-                                $(".Pre-test2").show();
-
-                                /* set processbar 0   */
-                                $('#bar_pre2').width(0 + "%");
-                                $('.percent_pre2').html(0 + "%");
-
-
-                            } else {
-
-                                var num = sample_data[1];
-                                $('#bar_pre2').width(num + "%");
-                                $('.percent_pre2').html(num + "%");
-                                time = 20;
-
-                            }
-                        },
-                        error: function (e) {
-                            console.log(e.message);
-                        }
-                    });
-                }
-            }, 1000);
+                            var num = sample_data[1];
+                            $('#bar_pre2').width(num+"%");
+                            $('.percent_pre2').html(num+"%");
+                            time = 20;  
+  
+                      }  
+                    },
+                    error:function(e){
+                      console.log(e.message);
+                    }
+                });
+              }
+          },1000);
+>>>>>>> 78a410303ff1cee517a5c7bd8cb8b384609891c9
         }
 
         function getvalue(array_data) {
