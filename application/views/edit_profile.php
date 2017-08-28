@@ -17,7 +17,7 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3" >
+        <div class="col-lg-3">
             <div class="uk-card uk-card-default uk-card-body">
                 <img src="http://placehold.it/350x250">
             </div>
@@ -25,30 +25,34 @@ if (isset($this->session->userdata['logged_in'])) {
         <div class="col-lg-9">
             <div class="uk-card uk-card-default uk-card-body">
                 <h3 class="uk-card-title">User info </h3>
-                <?php echo form_open('profile/update_profile/'.$id) ?>
-                <?php foreach ($rs_user as $r) {?>
-                    <p>User Name : <?php echo  $username ?></p>
-                    <p>First Name :<input class="uk-input" type="text" name="first_name" value="<?php echo $r['first_name']; ?>"></p>
-                    <p>Last Name :<input class="uk-input" type="text" name="last_name" value="<?php echo $r['last_name']; ?>"></p>
-                    <p>Addess :<input class="uk-input" type="text" name="address" value="<?php echo $r['address']; ?>"></p>
+                <?php echo form_open('profile/update_profile/' . $id) ?>
+                <?php foreach ($rs_user as $r) { ?>
+                    <p>User Name : <?php echo $username ?></p>
+                    <p>First Name :<input class="uk-input" type="text" name="first_name"
+                                          value="<?php echo $r['first_name']; ?>"></p>
+                    <p>Last Name :<input class="uk-input" type="text" name="last_name"
+                                         value="<?php echo $r['last_name']; ?>"></p>
+                    <p>Addess :<input class="uk-input" type="text" name="address" value="<?php echo $r['address']; ?>">
+                    </p>
                     <p>Tel : <input class="uk-input" type="text" name="tel" value="<?php echo $r['tel']; ?>"></p>
                     <div class="form-group">
                         Gender :
                         <label class="radio-inline">
-                            <input type="radio" name="gender" id="" value="Male" <?php if ($r['gender'] == "Male"){
-                                echo "checked";} ?>>Male
+                            <input type="radio" name="gender" id="" value="Male" <?php if ($r['gender'] == "Male") {
+                                echo "checked";
+                            } ?>>Male
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="gender" id="" value="Female" <?php if ($r['gender'] == "Female"){
-                                echo "checked";} ?>>Female
+                            <input type="radio" name="gender" id="" value="Female" <?php if ($r['gender'] == "Female") {
+                                echo "checked";
+                            } ?>>Female
                         </label>
                     </div>
-                <?php  } ?>
+                <?php } ?>
                 <button class="btn btn-default right">Update profile</button>
                 <?php form_close() ?>
 
             </div>
-
 
 
         </div>

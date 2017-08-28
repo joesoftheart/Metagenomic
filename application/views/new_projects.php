@@ -1,4 +1,3 @@
-
 <?php
 if (isset($this->session->userdata['logged_in'])) {
     $username = ($this->session->userdata['logged_in']['username']);
@@ -13,8 +12,10 @@ if (isset($this->session->userdata['logged_in'])) {
             <?php $controller_name = $this->uri->segment(1); ?>
             <br>
             <ol class="breadcrumb">
-                <li <?php if ($controller_name == 'main'){
-                    echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
+                <li <?php if ($controller_name == 'main') {
+                    echo "class=active";
+                } ?>><?php if ($controller_name == 'main') { ?>Home<?php } else { ?><a
+                        href="<?php echo site_url('main') ?>">Home</a><?php } ?></li>
                 <li class="active">New project</li>
 
             </ol>
@@ -27,108 +28,118 @@ if (isset($this->session->userdata['logged_in'])) {
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <?php echo form_open('new_projects/insert_project') ?>
-                            <div class="form-group">
-                                <label>Project Name :</label>
-                                <input class="form-control" name="project_name" type="text" />
-                                <label>Title Name :</label>
-                                <input class="form-control" name="project_title" type="text" />
-                                <label>Project detail:</label>
-                                <textarea class="form-control" name="project_detail" ></textarea>
                                 <div class="form-group">
-                                <label>Project permission :</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="project_permission" id="" value="private">private
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="project_permission" id="" value="public">public
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="project_permission" id="" value="share">share people
-                                </label>
-                                </div>
+                                    <label>Project Name :</label>
+                                    <input class="form-control" name="project_name" type="text"/>
+                                    <label>Title Name :</label>
+                                    <input class="form-control" name="project_title" type="text"/>
+                                    <label>Project detail:</label>
+                                    <textarea class="form-control" name="project_detail"></textarea>
+                                    <div class="form-group">
+                                        <label>Project permission :</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="project_permission" id="" value="private">private
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="project_permission" id="" value="public">public
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="project_permission" id="" value="share">share
+                                            people
+                                        </label>
+                                    </div>
 
-                                <label>Project type :</label>
-                                <select class="uk-select uk-width-1-4" name="project_type">
-                                    <option value="16s">16s</option>
-                                    <option value="18s">18s</option>
-                                    <option value="its">ITS</option>
-                                </select><br>
-                                <label>Select program :</label>
-                                <div class="form-group" >
-                                    <label class="radio-inline">
-                                        <input type="radio" name="project_program" id="mothur" value="mothur">Mothur
+                                    <label>Project type :</label>
+                                    <select class="uk-select uk-width-1-4" name="project_type">
+                                        <option value="16s">16s</option>
+                                        <option value="18s">18s</option>
+                                        <option value="its">ITS</option>
+                                    </select><br>
+                                    <label>Select program :</label>
+                                    <div class="form-group">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="project_program" id="mothur" value="mothur">Mothur
 
-                                    </label>
+                                        </label>
 
-<!--                                    <label>Select analysis :</label> -->
-                                    <select class="uk-select  uk-width-1-4 hide" id="program" name="project_analysis">
-                                        <option value="otu">OTU</option>
-                                        <option value="phylotype">Phylotype</option>
-                                    </select>
-                                    <br>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="project_program" id="qiime" value="qiime">Qiime
-                                    </label><br>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="project_program" id="uparse" value="uparse">UPARSE
-                                    </label>
-                                </div>
+                                        <!--                                    <label>Select analysis :</label> -->
+                                        <select class="uk-select  uk-width-1-4 hide" id="program"
+                                                name="project_analysis">
+                                            <option value="otu">OTU</option>
+                                            <option value="phylotype">Phylotype</option>
+                                        </select>
+                                        <br>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="project_program" id="qiime" value="qiime">Qiime
+                                        </label><br>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="project_program" id="uparse" value="uparse">UPARSE
+                                        </label>
+                                    </div>
 
-                                <div>
-                                    <?php
-                                    $path_owncloud = "../owncloud/data/" . $username . "/files/";
+                                    <div>
+                                        <?php
+                                        $path_owncloud = "../owncloud/data/" . $username . "/files/";
 
-                                    $result_folder = array();
-                                    $result_file = array();
-                                    if (is_dir($path_owncloud)) {
-                                        $cdir = scandir($path_owncloud);
+                                        $result_folder = array();
+                                        $result_file = array();
+                                        if (is_dir($path_owncloud)) {
+                                            $cdir = scandir($path_owncloud);
 
-                                        foreach ($cdir as $key => $value) {
-                                            if (!in_array($value, array(".", ".."))) {
-                                                if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
-                                                    $result_folder[$value] = $value;
-                                                } else {
-                                                    $result_file[$value] = $value;
+                                            foreach ($cdir as $key => $value) {
+                                                if (!in_array($value, array(".", ".."))) {
+                                                    if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                                                        $result_folder[$value] = $value;
+                                                    } else {
+                                                        $result_file[$value] = $value;
+                                                    }
                                                 }
                                             }
                                         }
-                                    }
-                                    ?>
+                                        ?>
 
-                                    <?php // print_r($result_file) ?>
-
+                                        <?php // print_r($result_file) ?>
 
 
-                                 <label>Select sample from owncloud :</label>
-                                    <select class="uk-select  uk-width-1-2" name="project_path">
-                                        <?php if ($result_folder != null){ ?>
-                                        <?php foreach ($result_folder as $r) { ?>
-                                        <option  value="<?php echo $path_owncloud.$r;?>"><?php echo $r;?></option>
-                                        <?php  } ?>
-                                        <?php } else {
-                                            echo "<option>You not have sample in owncloud</option>";
-                                        } ?>
+                                        <label>Select sample from owncloud :</label>
+                                        <select class="uk-select  uk-width-1-2" name="project_path">
+                                            <?php if ($result_folder != null) { ?>
+                                                <?php foreach ($result_folder as $r) { ?>
+                                                    <option value="<?php echo $path_owncloud . $r; ?>"><?php echo $r; ?></option>
+                                                <?php } ?>
+                                            <?php } else {
+                                                echo "<option>You not have sample in owncloud</option>";
+                                            } ?>
 
-                                    </select>
-
-
+                                        </select>
 
 
-
-<!--                                    <br>-->
-<!--                                <input class="form-control" name="txtFileName" type="text" id="txtFileName">-->
-<!--                                    <br>-->
-<!--                                <input class="form-control" name="btnBrowse" type="button" id="btnBrowse" value="Browse" onClick="filName.click();">-->
-<!--                                <input class="form-control" type="file" name="filName" STYLE="display:none" onChange="txtFileName.value = this.value;">-->
-
+                                        <!--                                    <br>-->
+                                        <!--                                <input class="form-control" name="txtFileName" type="text" id="txtFileName">-->
+                                        <!--                                    <br>-->
+                                        <!--                                <input class="form-control" name="btnBrowse" type="button" id="btnBrowse" value="Browse" onClick="filName.click();">-->
+                                        <!--                                <input class="form-control" type="file" name="filName" STYLE="display:none" onChange="txtFileName.value = this.value;">-->
 
 
+                                    </div>
                                 </div>
+
+                                <label>Would you like to create new submission for SRA of NCBI :</label>
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="project_permission" id="" value="private">Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="project_permission" id="" value="public">No
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="project_permission" id="" value="share">Later
+                                    </label>
+                                </div>
+                                <button type="submit" name="save" value="submit" class="btn btn-default">Submit</button>
+                                <button type="reset" name="reset" class="btn btn-default">Clear</button>
                             </div>
-                            <button type="submit" name="save" value="submit" class="btn btn-default">Submit</button>
-                            <button type="reset" name="reset"  class="btn btn-default">Clear</button>
-                            </div>
-                            <?php echo form_close()?>
+                            <?php echo form_close() ?>
                         </div>
                     </div>
                 </div>
@@ -141,13 +152,13 @@ if (isset($this->session->userdata['logged_in'])) {
 </div>
 
 <script>
-    $('#mothur').on('change', function() {
+    $('#mothur').on('change', function () {
         $('#program').removeClass("hide");
     });
-    $('#qiime').on('change', function() {
+    $('#qiime').on('change', function () {
         $('#program').addClass("hide");
     });
-    $('#uparse').on('change', function() {
+    $('#uparse').on('change', function () {
         $('#program').addClass("hide");
     });
 </script>

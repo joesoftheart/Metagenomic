@@ -11,23 +11,22 @@
 
     <title>Login</title>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sb-admin-2-custom.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/sb-admin-2-custom.css">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.min.css">
 
     <!-- MetisMenu CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/metisMenu/metisMenu.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/metisMenu/metisMenu.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sb-admin-2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/sb-admin-2.css">
 
     <!-- Morris Charts CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/morrisjs/morris.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/morrisjs/morris.css">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/font-awesome/css/font-awesome.min.css">
-
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/font-awesome/css/font-awesome.min.css">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -54,36 +53,36 @@ if (isset($this->session->userdata['logged_in'])) {
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                        <div class="form-group">
-                            <div class='error_msg'><?php echo validation_errors(); ?></div>
-                            <?php
-                            echo form_open('main/new_user_registration');  ?>
-                            <label>Create Username : </label>
-                            <br/>
-                            <input type="text" name="username" class="form-control"/>
-                            <div class='error_msg'>
+                    <div class="form-group">
+                        <div class='error_msg'><?php echo validation_errors(); ?></div>
+                        <?php
+                        echo form_open('main/new_user_registration'); ?>
+                        <label>Create Username : </label>
+                        <br/>
+                        <input type="text" name="username" class="form-control"/>
+                        <div class='error_msg'>
                             <?php if (isset($message_display)) {
                                 echo $message_display;
-                            }  ?>
-                            </div>
-                            <br/>
-                            <label>Email :</label>
-                            <br/>
-                            <input type="email" name="email_value" class="form-control"/>
-                            <br/>
-                            <br/>
-                            <label>Password :</label>
-                            <br/>
-                            <input type="password" name="password" class="form-control">
-                            <br/>
-                            <br/>
-                            <button class="btn btn-default" type="submit" name="submit">Signup</button>
-                            <a href="<?php echo base_url() ?>main/login">For Login Click Here</a>
-                            <?php
-                            echo form_close();
-                            ?>
-
+                            } ?>
                         </div>
+                        <br/>
+                        <label>Email :</label>
+                        <br/>
+                        <input type="email" name="email_value" class="form-control"/>
+                        <br/>
+                        <br/>
+                        <label>Password :</label>
+                        <br/>
+                        <input type="password" name="password" class="form-control">
+                        <br/>
+                        <br/>
+                        <button class="btn btn-default" type="submit" name="submit">Signup</button>
+                        <a href="<?php echo base_url() ?>main/login">For Login Click Here</a>
+                        <?php
+                        echo form_close();
+                        ?>
+
+                    </div>
 
                 </div>
             </div>
@@ -92,7 +91,7 @@ if (isset($this->session->userdata['logged_in'])) {
 </div>
 
 <!-- jQuery -->
-<script type="text/javascript" src="<?php base_url();?>vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="<?php base_url(); ?>vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap C1ore JavaScript -->
 <script type='text/javascript' src="<?php base_url(); ?>vendor/bootstrap/js/bootstrap.min.js"></script>

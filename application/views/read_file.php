@@ -7,7 +7,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <?php echo form_open_multipart('read_file/upload_file/');?>
+                    <?php echo form_open_multipart('read_file/upload_file/'); ?>
                     <table class="table">
                         <thead>
                         <tr>
@@ -30,7 +30,7 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td><?php echo form_submit('submit', 'save', 'class="btn btn-default"');?></td>
+                            <td><?php echo form_submit('submit', 'save', 'class="btn btn-default"'); ?></td>
                         </tr>
                         </tbody>
                     </table>

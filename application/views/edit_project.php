@@ -23,29 +23,37 @@ if (isset($this->session->userdata['logged_in'])) {
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <?php echo form_open('edit_project/edit_project/'.$this->uri->segment(3)) ?>
+                                <?php echo form_open('edit_project/edit_project/' . $this->uri->segment(3)) ?>
                                 <div class="form-group">
-                                    <?php foreach ($rs as $r) {?>
+                                    <?php foreach ($rs as $r) { ?>
                                     <label>Project Name :</label>
-                                    <input class="form-control" name="project_name" type="text" value="<?php echo $r['project_name']?>"/>
+                                    <input class="form-control" name="project_name" type="text"
+                                           value="<?php echo $r['project_name'] ?>"/>
                                     <label>Title Name :</label>
-                                    <input class="form-control" name="project_title" type="text" value="<?php echo $r['project_title'] ?>" />
+                                    <input class="form-control" name="project_title" type="text"
+                                           value="<?php echo $r['project_title'] ?>"/>
                                     <label>Detail samples :</label>
-                                    <textarea class="form-control" name="project_detail" ><?php if ($r['project_detail'] != null){ echo $r['project_detail'];}?></textarea>
+                                    <textarea class="form-control"
+                                              name="project_detail"><?php if ($r['project_detail'] != null) {
+                                            echo $r['project_detail'];
+                                        } ?></textarea>
                                     <div class="form-group">
                                         <label>Permission :</label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_permission" id="" value="private" <?php if ($r['project_permission'] == "private"){
+                                            <input type="radio" name="project_permission" id=""
+                                                   value="private" <?php if ($r['project_permission'] == "private") {
                                                 echo "checked";
                                             } ?>>private
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_permission" id="" value="public" <?php if ($r['project_permission'] == "public"){
+                                            <input type="radio" name="project_permission" id=""
+                                                   value="public" <?php if ($r['project_permission'] == "public") {
                                                 echo "checked";
                                             } ?>>public
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_permission" id="" value="share" <?php if ($r['project_permission'] == "share"){
+                                            <input type="radio" name="project_permission" id=""
+                                                   value="share" <?php if ($r['project_permission'] == "share") {
                                                 echo "checked";
                                             } ?>>share people
                                         </label>
@@ -53,36 +61,50 @@ if (isset($this->session->userdata['logged_in'])) {
 
                                     <label>Project type :</label>
                                     <select class="uk-select" name="project_type">
-                                        <option <?php if ($r['project_type'] == "18s"){
+                                        <option <?php if ($r['project_type'] == "18s") {
                                             echo "selected";
-                                        } ?>>18s</option>
-                                        <option <?php if ($r['project_type'] == "16s"){
+                                        } ?>>18s
+                                        </option>
+                                        <option <?php if ($r['project_type'] == "16s") {
                                             echo "selected";
-                                        } ?>>16s</option>
-                                        <option <?php if ($r['project_type'] == "its"){
+                                        } ?>>16s
+                                        </option>
+                                        <option <?php if ($r['project_type'] == "its") {
                                             echo "selected";
-                                        } ?>>its</option>
+                                        } ?>>its
+                                        </option>
                                     </select><br>
 
                                     <label>Select program :</label>
-                                    <div class="form-group" >
+                                    <div class="form-group">
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_program" id="mothur" value="mothur" <?php if ($r['project_program'] == "mothur"){ echo "checked";} ?>>mothur
+                                            <input type="radio" name="project_program" id="mothur"
+                                                   value="mothur" <?php if ($r['project_program'] == "mothur") {
+                                                echo "checked";
+                                            } ?>>mothur
 
                                         </label>
 
                                         <!--                                    <label>Select analysis :</label> -->
-                                        <select class="uk-select  uk-width-1-4 <?php if ($r['project_analysis'] == ""){ echo "hide";} ?>" id="program" name="project_analysis">
+                                        <select class="uk-select  uk-width-1-4 <?php if ($r['project_analysis'] == "") {
+                                            echo "hide";
+                                        } ?>" id="program" name="project_analysis">
                                             <option value=""><-Select Analysis-></option>
                                             <option value="otu">OTU</option>
                                             <option value="phylotype">Phylotype</option>
                                         </select>
                                         <br>
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_program" id="qiime" value="qiime" <?php if ($r['project_program'] == "qiime"){ echo "checked";} ?>>Qiime
+                                            <input type="radio" name="project_program" id="qiime"
+                                                   value="qiime" <?php if ($r['project_program'] == "qiime") {
+                                                echo "checked";
+                                            } ?>>Qiime
                                         </label><br>
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_program" id="uparse" value="uparse" <?php if ($r['project_program'] == "uparse"){ echo "checked"; } ?>>UPARSE
+                                            <input type="radio" name="project_program" id="uparse"
+                                                   value="uparse" <?php if ($r['project_program'] == "uparse") {
+                                                echo "checked";
+                                            } ?>>UPARSE
                                         </label>
                                     </div>
                                     <div>
@@ -93,16 +115,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                         $result_folder = array();
                                         $result_file = array();
                                         $cdir = scandir($path_owncloud);
-                                        foreach ($cdir as $key => $value)
-                                        {
-                                            if (!in_array($value,array(".","..")))
-                                            {
-                                                if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value))
-                                                {
+                                        foreach ($cdir as $key => $value) {
+                                            if (!in_array($value, array(".", ".."))) {
+                                                if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
                                                     $result_folder[$value] = $value;
-                                                }
-                                                else
-                                                {
+                                                } else {
                                                     $result_file[$value] = $value;
                                                 }
                                             }
@@ -112,17 +129,18 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <?php // print_r($result_folder) ?>
 
 
-
                                         <label>Select sample from owncloud :</label>
                                         <select class="uk-select" name="project_path">
                                             <?php foreach ($result_folder as $r_folder) { ?>
-                                                <option  value="<?php echo $path_owncloud.$r_folder;?>" <?php  if($path_owncloud.$r_folder == $r['project_path']){ echo "selected";} ?>><?php echo $r_folder;?></option>
-                                            <?php  } ?>
+                                                <option value="<?php echo $path_owncloud . $r_folder; ?>" <?php if ($path_owncloud . $r_folder == $r['project_path']) {
+                                                    echo "selected";
+                                                } ?>><?php echo $r_folder; ?></option>
+                                            <?php } ?>
 
                                         </select>
 
 
-                                           <?php } ?>
+                                        <?php } ?>
 
 
                                         <!--                                    <br>-->
@@ -132,13 +150,12 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <!--                                <input class="form-control" type="file" name="filName" STYLE="display:none" onChange="txtFileName.value = this.value;">-->
 
 
-
                                     </div>
                                 </div>
                                 <button type="submit" name="save" value="submit" class="btn btn-default">Submit</button>
-                                <button type="reset" name="reset"  class="btn btn-default">Clear</button>
+                                <button type="reset" name="reset" class="btn btn-default">Clear</button>
                             </div>
-                            <?php echo form_close()?>
+                            <?php echo form_close() ?>
                         </div>
                     </div>
                 </div>
@@ -151,13 +168,13 @@ if (isset($this->session->userdata['logged_in'])) {
 </div>
 
 <script>
-    $('#mothur').on('change', function() {
+    $('#mothur').on('change', function () {
         $('#program').removeClass("hide");
     });
-    $('#qiime').on('change', function() {
+    $('#qiime').on('change', function () {
         $('#program').addClass("hide");
     });
-    $('#uparse').on('change', function() {
+    $('#uparse').on('change', function () {
         $('#program').addClass("hide");
     });
 </script>
