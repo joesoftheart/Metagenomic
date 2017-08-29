@@ -9,7 +9,7 @@
 <text fill="black" class="seri" font-size="24" y="445" x="50">S3_1_16s_S5</text>
 <text fill="black" class="seri" font-size="24" x="595" y="50">S4_1_16s_S7</text>
 <text fill="black" class="seri" font-size="24" y="595" x="50">S4_1_16s_S7</text>
-<rect fill="rgb(255,0,0)" stroke="rgb(255,0,0)" x="80" y="225" width="150" height="150"/>
+<rect fill="rgb(254,0,0)" stroke="rgb(254,0,0)" x="80" y="225" width="150" height="150"/>
 <rect fill="rgb(11,0,0)" stroke="rgb(11,0,0)" x="80" y="375" width="150" height="150"/>
 <rect fill="rgb(150,0,0)" stroke="rgb(150,0,0)" x="80" y="525" width="150" height="150"/>
 <rect fill="rgb(7,0,0)" stroke="rgb(7,0,0)" x="230" y="375" width="150" height="150"/>

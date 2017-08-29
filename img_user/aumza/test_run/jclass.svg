@@ -9,7 +9,7 @@
 <text fill="black" class="seri" font-size="24" y="445" x="50">S3_1_16s_S5</text>
 <text fill="black" class="seri" font-size="24" x="595" y="50">S4_1_16s_S7</text>
 <text fill="black" class="seri" font-size="24" y="595" x="50">S4_1_16s_S7</text>
-<rect fill="rgb(255,0,0)" stroke="rgb(255,0,0)" x="80" y="225" width="150" height="150"/>
+<rect fill="rgb(254,0,0)" stroke="rgb(254,0,0)" x="80" y="225" width="150" height="150"/>
 <rect fill="rgb(119,0,0)" stroke="rgb(119,0,0)" x="80" y="375" width="150" height="150"/>
 <rect fill="rgb(221,0,0)" stroke="rgb(221,0,0)" x="80" y="525" width="150" height="150"/>
 <rect fill="rgb(113,0,0)" stroke="rgb(113,0,0)" x="230" y="375" width="150" height="150"/>
@@ -273,7 +273,7 @@
 <text fill="black" class="seri" font-size="24" x="153" y="717">0.063</text>
 <text fill="black" class="seri" font-size="24" x="306" y="717">0.125</text>
 <text fill="black" class="seri" font-size="24" x="459" y="717">0.188</text>
-<text fill="black" class="seri" font-size="24" x="612" y="717">0.250</text>
+<text fill="black" class="seri" font-size="24" x="612" y="717">0.251</text>
 <text fill="black" class="seri" font-size="24" x="765" y="717">0.313</text>
 </g>
 </svg>

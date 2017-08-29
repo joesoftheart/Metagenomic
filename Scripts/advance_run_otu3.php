@@ -39,6 +39,8 @@
          $GLOBALS['correlation_otu'] = $argv[24];
          $GLOBALS['method_otu'] = $argv[25];
          $GLOBALS['axes_otu'] = $argv[26];
+
+         $GLOBALS['label_num'] = $argv[27];
          
          # Check PCoA & NMDS
          $GLOBALS['check'] = "";
@@ -48,6 +50,16 @@
          }elseif ($GLOBALS['d_nmds_st'] != "0" || $GLOBALS['d_nmds_me'] != "0") {
              $GLOBALS['check'] = "nmds";
          }
+
+         
+         # Keep value method PCoA or nmds by metadata
+           $GLOBALS['value_method_meta'] = null;
+
+         # Keep value method PCoA or nmds by otu
+           $GLOBALS['value_method_otu'] = null;
+
+          # Keep value method tree
+            $GLOBALS['tree_cal'] = null;
 
 
          if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != "" && $argv[6] =! "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != ""){
@@ -232,6 +244,8 @@
             for($i = 0 ; $i < sizeof($d_upgma_st); $i++){
               
              $make .="tree.shared(phylip=final.opti_mcc.".$d_upgma_st[$i].".".$GLOBALS['level'].".lt.ave.dist ,inputdir=$path_in,outputdir=$path_out)"."\n";  
+             $GLOBALS['tree_cal'] .= $d_upgma_st[$i].","; 
+
             }
          }
          # community membership
@@ -240,7 +254,8 @@
             for($i = 0 ; $i < sizeof($d_upgma_me); $i++){
               
              $make .="tree.shared(phylip=final.opti_mcc.".$d_upgma_me[$i].".".$GLOBALS['level'].".lt.ave.dist ,inputdir=$path_in,outputdir=$path_out)"."\n";  
-               
+             $GLOBALS['tree_cal'] .= $d_upgma_me[$i].",";  
+           
             }
          } 
 
@@ -304,7 +319,7 @@
                for($i = 0 ; $i < sizeof($d_pcoa_st); $i++){
               
                  $make .="pcoa(phylip=final.opti_mcc.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.dist ,inputdir=$path_in,outputdir=$path_out)"."\n";
-               
+                 
                }
           }
          # community membership
@@ -313,7 +328,7 @@
             for($i = 0 ; $i < sizeof($d_pcoa_me); $i++){
               
             $make .="pcoa(phylip=final.opti_mcc.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.dist ,inputdir=$path_in,outputdir=$path_out)"."\n";
-               
+            
             }
          } 
 
@@ -590,8 +605,10 @@
                     $d_pcoa_st = explode(",", $GLOBALS['d_pcoa_st']);
                     for($i = 0 ; $i < sizeof($d_pcoa_st); $i++){
 
-                       $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
-
+                       $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                                 system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_pcoa_st[$i].")"."\n";
+                       
+                       $GLOBALS['value_method_meta'] .= $d_pcoa_st[$i]." ";
                     }
                   }
                   # Community membership
@@ -599,8 +616,10 @@
                       $d_pcoa_me = explode(",", $GLOBALS['d_pcoa_me']);
                       for($i = 0 ; $i < sizeof($d_pcoa_me); $i++){
 
-                         $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
-
+                         $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                                   system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_pcoa_me[$i].")"."\n";
+                         
+                         $GLOBALS['value_method_meta'] .= $d_pcoa_me[$i]." ";
                       }
                   }
 
@@ -612,8 +631,10 @@
                       $d_nmds_st = explode(",", $GLOBALS['d_nmds_st']);
                       for($i = 0 ; $i < sizeof($d_nmds_st); $i++){
 
-                         $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
-
+                         $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                                   system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_nmds_st[$i].")"."\n";
+                        
+                         $GLOBALS['value_method_meta'] .= $d_nmds_st[$i]." ";
                        }
                   }
                   # Community membership
@@ -621,9 +642,10 @@
                       $d_nmds_me = explode(",", $GLOBALS['d_nmds_me']);
                       for($i = 0 ; $i < sizeof($d_nmds_me); $i++){
                         
-                         $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                         $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                                   system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_nmds_me[$i].")"."\n";
  
-                        
+                         $GLOBALS['value_method_meta'] .= $d_nmds_me[$i]." ";
                       }
                  }
 
@@ -642,8 +664,10 @@
                     $d_pcoa_st = explode(",", $GLOBALS['d_pcoa_st']);
                     for($i = 0 ; $i < sizeof($d_pcoa_st); $i++){
 
-                        $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
-
+                        $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                                  system(mv ".$path_out."final.opti_mcc.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.opti_mcc.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_pcoa_st[$i].")"."\n";
+                       
+                        $GLOBALS['value_method_otu'] .= $d_pcoa_st[$i]." ";
                     }
                   }
                   # Community membership
@@ -651,9 +675,10 @@
                       $d_pcoa_me = explode(",", $GLOBALS['d_pcoa_me']);
                       for($i = 0 ; $i < sizeof($d_pcoa_me); $i++){
 
-                        $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                        $make .= "corr.axes(axes=final.opti_mcc.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                                  system(mv ".$path_out."final.opti_mcc.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.opti_mcc.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_pcoa_me[$i].")"."\n";
 
-
+                        $GLOBALS['value_method_otu'] .= $d_pcoa_me[$i]." "; 
                       }
                   }
 
@@ -665,9 +690,10 @@
                       $d_nmds_st = explode(",", $GLOBALS['d_nmds_st']);
                       for($i = 0 ; $i < sizeof($d_nmds_st); $i++){
 
-                          $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                          $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                                    system(mv ".$path_out."final.opti_mcc.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.opti_mcc.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_nmds_st[$i].")"."\n";
 
-
+                          $GLOBALS['value_method_otu'] .= $d_nmds_st[$i]." ";
                        }
                   }
                   # Community membership
@@ -675,9 +701,10 @@
                       $d_nmds_me = explode(",", $GLOBALS['d_nmds_me']);
                       for($i = 0 ; $i < sizeof($d_nmds_me); $i++){
                         
-                          $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                          $make .= "corr.axes(axes=final.opti_mcc.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.opti_mcc.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                                    system(mv ".$path_out."final.opti_mcc.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.opti_mcc.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_nmds_me[$i].")"."\n";
 
-                        
+                          $GLOBALS['value_method_otu'] .= $d_nmds_me[$i]." ";
                       }
                  }    
 
@@ -1048,10 +1075,24 @@ function create_input_alphash($user,$project,$path_in,$path_out){
   function create_input_biplot($user,$project,$path_in,$path_out){
    
     echo "Run create_input_biplot "."\n";
+
+     if($GLOBALS['value_method_otu'] != null ){
+
+      $level      = $GLOBALS['level'];
+      $method_otu = $GLOBALS['method_otu'];
+      $calculator = $GLOBALS['value_method_otu'];
+
+     }
+
+      $data_cal = trim($calculator);
+      $val_replace = str_replace(" ",",", $data_cal);
+
+
+
     $jobname = $user."_create_input_biplot";
 
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/create_input_biplot_otu.php $user $project";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/create_biplot_otu_advance.php $user $project $level $method_otu $val_replace";
     
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1114,12 +1155,46 @@ function create_input_alphash($user,$project,$path_in,$path_out){
  function plot_graph_r_NMD($user,$project,$path_in,$path_out){
 
     echo "Run plot_graph_r_NMD "."\n";
-    $path_input_axes = "owncloud/data/$user/files/$project/output/final.opti_mcc.thetayc.".$GLOBALS['level'].".lt.ave.nmds.axes";
-    $path_to_save = "owncloud/data/$user/files/$project/output/NMD.png";
+
+    # Calculator
+     if($GLOBALS['value_method_meta'] != null){
+
+         $calculator = $GLOBALS['value_method_meta'];
+         $cal = trim($calculator);    
+     }elseif ($GLOBALS['value_method_otu'] != null) {
+
+         $calculator = $GLOBALS['value_method_otu'];
+         $cal = trim($calculator);  
+     } 
+
+     $cal_replace = explode(" ", $cal);
+     $path_input_axes_name = null;
+
+     # PCoA OR NMDS
+    if($GLOBALS['check'] == "pcoa"){
+        
+        for($i=0;$i < sizeof($cal_replace);$i++){
+           
+            $path_input_axes_name  .= "owncloud/data/$user/files/$project/output/final.opti_mcc.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes"."-"."owncloud/data/$user/files/$project/output/PCoA_".$cal_replace[$i].".png"." ";
+        
+        }
+
+    }else if($GLOBALS['check'] == "nmds"){
+        
+        for($i=0;$i < sizeof($cal_replace);$i++){
+           
+            $path_input_axes_name .= "owncloud/data/$user/files/$project/output/final.opti_mcc.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes"."-"."owncloud/data/$user/files/$project/output/NMD_".$cal_replace[$i].".png"." ";
+           
+        }
+    }
+
+      $path_input_axes_name_trim = trim($path_input_axes_name);
+      $path_input_axes = str_replace(" ",",", $path_input_axes_name_trim);
+
+
     $jobname = $user."_plot_graph_r_NMD";
-     
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/NMDSpcoaplottest.R $path_input_axes $path_to_save";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/nmds_pcoa_plot_advance.php $path_input_axes";
    
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1250,17 +1325,55 @@ function plot_graph_r_Alphash($user,$project,$path_in,$path_out){
 function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
     
     echo "Run plot_graph_r_Biplot"."\n";
+   
+   # Calculator
+     if($GLOBALS['value_method_meta'] != null){
 
-    $path_input_biplot_nmds = "owncloud/data/$user/files/$project/output/final.opti_mcc.thetayc.0.03.lt.ave.nmds.axes";
-    $path_output_biplot_withBiplotwithOTU = "owncloud/data/$user/files/$project/output/NewNMDS_withBiplotwithOTU.png";
-    $path_input_biplot = "owncloud/data/$user/files/$project/output/output_bioplot.txt";
-    $path_output_biplot_withBiplotwithMetadata = "owncloud/data/$user/files/$project/output/NewNMDS_withBiplotwithMetadata.png";
-    $path_input_metadata = "owncloud/data/$user/files/$project/output/file.pearson.corr.axes";
-    
+         $calculator = $GLOBALS['value_method_meta'];
+         $cal = trim($calculator);
+         
+     }elseif ($GLOBALS['value_method_otu'] != null) {
+
+         $calculator = $GLOBALS['value_method_otu'];
+         $cal = trim($calculator);
+        
+     } 
+
+     $cal_replace = explode(" ", $cal);
+     $path_data = null;
+      
+
+    # pcoa or nmds
+       if($GLOBALS['check'] == "pcoa"){
+        
+            for($i=0;$i < sizeof($cal_replace);$i++){ 
+
+              $path_data .= "owncloud/data/$user/files/$project/output/final.opti_mcc.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes-";
+              $path_data .= "owncloud/data/$user/files/$project/output/PCoA_BiplotwithOTU_".$cal_replace[$i].".png-";
+              $path_data .= "owncloud/data/$user/files/$project/output/output_bioplot_".$cal_replace[$i].".txt-";
+              $path_data .="owncloud/data/$user/files/$project/output/PCoA_BiplotwithMetadata_".$cal_replace[$i].".png-"; 
+              $path_data .="owncloud/data/$user/files/$project/output/file.".$GLOBALS['method_meta'].".corr.axes_".$cal_replace[$i].",";
+   
+            }
+
+       }else if($GLOBALS['check'] == "nmds"){
+        
+            for($i=0;$i < sizeof($cal_replace);$i++){
+
+               $path_data .= "owncloud/data/$user/files/$project/output/final.opti_mcc.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes-";
+               $path_data .= "owncloud/data/$user/files/$project/output/NMDS_BiplotwithOTU_".$cal_replace[$i].".png-";
+               $path_data .= "owncloud/data/$user/files/$project/output/output_bioplot_".$cal_replace[$i].".txt-";
+               $path_data .="owncloud/data/$user/files/$project/output/NMDS_BiplotwithMetadata_".$cal_replace[$i].".png-"; 
+               $path_data .="owncloud/data/$user/files/$project/output/file.".$GLOBALS['method_meta'].".corr.axes_".$cal_replace[$i].",";
+   
+
+            }
+       }
+
+
     $jobname = $user."_plot_graph_r_Biplot";
-
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/ScatterPlotwithbiplot_otu.R $path_input_biplot_nmds $path_output_biplot_withBiplotwithOTU $path_input_biplot $path_output_biplot_withBiplotwithMetadata $path_input_metadata";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/biplot_otu_advance.php $path_data";
     
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1288,12 +1401,14 @@ function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
 function plot_graph_r_Tree($user,$project,$path_in,$path_out){
 
     echo "Run plot_graph_r_Tree"."\n";
-    $path_input_tree = "owncloud/data/$user/files/$project/output/final.opti_mcc.morisitahorn.0.03.lt.ave.tre";
-    $path_output_tree = "owncloud/data/$user/files/$project/output/Tree.png";
-
+    
+    $tree_cal =  $GLOBALS['tree_cal'];
+    $level    =   $GLOBALS['level'];
+   
     $jobname = $user."_plot_graph_r_Tree";
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/PlotTreeGraph.R $path_input_tree $path_output_tree";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/tree_advance.php $tree_cal $level $user $project";
+   
    
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";

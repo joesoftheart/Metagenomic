@@ -14,7 +14,7 @@ else {
 
 
 <h2>Create file metadata</h2>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="<?php echo base_url('js/jquery-3.2.1.js'); ?>"></script>
 <!--<form>-->
 
 
@@ -22,6 +22,9 @@ else {
 <!-- <button type="button" id="btnAdd">Add new Rows </button>
 <button type="button" id="btnRemoveRow">Remove Rows</button> -->
 
+<input type="button" value="Example file metadata" onclick="window.open('<?php echo base_url("Run_advance/load_example_metadata")?>')">
+
+<br/><br/>
 <button type="button" id="btnAddCol">Add new Column</button>
 <button type="button" id="btnRemoveCol">Remove Column</button>
 

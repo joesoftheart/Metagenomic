@@ -13,9 +13,11 @@ else {
 
 ?>
 
+<script src="<?php echo base_url('js/jquery-3.2.1.js'); ?>"></script>
 
 <h2>Create file design</h2>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 <!--<form>-->
 
 
@@ -26,7 +28,10 @@ else {
 <!-- <button type="button" id="btnAddCol">Add new Column</button>
 <button type="button" id="btnRemoveCol">Remove Column</button> -->
 
-<button onclick="getExcel()">create file</button>
+ <input type="button" value="Example file design" onclick="window.open('<?php echo base_url("Run_advance/load_example_design")?>')">
+  
+ 
+ <button onclick="getExcel()">create file</button>
    
 <br/><br/>
 
@@ -125,7 +130,7 @@ function getExcel(){
         });
         excel += "\n";
     });
-   
+
    if(check_val != ""){
      $.ajax({
             type:"post",

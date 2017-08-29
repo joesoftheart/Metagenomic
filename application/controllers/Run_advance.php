@@ -181,6 +181,15 @@
             }
     }
 
+    public function load_example_design(){
+       $this->load->view('example_design');
+    }
+
+    public function load_example_metadata(){
+       $this->load->view('example_metadata');
+    }
+
+
 
 
     public function check_fasta(){
@@ -978,7 +987,25 @@
         $path_input = "owncloud/data/$user/files/$project_data/input/";
         $path_out = "owncloud/data/$user/files/$project_data/output/";
         $path_log = "owncloud/data/$user/files/$project_data/log/";
-      
+
+
+       
+       # Query data status-process by id_project
+         $array_label = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+                   foreach ($array_label as $r) {
+                    
+                     $classifly = $r['classifly']; 
+               
+                    }
+
+           if($classifly == "silva" || $classifly == "rdp"){
+              $label_num = "1";
+            }
+            else if($classifly == "gg") {
+              $label_num = "2";
+            }
+            
+
         # Create  jobname  advance
             $jobname = $user."-".$project."-".$project_analysis."-"."advance3";
 
@@ -986,12 +1013,14 @@
 
            if ($project_analysis == "phylotype") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num";
                
            }
            else if($project_analysis == "otu") {
+                
+                $label_num = "0.03";
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num";
            }
              
  
