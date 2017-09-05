@@ -54,10 +54,10 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="uk-child-width-1-6\@xl" uk-grid>
                 <div>
                     <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
-                        <li class="uk-active "><a class="uk-text-capitalize uk-text-bold" href="#">Standard Mode</a>
+                        <li class="uk-active "><a class="uk-text-capitalize uk-text-bold" href="#">Standard Mode <i class="fa fa-question-circle-o" aria-hidden="true" title="“Standard Mode” was designed in such a way that will optimize and generate the meaningful information/result/output for most of the samples submitted. In many cases, however, data requires a fine adjustment to the pipeline parameter for meaningful output/result. Thus the “Advance Mode” could be more appreciated." uk-tooltip></i></a>
+
                         </li>
-                        <li><a class="uk-text-capitalize uk-text-bold" href="1" onclick="advance_mode(this);">Advance
-                                Mode</a></li>
+                        <li><a class="uk-text-capitalize uk-text-bold" href="1" onclick="advance_mode(this);">Advance Mode <i class="fa fa-question-circle-o" aria-hidden="true" title="“Advance Mode”, is designed for the optimum use of the software.  Users can make changes to the pipeline parameter which in turns increase the flexibility of the software. This mode allows the pipeline to be adjusted so that it will be able to handle with different types of data. Hence, it will be more applicable to different type of experiments. Introductions and recommendations to steps including quality control, align sequences & clean alignment, pre-cluster sequences & chimera detection, classify sequences, remove bacterial sequences, OTU preparation, which are provided in the section below. " uk-tooltip></i></a></li>
 
                     </ul>
                     <ul class="uk-switcher">
@@ -74,295 +74,561 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <!-- Standard run -->
                                         <?php echo form_open_multipart('projects/standard_run/' . $current_project); ?>
 
-                                        <div class="col-lg-8 ">
-                                            <label>1. Preprocess & Prepare in taxonomy </label><br><br>
 
-                                            <div class="row">
-                                                <div class="col-lg-1">
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <label>Screen reads </label>
-                                                </div>
-                                                <div class="col-lg-7">
-                                                    <table border="0" class="uk-table uk-table-middle">
-                                                        <tr>
-                                                            <td>maximum ambiguous :</td>
-                                                            <td><input class="uk-input" type="text" name="cmd" value=""
-                                                                       placeholder="8" disabled></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>maximum homopolymer :</td>
-                                                            <td><input class="uk-input" type="text" name="cmd" value=""
-                                                                       placeholder="8" disabled></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>minimum reads length :</td>
-                                                            <td><input class="uk-input" type="text" name="cmd" value=""
-                                                                       placeholder="260" disabled></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>maximum reads length :</td>
-                                                            <td><input class="uk-input" type="text" name="cmd" value=""
-                                                                       placeholder="260" disabled></td>
-                                                        </tr>
-                                                    </table>
+
+                                        <div class="panel panel-info ">
+                                            <div class="panel-heading">Run Stard</div>
+                                            <div class="panel-body">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1.Quality control  #1 <i class="fa fa-question-circle-o" aria-hidden="true" title="In “Quality Control” section, every setting is made to control the overall result’s reliability and resolution. The term ‘ambiguous’ refers to n-base, an unknown/unidentified base, hence it is of our best interest to keep the value of ‘maximum ambiguous’ as low as possible. The same trend was applied to the ‘maximum homopolymer’ since homopolymer refers to the repeated bases (<8 is recommended). The minimum and maximum read length recommended for this software is between 100 – 250 base pairs. Although, depending on different dataset, the parameter setting of the software may varies." uk-tooltip></i></a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse">
+                                                <div class="panel-body">
 
                                                 </div>
                                             </div>
-                                            <br>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-lg-1">
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <label>Alignment step </label>
-                                                </div>
-                                                <div class="col-lg-7">
-                                                    <select class="uk-select uk-margin" disabled>
-                                                        <option>silva.v4.fasta</option>
-                                                    </select>
-                                                </div>
-
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2.Align sequence & Clean alignment #2 <i class="fa fa-question-circle-o" aria-hidden="true" title="There are 3 options for the “Alignment Step” in total which are SILVA, Greengenes and RDP. The default was set to be SILVA due to the fact that this database has a better performance at doing alignment than other databases. (REFERENCE) " uk-tooltip></i></a>
+                                                </h4>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-1">
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <label>Pre-cluster step</label>
-                                                </div>
-                                                <div class="col-lg-7">
-                                                    <select class="uk-select" disabled>
-                                                        <option>diffs=2</option>
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
 
-                                                    </select>
-                                                </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-2">
+                                                            <label>Screen reads </label>
+                                                        </div>
+                                                        <div class="col-lg-7">
+                                                            <table border="0" class="uk-table uk-table-middle">
+                                                                <tr>
+                                                                    <td>maximum ambiguous :</td>
+                                                                    <td><input class="uk-input" type="text" name="cmd" value=""
+                                                                               placeholder="8" disabled></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>maximum homopolymer :</td>
+                                                                    <td><input class="uk-input" type="text" name="cmd" value=""
+                                                                               placeholder="8" disabled></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>minimum reads length :</td>
+                                                                    <td><input class="uk-input" type="text" name="cmd" value=""
+                                                                               placeholder="260" disabled></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>maximum reads length :</td>
+                                                                    <td><input class="uk-input" type="text" name="cmd" value=""
+                                                                               placeholder="260" disabled></td>
+                                                                </tr>
+                                                            </table>
 
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-2">
+                                                            <label>Alignment step </label>
+                                                        </div>
+                                                        <div class="col-lg-7">
+                                                            <select class="uk-select uk-margin" disabled>
+                                                                <option>silva.v4.fasta</option>
+                                                            </select>
+                                                        </div>
 
-                                            </div>
-                                            <br><br>
-                                            <div class="row">
-                                                <div class="col-lg-1">
-                                                </div>
-                                                <div class="col-lg-5 ">
-                                                    <label>Prepare for taxonomy classification </label>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <table class="uk-table uk-table-middle">
-                                                        <tr>
-                                                            <td>database</td>
-                                                            <td>
-                                                                <select class="uk-select" disabled>
-                                                                    <option>gg_13_8_99.fasta</option>
-                                                                </select>
-                                                            </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td>cutoff</td>
-                                                            <td><input class="uk-input" type="text" name="cutoff"
-                                                                       value="" placeholder="80" disabled></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>taxon elimination</td>
-                                                            <td><textarea class="uk-textarea" type="textarea"
-                                                                          name="texonomy" value=""
-                                                                          placeholder="Chloroplast-Mitochondria-Eukaryota-unknown"
-                                                                          disabled></textarea>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <br><br>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3.Pre-cluster sequence & Chimera detection #3 <i class="fa fa-question-circle-o" aria-hidden="true" title="This step is performed to check for the strand similarities, in other words, to check for a possible error in some strands. The main objective of this step is to de-noise the sequences, thus providing a better resolution. To check for errors the recommended number of different bases between strand are <2. [Pre-Cluster Sequences]
+In addition to that, it is possible that the (PCR-based) amplification steps in NGS-platform may cause some errors. This type of errors may cause certain mismatched cases between primer/dimer and their template strand. [Chimera Detection]" uk-tooltip></i></a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse"></i>
+                                                <div class="panel-body">
+
+                                                    <div class="row">
+
+                                                        <div class="col-sm-2">
+                                                            <label>Pre-cluster step</label>
+                                                        </div>
+                                                        <div class="col-lg-7">
+                                                            <select class="uk-select" disabled>
+                                                                <option>diffs=2</option>
+
+                                                            </select>
+                                                        </div>
 
 
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <label>2. Prepare phylotype</label>
+                                                    </div>
+                                                    </div>
+                                            </div>
+                                        </div>
 
-                                                </div>
-                                                <div class="col-lg-7">
-                                                    **The number of total reads/groups after the preprocess<br>
-                                                    **subsamples detect from files<br>
-                                                    subsamples <input class="uk-input uk-width-1-4" value="5000"
-                                                                      disabled>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">4.Classify sequences & Remove non-bacterial sequence #4  <i class="fa fa-question-circle-o" aria-hidden="true" title="To prepare for a taxonomy classification, the a recommended database is Greengenes (set as default). Similar to the reason being the AM software, this consists of a software known as PICRUst, which was designed to predict the function of samples submitted. Furthermore, Greengenes database works at the best performance together with this software. Optionally, if the users are not interested in predicting functions and would like to change the database, SILVA and RDP are also available.
+	Greengenes database is the only database that provide information down to species level, while SILVA and RDP can provide only information at the level of genus. In contrast to Greengenes, RDP database was cleaner and SILVA was mostly use for alignment (SILVA > RDP, in terms of taxa). “Taxon Elimination” is designed to remove the unwanted data (i.e., helping to clean the result). The default was set to eliminate the taxon of chloroplast, mitochondria, eukaryote, and unknown. Optionally, users can eliminate other information, which include an option to remove archaea-unknown and archaea-unknown & bacteria-unknown" uk-tooltip></i></a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFour" class="panel-collapse collapse">
+                                                <div class="panel-body">
+
+                                                    <div class="col-lg-3">
+                                                        <label>Prepare for taxonomy classification </label>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <table class="uk-table uk-table-middle">
+                                                            <tr>
+                                                                <td>database</td>
+                                                                <td>
+                                                                    <select class="uk-select" disabled>
+                                                                        <option>gg_13_8_99.fasta</option>
+                                                                    </select>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td>cutoff</td>
+                                                                <td><input class="uk-input" type="text" name="cutoff"
+                                                                           value="" placeholder="80" disabled></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>taxon elimination</td>
+                                                                <td><textarea class="uk-textarea" type="textarea"
+                                                                              name="texonomy" value=""
+                                                                              placeholder="Chloroplast-Mitochondria-Eukaryota-unknown"
+                                                                              disabled></textarea>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <br>
+                                        </div>
 
 
-                                            <div class="row">
-
-                                                <div class="col-lg-2">
-                                                    <label>3.Analysis </label>
-                                                </div>
-
-                                                <div class="col-lg-7">
-                                                    <table>
-                                                        <tr>
-                                                            <td>
-                                                                Level 2 is used for analysis :
-                                                            </td>
-                                                            <td>
-                                                                <select class="uk-select" disabled>
-                                                                    <option>1</option>
-                                                                    <option selected>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                    <option>6</option>
-
-
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">5.Alpha/Beta diversity analysis #5  <i class="fa fa-question-circle-o" aria-hidden="true" title="Alpha – Diversity:
+	“Alpha – Diversity” is set as a default setting. This analysis will calculate the statistic for the community of bacteria within the group. A total of 5 statistical analysis will be provided in a table such as nseq, cover, sobs, Chao and Shannon.
+Beta – Diversity:
+	“Beta – Diversity” will analyze the community of bacteria between different groups. During this step choices to view diagrams for different statistical calculator can be made. A total 7 statistical analysis will be provided in a table, i.e. lennon, jclass, moristahorn, sorabund, thetan, thetayc and braycurtis.  " uk-tooltip></i></a>
+                                                </h4>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-1"></div>
-                                                <div class="col-lg-4 ">
-                                                    <label>3.1 Beta diversity analysis</label>
-                                                </div>
+                                            <div id="collapseFive" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-2">
+                                                            <label>Alpha diversity</label>
+                                                        </div>
+                                                        <div class="col-lg-7 col-lg-offset-3">
+                                                            **subsamples detect from files<br>
+                                                            subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-2">
+                                                            <label>Beta diversity</label>
+                                                        </div>
+                                                        <div class="col-lg-7 col-lg-offset-3">
+                                                            **The number of total reads/groups after the preprocess<br>
+                                                            **subsamples detect from files<br>
+                                                            subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>
+                                                            <div class="row">
+
+                                                                <table>
+                                                                    <tr>
+                                                                        <td>
+                                                                            Level 2 is used for analysis :
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="uk-select" disabled>
+                                                                                <option>1</option>
+                                                                                <option selected>2</option>
+                                                                                <option>3</option>
+                                                                                <option>4</option>
+                                                                                <option>5</option>
+                                                                                <option>6</option>
 
 
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-2"></div>
-                                                <div class="col-lg-2 ">
-                                                    <label>Calculators</label>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <ul>
-                                                        <li>sobs</li>
-                                                        <li>chao</li>
-                                                        <li>shannon</li>
-                                                        <li>simpson</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                                                            </select>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
 
+                                                                <div class="col-lg-6">
 
-                                            <div class="row">
-                                                <div class="col-lg-1"></div>
-                                                <div class="col-lg-4 ">
-                                                    <label>3.2 Alpha diversity analysis</label>
-                                                </div>
-                                                <div class="col-lg-6">
+                                                                    <ul>
+                                                                        <li>venn diagram</li>
+                                                                        <li>UPGMA tree</li>
+                                                                        <ul>
+                                                                            <li>Thetayc</li>
+                                                                            <li>Jclass</li>
+                                                                        </ul>
+                                                                        <li>PCOA</li>
+                                                                        <ul>
+                                                                            <li>Thetayc</li>
+                                                                            <li>Jclass</li>
+                                                                        </ul>
+                                                                        <li>NMDS</li>
+                                                                        <ul>
+                                                                            <li>Thetayc</li>
+                                                                            <li>Jclass</li>
+                                                                        </ul>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
 
-                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-2">
+                                                            <label>Option</label>
+                                                        </div>
+                                                        <div class="col-lg-6">
 
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <label></label>
-                                                </div>
-                                                <div class="col-lg-6">
+                                                            <ul>
 
-                                                    <ul>
-                                                        <li>venn diagram</li>
-                                                        <li>UPGMA tree</li>
-                                                        <ul>
-                                                            <li>Thetayc</li>
-                                                            <li>Jclass</li>
-                                                        </ul>
-                                                        <li>PCOA</li>
-                                                        <ul>
-                                                            <li>Thetayc</li>
-                                                            <li>Jclass</li>
-                                                        </ul>
-                                                        <li>NMDS</li>
-                                                        <ul>
-                                                            <li>Thetayc</li>
-                                                            <li>Jclass</li>
-                                                        </ul>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                                                <?php
+                                                                foreach ($rs as $r) {
+                                                                    $sample_folder = $r['project_path'];
 
+                                                                }
+                                                                $project = basename($sample_folder);
+                                                                $path_owncloud = "../owncloud/data/" . $username . "/files/" . $project . "/data/input/";
+                                                                $file_files = array('design');
+                                                                $file_metadata = array('metadata');
+                                                                $check_file = '0';
+                                                                $check_metadata = '0';
+                                                                $result_folder = array();
+                                                                $result_file = array();
 
-                                            <div class="row">
-                                                <div class="col-lg-2"></div>
-                                                <div class="col-lg-2">
-                                                    <label>Option</label>
-                                                </div>
-                                                <div class="col-lg-6">
+                                                                if (is_dir($path_owncloud)) {
+                                                                    $select_folder = array_diff(scandir($path_owncloud, 1), array('.', '..'));
+                                                                    $cdir = scandir($path_owncloud);
+                                                                    foreach ($cdir as $key => $value) {
 
-                                                    <ul>
+                                                                        if (!in_array($value, array('.', '..'))) {
+                                                                            if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                                                                                $result_folder[$value] = $value;
 
-                                                        <?php
-                                                        foreach ($rs as $r) {
-                                                            $sample_folder = $r['project_path'];
+                                                                            } else {
 
-                                                        }
-                                                        $project = basename($sample_folder);
-                                                        $path_owncloud = "../owncloud/data/" . $username . "/files/" . $project . "/data/input/";
-                                                        $file_files = array('design');
-                                                        $file_metadata = array('metadata');
-                                                        $check_file = '0';
-                                                        $check_metadata = '0';
-                                                        $result_folder = array();
-                                                        $result_file = array();
+                                                                                $type = explode('.', $value);
+                                                                                $type = array_reverse($type);
+                                                                                if (in_array($type[0], $file_files)) {
 
-                                                        if (is_dir($path_owncloud)) {
-                                                            $select_folder = array_diff(scandir($path_owncloud, 1), array('.', '..'));
-                                                            $cdir = scandir($path_owncloud);
-                                                            foreach ($cdir as $key => $value) {
+                                                                                    $check_file = 'have_files';
+                                                                                }
 
-                                                                if (!in_array($value, array('.', '..'))) {
-                                                                    if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
-                                                                        $result_folder[$value] = $value;
+                                                                                if (in_array($type[0], $file_metadata)) {
 
-                                                                    } else {
+                                                                                    $check_metadata = 'have_metadata';
 
-                                                                        $type = explode('.', $value);
-                                                                        $type = array_reverse($type);
-                                                                        if (in_array($type[0], $file_files)) {
-
-                                                                            $check_file = 'have_files';
-                                                                        }
-
-                                                                        if (in_array($type[0], $file_metadata)) {
-
-                                                                            $check_metadata = 'have_metadata';
-
+                                                                                }
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
-                                                            }
-                                                        }
 
 
-                                                        ?>
+                                                                ?>
 
-                                                        <?php if ($check_file == '0') { ?>
-                                                            <li>Please upload
-                                                                file.design? <?php echo form_upload('design'); ?></li>
-                                                        <?php } ?>
+                                                                <?php if ($check_file == '0') { ?>
+                                                                    <li>Please upload
+                                                                        file.design? <?php echo form_upload('design'); ?></li>
+                                                                <?php } ?>
 
-                                                        <?php if ($check_metadata == '0') { ?>
-                                                            <li>Please upload
-                                                                file.metadata? <?php echo form_upload('metadata'); ?></li>
-                                                        <?php } ?>
-                                                    </ul>
+                                                                <?php if ($check_metadata == '0') { ?>
+                                                                    <li>Please upload
+                                                                        file.metadata? <?php echo form_upload('metadata'); ?></li>
+                                                                <?php } ?>
+                                                            </ul>
 
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-
-
-                                            <div class="row uk-margin">
-
-                                                <p id="show_prephy"></p>
+                                        </div>
+                                                <button id="btn_prepro" name="submit" class="btn btn-default pull-right">
+                                                    Submit
+                                                </button>
                                             </div>
+
+                                        </div>
+
+
+
+
+
+
+
+<!--                                        <div class="col-lg-8 ">-->
+<!--                                            <label>1.Quality control </label><br><br>-->
+<!--                                            <label>2.Align sequence & Clean alignment</label><br><br>-->
+<!---->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-lg-1">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-2">-->
+<!--                                                    <label>Screen reads </label>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-7">-->
+<!--                                                    <table border="0" class="uk-table uk-table-middle">-->
+<!--                                                        <tr>-->
+<!--                                                            <td>maximum ambiguous :</td>-->
+<!--                                                            <td><input class="uk-input" type="text" name="cmd" value=""-->
+<!--                                                                       placeholder="8" disabled></td>-->
+<!--                                                        </tr>-->
+<!--                                                        <tr>-->
+<!--                                                            <td>maximum homopolymer :</td>-->
+<!--                                                            <td><input class="uk-input" type="text" name="cmd" value=""-->
+<!--                                                                       placeholder="8" disabled></td>-->
+<!--                                                        </tr>-->
+<!--                                                        <tr>-->
+<!--                                                            <td>minimum reads length :</td>-->
+<!--                                                            <td><input class="uk-input" type="text" name="cmd" value=""-->
+<!--                                                                       placeholder="260" disabled></td>-->
+<!--                                                        </tr>-->
+<!--                                                        <tr>-->
+<!--                                                            <td>maximum reads length :</td>-->
+<!--                                                            <td><input class="uk-input" type="text" name="cmd" value=""-->
+<!--                                                                       placeholder="260" disabled></td>-->
+<!--                                                        </tr>-->
+<!--                                                    </table>-->
+<!---->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <br>-->
+<!--                                            <br>-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-lg-1">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-2">-->
+<!--                                                    <label>Alignment step </label>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-7">-->
+<!--                                                    <select class="uk-select uk-margin" disabled>-->
+<!--                                                        <option>silva.v4.fasta</option>-->
+<!--                                                    </select>-->
+<!--                                                </div>-->
+<!---->
+<!--                                            </div>-->
+<!--                                            <label>3.Pre-cluster sequence & Chimera detection</label><br><br>-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-lg-1">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-2">-->
+<!--                                                    <label>Pre-cluster step</label>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-7">-->
+<!--                                                    <select class="uk-select" disabled>-->
+<!--                                                        <option>diffs=2</option>-->
+<!---->
+<!--                                                    </select>-->
+<!--                                                </div>-->
+<!---->
+<!---->
+<!--                                            </div>-->
+<!--                                            <br><br>-->
+<!--                                            <label>4.Classify sequences & Remove non-bacterial sequence</label><br><br>-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-lg-1">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-5 ">-->
+<!--                                                    <label>Prepare for taxonomy classification </label>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-6">-->
+<!--                                                    <table class="uk-table uk-table-middle">-->
+<!--                                                        <tr>-->
+<!--                                                            <td>database</td>-->
+<!--                                                            <td>-->
+<!--                                                                <select class="uk-select" disabled>-->
+<!--                                                                    <option>gg_13_8_99.fasta</option>-->
+<!--                                                                </select>-->
+<!--                                                            </td>-->
+<!---->
+<!--                                                        </tr>-->
+<!--                                                        <tr>-->
+<!--                                                            <td>cutoff</td>-->
+<!--                                                            <td><input class="uk-input" type="text" name="cutoff"-->
+<!--                                                                       value="" placeholder="80" disabled></td>-->
+<!--                                                        </tr>-->
+<!--                                                        <tr>-->
+<!--                                                            <td>taxon elimination</td>-->
+<!--                                                            <td><textarea class="uk-textarea" type="textarea"-->
+<!--                                                                          name="texonomy" value=""-->
+<!--                                                                          placeholder="Chloroplast-Mitochondria-Eukaryota-unknown"-->
+<!--                                                                          disabled></textarea>-->
+<!--                                                            </td>-->
+<!--                                                        </tr>-->
+<!--                                                    </table>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <br><br>-->
+<!---->
+<!---->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-lg-5">-->
+<!--                                                    <label>5.Alpha/Beta diversity analysis</label>-->
+<!---->
+<!--                                                </div>-->
+<!---->
+<!--                                            </div>-->
+<!--                                            <br>-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-lg-3">-->
+<!--                                                    Alpha diversity-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-7 col-lg-offset-3">-->
+<!--                                                    **subsamples detect from files<br>-->
+<!--                                                    subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-lg-3">-->
+<!--                                                    Beta diversity-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-7 col-lg-offset-3">-->
+<!--                                                    **The number of total reads/groups after the preprocess<br>-->
+<!--                                                    **subsamples detect from files<br>-->
+<!--                                                    subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>-->
+<!--                                                    <div class="row">-->
+<!---->
+<!--                                                            <table>-->
+<!--                                                                <tr>-->
+<!--                                                                    <td>-->
+<!--                                                                        Level 2 is used for analysis :-->
+<!--                                                                    </td>-->
+<!--                                                                    <td>-->
+<!--                                                                        <select class="uk-select" disabled>-->
+<!--                                                                            <option>1</option>-->
+<!--                                                                            <option selected>2</option>-->
+<!--                                                                            <option>3</option>-->
+<!--                                                                            <option>4</option>-->
+<!--                                                                            <option>5</option>-->
+<!--                                                                            <option>6</option>-->
+<!---->
+<!---->
+<!--                                                                        </select>-->
+<!--                                                                    </td>-->
+<!--                                                                </tr>-->
+<!--                                                            </table>-->
+<!---->
+<!--                                                        <div class="col-lg-6">-->
+<!---->
+<!--                                                            <ul>-->
+<!--                                                                <li>venn diagram</li>-->
+<!--                                                                <li>UPGMA tree</li>-->
+<!--                                                                <ul>-->
+<!--                                                                    <li>Thetayc</li>-->
+<!--                                                                    <li>Jclass</li>-->
+<!--                                                                </ul>-->
+<!--                                                                <li>PCOA</li>-->
+<!--                                                                <ul>-->
+<!--                                                                    <li>Thetayc</li>-->
+<!--                                                                    <li>Jclass</li>-->
+<!--                                                                </ul>-->
+<!--                                                                <li>NMDS</li>-->
+<!--                                                                <ul>-->
+<!--                                                                    <li>Thetayc</li>-->
+<!--                                                                    <li>Jclass</li>-->
+<!--                                                                </ul>-->
+<!--                                                            </ul>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!---->
+<!---->
+<!--                                                    <div class="row">-->
+<!--                                                        <div class="col-lg-2"></div>-->
+<!--                                                        <div class="col-lg-2">-->
+<!--                                                            <label>Option</label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-lg-6">-->
+<!---->
+<!--                                                            <ul>-->
+<!---->
+<!--                                                                --><?php
+//                                                                foreach ($rs as $r) {
+//                                                                    $sample_folder = $r['project_path'];
+//
+//                                                                }
+//                                                                $project = basename($sample_folder);
+//                                                                $path_owncloud = "../owncloud/data/" . $username . "/files/" . $project . "/data/input/";
+//                                                                $file_files = array('design');
+//                                                                $file_metadata = array('metadata');
+//                                                                $check_file = '0';
+//                                                                $check_metadata = '0';
+//                                                                $result_folder = array();
+//                                                                $result_file = array();
+//
+//                                                                if (is_dir($path_owncloud)) {
+//                                                                    $select_folder = array_diff(scandir($path_owncloud, 1), array('.', '..'));
+//                                                                    $cdir = scandir($path_owncloud);
+//                                                                    foreach ($cdir as $key => $value) {
+//
+//                                                                        if (!in_array($value, array('.', '..'))) {
+//                                                                            if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+//                                                                                $result_folder[$value] = $value;
+//
+//                                                                            } else {
+//
+//                                                                                $type = explode('.', $value);
+//                                                                                $type = array_reverse($type);
+//                                                                                if (in_array($type[0], $file_files)) {
+//
+//                                                                                    $check_file = 'have_files';
+//                                                                                }
+//
+//                                                                                if (in_array($type[0], $file_metadata)) {
+//
+//                                                                                    $check_metadata = 'have_metadata';
+//
+//                                                                                }
+//                                                                            }
+//                                                                        }
+//                                                                    }
+//                                                                }
+//
+//
+//                                                                ?>
+<!---->
+<!--                                                                --><?php //if ($check_file == '0') { ?>
+<!--                                                                    <li>Please upload-->
+<!--                                                                        file.design? --><?php //echo form_upload('design'); ?><!--</li>-->
+<!--                                                                --><?php //} ?>
+<!---->
+<!--                                                                --><?php //if ($check_metadata == '0') { ?>
+<!--                                                                    <li>Please upload-->
+<!--                                                                        file.metadata? --><?php //echo form_upload('metadata'); ?><!--</li>-->
+<!--                                                                --><?php //} ?>
+<!--                                                            </ul>-->
+<!---->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!---->
+<!--                                            <div class="row uk-margin">-->
+<!---->
+<!--                                                <p id="show_prephy"></p>-->
+<!--                                            </div>-->
                                             <!--                                                --><?php //foreach ($rs_process as $rs_p){
                                             //                                                    $status = $rs_p['number_process'];
                                             //
                                             //                                                } ?>
-                                            <button id="btn_prepro" name="submit" class="btn btn-default pull-right">
-                                                Submit
-                                            </button>
-                                        </div>
+
+<!--                                        </div>-->
                                         </form>
                                     </li>
                                     <li>
@@ -380,6 +646,10 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                                         ?>
+
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">Test</div>
+                                            <div class="panel-body">
 
 
                                         <div class="row">
@@ -568,8 +838,6 @@ if (isset($this->session->userdata['logged_in'])) {
                                                             <td>thetayc_lci</td>
                                                             <td>thetayc_hci</td>
                                                             <td>braycurtis</td>
-
-
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -603,6 +871,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 ?>
                                             </div>
 
+                                        </div>
+                                            </div>
                                         </div>
 
                                     </li>
