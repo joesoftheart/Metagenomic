@@ -60,24 +60,24 @@ if (isset($this->session->userdata['logged_in'])) {
                         <li><a class="uk-text-capitalize uk-text-bold" href="1" onclick="advance_mode(this);">Advance Mode <i class="fa fa-question-circle-o" aria-hidden="true" title="“Advance Mode”, is designed for the optimum use of the software.  Users can make changes to the pipeline parameter which in turns increase the flexibility of the software. This mode allows the pipeline to be adjusted so that it will be able to handle with different types of data. Hence, it will be more applicable to different type of experiments. Introductions and recommendations to steps including quality control, align sequences & clean alignment, pre-cluster sequences & chimera detection, classify sequences, remove bacterial sequences, OTU preparation, which are provided in the section below. " uk-tooltip></i></a></li>
 
                     </ul>
-                    <ul class="uk-switcher">
+                    <ul class="uk-switcher" >
 
-                        <li>
-                            <div>
+                        <li >
+                            <div >
 
                                 <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
                                     <li><a href="#">Run</a></li>
                                     <li><a href="#">Result & Graph</a></li>
                                 </ul>
                                 <ul class="uk-switcher uk-margin">
-                                    <li>
+                                    <li >
                                         <!-- Standard run -->
                                         <?php echo form_open_multipart('projects/standard_run/' . $current_project); ?>
 
 
 
                                         <div class="panel panel-info ">
-                                            <div class="panel-heading">Run Stard</div>
+                                            <div class="panel-heading">Run Standard</div>
                                             <div class="panel-body">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
@@ -366,272 +366,10 @@ Beta – Diversity:
                                             </div>
 
                                         </div>
-
-
-
-
-
-
-
-<!--                                        <div class="col-lg-8 ">-->
-<!--                                            <label>1.Quality control </label><br><br>-->
-<!--                                            <label>2.Align sequence & Clean alignment</label><br><br>-->
-<!---->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-1">-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-2">-->
-<!--                                                    <label>Screen reads </label>-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-7">-->
-<!--                                                    <table border="0" class="uk-table uk-table-middle">-->
-<!--                                                        <tr>-->
-<!--                                                            <td>maximum ambiguous :</td>-->
-<!--                                                            <td><input class="uk-input" type="text" name="cmd" value=""-->
-<!--                                                                       placeholder="8" disabled></td>-->
-<!--                                                        </tr>-->
-<!--                                                        <tr>-->
-<!--                                                            <td>maximum homopolymer :</td>-->
-<!--                                                            <td><input class="uk-input" type="text" name="cmd" value=""-->
-<!--                                                                       placeholder="8" disabled></td>-->
-<!--                                                        </tr>-->
-<!--                                                        <tr>-->
-<!--                                                            <td>minimum reads length :</td>-->
-<!--                                                            <td><input class="uk-input" type="text" name="cmd" value=""-->
-<!--                                                                       placeholder="260" disabled></td>-->
-<!--                                                        </tr>-->
-<!--                                                        <tr>-->
-<!--                                                            <td>maximum reads length :</td>-->
-<!--                                                            <td><input class="uk-input" type="text" name="cmd" value=""-->
-<!--                                                                       placeholder="260" disabled></td>-->
-<!--                                                        </tr>-->
-<!--                                                    </table>-->
-<!---->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <br>-->
-<!--                                            <br>-->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-1">-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-2">-->
-<!--                                                    <label>Alignment step </label>-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-7">-->
-<!--                                                    <select class="uk-select uk-margin" disabled>-->
-<!--                                                        <option>silva.v4.fasta</option>-->
-<!--                                                    </select>-->
-<!--                                                </div>-->
-<!---->
-<!--                                            </div>-->
-<!--                                            <label>3.Pre-cluster sequence & Chimera detection</label><br><br>-->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-1">-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-2">-->
-<!--                                                    <label>Pre-cluster step</label>-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-7">-->
-<!--                                                    <select class="uk-select" disabled>-->
-<!--                                                        <option>diffs=2</option>-->
-<!---->
-<!--                                                    </select>-->
-<!--                                                </div>-->
-<!---->
-<!---->
-<!--                                            </div>-->
-<!--                                            <br><br>-->
-<!--                                            <label>4.Classify sequences & Remove non-bacterial sequence</label><br><br>-->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-1">-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-5 ">-->
-<!--                                                    <label>Prepare for taxonomy classification </label>-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-6">-->
-<!--                                                    <table class="uk-table uk-table-middle">-->
-<!--                                                        <tr>-->
-<!--                                                            <td>database</td>-->
-<!--                                                            <td>-->
-<!--                                                                <select class="uk-select" disabled>-->
-<!--                                                                    <option>gg_13_8_99.fasta</option>-->
-<!--                                                                </select>-->
-<!--                                                            </td>-->
-<!---->
-<!--                                                        </tr>-->
-<!--                                                        <tr>-->
-<!--                                                            <td>cutoff</td>-->
-<!--                                                            <td><input class="uk-input" type="text" name="cutoff"-->
-<!--                                                                       value="" placeholder="80" disabled></td>-->
-<!--                                                        </tr>-->
-<!--                                                        <tr>-->
-<!--                                                            <td>taxon elimination</td>-->
-<!--                                                            <td><textarea class="uk-textarea" type="textarea"-->
-<!--                                                                          name="texonomy" value=""-->
-<!--                                                                          placeholder="Chloroplast-Mitochondria-Eukaryota-unknown"-->
-<!--                                                                          disabled></textarea>-->
-<!--                                                            </td>-->
-<!--                                                        </tr>-->
-<!--                                                    </table>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <br><br>-->
-<!---->
-<!---->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-5">-->
-<!--                                                    <label>5.Alpha/Beta diversity analysis</label>-->
-<!---->
-<!--                                                </div>-->
-<!---->
-<!--                                            </div>-->
-<!--                                            <br>-->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-3">-->
-<!--                                                    Alpha diversity-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-7 col-lg-offset-3">-->
-<!--                                                    **subsamples detect from files<br>-->
-<!--                                                    subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-3">-->
-<!--                                                    Beta diversity-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-7 col-lg-offset-3">-->
-<!--                                                    **The number of total reads/groups after the preprocess<br>-->
-<!--                                                    **subsamples detect from files<br>-->
-<!--                                                    subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>-->
-<!--                                                    <div class="row">-->
-<!---->
-<!--                                                            <table>-->
-<!--                                                                <tr>-->
-<!--                                                                    <td>-->
-<!--                                                                        Level 2 is used for analysis :-->
-<!--                                                                    </td>-->
-<!--                                                                    <td>-->
-<!--                                                                        <select class="uk-select" disabled>-->
-<!--                                                                            <option>1</option>-->
-<!--                                                                            <option selected>2</option>-->
-<!--                                                                            <option>3</option>-->
-<!--                                                                            <option>4</option>-->
-<!--                                                                            <option>5</option>-->
-<!--                                                                            <option>6</option>-->
-<!---->
-<!---->
-<!--                                                                        </select>-->
-<!--                                                                    </td>-->
-<!--                                                                </tr>-->
-<!--                                                            </table>-->
-<!---->
-<!--                                                        <div class="col-lg-6">-->
-<!---->
-<!--                                                            <ul>-->
-<!--                                                                <li>venn diagram</li>-->
-<!--                                                                <li>UPGMA tree</li>-->
-<!--                                                                <ul>-->
-<!--                                                                    <li>Thetayc</li>-->
-<!--                                                                    <li>Jclass</li>-->
-<!--                                                                </ul>-->
-<!--                                                                <li>PCOA</li>-->
-<!--                                                                <ul>-->
-<!--                                                                    <li>Thetayc</li>-->
-<!--                                                                    <li>Jclass</li>-->
-<!--                                                                </ul>-->
-<!--                                                                <li>NMDS</li>-->
-<!--                                                                <ul>-->
-<!--                                                                    <li>Thetayc</li>-->
-<!--                                                                    <li>Jclass</li>-->
-<!--                                                                </ul>-->
-<!--                                                            </ul>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!---->
-<!---->
-<!--                                                    <div class="row">-->
-<!--                                                        <div class="col-lg-2"></div>-->
-<!--                                                        <div class="col-lg-2">-->
-<!--                                                            <label>Option</label>-->
-<!--                                                        </div>-->
-<!--                                                        <div class="col-lg-6">-->
-<!---->
-<!--                                                            <ul>-->
-<!---->
-<!--                                                                --><?php
-//                                                                foreach ($rs as $r) {
-//                                                                    $sample_folder = $r['project_path'];
-//
-//                                                                }
-//                                                                $project = basename($sample_folder);
-//                                                                $path_owncloud = "../owncloud/data/" . $username . "/files/" . $project . "/data/input/";
-//                                                                $file_files = array('design');
-//                                                                $file_metadata = array('metadata');
-//                                                                $check_file = '0';
-//                                                                $check_metadata = '0';
-//                                                                $result_folder = array();
-//                                                                $result_file = array();
-//
-//                                                                if (is_dir($path_owncloud)) {
-//                                                                    $select_folder = array_diff(scandir($path_owncloud, 1), array('.', '..'));
-//                                                                    $cdir = scandir($path_owncloud);
-//                                                                    foreach ($cdir as $key => $value) {
-//
-//                                                                        if (!in_array($value, array('.', '..'))) {
-//                                                                            if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
-//                                                                                $result_folder[$value] = $value;
-//
-//                                                                            } else {
-//
-//                                                                                $type = explode('.', $value);
-//                                                                                $type = array_reverse($type);
-//                                                                                if (in_array($type[0], $file_files)) {
-//
-//                                                                                    $check_file = 'have_files';
-//                                                                                }
-//
-//                                                                                if (in_array($type[0], $file_metadata)) {
-//
-//                                                                                    $check_metadata = 'have_metadata';
-//
-//                                                                                }
-//                                                                            }
-//                                                                        }
-//                                                                    }
-//                                                                }
-//
-//
-//                                                                ?>
-<!---->
-<!--                                                                --><?php //if ($check_file == '0') { ?>
-<!--                                                                    <li>Please upload-->
-<!--                                                                        file.design? --><?php //echo form_upload('design'); ?><!--</li>-->
-<!--                                                                --><?php //} ?>
-<!---->
-<!--                                                                --><?php //if ($check_metadata == '0') { ?>
-<!--                                                                    <li>Please upload-->
-<!--                                                                        file.metadata? --><?php //echo form_upload('metadata'); ?><!--</li>-->
-<!--                                                                --><?php //} ?>
-<!--                                                            </ul>-->
-<!---->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!---->
-<!--                                            <div class="row uk-margin">-->
-<!---->
-<!--                                                <p id="show_prephy"></p>-->
-<!--                                            </div>-->
-                                            <!--                                                --><?php //foreach ($rs_process as $rs_p){
-                                            //                                                    $status = $rs_p['number_process'];
-                                            //
-                                            //                                                } ?>
-
-<!--                                        </div>-->
                                         </form>
                                     </li>
-                                    <li>
+
+                                    <li id="print">
 
                                         <?php
 
@@ -647,99 +385,100 @@ Beta – Diversity:
 
                                         ?>
 
-                                        <div class="panel panel-info">
+                                        <div class="panel panel-info " >
                                             <div class="panel-heading">Test</div>
                                             <div class="panel-body">
 
 
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <b>Ven diagram</b>
-                                                <img class="img-thumbnail"
-                                                     src="<?php echo base_url(); ?><?php echo $path ?>sharedsobs.svg">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <b>Heatmap</b>
-                                                <img class="img-thumbnail"
-                                                     src="<?php echo base_url(); ?><?php echo $path ?>heatmap.png">
-                                            </div>
-                                        </div>
-
-                                        <hr class="uk-divider-icon">
-
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <b>*Biplot</b><br>
-                                                <img class="img-thumbnail"
-                                                     src="<?php echo base_url(); ?><?php echo $path ?>NewNMDS_withBiplotwithOTU.png">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <b>*Biplot</b><br>
-                                                <img class="img-thumbnail"
-                                                     src="<?php echo base_url(); ?><?php echo $path ?>NewNMDS_withBiplotwithMetadata.png">
-                                            </div>
-                                        </div>
-                                        <hr class="uk-divider-icon">
-
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <b>Rarefaction</b>
-                                                <img class="img-thumbnail"
-                                                     src="<?php echo base_url(); ?><?php echo $path ?>Rare.png">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <b>RelativePhylum</b>
-                                                <img class="img-thumbnail"
-                                                     src="<?php echo base_url(); ?><?php echo $path ?>Abun.png">
-                                            </div>
-                                        </div>
-                                        <hr class="uk-divider-icon">
-                                        <b>NMDS</b>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-lg-offset-3">
-                                                <img class="img-thumbnail"
-                                                     src="<?php echo base_url(); ?><?php echo $path ?>NMD.png">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <b>Ven diagram</b>
+                                                    <img class="img-thumbnail"
+                                                         src="<?php echo base_url(); ?><?php echo $path ?>sharedsobs.svg">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <b>Heatmap</b>
+                                                    <img class="img-thumbnail"
+                                                         src="<?php echo base_url(); ?><?php echo $path ?>heatmap.png">
+                                                </div>
                                             </div>
 
-                                        </div>
-                                        <hr class="uk-divider-icon">
-                                        <b>Alpha</b>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-lg-offset-3">
-                                                <img class="img-thumbnail"
-                                                     src="<?php echo base_url(); ?><?php echo $path ?>Alpha.png">
+                                            <hr class="uk-divider-icon" >
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <b>*Biplot</b><br>
+                                                    <img class="img-thumbnail"
+                                                         src="<?php echo base_url(); ?><?php echo $path ?>NewNMDS_withBiplotwithOTU.png">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <b>*Biplot</b><br>
+                                                    <img class="img-thumbnail"
+                                                         src="<?php echo base_url(); ?><?php echo $path ?>NewNMDS_withBiplotwithMetadata.png">
+                                                </div>
+                                            </div>
+                                            <hr class="uk-divider-icon">
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <b>Rarefaction</b>
+                                                    <img class="img-thumbnail"
+                                                         src="<?php echo base_url(); ?><?php echo $path ?>Rare.png">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <b>RelativePhylum</b>
+                                                    <img class="img-thumbnail"
+                                                         src="<?php echo base_url(); ?><?php echo $path ?>Abun.png">
+                                                </div>
+                                            </div>
+                                            <hr class="uk-divider-icon">
+                                            <b>NMDS</b>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-lg-offset-3">
+                                                    <img class="img-thumbnail"
+                                                         src="<?php echo base_url(); ?><?php echo $path ?>NMD.png">
+                                                </div>
+
+                                            </div>
+                                            <hr class="uk-divider-icon">
+                                            <b>Alpha</b>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-lg-offset-3">
+                                                    <img class="img-thumbnail"
+                                                         src="<?php echo base_url(); ?><?php echo $path ?>Alpha.png">
+                                                </div>
+
+                                            </div>
+                                            <hr class="uk-divider-icon">
+                                            <b>Tree</b>
+                                            <div class="row" >
+                                                <div class="col-lg-6 col-lg-offset-3">
+                                                    <img class="img-thumbnail"
+                                                         src="<?php echo base_url(); ?><?php echo $path ?>Tree.png">
+                                                </div>
+
                                             </div>
 
-                                        </div>
-                                        <hr class="uk-divider-icon">
-                                        <b>Tree</b>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-lg-offset-3">
-                                                <img class="img-thumbnail"
-                                                     src="<?php echo base_url(); ?><?php echo $path ?>Tree.png">
-                                            </div>
+                                            <hr class="uk-divider-icon">
+                                            <?php
+                                            $path_file_original_phylotype = $path . "final.tx.groups.ave-std.summary";
+                                            $path_file_original_otu = $path . "final.opti_mcc.groups.ave-std.summary";
+                                            if (file_exists($path_file_original_phylotype)){
+                                                $path_file_original = $path_file_original_phylotype;
+                                            }
+                                            if (file_exists($path_file_original_otu)){
+                                                $path_file_original = $path_file_original_otu;
+                                            }
 
-                                        </div>
-                                        <hr class="uk-divider-icon">
-                                        <?php
-                                        $path_file_original_phylotype = $path . "final.tx.groups.ave-std.summary";
-                                        $path_file_original_otu = $path . "final.opti_mcc.groups.ave-std.summary";
-                                        if (file_exists($path_file_original_phylotype)){
-                                            $path_file_original = $path_file_original_phylotype;
-                                        }
-                                        if (file_exists($path_file_original_otu)){
-                                            $path_file_original = $path_file_original_otu;
-                                        }
-
-                                        $name_file = basename($path_file_original);
+                                            $name_file = basename($path_file_original);
 
 
 
-                                        ?>
+                                            ?>
 
 
-                                        <b><?php echo $name_file ?></b>
-                                        <div class="row">
+                                            <b><?php echo $name_file ?></b>
+                                            <div class="row" >
                                             <div class="col-lg-6">
                                                 <?php
 
@@ -765,7 +504,7 @@ Beta – Diversity:
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-<?php
+                                                    <?php
                                                     for ($i = 0; $i <= $num_line - 1; $i++) {
                                                         $line_split_tab_i = preg_split("/[\t]/", $keywords_split_line[$i]);
                                                         if ($line_split_tab_i[0] == "2" or $line_split_tab_i[0] == "0.03") { ?>
@@ -786,10 +525,11 @@ Beta – Diversity:
                                                     <?php } ?>
                                                     </tbody>
                                                     </table>
-<?php
+                                                    <?php
                                                 }
                                                 ?>
                                             </div>
+
 
                                         </div>
                                         <hr class="uk-divider-icon">
@@ -874,11 +614,12 @@ Beta – Diversity:
                                         </div>
                                             </div>
                                         </div>
-
+                                        <button onclick="printContent('print')">Print</button>
                                     </li>
                                 </ul>
 
                             </div>
+
                         </li>
 
                         <?php echo form_close(); ?>
@@ -2646,5 +2387,16 @@ Beta – Diversity:
 
     </script>
     <!--  End Advance Script -->
+
+    <script>
+        function printContent(el) {
+            var restorepage = document.body.innerHTML;
+            var printcontent = document.getElementById(el).innerHTML;
+            document.body.innerHTML = printcontent;
+            window.print();
+            document.body.innerHTML = restorepage;
+
+        }
+    </script>
 
 

@@ -335,6 +335,9 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+                    <li>
+                        <a href="<?php echo site_url('document') ?>"><i class="fa fa-usb"></i> Documents</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

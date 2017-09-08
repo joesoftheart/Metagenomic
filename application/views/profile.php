@@ -23,11 +23,50 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3">
-            <div class="uk-card uk-card-default uk-card-body">
-                <img src="http://placehold.it/350x250">
+
+
+
+
+
+
+        <?php foreach ($rs_user as $s){
+            $name_img_profile = $s['user_img_profile'] . ".png";
+
+         } ?><div>
+            <img class="img-circle" id="profile_picture" height="128" data-src="default.jpg"  data-holder-rendered="true" style="width: 140px; height: 140px;" src="<?php if (isset($name_img_profile)){ echo base_url()?>images/<?php echo $name_img_profile; }else{ echo base_url()?>images/default.jpg <?php } ?>"/>
+            <br><br>
+            <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Change Profile Picture</a>
+        </div>
+
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h3>Change Profile Picture</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form action="profile/change_img/<?php echo $id;?>/<?php echo $username;?>" method="post" enctype="multipart/form-data" id="form1">
+                            <strong>Upload Image:</strong> <br><br>
+                            <input type="file" name="pictures" value="" id="image_name" />
+
+                            <div id='preview-profile-pic'></div>
+                            <div id="thumbs" style="padding:5px; width:600px"></div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" form="form1" value="Submit"   class="btn btn-primary">Crop & Save</button>
+                    </div>
+                </div>
             </div>
         </div>
+
+
+<!--            <form action="profile/change_img" method="post" enctype="multipart/form-data">-->
+<!--                <input type="file" name="pictures" onchange="javascript:this.form.submit();">-->
+<!--            </form>-->
+
         <div class="col-lg-9">
             <?php if ($rs_user != null) { ?>
                 <div class="uk-card uk-card-default uk-card-body">
@@ -70,3 +109,10 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
     </div>
 </div>
+
+
+<script>
+    document.getElementById("file").onchange = function() {
+        document.getElementById("form").submit();
+    };
+</script>
