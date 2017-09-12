@@ -23,20 +23,19 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
     </div>
     <div class="row">
+        <div class="uk-card uk-card-default uk-card-body">
+        <div class="col-lg-2">
+            <?php foreach ($rs_user as $s){
+                $name_img_profile = $s['user_img_profile'];
 
-
-
-
-
-
-        <?php foreach ($rs_user as $s){
-            $name_img_profile = $s['user_img_profile'] . ".png";
-
-         } ?><div>
-            <img class="img-circle" id="profile_picture" height="128" data-src="default.jpg"  data-holder-rendered="true" style="width: 140px; height: 140px;" src="<?php if (isset($name_img_profile)){ echo base_url()?>images/<?php echo $name_img_profile; }else{ echo base_url()?>images/default.jpg <?php } ?>"/>
-            <br><br>
-            <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Change Profile Picture</a>
+            } ?><div>
+                <img class="img-circle" id="profile_picture" height="128" data-src="<?php echo base_url() ?>/images/default.jpg"  data-holder-rendered="true" style="width: 140px; height: 140px;" src="<?php if (isset($name_img_profile) and $name_img_profile!= null){ echo base_url()?>images/<?php echo $name_img_profile  . ".png"; }else{ echo base_url()?>images/default.jpg <?php } ?>"/>
+                <br><br>
+                <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Change Profile Picture</a>
+            </div>
         </div>
+
+
 
         <div id="myModal" class="modal fade">
             <div class="modal-dialog">
@@ -69,7 +68,6 @@ if (isset($this->session->userdata['logged_in'])) {
 
         <div class="col-lg-9">
             <?php if ($rs_user != null) { ?>
-                <div class="uk-card uk-card-default uk-card-body">
                     <h3 class="uk-card-title">User info </h3>
                     <?php echo form_open('edit_profile/edit_profile/' . $id); ?>
                     <?php foreach ($rs_user as $r) { ?>
@@ -84,9 +82,9 @@ if (isset($this->session->userdata['logged_in'])) {
                     <?php form_close() ?>
                 </div>
             <?php } else { ?>
-                <div class="uk-card uk-card-default uk-card-body">
+
                     <h3 class="uk-card-title">User info </h3>
-                    <?php echo form_open('profile/update_profile/' . $id); ?>
+                    <?php echo form_open('profile/update_profile/' . $id ."/" . $username); ?>
                     <p>User Name : <?php echo $username ?></p>
                     <p>First Name :<input class="uk-input" type="text" name="first_name" value=""></p>
                     <p>Last Name :<input class="uk-input" type="text" name="last_name" value=""></p>
@@ -103,9 +101,10 @@ if (isset($this->session->userdata['logged_in'])) {
                     </div>
                     <button class="btn btn-default right" name="update">Update profile</button>
                     <?php form_close() ?>
-                </div>
+
             <?php } ?>
 
+        </div>
         </div>
     </div>
 </div>

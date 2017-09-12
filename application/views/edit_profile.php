@@ -25,7 +25,7 @@ if (isset($this->session->userdata['logged_in'])) {
         <div class="col-lg-9">
             <div class="uk-card uk-card-default uk-card-body">
                 <h3 class="uk-card-title">User info </h3>
-                <?php echo form_open('profile/update_profile/' . $id) ?>
+                <?php echo form_open('profile/update_profile/' . $id ."/" . $username) ?>
                 <?php foreach ($rs_user as $r) { ?>
                     <p>User Name : <?php echo $username ?></p>
                     <p>First Name :<input class="uk-input" type="text" name="first_name"

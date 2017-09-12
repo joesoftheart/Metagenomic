@@ -22,7 +22,6 @@ class Edit_profile extends CI_Controller{
     public function edit_profile($id_user){
 
         ob_start();
-        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
 
 
         $data['rs_user'] = $this->mongo_db->get_where('user_details',array("user_id" => $id_user));

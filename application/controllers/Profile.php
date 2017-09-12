@@ -20,8 +20,6 @@ class Profile extends CI_Controller{
     public function index(){
         ob_start();
         $id_user = (string)$this->session->userdata['logged_in']['_id'];
-        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
-        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
         $data['rs_user'] = $this->mongo_db->get_where('user_details',array("user_id" => $id_user));
 
         $this->load->view('header',$data);
@@ -32,7 +30,7 @@ class Profile extends CI_Controller{
 
     }
 
-    public function change_img($username,$id_user)
+    public function change_img($id_user,$username)
     {
         echo "OK";
         $data = array();
@@ -42,7 +40,8 @@ class Profile extends CI_Controller{
             'max_size' => '1024',
             'max_width' => '1024',
             'max_height' => '1024',
-            'file_name' => 'joesoftheart.png'
+            'file_name' => 'joesoftheart.png',
+            'overwrite' => true
         );
         $this->load->library('upload', $config);
         if (!$this->upload->do_upload('pictures')) {
@@ -59,9 +58,12 @@ class Profile extends CI_Controller{
             "user_id" => $id_user,
             "user_img_profile" => $this->uri->segment(4));
 
-        $data = $this->mongo_db->get_where('user_details',array("_id" => $id_user));
+        $data_user_update = array("user_id" => $id_user,
+            "user_img_profile" => $this->uri->segment(4));
+
+        $data = $this->mongo_db->get_where('user_details',array("user_id" => $id_user));
         if ($data != null ){
-            $this->mongo_db->where(array("user_id" => $id_user))->set($data_user)->update('user_details');
+            $this->mongo_db->where(array("user_id" => $id_user))->set($data_user_update)->update('user_details');
             redirect("profile", "refresh");
         }else{
             $this->mongo_db->insert('user_details', $data_user);
@@ -72,7 +74,7 @@ class Profile extends CI_Controller{
     }
 
 
-    public function update_profile($id_user){
+    public function update_profile($id_user,$username){
         $data_user = array("first_name" => $this->input->post("first_name"),
             "last_name" => $this->input->post("last_name"),
             "address" => $this->input->post("address"),
@@ -81,12 +83,19 @@ class Profile extends CI_Controller{
             "user_id" => $id_user,
             "user_img_profile" => "");
 
+        $data_user_update = array("first_name" => $this->input->post("first_name"),
+            "last_name" => $this->input->post("last_name"),
+            "address" => $this->input->post("address"),
+            "tel" => $this->input->post("tel"),
+            "gender" => $this->input->post("gender"),
+            "user_id" => $id_user);
+
 
 
 
         $data = $this->mongo_db->get_where('user_details',array("user_id" => $id_user));
         if ($data != null ){
-            $this->mongo_db->where(array("user_id" => $id_user))->set($data_user)->update('user_details');
+            $this->mongo_db->where(array("user_id" => $id_user))->set($data_user_update)->update('user_details');
             redirect("profile", "refresh");
         }else{
             $this->mongo_db->insert('user_details', $data_user);

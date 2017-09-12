@@ -22,22 +22,3 @@ drawout=ggplot(data = NMDS, aes(MDS1, MDS2)) + geom_point(aes(color = group),siz
   theme(legend.position="right", legend.title=element_text(colour="black", size=10, face="bold"), legend.text = element_text(colour="black", size = 8, face = "plain"))
 drawout
 dev.off()
-
-# Metadata =>
-# points<-read.table("soildetailex1Thetayc.pearson.corr.axes3", header=T)
-# x1<-points$axis1
-# y1<-points$axis2
-# labels<-points$Feature #point$Feature
-# plot=geom_segment(data=points, aes(x=0, y=0, xend=x1, yend=y1), arrow=arrow(length=unit(0.2,"cm"),type="closed", angle=40), alpha=0.75, color="gray")
-# 
-# textAnno <- annotate("text", x=0.8, y=-0.8, label="Temperature", size=5, fontface="bold.italic", colour = "red")
-# drawout+plot+textAnno+annotate("text", x=-0.65, y=0.68, label="pH", size=5, fontface="bold.italic", colour = "red") 
-# 
-# # taxonomy =>
-# points<-read.table("genus2contaxonomysoil16SmergeDupex3.txt", header=T)
-# x1<-points$axis1
-# y1<-points$axis2
-# labels<-points$taxon #point$OTU #taxonomy
-# plot=geom_segment(data=points, aes(x=0, y=0, xend=x1, yend=y1), arrow=arrow(length=unit(0.2,"cm"),type="closed", angle=40), alpha=0.75, color="gray")
-# 
-# drawout+plot+geom_text_repel(data=points, aes(x=x1, y=y1, label =labels), box.padding = unit(0.01, "cm"), force = 2, segment.color=NA, size=3, color="red") # segment.color ="black" , segment.size = 0.1

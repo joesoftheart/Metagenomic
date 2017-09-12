@@ -11,9 +11,12 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
+
+
+
         ob_start();
-            $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
-            $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
+
+
             $data['rs']  = $this->mongo_db->get_where('projects', array("user_id" => $this->session->userdata["logged_in"]["_id"]));
             $this->load->view('header', $data);
             $this->load->view('index', $data);

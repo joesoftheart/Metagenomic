@@ -18,8 +18,6 @@ class View_message extends CI_Controller{
 
 
     public function view_message($id){
-        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
-        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
         $data['rs_message'] = $this->mongo_db->get_where('messages',array("_id" => new \MongoId($id)));
         $this->load->view('header',$data);
         $this->load->view('view_message',$data);

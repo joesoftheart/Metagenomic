@@ -18,9 +18,8 @@ class Document extends CI_Controller{
 
 
     public  function index(){
-        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
-        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
-        $this->load->view("header",$data);
+
+        $this->load->view("header");
         $this->load->view("document");
         $this->load->view("footer");
 

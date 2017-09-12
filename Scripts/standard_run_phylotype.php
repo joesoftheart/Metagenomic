@@ -13,19 +13,19 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    run($user,$id,$project,$path);
+    plot_graph_r_heatmap($user,$id,$project,$path);
     }
 
 
 // Run Program
 function run($user,$id,$project,$path){
     check_file($user,$id,$project,$path);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
 }
 
 
 // Check file 
  function check_file($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
      echo "\n";
      echo "Run check_file :";
     $path_stability = "../owncloud/data/$user/files/$project/output/stability.files";
@@ -279,6 +279,7 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
     $file = file_get_contents("Logs_sge/".$file_name);
     $start_array = array();
     $end_array   = array();
+
     $start = 0;
     $end =0;
     $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum).*\$/m";
@@ -751,7 +752,7 @@ function create_input_biplot($user, $id, $project, $path){
          $check_run = exec("qstat -j $id_job");
          if ($check_run == false) {
              echo "Go to plot_graph_r_NMD ->";
-             plot_graph_r_NMD($user, $id, $project, $path);
+            // plot_graph_r_NMD($user, $id, $project, $path);
              break;
          }
      }
@@ -1002,7 +1003,7 @@ function convert_biom($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Finish convert_biom ->";
-          //  phylotype_picrust($user, $id, $project, $path);
+            phylotype_picrust($user, $id, $project, $path);
             break;
         }
     }
@@ -1042,7 +1043,7 @@ function phylotype_picrust($user, $id, $project, $path){
 
 
 function change_name($user, $id, $project, $path){
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "finish"."\n", FILE_APPEND);
+
     $dir = $path."/output";
     $file_read = array( 'svg');
     $dir_ignore = array();
@@ -1086,6 +1087,7 @@ function change_name($user, $id, $project, $path){
             }
         }
     }
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "picrust-finish"."\n", FILE_APPEND);
 }
 ?>
 
