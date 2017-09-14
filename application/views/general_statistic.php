@@ -12,8 +12,10 @@ if (isset($this->session->userdata['logged_in'])) {
             <?php $controller_name = $this->uri->segment(1); ?>
             <br>
             <ol class="breadcrumb">
-                <li <?php if ($controller_name == 'main'){
-                    echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
+                <li <?php if ($controller_name == 'main') {
+                    echo "class=active";
+                } ?>><?php if ($controller_name == 'main') { ?>Home<?php } else { ?><a
+                        href="<?php echo site_url('main') ?>">Home</a><?php } ?></li>
                 <li>Statistics</li>
                 <li class="active">General statistic</li>
 
@@ -44,17 +46,14 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
         $rs_u_p = 0;
-        foreach ($rs_your_p as $rs_your_pro){
+        foreach ($rs_your_p as $rs_your_pro) {
             $rs_u_p++;
         }
 
         $rs_u_t = 0;
-        foreach ($rs_u_ticket as $r_u_tt){
+        foreach ($rs_u_ticket as $r_u_tt) {
             $rs_u_t++;
         }
-
-
-
 
 
         // $num_users = conut();?>
@@ -74,7 +73,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                 </div>
                             </div>
                         </div>
-                        <a href="#" >
+                        <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-ban" aria-hidden="true"></i></span>
@@ -145,14 +144,14 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <i class="fa fa-folder-open fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $rs_p?></div>
+                                    <div class="huge"><?php echo $rs_u_p ?></div>
                                     <div>Projects</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#" id="project">
                             <div class="panel-footer">
-                                <span class="pull-left">View <?php echo $rs_u_p;?> projects </span>
+                                <span class="pull-left">View <?php echo $rs_u_p; ?> projects </span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -169,7 +168,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">
                                         <?php echo $count_files; ?></div>
-                                    <div>Samples </div>
+                                    <div>Samples</div>
                                 </div>
                             </div>
                         </div>
@@ -197,7 +196,7 @@ if (isset($this->session->userdata['logged_in'])) {
                         </div>
                         <a href="#" id="ticket">
                             <div class="panel-footer">
-                                <span class="pull-left">View  <?php echo $rs_u_t;?> Tickets</span>
+                                <span class="pull-left">View <?php echo $rs_u_t; ?> Tickets</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -217,13 +216,13 @@ if (isset($this->session->userdata['logged_in'])) {
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($rs_u_ticket as $value) {?>
-                        <tr>
-                            <td><?php echo $value['ticket_name']?></td>
-                            <td><?php echo $value['ticket_detail']?></td>
-                            <td><?php echo $value['ticket_status']?></td>
-                            <td><?php echo $value['user_id']?></td>
-                        </tr>
+                        <?php foreach ($rs_u_ticket as $value) { ?>
+                            <tr>
+                                <td><?php echo $value['ticket_name'] ?></td>
+                                <td><?php echo $value['ticket_detail'] ?></td>
+                                <td><?php echo $value['ticket_status'] ?></td>
+                                <td><?php echo $value['user_id'] ?></td>
+                            </tr>
                         <?php } ?>
 
                         </tbody>
@@ -244,14 +243,14 @@ if (isset($this->session->userdata['logged_in'])) {
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($rs_your_p as $value) {?>
+                        <?php foreach ($rs_your_p as $value) { ?>
                             <tr>
-                                <td><?php echo $value['project_name']?></td>
-                                <td><?php echo $value['project_title']?></td>
-                                <td><?php echo $value['project_detail']?></td>
-                                <td><?php echo $value['project_type']?></td>
-                                <td><?php echo $value['project_program']?></td>
-                                <td><?php echo $value['project_analysis']?></td>
+                                <td><?php echo $value['project_name'] ?></td>
+                                <td><?php echo $value['project_title'] ?></td>
+                                <td><?php echo $value['project_detail'] ?></td>
+                                <td><?php echo $value['project_type'] ?></td>
+                                <td><?php echo $value['project_program'] ?></td>
+                                <td><?php echo $value['project_analysis'] ?></td>
                             </tr>
                         <?php } ?>
 

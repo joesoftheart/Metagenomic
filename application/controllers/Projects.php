@@ -29,14 +29,16 @@ class Projects extends CI_Controller
         $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
         $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
         $data['rs_process'] = $this->mongo_db->limit(1)->get('status_process');
+        
 
 
-foreach ($data['rs'] as $r) {
-    $sample_folder = $r['project_path'];
-    $data['project_analysis'] = $r['project_analysis'];
-}
-$project = basename($sample_folder);
-$user = $this->session->userdata['logged_in']['username'];
+
+       foreach ($data['rs'] as $r) {
+             $sample_folder = $r['project_path'];
+             $data['project_analysis'] = $r['project_analysis'];
+        }
+           $project = basename($sample_folder);
+           $user = $this->session->userdata['logged_in']['username'];
 
 
 
@@ -63,10 +65,18 @@ $user = $this->session->userdata['logged_in']['username'];
         if(file_exists($progress) and $num < 18){
             redirect("/process/index/" . $id_project, 'refresh');
         }else {
-
+             
+          
             $this->load->view('header', $data);
             $this->load->view('projects', $data);
             $this->load->view('footer');
+
+            $data['username'] = $user;
+            $data['project']  = $project;
+            $data['currentproject'] = $ar;
+            $this->load->view('script_advance',$data);
+
+          
         }
     }
 
@@ -124,6 +134,9 @@ $user = $this->session->userdata['logged_in']['username'];
             echo "Not run";
         }
     }
+
+
+
 
 
 }

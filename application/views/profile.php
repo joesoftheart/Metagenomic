@@ -12,8 +12,10 @@ if (isset($this->session->userdata['logged_in'])) {
             <?php $controller_name = $this->uri->segment(1); ?>
             <br>
             <ol class="breadcrumb">
-                <li <?php if ($controller_name == 'main'){
-                    echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
+                <li <?php if ($controller_name == 'main') {
+                    echo "class=active";
+                } ?>><?php if ($controller_name == 'main') { ?>Home<?php } else { ?><a
+                        href="<?php echo site_url('main') ?>">Home</a><?php } ?></li>
                 <li class="active">Profile</li>
 
 
@@ -21,48 +23,48 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3" >
+        <div class="col-lg-3">
             <div class="uk-card uk-card-default uk-card-body">
                 <img src="http://placehold.it/350x250">
             </div>
         </div>
         <div class="col-lg-9">
-            <?php  if ($rs_user != null) { ?>
-            <div class="uk-card uk-card-default uk-card-body">
-                <h3 class="uk-card-title">User info </h3>
-                <?php echo form_open('edit_profile/edit_profile/'.$id); ?>
-                <?php foreach ($rs_user as $r) {?>
-                <p>User Name : <?php echo  $username ?></p>
-                <p>First Name :<?php echo $r['first_name']; ?></p>
-                <p>Last Name :<?php echo $r['last_name']; ?></p>
-                <p>Addess :<?php echo $r['address']; ?></p>
-                <p>Tel : <?php echo $r['tel']; ?></p>
-                <p>Gender : <?php echo $r['gender']; ?></p>
-                <?php  } ?>
-                <button class="btn btn-default right" name="edit">Edit profile</button>
-                <?php form_close() ?>
-            </div>
+            <?php if ($rs_user != null) { ?>
+                <div class="uk-card uk-card-default uk-card-body">
+                    <h3 class="uk-card-title">User info </h3>
+                    <?php echo form_open('edit_profile/edit_profile/' . $id); ?>
+                    <?php foreach ($rs_user as $r) { ?>
+                        <p>User Name : <?php echo $username ?></p>
+                        <p>First Name :<?php echo $r['first_name']; ?></p>
+                        <p>Last Name :<?php echo $r['last_name']; ?></p>
+                        <p>Addess :<?php echo $r['address']; ?></p>
+                        <p>Tel : <?php echo $r['tel']; ?></p>
+                        <p>Gender : <?php echo $r['gender']; ?></p>
+                    <?php } ?>
+                    <button class="btn btn-default right" name="edit">Edit profile</button>
+                    <?php form_close() ?>
+                </div>
             <?php } else { ?>
-            <div class="uk-card uk-card-default uk-card-body">
-                <h3 class="uk-card-title">User info </h3>
-                <?php echo form_open('profile/update_profile/'.$id); ?>
-                    <p>User Name : <?php echo  $username ?></p>
+                <div class="uk-card uk-card-default uk-card-body">
+                    <h3 class="uk-card-title">User info </h3>
+                    <?php echo form_open('profile/update_profile/' . $id); ?>
+                    <p>User Name : <?php echo $username ?></p>
                     <p>First Name :<input class="uk-input" type="text" name="first_name" value=""></p>
                     <p>Last Name :<input class="uk-input" type="text" name="last_name" value=""></p>
                     <p>Addess :<input class="uk-input" type="text" name="address" value=""></p>
                     <p>Tel : <input class="uk-input" type="text" name="tel" value=""></p>
-                <div class="form-group">
-                    Gender :
-                <label class="radio-inline">
-                    <input type="radio" name="gender" id="" value="Male">Male
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="gender" id="" value="Female">Female
-                </label>
+                    <div class="form-group">
+                        Gender :
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" id="" value="Male">Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" id="" value="Female">Female
+                        </label>
+                    </div>
+                    <button class="btn btn-default right" name="update">Update profile</button>
+                    <?php form_close() ?>
                 </div>
-                <button class="btn btn-default right" name="update">Update profile</button>
-                <?php form_close() ?>
-            </div>
             <?php } ?>
 
         </div>

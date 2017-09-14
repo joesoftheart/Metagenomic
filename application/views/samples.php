@@ -12,8 +12,10 @@ if (isset($this->session->userdata['logged_in'])) {
             <?php $controller_name = $this->uri->segment(1); ?>
             <br>
             <ol class="breadcrumb">
-                <li <?php if ($controller_name == 'main'){
-                    echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
+                <li <?php if ($controller_name == 'main') {
+                    echo "class=active";
+                } ?>><?php if ($controller_name == 'main') { ?>Home<?php } else { ?><a
+                        href="<?php echo site_url('main') ?>">Home</a><?php } ?></li>
                 <li class="active">Sample</li>
 
             </ol>
@@ -28,11 +30,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <form role="form">
                                     <div class="form-group">
                                         <label>Sample Name :</label>
-                                        <input class="form-control" type="text" />
+                                        <input class="form-control" type="text"/>
                                         <label>Name :</label>
-                                        <input class="form-control" type="text" />
+                                        <input class="form-control" type="text"/>
                                         <label>Address :</label>
-                                        <textarea class="form-control" ></textarea>
+                                        <textarea class="form-control"></textarea>
                                         <div class="form-group">
                                             <label>Sex :</label>
                                             <label class="radio-inline">

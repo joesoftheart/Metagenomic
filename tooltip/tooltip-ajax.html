@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head><title>Tooltip Ajax</title></head>
+<body>
+
+    <div id="div1">
+         <h4>“Quality Control” </h4>
+         <p>
+        	&nbsp;&nbsp;In “Quality Control” section, every setting is made to control the overall result’s reliability and resolution. The term ‘ambiguous’ refers to n-base, an unknown/unidentified base, hence it is of our best interest to keep the value of ‘maximum ambiguous’ as low as possible. The same trend was applied to the ‘maximum homopolymer’ since homopolymer refers to the repeated bases ( <i class="fa fa-angle-left"></i> 8 is recommended). The minimum and maximum read length recommended for this software is between 100 – 250 base pairs. Although, depending on different dataset, the parameter setting of the software may varies.
+
+        	</p> 
+
+        
+    </div>
+
+    <div id="div2">
+        <h4>“Align Sequences & Clean Alignment” </h4>
+        <p>
+        	&nbsp;&nbsp;There are 3 options for the “Alignment Step” in total which are SILVA, Greengenes and RDP. The default was set to be SILVA due to the fact that this database has a better performance at doing alignment than other databases. (REFERENCE) 
+
+
+        </p>
+    </div>
+
+    <div id="div3">
+        <h4>“Pre-Cluster Sequences & Chimera Detection” </h4>
+        <p>
+        	&nbsp;&nbsp;This step is performed to check for the strand similarities, in other words, to check for a possible error in some strands. The main objective of this step is to de-noise the sequences, thus providing a better resolution. To check for errors the recommended number of different bases between strand are ( <i class="fa fa-angle-left"></i> 2. [Pre-Cluster Sequences]
+        </p>
+             &nbsp;&nbsp;In addition to that, it is possible that the (PCR-based) amplification steps in NGS-platform may cause some errors. This type of errors may cause certain mismatched cases between primer/dimer and their template strand. [Chimera Detection]
+
+
+        
+    </div>
+
+    <div id="div4">
+        <h4>“Classify Sequences” </h4>
+        <p>
+        	&nbsp;&nbsp;To prepare for a taxonomy classification, the a recommended database is Greengenes (set as default). Similar to the reason being the AM software, this consists of a software known as PICRUst, which was designed to predict the function of samples submitted. Furthermore, Greengenes database works at the best performance together with this software. Optionally, if the users are not interested in predicting functions and would like to change the database, SILVA and RDP are also available. 
+        </p>
+             &nbsp;&nbsp;Greengenes database is the only database that provide information down to species level, while SILVA and RDP can provide only information at the level of genus. In contrast to Greengenes, RDP database was cleaner and SILVA was mostly use for alignment (SILVA > RDP, in terms of taxa). 
+
+
+        
+    </div>
+
+    <div id="div5">
+        <h4>“Removal Bacterial Sequences” </h4>
+        <p>
+        	&nbsp;&nbsp;“Taxon Elimination” is designed to remove the unwanted data (i.e., helping to clean the result). The default was set to eliminate the taxon of chloroplast, mitochondria, eukaryote, and unknown. Optionally, users can eliminate other information, which include an option to remove archaea-unknown and archaea-unknown & bacteria-unknown
+        </p>
+             
+        
+    </div>
+
+     <div id="div6">
+        <h4>“Alpha – Diversity” </h4>
+        <p>
+            &nbsp;&nbsp;“Alpha – Diversity” is set as a default setting. This analysis will calculate the statistic for the community of bacteria within the group. A total of 5 statistical analysis will be provided in a table such as nseq, cover, sobs, Chao and Shannon.  
+        </p>
+             
+        
+    </div>
+
+    <div id="div7">
+        <h4>“Beta – Diversity” </h4>
+        <p>
+            &nbsp;&nbsp;“Beta – Diversity” will analyze the community of bacteria between different groups. During this step choices to view diagrams for different statistical calculator can be made. A total 7 statistical analysis will be provided in a table, i.e. lennon, jclass, moristahorn, sorabund, thetan, thetayc and braycurtis. 
+        </p>
+             
+        
+    </div>
+    <div id="div12">
+        <h4>“Optional” </h4>
+        <p>
+            &nbsp;&nbsp;An additional “Option” is provided to help analysing the interaction of bacteria groups within our own samples or with other metadata (abiotic factors such as temperature, salinity and pH). This interaction analysis can be viewed in 2 or 3-dimentions depending on the user. 
+        </p>
+             
+        
+    </div>
+
+
+
+
+
+</body>
+</html>

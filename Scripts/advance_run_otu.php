@@ -106,7 +106,7 @@
         # make.file  stability.files
         function run_makefile($user,$project,$path_in,$path_out){
           
-           echo "Run_makefile "."\n";
+           echo "run_makefile "."\n";
           $jobname = $user."_makefile";
 
            #make.file
@@ -147,7 +147,7 @@
          # make.contigs oligos remove primer && summary.seqs
          function makecontigs_oligos_summary($file_oligo,$user,$project,$path_in,$path_out){
 
-            echo "Run makecontigs_oligos_summary  "."\n";
+            echo "makecontigs_oligos_summary"."\n";
             $jobname = $user."_oligo";
 
             $make= "make.contigs(file=stability.files, oligos=$file_oligo ,processors=4 ,inputdir=$path_in,outputdir=$path_out)
@@ -188,7 +188,7 @@
         # make.contigs && summary.seqs
         function makecontig_summary($user,$project,$path_in,$path_out){
           
-           echo "Run makecontigs_summary "."\n";
+           echo "makecontigs_summary "."\n";
            $jobname = $user."_makesummary";
 
            $make ="make.contigs(file=stability.files,processors=4,inputdir=$path_in,outputdir=$path_out)
@@ -258,7 +258,7 @@
 
          function screen_summary($user,$project,$path_in,$path_out){
 
-            echo "Run screen_summary "."\n";
+            echo "screen_summary"."\n";
             $jobname = $user."_screen_summary";
 
             $make = "screen.seqs(fasta=stability.trim.contigs.fasta, group=stability.contigs.groups, summary=stability.trim.contigs.summary, maxambig=".$GLOBALS['maximum_ambiguous'].", minlength=".$GLOBALS['minimum_reads_length']." , maxlength=".$GLOBALS['maximum_reads_length'].", processors=4,inputdir=$path_in,outputdir=$path_out)
@@ -301,7 +301,7 @@
 
          function unique_count_summary($user,$project,$path_in,$path_out){
 
-             echo "Run unique_count_summary "."\n";
+             echo "unique_count_summary"."\n";
              $jobname = $user."_unique_count_summary"; 
 
              $make =" unique.seqs(fasta=stability.trim.contigs.good.fasta,inputdir=$path_in,outputdir=$path_out)
@@ -347,6 +347,8 @@
             # input select alignment step
 
          function align_summary($user,$project,$path_in,$path_out){
+
+
           $jobname = $user."_align_summary"; 
           
           $make = "align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=".$GLOBALS['alignment'].", processors=4,inputdir=$path_in,outputdir=$path_out)
@@ -377,7 +379,7 @@
 
                    if($check_run == false){
                       
-                      echo "Run align_summary "."\n";
+                      echo "align_summary"."\n";
                       //echo $log."\n";
                       read_log_sungrid($user,$project,$path_in,$path_out,$log_read);
                       break;
@@ -471,7 +473,7 @@
 
          function screen_summary_2($user,$project,$path_in,$path_out,$start,$end){
 
-          echo "Run screen_summary_2  "."\n";
+          echo "screen_summary_2"."\n";
           $jobname = $user."_screen_summary_2";
 
           $make = "screen.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table, summary=stability.trim.contigs.good.unique.summary, start=$start, end=$end, maxambig=".$GLOBALS['maximum_ambiguous'].", maxhomop=".$GLOBALS['maximum_homopolymer'].", maxlength=".$GLOBALS['maximum_reads_length'].", processors=4,inputdir=$path_in,outputdir=$path_out)
@@ -517,7 +519,7 @@
 
          function filter_unique_cluster_vsearch_remove_summary($user,$project,$path_in,$path_out){
             
-            echo "Run filter_unique_cluster_vsearch_remove_summary  "."\n";
+            echo "filter_unique_cluster_vsearch_remove_summary"."\n";
             $jobname = $user."_filter_unique_cluster_vsearch_remove_summary";
 
             $make  = "filter.seqs(fasta=stability.trim.contigs.good.unique.good.align, vertical=T, trump=., processors=4,inputdir=$path_in,outputdir=$path_out)
@@ -567,7 +569,7 @@
           # input reference , taxonomy , cutoff
          function classifly_removelineage_summary($user,$project,$path_in,$path_out){
 
-           echo "Run classifly_removelineage_summary "."\n";
+           echo "classifly_removelineage_summary"."\n";
            $jobname = $user."_classifly_removelineage_summary";
            $make = "classify.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=gg_13_8_99.fasta, taxonomy=gg_13_8_99.gg.tax, cutoff=".$GLOBALS['cutoff'].", processors=4,inputdir=$path_in,outputdir=$path_out)
                   remove.lineage(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxon=".$GLOBALS['taxon'].",inputdir=&path_in,outputdir=$path_out)
@@ -609,7 +611,7 @@
           
          function summary_tax($user,$project,$path_in,$path_out){
 
-          echo "Run summary_tax "."\n";
+          echo "summary_tax"."\n";
           $jobname = $user."_summary_tax";
           $make ="summary.tax(taxonomy=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=$path_in,outputdir=$path_out)";
                   
@@ -652,7 +654,7 @@
             // path file false stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta final.fasta
         function system_cp($user,$project,$path_in,$path_out){
 
-            echo "Run system_cp "."\n";
+            echo "system_cp"."\n";
             $jobname = $user."_system_cp";
             $make = "system(cp ".$path_out."/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta ".$path_out."/final.fasta ,outputdir=$path_out)
                     system(cp ".$path_out."/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table ".$path_out."/final.count_table ,outputdir=$path_out)
@@ -694,7 +696,7 @@
 
         function dist_cluster_shared($user,$project,$path_in,$path_out){
 
-          echo "Run dist_cluster_shared "."\n";
+          echo "dist_cluster_shared"."\n";
           $jobname = $user."_dist_cluster_shared";
           $make = " dist.seqs(fasta=final.fasta, cutoff=0.21, processors=4,inputdir=$path_in,outputdir=$path_out)
           cluster(column=final.dist, count=final.count_table, method=opti, cutoff=0.03,inputdir=$path_in,outputdir=$path_out)
@@ -736,7 +738,7 @@
        #output_plot
         function classify_count ($user,$project,$path_in,$path_out){
 
-          echo "Run classify_count "."\n";
+          echo "classify_count"."\n";
           $jobname = $user."_classify_count";
           $make = "classify.otu(list=final.opti_mcc.list, count=final.count_table, taxonomy=final.taxonomy, label=0.03,inputdir=$path_in,outputdir=$path_out)
                    classify.otu(list=final.opti_mcc.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=0.03,inputdir=$path_out,outputdir=owncloud/data/$user/files/$project/output_plot/)

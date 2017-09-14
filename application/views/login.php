@@ -1,4 +1,4 @@
-<?ob_start();?>
+<? ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,23 +12,22 @@
 
     <title>Login</title>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sb-admin-2-custom.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/sb-admin-2-custom.css">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.min.css">
 
     <!-- MetisMenu CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/metisMenu/metisMenu.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/metisMenu/metisMenu.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sb-admin-2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/sb-admin-2.css">
 
     <!-- Morris Charts CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/morrisjs/morris.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/morrisjs/morris.css">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/font-awesome/css/font-awesome.min.css">
-
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/font-awesome/css/font-awesome.min.css">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -44,7 +43,7 @@ if (isset($this->session->userdata['logged_in'])) {
     header("location: login/user_login_process");
 }
 ?>
-<body background="<?php echo base_url();?>images/new.jpg">
+<body background="<?php echo base_url(); ?>images/new.jpg">
 <?php
 if (isset($logout_message)) {
     echo "<div class='message'>";
@@ -79,10 +78,12 @@ if (isset($message_display)) {
                     <form role="form" method="post" action="index">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="username" name="username" type="text" autofocus>
+                                <input class="form-control" placeholder="username" name="username" type="text"
+                                       autofocus>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="*******" name="password" type="password" value="">
+                                <input class="form-control" placeholder="*******" name="password" type="password"
+                                       value="">
                             </div>
                             <div class="checkbox">
                                 <label>
@@ -90,10 +91,10 @@ if (isset($message_display)) {
                                 </label>
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
-                            <p> <input type="submit" name="login" value="login" class="btn  btn-success "/>
+                            <p><input type="submit" name="login" value="login" class="btn  btn-success "/>
                                 <a href="<?php echo base_url() ?>main/user_registration_show">Create an account</a>
                                 <?php echo form_close(); ?>
-<!--                                <input type="submit" name="signup" value="signup" class="btn  btn-primary "/>-->
+                                <!--                                <input type="submit" name="signup" value="signup" class="btn  btn-primary "/>-->
                             </p>
                         </fieldset>
                     </form>
@@ -104,7 +105,7 @@ if (isset($message_display)) {
 </div>
 
 <!-- jQuery -->
-<script type="text/javascript" src="<?php echo base_url();?>vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap C1ore JavaScript -->
 <script type='text/javascript' src="<?php echo base_url(); ?>vendor/bootstrap/js/bootstrap.min.js"></script>

@@ -463,7 +463,7 @@
                        $line = file($file);
                        $message = $line[$count-1];
                        if($message == ""){
-                          $message = "run queue ".$name_job." ".$id_job;
+                          $message = "Run Preprocess ";
                        }
 
                        if($count != 0){
@@ -717,7 +717,7 @@
                      $line = file($file);
                      $message = $line[$count-1];
                        if($message == ""){
-                          $message = "run subsample";
+                          $message = "Run Prepare";
                        }
 
                        if($count != 0){
@@ -1128,7 +1128,7 @@
                      $line = file($file);
                      $message = $line[$count-1];
                        if($message == ""){
-                          $message = "run analysis";
+                          $message = "Run Analysis";
                        }
 
                        if($count != 0){
@@ -1137,7 +1137,7 @@
                        }
 
                $up = 1;
-               echo json_encode(array($up,$percent_round));
+               echo json_encode(array($up,$percent_round,$message));
             }
              
 

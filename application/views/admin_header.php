@@ -12,49 +12,50 @@
     <title>Metagenomics</title>
 
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sb-admin-2-custom.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/sb-admin-2-custom.css">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.min.css">
 
     <!-- MetisMenu CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/metisMenu/metisMenu.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/metisMenu/metisMenu.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sb-admin-2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/sb-admin-2.css">
 
     <!-- Morris Charts CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/morrisjs/morris.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/morrisjs/morris.css">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/font-awesome/css/font-awesome.min.css">
 
     <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/datatables-plugins/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css"
+          href="<?php echo base_url(); ?>vendor/datatables-plugins/dataTables.bootstrap.css">
 
     <!-- DataTables Responsive CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>vendor/datatables-responsive/dataTables.responsive.css">
+    <link rel="stylesheet" type="text/css"
+          href="<?php echo base_url(); ?>vendor/datatables-responsive/dataTables.responsive.css">
 
 
     <!-- Uikit Design -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/uikit.css">
 
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $("#search-box").keyup(function(){
+        $(document).ready(function () {
+            $("#search-box").keyup(function () {
                 $.ajax({
                     type: "POST",
                     url: "<?php echo base_url(); ?>search_projects/search",
-                    data:'search='+$(this).val(),
-                    beforeSend: function(){
+                    data: 'search=' + $(this).val(),
+                    beforeSend: function () {
                     },
-                    success: function(data){
+                    success: function (data) {
                         $("#suggesstion-box").show();
                         $("#suggesstion-box").html(data);
-                        $("#search-box").css("background","#FFF");
+                        $("#search-box").css("background", "#FFF");
                     }
                 });
             });
@@ -69,23 +70,10 @@
     <!--    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <!---->
     <!-- Bootstrap Material Design -->
-    <!--    <link rel="stylesheet" type="text/css" href="--><?php //echo base_url(); ?><!--css/bootstrap-material-design.css">-->
+    <!--    <link rel="stylesheet" type="text/css" href="-->
+    <?php //echo base_url(); ?><!--css/bootstrap-material-design.css">-->
     <!--    <link rel="stylesheet0" type="text/css" href="--><?php //echo base_url(); ?><!--css/ripples.min.css">-->
     <!--    <link href="https://fezvrasta.github.io/snackbarjs/dist/snackbar.min.css" rel="stylesheet">-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -111,7 +99,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo site_url('admin_main')?>"><i class="fa fa-codepen fa-1x"></i> Metagenomics</a>
+            <a class="navbar-brand" href="<?php echo site_url('admin_main') ?>"><i class="fa fa-codepen fa-1x"></i>
+                Metagenomics</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -124,10 +113,10 @@
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="<?php echo site_url('profile') ?>"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
-                    <li><a href="<?php  echo site_url('setting')?>"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    <li><a href="<?php echo site_url('setting') ?>"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="<?php  echo site_url('main/logout')?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="<?php echo site_url('main/logout') ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -153,7 +142,8 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin_main')?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="<?php echo site_url('admin_main') ?>"><i class="fa fa-dashboard fa-fw"></i>
+                            Dashboard</a>
                     </li>
 
                 </ul>

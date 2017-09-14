@@ -10,14 +10,14 @@ if (isset($this->session->userdata['logged_in'])) {
         <div class="col-lg-12">
             <br>
             <ul class="breadcrumb">
-                <li><a href="#">Home</a><span class="divider">/</span> </li>
+                <li><a href="#">Home</a><span class="divider">/</span></li>
             </ul>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header"> Test insert</h2>
-            <?php echo form_open('insert/insert_data')?>
+            <?php echo form_open('insert/insert_data') ?>
             <table class="table">
                 <thead>
                 <tr>
@@ -35,7 +35,7 @@ if (isset($this->session->userdata['logged_in'])) {
                         input text name :
                     </td>
                     <td>
-                        <?php echo form_input('name','name','name');?>
+                        <?php echo form_input('name', 'name', 'name'); ?>
                     </td>
                 </tr>
                 <tr>
@@ -43,7 +43,7 @@ if (isset($this->session->userdata['logged_in'])) {
                         input text name :
                     </td>
                     <td>
-                        <?php echo form_input('input','input','input');?>
+                        <?php echo form_input('input', 'input', 'input'); ?>
                     </td>
                 </tr>
                 <tr>
@@ -51,7 +51,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
                     </td>
                     <td>
-                        <?php echo form_submit('save','submit','class=btn-btn-dufault')?>
+                        <?php echo form_submit('save', 'submit', 'class=btn-btn-dufault') ?>
                     </td>
                 </tr>
                 </tbody>
@@ -77,16 +77,16 @@ if (isset($this->session->userdata['logged_in'])) {
                 </thead>
                 <tbody>
                 <?php foreach ($rs as $r) { ?>
-                <tr>
-                    <td>
-                        input text name :
-                    </td>
-                    <td>
-                    <?php echo $r['name']?>
-                    </td>
-                    <td><?php echo anchor("insert/delete_data/".$r['_id'],"Delete")?></td>
-                    <td><?php echo anchor("update/update_data/".$r['_id'],"Edit") ?></td>
-                </tr>
+                    <tr>
+                        <td>
+                            input text name :
+                        </td>
+                        <td>
+                            <?php echo $r['name'] ?>
+                        </td>
+                        <td><?php echo anchor("insert/delete_data/" . $r['_id'], "Delete") ?></td>
+                        <td><?php echo anchor("update/update_data/" . $r['_id'], "Edit") ?></td>
+                    </tr>
                 <?php } ?>
                 </tbody>
 

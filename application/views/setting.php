@@ -6,7 +6,9 @@
         height: 34px;
     }
 
-    .switch input {display:none;}
+    .switch input {
+        display: none;
+    }
 
     .slider {
         position: absolute;
@@ -62,8 +64,10 @@
             <?php $controller_name = $this->uri->segment(1); ?>
 
             <ol class="breadcrumb">
-                <li <?php if ($controller_name == 'main'){
-                    echo "class=active";} ?>><?php if ($controller_name == 'main') {?>Home<?php } else { ?><a href="<?php echo site_url('main')?>">Home</a><?php } ?></li>
+                <li <?php if ($controller_name == 'main') {
+                    echo "class=active";
+                } ?>><?php if ($controller_name == 'main') { ?>Home<?php } else { ?><a
+                        href="<?php echo site_url('main') ?>">Home</a><?php } ?></li>
                 <li class="active">Setting</li>
 
             </ol>
@@ -72,27 +76,41 @@
                 <table>
                     <?php foreach ($rs_st as $st) ?>
                     <tbody>
-                    <tr><td><p>Notification when run project success </p></td>
-                    <td><label class="switch">
-                            <input type="checkbox" name="noti_process" id="toggle-one"  <?php if ($st['noti_process'] == "on"){ echo "checked";} else{ } ?>>
-                            <div class="slider round"></div>
+                    <tr>
+                        <td><p>Notification when run project success </p></td>
+                        <td><label class="switch">
+                                <input type="checkbox" name="noti_process"
+                                       id="toggle-one" <?php if ($st['noti_process'] == "on") {
+                                    echo "checked";
+                                } else {
+                                } ?>>
+                                <div class="slider round"></div>
 
-                        </label></td>
+                            </label></td>
 
                     </tr>
                     <tr>
                         <td> Server reboot</td>
                         <td>
-                    <label class="switch">
-                        <input type="checkbox" name="noti_reboot" id="toggle-two"  value="<?php echo $st['noti_reboot'];?>" <?php if ($st['noti_reboot'] == "on"){ echo "checked";} else{ } ?>>
-                        <div class="slider round"></div>
-                    </label>
+                            <label class="switch">
+                                <input type="checkbox" name="noti_reboot" id="toggle-two"
+                                       value="<?php echo $st['noti_reboot']; ?>" <?php if ($st['noti_reboot'] == "on") {
+                                    echo "checked";
+                                } else {
+                                } ?>>
+                                <div class="slider round"></div>
+                            </label>
                         </td>
                     </tr>
                     <tr>
                         <td> Max storage</td>
                         <td><label class="switch">
-                                <input type="checkbox" name="noti_max_storage"  value="<?php echo $st['noti_max_storage'];?>" id="toggle-three"<?php if ($st['noti_max_storage'] == "on"){ echo "checked";} else{ } ?>>
+                                <input type="checkbox" name="noti_max_storage"
+                                       value="<?php echo $st['noti_max_storage']; ?>"
+                                       id="toggle-three"<?php if ($st['noti_max_storage'] == "on") {
+                                    echo "checked";
+                                } else {
+                                } ?>>
                                 <div class="slider round"></div>
                             </label></td>
 
@@ -100,17 +118,25 @@
                     <tr>
                         <td>Automatic Logout after of inactivity</td>
                         <td>
-                    <label class="switch">
-                        <input type="checkbox" name="auto_logout" id="toggle-four"  value="<?php echo $st['auto_logout'];?>" <?php if ($st['auto_logout'] == "on"){ echo "checked";} else{ } ?>>
-                        <div class="slider round"></div>
-                    </label>
+                            <label class="switch">
+                                <input type="checkbox" name="auto_logout" id="toggle-four"
+                                       value="<?php echo $st['auto_logout']; ?>" <?php if ($st['auto_logout'] == "on") {
+                                    echo "checked";
+                                } else {
+                                } ?>>
+                                <div class="slider round"></div>
+                            </label>
                         </td>
                     </tr>
                     <tr>
-                        <td>Send  E-mail</td>
+                        <td>Send E-mail</td>
                         <td>
                             <label class="switch">
-                                <input type="checkbox" name="noti_email" id="toggle-five"  value="<?php echo $st['noti_email'];?>"<?php if ($st['noti_email'] == "on"){ echo "checked";} else{ } ?>>
+                                <input type="checkbox" name="noti_email" id="toggle-five"
+                                       value="<?php echo $st['noti_email']; ?>"<?php if ($st['noti_email'] == "on") {
+                                    echo "checked";
+                                } else {
+                                } ?>>
                                 <div class="slider round"></div>
                             </label>
                         </td>
@@ -127,75 +153,100 @@
 
 
 <script>
-    $(function() {
-        $('#toggle-one').change(function() {
+    $(function () {
+        $('#toggle-one').change(function () {
 
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url();?>setting/update_setting",
-                data: {noti_process: $("#toggle-one").val(),noti_reboot: $("#toggle-two").val(),noti_max_storage: $("#toggle-three").val(),auto_logout: $("#toggle-four").val(),noti_email: $("#toggle-five").val()},
+                data: {
+                    noti_process: $("#toggle-one").val(),
+                    noti_reboot: $("#toggle-two").val(),
+                    noti_max_storage: $("#toggle-three").val(),
+                    auto_logout: $("#toggle-four").val(),
+                    noti_email: $("#toggle-five").val()
+                },
                 dataType: "text",
-                cache:false,
-                success:
-                    function(data){
-                        $("#show").html(data);
-                    }
+                cache: false,
+                success: function (data) {
+                    $("#show").html(data);
+                }
             });// you have missed this bracket
             return false;
         });
-        $('#toggle-two').change(function() {
+        $('#toggle-two').change(function () {
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url();?>setting/update_setting",
-                data: {noti_process: $("#toggle-one").val(),noti_reboot: $("#toggle-two").val(),noti_max_storage: $("#toggle-three").val(),auto_logout: $("#toggle-four").val(),noti_email: $("#toggle-five").val()},
+                data: {
+                    noti_process: $("#toggle-one").val(),
+                    noti_reboot: $("#toggle-two").val(),
+                    noti_max_storage: $("#toggle-three").val(),
+                    auto_logout: $("#toggle-four").val(),
+                    noti_email: $("#toggle-five").val()
+                },
                 dataType: "text",
-                cache:false,
-                success:
-                    function(data){
-                        $("#show").html(data);
-                    }
+                cache: false,
+                success: function (data) {
+                    $("#show").html(data);
+                }
             });// you have missed this bracket
             return false;
         });
-        $('#toggle-three').change(function() {
+        $('#toggle-three').change(function () {
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url();?>setting/update_setting",
-                data: {noti_process: $("#toggle-one").val(),noti_reboot: $("#toggle-two").val(),noti_max_storage: $("#toggle-three").val(),auto_logout: $("#toggle-four").val(),noti_email: $("#toggle-five").val()},
+                data: {
+                    noti_process: $("#toggle-one").val(),
+                    noti_reboot: $("#toggle-two").val(),
+                    noti_max_storage: $("#toggle-three").val(),
+                    auto_logout: $("#toggle-four").val(),
+                    noti_email: $("#toggle-five").val()
+                },
                 dataType: "text",
-                cache:false,
-                success:
-                    function(data){
-                        $("#show").html(data);
-                    }
+                cache: false,
+                success: function (data) {
+                    $("#show").html(data);
+                }
             });// you have missed this bracket
             return false;
         });
-        $('#toggle-four').change(function() {
+        $('#toggle-four').change(function () {
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url();?>setting/update_setting",
-                data: {noti_process: $("#toggle-one").val(),noti_reboot: $("#toggle-two").val(),noti_max_storage: $("#toggle-three").val(),auto_logout: $("#toggle-four").val(),noti_email: $("#toggle-five").val()},
+                data: {
+                    noti_process: $("#toggle-one").val(),
+                    noti_reboot: $("#toggle-two").val(),
+                    noti_max_storage: $("#toggle-three").val(),
+                    auto_logout: $("#toggle-four").val(),
+                    noti_email: $("#toggle-five").val()
+                },
                 dataType: "text",
-                cache:false,
-                success:
-                    function(data){
-                        $("#show").html(data);
-                    }
+                cache: false,
+                success: function (data) {
+                    $("#show").html(data);
+                }
             });// you have missed this bracket
             return false;
         });
-        $('#toggle-five').change(function() {
+        $('#toggle-five').change(function () {
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url();?>setting/update_setting",
-                data: {noti_process: $("#toggle-one").val(),noti_reboot: $("#toggle-two").val(),noti_max_storage: $("#toggle-three").val(),auto_logout: $("#toggle-four").val(),noti_email: $("#toggle-five").val()},
+                data: {
+                    noti_process: $("#toggle-one").val(),
+                    noti_reboot: $("#toggle-two").val(),
+                    noti_max_storage: $("#toggle-three").val(),
+                    auto_logout: $("#toggle-four").val(),
+                    noti_email: $("#toggle-five").val()
+                },
                 dataType: "text",
-                cache:false,
-                success:
-                    function(data){
-                        $("#show").html(data);
-                    }
+                cache: false,
+                success: function (data) {
+                    $("#show").html(data);
+                }
             });// you have missed this bracket
             return false;
         });

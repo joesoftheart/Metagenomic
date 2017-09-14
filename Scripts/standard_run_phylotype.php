@@ -13,7 +13,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    make_biom($user,$id,$project,$path);
+    run($user,$id,$project,$path);
     }
 
 

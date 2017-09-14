@@ -19,6 +19,7 @@ class Search_projects extends CI_Controller {
     }
 
     public function search() {
+
         if ($this->input->post('search')){
             $search =  $this->input->post('search');
             $query = $this->mongo_db->like('project_name',$search, 'iu', FALSE, TRUE)->limit(3)->get_where('projects',array("user_id" => $this->session->userdata["logged_in"]["_id"]));

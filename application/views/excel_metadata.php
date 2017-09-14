@@ -109,12 +109,12 @@ $(document).ready(function () {
      
      $('#btnRemoveCol').click(function () {
 
-      	  var column_count = $('#blacklistgrid #Row1 td').length;
-      	  if (column_count > 2){
+          var column_count = $('#blacklistgrid #Row1 td').length;
+          if (column_count > 2){
               $('table tr').find('td:eq(-1),th:eq(-1)').remove();
 
               col_num -= 1;
-      	  }
+          }
      });
 
 

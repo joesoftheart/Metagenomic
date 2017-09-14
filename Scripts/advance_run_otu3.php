@@ -1194,7 +1194,7 @@ function create_input_alphash($user,$project,$path_in,$path_out){
 
     $jobname = $user."_plot_graph_r_NMD";
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/nmds_pcoa_plot_advance.php $path_input_axes";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f  R_Script/nmds_pcoa_plot_advance.php $path_input_axes";
    
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1373,7 +1373,7 @@ function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
 
     $jobname = $user."_plot_graph_r_Biplot";
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/biplot_otu_advance.php $path_data";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f  R_Script/biplot_otu_advance.php $path_data";
     
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1407,7 +1407,7 @@ function plot_graph_r_Tree($user,$project,$path_in,$path_out){
    
     $jobname = $user."_plot_graph_r_Tree";
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/tree_advance.php $tree_cal $level $user $project";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/tree_otu_advance.php $tree_cal $level $user $project";
    
    
     exec($cmd);
