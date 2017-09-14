@@ -92,7 +92,7 @@ if (isset($message_display)) {
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <p><input type="submit" name="login" value="login" class="btn  btn-success "/>
-                                <a href="<?php echo base_url() ?>main/user_registration_show">Create an account</a>
+                                <a href="<?php echo base_url() ?>signup/user_registration_show">Create an account</a>
                                 <?php echo form_close(); ?>
                                 <!--                                <input type="submit" name="signup" value="signup" class="btn  btn-primary "/>-->
                             </p>

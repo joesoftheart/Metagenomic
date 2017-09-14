@@ -1,53 +1,27 @@
 <div id="page-wrapper">
-    <?php
+    <div class="row">
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-    $user = "joesoftheart";
-    $project = "SAMPLE-WES-2023";
-    $path_owncloud = "owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output";
-    $file_read = array('svg');
-    $cdir = array();
-    $result_folder = array();
-    $result_files = array();
-    if (is_dir($path_owncloud)) {
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
-        $select_folder = array_diff(scandir($path_owncloud, 1), array('.', '..'));
-        $cdir = scandir($path_owncloud);
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
 
-        foreach ($cdir as $key => $value) {
-            if (!in_array($value, array('.', '..'))) {
-                if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
-                    $result_folder[$value] = $value;
-                } else {
-
-
-                    $result_files[$value] = $value;
-                }
-
-
-            }
-        }
-    }
-
-    $num_folder = count($result_folder);
-    $num_files = count($result_files);
-
-
-    $count_files = 0;
-    if ($cdir != null) {
-        $file_in_dir = scandir($path_owncloud);
-
-        foreach ($file_in_dir as $key => $value) {
-            $type = explode('.', $value);
-            $type = array_reverse($type);
-            if (in_array($type[0], $file_read)) {
-                $count_files++;
-                echo $value;
-                echo "<br/>";
-            }
-        }
-    }
-
-
-    ?>
-
+            </div>
+        </div>
+    </div>
 </div>

@@ -110,7 +110,8 @@
                     <i class="fa fa-envelope fa-fw "></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-messages">
-                    <?php foreach ($rs_mes as $rs_v) { ?>
+                    <?php $data_m =   $this->header->getMessage(); ?>
+                    <?php foreach ($data_m as $rs_v) { ?>
                         <li>
                             <a href="<?php echo site_url('view_message/view_message/' . $rs_v['_id']) ?>">
                                 <div>
@@ -139,16 +140,19 @@
                     <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-tasks">
+                    <?php $data_p = $this->header->getProgressProject();
+                    foreach ($data_p as $dtp) { ?>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo site_url('projects/index/'.$dtp['_id'])?>">
                             <div>
                                 <p>
-                                    <strong>Project wes-1055</strong>
-                                    <span class="pull-right text-muted">40% Complete</span>
+                                    <strong><?php echo $dtp['project_name']?></strong>
+                                    <?php $value = $this->header->getProgress($dtp['project_path']); ?>
+                                    <span class="pull-right text-muted"><?php echo $this->header->getProgress($dtp['project_path']);   ?>% complete</span>
                                 </p>
                                 <div class="progress progress-striped active">
                                     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-                                         aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                         aria-valuemin="0" aria-valuemax="100" style="width: <?=$value ?>%">
                                         <span class="sr-only">40% Complete (success)</span>
                                     </div>
                                 </div>
@@ -156,57 +160,7 @@
                         </a>
                     </li>
                     <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Project wes-2203</strong>
-                                    <span class="pull-right text-muted">20% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
-                                         aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                        <span class="sr-only">20% Complete</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Project wes-1158</strong>
-                                    <span class="pull-right text-muted">60% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
-                                         aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                        <span class="sr-only">60% Complete (warning)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Project wes 2322</strong>
-                                    <span class="pull-right text-muted">80% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
-                                         aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                        <span class="sr-only">80% Complete (danger)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
+                    <?php } ?>
                     <li>
                         <a class="text-center" href="#">
                             <strong>See All Tasks</strong>
@@ -217,12 +171,13 @@
                 <!-- /.dropdown-tasks -->
             </li>
             <!-- /.dropdown -->
-            <li class="dropdown uk-hidden">
+            <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
-                    <?php foreach ($rs_notifi as $r) { ?>
+                    <?php $data_n =  $this->header->getNotification(); ?>
+                    <?php foreach ($data_n as $r) { ?>
                         <li>
                             <a href="<?php echo site_url('view_notification/view_notification/' . $r['_id']) ?>">
                                 <div>
@@ -334,6 +289,9 @@
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('document') ?>"><i class="fa fa-usb"></i> Documents</a>
                     </li>
                 </ul>
             </div>

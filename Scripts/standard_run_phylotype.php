@@ -13,19 +13,19 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    run($user,$id,$project,$path);
+    plot_graph_r_heatmap($user,$id,$project,$path);
     }
 
 
 // Run Program
 function run($user,$id,$project,$path){
     check_file($user,$id,$project,$path);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
 }
 
 
 // Check file 
  function check_file($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "check_file"."\n", FILE_APPEND);
      echo "\n";
      echo "Run check_file :";
     $path_stability = "../owncloud/data/$user/files/$project/output/stability.files";
@@ -43,7 +43,6 @@ function run($user,$id,$project,$path){
 
 // check file oligos
  function check_oligos($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "check_oligos"."\n", FILE_APPEND);
      echo "\n";
      echo "Run check_oligos :";
     $total_oligo = 0;
@@ -71,7 +70,6 @@ function run($user,$id,$project,$path){
 
 // Make file
  function run_makefile($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "run_makefile"."\n", FILE_APPEND);
      echo "\n";
      echo "Run run_makefile :";
     $jobname = $user."_".$id."_run_makefile";
@@ -102,7 +100,7 @@ function run($user,$id,$project,$path){
 
 // Make contig oligos
  function make_contigs_oligos($file_oligo,$user,$id,$project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make_contigs_oligos"."\n", FILE_APPEND);
+
      echo "\n";
      echo "Run make_contigs_oligos :";
     $jobname = $user."_".$id."_oligo";
@@ -134,7 +132,6 @@ function run($user,$id,$project,$path){
 
 // make.contigs && summary.seqs
  function make_contigs_summary($user,$id,$project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make_contigs_summary"."\n", FILE_APPEND);
      echo "\n";
      echo "Run make_contigs_summary";
     $jobname = $user."_".$id."_make_contigs_summary";
@@ -208,7 +205,8 @@ if ($file = fopen($file_path, "r")) {
 
 // make.contigs && summary.seqs
 function screen_seqs($user,$id,$project,$path){
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "screen_seqs"."\n", FILE_APPEND);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality-finish"."\n", FILE_APPEND);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "align-sequence"."\n", FILE_APPEND);
     echo "\n";
     echo "Run screen_seqs";
     $jobname = $user."_".$id."_screen_seqs";
@@ -243,7 +241,6 @@ summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/
 
 // Summary-seqs
  function align_seqs($user,$id,$project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "align_seqs"."\n", FILE_APPEND);
      echo "\n";
      echo "Run align_seqs";
     $jobname = $user."_".$id."_align_seqs";
@@ -282,6 +279,7 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
     $file = file_get_contents("Logs_sge/".$file_name);
     $start_array = array();
     $end_array   = array();
+
     $start = 0;
     $end =0;
     $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum).*\$/m";
@@ -342,7 +340,8 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
 
 // Screen remove
  function screen_remove($user,$id, $project,$path,$start,$end){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "screen_remove"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "align-sequence-finish"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "pre-cluster-chimera"."\n", FILE_APPEND);
      echo "\n";
      echo "Run screen_remove :";
     $jobname = $user."_".$id."_screen_remove";
@@ -381,7 +380,8 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
 
 // Classify_system
  function classify_system($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify_system"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "pre-cluster-chimera-finish"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-sequence-remove"."\n", FILE_APPEND);
      echo "\n";
      echo "Run classify_system :";
     $jobname = $user."_".$id."_classify_system";
@@ -419,7 +419,8 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
 
 // Phylotype count
  function phylotype_count($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "phylotype_count"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-sequence-remove-finish"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-otu"."\n", FILE_APPEND);
      echo "\n";
      echo "Run phylotype_count :";
     $jobname = $user."_".$id."_phylotype_count";
@@ -489,7 +490,8 @@ function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job){
 
 // Sub samplr sammary
  function sub_sample_summary($user,$id, $project,$path,$total){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "sub_sample_summary"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-otu-finish"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "alpha-beta-diversity"."\n", FILE_APPEND);
      echo "\n";
      echo "Run sub_sample_summary :";
     $jobname = $user."_".$id."_sub_sample_summary";
@@ -558,7 +560,6 @@ if ($file = fopen('../owncloud/data/'.$user.'/files/'.$project.'/output/stabilit
 // Last funtion plot graph
  function plot_graph($user,$id, $project,$path,$total,$name_sample)
  {
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph"."\n", FILE_APPEND);
      echo "\n";
      echo "Run plot_graph :";
      $jobname = $user . "_" . $id . "_plot_graph";
@@ -615,6 +616,8 @@ corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, m
 
 
  function create_file_input_heatmap($user, $id, $project, $path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "alpha-beta-diversity-finish"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot-graph"."\n", FILE_APPEND);
      echo "\n";
      echo "Run create_file_input_heatmap :";
      $jobname = $user . "_" . $id . "_create_file_input_heatmap";
@@ -643,6 +646,7 @@ corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, m
 
 
 function create_file_input_abun($user, $id, $project, $path){
+
     echo "\n";
     echo "Run create_file_input_abun :";
     $jobname = $user . "_" . $id . "_create_file_input_abun";
@@ -726,7 +730,6 @@ function create_input_biplot($user, $id, $project, $path){
 
 
  function plot_graph_r_heatmap($user, $id, $project, $path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_heatmap"."\n", FILE_APPEND);
 
      echo "\n";
      echo "Run plot_graph_r_heatmap :";
@@ -749,7 +752,7 @@ function create_input_biplot($user, $id, $project, $path){
          $check_run = exec("qstat -j $id_job");
          if ($check_run == false) {
              echo "Go to plot_graph_r_NMD ->";
-             plot_graph_r_NMD($user, $id, $project, $path);
+            // plot_graph_r_NMD($user, $id, $project, $path);
              break;
          }
      }
@@ -757,7 +760,6 @@ function create_input_biplot($user, $id, $project, $path){
  }
 
 function plot_graph_r_NMD($user, $id, $project, $path){
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_NMD"."\n", FILE_APPEND);
 
     echo "\n";
     echo "Run plot_graph_r_NMD :";
@@ -788,7 +790,6 @@ function plot_graph_r_NMD($user, $id, $project, $path){
 }
 
 function plot_graph_r_Rare($user, $id, $project, $path){
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Rare"."\n", FILE_APPEND);
 
     echo "\n";
     echo "Run plot_graph_r_Rare :";
@@ -820,7 +821,6 @@ function plot_graph_r_Rare($user, $id, $project, $path){
 
 
 function plot_graph_r_Abun($user, $id, $project, $path){
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Abun"."\n", FILE_APPEND);
 
     echo "\n";
     echo "Run plot_graph_r_Abun :";
@@ -852,7 +852,6 @@ function plot_graph_r_Abun($user, $id, $project, $path){
 
 
 function plot_graph_r_Alphash($user, $id, $project, $path){
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Aphash"."\n", FILE_APPEND);
 
     echo "\n";
     echo "Run plot_graph_r_Alphash :";
@@ -884,7 +883,6 @@ function plot_graph_r_Alphash($user, $id, $project, $path){
 
 
 function plot_graph_r_Biplot($user, $id, $project, $path){
-   // file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Biplot"."\n", FILE_APPEND);
 
     echo "\n";
     echo "Run plot_graph_r_Biplot :";
@@ -918,7 +916,7 @@ function plot_graph_r_Biplot($user, $id, $project, $path){
 }
 
 function plot_graph_r_Tree($user, $id, $project, $path){
-    // file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Biplot"."\n", FILE_APPEND);
+
 
     echo "\n";
     echo "Run plot_graph_r_Tree :";
@@ -951,6 +949,8 @@ function plot_graph_r_Tree($user, $id, $project, $path){
 
 
 function make_biom($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot-graph-finish"."\n", FILE_APPEND);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make-biom"."\n", FILE_APPEND);
     echo "\n";
     echo "Run make_biom :";
     $jobname = $user . "_" . $id . "_make_biom";
@@ -979,6 +979,7 @@ function make_biom($user, $id, $project, $path){
 
 }
 function convert_biom($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make-biom-finish"."\n", FILE_APPEND);
     echo "\n";
     echo "Run convert_biom :";
 
@@ -1010,6 +1011,8 @@ function convert_biom($user, $id, $project, $path){
 }
 
 function phylotype_picrust($user, $id, $project, $path){
+//    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make-biom-finish"."\n", FILE_APPEND);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "picrust"."\n", FILE_APPEND);
     echo "\n";
     echo "Run phylotype_picrust :";
 
@@ -1040,6 +1043,7 @@ function phylotype_picrust($user, $id, $project, $path){
 
 
 function change_name($user, $id, $project, $path){
+
     $dir = $path."/output";
     $file_read = array( 'svg');
     $dir_ignore = array();
@@ -1083,6 +1087,7 @@ function change_name($user, $id, $project, $path){
             }
         }
     }
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "picrust-finish"."\n", FILE_APPEND);
 }
 ?>
 

@@ -3,14 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Created by PhpStorm.
  * User: root
- * Date: 3/7/17
- * Time: 5:48 PM
+ * Date: 9/5/17
+ * Time: 4:34 PM
  */
-class Samples extends CI_Controller{
-
+class Document extends CI_Controller{
     public function __construct()
     {
-
 
         parent::__construct();
         $this->load->helper('url');
@@ -18,13 +16,16 @@ class Samples extends CI_Controller{
         $CI->load->library("session");
     }
 
-    public function index(){
-        ob_start();
-        $this->load->view('header');
-        $this->load->view('samples');
-        $this->load->view('footer');
+
+    public  function index(){
+
+        $this->load->view("header");
+        $this->load->view("document");
+        $this->load->view("footer");
 
     }
+
+
 
 
 }

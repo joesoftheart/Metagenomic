@@ -26,8 +26,6 @@ class Projects extends CI_Controller
     {
         ob_start();
         $data['rs'] = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
-        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
-        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
         $data['rs_process'] = $this->mongo_db->limit(1)->get('status_process');
         
 

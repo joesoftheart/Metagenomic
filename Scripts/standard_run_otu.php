@@ -21,6 +21,7 @@ if ($user != null && $project != null  && $path != null && $id != null){
 // Run Program
 function run($user,$id,$project,$path){
     check_file($user,$id,$project,$path);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
 }
 
 
@@ -28,7 +29,7 @@ function run($user,$id,$project,$path){
 $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
 // Check file
  function check_file($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "check_file"."\n", FILE_APPEND);
+
      echo "\n";
      echo "Run check_file :";
     $path_stability = "../owncloud/data/$user/files/$project/output/stability.files";
@@ -48,7 +49,6 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
 
 // check file oligos
  function check_oligos($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "check_oligos"."\n", FILE_APPEND);
      echo "\n";
      echo "Run check_oligos :";
     $total_oligo = 0;
@@ -76,7 +76,7 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
 
 // Make file
  function run_makefile($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "run_makefile"."\n", FILE_APPEND);
+
      echo "\n";
      echo "Run run_makefile :";
     $jobname = $user."_".$id."_run_makefile";
@@ -107,7 +107,6 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
 
 // Make contig oligos
  function make_contigs_oligos($file_oligo,$user,$id,$project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make_contigs_oligos"."\n", FILE_APPEND);
      echo "\n";
      echo "Run make_contigs_oligos :";
     $path = $path;
@@ -140,7 +139,6 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
 
 // make.contigs && summary.seqs
  function make_contigs_summary($user,$id,$project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make_contigs_summary"."\n", FILE_APPEND);
      echo "\n";
      echo "Run make_contigs_summary";
     $jobname = $user."_".$id."_make_contigs_summary";
@@ -193,7 +191,8 @@ function replace_group($user,$id, $project,$path){
 
 // make.contigs && summary.seqs
 function screen_seqs($user,$id,$project,$path){
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "screen_seqs"."\n", FILE_APPEND);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality-finish"."\n", FILE_APPEND);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "align-sequence"."\n", FILE_APPEND);
     echo "\n";
     echo "Run screen_seqs";
     $jobname = $user."_".$id."_screen_seqs";
@@ -342,7 +341,8 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
 
 // Screen remove
  function screen_remove($user,$id, $project,$path,$start,$end){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "screen_remove"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "align-sequence-finish"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "pre-cluster-chimera"."\n", FILE_APPEND);
      echo "\n";
      echo "Run screen_remove :";
     $jobname = $user."_".$id."_screen_remove";
@@ -384,8 +384,8 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
 
 // Classify_system
  function classify_system($user,$id, $project,$path){
-
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify_system"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "pre-cluster-chimera-finish"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-sequence-remove"."\n", FILE_APPEND);
      echo "\n";
      echo "Run classify_system :";
     $jobname = $user."_".$id."_classify_system";
@@ -424,7 +424,8 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
 
 // Phylotype count
  function phylotype_count($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "phylotype_count"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-sequence-remove-finish"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-otu"."\n", FILE_APPEND);
      echo "\n";
      echo "Run phylotype_count :";
     $jobname = $user."_".$id."_phylotype_count";
@@ -502,7 +503,8 @@ function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job){
 
 // Sub samplr sammary
  function sub_sample_summary($user,$id, $project,$path,$total){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "sub_sample_summary"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-otu-finish"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "alpha-beta-diversity"."\n", FILE_APPEND);
      echo "\n";
      echo "Run sub_sample_summary :";
     $jobname = $user."_".$id."_sub_sample_sammary";
@@ -621,6 +623,9 @@ corr.axes(axes=final.opti_mcc.thetayc.0.03.lt.ave.pcoa.axes, metadata=soilpro.me
 
 
  function create_file_input_heatmap($user, $id, $project, $path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "alpha-beta-diversity-finish"."\n", FILE_APPEND);
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot-graph"."\n", FILE_APPEND);
+
      echo "\n";
      echo "Run create_file_input_heatmap :";
      $jobname = $user . "_" . $id . "_create_file_input_heatmap";
@@ -951,6 +956,9 @@ function plot_graph_r_Tree($user, $id, $project, $path){
 
 
 function make_biom($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot-graph-finish"."\n", FILE_APPEND);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make-biom"."\n", FILE_APPEND);
+
     echo "\n";
     echo "Run make_biom :";
 
@@ -981,9 +989,68 @@ function make_biom($user, $id, $project, $path){
 
 
 
+function convert_biom($user, $id, $project, $path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make-biom-finish"."\n", FILE_APPEND);
+    echo "\n";
+    echo "Run convert_biom :";
 
+    $jobname = $user . "_" . $id . "_convert_biom";
+    $path_input = "owncloud/data/$user/files/$project/output/final.tx.1.biom";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/normalized_otus.1.biom";
+    $path_output_txt = "owncloud/data/$user/files/$project/output/final.tx.1.txt";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y picrust-1.1.1/scripts/convert_biom $path_input $path_output_biom $path_output_txt";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish convert_biom ->";
+            phylotype_picrust($user, $id, $project, $path);
+            break;
+        }
+    }
 
+}
 
+function phylotype_picrust($user, $id, $project, $path){
+//    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make-biom-finish"."\n", FILE_APPEND);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "picrust"."\n", FILE_APPEND);
+    echo "\n";
+    echo "Run phylotype_picrust :";
+
+    $path_input = "owncloud/data/$user/files/$project/output/final.tx.1.biom";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/final.biom";
+    $jobname = $user . "_" . $id . "_phylotype_picrust";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y picrust-1.1.1/scripts/qsubMoPhylo5andpicrust_norm $path_input $path_output_biom ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish phylotype_picrust ->";
+             change_name($user, $id, $project, $path);
+            break;
+        }
+    }
+}
 
 function change_name($user, $id, $project, $path){
     $dir = $path."/output";

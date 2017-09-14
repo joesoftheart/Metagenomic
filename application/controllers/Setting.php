@@ -16,8 +16,7 @@ class Setting extends CI_Controller{
 
 
     public function index(){
-        $data['rs_mes'] = $this->mongo_db->limit(3)->get('messages');
-        $data['rs_notifi'] = $this->mongo_db->limit(3)->get('notification');
+
         $data['rs_st'] = $this->mongo_db->get('settings');
 
         $this->load->view('header',$data);

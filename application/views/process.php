@@ -7,8 +7,21 @@ if (isset($this->session->userdata['logged_in'])) {
 } else {
     header("location: main/login");
 } ?>
-<meta http-equiv="refresh" content="15">
+<script language="JavaScript">
+    var counter = 0;
+    window.setInterval("refreshDiv()", 5000);
+    function refreshDiv() {
+        counter = counter + 1;
+        $("#progress").load(document.URL + ' #progress');
+        $("#pipeline").load(document.URL + ' #pipeline');
+    }
+
+
+
+</script>
 <div id="page-wrapper">
+
+
     <div class="row">
         <div class="col-lg-12">
             <?php $controller_name = $this->uri->segment(1); ?>
@@ -45,27 +58,32 @@ if (isset($this->session->userdata['logged_in'])) {
             $num = count($keywords_split_line);
         }
         // echo $num;
-        if (file_exists($progress) and $num < 18) {
+        if (file_exists($progress) and $num < 16) {
             ?>
             <br/>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="progress">
+            <div class="row" >
+                <div class="col-lg-12" >
+                    <div class="progress" id="progress">
                         <div class="progress-bar progress-bar-striped active" role="progressbar"
-                             aria-valuenow="<?php echo $num / 18 * 100; ?>" aria-valuemin="0" aria-valuemax="100"
+                             aria-valuenow="<?php echo $num / 16 * 100; ?>" aria-valuemin="0" aria-valuemax="100"
                              style="width:<?php echo $num / 18 * 100; ?>%">
-                            <?php echo round($num / 18 * 100); ?>%
+                            <?php echo round($num / 16 * 100); ?>%
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
+            <div class="panel panel-default" >
+                <div class="panel-body" id="pipeline">
 
                     <div class="row">
                         <div class="col-lg-2">
                             <button class="btn  btn-warning" style="width:100%">
-                                Quality Control<i class="fa fa-check" aria-hidden="true"></i>
+                                Quality Control
+                                <?php if (in_array("quality-finish", $keywords_split_line)) { ?> <i class="fa fa-check" aria-hidden="true"></i><?php }else if(in_array("quality",$keywords_split_line)){
+                                ?>
+                                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw" aria-hidden="true"></i>
+                                <?php } ?>
+
                             </button>
                         </div>
                         <div class="col-xs-1"><center>
@@ -75,7 +93,11 @@ if (isset($this->session->userdata['logged_in'])) {
                         <div class="col-lg-2">
                             <button class="btn  btn-warning" style="width:100%">
                                 Align Sequence
-                                <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i></button>
+                                <?php if (in_array("align-sequence-finish", $keywords_split_line)) { ?> <i class="fa fa-check" aria-hidden="true"></i>
+                                <?php }else if(in_array("align-sequence",$keywords_split_line)){
+                                    ?>
+                                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw" aria-hidden="true"></i>
+                                <?php } ?></button>
                         </div>
                         <div class="col-xs-1"><center>
                                 <i class="fa fa-long-arrow-right fa-2x"></i>
@@ -83,7 +105,12 @@ if (isset($this->session->userdata['logged_in'])) {
                         </div>
                         <div class="col-lg-2">
                             <button class="btn btn-outline btn-warning" style="width:100%">
-                                Clean Alignment</button>
+                                Pre-custer-sequence
+                                <?php if (in_array("pre-cluster-chimera-finish", $keywords_split_line)) { ?> <i class="fa fa-check" aria-hidden="true"></i>
+                                <?php }else if(in_array("pre-cluster-chimera",$keywords_split_line)){
+                                    ?>
+                                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw" aria-hidden="true"></i>
+                                <?php } ?></button>
                         </div>
                         <div class="col-xs-1">
                             <center>
@@ -92,7 +119,12 @@ if (isset($this->session->userdata['logged_in'])) {
                         </div>
                         <div class="col-lg-2">
                             <button class="btn btn-outline btn-warning" style="width:100%">
-                                Pre-custer-sequence </button>
+                                Classify Sequence
+                                <?php if (in_array("classify-sequence-remove-finish", $keywords_split_line)) { ?> <i class="fa fa-check" aria-hidden="true"></i>
+                                <?php }else if(in_array("classify-sequence-remove",$keywords_split_line)){
+                                    ?>
+                                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw" aria-hidden="true"></i>
+                                <?php } ?></button>
                             <center><i class="fa fa-long-arrow-up fa-rotate-180 fa-2x" style="margin-top: 5px"></i></center>
                         </div>
                         <div class="col-xs-1">
@@ -108,7 +140,12 @@ if (isset($this->session->userdata['logged_in'])) {
 
                         <div class="col-lg-2">
                             <button class="btn btn-outline btn-warning" style="width:100%">
-                                Classify OTU</button>
+                                Plot graph
+                                <?php if (in_array("plot-graph-finish", $keywords_split_line)) { ?> <i class="fa fa-check" aria-hidden="true"></i>
+                                <?php }else if(in_array("plot-graph",$keywords_split_line)){
+                                    ?>
+                                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw" aria-hidden="true"></i>
+                                <?php } ?></button>
                             <center><i class="fa fa-long-arrow-up fa-rotate-180 fa-2x" style="margin-top: 5px"></i></center>
                         </div>
                         <div class="col-xs-1 ">
@@ -118,7 +155,12 @@ if (isset($this->session->userdata['logged_in'])) {
                         </div>
                         <div class="col-lg-2">
                             <button class="btn btn-outline btn-warning" style="width:100%">
-                                <font size="1.5"> Remove non-bacterial sequence</font></button>
+                                Alpha/Beta diversity
+                                <?php if (in_array("alpha-beta-diversity-finish", $keywords_split_line)) { ?> <i class="fa fa-check" aria-hidden="true"></i>
+                                <?php }else if(in_array("alpha-beta-diversity",$keywords_split_line)){
+                                    ?>
+                                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw" aria-hidden="true"></i>
+                                <?php } ?></button>
                         </div>
                         <div class="col-xs-1">
                             <center>
@@ -127,7 +169,12 @@ if (isset($this->session->userdata['logged_in'])) {
                         </div>
                         <div class="col-lg-2 ">
                             <button class="btn btn-outline btn-warning" style="width:100%">
-                                Classify Sequence</button>
+                                Classify OTU
+                                <?php if (in_array("classify-otu-finish", $keywords_split_line)) { ?> <i class="fa fa-check" aria-hidden="true"></i>
+                                <?php }else if(in_array("classify-otu",$keywords_split_line)){
+                                    ?>
+                                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw" aria-hidden="true"></i>
+                                <?php } ?></button>
                         </div>
                         <div class="col-xs-1 ">
                             <center>
@@ -136,7 +183,12 @@ if (isset($this->session->userdata['logged_in'])) {
                         </div>
                         <div class="col-lg-2">
                             <button class="btn btn-outline btn-warning" style="width:100%">
-                                Chimera detection</button>
+                                <font size="1.5">Remove non-bacterial sequence</font>
+                                <?php if (in_array("classify-sequence-remove-finish", $keywords_split_line)) { ?> <i class="fa fa-check" aria-hidden="true"></i>
+                                <?php }else if(in_array("classify-sequence-remove",$keywords_split_line)){
+                                    ?>
+                                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw" aria-hidden="true"></i>
+                                <?php } ?></button>
                         </div>
 
 
@@ -145,27 +197,14 @@ if (isset($this->session->userdata['logged_in'])) {
                     <br>
                     <div class="row">
 
-                        <div class="col-lg-2">
-                            <button class="btn btn-outline btn-warning" style="width:100%">
-                                Alpha/Beta diversity</button>
-                        </div>
-                        <div class="col-xs-1 ">
-                            <center>
-                                <i class="fa fa-long-arrow-right  fa-2x"></i>
-                            </center>
-                        </div>
-                        <div class="col-lg-2">
-                            <button class="btn btn-outline btn-warning" style="width:100%">
-                                <font size="1.5"> Make biom</font></button>
-                        </div>
-                        <div class="col-xs-1">
-                            <center>
-                                <i class="fa fa-long-arrow-right fa-2x"></i>
-                            </center>
-                        </div>
                         <div class="col-lg-2 ">
                             <button class="btn btn-outline btn-warning" style="width:100%">
-                                Plot graph</button>
+                                Make biom
+                                <?php if (in_array("make-biom-finish", $keywords_split_line)) { ?> <i class="fa fa-check" aria-hidden="true"></i>
+                                <?php }else if(in_array("make-biom",$keywords_split_line)){
+                                    ?>
+                                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw" aria-hidden="true"></i>
+                                <?php } ?></button>
                         </div>
                         <div class="col-xs-1 ">
                             <center>
@@ -174,7 +213,12 @@ if (isset($this->session->userdata['logged_in'])) {
                         </div>
                         <div class="col-lg-2">
                             <button class="btn btn-outline btn-warning" style="width:100%">
-                                Chimera detection</button>
+                                Picrust
+                                <?php if (in_array("picrust-finish", $keywords_split_line)) { ?> <i class="fa fa-check" aria-hidden="true"></i>
+                                <?php }else if(in_array("finish",$keywords_split_line)){
+                                    ?>
+                                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw" aria-hidden="true"></i>
+                                <?php } ?></button>
                         </div>
 
 
@@ -182,80 +226,6 @@ if (isset($this->session->userdata['logged_in'])) {
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <table class="table" width="100%" border="0">
-
-                        <tr>
-                            <td><?php if (in_array("check_file", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>check_file</td>
-                        </tr>
-                        <tr>
-                            <td><?php if (in_array("check_oligos", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>check_oligos</td>
-                        </tr>
-                        <tr>
-                            <td><?php if (in_array("make_contigs_oligos", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>make_contigs_oligos</td>
-                        </tr>
-                        <tr>
-                            <td><?php if (in_array("make_contigs_summary", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>make_contigs_summary</td>
-                        </tr>
-                        <tr>
-                            <td><?php if (in_array("screen_seqs", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>screen_seqs</td>
-                        </tr>
-                        <tr>
-                            <td><?php if (in_array("classify_system", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>classify_system</td>
-                        </tr>
-                        <tr>
-                            <td><?php if (in_array("phylotype_count", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>phylotype_count</td>
-                        </tr>
-                        <tr>
-                            <td><?php if (in_array("sub_sample_summary", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>sub_sample_summary</td>
-                        </tr>
-                        <tr>
-                            <td><?php if (in_array("plot_graph", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>plot_graph</td>
-                        </tr>
-                        <tr>
-                            <td><?php if (in_array("plot_graph_r_heatmap", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>plot_graph_r_heartmap</td>
-                        </tr>
-                        <tr>
-                            <td><?php if (in_array("plot_graph_r_NMD", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>plot_graph_r_NMD</td>
-                        </tr>
-                        <tr>
-                            <td><?php if (in_array("plot_graph_r_Rare", $keywords_split_line)) { ?><i
-                                        class="fa fa-check"><?php } ?></td>
-                            <td>plot_graph_r_Rare</td>
-                        </tr>
-
-
-                    </table>
-                </div>
-
-
-            </div>
-
-
-
             <?php
         } else {
            // redirect("/projects/index/" . $current_project, 'refresh');

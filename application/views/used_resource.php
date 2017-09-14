@@ -33,7 +33,6 @@ if (isset($this->session->userdata['logged_in'])) {
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <?php echo "User :" . $username . "   Email :" . $email . "   ID :" . $id; ?>
             <?php $controller_name = $this->uri->segment(1); ?>
             <br>
             <ol class="breadcrumb">
@@ -49,7 +48,6 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
     </div>
     <div class="row">
-
         <div class="col-lg-6">
             <!-- /.panel-heading -->
             <h3 class="page-header">Pie chart</h3>
@@ -67,46 +65,22 @@ if (isset($this->session->userdata['logged_in'])) {
 
                     <p>Server CPU Usage :<span class="description" id="show_cpu"></span>%</p>
                     <p>Server Memory Usage :<span class="description" id="show_ram"></span>%</p>
+
+                        <?php $data_p = $this->header->getProgressProject();
+                        foreach ($data_p as $dp) {  ?>
+
                     <p>
-                        <strong>Task 2</strong>
-                        <span class="pull-right text-muted">20% Complete</span>
+                        <strong><?php echo $dp['project_name'] ?></strong>
+                        <?php $value = $this->header->getProgress($dp['project_path']); ?>
+                        <span class="pull-right text-muted"><?php echo $this->header->getProgress($dp['project_path']);?>% complete</span>
                     </p>
                     <div class="progress progress-striped active">
                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
-                             aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                             aria-valuemin="0" aria-valuemax="100" style="width: <?=$value?>%">
                             <span class="sr-only">20% Complete</span>
                         </div>
                     </div>
-                    <p>
-                        <strong>Task 2</strong>
-                        <span class="pull-right text-muted">20% Complete</span>
-                    </p>
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
-                             aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                            <span class="sr-only">20% Complete</span>
-                        </div>
-                    </div>
-                    <p>
-                        <strong>Task 2</strong>
-                        <span class="pull-right text-muted">20% Complete</span>
-                    </p>
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
-                             aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                            <span class="sr-only">20% Complete</span>
-                        </div>
-                    </div>
-                    <p>
-                        <strong>Task 2</strong>
-                        <span class="pull-right text-muted">20% Complete</span>
-                    </p>
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20"
-                             aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                            <span class="sr-only">20% Complete</span>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

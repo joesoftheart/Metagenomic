@@ -41,7 +41,7 @@ class  Edit_project extends CI_Controller {
         }
         ob_start();
         $data['rs'] = $this->mongo_db->get_where('projects', array("_id" => new \MongoId($id)));
-        $data['rs_mes'] = $this->mongo_db->get('messages');
+
         $this->load->view("header",$data);
         $this->load->view("edit_project",$data);
         $this->load->view("footer");
