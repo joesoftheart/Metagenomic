@@ -658,7 +658,9 @@ Beta – Diversity:
                  <input type="hidden" name="project" value="<?= $current_project ?>">
                  <!-- /.row -->
                 <div class="row">
+
                 <div class="col-lg-12">
+
 
                  <!-- .panel-heading -->
                  <div class="panel-body">
@@ -669,17 +671,15 @@ Beta – Diversity:
                              <h4 class="panel-title">
                                  <a  data-toggle="collapse" data-parent="#accordion" href="#collapse1" >1. Quality Control  
                                  <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div1');"></i>       
-                                 <p class="pull-right">
-                                 <i class="glyphicon glyphicon-plus-sign" ></i>
-                                 </p> 
                                  </a>
                              </h4>
                          </div>
                          <div id="collapse1" class="panel-collapse collapse">
-                             <div class="panel-body">
-                                 <div class="row">
-                                     <div class="col-lg-12">
-                                 <label> Screen reads </label>
+
+                             <div class="panel-body">       
+                                 <label class="col-lg-10"> Screen reads </label>
+                                 <div class="col-lg-10">
+
                                  <table border="0" class="uk-table uk-table-middle" >
                                      <tr>
                                         <td>maximum ambiguous </td>
@@ -698,7 +698,6 @@ Beta – Diversity:
                                          <td><input id="maxread" class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" onblur="checkvalue4()" onkeypress='return validateNumber(event)'></td>
                                      </tr>
                                  </table>
-                                     </div>
 
                                  </div>
                              </div>
@@ -709,9 +708,6 @@ Beta – Diversity:
                                  <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"> 2. Align Sequences & Clean Alignment
                                      <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div2');"></i>
-                                     <p class="pull-right">
-                                     <i class="glyphicon glyphicon-plus-sign" ></i>
-                                     </p>
                                      </a> 
                                  </h4>
                              </div>
@@ -741,9 +737,6 @@ Beta – Diversity:
                              <h4 class="panel-title">
                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"> 3. Pre-Clusters Sequences & Chimera Detection
                                  <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div3');" ></i>
-                                 <p class="pull-right">
-                                  <i class="glyphicon glyphicon-plus-sign" ></i>
-                                 </p> 
                                  </a>
                              </h4>
                          </div>
@@ -765,9 +758,6 @@ Beta – Diversity:
                               <h4 class="panel-title">
                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"> 4. Classify Sequences
                                  <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div4');"></i>
-                                 <p class="pull-right">
-                                     <i class="glyphicon glyphicon-plus-sign" ></i>
-                                 </p>
                                  </a> 
                          </h4>
                          </div>
@@ -793,9 +783,6 @@ Beta – Diversity:
                              <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse5"> 5. Remove Bacterial Sequences
                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div5');"></i>
-                                 <p class="pull-right">
-                                 <i class="glyphicon glyphicon-plus-sign" ></i>
-                                 </p>
                                  </a> 
                              </h4>
                          </div>
@@ -829,7 +816,7 @@ Beta – Diversity:
 
                          </div>
                         </div>
-                 </div>  <!-- /.col-lg-7 -->
+                 </div>  <!-- /.col-lg-11 -->
                  </div><!-- /.row -->
 
     
@@ -883,7 +870,7 @@ Beta – Diversity:
          
            <!-- /.row -->
                 <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-11">
 
                  <!-- .panel-heading -->
                  <div class="panel-body">
@@ -894,9 +881,7 @@ Beta – Diversity:
                              <h4 class="panel-title">
                                  <a  data-toggle="collapse" data-parent="#accordion" href="#collapse13" >1. Show data in count group 
                                  <i class="fa fa-question-circle-o"></i>        
-                                 <p class="pull-right">
-                                 <i class="glyphicon glyphicon-plus-sign" ></i>
-                                 </p> 
+                                 
                                  </a>
                              </h4>
                          </div>
@@ -909,8 +894,8 @@ Beta – Diversity:
                                         <div class="col-lg-10 col-lg-push-1">
                                              <textarea class="form-control" rows="5" id="show_group" readonly="readonly"></textarea>
                                         </div>
-                                        <div class="col-lg-8 col-lg-push-9 uk-margin">
-                                              <button class="btn btn-default" data-toggle="modal" data-target="#myModal"> Back </button>
+                                        <div class="col-lg-10 col-lg-push-1 uk-margin">
+                                              <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Back Preprocess</button>
                                         </div>
                                         </div>
                              </div>
@@ -923,9 +908,7 @@ Beta – Diversity:
                                  <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse14"> 2. Sub Sample 
                                     <i class="fa fa-question-circle-o"></i>  
-                                     <p class="pull-right">
-                                     <i class="glyphicon glyphicon-plus-sign" ></i>
-                                     </p>
+                                    
                                      </a> 
                                  </h4>
                              </div>
@@ -942,7 +925,7 @@ Beta – Diversity:
                                            <div class="col-lg-5 col-lg-push-1">
                                                  <label>sub sample :</label>
                                             </div>
-                                            <div class="col-lg-5 col-lg-pull-1">
+                                            <div class="col-lg-5 col-lg-pull-2">
                                                  <input id="sub_sample" class="uk-input" type="number"  min="0" name="subsample" onkeypress='return validateNumber(event)'>
                                             </div>
                                             </div>
@@ -967,7 +950,7 @@ Beta – Diversity:
                  </div>
                  </div>        
 
-             </div>  <!-- /.col-lg-7 -->
+             </div>  <!-- /.col-lg-11 -->
              </div><!-- /.row -->
 
 
@@ -1032,7 +1015,7 @@ Beta – Diversity:
         
       <!-- /.row -->
                 <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-11">
 
                  <!-- Analysis-form -->
                 <form name="Analysis-form" method="post" enctype="multipart/form-data">
@@ -1049,9 +1032,7 @@ Beta – Diversity:
                              <h4 class="panel-title">
                                  <a  data-toggle="collapse" data-parent="#accordion" href="#collapse12" >1. Taxonomy Level 
                                  <i class="fa fa-question-circle-o"></i>         
-                                 <p class="pull-right">
-                                 <i class="glyphicon glyphicon-plus-sign" ></i>
-                                 </p>
+                                
                                  </a>  
                              </h4>
                          </div>
@@ -1061,8 +1042,9 @@ Beta – Diversity:
                                 <label>Please select level that you want to analyse </label>
                                
                                      <div class="Greengene">
-                                     <label class="col-lg-6" > Greengenes : </label>            
-                                        <div class="col-lg-6">
+
+                                     <p class="col-lg-6"> Greengenes : </p>            
+                                        <div class="col-lg-6 col-lg-pull-4">
                                              <select class="uk-select" id="g_level">
                                                  <option value="1"> species</option>
                                                  <option value="2" selected> genus</option>
@@ -1107,9 +1089,7 @@ Beta – Diversity:
                              <h4 class="panel-title">
                                  <a  data-toggle="collapse" data-parent="#accordion" href="#collapse6" >2. Alpha – Diversity 
                                  <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div6');"></i>           
-                                 <p class="pull-right">
-                                 <i class="glyphicon glyphicon-plus-sign" ></i>
-                                 </p>
+                                
                                  </a> 
                              </h4>
                          </div>
@@ -1133,9 +1113,7 @@ Beta – Diversity:
                                  <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">3. Beta – Diversity 
                                     <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div7');"></i>  
-                                     <p class="pull-right">
-                                     <i class="glyphicon glyphicon-plus-sign" ></i>
-                                     </p> 
+                                    
                                      </a>
                                  </h4>
                              </div>
@@ -1160,16 +1138,15 @@ Beta – Diversity:
                              <h4 class="panel-title">
                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">4. Venn Diagram 
                                  <i class="fa fa-question-circle-o"></i>                           
-                                 <p class="pull-right">
-                                  <i class="glyphicon glyphicon-plus-sign" ></i>
-                                 </p> 
+                                 
                                  </a>
                              </h4>
                          </div>
                          <div id="collapse8" class="panel-collapse collapse">
                              <div class="panel-body">
-                                  <label> Venn Diagram</label>       
-                                        <label class="col-lg-12">Please put the sample name</label>
+
+                                  <label class="col-lg-11"> Venn Diagram</label>       
+                                        <p class="col-lg-11">Please put the sample name</p>
                                         <label class="col-lg-3 "><select class="uk-select" name="venn1" id="venn1"></select></label>
                                         <label class="col-lg-3 "><select class="uk-select" name="venn2" id="venn2"></select></label>
                                         <label class="col-lg-3 "><select class="uk-select" name="venn3" id="venn3"></select></label>               
@@ -1182,9 +1159,7 @@ Beta – Diversity:
                               <h4 class="panel-title">
                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse9">5. UPGMA tree with calculator 
                                  <i class="fa fa-question-circle-o"></i>  
-                                 <p class="pull-right">
-                                 <i class="glyphicon glyphicon-plus-sign" ></i>
-                                 </p> 
+                                 
                                  </a>
                          </h4>
                          </div>
@@ -1216,9 +1191,7 @@ Beta – Diversity:
                              <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse10">6. Ordination Method
                                 <i class="fa fa-question-circle-o"></i>  
-                                 <p class="pull-right">
-                                 <i class="glyphicon glyphicon-plus-sign" ></i>
-                                 </p>
+                                 
                                  </a> 
                              </h4>
                          </div>
@@ -1243,7 +1216,7 @@ Beta – Diversity:
                                          <input type='checkbox' name='pcoa_me[]' value='lennon ' class="pcoa" disabled> lennon                          
                                      </div>
                                  </div>
-
+                                 <div class="col-lg-12 uk-margin"></div>
                                  <label class="col-lg-10 "> NMDS : <input  name="func" type="radio" id="radio_nmds"> Use NMDS</label>
                                 <div class="col-lg-4 col-lg-push-2 ">
                                      <select class="uk-select" name="nmds">
@@ -1281,9 +1254,7 @@ Beta – Diversity:
                              <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse11">7. Optional
                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div12');"></i>  
-                                 <p class="pull-right">
-                                 <i class="glyphicon glyphicon-plus-sign" ></i>
-                                 </p>
+                                 
                                  </a> 
                              </h4>
                          </div>
@@ -1292,7 +1263,7 @@ Beta – Diversity:
 
 
                              <div class="col-lg-8 "> 
-                                 <label> Create file design  <a href="<?php echo site_url('Run_advance/create_file_design');?>?current=<?=$current_project?>" target="_blank"><input type="button" value="create design" id="check_design"></a> </label>         
+                                 <label> Create file design  <a href="<?php echo site_url('Run_advance/create_file_design');?>?current=<?=$current_project?>" target="_blank"><input type="button" class="btn btn-outline btn-info" value="create design" id="check_design"></a> </label>         
                                  <div>
                                      <p id="pass_design" class="fa fa-file-text-o" > No file design </p>                    
                                      <input type="hidden" id="p_design" name="f_design" value="nodesign">
@@ -1304,7 +1275,7 @@ Beta – Diversity:
                                  <div class="radio"><label> <input name="optionsRadios2"  value="homova" type="radio" > Homova </label></div>
                              </div>
                              <div class="col-lg-10 uk-margin"> 
-                                 <label> Create file metadata <a href="<?php echo base_url('Run_advance/create_file_metadata');?>?current=<?=$current_project?>"  target="_blank"><input type="button" value="create metadata" id="check_metadata"></a></label>   
+                                 <label> Create file metadata <a href="<?php echo base_url('Run_advance/create_file_metadata');?>?current=<?=$current_project?>"  target="_blank"><input type="button" class="btn btn-outline btn-info" value="create metadata" id="check_metadata"></a></label>   
                              <div>
                                  <p id="pass_metadata" class="fa fa-file-text-o"> No file metadata </p>
                                  <input type="hidden" id="p_metadata" name="f_metadata" value="nometadata">
@@ -1354,7 +1325,7 @@ Beta – Diversity:
                             <div class="col-lg-12 uk-margin"></div>
                     </form>  <!-- end Analysis form-->
 
-            </div>  <!-- /.col-lg-7 -->
+            </div>  <!-- /.col-lg-11 -->
             </div><!-- /.row -->
  
         </div> <!-- Pre-test3 -->
