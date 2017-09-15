@@ -658,7 +658,7 @@ Beta – Diversity:
                  <input type="hidden" name="project" value="<?= $current_project ?>">
                  <!-- /.row -->
                 <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-12">
 
                  <!-- .panel-heading -->
                  <div class="panel-body">
@@ -676,7 +676,9 @@ Beta – Diversity:
                              </h4>
                          </div>
                          <div id="collapse1" class="panel-collapse collapse">
-                             <div class="panel-body">       
+                             <div class="panel-body">
+                                 <div class="row">
+                                     <div class="col-lg-12">
                                  <label> Screen reads </label>
                                  <table border="0" class="uk-table uk-table-middle" >
                                      <tr>
@@ -696,6 +698,9 @@ Beta – Diversity:
                                          <td><input id="maxread" class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" onblur="checkvalue4()" onkeypress='return validateNumber(event)'></td>
                                      </tr>
                                  </table>
+                                     </div>
+
+                                 </div>
                              </div>
                          </div>
                          </div>
@@ -1057,7 +1062,7 @@ Beta – Diversity:
                                
                                      <div class="Greengene">
                                      <label class="col-lg-6" > Greengenes : </label>            
-                                        <div class="col-lg-6 col-lg-pull-3">
+                                        <div class="col-lg-6">
                                              <select class="uk-select" id="g_level">
                                                  <option value="1"> species</option>
                                                  <option value="2" selected> genus</option>
@@ -1164,7 +1169,7 @@ Beta – Diversity:
                          <div id="collapse8" class="panel-collapse collapse">
                              <div class="panel-body">
                                   <label> Venn Diagram</label>       
-                                        <label class="col-lg-11">Please put the sample name</label>   
+                                        <label class="col-lg-12">Please put the sample name</label>
                                         <label class="col-lg-3 "><select class="uk-select" name="venn1" id="venn1"></select></label>
                                         <label class="col-lg-3 "><select class="uk-select" name="venn2" id="venn2"></select></label>
                                         <label class="col-lg-3 "><select class="uk-select" name="venn3" id="venn3"></select></label>               
