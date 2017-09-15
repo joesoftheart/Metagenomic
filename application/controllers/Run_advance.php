@@ -7,9 +7,11 @@
 
     public function __construct(){
       parent::__construct();
-      $this->load->helper(array('url','path','file'));
+      $this->load->helper(array('url','path','file','date'));
       $this->load->helper('form');
       $this->load->library('form_validation');
+      $this->load->library('zip');
+
 
       //$this->load->controller('Run_owncloud');
       include(APPPATH.'../setting_sge.php');
@@ -1207,6 +1209,47 @@
             $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('sample_name'); 
            
           
+
+     }
+
+     public function down_zip(){
+
+
+        $id_project = $_REQUEST['current'];
+
+        #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {             
+              
+                $user = $r['user'];
+                $folder = $r['project'];
+    
+         }
+
+
+          $this->zip->read_dir("img_user/".$user."/".$folder."/",FALSE);
+          $this->zip->download('visualization.zip');
+
+  
+        //$file = "img_user/aumza/test_otu/";
+        // if($read = opendir($file)){
+        //      while (($img = readdir($read)) !== false) {
+
+        //             $allowed =  array('png','svg');
+        //             $ext = pathinfo($img, PATHINFO_EXTENSION);
+        //              if(in_array($ext,$allowed)) {
+                        
+        //                echo $img."<br/>";
+
+        //               $this->zip->add_data($myfolder.'/'.$img,file_get_contents($file.$img));
+                         
+        //              }
+        //       }
+     
+        //    closedir($read);
+        // }
+        //$this->zip->read_file("img_user/aumza/test_otu/Abun.png");
+
 
      }
 

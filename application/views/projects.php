@@ -1356,16 +1356,17 @@ Beta – Diversity:
 
      <!-- Result && Graph -->
      <li>
+      
          <div class="row">
             <div class="col-lg-6">
-                 <b>Ven diagram</b>
+                 <label>Ven diagram</label>
                  <div id="sharedsobs_img">
                     <img id="sharedsobs_img_pass" src="#"/>
                   
                  </div>
              </div>
              <div class="col-lg-6">
-                 <b>Heatmap</b>
+                 <label>Heatmap</label>
                  <div id="heartmap_img">
                      <img id="heartmap_img_pass" src="#" />
                  </div>
@@ -1375,7 +1376,7 @@ Beta – Diversity:
          <hr class="uk-divider-icon">
          <div class="row">
              <div class="col-lg-6" >
-                 <b>Bioplot</b><br>
+                 <label>Bioplot</label>
                  <div id="bioplot_otu_img">
                      <img id="bioplot_otu_img_pass"  src="#" /> 
                  </div>
@@ -1391,13 +1392,13 @@ Beta – Diversity:
         <hr class="uk-divider-icon">
              <div class="row">
                  <div class="col-lg-6">
-                    <b>Rarefaction</b>
+                    <label>Rarefaction</label>
                     <div id="rare_img">
                          <img id="rare_img_pass"  src="#" /> 
                     </div>
                  </div>
                 <div class="col-lg-6">
-                <b>RelativePhylum</b>
+                <label>RelativePhylum</label>
                  <div id="abun_img">
                     <img id="abun_img_pass"  src="#" />
                  </div>  
@@ -1405,7 +1406,7 @@ Beta – Diversity:
              </div>
 
              <hr class="uk-divider-icon">
-                 <b>NMDS</b>
+                 <label>NMDS</label>
                  <div class="row">
                      <div class="col-lg-6 col-lg-offset-3" >
                      <div id="nmd_img">
@@ -1414,7 +1415,7 @@ Beta – Diversity:
                      </div>
                  </div>
              <hr class="uk-divider-icon">
-                 <b>Alpha</b>
+                 <label>Alpha</label>
                  <div class="row">
                      <div class="col-lg-6 col-lg-offset-3">
                      <div id="alpha_img">
@@ -1422,6 +1423,33 @@ Beta – Diversity:
                      </div> 
                      </div>
                 </div>
+            <hr class="uk-divider-icon">
+            <label>final.opti_mcc.groups.ave-std.summary</label>
+            <div class="row">
+                     <div class="col-lg-12">
+                   
+                     </div>
+            </div>
+
+            <hr class="uk-divider-icon">
+            <label>final.opti_mcc.summary</label>
+            <div class="row">
+                     <div class="col-lg-12">
+                   
+                     </div>
+             </div>
+
+
+              <hr class="uk-divider-icon">
+              <div class="row">
+                     <div class="col-lg-12">
+                       <a href="<?php echo site_url('Run_advance/down_zip');?>?current=<?=$current_project?>"><input type="button" class="btn btn-outline btn-info" value="Download all zip" id=""></a>      
+                     </div>
+             </div>
+
+
+
+
 
     </li>
     <!-- End Result && Graph -->
