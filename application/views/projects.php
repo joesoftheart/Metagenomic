@@ -633,6 +633,7 @@ Beta – Diversity:
          <link href="<?php echo base_url();?>tooltip/loading.css" rel="stylesheet" />
          <link href="<?php echo base_url();?>tooltip/tooltip.css" rel="stylesheet" />
          <script src="<?php echo base_url();?>tooltip/tooltip.js" type="text/javascript"></script>
+         <script src="<?php echo base_url();?>tooltip/html2canvas.js" type="text/javascript"></script>
 
          <div class="sw-theme-arrows">
              <ul class="nav-tabs step-anchor" uk-switcher="animation: uk-animation-fade">
@@ -642,7 +643,7 @@ Beta – Diversity:
                  <li><a href="#">Step 4<br />Result & graph</a></li>
              </ul>
          
-             <ul class="uk-switcher uk-margin">
+    <ul class="uk-switcher uk-margin">
 
 
      <!--Preprocess && Prepare in taxonomy -->
@@ -1356,19 +1357,22 @@ Beta – Diversity:
 
      <!-- Result && Graph -->
      <li>
-      
          <div class="row">
             <div class="col-lg-6">
+                 <div class="panel-body">
                  <label>Ven diagram</label>
                  <div id="sharedsobs_img">
                     <img id="sharedsobs_img_pass" src="#"/>
                   
                  </div>
+                 </div>
              </div>
              <div class="col-lg-6">
+                 <div class="panel-body">
                  <label>Heatmap</label>
                  <div id="heartmap_img">
                      <img id="heartmap_img_pass" src="#" />
+                 </div>
                  </div>
             </div>
          </div>
@@ -1376,15 +1380,19 @@ Beta – Diversity:
          <hr class="uk-divider-icon">
          <div class="row">
              <div class="col-lg-6" >
+                 <div class="panel-body">
                  <label>Bioplot</label>
                  <div id="bioplot_otu_img">
                      <img id="bioplot_otu_img_pass"  src="#" /> 
                  </div>
+                 </div>
              </div>
              <div class="col-lg-6" >
+                 <div class="panel-body">
                  <b>Bioplot</b><br>
                  <div id="bioplot_meta_img">
                     <img id="bioplot_meta_img_pass"  src=""/>
+                 </div>
                  </div>
              </div>
         </div>
@@ -1392,76 +1400,218 @@ Beta – Diversity:
         <hr class="uk-divider-icon">
              <div class="row">
                  <div class="col-lg-6">
+                 <div class="panel-body">
                     <label>Rarefaction</label>
                     <div id="rare_img">
                          <img id="rare_img_pass"  src="#" /> 
                     </div>
+                    </div>
                  </div>
                 <div class="col-lg-6">
+                <div class="panel-body">
                 <label>RelativePhylum</label>
-                 <div id="abun_img">
-                    <img id="abun_img_pass"  src="#" />
-                 </div>  
+                    <div id="abun_img">
+                       <img id="abun_img_pass"  src="#" />
+                    </div> 
+                 </div> 
                  </div>
              </div>
 
              <hr class="uk-divider-icon">
+                 <div class="panel-body">
                  <label>NMDS</label>
                  <div class="row">
                      <div class="col-lg-6 col-lg-offset-3" >
+                     
                      <div id="nmd_img">
                          <img id="nmd_img_pass" src="#" /> 
                      </div>
                      </div>
+                     </div>
                  </div>
              <hr class="uk-divider-icon">
+                 <div class="panel-body">
                  <label>Alpha</label>
                  <div class="row">
                      <div class="col-lg-6 col-lg-offset-3">
-                     <div id="alpha_img">
+                      <div id="alpha_img">
                          <img id="alpha_img_pass" src="#" />
                      </div> 
                      </div>
-                </div>
-            <hr class="uk-divider-icon">
-            <label>final.opti_mcc.groups.ave-std.summary</label>
-            <div class="row">
-                     <div class="col-lg-12">
-                   
                      </div>
             </div>
 
-            <hr class="uk-divider-icon">
-            <label>final.opti_mcc.summary</label>
-            <div class="row">
-                     <div class="col-lg-12">
-                   
-                     </div>
-             </div>
+            <!-- Table  -->           
+            <?php if($project_analysis == "otu"){
 
+                     $file_groups_ave_std_summary = "final.opti_mcc.groups.ave-std.summary";
+                     $file_summary = "final.opti_mcc.summary";
+                     $path_file_original_g = $path.$file_groups_ave_std_summary;
+                     $path_file_original_s = $path.$file_summary;
 
+                }else{
+                     
+                     $file_groups_ave_std_summary = "final.tx.groups.ave-std.summary";
+                     $file_summary = "final.tx.summary";
+                     $path_file_original_g = $path.$file_groups_ave_std_summary;
+                     $path_file_original_s = $path.$file_summary; 
+
+                    }
+
+            ?>
+           
+            <div class="panel-body">
+             <!-- Table groups.ave-std.summary -->
               <hr class="uk-divider-icon">
+              <label><?php echo $file_groups_ave_std_summary; ?></label>
               <div class="row">
                      <div class="col-lg-12">
-                       <a href="<?php echo site_url('Run_advance/down_zip');?>?current=<?=$current_project?>"><input type="button" class="btn btn-outline btn-info" value="Download all zip" id=""></a>      
+                     <div class="table-responsive" id="table_g" style="display:none">
+                    <?php 
+
+                     if(file_exists($path_file_original_g)){
+                     $file_g = $path_file_original_g;
+
+                     $count = 1;
+                     $myfile = fopen($file_g,'r') or die ("Unable to open file");
+                         while(($lines = fgets($myfile)) !== false){
+                            $line0 = explode("\t", $lines);
+                          if($count == 1){ ?>
+                            <div id="html-content-1">
+                             <table class="table table-striped table-bordered table-hover" style="text-align: center">
+                                 <thead>
+                                 <tr>
+                                     <td><?php echo $line0[1] ?></td>
+                                     <td><?php echo $line0[2] ?></td>
+                                     <td><?php echo $line0[3] ?></td>
+                                     <td><?php echo $line0[4] ?></td>
+                                     <td><?php echo $line0[5] ?></td>
+                                     <td><?php echo $line0[9] ?></td>
+                                     <td><?php echo $line0[10] ?></td>
+                                     <td><?php echo $line0[11] ?></td>
+                                     <td><?php echo $line0[12] ?></td>
+                                     <td><?php echo $line0[13] ?></td>
+                                     <td><?php echo $line0[14] ?></td>
+                                     
+                                 </tr>
+                                </thead>
+                                <tbody>
+
+                        <?php  }else{  ?>
+
+                                <tr>
+                                     <td><?php echo $line0[1] ?></td>
+                                     <td><?php echo $line0[2] ?></td>
+                                     <td><?php echo $line0[3] ?></td>
+                                     <td><?php echo $line0[4] ?></td>
+                                     <td><?php echo $line0[5] ?></td>
+                                     <td><?php echo $line0[9] ?></td>
+                                     <td><?php echo $line0[10] ?></td>
+                                     <td><?php echo $line0[11] ?></td>
+                                     <td><?php echo $line0[12] ?></td>
+                                     <td><?php echo $line0[13] ?></td>
+                                     <td><?php echo $line0[14] ?></td>
+                                </tr> 
+
+                      <?php } 
+                          $count++;
+                         }
+                      fclose($myfile);  
+
+                      }    ?>
+                
+                              </tbody>
+                            </table>
+                            </div><!-- #html-content-1-->
+
                      </div>
-             </div>
+                     </div>
+                     </div>    <!-- End Table groups.ave-std.summary -->
 
 
+             <!--  Table file_summary -->
+             <hr class="uk-divider-icon">
 
+             <label><?php echo $file_summary; ?></label>
 
+             <div class="row">
+                <div class="col-lg-12">
+                 <div class="table-responsive" id="table_s" style="display:none">  
+                   <?php 
+
+                     if(file_exists($path_file_original_s)){
+                     $file_s = $path_file_original_s;
+
+                     $count = 1;
+                     $myfile = fopen($file_s,'r') or die ("Unable to open file");
+                         while(($lines = fgets($myfile)) !== false){
+                            $line0 = explode("\t", $lines);
+                          if($count == 1){ ?>
+                            <div id="html-content-2">
+                             <table class="table table-striped table-bordered dataTable" style="text-align: center">
+                                 <thead>
+                                 <tr>
+                                    <td colspan="2"><?php echo $line0[1] ?></td>
+                                     
+                                     <td><?php echo $line0[3] ?></td>
+                                     <td><?php echo $line0[4] ?></td>
+                                     <td><?php echo $line0[5] ?></td>
+                                     <td><?php echo $line0[6] ?></td>
+                                     <td><?php echo $line0[7] ?></td>
+                                     <td><?php echo $line0[8] ?></td>
+                                     <td><?php echo $line0[9] ?></td>
+                                     <td><?php echo $line0[10] ?></td>
+                                     <td><?php echo $line0[11] ?></td>
+                                 </tr>
+                                </thead>
+                                <tbody>
+
+                        <?php  }else{  ?>
+                                   <tr>
+                                     <td><?php echo $line0[1] ?></td>
+                                     <td><?php echo $line0[2] ?></td>
+                                     <td><?php echo $line0[4] ?></td>
+                                     <td><?php echo $line0[5] ?></td>
+                                     <td><?php echo $line0[6] ?></td>
+                                     <td><?php echo $line0[7] ?></td>
+                                     <td><?php echo $line0[8] ?></td>
+                                     <td><?php echo $line0[9] ?></td>
+                                     <td><?php echo $line0[10] ?></td> 
+                                     <td><?php echo $line0[11] ?></td>
+                                     <td><?php echo $line0[12] ?></td> 
+                                </tr>
+
+                      <?php } 
+                          $count++;
+                         }
+                      fclose($myfile);  
+                      
+                       }   ?>
+                
+                              </tbody>
+                            </table>
+                            </div><!-- #html-content-2-->
+
+                     </div>
+                     </div>
+                     <div class="col-lg-12 uk-margin"></div>
+                        <center>
+                               <input  class="btn btn-outline btn-info" value="Download all zip" id="zipall"> 
+                        </center> 
+                     </div><!-- End Table file_summary -->
+             
+            </div> 
+           
 
     </li>
     <!-- End Result && Graph -->
 
 
                                 </ul>
-
                             </div>
                         </li>
                         <!-- End EDVANCE  -->
                     </ul>
-
                     <!-- end class="uk-switcher" -->
                 </div>
 
@@ -1487,13 +1637,52 @@ Beta – Diversity:
     </script>
 
 <!--  Advance Script -->
+<style>
+    #html-content-1{
+        display:inline-block;
+        background-color:#FAFAFA;
+        padding-left:10px;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px; 
+    }
+    #html-content-2{
+        display:inline-block;
+        background-color:#FAFAFA;
+        padding-left: 15px;
+        padding-top: 10px;
+        padding-right: 15px;
+        padding-bottom: 10px; 
+    }
 
-<script type="text/javascript">   
+</style>
+<script type="text/javascript">  
+
+document.getElementById("zipall").onclick = function(){
+
+    $.ajax({ 
+          type:"post",
+          datatype:"json",
+          url:"<?php echo base_url('Run_advance/check_dirzip'); ?>",
+          data:{current:"<?=$current_project?>"},
+             success:function(data){
+                var dir = JSON.parse(data); 
+                if(dir == "TRUE"){
+                   location.href="<?php echo site_url('Run_advance/down_zip');?>?current=<?=$current_project?>";           
+                }else{
+                    alert("FALSE");
+                }
+              
+            }
+                   
+     });
+
+};
 
 $(document).ready(function (){ 
 
           $('li.pre').attr('id','active');
-         
+
             $("#sub-test").click(function () {
                
                   var username = document.forms["Pre-form"]["username"].value;
@@ -1690,8 +1879,45 @@ $(document).ready(function (){
                 }
             });
 
-
  });
+
+
+function getCanvas1(){
+      var element = $("#html-content-1");
+      var getCanvas; 
+      var cur = "<?php echo $current_project?>";
+     setTimeout(function(){
+        html2canvas( element, {
+             onrendered: function (canvas) {
+                 getCanvas = canvas;
+                 var imgageData = getCanvas.toDataURL("image/png");
+                 $.post("<?php echo base_url('Run_advance/getCanvas1');?>",{data:imgageData,current:cur});
+              
+             }
+        });
+
+     },5000);
+        
+}
+
+function getCanvas2(){
+      var element = $("#html-content-2");
+      var getCanvas; 
+      var cur = "<?php echo $current_project?>";
+     setTimeout(function(){
+        html2canvas( element, {
+             onrendered: function (canvas) {
+                 getCanvas = canvas;
+                 var imgageData = getCanvas.toDataURL("image/png");
+                 $.post("<?php echo base_url('Run_advance/getCanvas2');?>",{data:imgageData,current:cur});
+              
+             }
+        });
+
+     },5000);
+        
+}
+
 
 </script> 
 <!--  End Advance Script -->

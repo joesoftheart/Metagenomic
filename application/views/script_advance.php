@@ -33,8 +33,8 @@ function advance_mode(obj){
                              $('li.pre2').attr('id','');
                              $('li.pre3').attr('id','');
                              addImage(user,project);
-    
-                        
+                             
+
                         }else if(status[0] != "0" && status[1] == "1" && check == 1){
                            alert('Run step '+status[1] );
                                  $(".Pre-test").hide();
@@ -557,7 +557,14 @@ function addImage(u,p){
      $('#abun_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Abun.png')?>");
      // $('#nmd_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/NMD.png')?>");
      $('#alpha_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Alpha.png')?>");
+     
+     $('#table_g').show();
+     $('#table_s').show();
 
+     getCanvas1();
+     getCanvas2();
+     
+  
 }
 
 $(document).ready(function(){
