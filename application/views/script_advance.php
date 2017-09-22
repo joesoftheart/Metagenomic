@@ -38,7 +38,12 @@ function advance_mode(obj){
                              $('li.pre2').attr('id','');
                              $('li.pre3').attr('id','');
                              addImage(user,project);
+<<<<<<< HEAD
 
+=======
+    
+                        
+>>>>>>> parent of 4408005... check_download_zip_advance
                         }else if(status[0] != "0" && status[1] == "1" && check == 1){
                            alert('Run step '+status[1] );
                                  $(".Pre-test").hide();
@@ -567,9 +572,12 @@ function addImage(u,p){
      // $('#nmd_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/NMD.png')?>");
      $('#alpha_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Alpha.png')?>");
 
+<<<<<<< HEAD
      
      
   
+=======
+>>>>>>> parent of 4408005... check_download_zip_advance
 }
 
 function table_groups(data){

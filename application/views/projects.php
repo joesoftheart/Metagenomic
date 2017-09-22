@@ -633,7 +633,6 @@ Beta – Diversity:
          <link href="<?php echo base_url();?>tooltip/loading.css" rel="stylesheet" />
          <link href="<?php echo base_url();?>tooltip/tooltip.css" rel="stylesheet" />
          <script src="<?php echo base_url();?>tooltip/tooltip.js" type="text/javascript"></script>
-         <script src="<?php echo base_url();?>tooltip/html2canvas.js" type="text/javascript"></script>
 
          <div class="sw-theme-arrows">
              <ul class="nav-tabs step-anchor" uk-switcher="animation: uk-animation-fade">
@@ -643,7 +642,7 @@ Beta – Diversity:
                  <li><a href="#">Step 4<br />Result & graph</a></li>
              </ul>
          
-    <ul class="uk-switcher uk-margin">
+             <ul class="uk-switcher uk-margin">
 
 
      <!--Preprocess && Prepare in taxonomy -->
@@ -1357,22 +1356,19 @@ Beta – Diversity:
 
      <!-- Result && Graph -->
      <li>
+      
          <div class="row">
             <div class="col-lg-6">
-                 <div class="panel-body">
                  <label>Ven diagram</label>
                  <div id="sharedsobs_img">
                     <img id="sharedsobs_img_pass" src="#"/>
                   
                  </div>
-                 </div>
              </div>
              <div class="col-lg-6">
-                 <div class="panel-body">
                  <label>Heatmap</label>
                  <div id="heartmap_img">
                      <img id="heartmap_img_pass" src="#" />
-                 </div>
                  </div>
             </div>
          </div>
@@ -1380,19 +1376,15 @@ Beta – Diversity:
          <hr class="uk-divider-icon">
          <div class="row">
              <div class="col-lg-6" >
-                 <div class="panel-body">
                  <label>Bioplot</label>
                  <div id="bioplot_otu_img">
                      <img id="bioplot_otu_img_pass"  src="#" /> 
                  </div>
-                 </div>
              </div>
              <div class="col-lg-6" >
-                 <div class="panel-body">
                  <b>Bioplot</b><br>
                  <div id="bioplot_meta_img">
                     <img id="bioplot_meta_img_pass"  src=""/>
-                 </div>
                  </div>
              </div>
         </div>
@@ -1400,47 +1392,46 @@ Beta – Diversity:
         <hr class="uk-divider-icon">
              <div class="row">
                  <div class="col-lg-6">
-                 <div class="panel-body">
                     <label>Rarefaction</label>
                     <div id="rare_img">
                          <img id="rare_img_pass"  src="#" /> 
                     </div>
-                    </div>
                  </div>
                 <div class="col-lg-6">
-                <div class="panel-body">
                 <label>RelativePhylum</label>
-                    <div id="abun_img">
-                       <img id="abun_img_pass"  src="#" />
-                    </div> 
-                 </div> 
+                 <div id="abun_img">
+                    <img id="abun_img_pass"  src="#" />
+                 </div>  
                  </div>
              </div>
 
              <hr class="uk-divider-icon">
-                 <div class="panel-body">
                  <label>NMDS</label>
                  <div class="row">
                      <div class="col-lg-6 col-lg-offset-3" >
-                     
                      <div id="nmd_img">
                          <img id="nmd_img_pass" src="#" /> 
                      </div>
                      </div>
-                     </div>
                  </div>
              <hr class="uk-divider-icon">
-                 <div class="panel-body">
                  <label>Alpha</label>
                  <div class="row">
                      <div class="col-lg-6 col-lg-offset-3">
-                      <div id="alpha_img">
+                     <div id="alpha_img">
                          <img id="alpha_img_pass" src="#" />
                      </div> 
                      </div>
+                </div>
+            <hr class="uk-divider-icon">
+            <label>final.opti_mcc.groups.ave-std.summary</label>
+            <div class="row">
+                     <div class="col-lg-12">
+                   
                      </div>
             </div>
 
+<<<<<<< HEAD
             <!-- Table  -->   
            
             <?php if($project_analysis == "otu"){
@@ -1454,15 +1445,21 @@ Beta – Diversity:
                      $file_summary = "final.tx.summary";
                   
                     }
+=======
+            <hr class="uk-divider-icon">
+            <label>final.opti_mcc.summary</label>
+            <div class="row">
+                     <div class="col-lg-12">
+                   
+                     </div>
+             </div>
 
-            ?>
-           
-            <div class="panel-body">
-             <!-- Table groups.ave-std.summary -->
+>>>>>>> parent of 4408005... check_download_zip_advance
+
               <hr class="uk-divider-icon">
-              <label><?php echo $file_groups_ave_std_summary; ?></label>
               <div class="row">
                      <div class="col-lg-12">
+<<<<<<< HEAD
                      <div class="table-responsive">
                     
                             <div id="html-content-1">
@@ -1474,16 +1471,15 @@ Beta – Diversity:
                             </table>
                             </div><!-- #html-content-1-->
 
+=======
+                       <a href="<?php echo site_url('Run_advance/down_zip');?>?current=<?=$current_project?>"><input type="button" class="btn btn-outline btn-info" value="Download all zip" id=""></a>      
+>>>>>>> parent of 4408005... check_download_zip_advance
                      </div>
-                     </div>
-                     </div>    <!-- End Table groups.ave-std.summary -->
+             </div>
 
 
-             <!--  Table file_summary -->
-             <hr class="uk-divider-icon">
 
-             <label><?php echo $file_summary; ?></label>
-
+<<<<<<< HEAD
              <div class="row">
                 <div class="col-lg-12">
                  <div class="table-responsive">  
@@ -1497,27 +1493,21 @@ Beta – Diversity:
                               </tbody>
                             </table>
                             </div><!-- #html-content-2-->
+=======
+>>>>>>> parent of 4408005... check_download_zip_advance
 
-                     </div>
-                     </div>
-                     <div class="col-lg-12 uk-margin"></div>
-                        <center>
-                               <input  class="btn btn-outline btn-info" value="Download all zip" id="zipall"> 
-                        </center> 
-                     </div><!-- End Table file_summary -->
-             
-            </div> 
-           
 
     </li>
     <!-- End Result && Graph -->
 
 
                                 </ul>
+
                             </div>
                         </li>
                         <!-- End EDVANCE  -->
                     </ul>
+
                     <!-- end class="uk-switcher" -->
                 </div>
 
@@ -1543,52 +1533,13 @@ Beta – Diversity:
     </script>
 
 <!--  Advance Script -->
-<style>
-    #html-content-1{
-        display:inline-block;
-        background-color:#FAFAFA;
-        padding-left:10px;
-        padding-top: 10px;
-        padding-right: 10px;
-        padding-bottom: 10px; 
-    }
-    #html-content-2{
-        display:inline-block;
-        background-color:#FAFAFA;
-        padding-left: 15px;
-        padding-top: 10px;
-        padding-right: 15px;
-        padding-bottom: 10px; 
-    }
 
-</style>
-<script type="text/javascript">  
-
-document.getElementById("zipall").onclick = function(){
-
-    $.ajax({ 
-          type:"post",
-          datatype:"json",
-          url:"<?php echo base_url('Run_advance/check_dirzip'); ?>",
-          data:{current:"<?=$current_project?>"},
-             success:function(data){
-                var dir = JSON.parse(data); 
-                if(dir == "TRUE"){
-                   location.href="<?php echo site_url('Run_advance/down_zip');?>?current=<?=$current_project?>";           
-                }else{
-                    alert("FALSE");
-                }
-              
-            }
-                   
-     });
-
-};
+<script type="text/javascript">   
 
 $(document).ready(function (){ 
 
           $('li.pre').attr('id','active');
-
+         
             $("#sub-test").click(function () {
                
                   var username = document.forms["Pre-form"]["username"].value;
@@ -1785,45 +1736,8 @@ $(document).ready(function (){
                 }
             });
 
+
  });
-
-
-function getCanvas1(){
-      var element = $("#html-content-1");
-      var getCanvas; 
-      var cur = "<?php echo $current_project?>";
-     setTimeout(function(){
-        html2canvas( element, {
-             onrendered: function (canvas) {
-                 getCanvas = canvas;
-                 var imgageData = getCanvas.toDataURL("image/png");
-                 $.post("<?php echo base_url('Run_advance/getCanvas1');?>",{data:imgageData,current:cur});
-              
-             }
-        });
-
-     },5000);
-        
-}
-
-function getCanvas2(){
-      var element = $("#html-content-2");
-      var getCanvas; 
-      var cur = "<?php echo $current_project?>";
-     setTimeout(function(){
-        html2canvas( element, {
-             onrendered: function (canvas) {
-                 getCanvas = canvas;
-                 var imgageData = getCanvas.toDataURL("image/png");
-                 $.post("<?php echo base_url('Run_advance/getCanvas2');?>",{data:imgageData,current:cur});
-              
-             }
-        });
-
-     },5000);
-        
-}
-
 
 </script> 
 <!--  End Advance Script -->

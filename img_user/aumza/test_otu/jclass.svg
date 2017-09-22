@@ -1,6 +1,6 @@
 <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 760 760">
 <g>
-<rect fill="white" stroke="white" x="0" y="0" width="760" height="760"/><text fill="black" class="seri" font-size="24" x="260" y="25">Heatmap for owncloud/data/aumza/files/test_run/output/final.tx.jclass.2.lt.ave.dist</text>
+<rect fill="white" stroke="white" x="0" y="0" width="760" height="760"/><text fill="black" class="seri" font-size="24" x="260" y="25">Heatmap for owncloud/data/aumza/files/test_otu/output/final.opti_mcc.jclass.0.03.lt.ave.dist</text>
 <text fill="black" class="seri" font-size="24" x="145" y="50">S1_1_16s_S1</text>
 <text fill="black" class="seri" font-size="24" y="145" x="50">S1_1_16s_S1</text>
 <text fill="black" class="seri" font-size="24" x="295" y="50">S2_1_16s_S3</text>
@@ -9,20 +9,12 @@
 <text fill="black" class="seri" font-size="24" y="445" x="50">S3_1_16s_S5</text>
 <text fill="black" class="seri" font-size="24" x="595" y="50">S4_1_16s_S7</text>
 <text fill="black" class="seri" font-size="24" y="595" x="50">S4_1_16s_S7</text>
-<rect fill="rgb(254,0,0)" stroke="rgb(254,0,0)" x="80" y="225" width="150" height="150"/>
-<<<<<<< HEAD
-<rect fill="rgb(117,0,0)" stroke="rgb(117,0,0)" x="80" y="375" width="150" height="150"/>
-<rect fill="rgb(227,0,0)" stroke="rgb(227,0,0)" x="80" y="525" width="150" height="150"/>
-<rect fill="rgb(110,0,0)" stroke="rgb(110,0,0)" x="230" y="375" width="150" height="150"/>
-<rect fill="rgb(236,0,0)" stroke="rgb(236,0,0)" x="230" y="525" width="150" height="150"/>
-<rect fill="rgb(136,0,0)" stroke="rgb(136,0,0)" x="380" y="525" width="150" height="150"/>
-=======
-<rect fill="rgb(114,0,0)" stroke="rgb(114,0,0)" x="80" y="375" width="150" height="150"/>
-<rect fill="rgb(222,0,0)" stroke="rgb(222,0,0)" x="80" y="525" width="150" height="150"/>
-<rect fill="rgb(107,0,0)" stroke="rgb(107,0,0)" x="230" y="375" width="150" height="150"/>
-<rect fill="rgb(240,0,0)" stroke="rgb(240,0,0)" x="230" y="525" width="150" height="150"/>
-<rect fill="rgb(129,0,0)" stroke="rgb(129,0,0)" x="380" y="525" width="150" height="150"/>
->>>>>>> parent of 4408005... check_download_zip_advance
+<rect fill="rgb(255,0,0)" stroke="rgb(255,0,0)" x="80" y="225" width="150" height="150"/>
+<rect fill="rgb(27,0,0)" stroke="rgb(27,0,0)" x="80" y="375" width="150" height="150"/>
+<rect fill="rgb(146,0,0)" stroke="rgb(146,0,0)" x="80" y="525" width="150" height="150"/>
+<rect fill="rgb(11,0,0)" stroke="rgb(11,0,0)" x="230" y="375" width="150" height="150"/>
+<rect fill="rgb(152,0,0)" stroke="rgb(152,0,0)" x="230" y="525" width="150" height="150"/>
+<rect fill="rgb(17,0,0)" stroke="rgb(17,0,0)" x="380" y="525" width="150" height="150"/>
 <rect fill="#10000" stroke="#10000" x="10" y="720" width="3" height="30"/>
 <rect fill="#20000" stroke="#20000" x="13" y="720" width="3" height="30"/>
 <rect fill="#30000" stroke="#30000" x="16" y="720" width="3" height="30"/>
@@ -278,18 +270,10 @@
 <rect fill="#fd0000" stroke="#fd0000" x="766" y="720" width="3" height="30"/>
 <rect fill="#fe0000" stroke="#fe0000" x="769" y="720" width="3" height="30"/>
 <text fill="black" class="seri" font-size="24" x="0" y="717">0.000</text>
-<<<<<<< HEAD
-<text fill="black" class="seri" font-size="24" x="153" y="717">0.063</text>
-<text fill="black" class="seri" font-size="24" x="306" y="717">0.126</text>
-<text fill="black" class="seri" font-size="24" x="459" y="717">0.190</text>
-<text fill="black" class="seri" font-size="24" x="612" y="717">0.253</text>
-<text fill="black" class="seri" font-size="24" x="765" y="717">0.316</text>
-=======
-<text fill="black" class="seri" font-size="24" x="153" y="717">0.066</text>
-<text fill="black" class="seri" font-size="24" x="306" y="717">0.131</text>
-<text fill="black" class="seri" font-size="24" x="459" y="717">0.197</text>
-<text fill="black" class="seri" font-size="24" x="612" y="717">0.263</text>
-<text fill="black" class="seri" font-size="24" x="765" y="717">0.329</text>
->>>>>>> parent of 4408005... check_download_zip_advance
+<text fill="black" class="seri" font-size="24" x="153" y="717">0.010</text>
+<text fill="black" class="seri" font-size="24" x="306" y="717">0.021</text>
+<text fill="black" class="seri" font-size="24" x="459" y="717">0.031</text>
+<text fill="black" class="seri" font-size="24" x="612" y="717">0.042</text>
+<text fill="black" class="seri" font-size="24" x="765" y="717">0.052</text>
 </g>
 </svg>
