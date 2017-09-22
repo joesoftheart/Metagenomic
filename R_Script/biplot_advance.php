@@ -21,7 +21,7 @@ for($i=0; $i < count($size_data)-1 ; $i++) {
 
 function get_Biplot($file_pcoa_or_nmds,$path_output_biplot_otu,$path_biplot_txt,$path_output_biplot_Metadata,$path_input_file_metadata){
 
-	 $cmd = "/usr/bin/Rscript  R_Script/ScatterPlotwithbiplot_phylotype.R $file_pcoa_or_nmds $path_output_biplot_otu $path_biplot_txt $path_output_biplot_Metadata $path_input_file_metadata";
+	   $cmd = "/usr/bin/Rscript  R_Script/ScatterPlotwithbiplot_phylotype.R $file_pcoa_or_nmds $path_output_biplot_otu $path_biplot_txt $path_output_biplot_Metadata $path_input_file_metadata";
      exec($cmd);
 
 }

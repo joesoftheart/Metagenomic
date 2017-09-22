@@ -1441,21 +1441,18 @@ Beta – Diversity:
                      </div>
             </div>
 
-            <!-- Table  -->           
+            <!-- Table  -->   
+           
             <?php if($project_analysis == "otu"){
 
                      $file_groups_ave_std_summary = "final.opti_mcc.groups.ave-std.summary";
                      $file_summary = "final.opti_mcc.summary";
-                     $path_file_original_g = $path.$file_groups_ave_std_summary;
-                     $path_file_original_s = $path.$file_summary;
-
+                    
                 }else{
                      
                      $file_groups_ave_std_summary = "final.tx.groups.ave-std.summary";
                      $file_summary = "final.tx.summary";
-                     $path_file_original_g = $path.$file_groups_ave_std_summary;
-                     $path_file_original_s = $path.$file_summary; 
-
+                  
                     }
 
             ?>
@@ -1466,60 +1463,13 @@ Beta – Diversity:
               <label><?php echo $file_groups_ave_std_summary; ?></label>
               <div class="row">
                      <div class="col-lg-12">
-                     <div class="table-responsive" id="table_g" style="display:none">
-                    <?php 
-
-                     if(file_exists($path_file_original_g)){
-                     $file_g = $path_file_original_g;
-
-                     $count = 1;
-                     $myfile = fopen($file_g,'r') or die ("Unable to open file");
-                         while(($lines = fgets($myfile)) !== false){
-                            $line0 = explode("\t", $lines);
-                          if($count == 1){ ?>
+                     <div class="table-responsive">
+                    
                             <div id="html-content-1">
                              <table class="table table-striped table-bordered table-hover" style="text-align: center">
-                                 <thead>
-                                 <tr>
-                                     <td><?php echo $line0[1] ?></td>
-                                     <td><?php echo $line0[2] ?></td>
-                                     <td><?php echo $line0[3] ?></td>
-                                     <td><?php echo $line0[4] ?></td>
-                                     <td><?php echo $line0[5] ?></td>
-                                     <td><?php echo $line0[9] ?></td>
-                                     <td><?php echo $line0[10] ?></td>
-                                     <td><?php echo $line0[11] ?></td>
-                                     <td><?php echo $line0[12] ?></td>
-                                     <td><?php echo $line0[13] ?></td>
-                                     <td><?php echo $line0[14] ?></td>
-                                     
-                                 </tr>
-                                </thead>
-                                <tbody>
-
-                        <?php  }else{  ?>
-
-                                <tr>
-                                     <td><?php echo $line0[1] ?></td>
-                                     <td><?php echo $line0[2] ?></td>
-                                     <td><?php echo $line0[3] ?></td>
-                                     <td><?php echo $line0[4] ?></td>
-                                     <td><?php echo $line0[5] ?></td>
-                                     <td><?php echo $line0[9] ?></td>
-                                     <td><?php echo $line0[10] ?></td>
-                                     <td><?php echo $line0[11] ?></td>
-                                     <td><?php echo $line0[12] ?></td>
-                                     <td><?php echo $line0[13] ?></td>
-                                     <td><?php echo $line0[14] ?></td>
-                                </tr> 
-
-                      <?php } 
-                          $count++;
-                         }
-                      fclose($myfile);  
-
-                      }    ?>
-                
+                               
+                                <tbody id="body_tg">
+                               
                               </tbody>
                             </table>
                             </div><!-- #html-content-1-->
@@ -1536,58 +1486,14 @@ Beta – Diversity:
 
              <div class="row">
                 <div class="col-lg-12">
-                 <div class="table-responsive" id="table_s" style="display:none">  
-                   <?php 
-
-                     if(file_exists($path_file_original_s)){
-                     $file_s = $path_file_original_s;
-
-                     $count = 1;
-                     $myfile = fopen($file_s,'r') or die ("Unable to open file");
-                         while(($lines = fgets($myfile)) !== false){
-                            $line0 = explode("\t", $lines);
-                          if($count == 1){ ?>
+                 <div class="table-responsive">  
+                  
                             <div id="html-content-2">
                              <table class="table table-striped table-bordered dataTable" style="text-align: center">
-                                 <thead>
-                                 <tr>
-                                    <td colspan="2"><?php echo $line0[1] ?></td>
-                                     
-                                     <td><?php echo $line0[3] ?></td>
-                                     <td><?php echo $line0[4] ?></td>
-                                     <td><?php echo $line0[5] ?></td>
-                                     <td><?php echo $line0[6] ?></td>
-                                     <td><?php echo $line0[7] ?></td>
-                                     <td><?php echo $line0[8] ?></td>
-                                     <td><?php echo $line0[9] ?></td>
-                                     <td><?php echo $line0[10] ?></td>
-                                     <td><?php echo $line0[11] ?></td>
-                                 </tr>
-                                </thead>
-                                <tbody>
+                                
+                                <tbody id="body_ts">
 
-                        <?php  }else{  ?>
-                                   <tr>
-                                     <td><?php echo $line0[1] ?></td>
-                                     <td><?php echo $line0[2] ?></td>
-                                     <td><?php echo $line0[4] ?></td>
-                                     <td><?php echo $line0[5] ?></td>
-                                     <td><?php echo $line0[6] ?></td>
-                                     <td><?php echo $line0[7] ?></td>
-                                     <td><?php echo $line0[8] ?></td>
-                                     <td><?php echo $line0[9] ?></td>
-                                     <td><?php echo $line0[10] ?></td> 
-                                     <td><?php echo $line0[11] ?></td>
-                                     <td><?php echo $line0[12] ?></td> 
-                                </tr>
-
-                      <?php } 
-                          $count++;
-                         }
-                      fclose($myfile);  
-                      
-                       }   ?>
-                
+                        
                               </tbody>
                             </table>
                             </div><!-- #html-content-2-->

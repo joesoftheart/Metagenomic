@@ -7,7 +7,7 @@
 
     public function __construct(){
       parent::__construct();
-      $this->load->helper(array('url','path','file','date','download'));
+      $this->load->helper(array('url','path','file','date'));
       $this->load->helper('form');
       $this->load->library('form_validation');
       $this->load->library('zip');
@@ -29,6 +29,13 @@
        $step_run = "";
        $id_job   = "";
 
+       $user = "";
+       $project = "";
+       $project_analysis = "";
+       $level = "";
+       
+       $tg_body = "0";
+       $ts_body ="0";
 
       #Query data status-process
         $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
@@ -37,10 +44,24 @@
              $status   = $r['status'];
              $step_run = $r['step_run'];              
              $id_job = $r['job_id'];
+            
+              $user  = $r['user'];
+              $project  = $r['project'];
+              $project_analysis = $r['project_analysis'];
+              $level = $r['level'];
+
      
            }
 
-        echo json_encode(array($status,$step_run,$id_job));
+        if($level != "0" ){
+
+            $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+            $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
+
+        }
+        
+
+        echo json_encode(array($status,$step_run,$id_job,$tg_body,$ts_body));
 
     }
 
@@ -332,13 +353,12 @@
             $path_input = "owncloud/data/$user/files/$project_data/input/";
             $path_out = "owncloud/data/$user/files/$project_data/output/";
             $path_log = "owncloud/data/$user/files/$project_data/log/";
-      
-            
 
          # create advance.batch
             $file_batch = FCPATH."$path_input"."advance.batch";
             if(!file_exists($file_batch)) {
-                file_put_contents($file_batch, "No command !" ); 
+                file_put_contents($file_batch, "No command !" );
+
             }
          # create folder log
          $folder_log = FCPATH."$path_log";   
@@ -414,11 +434,11 @@
 
        $count = $this->mongo_db->where(array('project_id'=> $id_project))->count('status_process');
        if($count == 0){
-           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data);
+           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data ,'level' => '0');
            $this->insert_status($data);
        }else{
 
-           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data );
+           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data ,'level' => '0' );
            $this->update_status($id_project,$data);
        }
        
@@ -1047,7 +1067,7 @@
      
        # Update data status-process Step 3
 
-         $data = array('status' => '1' ,'step_run' => '3' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'f_design' => $file_design ,'f_metadata' => $file_metadata , 'project_data' => $project_data );
+         $data = array('status' => '1' ,'step_run' => '3' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'f_design' => $file_design ,'f_metadata' => $file_metadata , 'project_data' => $project_data ,'level' => $level );
          $this->update_status($id_project,$data);
 
 
@@ -1067,12 +1087,14 @@
 
           $user = "";
           $project = "" ;
+          $project_analysis = "";
 
           $file_design = "";
           $file_metadata = "";
 
           $project_data = "";
-
+          
+          $level = "";
 
 
       #Query data status-process
@@ -1083,10 +1105,11 @@
                 $path_job = $r['path_log'];
                 $user = $r['user'];
                 $project = $r['project'];
+                $project_analysis = $r['project_analysis'];
                 $file_design = $r['f_design'];
                 $file_metadata = $r['f_metadata'];
                 $project_data = $r['project_data'];
-    
+                $level = $r['level'];
          }
         
       #Check number command 
@@ -1104,6 +1127,9 @@
 
             if($check_run == false){
               
+                 $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+                 $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
+                 
                  $this->on_move($user,$project,$project_data);
 
                  # Update data status-process Step 4
@@ -1111,7 +1137,7 @@
                      $this->update_status($id_project,$data);
 
                  $up = 0;
-                 echo json_encode(array($up,$divisor));
+                 echo json_encode(array($up,$divisor,$tg_body,$ts_body));
                  
 
             }
@@ -1176,8 +1202,158 @@
 
 
 
-    
-     public function insert_status($data){
+   public function read_file_groups_ave_std_summary($user,$project,$project_analysis,$level){
+   
+         $path = FCPATH."owncloud/data/$user/files/$project/output/";
+
+        if($project_analysis == "otu"){
+
+               $file_groups_ave_std_summary = "final.opti_mcc.groups.ave-std.summary";
+               $path_file_original_g = $path.$file_groups_ave_std_summary;
+                    
+        }else{
+               $file_groups_ave_std_summary = "final.tx.groups.ave-std.summary";
+               $path_file_original_g = $path.$file_groups_ave_std_summary;
+        }
+
+        
+        $tbody = array();
+
+           if(file_exists($path_file_original_g)){
+
+                $file_g = $path_file_original_g;
+                $count = 1;
+                $myfile = fopen($file_g,'r') or die ("Unable to open file");
+                    while(($lines = fgets($myfile)) !== false){
+                        $line0 = explode("\t", $lines);
+                        
+                        if($count == 1){
+
+                             $new_data = array(
+                                       $line0[1],
+                                       $line0[2],
+                                       $line0[3], 
+                                       $line0[4],
+                                       $line0[5], 
+                                       $line0[9],
+                                       $line0[10], 
+                                       $line0[11], 
+                                       $line0[12], 
+                                       $line0[13], 
+                                       $line0[14] );
+
+                            array_push($tbody,$new_data);  
+
+                        }else{
+
+                            if($line0[0] == $level ){ 
+
+                                    $new_data = array(
+                                       $line0[1],
+                                       $line0[2],
+                                       $line0[3], 
+                                       $line0[4],
+                                       $line0[5], 
+                                       $line0[9],
+                                       $line0[10], 
+                                       $line0[11], 
+                                       $line0[12], 
+                                       $line0[13], 
+                                       $line0[14] );
+
+                            array_push($tbody,$new_data); 
+                              
+
+                           }
+                        }
+                
+                    $count++;
+                    }
+                fclose($myfile);  
+          
+           } 
+
+           return $tbody; 
+
+
+      }
+
+  public function read_file_summary($user,$project,$project_analysis,$level){
+          
+         $path = FCPATH."owncloud/data/$user/files/$project/output/";
+
+         if($project_analysis == "otu"){
+
+                     $file_summary = "final.opti_mcc.summary";
+                     $path_file_original_s = $path.$file_summary;
+
+                }else{
+                     
+                     $file_summary = "final.tx.summary";
+                     $path_file_original_s = $path.$file_summary; 
+         }
+
+
+          $tbody = array();
+
+           if(file_exists($path_file_original_s)){
+
+                $file_s = $path_file_original_s;
+                $count = 1;
+                $myfile = fopen($file_s,'r') or die ("Unable to open file");
+                    while(($lines = fgets($myfile)) !== false){
+                        $line0 = explode("\t", $lines);
+                        
+                        if($count == 1){
+
+                             $new_data = array(
+                                       $line0[1],
+                                       $line0[3], 
+                                       $line0[4],
+                                       $line0[5], 
+                                       $line0[6],
+                                       $line0[7], 
+                                       $line0[8], 
+                                       $line0[9], 
+                                       $line0[10], 
+                                       $line0[11] );
+
+                            array_push($tbody,$new_data);  
+
+                        }else{
+
+                            if($line0[0] == $level ){ 
+
+                                    $new_data = array(
+                                       $line0[1],
+                                       $line0[2],
+                                       $line0[4],
+                                       $line0[5], 
+                                       $line0[6],
+                                       $line0[7], 
+                                       $line0[8], 
+                                       $line0[9], 
+                                       $line0[10], 
+                                       $line0[11],
+                                       $line0[12] );
+
+                            array_push($tbody,$new_data); 
+                              
+
+                           }
+                        }
+                
+                    $count++;
+                    }
+                fclose($myfile);  
+          
+           } 
+
+           return $tbody; 
+  
+  }
+
+  public function insert_status($data){
       
             # insert data status-process
             $this->mongo_db->insert('status_process', $data);
@@ -1185,7 +1361,7 @@
 
      }
 
-     public function update_status($id_project,$data){
+  public function update_status($id_project,$data){
           
            # update data status-process
             $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('status_process'); 

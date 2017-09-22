@@ -1350,7 +1350,7 @@ function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
 
               $path_data .= "owncloud/data/$user/files/$project/output/final.opti_mcc.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes-";
               $path_data .= "owncloud/data/$user/files/$project/output/PCoA_BiplotwithOTU_".$cal_replace[$i].".png-";
-              $path_data .= "owncloud/data/$user/files/$project/output/output_bioplot_".$cal_replace[$i].".txt-";
+              $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_".$cal_replace[$i].".txt-";
               $path_data .="owncloud/data/$user/files/$project/output/PCoA_BiplotwithMetadata_".$cal_replace[$i].".png-"; 
               $path_data .="owncloud/data/$user/files/$project/output/file.".$GLOBALS['method_meta'].".corr.axes_".$cal_replace[$i].",";
    
@@ -1362,7 +1362,7 @@ function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
 
                $path_data .= "owncloud/data/$user/files/$project/output/final.opti_mcc.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes-";
                $path_data .= "owncloud/data/$user/files/$project/output/NMDS_BiplotwithOTU_".$cal_replace[$i].".png-";
-               $path_data .= "owncloud/data/$user/files/$project/output/output_bioplot_".$cal_replace[$i].".txt-";
+               $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_".$cal_replace[$i].".txt-";
                $path_data .="owncloud/data/$user/files/$project/output/NMDS_BiplotwithMetadata_".$cal_replace[$i].".png-"; 
                $path_data .="owncloud/data/$user/files/$project/output/file.".$GLOBALS['method_meta'].".corr.axes_".$cal_replace[$i].",";
    

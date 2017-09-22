@@ -19,6 +19,11 @@ class Run_owncloud extends CI_Controller {
   
     }
 
+
+    public function sym(){
+       echo symlink( FCPATH."database_classification/silva.v4.fasta" , FCPATH."owncloud/data/aumza/files/test_run/input/");
+    }
+
     public function ex_string(){
         $lable = explode('_', "gg_13_8_99.fasta");
         echo $lable[0];
