@@ -1388,7 +1388,39 @@
 
      }
 
-     public function down_zip(){
+     public function check_dirzip(){
+
+      $id_project = $_REQUEST['current'];
+
+       $user = "NULL";
+       $folder = "NULL";
+       $step_run = "NULL";
+
+        #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {             
+                
+                $step_run = $r['step_run'];
+                $user = $r['user'];
+                $folder = $r['project'];
+
+         }
+
+         $path_img = FCPATH."img_user/$user/$folder/";  
+
+           if($step_run == "4"){
+
+             if(file_exists($path_img)){
+
+                 echo json_encode("TRUE");  
+             }
+          
+           }else{
+             echo json_encode("Null");
+         }
+     }
+
+    public function down_zip(){
 
 
         $id_project = $_REQUEST['current'];
@@ -1402,32 +1434,77 @@
     
          }
 
-
-          $this->zip->read_dir("img_user/".$user."/".$folder."/",FALSE);
-          $this->zip->download('visualization.zip');
-
-  
-        //$file = "img_user/aumza/test_otu/";
-        // if($read = opendir($file)){
-        //      while (($img = readdir($read)) !== false) {
-
-        //             $allowed =  array('png','svg');
-        //             $ext = pathinfo($img, PATHINFO_EXTENSION);
-        //              if(in_array($ext,$allowed)) {
-                        
-        //                echo $img."<br/>";
-
-        //               $this->zip->add_data($myfolder.'/'.$img,file_get_contents($file.$img));
-                         
-        //              }
-        //       }
-     
-        //    closedir($read);
-        // }
-        //$this->zip->read_file("img_user/aumza/test_otu/Abun.png");
+           $this->zip->read_dir("img_user/".$user."/".$folder."/",FALSE);
+           $this->zip->download('visualization.zip');
 
 
      }
+
+     public function getCanvas1(){
+
+       $img_data = $_REQUEST['data'];
+       $id_project = $_REQUEST['current'];
+        
+        $user = "NULL";
+        $folder = "NULL";
+
+        #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {             
+              
+                $user = $r['user'];
+                $folder = $r['project'];
+    
+         }
+
+         $path_img = FCPATH."img_user/$user/$folder/table_groups_ave_std_summary.png";  
+
+         if(!file_exists($path_img)){
+    
+              $upload_dir = "img_user/".$user."/".$folder."/";
+              $img = str_replace('data:image/png;base64','', $img_data);
+              $img = str_replace(' ', '+', $img);
+               $data = base64_decode($img);
+
+               $file = $upload_dir."table_groups_ave_std_summary.png";
+               file_put_contents($file, $data);
+         }
+       
+      
+     }
+
+     public function getCanvas2(){
+
+       $img_data = $_REQUEST['data'];
+       $id_project = $_REQUEST['current'];
+        
+        $user = "NULL";
+        $folder = "NULL";
+
+        #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {             
+              
+                $user = $r['user'];
+                $folder = $r['project'];
+    
+         }
+
+         $path_img = FCPATH."img_user/$user/$folder/table_summary.png";  
+
+          if(!file_exists($path_img)){
+
+              $upload_dir = "img_user/".$user."/".$folder."/";
+              $img = str_replace('data:image/png;base64','', $img_data);
+              $img = str_replace(' ', '+', $img);
+              $data = base64_decode($img);
+
+               $file = $upload_dir."table_summary.png";
+               file_put_contents($file, $data);
+          }
+      
+     }
+
 
 
   

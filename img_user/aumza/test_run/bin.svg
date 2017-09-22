@@ -260,22 +260,15 @@
 <rect fill="#fc0000" stroke="#fc0000" x="261" y="303" width="1" height="10"/>
 <rect fill="#fd0000" stroke="#fd0000" x="262" y="303" width="1" height="10"/>
 <rect fill="#fe0000" stroke="#fe0000" x="263" y="303" width="1" height="10"/>
-<<<<<<< HEAD
 <text fill="black" class="seri" x="10" y="300">0.168</text>
 <text fill="black" class="seri" x="70" y="300">0.198</text>
 <text fill="black" class="seri" x="130" y="300">0.215</text>
-=======
-<text fill="black" class="seri" x="10" y="300">0.169</text>
-<text fill="black" class="seri" x="70" y="300">0.198</text>
-<text fill="black" class="seri" x="130" y="300">0.216</text>
->>>>>>> parent of 4408005... check_download_zip_advance
 <text fill="black" class="seri" x="190" y="300">0.228</text>
 <text fill="black" class="seri" x="250" y="300">0.237</text>
 <text fill="black" class="seri" font-size="24" x="0" y="70">Otu001</text>
 <rect fill="#2110000" stroke="#2110000" x="100" y="70" width="300" height="20"/>
 <rect fill="#2f70000" stroke="#2f70000" x="400" y="70" width="300" height="20"/>
 <rect fill="#ff0000" stroke="#ff0000" x="700" y="70" width="300" height="20"/>
-<<<<<<< HEAD
 <rect fill="#2820000" stroke="#2820000" x="1000" y="70" width="300" height="20"/>
 <text fill="black" class="seri" font-size="24" x="0" y="90">Otu004</text>
 <rect fill="#ff0000" stroke="#ff0000" x="100" y="90" width="300" height="20"/>
@@ -322,53 +315,5 @@
 <rect fill="#34f0000" stroke="#34f0000" x="400" y="250" width="300" height="20"/>
 <rect fill="#1d60000" stroke="#1d60000" x="700" y="250" width="300" height="20"/>
 <rect fill="#2c00000" stroke="#2c00000" x="1000" y="250" width="300" height="20"/>
-=======
-<rect fill="#27e0000" stroke="#27e0000" x="1000" y="70" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="90">Otu004</text>
-<rect fill="#ff0000" stroke="#ff0000" x="100" y="90" width="300" height="20"/>
-<rect fill="#ff0000" stroke="#ff0000" x="400" y="90" width="300" height="20"/>
-<rect fill="#5a50000" stroke="#5a50000" x="700" y="90" width="300" height="20"/>
-<rect fill="#1660000" stroke="#1660000" x="1000" y="90" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="110">Otu003</text>
-<rect fill="#11b0000" stroke="#11b0000" x="100" y="110" width="300" height="20"/>
-<rect fill="#1150000" stroke="#1150000" x="400" y="110" width="300" height="20"/>
-<rect fill="#5720000" stroke="#5720000" x="700" y="110" width="300" height="20"/>
-<rect fill="#10d0000" stroke="#10d0000" x="1000" y="110" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="130">Otu002</text>
-<rect fill="#1520000" stroke="#1520000" x="100" y="130" width="300" height="20"/>
-<rect fill="#1350000" stroke="#1350000" x="400" y="130" width="300" height="20"/>
-<rect fill="#26a0000" stroke="#26a0000" x="700" y="130" width="300" height="20"/>
-<rect fill="#ff0000" stroke="#ff0000" x="1000" y="130" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="150">Otu005</text>
-<rect fill="#1360000" stroke="#1360000" x="100" y="150" width="300" height="20"/>
-<rect fill="#1660000" stroke="#1660000" x="400" y="150" width="300" height="20"/>
-<rect fill="#5a50000" stroke="#5a50000" x="700" y="150" width="300" height="20"/>
-<rect fill="#1670000" stroke="#1670000" x="1000" y="150" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="170">Otu007</text>
-<rect fill="#2000000" stroke="#2000000" x="100" y="170" width="300" height="20"/>
-<rect fill="#2190000" stroke="#2190000" x="400" y="170" width="300" height="20"/>
-<rect fill="#25d0000" stroke="#25d0000" x="700" y="170" width="300" height="20"/>
-<rect fill="#10d0000" stroke="#10d0000" x="1000" y="170" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="190">Otu006</text>
-<rect fill="#1840000" stroke="#1840000" x="100" y="190" width="300" height="20"/>
-<rect fill="#1790000" stroke="#1790000" x="400" y="190" width="300" height="20"/>
-<rect fill="#4e20000" stroke="#4e20000" x="700" y="190" width="300" height="20"/>
-<rect fill="#1200000" stroke="#1200000" x="1000" y="190" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="210">Otu009</text>
-<rect fill="#1650000" stroke="#1650000" x="100" y="210" width="300" height="20"/>
-<rect fill="#16a0000" stroke="#16a0000" x="400" y="210" width="300" height="20"/>
-<rect fill="#4670000" stroke="#4670000" x="700" y="210" width="300" height="20"/>
-<rect fill="#15c0000" stroke="#15c0000" x="1000" y="210" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="230">Otu008</text>
-<rect fill="#14e0000" stroke="#14e0000" x="100" y="230" width="300" height="20"/>
-<rect fill="#1a10000" stroke="#1a10000" x="400" y="230" width="300" height="20"/>
-<rect fill="#4e20000" stroke="#4e20000" x="700" y="230" width="300" height="20"/>
-<rect fill="#1630000" stroke="#1630000" x="1000" y="230" width="300" height="20"/>
-<text fill="black" class="seri" font-size="24" x="0" y="250">Otu021</text>
-<rect fill="#2a50000" stroke="#2a50000" x="100" y="250" width="300" height="20"/>
-<rect fill="#34f0000" stroke="#34f0000" x="400" y="250" width="300" height="20"/>
-<rect fill="#1d70000" stroke="#1d70000" x="700" y="250" width="300" height="20"/>
-<rect fill="#2d60000" stroke="#2d60000" x="1000" y="250" width="300" height="20"/>
->>>>>>> parent of 4408005... check_download_zip_advance
 </g>
 </svg>
