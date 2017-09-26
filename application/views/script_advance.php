@@ -594,7 +594,7 @@ function table_groups(data){
    }
     
    $('#body_tg').html(get_tbody);
-   getCanvas1();
+   //getCanvas1();
 }
 
 
@@ -638,7 +638,7 @@ function table_summary(data){
    }
     
    $('#body_ts').html(get_tbody);
-   getCanvas2();
+   //getCanvas2();
  
 }
 
