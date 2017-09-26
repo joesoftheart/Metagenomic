@@ -633,7 +633,7 @@ Beta – Diversity:
          <link href="<?php echo base_url();?>tooltip/loading.css" rel="stylesheet" />
          <link href="<?php echo base_url();?>tooltip/tooltip.css" rel="stylesheet" />
          <script src="<?php echo base_url();?>tooltip/tooltip.js" type="text/javascript"></script>
-         <script src="<?php echo base_url();?>tooltip/html2canvas.js" type="text/javascript"></script>
+         <!--<script src="<?php echo base_url();?>tooltip/html2canvas.js" type="text/javascript"></script>-->
 
          <div class="sw-theme-arrows">
              <ul class="nav-tabs step-anchor" uk-switcher="animation: uk-animation-fade">
@@ -915,6 +915,7 @@ Beta – Diversity:
                                   <form name="Phylotype-form" method="post">
                                      <input type="hidden" name="username" value="<?= $username ?>">
                                      <input type="hidden" name="project" value="<?= $current_project ?>"> 
+                                     <input type="hidden" id="max_num_subsample" name="max_subsample" >
 
                                            <label>Please put the number to subsampled file </label>
                                            <div class="row uk-margin">
@@ -1619,13 +1620,16 @@ $(document).ready(function (){
 
                   var username = document.forms["Phylotype-form"]["username"].value;
                   var project  = document.forms["Phylotype-form"]["project"].value;
+                  var ch_numsub = document.forms["Phylotype-form"]["max_subsample"].value;
                   var sample = document.forms["Phylotype-form"]["subsample"].value;
                   var array_data = new Array(username,project,sample);
-                  
-                    if(sample != ""){
+                
+                    if((sample != "") && (Number(sample) <= Number(ch_numsub))){
                          $(".Pre-test2").hide();
                          $(".Pre-show2").show();
                          get_subsample(array_data);
+                    }else{
+                        alert("input subsample greater than "+ch_numsub);
                     }   
     
             });

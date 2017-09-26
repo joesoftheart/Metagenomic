@@ -299,6 +299,8 @@ function get_prepare(data){
                      for(var i=0;i < d_count.length; i++){
                
                          if(i == d_count.length-1 ){
+
+                             document.getElementById('max_num_subsample').value = Number(d_count[i]);
                              document.getElementById('sub_sample').value = Number(d_count[i]);
                              $('#sub_sample').attr({'max': Number(d_count[i])});
                              document.getElementById('show_group').value = d_group;

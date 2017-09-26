@@ -11,6 +11,7 @@
       $this->load->helper('form');
       $this->load->library('form_validation');
       $this->load->library('zip');
+      $this->load->library('excel');
 
 
       //$this->load->controller('Run_owncloud');
@@ -1130,7 +1131,7 @@
                  $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
                  $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
                  
-                 $this->on_move($user,$project,$project_data);
+                 $this->on_move($user,$project,$project_data,$tg_body,$ts_body);
 
                  # Update data status-process Step 4
                      $data = array('status' => '0' ,'step_run' => '4' ,'job_id' => $id_job , 'project' => $project , 'project_data' => $project_data);
@@ -1196,7 +1197,13 @@
      
                    closedir($read);
                 }
-            } 
+            }
+
+          #create file excel_table_groups_ave_std.xlsx
+          $this->create_file_excel_g($user,$project,$tg_body);
+
+         #create file excel_table_summary.xlsx
+          $this->create_file_excel_s($user,$project,$ts_body); 
 
       }
 
@@ -1274,7 +1281,7 @@
            } 
 
            return $tbody; 
-
+           
 
       }
 
@@ -1350,7 +1357,146 @@
            } 
 
            return $tbody; 
+            
   
+  }
+
+   public function create_file_excel_g($user,$project,$tg_body){
+
+     $objExcel = new PHPExcel();
+
+     $objExcel->getProperties()->setCreator("Metagenomic")
+                               ->setLastModifiedBy("Metagenomic")
+                               ->setTitle("Metagenomic Document")
+                               ->setSubject("Metagenomic Document")
+                               ->setDescription("metagenomic generated excel")
+                               ->setKeywords("office PHPExcel php")
+                              ->setCategory("excel file");
+
+      $objExcel->getActiveSheet()->setTitle("table report");
+      $objExcel->setActiveSheetIndex(0);
+
+      $objExcel->getDefaultStyle()->getAlignment()
+                                  ->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP)
+                                  ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+
+      $objExcel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('J')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('K')->setWidth(20);
+
+
+     #body
+     for ($i=0; $i < sizeof($tg_body) ; $i++) { 
+
+       $objExcel->setActiveSheetIndex(0)
+               ->setCellValue('A'.($i+1),$tg_body[$i][0])
+               ->setCellValue('B'.($i+1),$tg_body[$i][1])
+               ->setCellValue('C'.($i+1),$tg_body[$i][2])
+               ->setCellValue('D'.($i+1),$tg_body[$i][3])
+               ->setCellValue('E'.($i+1),$tg_body[$i][4])
+               ->setCellValue('F'.($i+1),$tg_body[$i][5])
+               ->setCellValue('G'.($i+1),$tg_body[$i][6])
+               ->setCellValue('H'.($i+1),$tg_body[$i][7])
+               ->setCellValue('I'.($i+1),$tg_body[$i][8])
+               ->setCellValue('J'.($i+1),$tg_body[$i][9])
+               ->setCellValue('K'.($i+1),$tg_body[$i][10]);
+       
+     }
+     
+
+
+      $objWriter = PHPExcel_IOFactory::createWriter($objExcel,'Excel2007');
+      $filename = "excel_table_groups_ave_std.xlsx";
+      $objWriter->save("img_user/".$user."/".$project."/".$filename);
+      exit;
+
+
+  }
+
+
+  public function create_file_excel_s($user,$project,$ts_body){
+
+     $objExcel = new PHPExcel();
+
+     $objExcel->getProperties()->setCreator("Metagenomic")
+                               ->setLastModifiedBy("Metagenomic")
+                               ->setTitle("Metagenomic Document")
+                               ->setSubject("Metagenomic Document")
+                               ->setDescription("metagenomic generated excel")
+                               ->setKeywords("office PHPExcel php")
+                              ->setCategory("excel file");
+
+      $objExcel->getActiveSheet()->setTitle("table report");
+      $objExcel->setActiveSheetIndex(0);
+
+      $objExcel->getDefaultStyle()->getAlignment()
+                                  ->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP)
+                                  ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+
+      $objExcel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('J')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('K')->setWidth(20);
+
+
+      #header
+      $objExcel->setActiveSheetIndex(0)->mergeCells('A1:B1')
+               ->setCellValue('A1','comparison')
+               ->setCellValue('B1',' ')
+               ->setCellValue('C1','lennon')
+               ->setCellValue('D1','jclass')
+               ->setCellValue('E1','morisitahorn')
+               ->setCellValue('F1','sorabund')
+               ->setCellValue('G1','thetan')
+               ->setCellValue('H1','thetayc')
+               ->setCellValue('I1','thetayc_lci')
+               ->setCellValue('J1','thetayc_hci')
+               ->setCellValue('K1','braycurtis');
+
+     #body
+     for ($i=0; $i < sizeof($ts_body) ; $i++) { 
+
+       if($i > 0 ){
+              
+          $objExcel->setActiveSheetIndex(0)
+               ->setCellValue('A'.($i+1),$ts_body[$i][0])
+               ->setCellValue('B'.($i+1),$ts_body[$i][1])
+               ->setCellValue('C'.($i+1),$ts_body[$i][2])
+               ->setCellValue('D'.($i+1),$ts_body[$i][3])
+               ->setCellValue('E'.($i+1),$ts_body[$i][4])
+               ->setCellValue('F'.($i+1),$ts_body[$i][5])
+               ->setCellValue('G'.($i+1),$ts_body[$i][6])
+               ->setCellValue('H'.($i+1),$ts_body[$i][7])
+               ->setCellValue('I'.($i+1),$ts_body[$i][8])
+               ->setCellValue('J'.($i+1),$ts_body[$i][9])
+               ->setCellValue('K'.($i+1),$ts_body[$i][10]);
+       }
+       
+       
+     }
+     
+      $objWriter = PHPExcel_IOFactory::createWriter($objExcel,'Excel2007');
+      $filename = "excel_table_summary.xlsx";
+      $objWriter->save("img_user/".$user."/".$project."/".$filename);
+      exit;
+
   }
 
   public function insert_status($data){
