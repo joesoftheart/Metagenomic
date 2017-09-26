@@ -13,7 +13,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    plot_graph_r_heatmap($user,$id,$project,$path);
+    plot_graph_r_Rare($user,$id,$project,$path);
     }
 
 
@@ -736,7 +736,7 @@ function create_input_biplot($user, $id, $project, $path){
      $path_input_csv = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";
      $path_to_save = "owncloud/data/$user/files/$project/output/heatmap.png";
      $jobname = $user . "_" . $id . "_plot_graph_r_heartmap";
-     $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript R_Script/heatmapPlottest.R $path_input_csv $path_to_save";
+     $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript R_Script/Heatmap_graph.R $path_input_csv $path_to_save";
      exec($cmd);
      $check_qstat = "qstat  -j '$jobname' ";
      exec($check_qstat, $output);
@@ -766,7 +766,7 @@ function plot_graph_r_NMD($user, $id, $project, $path){
     $path_input_axes = "owncloud/data/$user/files/$project/output/final.tx.thetayc.2.lt.ave.nmds.axes";
     $path_to_save = "owncloud/data/$user/files/$project/output/NMD.png";
     $jobname = $user . "_" . $id . "plot_graph_r_NMD";
-    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/NMDSpcoaplottest.R $path_input_axes $path_to_save";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/NMD_graph.R $path_input_axes $path_to_save";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -796,7 +796,7 @@ function plot_graph_r_Rare($user, $id, $project, $path){
     $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.tx.groups.rarefaction";
     $path_to_save = "owncloud/data/$user/files/$project/output/Rare.png";
     $jobname = $user . "_" . $id . "plot_graph_r_Rare";
-    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/RarefactionSoiltest_phtlotype.R $path_input_rarefaction $path_to_save";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/Rarefaction_graph_phylotype.R $path_input_rarefaction $path_to_save";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -812,7 +812,7 @@ function plot_graph_r_Rare($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Go to plot_graph_r_Abun ->";
-            plot_graph_r_Abun($user, $id, $project, $path);
+         //   plot_graph_r_Abun($user, $id, $project, $path);
             break;
         }
     }
@@ -827,7 +827,7 @@ function plot_graph_r_Abun($user, $id, $project, $path){
     $path_input_phylumex = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";
     $path_to_save = "owncloud/data/$user/files/$project/output/Abun.png";
     $jobname = $user . "_" . $id . "plot_graph_r_Abun";
-    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/Abundancebarplottest.R $path_input_phylumex $path_to_save";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/Abundance_bar_graph.R $path_input_phylumex $path_to_save";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -858,7 +858,7 @@ function plot_graph_r_Alphash($user, $id, $project, $path){
     $path_input_chao_shannon = "owncloud/data/$user/files/$project/output/file_after_chao.txt";
     $path_to_save = "owncloud/data/$user/files/$project/output/Alpha.png";
     $jobname = $user . "_" . $id . "plot_graph_r_Alphash";
-    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/AlphachaoshannonSoil.R $path_input_chao_shannon $path_to_save";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/Alpha_chaoshannon_graph.R $path_input_chao_shannon $path_to_save";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -892,7 +892,7 @@ function plot_graph_r_Biplot($user, $id, $project, $path){
     $path_output_biplot_withBiplotwithMetadata = "owncloud/data/$user/files/$project/output/NewNMDS_withBiplotwithMetadata.png";
     $path_input_soilpro = "owncloud/data/$user/files/$project/output/soilpro.pearson.corr.axes";
     $jobname = $user . "_" . $id . "_plot_graph_r_Biplot";
-    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/ScatterPlotwithbiplot_phylotype.R $path_input_biplot_nmds $path_output_biplot_withBiplotwithOTU $path_input_biplot $path_output_biplot_withBiplotwithMetadata $path_input_soilpro";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/Scatter_biplot_graph_phylotype.R $path_input_biplot_nmds $path_output_biplot_withBiplotwithOTU $path_input_biplot $path_output_biplot_withBiplotwithMetadata $path_input_soilpro";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -924,7 +924,7 @@ function plot_graph_r_Tree($user, $id, $project, $path){
     $path_output_tree = "owncloud/data/$user/files/$project/output/Tree.png";
 
     $jobname = $user . "_" . $id . "_plot_graph_r_Tree";
-    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/PlotTreeGraph.R $path_input_tree $path_output_tree";
+    $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /usr/bin/Rscript  R_Script/Tree_graph.R $path_input_tree $path_output_tree";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);

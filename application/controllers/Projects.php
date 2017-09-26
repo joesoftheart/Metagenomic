@@ -118,6 +118,23 @@ class Projects extends CI_Controller
         $jobname = $user . "_" . $id . "_start_run";
 
 
+//
+//        if (is_link($path."/input/99_otu_map.txt") or file_exists($path."/input/99_otu_map.txt")){
+//
+//
+//            echo "Have";
+//        }else{
+//            echo getcwd();
+//
+//            $target = 'd1/joe.txt';
+//            $link = 'd2/';
+//            echo exec("pwd");
+//           // symlink($target, $link);
+//            echo shell_exec("ls");
+//
+//        }
+
+
 
 
         if ($project_analysis == "otu"){

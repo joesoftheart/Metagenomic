@@ -54,15 +54,15 @@
         });
     });
 </script>
-
-<script>
-    var sessionTimer = setInterval(function(){
-        $.ajax({
-            url: '/ajax/sessiontimeout',
-            beforeSend: function(){},
-            success: function(data){
-                console.info(data);
-            }
-        });
-    },5000);
-</script>
+<!---->
+<!--<script>-->
+<!--    var sessionTimer = setInterval(function(){-->
+<!--        $.ajax({-->
+<!--            url: '/ajax/sessiontimeout',-->
+<!--            beforeSend: function(){},-->
+<!--            success: function(data){-->
+<!--                console.info(data);-->
+<!--            }-->
+<!--        });-->
+<!--    },5000);-->
+<!--</script>-->

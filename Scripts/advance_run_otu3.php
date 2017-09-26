@@ -1128,7 +1128,7 @@ function create_input_alphash($user,$project,$path_in,$path_out){
      $jobname = $user ."_plot_graph_r_heartmap";
      
      $log = $GLOBALS['path_log'];
-     $cmd = "qsub -N $jobname -o $log  -cwd -j y -b y /usr/bin/Rscript R_Script/heatmapPlottest.R $path_input_csv $path_to_save";
+     $cmd = "qsub -N $jobname -o $log  -cwd -j y -b y /usr/bin/Rscript R_Script/Heatmap_graph.R $path_input_csv $path_to_save";
      
      exec($cmd);
      $check_qstat = "qstat  -j '$jobname' ";
@@ -1228,7 +1228,7 @@ function plot_graph_r_Rare($user,$project,$path_in,$path_out){
     $jobname = $user."_plot_graph_r_Rare";
     
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/RarefactionSoiltest_otu.R $path_input_rarefaction $path_to_save";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/Rarefaction_graph_otu.R $path_input_rarefaction $path_to_save";
    
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1262,7 +1262,7 @@ function plot_graph_r_Abun($user,$project,$path_in,$path_out){
     $jobname = $user ."_plot_graph_r_Abun";
     
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/Abundancebarplottest.R $path_input_phylumex $path_to_save";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/Abundance_bar_graph.R $path_input_phylumex $path_to_save";
    
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1296,7 +1296,7 @@ function plot_graph_r_Alphash($user,$project,$path_in,$path_out){
     $jobname = $user."_plot_graph_r_Alphash";
     
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/AlphachaoshannonSoil.R $path_input_chao_shannon $path_to_save";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/Alpha_chaoshannon_graph.R $path_input_chao_shannon $path_to_save";
     
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1407,7 +1407,7 @@ function plot_graph_r_Tree($user,$project,$path_in,$path_out){
    
     $jobname = $user."_plot_graph_r_Tree";
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/tree_otu_advance.php $tree_cal $level $user $project";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/Tree_graph_otu_advance.php $tree_cal $level $user $project";
    
    
     exec($cmd);
