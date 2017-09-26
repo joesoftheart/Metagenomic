@@ -391,16 +391,36 @@ Beta – Diversity:
                                             <div class="panel-heading">Test</div>
                                             <div class="panel-body">
 
+                                                <div class="row" >
+                                                    <div class="col-lg-12" style="background-color: #03a9f4">
+efefsefes
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <i class="fa fa-grav fa-5x" aria-hidden="true"></i>
+
+                                                    </div>
+                                                    <div class="col-lg-5">
+                                                        Excellence Center for Medical Genetics, King Chulalongkorn Memorial Hospital
+                                                        Sor Kor Building, 9th Floor, King Chulalongkorn Memorial Hospital, Rama IV Rd,
+                                                        Bangkok, THAILAND 10330. Tel/Fax 0-2256-4000 ext 3354, Mobile 083-099-7035
+                                                        ศูนย์ความเป็นเลิศทางการแพทย์ด้านเวชพันธุศาสตร์ แห่งโรงพยาบาลจุฬาลงกรณ์ สภากาชาดไทย
+                                                        ตึก สก. ชั้น 9 โรงพยาบาลจุฬาลงกรณ์ ถนนพระราม 4 กรุงเทพฯ 10330
+                                                        โทรศัพท์/แฟกซ์ 0-2256-4000 ต่อ 3354 มือถือ 083-099-7035
+                                                    </div>
+                                                </div>
+
 
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <b>Ven diagram</b>
-                                                    <img class="img-thumbnail"
+                                                    <img class="img-thumbnail" width="300px"
                                                          src="<?php echo base_url(); ?><?php echo $path ?>sharedsobs.svg">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <b>Heatmap</b>
-                                                    <img class="img-thumbnail"
+                                                    <img class="img-thumbnail" width="20%"
                                                          src="<?php echo base_url(); ?><?php echo $path ?>heatmap.png">
                                                 </div>
                                             </div>
@@ -410,12 +430,12 @@ Beta – Diversity:
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <b>*Biplot</b><br>
-                                                    <img class="img-thumbnail"
+                                                    <img class="img-thumbnail" width="300px"
                                                          src="<?php echo base_url(); ?><?php echo $path ?>NewNMDS_withBiplotwithOTU.png">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <b>*Biplot</b><br>
-                                                    <img class="img-thumbnail"
+                                                    <img class="img-thumbnail" width="300px"
                                                          src="<?php echo base_url(); ?><?php echo $path ?>NewNMDS_withBiplotwithMetadata.png">
                                                 </div>
                                             </div>
@@ -424,12 +444,12 @@ Beta – Diversity:
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <b>Rarefaction</b>
-                                                    <img class="img-thumbnail"
+                                                    <img class="img-thumbnail" width="300px"
                                                          src="<?php echo base_url(); ?><?php echo $path ?>Rare.png">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <b>RelativePhylum</b>
-                                                    <img class="img-thumbnail"
+                                                    <img class="img-thumbnail" width="300px"
                                                          src="<?php echo base_url(); ?><?php echo $path ?>Abun.png">
                                                 </div>
                                             </div>
@@ -437,7 +457,7 @@ Beta – Diversity:
                                             <b>NMDS</b>
                                             <div class="row">
                                                 <div class="col-lg-6 col-lg-offset-3">
-                                                    <img class="img-thumbnail"
+                                                    <img class="img-thumbnail" width="300px"
                                                          src="<?php echo base_url(); ?><?php echo $path ?>NMD.png">
                                                 </div>
 
@@ -446,7 +466,7 @@ Beta – Diversity:
                                             <b>Alpha</b>
                                             <div class="row">
                                                 <div class="col-lg-6 col-lg-offset-3">
-                                                    <img class="img-thumbnail"
+                                                    <img class="img-thumbnail" width="300px"
                                                          src="<?php echo base_url(); ?><?php echo $path ?>Alpha.png">
                                                 </div>
 
@@ -455,7 +475,7 @@ Beta – Diversity:
                                             <b>Tree</b>
                                             <div class="row" >
                                                 <div class="col-lg-6 col-lg-offset-3">
-                                                    <img class="img-thumbnail"
+                                                    <img class="img-thumbnail" width="300px"
                                                          src="<?php echo base_url(); ?><?php echo $path ?>Tree.png">
                                                 </div>
 
@@ -659,7 +679,9 @@ Beta – Diversity:
                  <input type="hidden" name="project" value="<?= $current_project ?>">
                  <!-- /.row -->
                 <div class="row">
-                <div class="col-lg-11">
+
+                <div class="col-lg-12">
+
 
                  <!-- .panel-heading -->
                  <div class="panel-body">
@@ -674,9 +696,11 @@ Beta – Diversity:
                              </h4>
                          </div>
                          <div id="collapse1" class="panel-collapse collapse">
+
                              <div class="panel-body">       
                                  <label class="col-lg-10"> Screen reads </label>
                                  <div class="col-lg-10">
+
                                  <table border="0" class="uk-table uk-table-middle" >
                                      <tr>
                                         <td>maximum ambiguous </td>
@@ -695,6 +719,7 @@ Beta – Diversity:
                                          <td><input id="maxread" class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" onblur="checkvalue4()" onkeypress='return validateNumber(event)'></td>
                                      </tr>
                                  </table>
+
                                  </div>
                              </div>
                          </div>
@@ -1039,6 +1064,7 @@ Beta – Diversity:
                                 <label>Please select level that you want to analyse </label>
                                
                                      <div class="Greengene">
+
                                      <p class="col-lg-6"> Greengenes : </p>            
                                         <div class="col-lg-6 col-lg-pull-4">
                                              <select class="uk-select" id="g_level">
@@ -1140,8 +1166,9 @@ Beta – Diversity:
                          </div>
                          <div id="collapse8" class="panel-collapse collapse">
                              <div class="panel-body">
+
                                   <label class="col-lg-11"> Venn Diagram</label>       
-                                        <p class="col-lg-11">Please put the sample name</p>   
+                                        <p class="col-lg-11">Please put the sample name</p>
                                         <label class="col-lg-3 "><select class="uk-select" name="venn1" id="venn1"></select></label>
                                         <label class="col-lg-3 "><select class="uk-select" name="venn2" id="venn2"></select></label>
                                         <label class="col-lg-3 "><select class="uk-select" name="venn3" id="venn3"></select></label>               

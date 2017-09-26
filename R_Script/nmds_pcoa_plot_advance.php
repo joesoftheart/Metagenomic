@@ -21,7 +21,7 @@
 
  function get_file_image($get_file,$get_img) {
 
-      $cmd = "/usr/bin/Rscript  R_Script/NMDSpcoaplottest.R $get_file $get_img";
+      $cmd = "/usr/bin/Rscript  R_Script/NMD_graph.R $get_file $get_img";
       exec($cmd);
 
 
