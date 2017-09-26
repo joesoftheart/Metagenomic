@@ -7,9 +7,12 @@
 
     public function __construct(){
       parent::__construct();
-      $this->load->helper(array('url','path','file'));
+      $this->load->helper(array('url','path','file','date'));
       $this->load->helper('form');
       $this->load->library('form_validation');
+      $this->load->library('zip');
+      $this->load->library('excel');
+
 
       //$this->load->controller('Run_owncloud');
       include(APPPATH.'../setting_sge.php');
@@ -27,6 +30,13 @@
        $step_run = "";
        $id_job   = "";
 
+       $user = "";
+       $project = "";
+       $project_analysis = "";
+       $level = "";
+       
+       $tg_body = "0";
+       $ts_body ="0";
 
       #Query data status-process
         $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
@@ -35,10 +45,24 @@
              $status   = $r['status'];
              $step_run = $r['step_run'];              
              $id_job = $r['job_id'];
+            
+              $user  = $r['user'];
+              $project  = $r['project'];
+              $project_analysis = $r['project_analysis'];
+              $level = $r['level'];
+
      
            }
 
-        echo json_encode(array($status,$step_run,$id_job));
+        if($level != "0" ){
+
+            $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+            $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
+
+        }
+        
+
+        echo json_encode(array($status,$step_run,$id_job,$tg_body,$ts_body));
 
     }
 
@@ -330,13 +354,12 @@
             $path_input = "owncloud/data/$user/files/$project_data/input/";
             $path_out = "owncloud/data/$user/files/$project_data/output/";
             $path_log = "owncloud/data/$user/files/$project_data/log/";
-      
-            
 
          # create advance.batch
             $file_batch = FCPATH."$path_input"."advance.batch";
             if(!file_exists($file_batch)) {
-                file_put_contents($file_batch, "No command !" ); 
+                file_put_contents($file_batch, "No command !" );
+
             }
          # create folder log
          $folder_log = FCPATH."$path_log";   
@@ -412,11 +435,11 @@
 
        $count = $this->mongo_db->where(array('project_id'=> $id_project))->count('status_process');
        if($count == 0){
-           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data);
+           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data ,'level' => '0');
            $this->insert_status($data);
        }else{
 
-           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data );
+           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data ,'level' => '0' );
            $this->update_status($id_project,$data);
        }
        
@@ -1045,7 +1068,7 @@
      
        # Update data status-process Step 3
 
-         $data = array('status' => '1' ,'step_run' => '3' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'f_design' => $file_design ,'f_metadata' => $file_metadata , 'project_data' => $project_data );
+         $data = array('status' => '1' ,'step_run' => '3' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'f_design' => $file_design ,'f_metadata' => $file_metadata , 'project_data' => $project_data ,'level' => $level );
          $this->update_status($id_project,$data);
 
 
@@ -1065,12 +1088,14 @@
 
           $user = "";
           $project = "" ;
+          $project_analysis = "";
 
           $file_design = "";
           $file_metadata = "";
 
           $project_data = "";
-
+          
+          $level = "";
 
 
       #Query data status-process
@@ -1081,10 +1106,11 @@
                 $path_job = $r['path_log'];
                 $user = $r['user'];
                 $project = $r['project'];
+                $project_analysis = $r['project_analysis'];
                 $file_design = $r['f_design'];
                 $file_metadata = $r['f_metadata'];
                 $project_data = $r['project_data'];
-    
+                $level = $r['level'];
          }
         
       #Check number command 
@@ -1102,14 +1128,17 @@
 
             if($check_run == false){
               
-                 $this->on_move($user,$project,$project_data);
+                 $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+                 $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
+                 
+                 $this->on_move($user,$project,$project_data,$tg_body,$ts_body);
 
                  # Update data status-process Step 4
                      $data = array('status' => '0' ,'step_run' => '4' ,'job_id' => $id_job , 'project' => $project , 'project_data' => $project_data);
                      $this->update_status($id_project,$data);
 
                  $up = 0;
-                 echo json_encode(array($up,$divisor));
+                 echo json_encode(array($up,$divisor,$tg_body,$ts_body));
                  
 
             }
@@ -1168,14 +1197,309 @@
      
                    closedir($read);
                 }
-            } 
+            }
+
+          #create file excel_table_groups_ave_std.xlsx
+          $this->create_file_excel_g($user,$project,$tg_body);
+
+         #create file excel_table_summary.xlsx
+          $this->create_file_excel_s($user,$project,$ts_body); 
 
       }
 
 
 
-    
-     public function insert_status($data){
+   public function read_file_groups_ave_std_summary($user,$project,$project_analysis,$level){
+   
+         $path = FCPATH."owncloud/data/$user/files/$project/output/";
+
+        if($project_analysis == "otu"){
+
+               $file_groups_ave_std_summary = "final.opti_mcc.groups.ave-std.summary";
+               $path_file_original_g = $path.$file_groups_ave_std_summary;
+                    
+        }else{
+               $file_groups_ave_std_summary = "final.tx.groups.ave-std.summary";
+               $path_file_original_g = $path.$file_groups_ave_std_summary;
+        }
+
+        
+        $tbody = array();
+
+           if(file_exists($path_file_original_g)){
+
+                $file_g = $path_file_original_g;
+                $count = 1;
+                $myfile = fopen($file_g,'r') or die ("Unable to open file");
+                    while(($lines = fgets($myfile)) !== false){
+                        $line0 = explode("\t", $lines);
+                        
+                        if($count == 1){
+
+                             $new_data = array(
+                                       $line0[1],
+                                       $line0[2],
+                                       $line0[3], 
+                                       $line0[4],
+                                       $line0[5], 
+                                       $line0[9],
+                                       $line0[10], 
+                                       $line0[11], 
+                                       $line0[12], 
+                                       $line0[13], 
+                                       $line0[14] );
+
+                            array_push($tbody,$new_data);  
+
+                        }else{
+
+                            if($line0[0] == $level ){ 
+
+                                    $new_data = array(
+                                       $line0[1],
+                                       $line0[2],
+                                       $line0[3], 
+                                       $line0[4],
+                                       $line0[5], 
+                                       $line0[9],
+                                       $line0[10], 
+                                       $line0[11], 
+                                       $line0[12], 
+                                       $line0[13], 
+                                       $line0[14] );
+
+                            array_push($tbody,$new_data); 
+                              
+
+                           }
+                        }
+                
+                    $count++;
+                    }
+                fclose($myfile);  
+          
+           } 
+
+           return $tbody; 
+           
+
+      }
+
+  public function read_file_summary($user,$project,$project_analysis,$level){
+          
+         $path = FCPATH."owncloud/data/$user/files/$project/output/";
+
+         if($project_analysis == "otu"){
+
+                     $file_summary = "final.opti_mcc.summary";
+                     $path_file_original_s = $path.$file_summary;
+
+                }else{
+                     
+                     $file_summary = "final.tx.summary";
+                     $path_file_original_s = $path.$file_summary; 
+         }
+
+
+          $tbody = array();
+
+           if(file_exists($path_file_original_s)){
+
+                $file_s = $path_file_original_s;
+                $count = 1;
+                $myfile = fopen($file_s,'r') or die ("Unable to open file");
+                    while(($lines = fgets($myfile)) !== false){
+                        $line0 = explode("\t", $lines);
+                        
+                        if($count == 1){
+
+                             $new_data = array(
+                                       $line0[1],
+                                       $line0[3], 
+                                       $line0[4],
+                                       $line0[5], 
+                                       $line0[6],
+                                       $line0[7], 
+                                       $line0[8], 
+                                       $line0[9], 
+                                       $line0[10], 
+                                       $line0[11] );
+
+                            array_push($tbody,$new_data);  
+
+                        }else{
+
+                            if($line0[0] == $level ){ 
+
+                                    $new_data = array(
+                                       $line0[1],
+                                       $line0[2],
+                                       $line0[4],
+                                       $line0[5], 
+                                       $line0[6],
+                                       $line0[7], 
+                                       $line0[8], 
+                                       $line0[9], 
+                                       $line0[10], 
+                                       $line0[11],
+                                       $line0[12] );
+
+                            array_push($tbody,$new_data); 
+                              
+
+                           }
+                        }
+                
+                    $count++;
+                    }
+                fclose($myfile);  
+          
+           } 
+
+           return $tbody; 
+            
+  
+  }
+
+   public function create_file_excel_g($user,$project,$tg_body){
+
+     $objExcel = new PHPExcel();
+
+     $objExcel->getProperties()->setCreator("Metagenomic")
+                               ->setLastModifiedBy("Metagenomic")
+                               ->setTitle("Metagenomic Document")
+                               ->setSubject("Metagenomic Document")
+                               ->setDescription("metagenomic generated excel")
+                               ->setKeywords("office PHPExcel php")
+                              ->setCategory("excel file");
+
+      $objExcel->getActiveSheet()->setTitle("table report");
+      $objExcel->setActiveSheetIndex(0);
+
+      $objExcel->getDefaultStyle()->getAlignment()
+                                  ->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP)
+                                  ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+
+      $objExcel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('J')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('K')->setWidth(20);
+
+
+     #body
+     for ($i=0; $i < sizeof($tg_body) ; $i++) { 
+
+       $objExcel->setActiveSheetIndex(0)
+               ->setCellValue('A'.($i+1),$tg_body[$i][0])
+               ->setCellValue('B'.($i+1),$tg_body[$i][1])
+               ->setCellValue('C'.($i+1),$tg_body[$i][2])
+               ->setCellValue('D'.($i+1),$tg_body[$i][3])
+               ->setCellValue('E'.($i+1),$tg_body[$i][4])
+               ->setCellValue('F'.($i+1),$tg_body[$i][5])
+               ->setCellValue('G'.($i+1),$tg_body[$i][6])
+               ->setCellValue('H'.($i+1),$tg_body[$i][7])
+               ->setCellValue('I'.($i+1),$tg_body[$i][8])
+               ->setCellValue('J'.($i+1),$tg_body[$i][9])
+               ->setCellValue('K'.($i+1),$tg_body[$i][10]);
+       
+     }
+     
+
+
+      $objWriter = PHPExcel_IOFactory::createWriter($objExcel,'Excel2007');
+      $filename = "excel_table_groups_ave_std.xlsx";
+      $objWriter->save("img_user/".$user."/".$project."/".$filename);
+      exit;
+
+
+  }
+
+
+  public function create_file_excel_s($user,$project,$ts_body){
+
+     $objExcel = new PHPExcel();
+
+     $objExcel->getProperties()->setCreator("Metagenomic")
+                               ->setLastModifiedBy("Metagenomic")
+                               ->setTitle("Metagenomic Document")
+                               ->setSubject("Metagenomic Document")
+                               ->setDescription("metagenomic generated excel")
+                               ->setKeywords("office PHPExcel php")
+                              ->setCategory("excel file");
+
+      $objExcel->getActiveSheet()->setTitle("table report");
+      $objExcel->setActiveSheetIndex(0);
+
+      $objExcel->getDefaultStyle()->getAlignment()
+                                  ->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP)
+                                  ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+
+      $objExcel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('J')->setWidth(20);
+      $objExcel->getActiveSheet()->getColumnDimension('K')->setWidth(20);
+
+
+      #header
+      $objExcel->setActiveSheetIndex(0)->mergeCells('A1:B1')
+               ->setCellValue('A1','comparison')
+               ->setCellValue('B1',' ')
+               ->setCellValue('C1','lennon')
+               ->setCellValue('D1','jclass')
+               ->setCellValue('E1','morisitahorn')
+               ->setCellValue('F1','sorabund')
+               ->setCellValue('G1','thetan')
+               ->setCellValue('H1','thetayc')
+               ->setCellValue('I1','thetayc_lci')
+               ->setCellValue('J1','thetayc_hci')
+               ->setCellValue('K1','braycurtis');
+
+     #body
+     for ($i=0; $i < sizeof($ts_body) ; $i++) { 
+
+       if($i > 0 ){
+              
+          $objExcel->setActiveSheetIndex(0)
+               ->setCellValue('A'.($i+1),$ts_body[$i][0])
+               ->setCellValue('B'.($i+1),$ts_body[$i][1])
+               ->setCellValue('C'.($i+1),$ts_body[$i][2])
+               ->setCellValue('D'.($i+1),$ts_body[$i][3])
+               ->setCellValue('E'.($i+1),$ts_body[$i][4])
+               ->setCellValue('F'.($i+1),$ts_body[$i][5])
+               ->setCellValue('G'.($i+1),$ts_body[$i][6])
+               ->setCellValue('H'.($i+1),$ts_body[$i][7])
+               ->setCellValue('I'.($i+1),$ts_body[$i][8])
+               ->setCellValue('J'.($i+1),$ts_body[$i][9])
+               ->setCellValue('K'.($i+1),$ts_body[$i][10]);
+       }
+       
+       
+     }
+     
+      $objWriter = PHPExcel_IOFactory::createWriter($objExcel,'Excel2007');
+      $filename = "excel_table_summary.xlsx";
+      $objWriter->save("img_user/".$user."/".$project."/".$filename);
+      exit;
+
+  }
+
+  public function insert_status($data){
       
             # insert data status-process
             $this->mongo_db->insert('status_process', $data);
@@ -1183,7 +1507,7 @@
 
      }
 
-     public function update_status($id_project,$data){
+  public function update_status($id_project,$data){
           
            # update data status-process
             $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('status_process'); 
@@ -1209,6 +1533,124 @@
           
 
      }
+
+     public function check_dirzip(){
+
+      $id_project = $_REQUEST['current'];
+
+       $user = "NULL";
+       $folder = "NULL";
+       $step_run = "NULL";
+
+        #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {             
+                
+                $step_run = $r['step_run'];
+                $user = $r['user'];
+                $folder = $r['project'];
+
+         }
+
+         $path_img = FCPATH."img_user/$user/$folder/";  
+
+           if($step_run == "4"){
+
+             if(file_exists($path_img)){
+
+                 echo json_encode("TRUE");  
+             }
+          
+           }else{
+             echo json_encode("Null");
+         }
+     }
+
+    public function down_zip(){
+
+
+        $id_project = $_REQUEST['current'];
+
+        #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {             
+              
+                $user = $r['user'];
+                $folder = $r['project'];
+    
+         }
+
+           $this->zip->read_dir("img_user/".$user."/".$folder."/",FALSE);
+           $this->zip->download('visualization.zip');
+
+
+     }
+
+     public function getCanvas1(){
+
+       $img_data = $_REQUEST['data'];
+       $id_project = $_REQUEST['current'];
+        
+        $user = "NULL";
+        $folder = "NULL";
+
+        #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {             
+              
+                $user = $r['user'];
+                $folder = $r['project'];
+    
+         }
+
+         $path_img = FCPATH."img_user/$user/$folder/table_groups_ave_std_summary.png";  
+
+         if(!file_exists($path_img)){
+    
+              $upload_dir = "img_user/".$user."/".$folder."/";
+              $img = str_replace('data:image/png;base64','', $img_data);
+              $img = str_replace(' ', '+', $img);
+               $data = base64_decode($img);
+
+               $file = $upload_dir."table_groups_ave_std_summary.png";
+               file_put_contents($file, $data);
+         }
+       
+      
+     }
+
+     public function getCanvas2(){
+
+       $img_data = $_REQUEST['data'];
+       $id_project = $_REQUEST['current'];
+        
+        $user = "NULL";
+        $folder = "NULL";
+
+        #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {             
+              
+                $user = $r['user'];
+                $folder = $r['project'];
+    
+         }
+
+         $path_img = FCPATH."img_user/$user/$folder/table_summary.png";  
+
+          if(!file_exists($path_img)){
+
+              $upload_dir = "img_user/".$user."/".$folder."/";
+              $img = str_replace('data:image/png;base64','', $img_data);
+              $img = str_replace(' ', '+', $img);
+              $data = base64_decode($img);
+
+               $file = $upload_dir."table_summary.png";
+               file_put_contents($file, $data);
+          }
+      
+     }
+
 
 
   

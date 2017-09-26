@@ -653,6 +653,7 @@ efefsefes
          <link href="<?php echo base_url();?>tooltip/loading.css" rel="stylesheet" />
          <link href="<?php echo base_url();?>tooltip/tooltip.css" rel="stylesheet" />
          <script src="<?php echo base_url();?>tooltip/tooltip.js" type="text/javascript"></script>
+         <!--<script src="<?php echo base_url();?>tooltip/html2canvas.js" type="text/javascript"></script>-->
 
          <div class="sw-theme-arrows">
              <ul class="nav-tabs step-anchor" uk-switcher="animation: uk-animation-fade">
@@ -662,7 +663,7 @@ efefsefes
                  <li><a href="#">Step 4<br />Result & graph</a></li>
              </ul>
          
-             <ul class="uk-switcher uk-margin">
+    <ul class="uk-switcher uk-margin">
 
 
      <!--Preprocess && Prepare in taxonomy -->
@@ -939,6 +940,7 @@ efefsefes
                                   <form name="Phylotype-form" method="post">
                                      <input type="hidden" name="username" value="<?= $username ?>">
                                      <input type="hidden" name="project" value="<?= $current_project ?>"> 
+                                     <input type="hidden" id="max_num_subsample" name="max_subsample" >
 
                                            <label>Please put the number to subsampled file </label>
                                            <div class="row uk-margin">
@@ -1385,16 +1387,20 @@ efefsefes
      <li>
          <div class="row">
             <div class="col-lg-6">
-                 <b>Ven diagram</b>
+                 <div class="panel-body">
+                 <label>Ven diagram</label>
                  <div id="sharedsobs_img">
                     <img id="sharedsobs_img_pass" src="#"/>
                   
                  </div>
+                 </div>
              </div>
              <div class="col-lg-6">
-                 <b>Heatmap</b>
+                 <div class="panel-body">
+                 <label>Heatmap</label>
                  <div id="heartmap_img">
                      <img id="heartmap_img_pass" src="#" />
+                 </div>
                  </div>
             </div>
          </div>
@@ -1402,15 +1408,19 @@ efefsefes
          <hr class="uk-divider-icon">
          <div class="row">
              <div class="col-lg-6" >
-                 <b>Bioplot</b><br>
+                 <div class="panel-body">
+                 <label>Bioplot</label>
                  <div id="bioplot_otu_img">
                      <img id="bioplot_otu_img_pass"  src="#" /> 
                  </div>
+                 </div>
              </div>
              <div class="col-lg-6" >
+                 <div class="panel-body">
                  <b>Bioplot</b><br>
                  <div id="bioplot_meta_img">
                     <img id="bioplot_meta_img_pass"  src=""/>
+                 </div>
                  </div>
              </div>
         </div>
@@ -1418,49 +1428,124 @@ efefsefes
         <hr class="uk-divider-icon">
              <div class="row">
                  <div class="col-lg-6">
-                    <b>Rarefaction</b>
+                 <div class="panel-body">
+                    <label>Rarefaction</label>
                     <div id="rare_img">
                          <img id="rare_img_pass"  src="#" /> 
                     </div>
+                    </div>
                  </div>
                 <div class="col-lg-6">
-                <b>RelativePhylum</b>
-                 <div id="abun_img">
-                    <img id="abun_img_pass"  src="#" />
-                 </div>  
+                <div class="panel-body">
+                <label>RelativePhylum</label>
+                    <div id="abun_img">
+                       <img id="abun_img_pass"  src="#" />
+                    </div> 
+                 </div> 
                  </div>
              </div>
 
              <hr class="uk-divider-icon">
-                 <b>NMDS</b>
+                 <div class="panel-body">
+                 <label>NMDS</label>
                  <div class="row">
                      <div class="col-lg-6 col-lg-offset-3" >
+                     
                      <div id="nmd_img">
                          <img id="nmd_img_pass" src="#" /> 
                      </div>
                      </div>
+                     </div>
                  </div>
              <hr class="uk-divider-icon">
-                 <b>Alpha</b>
+                 <div class="panel-body">
+                 <label>Alpha</label>
                  <div class="row">
                      <div class="col-lg-6 col-lg-offset-3">
-                     <div id="alpha_img">
+                      <div id="alpha_img">
                          <img id="alpha_img_pass" src="#" />
                      </div> 
                      </div>
-                </div>
+                     </div>
+            </div>
+
+            <!-- Table  -->   
+           
+            <?php if($project_analysis == "otu"){
+
+                     $file_groups_ave_std_summary = "final.opti_mcc.groups.ave-std.summary";
+                     $file_summary = "final.opti_mcc.summary";
+                    
+                }else{
+                     
+                     $file_groups_ave_std_summary = "final.tx.groups.ave-std.summary";
+                     $file_summary = "final.tx.summary";
+                  
+                    }
+
+            ?>
+           
+            <div class="panel-body">
+             <!-- Table groups.ave-std.summary -->
+              <hr class="uk-divider-icon">
+              <label><?php echo $file_groups_ave_std_summary; ?></label>
+              <div class="row">
+                     <div class="col-lg-12">
+                     <div class="table-responsive">
+                    
+                            <div id="html-content-1">
+                             <table class="table table-striped table-bordered table-hover" style="text-align: center">
+                               
+                                <tbody id="body_tg">
+                               
+                              </tbody>
+                            </table>
+                            </div><!-- #html-content-1-->
+
+                     </div>
+                     </div>
+                     </div>    <!-- End Table groups.ave-std.summary -->
+
+
+             <!--  Table file_summary -->
+             <hr class="uk-divider-icon">
+
+             <label><?php echo $file_summary; ?></label>
+
+             <div class="row">
+                <div class="col-lg-12">
+                 <div class="table-responsive">  
+                  
+                            <div id="html-content-2">
+                             <table class="table table-striped table-bordered dataTable" style="text-align: center">
+                                
+                                <tbody id="body_ts">
+
+                        
+                              </tbody>
+                            </table>
+                            </div><!-- #html-content-2-->
+
+                     </div>
+                     </div>
+                     <div class="col-lg-12 uk-margin"></div>
+                        <center>
+                               <input  class="btn btn-outline btn-info" value="Download all zip" id="zipall"> 
+                        </center> 
+                     </div><!-- End Table file_summary -->
+             
+            </div> 
+           
 
     </li>
     <!-- End Result && Graph -->
 
 
                                 </ul>
-
                             </div>
                         </li>
                         <!-- End EDVANCE  -->
                     </ul>
-
                     <!-- end class="uk-switcher" -->
                 </div>
 
@@ -1486,13 +1571,52 @@ efefsefes
     </script>
 
 <!--  Advance Script -->
+<style>
+    #html-content-1{
+        display:inline-block;
+        background-color:#FAFAFA;
+        padding-left:10px;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px; 
+    }
+    #html-content-2{
+        display:inline-block;
+        background-color:#FAFAFA;
+        padding-left: 15px;
+        padding-top: 10px;
+        padding-right: 15px;
+        padding-bottom: 10px; 
+    }
 
-<script type="text/javascript">   
+</style>
+<script type="text/javascript">  
+
+document.getElementById("zipall").onclick = function(){
+
+    $.ajax({ 
+          type:"post",
+          datatype:"json",
+          url:"<?php echo base_url('Run_advance/check_dirzip'); ?>",
+          data:{current:"<?=$current_project?>"},
+             success:function(data){
+                var dir = JSON.parse(data); 
+                if(dir == "TRUE"){
+                   location.href="<?php echo site_url('Run_advance/down_zip');?>?current=<?=$current_project?>";           
+                }else{
+                    alert("FALSE");
+                }
+              
+            }
+                   
+     });
+
+};
 
 $(document).ready(function (){ 
 
           $('li.pre').attr('id','active');
-         
+
             $("#sub-test").click(function () {
                
                   var username = document.forms["Pre-form"]["username"].value;
@@ -1523,13 +1647,16 @@ $(document).ready(function (){
 
                   var username = document.forms["Phylotype-form"]["username"].value;
                   var project  = document.forms["Phylotype-form"]["project"].value;
+                  var ch_numsub = document.forms["Phylotype-form"]["max_subsample"].value;
                   var sample = document.forms["Phylotype-form"]["subsample"].value;
                   var array_data = new Array(username,project,sample);
-                  
-                    if(sample != ""){
+                
+                    if((sample != "") && (Number(sample) <= Number(ch_numsub))){
                          $(".Pre-test2").hide();
                          $(".Pre-show2").show();
                          get_subsample(array_data);
+                    }else{
+                        alert("input subsample greater than "+ch_numsub);
                     }   
     
             });
@@ -1689,8 +1816,45 @@ $(document).ready(function (){
                 }
             });
 
-
  });
+
+
+function getCanvas1(){
+      var element = $("#html-content-1");
+      var getCanvas; 
+      var cur = "<?php echo $current_project?>";
+     setTimeout(function(){
+        html2canvas( element, {
+             onrendered: function (canvas) {
+                 getCanvas = canvas;
+                 var imgageData = getCanvas.toDataURL("image/png");
+                 $.post("<?php echo base_url('Run_advance/getCanvas1');?>",{data:imgageData,current:cur});
+              
+             }
+        });
+
+     },5000);
+        
+}
+
+function getCanvas2(){
+      var element = $("#html-content-2");
+      var getCanvas; 
+      var cur = "<?php echo $current_project?>";
+     setTimeout(function(){
+        html2canvas( element, {
+             onrendered: function (canvas) {
+                 getCanvas = canvas;
+                 var imgageData = getCanvas.toDataURL("image/png");
+                 $.post("<?php echo base_url('Run_advance/getCanvas2');?>",{data:imgageData,current:cur});
+              
+             }
+        });
+
+     },5000);
+        
+}
+
 
 </script> 
 <!--  End Advance Script -->

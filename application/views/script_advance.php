@@ -29,12 +29,16 @@ function advance_mode(obj){
                         if(status[0] == "0" && status[1] == "4"){
                            alert('No Run Queue');
 
+                            if(status[3] != "0" && status[4] != "0"){
+                                  table_groups(status[3]);
+                                  table_summary(status[4]);
+                            }
+                            
                              $('li.pre').attr('id','active');
                              $('li.pre2').attr('id','');
                              $('li.pre3').attr('id','');
                              addImage(user,project);
-    
-                        
+
                         }else if(status[0] != "0" && status[1] == "1" && check == 1){
                            alert('Run step '+status[1] );
                                  $(".Pre-test").hide();
@@ -295,6 +299,8 @@ function get_prepare(data){
                      for(var i=0;i < d_count.length; i++){
                
                          if(i == d_count.length-1 ){
+
+                             document.getElementById('max_num_subsample').value = Number(d_count[i]);
                              document.getElementById('sub_sample').value = Number(d_count[i]);
                              $('#sub_sample').attr({'max': Number(d_count[i])});
                              document.getElementById('show_group').value = d_group;
@@ -510,6 +516,9 @@ function ckeck_analysis(job_analy){
                       if( analysis[0] == "0"){
                          clearInterval(interval);
 
+                             table_groups(analysis[2]);
+                             table_summary(analysis[3]);
+
                              addImage(u,p);
                            
                              $('.sw-theme-arrows > .nav-tabs > .pre3').next('li').find('a').trigger('click'); 
@@ -543,6 +552,8 @@ function ckeck_analysis(job_analy){
 
 }
 
+
+
 function addImage(u,p){
       var user =u; 
       var project =p;
@@ -558,6 +569,79 @@ function addImage(u,p){
      // $('#nmd_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/NMD.png')?>");
      $('#alpha_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Alpha.png')?>");
 
+     
+     
+  
+}
+
+function table_groups(data){
+
+  var get_tbody = "";
+   for(var i=0 ;i < data.length; i++ ){
+
+      get_tbody += "<tr>";
+      get_tbody += "<td>"+data[i][0]+"</td>";
+      get_tbody += "<td>"+data[i][1]+"</td>";
+      get_tbody += "<td>"+data[i][2]+"</td>";
+      get_tbody += "<td>"+data[i][3]+"</td>";
+      get_tbody += "<td>"+data[i][4]+"</td>";
+      get_tbody += "<td>"+data[i][5]+"</td>";
+      get_tbody += "<td>"+data[i][6]+"</td>";
+      get_tbody += "<td>"+data[i][7]+"</td>";
+      get_tbody += "<td>"+data[i][8]+"</td>";
+      get_tbody += "<td>"+data[i][9]+"</td>";
+      get_tbody += "<td>"+data[i][10]+"</td>";
+      get_tbody += "</tr>";
+
+   }
+    
+   $('#body_tg').html(get_tbody);
+   //getCanvas1();
+}
+
+
+function table_summary(data){
+
+  var get_tbody = "";
+   for(var i=0 ;i < data.length; i++ ){
+
+      if(i == 0){
+
+              get_tbody += "<tr>";
+              get_tbody += "<td colspan='2'>"+data[i][0]+"</td>";
+              get_tbody += "<td>"+data[i][1]+"</td>";
+              get_tbody += "<td>"+data[i][2]+"</td>";
+              get_tbody += "<td>"+data[i][3]+"</td>";
+              get_tbody += "<td>"+data[i][4]+"</td>";
+              get_tbody += "<td>"+data[i][5]+"</td>";
+              get_tbody += "<td>"+data[i][6]+"</td>";
+              get_tbody += "<td>"+data[i][7]+"</td>";
+              get_tbody += "<td>"+data[i][8]+"</td>";
+              get_tbody += "<td>"+data[i][9]+"</td>";
+              get_tbody += "</tr>";
+
+      }else{
+            get_tbody += "<tr>";
+            get_tbody += "<td>"+data[i][0]+"</td>";
+            get_tbody += "<td>"+data[i][1]+"</td>";
+            get_tbody += "<td>"+data[i][2]+"</td>";
+            get_tbody += "<td>"+data[i][3]+"</td>";
+            get_tbody += "<td>"+data[i][4]+"</td>";
+            get_tbody += "<td>"+data[i][5]+"</td>";
+            get_tbody += "<td>"+data[i][6]+"</td>";
+            get_tbody += "<td>"+data[i][7]+"</td>";
+            get_tbody += "<td>"+data[i][8]+"</td>";
+            get_tbody += "<td>"+data[i][9]+"</td>";
+            get_tbody += "<td>"+data[i][10]+"</td>";
+            get_tbody += "</tr>";
+
+      }
+
+   }
+    
+   $('#body_ts').html(get_tbody);
+   //getCanvas2();
+ 
 }
 
 $(document).ready(function(){
