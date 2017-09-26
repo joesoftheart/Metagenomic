@@ -70,7 +70,7 @@
     public function create_file_design(){
 
       $id_project = $_REQUEST['current'];
-
+      $data['sample_name'] ="";
       #Query data Sample_Name
         $array_samples = $this->mongo_db->get_where('sample_name',array('project_id' => $id_project));
            foreach ($array_samples as $r) {
@@ -86,7 +86,7 @@
     public function create_file_metadata(){
 
       $id_project = $_REQUEST['current'];
-
+      $data['sample_name'] = "";
       #Query data Sample_Name
         $array_samples = $this->mongo_db->get_where('sample_name',array('project_id' => $id_project));
            foreach ($array_samples as $r) {
@@ -205,16 +205,7 @@
             }
     }
 
-    public function load_example_design(){
-       $this->load->view('example_design');
-    }
-
-    public function load_example_metadata(){
-       $this->load->view('example_metadata');
-    }
-
-
-
+  
 
     public function check_fasta(){
       

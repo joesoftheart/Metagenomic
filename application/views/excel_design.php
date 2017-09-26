@@ -15,11 +15,22 @@ else {
 
 <script src="<?php echo base_url('js/jquery-3.2.1.js'); ?>"></script>
 
-<h2>Create file design</h2>
 
 
-<!--<form>-->
+  
 
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.min.css">
+
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/font-awesome/css/font-awesome.min.css">
+
+     <!-- Uikit Design -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/uikit.css">
+
+    <!-- Bootstrap C1ore JavaScript -->
+    <script type='text/javascript' src="<?php echo base_url(); ?>vendor/bootstrap/js/bootstrap.min.js"></script>
 
 
 <!-- <button type="button" id="btnAdd">Add new Rows </button>
@@ -28,16 +39,39 @@ else {
 <!-- <button type="button" id="btnAddCol">Add new Column</button>
 <button type="button" id="btnRemoveCol">Remove Column</button> -->
 
- <input type="button" value="Example file design" onclick="window.open('<?php echo base_url("Run_advance/load_example_design")?>')">
-  
- 
- <button onclick="getExcel()">create file</button>
+
+<nav class="navbar navbar-default navbar-static-top " role="navigation" style="margin-bottom: 0">
+<div id="wrapper">
+
+    <!-- Navigation -->
+
+        <div class="navbar-header">
+            
+            <label class="navbar-brand" ><i class="fa fa-codepen fa-1x"></i> Amplicon Metagenomic</label>     
+        </div>
+        <!-- /.navbar-header -->
+        
+</div></nav>
+<div class="col-lg-12 uk-margin"></div>
+<?php if($sample_name != null){  ?>
+
+
+<div class="col-lg-12">
+  <h3>Create file design</h3>
+</div>
+
+
+<div class="col-lg-12">
+   <button class="btn btn-info" data-toggle="modal" data-target="#myModal"> View Example</button>
    
-<br/><br/>
+ </div>  
+<div class="col-lg-12 uk-margin"></div>
 
 
+<div class="col-lg-12">
+<!--<form>-->
  <form name="myform" id="myform" method="post" >
-    <table id="blacklistgrid">
+     <table id="blacklistgrid">
         <!-- <tr id="Row1">
             <td><input type="text" name="head[]" placeholder="Header 1"  /></td>
             <td><input type="text" name="head[]" placeholder="Header 2" /></td>
@@ -54,14 +88,61 @@ else {
         </tr>
        <?php  } ?>
 
-    </table>
+     </table>
+  </form><!--</form>-->
+
+  <button class="btn btn-success" onclick="getExcel()">create file</button>
+</div>
+
+<?php  }  
+  else{
     
-    
-</form>
+    echo "<h4>Not Generated file design !!</h4>";
+  }
+
+ ?>
+ <div class="col-lg-12 uk-margin"></div>
+             <!-- Modal -->
+                 <div class="panel-body">
+                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"> 
+                     <div class="modal-dialog">
+                     <div class="modal-content">
+                     <div class="modal-header">
+                     <button type="button" class="close"data-dismiss="modal" aria-hidden="true">×</button>
+                     <h4 class="modal-title" id="myModalLabel"> Example file design</h4>                                                     
+                 </div>
+                 <div class="modal-body">
+
+                     <?php  $file = FCPATH."example_file/file.design";  ?>
+ 
+                         <table class="table table-bordered"  > 
+                        <?php 
+                                $myfile = fopen($file,'r') or die ("Unable to open file");
+                                    while(($lines = fgets($myfile)) !== false){
+                                        $var =  explode("\t", $lines);
+                        ?>
+                          <tr>
+                             <td><?=$var[0]?></td>
+                             <td><?=$var[1]?></td>
+                          </tr>
+
+                      <?php   }     fclose($myfile); ?>
+                 
+                       </table>
+
+                 </div>
+                 <div class="modal-footer">
+                         <button  class="btn btn-primary" data-dismiss="modal">OK </button>
+                       
+                 </div>
+                 </div> <!-- /.modal-content -->
+                 </div> <!-- /.modal-dialog -->                                         
+                 </div>
+                 </div><!-- End Modal -->  
 
 
   
-<!--</form>-->
+
 
 
 
