@@ -150,11 +150,11 @@ else {
 
 $(document).ready(function () {
 
-     $('#btnAdd').click(function () {
-         var count = 1,
-             first_row = $('#Row2');
-         while (count-- > 0) first_row.clone().appendTo('#blacklistgrid');
-     });
+     // $('#btnAdd').click(function () {
+     //     var count = 1,
+     //         first_row = $('#Row2');
+     //     while (count-- > 0) first_row.clone().appendTo('#blacklistgrid');
+     // });
 
      
      // var myform = $('#myform'),
@@ -173,13 +173,13 @@ $(document).ready(function () {
      //     col_num += 1;
      // });
      
-     $('#btnRemoveRow').click(function () {
-       var row_count = $('#blacklistgrid  #Row2').length;
-       if(row_count > 1){
-           $('#Row2').remove();
-       }
+     // $('#btnRemoveRow').click(function () {
+     //   var row_count = $('#blacklistgrid  #Row2').length;
+     //   if(row_count > 1){
+     //       $('#Row2').remove();
+     //   }
 
-     });
+     // });
 
      
      // $('#btnRemoveCol').click(function () {
@@ -206,14 +206,28 @@ function getExcel(){
         var sep = "";
         $(this).find("input").each(function () {
             excel += sep + $(this).val();
-            check_val += $(this).val();
+            check_val += sep + $(this).val()+sep;
             sep = "\t";
         });
         excel += "\n";
     });
 
-   if(check_val != ""){
-     $.ajax({
+     var count = true; 
+         var res = check_val.split("\t");
+         for (var i = 0; i < res.length-1; i++) {
+             if(res[i] == ""){
+                 count = false;
+                 console.log("data: null");
+             }else{
+                console.log("data :"+i+" "+res[i]);
+             }
+             
+         };
+
+    if(count == false){
+        alert("Please insert value");
+    }else{
+         $.ajax({
             type:"post",
             datatype:"json",
             url:"<?php echo base_url('Run_advance/write_design');?>?user="+user+"&project_id="+project,
@@ -227,13 +241,11 @@ function getExcel(){
                    }
    
     });
+    }
 
-   }else{
+   
 
-     alert("Please insert value");
 
-   }
-    
 
 }
 
