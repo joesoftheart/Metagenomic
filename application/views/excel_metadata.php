@@ -12,27 +12,62 @@ else {
 
 ?>
 
+   <script src="<?php echo base_url('js/jquery-3.2.1.js'); ?>"></script>
 
-<h2>Create file metadata</h2>
-<script src="<?php echo base_url('js/jquery-3.2.1.js'); ?>"></script>
-<!--<form>-->
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.min.css">
+
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/font-awesome/css/font-awesome.min.css">
+
+     <!-- Uikit Design -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/uikit.css">
+
+    <!-- Bootstrap C1ore JavaScript -->
+    <script type='text/javascript' src="<?php echo base_url(); ?>vendor/bootstrap/js/bootstrap.min.js"></script>
+
 
 
 
 <!-- <button type="button" id="btnAdd">Add new Rows </button>
 <button type="button" id="btnRemoveRow">Remove Rows</button> -->
 
-<input type="button" value="Example file metadata" onclick="window.open('<?php echo base_url("Run_advance/load_example_metadata")?>')">
+<nav class="navbar navbar-default navbar-static-top " role="navigation" style="margin-bottom: 0">
+<div id="wrapper">
 
-<br/><br/>
-<button type="button" id="btnAddCol">Add new Column</button>
-<button type="button" id="btnRemoveCol">Remove Column</button>
+    <!-- Navigation -->
 
-<br/><br/>
-<button onclick="getExcel()">create file</button>
-   
-<br/><br/>
+        <div class="navbar-header">
+            
+            <label class="navbar-brand" ><i class="fa fa-codepen fa-1x"></i> Amplicon Metagenomic</label>     
+        </div>
+        <!-- /.navbar-header -->
+        
+ </div></nav>
+<div class="col-lg-12 uk-margin"></div>
 
+<?php if($sample_name != null){  ?>
+
+<div class="col-lg-12">
+   <h3>Create file metadata</h3>
+</div>
+
+<div class="col-lg-12">
+  <button class="btn btn-info" data-toggle="modal" data-target="#myModal"> View Example</button>
+
+</div>
+
+<div class="col-lg-12 uk-margin"></div>
+<div class="col-lg-12">
+<button class="btn btn-default" id="btnAddCol">Add new Column</button>
+<button class="btn btn-default" id="btnRemoveCol">Remove Column</button>
+</div>
+
+<div class="col-lg-12 uk-margin"></div>
+
+<!--<form>-->
+<div class="col-lg-12">
 
  <form name="myform" id="myform" method="post" >
     <table id="blacklistgrid">
@@ -62,16 +97,63 @@ else {
 
     </table>
    
-</form>
+   </form>
+   <!--</form>-->
+  <button  class="btn btn-success" onclick="getExcel()">create file</button>
+ 
+ </div>
+<?php  }  
+  else{
+    
+    echo "<h4>Not Generated file metadata !!</h4>";
+  }
+
+ ?>
+
+ <div class="col-lg-12 uk-margin"></div>
+             <!-- Modal -->
+                 <div class="panel-body">
+                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"> 
+                     <div class="modal-dialog">
+                     <div class="modal-content">
+                     <div class="modal-header">
+                     <button type="button" class="close"data-dismiss="modal" aria-hidden="true">×</button>
+                     <h4 class="modal-title" id="myModalLabel"> Example file metadata</h4>                                                     
+                 </div>
+                 <div class="modal-body">
+
+                     <?php  $file = FCPATH."example_file/file.metadata";  ?>
+ 
+                         <table class="table table-bordered"  > 
+                        <?php 
+                                $myfile = fopen($file,'r') or die ("Unable to open file");
+                                    while(($lines = fgets($myfile)) !== false){
+                                        $var =  explode("\t", $lines);
+                        ?>
+                          <tr>
+                                 <td><?=$var[0]?></td>
+                                 <td><?=$var[1]?></td>
+                                 <td><?=$var[2]?></td>
+                         </tr>
 
 
-  
-<!--</form>-->
+                      <?php   }     fclose($myfile); ?>
+                 
+                       </table>
+
+                 </div>
+                 <div class="modal-footer">
+                         <button  class="btn btn-primary" data-dismiss="modal">OK </button>
+                       
+                 </div>
+                 </div> <!-- /.modal-content -->
+                 </div> <!-- /.modal-dialog -->                                         
+                 </div>
+                 </div><!-- End Modal -->  
 
 
 
 <script>
-
 $(document).ready(function () {
 
      
@@ -79,6 +161,15 @@ $(document).ready(function () {
      //     var count = 1,
      //         first_row = $('#Row2');
      //     while (count-- > 0) first_row.clone().appendTo('#blacklistgrid');
+     // });
+     
+        
+     // $('#btnRemoveRow').click(function () {
+     //   var row_count = $('#blacklistgrid  #Row2').length;
+     //   if(row_count > 1){
+     //       $('#Row2').remove();
+     //   }
+
      // });
 
      
@@ -97,14 +188,7 @@ $(document).ready(function () {
          });
          col_num += 1;
      });
-     
-     // $('#btnRemoveRow').click(function () {
-     //   var row_count = $('#blacklistgrid  #Row2').length;
-     //   if(row_count > 1){
-     //       $('#Row2').remove();
-     //   }
-
-     // });
+  
 
      
      $('#btnRemoveCol').click(function () {
@@ -146,14 +230,29 @@ function getExcel(){
         var sep = "";
         $(this).find("input").each(function () {
             excel += sep + $(this).val();
-            check_val += $(this).val(); 
+            check_val += $(this).val()+sep; 
             sep = "\t";
         });
         excel += "\n";
     });
 
 
-    if(check_val != ""){
+     var count = true; 
+         var res = check_val.split("\t");
+         for (var i = 0; i < res.length-1; i++) {
+             if(res[i] == ""){
+                 count = false;
+                 console.log("data: null");
+             }else{
+                console.log("data :"+i+" "+res[i]);
+             }
+             
+         };
+
+    if(count == false){
+        alert("Please insert value");
+    }else{
+
          $.ajax({
             type:"post",
             datatype:"json",
@@ -168,12 +267,9 @@ function getExcel(){
                    }
    
        });
+  }
 
-    }else{
-      
-       alert("Please insert value");
    
-    }
    
 
 }
