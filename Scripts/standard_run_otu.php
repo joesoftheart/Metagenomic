@@ -21,7 +21,7 @@ if ($user != null && $project != null  && $path != null && $id != null){
 // Run Program
 function run($user,$id,$project,$path){
     check_file($user,$id,$project,$path);
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
+
 }
 
 
@@ -29,6 +29,7 @@ function run($user,$id,$project,$path){
 $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
 // Check file
  function check_file($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
 
      echo "\n";
      echo "Run check_file :";
@@ -229,7 +230,6 @@ summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/
 
 // Summary-seqs
  function align_seqs($user,$id,$project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "align_seqs"."\n", FILE_APPEND);
      echo "\n";
      echo "Run align_seqs";
 
@@ -927,7 +927,7 @@ function plot_graph_r_Tree($user, $id, $project, $path){
 
     echo "\n";
     echo "Run plot_graph_r_Tree :";
-    $path_input_tree = "owncloud/data/$user/files/$project/output/final.tx.morisitahorn.2.lt.ave.tre";
+    $path_input_tree = "owncloud/data/$user/files/$project/output/final.opti_mcc.morisitahorn.0.03.lt.ave.tre";
     $path_output_tree = "owncloud/data/$user/files/$project/output/Tree.png";
 
     $jobname = $user . "_" . $id . "_plot_graph_r_Tree";
@@ -981,7 +981,7 @@ function make_biom($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Finish make biom ->";
-
+            convert_biom($user, $id, $project, $path);
             break;
         }
     }
@@ -1096,6 +1096,8 @@ function change_name($user, $id, $project, $path){
             }
         }
     }
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "picrust-finish"."\n", FILE_APPEND);
+
 }
 
 

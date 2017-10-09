@@ -78,6 +78,13 @@ class Projects extends CI_Controller
         }
     }
 
+    public function symbolic($id){
+        $cmd = "ls";
+
+        $test =  shell_exec("free");
+        echo $test;
+
+    }
 
     public function standard_run($id)
     {

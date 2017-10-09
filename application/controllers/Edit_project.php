@@ -28,6 +28,7 @@ class  Edit_project extends CI_Controller {
             $data_project = array("project_name" => $this->input->post("project_name"),
                 "project_title" => $this->input->post("project_title"),
                 "project_detail" => $this->input->post("project_detail"),
+                "project_sequencing" => $this->input->post("project_sequencing"),
                 "project_permission" => $this->input->post("project_permission"),
                 "project_type" => $this->input->post("project_type"),
                 "project_program" => $this->input->post("project_program"),

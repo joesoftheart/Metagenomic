@@ -48,7 +48,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                             people
                                         </label>
                                     </div>
-
+                                    <label>Raw sequencing data from :</label>
+                                    <select class="uk-select uk-width-1-4" name="project_sequencing">
+                                        <option value="illumina">illumina</option>
+                                        <option value="other">other</option>
+                                    </select><br><br>
                                     <label>Project type :</label>
                                     <select class="uk-select uk-width-1-4" name="project_type">
                                         <option value="16s">16s</option>

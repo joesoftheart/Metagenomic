@@ -13,41 +13,9 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    create_symboliclink($user,$id,$project,$path);
+    run($user,$id,$project,$path);
 
     }
-
-
-
-
-
-function create_symboliclink($user,$id,$project,$path){
-        echo "\n";
-    echo "Run create_symboliclink :";
-        $jobname = $user . "_" . $id . "create_symboliclink";
-        $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/  -cwd -b y /bin/bash /Scripts/symbolic.sh";
-        exec($cmd);
-        $check_qstat = "qstat  -j '$jobname' ";
-        exec($check_qstat, $output);
-        $id_job = ""; # give job id
-        foreach ($output as $key_var => $value) {
-            if ($key_var == "1") {
-                $data = explode(":", $value);
-                $id_job = $data[1];
-            }
-        }
-        $loop = true;
-        while ($loop) {
-            $check_run = exec("qstat -j $id_job");
-            if ($check_run == false) {
-                echo "Go to plot_graph_r_Rare->";
-                //plot_graph_r_Rare($user, $id, $project, $path);
-                break;
-            }
-        }
-
-
-}
 
 
 // Run Program
