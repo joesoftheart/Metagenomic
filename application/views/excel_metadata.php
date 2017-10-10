@@ -82,7 +82,7 @@ else {
 
          <tr id="Row2">
             <td>
-                <input type="text"   value="<?=$value?>" />
+                <input type="text"   value="<?=$value?>" readonly />
             </td>
             <td>
                 <input type="number"  step="0.01" onkeypress='return validateNumber(event)' placeholder="number"/>
@@ -242,9 +242,9 @@ function getExcel(){
          for (var i = 0; i < res.length-1; i++) {
              if(res[i] == ""){
                  count = false;
-                 console.log("data: null");
+                 //console.log("data: null");
              }else{
-                console.log("data :"+i+" "+res[i]);
+                //console.log("data :"+i+" "+res[i]);
              }
              
          };

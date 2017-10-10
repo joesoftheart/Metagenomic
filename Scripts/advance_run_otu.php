@@ -787,7 +787,7 @@
                 if ($read = opendir($path_dir)){
                       while (($file = readdir($read)) !== false) {
                         
-                        $allowed =  array('8mer','sum','train','numNonZero','prob','files');
+                        $allowed =  array('8mer','sum','train','numNonZero','prob');
                         $ext = pathinfo($file, PATHINFO_EXTENSION);
 
                         if(in_array($ext,$allowed)) {

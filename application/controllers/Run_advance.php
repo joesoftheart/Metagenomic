@@ -94,7 +94,6 @@
              $data['sample_name'] = $r['name_sample'];
            }
 
-
       $this->load->view('excel_metadata',$data);
     }
 

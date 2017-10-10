@@ -36,6 +36,7 @@ if (isset($this->session->userdata['logged_in'])) {
                     <th>Type</th>
                     <th>Samples</th>
                     <th>Manage</th>
+                    <th>SRA</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -50,7 +51,9 @@ if (isset($this->session->userdata['logged_in'])) {
                             &nbsp;
                             <?php echo anchor("all_projects/delete_project/" . $r['_id'], "Delete", array('class' => 'btn btn-default btn-sm'))
                             ?>&nbsp;<a href="#modal-sections<?php echo $r['_id'] ?>" class="btn btn-default btn-sm"
-                                       uk-toggle> Share</a></td>
+                                       uk-toggle> Share</a> 
+                        </td>
+                        <td>  <?php echo anchor("#" . $r['_id'], "SRA", array('class' => 'btn btn-outline btn-success btn-sm','id'=> $r['_id'],'onclick'=>'checkfile(this.id); return false')) ?></td>
 
 
                         <div id="modal-sections<?php echo $r['_id'] ?>" uk-modal="center: true">
@@ -101,7 +104,27 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
     </div>
 </div>
+<script>
+    
+function checkfile(id){
+        $.ajax({
+                type:"post",
+                dataType: "json",
+                url: "<?php echo site_url('Run_sra/checkFiles/');?>",
+                data:{getid:id},
+                cache:false,
+                    success:function(data){
+                        if(data == "T"){
+                              window.location.href ="<?php echo site_url('Run_sra/index/"+id+"');?>"; 
+                         }else{
+                             alert("don't have stability.files");
+                          
+                         }
+                     }
+               });
+}
 
+</script>
 <script>
     //    $(document).ready(function () {
     //        $("#btn_share").click(function () {
