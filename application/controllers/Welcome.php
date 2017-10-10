@@ -22,6 +22,14 @@ class Welcome extends CI_Controller{
     }
 
 
+    public function fpdf_html(){
+        $this->load->library('myfpdf');
+        $this->load->library('mytcpdf');
+        $data['txt'] = "My name is joesoftheart  hahahahahaha";
+        $this->load->view('welcome_html',$data);
+    }
+
+
 }
 
 

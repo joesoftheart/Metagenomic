@@ -80,4 +80,8 @@ class Used_resource extends CI_Controller{
         return $load[0];
 
     }
+
+
+
+
 }

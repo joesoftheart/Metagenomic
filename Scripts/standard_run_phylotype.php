@@ -13,19 +13,21 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    plot_graph_r_Rare($user,$id,$project,$path);
+    run($user,$id,$project,$path);
+
     }
 
 
 // Run Program
 function run($user,$id,$project,$path){
     check_file($user,$id,$project,$path);
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
+
 }
 
 
 // Check file 
  function check_file($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
      echo "\n";
      echo "Run check_file :";
     $path_stability = "../owncloud/data/$user/files/$project/output/stability.files";
@@ -752,7 +754,7 @@ function create_input_biplot($user, $id, $project, $path){
          $check_run = exec("qstat -j $id_job");
          if ($check_run == false) {
              echo "Go to plot_graph_r_NMD ->";
-            // plot_graph_r_NMD($user, $id, $project, $path);
+             plot_graph_r_NMD($user, $id, $project, $path);
              break;
          }
      }
@@ -812,7 +814,7 @@ function plot_graph_r_Rare($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Go to plot_graph_r_Abun ->";
-         //   plot_graph_r_Abun($user, $id, $project, $path);
+            plot_graph_r_Abun($user, $id, $project, $path);
             break;
         }
     }

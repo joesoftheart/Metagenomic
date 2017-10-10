@@ -58,9 +58,20 @@ if (isset($this->session->userdata['logged_in'])) {
                                             } ?>>share people
                                         </label>
                                     </div>
+                                    <label>Raw sequencing data from :</label>
+                                    <select class="uk-select uk-width-1-4" name="project_sequencing">
+                                        <option <?php if ($r['project_sequencing'] == "illumina") {
+                                            echo "selected";
+                                        } ?>>illumina
+                                        </option>
+                                        <option <?php if ($r['project_sequencing'] == "other") {
+                                            echo "selected";
+                                        } ?>>other
+                                        </option>
 
+                                    </select><br><br>
                                     <label>Project type :</label>
-                                    <select class="uk-select" name="project_type">
+                                    <select class="uk-select uk-width-1-4" name="project_type">
                                         <option <?php if ($r['project_type'] == "18s") {
                                             echo "selected";
                                         } ?>>18s
@@ -89,9 +100,18 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <select class="uk-select  uk-width-1-4 <?php if ($r['project_analysis'] == "") {
                                             echo "hide";
                                         } ?>" id="program" name="project_analysis">
-                                            <option value=""><-Select Analysis-></option>
-                                            <option value="otu">OTU</option>
-                                            <option value="phylotype">Phylotype</option>
+                                            <option <?php if ($r['project_analysis'] == "") {
+                                                echo "selected";
+                                            } ?>>
+                                            </option>
+                                            <option <?php if ($r['project_analysis'] == "otu") {
+                                                echo "selected";
+                                            } ?>>otu
+                                            </option>
+                                            <option <?php if ($r['project_analysis'] == "phylotype") {
+                                                echo "selected";
+                                            } ?>>phylotype
+                                            </option>
                                         </select>
                                         <br>
                                         <label class="radio-inline">

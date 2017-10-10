@@ -368,7 +368,6 @@ Beta – Diversity:
                                             </div>
 
                                         </div>
-                                        </form>
                                     </li>
 
                                     <li id="print">
