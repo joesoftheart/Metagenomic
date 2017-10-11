@@ -19,7 +19,7 @@
         putenv("SGE_ROOT=$SGE_ROOT");
         putenv("PATH=$PATH");
 
-        
+         
     }
 
 
@@ -54,7 +54,7 @@
      
            }
 
-        if($level != "0" ){
+        if($level != "0" && $step_run == "4" ){
 
             $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
             $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
@@ -1087,6 +1087,9 @@
           
           $level = "";
 
+          $tg_body = null;
+          $ts_body = null;
+
 
       #Query data status-process
         $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
@@ -1118,10 +1121,11 @@
 
             if($check_run == false){
               
-                 $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
-                 $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
+                  $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+                  
+                  $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
                  
-                 $this->on_move($user,$project,$project_data,$tg_body,$ts_body);
+                  $this->on_move($user,$project,$project_data,$tg_body,$ts_body);
 
                  # Update data status-process Step 4
                      $data = array('status' => '0' ,'step_run' => '4' ,'job_id' => $id_job , 'project' => $project , 'project_data' => $project_data);
@@ -1163,7 +1167,7 @@
       }
 
 
-      public function on_move($user,$project,$project_data){
+      public function on_move($user,$project,$project_data,$tg_body,$ts_body){
 
          # check & create folder user
          $path_img = FCPATH."img_user/$user/$project/";   
@@ -1189,11 +1193,13 @@
                 }
             }
 
+
+        
           #create file excel_table_groups_ave_std.xlsx
-          $this->create_file_excel_g($user,$project,$tg_body);
+         $this->create_file_excel_g($user,$project,$tg_body);
 
          #create file excel_table_summary.xlsx
-          $this->create_file_excel_s($user,$project,$ts_body); 
+         $this->create_file_excel_s($user,$project,$ts_body); 
 
       }
 
@@ -1407,7 +1413,7 @@
       $objWriter = PHPExcel_IOFactory::createWriter($objExcel,'Excel2007');
       $filename = "excel_table_groups_ave_std.xlsx";
       $objWriter->save("img_user/".$user."/".$project."/".$filename);
-      exit;
+     
 
 
   }
@@ -1485,8 +1491,7 @@
       $objWriter = PHPExcel_IOFactory::createWriter($objExcel,'Excel2007');
       $filename = "excel_table_summary.xlsx";
       $objWriter->save("img_user/".$user."/".$project."/".$filename);
-      exit;
-
+     
   }
 
   public function insert_status($data){
