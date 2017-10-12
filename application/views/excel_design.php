@@ -80,7 +80,7 @@ else {
        <?php foreach ($sample_name as $key => $value) { ?>
         <tr id="Row2">
             <td>
-                <input type="text" name="col[]"  value="<?=$value?>" />
+                <input type="text" name="col[]"  value="<?=$value?>" readonly />
             </td>
             <td>
                 <input type="text" name="col[]" />
@@ -217,9 +217,9 @@ function getExcel(){
          for (var i = 0; i < res.length-1; i++) {
              if(res[i] == ""){
                  count = false;
-                 console.log("data: null");
+                 //console.log("data: null");
              }else{
-                console.log("data :"+i+" "+res[i]);
+                //console.log("data :"+i+" "+res[i]);
              }
              
          };
@@ -240,8 +240,9 @@ function getExcel(){
                      console.log(e.message);
                    }
    
-    });
+       });
     }
+
 
    
 

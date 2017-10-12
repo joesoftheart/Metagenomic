@@ -45,7 +45,7 @@ class Share_projects extends CI_Controller{
         }
 
 
-
+       $project_to_u = array();
 
         $j =0;
         foreach ($to_you_project as $to_you){

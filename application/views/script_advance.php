@@ -513,6 +513,7 @@ function ckeck_analysis(job_analy){
                     success:function(data){
                       //var analysis = JSON.parse(data);
                       var analysis = $.parseJSON(data);
+                     
                       if( analysis[0] == "0"){
                          clearInterval(interval);
 
