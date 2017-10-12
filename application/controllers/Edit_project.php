@@ -48,7 +48,5 @@ class  Edit_project extends CI_Controller {
         $this->load->view("footer");
 
 
-
-
     }
 }

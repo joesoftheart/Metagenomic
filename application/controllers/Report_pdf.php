@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller{
+class Report_pdf extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
@@ -14,11 +14,17 @@ class Welcome extends CI_Controller{
 
     }
 
-    public function fpdf(){
+    public function fpdf($id_project){
+        $data = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
+
+        foreach ($data as $value){
+            $project_name = $value['project_name'];
+
+        }
         $this->load->library('myfpdf');
         $this->load->library('mytcpdf');
-        $data['txt'] = "My name is joesoftheart  hahahahahaha";
-        $this->load->view('welcome',$data);
+        $data['txt'] = $project_name;
+        $this->load->view('reportpdf',$data);
     }
 
 

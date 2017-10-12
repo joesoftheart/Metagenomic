@@ -58,16 +58,16 @@ if (isset($this->session->userdata['logged_in'])) {
             $num = count($keywords_split_line);
         }
         // echo $num;
-        if (file_exists($progress) and $num < 16) {
+
             ?>
             <br/>
             <div class="row" >
                 <div class="col-lg-12" >
                     <div class="progress" id="progress">
                         <div class="progress-bar progress-bar-striped active" role="progressbar"
-                             aria-valuenow="<?php echo $num / 16 * 100; ?>" aria-valuemin="0" aria-valuemax="100"
+                             aria-valuenow="<?php echo $num / 18 * 100; ?>" aria-valuemin="0" aria-valuemax="100"
                              style="width:<?php echo $num / 18 * 100; ?>%">
-                            <?php echo round($num / 16 * 100); ?>%
+                            <?php echo round($num / 18 * 100); ?>%
                         </div>
                     </div>
                 </div>
@@ -215,6 +215,8 @@ if (isset($this->session->userdata['logged_in'])) {
                             <button class="btn btn-outline btn-warning" style="width:100%">
                                 Picrust
                                 <?php if (in_array("picrust-finish", $keywords_split_line)) { ?> <i class="fa fa-check" aria-hidden="true"></i>
+                                <?php redirect('complete_run/index/'.$current_project) ?>
+
                                 <?php }else if(in_array("finish",$keywords_split_line)){
                                     ?>
                                     <i class="fa fa-spinner fa-pulse fa-1x fa-fw" aria-hidden="true"></i>
@@ -227,9 +229,7 @@ if (isset($this->session->userdata['logged_in'])) {
                 </div>
             </div>
             <?php
-        } else {
-           // redirect("/projects/index/" . $current_project, 'refresh');
-        } ?>
+        ?>
 
 
     </div>

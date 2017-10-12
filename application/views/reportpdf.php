@@ -283,7 +283,7 @@ $this->myfpdf->AddPage();
 //Page 1
 
 $this->myfpdf->SetFont('Times','B',12);
-$this->myfpdf->Cell(0,8,'Project Name : xxx',0,1);
+$this->myfpdf->Cell(0,8,'Project Name : '.$txt,0,1);
 $this->myfpdf->Cell(0,8,'Project type : 18S/18S/ITS',0,1);
 $this->myfpdf->Cell(0,8,'Program analysis : Mothur/Qiime/UPARSE',0,1);
 $this->myfpdf->Cell(0,8,'Running mode : standard/advance',0,1);

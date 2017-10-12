@@ -29,11 +29,11 @@ function run($user,$id,$project,$path){
 $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
 // Check file
  function check_file($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
+
 
      echo "\n";
      echo "Run check_file :";
-    $path_stability = "../owncloud/data/$user/files/$project/output/stability.files";
+    $path_stability = "../owncloud/data/$user/files/$project/input/stability.files";
     $path_file = $path_stability;
     if(file_exists($path_file)) {
         echo "go to check file oligo ->";
@@ -53,7 +53,7 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
      echo "\n";
      echo "Run check_oligos :";
     $total_oligo = 0;
-    $path_dir = $path;
+    $path_dir = $path."/input/";
     if (is_dir($path_dir)) {
         if ($read = opendir($path_dir)){
             while (($file_oligo = readdir($read)) !== false) {
@@ -77,7 +77,7 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
 
 // Make file
  function run_makefile($user,$id, $project,$path){
-
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
      echo "\n";
      echo "Run run_makefile :";
     $jobname = $user."_".$id."_run_makefile";
@@ -112,7 +112,7 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
      echo "Run make_contigs_oligos :";
     $path = $path;
     $jobname = $user."_".$id."_oligo";
-    $cmd = "make.contigs(file=stability.files, oligos=$file_oligo ,processors=8 ,inputdir=$path/input/,outputdir=$path/output/)
+    $cmd = "make.contigs(file=stability.files, oligos=$file_oligo ,processors=8 ,inputdir=$path/input/,outputdir=$path/input/)
             summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur owncloud/data/$user/files/$project/input/run.batch ";
@@ -143,7 +143,7 @@ $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
      echo "\n";
      echo "Run make_contigs_summary";
     $jobname = $user."_".$id."_make_contigs_summary";
-    $cmd ="make.contigs(file=stability.files,processors=8,inputdir=$path/input/,outputdir=$path/output/)
+    $cmd ="make.contigs(file=stability.files,processors=8,inputdir=$path/input/,outputdir=$path/input/)
 summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
@@ -538,7 +538,7 @@ summary.single(shared=final.opti_mcc.shared, calc=nseqs-coverage-sobs-invsimpson
 function read_name_sample($user,$id, $project,$path,$total){
     $group_sample = array();
     $name_sample = null;
-if ($file = fopen('../owncloud/data/'.$user.'/files/'.$project.'/output/stability.files', "r")) {
+if ($file = fopen('../owncloud/data/'.$user.'/files/'.$project.'/input/stability.files', "r")) {
     $i = 0;
     while(!feof($file)) {
         $line = fgets($file);
@@ -737,8 +737,7 @@ function create_input_biplot($user, $id, $project, $path){
 
 
  function plot_graph_r_heatmap($user, $id, $project, $path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_heatmap"."\n", FILE_APPEND);
-     echo "\n";
+    echo "\n";
      echo "Run plot_graph_r_heatmap :";
      $path_input_csv = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";
      $path_to_save = "owncloud/data/$user/files/$project/output/heatmap.png";
@@ -767,7 +766,6 @@ function create_input_biplot($user, $id, $project, $path){
  }
 
 function plot_graph_r_NMD($user, $id, $project, $path){
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_NMD"."\n", FILE_APPEND);
     echo "\n";
     echo "Run plot_graph_r_NMD :";
     $path_input_axes = "owncloud/data/$user/files/$project/output/final.opti_mcc.thetayc.0.03.lt.ave.nmds.axes";
@@ -797,7 +795,6 @@ function plot_graph_r_NMD($user, $id, $project, $path){
 }
 
 function plot_graph_r_Rare($user, $id, $project, $path){
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Rare"."\n", FILE_APPEND);
     echo "\n";
     echo "Run plot_graph_r_Rare :";
     $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.opti_mcc.groups.rarefaction";
@@ -828,7 +825,6 @@ function plot_graph_r_Rare($user, $id, $project, $path){
 
 
 function plot_graph_r_Abun($user, $id, $project, $path){
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Abun"."\n", FILE_APPEND);
     echo "\n";
     echo "Run plot_graph_r_Abun :";
     $path_input_phylumex = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";
@@ -859,8 +855,7 @@ function plot_graph_r_Abun($user, $id, $project, $path){
 
 
 function plot_graph_r_Alphash($user, $id, $project, $path){
-    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Alphash"."\n", FILE_APPEND);
-    echo "\n";
+     echo "\n";
     echo "Run plot_graph_r_Alphash :";
     $path_input_chao_shannon = "owncloud/data/$user/files/$project/output/file_after_chao.txt";
     $path_to_save = "owncloud/data/$user/files/$project/output/Alpha.png";
@@ -889,7 +884,6 @@ function plot_graph_r_Alphash($user, $id, $project, $path){
 
 
 function plot_graph_r_Biplot($user, $id, $project, $path){
-    // file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Biplot"."\n", FILE_APPEND);
 
     echo "\n";
     echo "Run plot_graph_r_Biplot :";
@@ -923,7 +917,6 @@ function plot_graph_r_Biplot($user, $id, $project, $path){
 }
 
 function plot_graph_r_Tree($user, $id, $project, $path){
-    // file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph_r_Biplot"."\n", FILE_APPEND);
 
     echo "\n";
     echo "Run plot_graph_r_Tree :";
@@ -1046,11 +1039,12 @@ function phylotype_picrust($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Finish phylotype_picrust ->";
-             change_name($user, $id, $project, $path);
+            change_name($user, $id, $project, $path);
             break;
         }
     }
 }
+
 
 function change_name($user, $id, $project, $path){
     $dir = $path."/output";
@@ -1097,6 +1091,57 @@ function change_name($user, $id, $project, $path){
         }
     }
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "picrust-finish"."\n", FILE_APPEND);
+    on_check_remove_database($user, $id, $project, $path);
+}
+
+
+function on_check_remove_database($user, $id, $project, $path){
+
+    echo "on_check_remove"."\n";
+    $path_dir = $path."/input/";
+    if (is_dir($path_dir)) {
+        if ($read = opendir($path_dir)){
+            while (($file = readdir($read)) !== false) {
+
+                $allowed =  array('8mer','sum','train','numNonZero','prob','files');
+                $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+                if(in_array($ext,$allowed)) {
+
+                    unlink($path_dir.$file);
+                }
+            }
+
+            closedir($read);
+        }
+    }
+
+   // on_check_remove_progress($user, $id, $project, $path);
+
+}
+
+function on_check_remove_progress($user, $id, $project, $path){
+
+    echo "on_check_remove"."\n";
+    $path_dir = $path."/output/";
+    if (is_dir($path_dir)) {
+        if ($read = opendir($path_dir)){
+            while (($file = readdir($read)) !== false) {
+
+                $allowed =  array('txt');
+                $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+                if(in_array($ext,$allowed)) {
+
+                    unlink($path_dir.$file);
+                }
+            }
+
+            closedir($read);
+        }
+    }
+
+    change_name($user, $id, $project, $path);
 
 }
 

@@ -78,7 +78,7 @@ $pdf->writeHTML($text, true, 0, true, 0);
 
 // write some JavaScript code
 $js = <<<EOD
-app.alert('JavaScript Popup Example', 3, 0, 'Welcome');
+app.alert('JavaScript Popup Example', 3, 0, 'Reportpdf');
 var cResponse = app.response({
 	cQuestion: 'How are you today?',
 	cTitle: 'Your Health Status',

@@ -27,10 +27,10 @@ function run($user,$id,$project,$path){
 
 // Check file 
  function check_file($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
+
      echo "\n";
      echo "Run check_file :";
-    $path_stability = "../owncloud/data/$user/files/$project/output/stability.files";
+    $path_stability = "../owncloud/data/$user/files/$project/input/stability.files";
     $path_file = $path_stability;
     if(file_exists($path_file)) {
         echo "go to check file oligo ->";
@@ -48,7 +48,7 @@ function run($user,$id,$project,$path){
      echo "\n";
      echo "Run check_oligos :";
     $total_oligo = 0;
-    $path_dir = $path;
+    $path_dir = $path."/input/";
     if (is_dir($path_dir)) {
         if ($read = opendir($path_dir)){
             while (($file_oligo = readdir($read)) !== false) {
@@ -72,6 +72,7 @@ function run($user,$id,$project,$path){
 
 // Make file
  function run_makefile($user,$id, $project,$path){
+     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality"."\n", FILE_APPEND);
      echo "\n";
      echo "Run run_makefile :";
     $jobname = $user."_".$id."_run_makefile";
@@ -106,7 +107,7 @@ function run($user,$id,$project,$path){
      echo "\n";
      echo "Run make_contigs_oligos :";
     $jobname = $user."_".$id."_oligo";
-    $cmd = "make.contigs(file=stability.files, oligos=$file_oligo ,processors=8 ,inputdir=$path/input/,outputdir=$path/output/)
+    $cmd = "make.contigs(file=stability.files, oligos=$file_oligo ,processors=8 ,inputdir=$path/input/,outputdir=$path/input/)
             summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur owncloud/data/$user/files/$project/input/run.batch ";
@@ -137,7 +138,7 @@ function run($user,$id,$project,$path){
      echo "\n";
      echo "Run make_contigs_summary";
     $jobname = $user."_".$id."_make_contigs_summary";
-    $cmd ="make.contigs(file=stability.files,processors=8,inputdir=$path/input/,outputdir=$path/output/)
+    $cmd ="make.contigs(file=stability.files,processors=8,inputdir=$path/input/,outputdir=$path/input/)
 summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
@@ -529,7 +530,7 @@ function read_name_sample($user,$id, $project,$path,$total){
     echo "Run read_name_sample :";
     $group_sample = array();
     $name_sample = null;
-if ($file = fopen('../owncloud/data/'.$user.'/files/'.$project.'/output/stability.files', "r")) {
+if ($file = fopen('../owncloud/data/'.$user.'/files/'.$project.'/input/stability.files', "r")) {
     $i = 0;
     while(!feof($file)) {
         $line = fgets($file);
@@ -1044,8 +1045,8 @@ function phylotype_picrust($user, $id, $project, $path){
 }
 
 
-function change_name($user, $id, $project, $path){
 
+function change_name($user, $id, $project, $path){
     $dir = $path."/output";
     $file_read = array( 'svg');
     $dir_ignore = array();
@@ -1067,33 +1068,77 @@ function change_name($user, $id, $project, $path){
                 $type = explode('.', $value);
                 $type = array_reverse($type);
                 if (in_array($type[0], $file_read)) {
-                    echo $value;
+
                     $file_name = preg_split("/[.]/",$value );
                     if (in_array("bin", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "bin.svg");
-                        echo "change bin";
+                        echo $value." change to  bin.svg";
                     }
                     if (in_array("sharedsobs", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "sharedsobs.svg");
-                        echo "change sharedsobs";
+                        echo $value." change to sharedsobs.svg";
                     }
                     if (in_array("jclass", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "jclass.svg");
-                        echo "change jclass";
+                        echo $value." change to jclass.svg";
                     }
                     if (in_array("thetayc", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "thetayc.svg");
-                        echo "change thetayc";
+                        echo $value." change to thetayc.svg";
                     }
                 }
             }
         }
     }
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "picrust-finish"."\n", FILE_APPEND);
+    on_check_remove_database($user, $id, $project, $path);
 }
+
+
+function on_check_remove_database($user, $id, $project, $path){
+
+    echo "on_check_remove"."\n";
+    $path_dir = $path."/input/";
+    if (is_dir($path_dir)) {
+        if ($read = opendir($path_dir)){
+            while (($file = readdir($read)) !== false) {
+
+                $allowed =  array('8mer','sum','train','numNonZero','prob','files');
+                $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+                if(in_array($ext,$allowed)) {
+
+                    unlink($path_dir.$file);
+                }
+            }
+
+            closedir($read);
+        }
+    }
+
+   // on_check_remove_progress($user, $id, $project, $path);
+
+}
+
+function on_check_remove_progress($user, $id, $project, $path){
+
+    echo "on_check_remove"."\n";
+    $path_dir = $path."/output/";
+    if (is_dir($path_dir)) {
+        if ($read = opendir($path_dir)){
+            unlink($path_dir."progress.txt");
+            closedir($read);
+        }
+    }
+
+    change_name($user, $id, $project, $path);
+
+}
+
+
+
+
+
 ?>
-
-
-
 
 

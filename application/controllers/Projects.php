@@ -62,6 +62,8 @@ class Projects extends CI_Controller
        // echo $num;
         if(file_exists($progress) and $num < 18){
             redirect("/process/index/" . $id_project, 'refresh');
+        }else if (file_exists($progress) and $num = 18){
+            redirect("/complete_run/index/" . $id_project, 'refresh');
         }else {
              
           
@@ -78,13 +80,6 @@ class Projects extends CI_Controller
         }
     }
 
-    public function symbolic($id){
-        $cmd = "ls";
-
-        $test =  shell_exec("free");
-        echo $test;
-
-    }
 
     public function standard_run($id)
     {

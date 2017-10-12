@@ -36,7 +36,12 @@ class Header extends CI_Model {
                 $file_progress = fopen($path_file_progress, "r");
                 $keywords_split_line = preg_split("/[\n]/", fread($file_progress, filesize($path_file_progress)));
                 //print_r($keywords_split_line);
-                $num = count($keywords_split_line);
+            $num = 0;
+                foreach ($keywords_split_line as $value){
+                    if ($value != ""){
+                        $num++;
+                    }
+                }
                 return $num / 18 * 100;
         }else{
             return 0;

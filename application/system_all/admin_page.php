@@ -109,7 +109,7 @@ if (isset($this->session->userdata['logged_in'])) {
     echo "Hello <b id='welcome'><i>" . $username . "</i> !</b>";
     echo "<br/>";
     echo "<br/>";
-    echo "Welcome to Admin Page";
+    echo "Reportpdf to Admin Page";
     echo "<br/>";
     echo "<br/>";
     echo "Your Username is " . $username;
