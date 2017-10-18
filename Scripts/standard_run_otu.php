@@ -329,7 +329,7 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
         echo " End : ".$end;
         echo "go to screen_remove->";
         if ($start != null && $end != null){
-            screen_remove($user,$id, $project,$path,$start,$end);
+            avg_seq_before_filter($user,$id, $project,$path,$start,$end);
         }else{
             echo "\n";
             echo "Start and End null value";
@@ -339,6 +339,38 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
 
 }
 
+
+// Screen remove
+function avg_seq_before_filter($user,$id, $project,$path,$start,$end){
+    echo "\n";
+    echo "Before screen_remove :";
+    $jobname = $user."_".$id."_avg_seq_before_filter";
+    $cmd ="screen.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table, summary=stability.trim.contigs.good.unique.summary, start=$start, end=$end, maxambig=8, maxhomop=8, maxlength=260, processors=8,inputdir=$path/input/,outputdir=$path/output/)
+summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/output/)";
+    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/ -e Logs_sge/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat,$output);
+    $id_job = "" ; # give job id
+    foreach ($output as $key_var => $value ) {
+        if($key_var == "1"){
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if($check_run == false){
+            echo "go to classify_system->";
+
+            screen_remove($user,$id, $project,$path,$start,$end);
+            break;
+        }
+    }
+}
+
 // Screen remove
  function screen_remove($user,$id, $project,$path,$start,$end){
      file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "align-sequence-finish"."\n", FILE_APPEND);
@@ -346,9 +378,7 @@ function read_log_sungrid($user,$id,$project,$path,$id_job){
      echo "\n";
      echo "Run screen_remove :";
     $jobname = $user."_".$id."_screen_remove";
-    $cmd ="screen.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table, summary=stability.trim.contigs.good.unique.summary, start=$start, end=$end, maxambig=8, maxhomop=8, maxlength=260, processors=8,inputdir=$path/input/,outputdir=$path/output/)
-summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/output/)
-filter.seqs(fasta=stability.trim.contigs.good.unique.good.align, vertical=T, trump=., processors=8,inputdir=$path/input/,outputdir=$path/output/)
+    $cmd ="filter.seqs(fasta=stability.trim.contigs.good.unique.good.align, vertical=T, trump=., processors=8,inputdir=$path/input/,outputdir=$path/output/)
 unique.seqs(fasta=stability.trim.contigs.good.unique.good.filter.fasta, count=stability.trim.contigs.good.good.count_table,inputdir=$path/input/,outputdir=$path/output/)
 pre.cluster(fasta=stability.trim.contigs.good.unique.good.filter.unique.fasta, count=stability.trim.contigs.good.unique.good.filter.count_table, diffs=2,inputdir=$path/input/,outputdir=$path/output/)
 chimera.vsearch(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.count_table, dereplicate=t, processors=8,inputdir=$path/input/,outputdir=$path/output/)

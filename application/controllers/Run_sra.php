@@ -102,11 +102,18 @@
     $project = null;
 
     #Query data status-process
-    $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id));
-           foreach ($array_status as $r) {
-              $user  = $r['user'];
-              $project  = $r['project'];
-           }
+//      $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id));
+//      foreach ($array_status as $r) {
+//          $user  = $r['user'];
+//          $project  = $r['project'];
+//      }
+      $data = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id)));
+      foreach ($data as $r) {
+          $project  = $r['project_name'];
+      }
+      $user = $this->session->userdata['logged_in']['username'];
+
+
 
     $path = FCPATH."owncloud/data/$user/files/$project/input/stability.files";
         if(file_exists($path)){

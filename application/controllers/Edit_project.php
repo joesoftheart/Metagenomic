@@ -23,6 +23,10 @@ class  Edit_project extends CI_Controller {
     }
 
     public function edit_project($id){
+        $file_read = array('fastq');
+        $project_path = $this->input->post("project_path")."/input/";
+        $show = $this->manage_file->num_file($file_read, $project_path);
+
 
         if ($this->input->post("save")){
             $data_project = array("project_name" => $this->input->post("project_name"),
@@ -33,7 +37,9 @@ class  Edit_project extends CI_Controller {
                 "project_type" => $this->input->post("project_type"),
                 "project_program" => $this->input->post("project_program"),
                 "project_analysis" => $this->input->post("project_analysis"),
-                "project_path" => $this->input->post("project_path")
+                "project_path" => $this->input->post("project_path"),
+                "project_num_sam" => $show,
+                "project_group_sam" => $show/2
             );
 
             $this->mongo_db->where(array("_id" => new \MongoId($id)))->set($data_project)->update('projects');

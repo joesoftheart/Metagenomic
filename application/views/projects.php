@@ -74,7 +74,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <ul class="uk-switcher uk-margin">
                                     <li >
                                         <!-- Standard run -->
-                                        <?php echo form_open_multipart('projects/standard_run/' . $current_project); ?>
+                                        <?php echo form_open_multipart('projects/standard_run/' . $current_project) ?>
 
 
 
@@ -107,27 +107,30 @@ if (isset($this->session->userdata['logged_in'])) {
                                                             <label>Screen reads </label>
                                                         </div>
                                                         <div class="col-lg-7">
+
                                                             <table border="0" class="uk-table uk-table-middle">
+                                                                <div class="form-group">
                                                                 <tr>
                                                                     <td>maximum ambiguous :</td>
-                                                                    <td><input class="uk-input" type="text" name="cmd" value=""
-                                                                               placeholder="8" disabled></td>
+                                                                    <td><input class="uk-input form-control "  type="text" name="max_amb" value="8"
+                                                                               readonly="readonly" placeholder="8" ></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>maximum homopolymer :</td>
-                                                                    <td><input class="uk-input" type="text" name="cmd" value=""
-                                                                               placeholder="8" disabled></td>
+                                                                    <td><input class="uk-input form-control" type="text" name="max_homo" value="8"
+                                                                               readonly="readonly" placeholder="8" ></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>minimum reads length :</td>
-                                                                    <td><input class="uk-input" type="text" name="cmd" value=""
-                                                                               placeholder="260" disabled></td>
+                                                                    <td><input class="uk-input form-control" type="text" name="min_read" value="100"
+                                                                               readonly="readonly"  placeholder="100" ></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>maximum reads length :</td>
-                                                                    <td><input class="uk-input" type="text" name="cmd" value=""
-                                                                               placeholder="260" disabled></td>
+                                                                    <td><input class="uk-input form-control" type="text" name="max_read" value="260"
+                                                                               readonly="readonly" placeholder="260" ></td>
                                                                 </tr>
+                                                                </div>
                                                             </table>
 
                                                         </div>
@@ -137,9 +140,11 @@ if (isset($this->session->userdata['logged_in'])) {
                                                             <label>Alignment step </label>
                                                         </div>
                                                         <div class="col-lg-7">
-                                                            <select class="uk-select uk-margin" disabled>
+                                                            <div class="form-group">
+                                                            <select class="uk-select uk-margin" name="align_seq" readonly="readonly">
                                                                 <option>silva.v4.fasta</option>
                                                             </select>
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -162,10 +167,12 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                                             <label>Pre-cluster step</label>
                                                         </div>
                                                         <div class="col-lg-7">
-                                                            <select class="uk-select" disabled>
-                                                                <option>diffs=2</option>
+                                                            <div class="form_control">
+                                                            <select class="uk-select" name="diffs" readonly="readonly">
+                                                                <option value="2">diffs=2</option>
 
                                                             </select>
+                                                            </div>
                                                         </div>
 
 
@@ -183,7 +190,6 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                             </div>
                                             <div id="collapseFour" class="panel-collapse collapse">
                                                 <div class="panel-body">
-
                                                     <div class="col-lg-3">
                                                         <label>Prepare for taxonomy classification </label>
                                                     </div>
@@ -192,23 +198,26 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                                             <tr>
                                                                 <td>database</td>
                                                                 <td>
-                                                                    <select class="uk-select" disabled>
+                                                                    <div class="form-group">
+                                                                    <select class="uk-select " name="db_taxon" readonly="readonly">
                                                                         <option>gg_13_8_99.fasta</option>
                                                                     </select>
+                                                                    </div>
                                                                 </td>
 
                                                             </tr>
                                                             <tr>
                                                                 <td>cutoff</td>
-                                                                <td><input class="uk-input" type="text" name="cutoff"
-                                                                           value="" placeholder="80" disabled></td>
+                                                                <td><div class="form-group"><input class="uk-input form-control" type="text" name="cutoff"
+                                                                           value="80" placeholder="80" readonly="readonly"></div> </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>taxon elimination</td>
-                                                                <td><textarea class="uk-textarea" type="textarea"
-                                                                              name="texonomy" value=""
-                                                                              placeholder="Chloroplast-Mitochondria-Eukaryota-unknown"
-                                                                              disabled></textarea>
+                                                                <td>
+                                                                    <div class="form-group">
+
+                                                                        <textarea class="uk-textarea form-control" name="rm_taxon" readonly="readonly">Chloroplast-Mitochondria-Eukaryota-unknown</textarea>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -254,16 +263,16 @@ Beta – Diversity:
                                                                             Level 2 is used for analysis :
                                                                         </td>
                                                                         <td>
-                                                                            <select class="uk-select" disabled>
+                                                                            <div class="form-group">
+                                                                            <select class="uk-select" name="tax_level" readonly="readonly">
                                                                                 <option>1</option>
-                                                                                <option selected>2</option>
+                                                                                <option value="2" selected>2</option>
                                                                                 <option>3</option>
                                                                                 <option>4</option>
                                                                                 <option>5</option>
                                                                                 <option>6</option>
-
-
                                                                             </select>
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -362,283 +371,28 @@ Beta – Diversity:
                                                 </div>
                                             </div>
                                         </div>
-                                                <button id="btn_prepro" name="submit" class="btn btn-default pull-right">
+                                                <button  type="submit" name="save" class="btn btn-default pull-right">
                                                     Submit
                                                 </button>
                                             </div>
 
                                         </div>
+
                                     </li>
 
-                                    <li id="print">
 
-                                        <?php
-
-                                        foreach ($rs as $r) {
-
-                                            $sample_folder = $r['project_path'];
-                                        }
-                                        $project = basename($sample_folder);
-                                        $user = $this->session->userdata['logged_in']['username'];
-
-                                        $path = "../owncloud/data/$user/files/$project/output/";
-
-
-                                        ?>
-
-<!--                                        <div class="panel panel-info " >-->
-<!--                                            <div class="panel-heading">Test</div>-->
-<!--                                            <div class="panel-body">-->
-<!--                                                <div class="row">-->
-<!--                                                    <div class="col-lg-3">-->
-<!--                                                        <i class="fa fa-grav fa-5x" aria-hidden="true"></i>-->
-<!---->
-<!--                                                    </div>-->
-<!--                                                    <div class="col-lg-5">-->
-<!--                                                        Excellence Center for Medical Genetics, King Chulalongkorn Memorial Hospital-->
-<!--                                                        Sor Kor Building, 9th Floor, King Chulalongkorn Memorial Hospital, Rama IV Rd,-->
-<!--                                                        Bangkok, THAILAND 10330. Tel/Fax 0-2256-4000 ext 3354, Mobile 083-099-7035-->
-<!--                                                        ศูนย์ความเป็นเลิศทางการแพทย์ด้านเวชพันธุศาสตร์ แห่งโรงพยาบาลจุฬาลงกรณ์ สภากาชาดไทย-->
-<!--                                                        ตึก สก. ชั้น 9 โรงพยาบาลจุฬาลงกรณ์ ถนนพระราม 4 กรุงเทพฯ 10330-->
-<!--                                                        โทรศัพท์/แฟกซ์ 0-2256-4000 ต่อ 3354 มือถือ 083-099-7035-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!---->
-<!---->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-6">-->
-<!--                                                    <b>Ven diagram</b>-->
-<!--                                                    <img class="img-thumbnail" width="300px"-->
-<!--                                                         src="--><?php //echo base_url(); ?><!----><?php //echo $path ?><!--sharedsobs.svg">-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-6">-->
-<!--                                                    <b>Heatmap</b>-->
-<!--                                                    <img class="img-thumbnail" width="20%"-->
-<!--                                                         src="--><?php //echo base_url(); ?><!----><?php //echo $path ?><!--heatmap.png">-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!---->
-<!--                                            <hr class="uk-divider-icon" >-->
-<!---->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-6">-->
-<!--                                                    <b>*Biplot</b><br>-->
-<!--                                                    <img class="img-thumbnail" width="300px"-->
-<!--                                                         src="--><?php //echo base_url(); ?><!----><?php //echo $path ?><!--NewNMDS_withBiplotwithOTU.png">-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-6">-->
-<!--                                                    <b>*Biplot</b><br>-->
-<!--                                                    <img class="img-thumbnail" width="300px"-->
-<!--                                                         src="--><?php //echo base_url(); ?><!----><?php //echo $path ?><!--NewNMDS_withBiplotwithMetadata.png">-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <hr class="uk-divider-icon">-->
-<!---->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-6">-->
-<!--                                                    <b>Rarefaction</b>-->
-<!--                                                    <img class="img-thumbnail" width="300px"-->
-<!--                                                         src="--><?php //echo base_url(); ?><!----><?php //echo $path ?><!--Rare.png">-->
-<!--                                                </div>-->
-<!--                                                <div class="col-lg-6">-->
-<!--                                                    <b>RelativePhylum</b>-->
-<!--                                                    <img class="img-thumbnail" width="300px"-->
-<!--                                                         src="--><?php //echo base_url(); ?><!----><?php //echo $path ?><!--Abun.png">-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <hr class="uk-divider-icon">-->
-<!--                                            <b>NMDS</b>-->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-6 col-lg-offset-3">-->
-<!--                                                    <img class="img-thumbnail" width="300px"-->
-<!--                                                         src="--><?php //echo base_url(); ?><!----><?php //echo $path ?><!--NMD.png">-->
-<!--                                                </div>-->
-<!---->
-<!--                                            </div>-->
-<!--                                            <hr class="uk-divider-icon">-->
-<!--                                            <b>Alpha</b>-->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-lg-6 col-lg-offset-3">-->
-<!--                                                    <img class="img-thumbnail" width="300px"-->
-<!--                                                         src="--><?php //echo base_url(); ?><!----><?php //echo $path ?><!--Alpha.png">-->
-<!--                                                </div>-->
-<!---->
-<!--                                            </div>-->
-<!--                                            <hr class="uk-divider-icon">-->
-<!--                                            <b>Tree</b>-->
-<!--                                            <div class="row" >-->
-<!--                                                <div class="col-lg-6 col-lg-offset-3">-->
-<!--                                                    <img class="img-thumbnail" width="300px"-->
-<!--                                                         src="--><?php //echo base_url(); ?><!----><?php //echo $path ?><!--Tree.png">-->
-<!--                                                </div>-->
-<!---->
-<!--                                            </div>-->
-<!---->
-<!--                                            <hr class="uk-divider-icon">-->
-<!--                                            --><?php
-//                                            $path_file_original_phylotype = $path . "final.tx.groups.ave-std.summary";
-//                                            $path_file_original_otu = $path . "final.opti_mcc.groups.ave-std.summary";
-//                                            if (file_exists($path_file_original_phylotype)){
-//                                                $path_file_original = $path_file_original_phylotype;
-//                                            }
-//                                            if (file_exists($path_file_original_otu)){
-//                                                $path_file_original = $path_file_original_otu;
-//                                            }
-//
-//                                            $name_file = basename($path_file_original);
-//
-//
-//
-//                                            ?>
-<!---->
-<!---->
-<!--                                            <b>--><?php //echo $name_file ?><!--</b>-->
-<!--                                            <div class="row" >-->
-<!--                                            <div class="col-lg-6">-->
-<!--                                                --><?php
-//
-//
-//                                                if ($file_original = fopen($path_file_original, "r")) {
-//                                                    $keywords_split_line = preg_split("/[\n]/", fread($file_original, filesize($path_file_original)));
-//                                                    $num_line = count($keywords_split_line);
-//                                                    ?>
-<!--                                                    <table class="table table-striped table-bordered dataTable">-->
-<!--                                                    <thead>-->
-<!--                                                    <tr>-->
-<!--                                                        <td>groups</td>-->
-<!--                                                        <td>method</td>-->
-<!--                                                        <td>nseq</td>-->
-<!--                                                        <td>cover</td>-->
-<!--                                                        <td>sobs</td>-->
-<!--                                                        <td>chao</td>-->
-<!--                                                        <td>chao_lci</td>-->
-<!--                                                        <td>chao_hci</td>-->
-<!--                                                        <td>shannon</td>-->
-<!--                                                        <td>shannon_lci</td>-->
-<!--                                                        <td>shannon_hci</td>-->
-<!--                                                    </tr>-->
-<!--                                                    </thead>-->
-<!--                                                    <tbody>-->
-<!--                                                    --><?php
-//                                                    for ($i = 0; $i <= $num_line - 1; $i++) {
-//                                                        $line_split_tab_i = preg_split("/[\t]/", $keywords_split_line[$i]);
-//                                                        if ($line_split_tab_i[0] == "2" or $line_split_tab_i[0] == "0.03") { ?>
-<!--                                                                <tr>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[1];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[2];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[3];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[4];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[5];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[9];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[10];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[11];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[12];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[13];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[14];?><!--</td>-->
-<!--                                                                </tr>-->
-<!--                                                        --><?php //} ?>
-<!--                                                    --><?php //} ?>
-<!--                                                    </tbody>-->
-<!--                                                    </table>-->
-<!--                                                    --><?php
-//                                                }
-//                                                ?>
-<!--                                            </div>-->
-<!---->
-<!---->
-<!--                                        </div>-->
-<!--                                        <hr class="uk-divider-icon">-->
-<!--                                        --><?php
-//                                        $path_file_original_phylotype = $path . "final.tx.summary";
-//                                        $path_file_original_otu = $path . "final.opti_mcc.summary";
-//                                        if (file_exists($path_file_original_phylotype)){
-//                                            $path_file_original = $path_file_original_phylotype;
-//                                        }
-//                                        if (file_exists($path_file_original_otu)){
-//                                            $path_file_original = $path_file_original_otu;
-//                                        }
-//                                        $name_file_summary = basename($path_file_original);
-//
-//
-//
-//                                        ?>
-<!---->
-<!---->
-<!--                                        <b>--><?php //echo $name_file_summary ?><!--</b>-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-lg-6">-->
-<!--                                                --><?php
-//                                                $path_file_original_phylotype = $path . "final.tx.summary";
-//                                                $path_file_original_otu = $path . "final.opti_mcc.summary";
-//                                                if (file_exists($path_file_original_phylotype)){
-//                                                    $path_file_original = $path_file_original_phylotype;
-//                                                }
-//                                                if (file_exists($path_file_original_otu)){
-//                                                    $path_file_original = $path_file_original_otu;
-//                                                }
-//                                                if ($file_original = fopen($path_file_original, "r")) {
-//                                                    $keywords_split_line = preg_split("/[\n]/", fread($file_original, filesize($path_file_original)));
-//                                                    $num_line = count($keywords_split_line);
-//                                                    ?>
-<!--                                                    <table class="table table-striped table-bordered dataTable" style="text-align: center">-->
-<!--                                                        <thead>-->
-<!--                                                        <tr>-->
-<!--                                                            <td colspan="2">comparison</td>-->
-<!--                                                            <td>lennon</td>-->
-<!--                                                            <td>jclass</td>-->
-<!--                                                            <td>morisitahorn</td>-->
-<!--                                                            <td>sorabund</td>-->
-<!--                                                            <td>thetan</td>-->
-<!--                                                            <td>thetayc</td>-->
-<!--                                                            <td>thetayc_lci</td>-->
-<!--                                                            <td>thetayc_hci</td>-->
-<!--                                                            <td>braycurtis</td>-->
-<!--                                                        </tr>-->
-<!--                                                        </thead>-->
-<!--                                                        <tbody>-->
-<!--                                                        --><?php
-//                                                        for ($i = 0; $i <= $num_line - 1; $i++) {
-//                                                            $line_split_tab_i = preg_split("/[\t]/", $keywords_split_line[$i]);
-//                                                            if ($line_split_tab_i[0] == "2" or $line_split_tab_i[0] == "0.03") { ?>
-<!--                                                                <tr>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[1];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[2];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[4];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[5];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[6];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[7];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[8];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[9];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[10];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[11];?><!--</td>-->
-<!--                                                                    <td>--><?php //echo $line_split_tab_i[12];?><!--</td>-->
-<!--                                                                </tr>-->
-<!--                                                            --><?php //} ?>
-<!--                                                        --><?php //} ?>
-<!--                                                        </tbody>-->
-<!--                                                    </table>-->
-<!---->
-<!---->
-<!---->
-<!--                                                    --><?php
-//
-//                                                }
-//                                                ?>
-<!--                                            </div>-->
-<!---->
-<!--                                        </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <button onclick="printContent('print')">Print</button>-->
-                                    </li>
                                 </ul>
 
                             </div>
 
+                            <?php echo form_close()?>
+
+
                         </li>
 
-                        <?php echo form_close(); ?>
+
                         <!-- End Standard run -->
+
 
      <!-- ADVANCE  -->
      <li>

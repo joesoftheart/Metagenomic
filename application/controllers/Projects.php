@@ -83,6 +83,40 @@ class Projects extends CI_Controller
 
     public function standard_run($id)
     {
+
+
+        if ($this->input->post("max_amb") != null){
+
+            $data = array("max_amb" => $this->input->post("max_amb"),
+                "max_homo" => $this->input->post("max_homo"),
+                "min_read" => $this->input->post("min_read"),
+               "max_read" => $this->input->post("max_read"),
+                "align_seq" => $this->input->post("align_seq"),
+                "diffs" => $this->input->post("diffs"),
+                "cutoff" => $this->input->post("cutoff"),
+                "db_taxon" => $this->input->post("db_taxon"),
+                "rm_taxon" => $this->input->post("rm_taxon"),
+                "tax_level" => $this->input->post("tax_level"),
+                "mode" => "standard",
+                "project_id" => $id
+                );
+
+            $check_pro = $this->mongo_db->get_where('projects_run', array("project_id" => $id));
+
+            if ($check_pro != null){
+                $this->mongo_db->where(array("project_id" => $id))->set($data)->update('projects_run');
+            }else{
+
+                $this->mongo_db->insert('projects_run', $data);
+            }
+
+
+
+        }else{
+            echo "..........";
+
+        }
+
         $data = $this->mongo_db->get_where("projects", array("_id" => new MongoId($id)));
         foreach ($data as $r) {
             $sample_folder = $r['project_path'];
@@ -119,22 +153,6 @@ class Projects extends CI_Controller
 
         $jobname = $user . "_" . $id . "_start_run";
 
-
-//
-//        if (is_link($path."/input/99_otu_map.txt") or file_exists($path."/input/99_otu_map.txt")){
-//
-//
-//            echo "Have";
-//        }else{
-//            echo getcwd();
-//
-//            $target = 'd1/joe.txt';
-//            $link = 'd2/';
-//            echo exec("pwd");
-//           // symlink($target, $link);
-//            echo shell_exec("ls");
-//
-//        }
 
 
 

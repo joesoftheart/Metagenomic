@@ -281,11 +281,33 @@ $this->myfpdf->AddPage();
 
 
 //Page 1
+foreach ($projects_t as $r_project){
+    $project_name = $r_project['project_name'];
+    $project_type = $r_project['project_type'];
+    $project_program = $r_project['project_program'];
+    $project_sequencing = $r_project['project_sequencing'];
+    $project_analysis = $r_project['project_analysis'];
 
+}
+foreach ($projects_run_t as $r_pro_run){
+    $max_amb = $r_pro_run['max_amb'];
+    $max_homo = $r_pro_run['max_homo'];
+    $min_read = $r_pro_run['min_read'];
+    $max_read = $r_pro_run['max_read'];
+    $align_seq = $r_pro_run['align_seq'];
+    $diffs = $r_pro_run['diffs'];
+    $cutoff = $r_pro_run['cutoff'];
+    $db_taxon = $r_pro_run['db_taxon'];
+    $rm_taxon = $r_pro_run['rm_taxon'];
+    $tax_level = $r_pro_run['tax_level'];
+    $mode = $r_pro_run['mode'];
+
+
+}
 $this->myfpdf->SetFont('Times','B',12);
-$this->myfpdf->Cell(0,8,'Project Name : '.$txt,0,1);
-$this->myfpdf->Cell(0,8,'Project type : 18S/18S/ITS',0,1);
-$this->myfpdf->Cell(0,8,'Program analysis : Mothur/Qiime/UPARSE',0,1);
+$this->myfpdf->Cell(0,8,'Project Name : '.$project_name,0,1);
+$this->myfpdf->Cell(0,8,'Project type : '.$project_type,0,1);
+$this->myfpdf->Cell(0,8,'Program analysis : '.$project_program,0,1);
 $this->myfpdf->Cell(0,8,'Running mode : standard/advance',0,1);
 $this->myfpdf->Cell(0,8,'Data pre-processing :',0,1);
 $this->myfpdf->SetFont('Times','',12);

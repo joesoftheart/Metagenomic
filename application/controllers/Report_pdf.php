@@ -15,15 +15,14 @@ class Report_pdf extends CI_Controller{
     }
 
     public function fpdf($id_project){
-        $data = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
+        $data['projects_t'] = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
+        $data['projects_run_t'] = $this->mongo_db->get_where('projects_run', array('project_id' => $id_project));
 
-        foreach ($data as $value){
-            $project_name = $value['project_name'];
 
-        }
+
         $this->load->library('myfpdf');
         $this->load->library('mytcpdf');
-        $data['txt'] = $project_name;
+
         $this->load->view('reportpdf',$data);
     }
 

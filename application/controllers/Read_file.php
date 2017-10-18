@@ -46,4 +46,41 @@ class Read_file extends CI_Controller{
     }
 
 
+    public function read_file(){
+        $path_file_phylotype = array("final.tx.summary","file_after_reverse.csv","file_phylum_count.txt","final.tx.2.subsample.shared",
+            "final.tx.thetayc.2.lt.ave.nmds.axes","final.tx.groups.summary","final.tx.groups.rarefaction","soilpro.pearson.corr.axes");
+
+        $path_file_otu = array("final.opti_mcc.summary","file_after_reverse.csv","file_phylum_count.txt","final.opti_mcc.0.03.subsample.shared",
+            "final.opti_mcc.thetayc.0.03.lt.ave.nmds.axes","final.opti_mcc.groups.summary","final.opti_mcc.groups.rarefaction","soilpro.pearson.corr.axes");
+
+
+        $path_owncloud_phylotype = "owncloud/data/joesoftheart/files/SAMPLE-WES-2023/output/";
+        $path_owncloud_otu = "owncloud/data/joesoftheart/files/SAMPLE_OTU/output/";
+
+        foreach ($path_file_phylotype as $value){
+            if (file_exists($path_owncloud_phylotype . $value)) {
+                echo "Have file". $value;
+                echo "<br>";
+                $file = fopen($path_owncloud_phylotype . $value,"r");
+
+                echo $file;
+            }else{
+                echo "No file". $value;
+                echo "<br>";
+            }
+        }
+        echo "____________________";
+        echo "<br>";
+        foreach ($path_file_otu as $value){
+            if (file_exists($path_owncloud_otu . $value)) {
+                echo "Have file". $value;
+                echo "<br>";
+            }else{
+                echo "No file". $value;
+                echo "<br>";
+            }
+        }
+    }
+
+
 }
