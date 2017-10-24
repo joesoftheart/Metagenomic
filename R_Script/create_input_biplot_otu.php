@@ -34,6 +34,8 @@ if (file_exists($file_subsample) and file_exists($file_taxonomy)){
 
         }
     }
+
+    echo "complete output_bioplot.txt";
 }
 
 

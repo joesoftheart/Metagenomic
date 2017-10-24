@@ -14,10 +14,11 @@ if ($file_original = fopen($path_file_original, "r")) {
 
     if (file_exists($file_after_chao)) {
         file_put_contents($file_after_chao, "");
-    }
-    if (filesize($file_after_chao) == 0){
         file_put_contents($file_after_chao, "result" . "\t" . "value" . "\t" . "Source" . "\n", FILE_APPEND);
     }
+
+
+
 
 
     for ($i = 0; $i <= $num_line - 1; $i++) {
@@ -41,7 +42,7 @@ if ($file_original = fopen($path_file_original, "r")) {
 
     }
 
-
+    echo "complete file_after_chao.txt";
 }
 
 ?>

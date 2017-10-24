@@ -48,6 +48,7 @@ class New_projects extends CI_Controller {
                 "project_path" => $this->input->post("project_path"),
                 "project_num_sam" => $show,
                 "project_group_sam" => $show/2,
+                "project_date_time" => date("Y-m-d H:i:s"),
                 "user_id" => $this->session->userdata["logged_in"]["_id"]);
 
             $this->mongo_db->insert('projects', $data);

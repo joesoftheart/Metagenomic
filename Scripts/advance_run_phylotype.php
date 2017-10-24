@@ -454,12 +454,18 @@
 
                      if(($start_min == $start_max) || ($end_min == $end_max)){
 
-                        foreach ($sum as $key => $value) {
-                           echo  $value ."\n";     
-                        }
+                    
+                      $numItems = count($sum);
+                      $i = 0;
+                      foreach($sum as $key=>$value) {
+                          if(++$i === $numItems) {
+                            echo "last index!";
+                            echo "Variable start Equal Variable end "."\n"; 
+                            break; 
+                             }
+                         }
 
-                        echo "Variable start Equal Variable end "."\n"; 
-                        break; 
+                        
 
                            
                      }elseif (($start_min != $start_max) && ($end_min != $end_max) ) {

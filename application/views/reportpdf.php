@@ -51,13 +51,45 @@ class RPDF extends FPDF
         $this->issetfont=false;
         $this->issetcolor=false;
     }// Page header
-    function Header()
+
+
+
+    var $col=0;
+
+    function SetCol($col)
+    {
+        //Set position on top of a column
+        $this->col=$col;
+        $this->SetLeftMargin(10+$col*40);
+        $this->SetY(25);
+    }
+
+    function AcceptPageBreak()
+    {
+        //Go to the next column
+        $this->SetCol($this->col+1);
+        return false;
+    }
+
+    function DumpFont($FontName,$Number)
     {
 
+
+
+            $this->SetFont($FontName);
+           // $this->Cell(0,5.5,chr($Number),0,1);
+        return chr($Number);
+
+    }
+    function Header()
+    {
+//        $this->mypdf->DumpFont('Arial');
+//        $this->mypdf->DumpFont('Symbol');
+//        $this->mypdf->DumpFont('ZapfDingbats');
         // Logo
         //$this->Image(base_url().'images/logo.jpg',10,6,30);
         // Arial bold 15
-        $this->SetFont('Arial','B',15);
+        $this->SetFont('Arial','B',15)  ;
         // Move to the right
         $this->Cell(80);
 
@@ -287,6 +319,18 @@ foreach ($projects_t as $r_project){
     $project_program = $r_project['project_program'];
     $project_sequencing = $r_project['project_sequencing'];
     $project_analysis = $r_project['project_analysis'];
+    $project_date_time = $r_project['project_date_time'];
+    $project_num_sam = $r_project['project_num_sam'];
+    $project_group_sam = $r_project['project_group_sam'];
+    $date = explode(" ", $project_date_time);
+    $time = $date[1];
+    $date = $date[0];
+    $methods = null;
+    if ($project_analysis == "phylotype"){
+        $methods = "genus";
+    }else if ($project_analysis == "OTUs") {
+        $methods = "0.03";
+    }
 
 }
 foreach ($projects_run_t as $r_pro_run){
@@ -310,16 +354,17 @@ $this->myfpdf->Cell(0,8,'Project type : '.$project_type,0,1);
 $this->myfpdf->Cell(0,8,'Program analysis : '.$project_program,0,1);
 $this->myfpdf->Cell(0,8,'Running mode : standard/advance',0,1);
 $this->myfpdf->Cell(0,8,'Data pre-processing :',0,1);
+//$this->myfpdf->DumpFont('Symbol', '179');
 $this->myfpdf->SetFont('Times','',12);
-$this->myfpdf->MultiCell(0, 6, 'The data set xxx was uploaded on 2017-09-16 at 09:54:16 and contains xxx sequences with an average length of 246 bps.  Raw sequencing data obtained from illumina platform were implemented according to Mothur MiSeq SOP. First, raw sequences were joined the reads into contigs using make.contigs function from Mothur program (version 1.39.5). After that they were pre-processed to remove ambiguous base  8. Then, sequences were aligned using SILVA bacterial database. This makes sequences that did not overlap in the desired region are excluded including the sequences of homopolymer bases  8 with the minimum and maximum length of reads were set to xxx and xxx bp, respectively. Moreover, pre.cluster function was used to merge low frequency sequences with very close higher frequency sequencings using a modified single linage algorithm. This is to reduce the sequencing error. The chimeras were also screened using UCHIME function and removed from the sequences set. The clean sequences were classified the taxonomy using the Naïve Bayesian Classifier method, described by Wang et al. with Greengenes database (August 2013 release of gg_13_8_99). The minimum bootstrap confidence score of 80% was used for taxonomic assignment. In the step of the clustering of sequences was performed using phylotype-based methods at genus level with Mothur program.');
+$this->myfpdf->MultiCell(0, 6, 'The data set '.$project_name.' was uploaded on '.$date.' at '.$time.' and contains '.$project_num_sam.' sequences with an average length of [[[246]]] bps.  Raw sequencing data obtained from '.$project_sequencing.' platform were implemented according to '.$project_program.' MiSeq SOP. First, raw sequences were joined the reads into contigs using make.contigs function from Mothur program (version 1.39.5). After that they were pre-processed to remove ambiguous base > '.$max_amb.'. Then, sequences were aligned using SILVA bacterial database. This makes sequences that did not overlap in the desired region are excluded including the sequences of homopolymer bases > '.$max_amb.' with the minimum and maximum length of reads were set to '.$min_read.' and '.$max_read.' bp, respectively. Moreover, pre.cluster function was used to merge low frequency sequences with very close higher frequency sequencings using a modified single linage algorithm. This is to reduce the sequencing error. The chimeras were also screened using UCHIME function and removed from the sequences set. The clean sequences were classified the taxonomy using the Naïve Bayesian Classifier method, described by Wang et al. with Greengenes database (August 2013 release of gg_13_8_99). The minimum bootstrap confidence score of 80% was used for taxonomic assignment. In the step of the clustering of sequences was performed using '.$project_type.'-based methods at '.$methods.' level with Mothur program.');
 $this->myfpdf->SetFont('Times', 'UB',12);
 $this->myfpdf->Cell(0, 10, 'Summary Report',0,1);
 $this->myfpdf->SetFont('Times', '',12);
-$this->myfpdf->MultiCell(0, 6, 'A total of ## datasets has been submitted to the Amplicon Metagenomic platform. These data were then analysed and display as different diagrams/graphs. This report consist of statistical table and graph of alpha diversity analysis, rarefaction graph, taxonomy profiles of bacterial phyla, heatmap profiling, beta diversity analysis including venn diagram, statistical comparision, NMDS or PCoA, biplot, respectively.');
+$this->myfpdf->MultiCell(0, 6, 'A total of '.$project_group_sam.' datasets has been submitted to the Amplicon Metagenomic platform. These data were then analysed and display as different diagrams/graphs. This report consist of statistical table and graph of alpha diversity analysis, rarefaction graph, taxonomy profiles of bacterial phyla, heatmap profiling, beta diversity analysis including venn diagram, statistical comparision, NMDS or PCoA, biplot, respectively.');
 $this->myfpdf->SetFont('Times', 'B', 12);
 $this->myfpdf->Cell(0, 10, 'Diversity, richness and composition of microbial communities',0,1);
 $this->myfpdf->SetFont('Times','',12);
-$this->myfpdf->MultiCell(0,6,'The cleaned sequences were clustered based on phylotype/OTUs method. After data pre-processing, an average reads length is xxx bp with number of dataset of xxx sequences. The phylotype/OTUs of these data represented xxx–xxx OTUs per group in average. The alpha diversity was estimated microbial community richness (Chao1) and diversity (Shannon) from subsampling data based on the library size at xxx. The xxx and the xxx displayed the highest and the lowest species richness, respectively. The Shannon index estimated the diversity in the community. It displayed that there is the most diverse of bacteria in xxx and the lowest diverse of bacteria in xxx. ');
+$this->myfpdf->MultiCell(0,6,'The cleaned sequences were clustered based on '.$project_analysis.' method. After data pre-processing, an average reads length is [[[xxx]]] bp with number of dataset of '.$project_num_sam.' sequences. The '.$project_analysis.' of these data represented [[[xxx–xxx]]] OTUs per group in average. The alpha diversity was estimated microbial community richness (Chao1) and diversity (Shannon) from subsampling data based on the library size at [[[xxx]]]. The [[[xxx]]] and the [[[xxx]]] displayed the highest and the lowest species richness, respectively. The Shannon index estimated the diversity in the community. It displayed that there is the most diverse of bacteria in [[[xxx]]] and the lowest diverse of bacteria in [[[xxx]]]. ');
 
 
 
@@ -410,9 +455,12 @@ $this->myfpdf->Cell('0', 100, '', 0, 1);
 $this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 9.</b> Extended error bar plot of the predicted metagenome functions in KEGG (level 2) between soil source 1 and soil source 2').'');
 
 
-
-
-
+// Page Test
+$this->myfpdf->AddPage();
+$this->myfpdf->SetFont('Symbol');
+$this->myfpdf->WriteHTML('<p>I will display &#8805;</p>
+<p>I will display &#x2265;</p>
+<p>I will display &ge;</p>');
 
 $this->myfpdf->Output();
 

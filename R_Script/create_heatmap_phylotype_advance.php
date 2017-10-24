@@ -8,6 +8,10 @@ $file_index = "owncloud/data/$user/files/$project/output/file_index.txt";
 $file_before_reverse = "owncloud/data/$user/files/$project/output/file_before_reverse.txt";
 $file_after_reverse = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";
 
+if (file_exists($file_before_reverse)){
+    file_put_contents($file_before_reverse, '');
+}
+
 if ($file_original = fopen($path_file_original, "r")) {
     $keywords_split_line = preg_split("/[\n]/", fread($file_original, filesize($path_file_original)));
     $save_index = array();

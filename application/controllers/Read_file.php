@@ -47,6 +47,9 @@ class Read_file extends CI_Controller{
 
 
     public function read_file(){
+
+        echo date("Y-m-d H:i:s");
+
         $path_file_phylotype = array("final.tx.summary","file_after_reverse.csv","file_phylum_count.txt","final.tx.2.subsample.shared",
             "final.tx.thetayc.2.lt.ave.nmds.axes","final.tx.groups.summary","final.tx.groups.rarefaction","soilpro.pearson.corr.axes");
 
@@ -80,6 +83,7 @@ class Read_file extends CI_Controller{
                 echo "<br>";
             }
         }
+
     }
 
 

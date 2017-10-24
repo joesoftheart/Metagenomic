@@ -104,9 +104,9 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 echo "selected";
                                             } ?>>
                                             </option>
-                                            <option <?php if ($r['project_analysis'] == "otu") {
+                                            <option <?php if ($r['project_analysis'] == "OTUs") {
                                                 echo "selected";
-                                            } ?>>otu
+                                            } ?>>OTUs
                                             </option>
                                             <option <?php if ($r['project_analysis'] == "phylotype") {
                                                 echo "selected";
