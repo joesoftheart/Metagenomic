@@ -124,6 +124,6 @@ if ($file_cs = fopen($file_before_reverse, "r")) {
 
         file_put_contents($file_after_reverse, "\n",FILE_APPEND);
     }
-    echo "Create file complete";
+    echo "complete file_after_reverse.csv";
 }
 ?>

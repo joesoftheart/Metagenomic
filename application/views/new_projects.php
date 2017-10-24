@@ -69,7 +69,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                         <!--                                    <label>Select analysis :</label> -->
                                         <select class="uk-select  uk-width-1-4 hide" id="program"
                                                 name="project_analysis">
-                                            <option value="otu">OTU</option>
+                                            <option value="OTUs">OTUs</option>
                                             <option value="phylotype">Phylotype</option>
                                         </select>
                                         <br>

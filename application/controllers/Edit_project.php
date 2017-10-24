@@ -39,7 +39,8 @@ class  Edit_project extends CI_Controller {
                 "project_analysis" => $this->input->post("project_analysis"),
                 "project_path" => $this->input->post("project_path"),
                 "project_num_sam" => $show,
-                "project_group_sam" => $show/2
+                "project_group_sam" => $show/2,
+                "project_date_time" => date("Y-m-d H:i:s")
             );
 
             $this->mongo_db->where(array("_id" => new \MongoId($id)))->set($data_project)->update('projects');

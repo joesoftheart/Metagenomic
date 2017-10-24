@@ -157,7 +157,7 @@ class Projects extends CI_Controller
 
 
 
-        if ($project_analysis == "otu"){
+        if ($project_analysis == "OTUs"){
             $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f Scripts/standard_run_otu.php $user $id $project $path";
             exec($cmd);
             redirect("/process/index/".$id);
