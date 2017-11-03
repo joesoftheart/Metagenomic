@@ -455,11 +455,11 @@
                      if(($start_min == $start_max) || ($end_min == $end_max)){
 
                         foreach ($sum as $key => $value) {
-                           echo  $value ."\n";     
+                           echo  $value ."\n";
                         }
 
-                        echo "Variable start Equal Variable end "."\n"; 
-                        break; 
+                        echo "Variable start Equal Variable end "."\n";
+                        break;
 
                            
                      }elseif (($start_min != $start_max) && ($end_min != $end_max) ) {

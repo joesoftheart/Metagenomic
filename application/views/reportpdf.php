@@ -371,7 +371,7 @@ $this->myfpdf->MultiCell(0,6,'The cleaned sequences were clustered based on '.$p
 // Page 2
 $this->myfpdf->AddPage();
 $this->myfpdf->SetFont('Times','',12);
-$this->myfpdf->MultiCell(0, 10,$this->myfpdf->WriteHTML('<b>Table 1 </b>Alpha diversity estimator of bacterial 18S analysis at genus level') . '', 0);
+$this->myfpdf->MultiCell(0, 10,$this->myfpdf->WriteHTML('<b>Table 1 </b>Alpha diversity estimator of bacterial 18S analysis at '.$methods.' level') . '', 0);
 $this->myfpdf->SetFont('angsa','',12);
 $this->myfpdf->Table($header,$data);
 $this->myfpdf->Image(base_url() . 'images/box_plot.png','40','90','110  ','80','PNG');
