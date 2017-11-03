@@ -454,12 +454,20 @@
 
                      if(($start_min == $start_max) || ($end_min == $end_max)){
 
-                        foreach ($sum as $key => $value) {
-                           echo  $value ."\n";
-                        }
 
-                        echo "Variable start Equal Variable end "."\n";
-                        break;
+                    
+                      $numItems = count($sum);
+                      $i = 0;
+                      foreach($sum as $key=>$value) {
+                          if(++$i === $numItems) {
+                            echo "last index!";
+                            echo "Variable start Equal Variable end "."\n"; 
+                            break; 
+                             }
+                         }
+
+                        
+
 
                            
                      }elseif (($start_min != $start_max) && ($end_min != $end_max) ) {
@@ -695,7 +703,7 @@
                     if($key_var == "1"){
                         $data = explode(":", $value);
                         $id_job = $data[1];
-                    }        
+                    }
               }
               $loop = true;
               while ($loop) {

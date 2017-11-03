@@ -800,7 +800,7 @@ Beta – Diversity:
                          <div class="panel-heading">          
                              <h4 class="panel-title">
                                  <a  data-toggle="collapse" data-parent="#accordion" href="#collapse12" >1. Taxonomy Level 
-                                 <i class="fa fa-question-circle-o"></i>         
+                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div8');"></i>         
                                 
                                  </a>  
                              </h4>
@@ -1032,7 +1032,11 @@ Beta – Diversity:
 
 
                              <div class="col-lg-8 "> 
-                                 <label> Create file design  <a href="<?php echo site_url('Run_advance/create_file_design');?>?current=<?=$current_project?>" target="_blank"><input type="button" class="btn btn-outline btn-info" value="create design" id="check_design"></a> </label>         
+                                 <label> Create file design 
+                                <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div11');">
+                                </i> 
+                                  <a href="<?php echo site_url('Run_advance/create_file_design');?>?current=<?=$current_project?>" target="_blank"><input type="button" class="btn btn-outline btn-info" value="create design" id="check_design"></a> 
+                              </label>         
                                  <div>
                                      <p id="pass_design" class="fa fa-file-text-o" > No file design </p>                    
                                      <input type="hidden" id="p_design" name="f_design" value="nodesign">
@@ -1040,11 +1044,23 @@ Beta – Diversity:
                                 </div>
                              </div>
                              <div class="col-lg-8 col-lg-push-1 ">                
-                                 <div class="radio"><label><input name="optionsRadios2" value="amova" type="radio"> Amova </label></div>
-                                 <div class="radio"><label> <input name="optionsRadios2"  value="homova" type="radio" > Homova </label></div>
+                                 <div class="radio">
+                                    <label><input name="optionsRadios2" value="amova" type="radio"> Amova </label>
+                                    <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div9');"></i>   
+                                </div>
+                                 <div class="radio">
+                                    <label> <input name="optionsRadios2"  value="homova" type="radio" > Homova </label>
+                                     <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div10');"></i>  
+                                </div>
                              </div>
                              <div class="col-lg-10 uk-margin"> 
-                                 <label> Create file metadata <a href="<?php echo base_url('Run_advance/create_file_metadata');?>?current=<?=$current_project?>"  target="_blank"><input type="button" class="btn btn-outline btn-info" value="create metadata" id="check_metadata"></a></label>   
+
+                                 <label> Create file metadata 
+                                     <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div13');">
+                                </i> 
+                                    <a href="<?php echo base_url('Run_advance/create_file_metadata');?>?current=<?=$current_project?>"  target="_blank"><input type="button" class="btn btn-outline btn-info" value="create metadata" id="check_metadata">
+                                    </a>
+                                </label>   
                              <div>
                                  <p id="pass_metadata" class="fa fa-file-text-o"> No file metadata </p>
                                  <input type="hidden" id="p_metadata" name="f_metadata" value="nometadata">
@@ -1052,7 +1068,12 @@ Beta – Diversity:
                              </div>
                              </div>
                             
-                                 <label class="col-lg-6"><input type="checkbox" id="correlation_meta"  value="meta" > correlation with metadata </label>
+                                 <label class="col-lg-6">
+                                    <input type="checkbox" id="correlation_meta"  value="meta" > correlation with metadata
+                                     <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div14');">
+                                     </i> 
+
+                                     </label>
                                  <div class="col-lg-4 col-lg-pull-2">
                                      <select class="uk-select" name="method_meta">
                                          <option value="spearman"> spearman </option>
@@ -1067,7 +1088,12 @@ Beta – Diversity:
                              </div>
                               
                             
-                                 <label class="col-lg-6"><input type="checkbox" id="correlation_otu"  value="otu" > correlation of each OTU </label>
+                                 <label class="col-lg-6">
+                                    <input type="checkbox" id="correlation_otu"  value="otu" > correlation of each OTU 
+                                     <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div15');">
+                                     </i> 
+
+                                </label>
                                  <div class="col-lg-4 col-lg-pull-2">
                                      <select class="uk-select" name="method_otu">
                                          <option value="spearman"> spearman </option>
