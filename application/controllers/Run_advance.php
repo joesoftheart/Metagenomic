@@ -23,6 +23,8 @@
     }
 
 
+
+
     public function recheck(){
 
       $id_project = $_REQUEST['data_status'];
@@ -382,7 +384,7 @@
                    $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project_data $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
                   
             }
-            elseif ($project_analysis == "otu") {
+            elseif ($project_analysis == "OTUs") {
 
                 $count = $this->mongo_db->where(array('id_project'=> $id_project))->count('advance_classifly');
                   if($count == 0){
@@ -519,7 +521,7 @@
 
                 $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
 
-             }elseif ($project_analysis == "otu") {
+             }elseif ($project_analysis == "OTUs") {
 
                 $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
              }
@@ -618,7 +620,7 @@
 
                 $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype2.php $user $project_data $path_input $path_out $size $path_log";
            }
-           else if($project_analysis == "otu") {
+           else if($project_analysis == "OTUs") {
 
                 $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu2.php $user $project_data $path_input $path_out $size $path_log";
            }
@@ -695,7 +697,7 @@
                     $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
 
                   }
-                  elseif ($project_analysis == "otu") {
+                  elseif ($project_analysis == "OTUs") {
 
                     $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
                     
@@ -766,7 +768,7 @@
 
                 $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
 
-             }elseif ($project_analysis == "otu") {
+             }elseif ($project_analysis == "OTUs") {
 
                 $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
              }
@@ -822,7 +824,7 @@
                   $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
 
                  }
-                 elseif ($project_analysis == "otu") {
+                 elseif ($project_analysis == "OTUs") {
 
                   $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
                  }
@@ -1029,7 +1031,7 @@
                 $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num";
                
            }
-           else if($project_analysis == "otu") {
+           else if($project_analysis == "OTUs") {
                 
                 $label_num = "0.03";
 
@@ -1112,7 +1114,7 @@
         if($file_design == "0" && $file_metadata == "0"){
              $divisor = 25 ;
         }else if($file_design != "0" || $file_metadata != "0"){
-             $divisor = 32 ;
+             $divisor = 26 ;
         }
 
          
@@ -1209,7 +1211,7 @@
    
          $path = FCPATH."owncloud/data/$user/files/$project/output/";
 
-        if($project_analysis == "otu"){
+        if($project_analysis == "OTUs"){
 
                $file_groups_ave_std_summary = "final.opti_mcc.groups.ave-std.summary";
                $path_file_original_g = $path.$file_groups_ave_std_summary;
@@ -1285,7 +1287,7 @@
           
          $path = FCPATH."owncloud/data/$user/files/$project/output/";
 
-         if($project_analysis == "otu"){
+         if($project_analysis == "OTUs"){
 
                      $file_summary = "final.opti_mcc.summary";
                      $path_file_original_s = $path.$file_summary;

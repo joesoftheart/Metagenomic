@@ -63,9 +63,9 @@
 
 
          if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != "" && $argv[6] =! "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != ""){
-             
-             collect_rarefaction_summary($user,$project,$path_in,$path_out);
-
+             echo "Check Parameter Success"."\n";
+             //collect_rarefaction_summary($user,$project,$path_in,$path_out);
+             make_biom($user,$project,$path_in,$path_out);
 
 
          }else{
@@ -981,7 +981,7 @@
 
     function create_file_input_heatmap($user,$project,$path_in,$path_out){
      
-     echo "Run create_file_input_heatmap"."\n";
+     echo "create_file_input_heatmap"."\n";
      $jobname = $user."_create_file_input_heatmap";
 
      $log = $GLOBALS['path_log'];
@@ -1012,7 +1012,7 @@
 
  function create_file_input_abun($user,$project,$path_in,$path_out){
     
-    echo "Run create_file_input_abun "."\n";
+    echo "create_file_input_abun "."\n";
     $jobname = $user ."_create_file_input_abun";
 
     $log = $GLOBALS['path_log'];
@@ -1042,7 +1042,7 @@
 
 function create_input_alphash($user,$project,$path_in,$path_out){
    
-    echo "Run create_input_alphash "."\n";
+    echo "create_input_alphash "."\n";
     $jobname = $user ."_create_input_alphash";
 
     $log = $GLOBALS['path_log'];
@@ -1074,7 +1074,7 @@ function create_input_alphash($user,$project,$path_in,$path_out){
 
   function create_input_biplot($user,$project,$path_in,$path_out){
    
-    echo "Run create_input_biplot "."\n";
+    echo "create_input_biplot "."\n";
 
      if($GLOBALS['value_method_otu'] != null ){
 
@@ -1122,7 +1122,7 @@ function create_input_alphash($user,$project,$path_in,$path_out){
     function plot_graph_r_heatmap($user,$project,$path_in,$path_out){
 
 
-     echo "Run plot_graph_r_heatmap "."\n";
+     echo "plot_graph_r_heatmap "."\n";
      $path_input_csv = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";
      $path_to_save = "owncloud/data/$user/files/$project/output/heartmap.png";
      $jobname = $user ."_plot_graph_r_heartmap";
@@ -1154,7 +1154,7 @@ function create_input_alphash($user,$project,$path_in,$path_out){
 
  function plot_graph_r_NMD($user,$project,$path_in,$path_out){
 
-    echo "Run plot_graph_r_NMD "."\n";
+    echo "plot_graph_r_NMD "."\n";
 
     # Calculator
      if($GLOBALS['value_method_meta'] != null){
@@ -1222,7 +1222,7 @@ function create_input_alphash($user,$project,$path_in,$path_out){
 function plot_graph_r_Rare($user,$project,$path_in,$path_out){
 
   
-    echo "Run plot_graph_r_Rare "."\n";
+    echo "plot_graph_r_Rare "."\n";
     $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.opti_mcc.groups.rarefaction";
     $path_to_save = "owncloud/data/$user/files/$project/output/Rare.png";
     $jobname = $user."_plot_graph_r_Rare";
@@ -1256,7 +1256,7 @@ function plot_graph_r_Rare($user,$project,$path_in,$path_out){
 function plot_graph_r_Abun($user,$project,$path_in,$path_out){
 
     
-    echo "Run plot_graph_r_Abun "."\n";
+    echo "plot_graph_r_Abun "."\n";
     $path_input_phylumex = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";
     $path_to_save = "owncloud/data/$user/files/$project/output/Abun.png";
     $jobname = $user ."_plot_graph_r_Abun";
@@ -1290,7 +1290,7 @@ function plot_graph_r_Abun($user,$project,$path_in,$path_out){
 function plot_graph_r_Alphash($user,$project,$path_in,$path_out){
 
     
-    echo "Run plot_graph_r_Alphash "."\n";
+    echo "plot_graph_r_Alphash "."\n";
     $path_input_chao_shannon = "owncloud/data/$user/files/$project/output/file_after_chao.txt";
     $path_to_save = "owncloud/data/$user/files/$project/output/Alpha.png";
     $jobname = $user."_plot_graph_r_Alphash";
@@ -1324,7 +1324,7 @@ function plot_graph_r_Alphash($user,$project,$path_in,$path_out){
 
 function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
     
-    echo "Run plot_graph_r_Biplot"."\n";
+    echo "plot_graph_r_Biplot"."\n";
    
    # Calculator
      if($GLOBALS['value_method_meta'] != null){
@@ -1400,7 +1400,7 @@ function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
 
 function plot_graph_r_Tree($user,$project,$path_in,$path_out){
 
-    echo "Run plot_graph_r_Tree"."\n";
+    echo "plot_graph_r_Tree"."\n";
     
     $tree_cal =  $GLOBALS['tree_cal'];
     $level    =   $GLOBALS['level'];
@@ -1425,7 +1425,7 @@ function plot_graph_r_Tree($user,$project,$path_in,$path_out){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
 
-            change_name($user,$project,$path_in,$path_out);
+            make_biom($user,$project,$path_in,$path_out);
             break;
         }
     }
@@ -1433,8 +1433,134 @@ function plot_graph_r_Tree($user,$project,$path_in,$path_out){
 }
 
 
+function make_biom($user,$project,$path_in,$path_out){
+   
+
+   echo "make_biom"."\n";
+   $jobname = $user."_make_biom";
+   
+   $make = "make.biom(shared=final.opti_mcc.shared, label=0.03, constaxonomy=final.opti_mcc.0.03.cons.taxonomy, reftaxonomy=gg_13_8_99.gg.tax, picrust=99_otu_map.txt,inputdir=$path_in,outputdir=$path_out)";
+
+   file_put_contents($path_in.'/advance.batch', $make);
+
+      $log = $GLOBALS['path_log'];
+      $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+              
+        shell_exec($cmd);
+        $check_qstat = "qstat  -j '$jobname' ";
+        exec($check_qstat,$output);
+               
+               $id_job = "" ; # give job id 
+               foreach ($output as $key_var => $value ) {
+              
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }        
+              }
+              $loop = true;
+              while ($loop) {
+
+                   $check_run = exec("qstat -j $id_job");
+
+                   if($check_run == false){
+
+                      convert_biom($user,$project,$path_in,$path_out);
+                      break;   
+                   }
+              }   
+   
+   
+
+}
+
+function convert_biom($user,$project,$path_in,$path_out){
+
+
+    echo "convert_biom"."\n";
+
+    $jobname = $user."_convert_biom";
+    $log = $GLOBALS['path_log'];
+
+    $path_input_biom  = $path_out."final.opti_mcc.0.03.biom";
+    $path_output_biom = $path_out."normalized_otus.0.03.biom";
+    $path_output_txt  = $path_out."final.tx.0.03.txt";
+   
+    $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y picrust-1.1.1/scripts/convert_biom $path_input_biom $path_output_biom $path_output_txt";
+
+
+     shell_exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+               
+        $id_job = "" ; # give job id 
+        foreach ($output as $key_var => $value ) {
+              
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }        
+         }
+         $loop = true;
+         while ($loop) {
+
+                   $check_run = exec("qstat -j $id_job");
+
+                   if($check_run == false){
+
+                      phylotype_picrust($user,$project,$path_in,$path_out);
+                      break;  
+                   }
+          }   
+
+
+}
+
+function phylotype_picrust($user,$project,$path_in,$path_out){
+
+    echo "phylotype_picrust"."\n";
+
+    $jobname = $user."_phylotype_picrust";
+    $log = $GLOBALS['path_log'];
+
+    $path_input_biom = $path_out."final.opti_mcc.0.03.biom";
+    $path_output_biom = $path_out."final.biom";
+
+
+    $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y  picrust-1.1.1/scripts/qsubMoPhylo5andpicrust_norm $path_input_biom $path_output_biom ";
+
+     shell_exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+               
+        $id_job = "" ; # give job id 
+        foreach ($output as $key_var => $value ) {
+              
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }        
+         }
+         $loop = true;
+         while ($loop) {
+
+                   $check_run = exec("qstat -j $id_job");
+
+                   if($check_run == false){
+
+                      remove_logfile_mothur2($path_out);
+                      change_name($user,$project,$path_in,$path_out);
+                      break;  
+                   }
+          }   
+
+}
+
+
+
 
 function change_name($user,$project,$path_in,$path_out){
+     echo "change_name"."\n";
     $dir = $path_out;
     $file_read = array( 'svg');
     $dir_ignore = array();
@@ -1460,25 +1586,50 @@ function change_name($user,$project,$path_in,$path_out){
                     $file_name = preg_split("/[.]/",$value );
                     if (in_array("bin", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "bin.svg");
-                          echo $value." change to  bin.svg"."\n";
+                          //echo $value." change to  bin.svg"."\n";
                     }
                     if (in_array("sharedsobs", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "sharedsobs.svg");
-                          echo $value." change to sharedsobs.svg"."\n";
+                         // echo $value." change to sharedsobs.svg"."\n";
                     }
                     if (in_array("jclass", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "jclass.svg");
-                          echo $value." change to jclass.svg"."\n";
+                          //echo $value." change to jclass.svg"."\n";
                     }
                     if (in_array("thetayc", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "thetayc.svg");
-                          echo $value." change to thetayc.svg"."\n";
+                         // echo $value." change to thetayc.svg"."\n";
                     }
                 }
             }
         }
     }
 }
+
+
+
+# Remove log mothur
+
+   function remove_logfile_mothur2($path_out){ 
+            
+            $path_dir = $path_out;
+            if (is_dir($path_dir)) {
+                if ($read = opendir($path_dir)){
+                      while (($logfile = readdir($read)) !== false) {
+                        
+                        $allowed =  array('logfile');
+                        $ext = pathinfo($logfile, PATHINFO_EXTENSION);
+
+                        if(in_array($ext,$allowed)) {
+                           
+                            unlink($path_dir.$logfile);
+                        }
+                      }
+     
+                   closedir($read);
+                }
+            } 
+     }
 
 
 

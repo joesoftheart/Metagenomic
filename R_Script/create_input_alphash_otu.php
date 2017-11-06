@@ -6,6 +6,11 @@ $project = $argv[2];
 $path_file_original = "../owncloud/data/$user/files/$project/output/final.opti_mcc.groups.ave-std.summary";
 $file_after_chao = "owncloud/data/$user/files/$project/output/file_after_chao.txt";
 
+if (!file_exists($file_after_chao)) {
+    file_put_contents($file_after_chao, "");
+ 
+}
+
 if ($file_original = fopen($path_file_original, "r")) {
     $keywords_split_line = preg_split("/[\n]/", fread($file_original, filesize($path_file_original)));
 

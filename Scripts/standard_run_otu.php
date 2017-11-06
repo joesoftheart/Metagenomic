@@ -14,7 +14,8 @@ putenv("PATH=$PATH");
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
      #classify_system($user,$id,$project,$path);
-    run($user,$id,$project,$path);
+    //run($user,$id,$project,$path);
+    plot_graph($user,$id, $project,$path,$total,$name_sample);
     }
 
 
@@ -613,9 +614,6 @@ tree.shared(phylip=final.opti_mcc.morisitahorn.0.03.lt.ave.dist,inputdir=$path/i
 tree.shared(phylip=final.opti_mcc.jclass.0.03.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
 tree.shared(phylip=final.opti_mcc.braycurtis.0.03.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
 tree.shared(phylip=final.opti_mcc.lennon.0.03.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
-parsimony(tree=final.opti_mcc.thetayc.0.03.lt.ave.tre, group=soil.design, groups=all,inputdir=$path/input/,outputdir=$path/output/)
-unifrac.weighted(tree=final.opti_mcc.thetayc.0.03.lt.ave.tre, group=soil.design, random=T,inputdir=$path/input/,outputdir=$path/output/)
-unifrac.unweighted(tree=final.opti_mcc.thetayc.0.03.lt.ave.tre, group=soil.design, random=T, groups=all,inputdir=$path/input/,outputdir=$path/output/)
 pcoa(phylip=final.opti_mcc.thetayc.0.03.lt.ave.dist,inputdir=$path/input/,outputdir=$path/output/)
 nmds(phylip=final.opti_mcc.thetayc.0.03.lt.ave.dist, mindim=3, maxdim=3,inputdir=$path/input/,outputdir=$path/output/)
 amova(phylip=final.opti_mcc.thetayc.0.03.lt.ave.dist, design=soil.design,inputdir=$path/input/,outputdir=$path/output/)
