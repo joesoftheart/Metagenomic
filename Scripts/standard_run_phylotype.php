@@ -13,8 +13,13 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
+<<<<<<< HEAD
     run($user,$id,$project,$path);
    
+=======
+    phylotype_count($user,$id,$project,$path);
+
+>>>>>>> 5f70178346f493f992bf621ad19695ce2023ce1f
     }
 
 
@@ -404,7 +409,7 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
          $check_run = exec("qstat -j $id_job");
          if($check_run == false){
              echo "go to classify_system->";
-             sleep(60);
+             sleep(180);
              classify_system($user,$id, $project,$path);
 
              break;
@@ -445,7 +450,7 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
          $check_run = exec("qstat -j $id_job");
          if($check_run == false){
              echo "go to phylotype_count->";
-             sleep(60);
+             sleep(180);
              phylotype_count($user,$id, $project,$path);
              break;
          }
@@ -475,6 +480,7 @@ count.groups(shared=final.tx.shared,inputdir=$path/input/,outputdir=$path/output
          if($key_var == "1"){
              $data = explode(":", $value);
              $id_job = $data[1];
+             $id_job_string = str_replace(' ', '', $id_job);
          }
      }
      $loop = true;
@@ -482,17 +488,17 @@ count.groups(shared=final.tx.shared,inputdir=$path/input/,outputdir=$path/output
          $check_run = exec("qstat -j $id_job");
          if($check_run == false){
              echo "go to read_log_sungrid_phylotype_count->";
-             read_log_sungrid_phylotype_count($user, $id, $project, $path, $id_job);
+             read_log_sungrid_phylotype_count($user, $id, $project, $path, $id_job_string);
              break;
          }
      }
 }
 
 
-function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job){
+function read_log_sungrid_phylotype_count($user,$id,$project,$path,$id_job_string){
     echo "\n";
     echo "Run read_log_sungrid_phylotype_count :";
-    $name = $user."_".$id."_phylotype_count.o".$id_job;
+    $name = $user."_".$id."_phylotype_count.o".$id_job_string;
     $file_name = str_replace(' ', '', $name) ;
     $searchfor = 'contains';
     $file = file_get_contents("Logs_sge/phylotype/".$file_name);
@@ -658,7 +664,7 @@ corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, m
      echo "\n";
      echo "Run create_file_input_heatmap :";
      $jobname = $user . "_" . $id . "_create_file_input_heatmap";
-     $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_heatmap_phylotype.php $user $project";
+     $cmd = "qsub -N $jobname -o Logs_sge/phylotype/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/php -f R_Script/create_input_heatmap_phylotype.php $user $project";
      exec($cmd);
      $check_qstat = "qstat  -j '$jobname' ";
      exec($check_qstat, $output);
@@ -687,7 +693,7 @@ function create_file_input_abun($user, $id, $project, $path){
     echo "\n";
     echo "Run create_file_input_abun :";
     $jobname = $user . "_" . $id . "_create_file_input_abun";
-    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_abundance_phylotype.php $user $project";
+    $cmd = "qsub -N $jobname -o Logs_sge/phylotype/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/php -f R_Script/create_input_abundance_phylotype.php $user $project";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -714,7 +720,7 @@ function create_input_alphash($user, $id, $project, $path){
     echo "\n";
     echo "Run create_input_alphash :";
     $jobname = $user . "_" . $id . "_create_input_alphash";
-    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_alphash_phylotype.php $user $project";
+    $cmd = "qsub -N $jobname -o Logs_sge/phylotype/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/php -f R_Script/create_input_alphash_phylotype.php $user $project";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -742,7 +748,7 @@ function create_input_biplot($user, $id, $project, $path){
     echo "\n";
     echo "Run create_input_biplot :";
     $jobname = $user . "_" . $id . "_create_input_biplot";
-    $cmd = "qsub -N $jobname -o Logs_sge -e Logs_sge  -cwd -b y /usr/bin/php -f R_Script/create_input_biplot_phylotype.php $user $project";
+    $cmd = "qsub -N $jobname -o Logs_sge/phylotype/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/php -f R_Script/create_input_biplot_phylotype.php $user $project";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);

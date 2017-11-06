@@ -454,6 +454,7 @@
 
                      if(($start_min == $start_max) || ($end_min == $end_max)){
 
+
                     
                       $numItems = count($sum);
                       $i = 0;
@@ -466,6 +467,7 @@
                          }
 
                         
+
 
                            
                      }elseif (($start_min != $start_max) && ($end_min != $end_max) ) {
@@ -701,7 +703,7 @@
                     if($key_var == "1"){
                         $data = explode(":", $value);
                         $id_job = $data[1];
-                    }        
+                    }
               }
               $loop = true;
               while ($loop) {
