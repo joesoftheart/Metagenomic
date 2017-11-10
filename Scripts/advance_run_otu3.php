@@ -64,8 +64,8 @@
 
          if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != "" && $argv[6] =! "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != ""){
              echo "Check Parameter Success"."\n";
-             //collect_rarefaction_summary($user,$project,$path_in,$path_out);
-             make_biom($user,$project,$path_in,$path_out);
+             collect_rarefaction_summary($user,$project,$path_in,$path_out);
+           
 
 
          }else{

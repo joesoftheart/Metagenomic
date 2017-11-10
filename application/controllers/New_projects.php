@@ -53,7 +53,7 @@ class New_projects extends CI_Controller {
 
             $this->mongo_db->insert('projects', $data);
             $this->create_symbolic_link($this->input->post("project_path"));
-            //$this->create_symbolic_link_primer16S($this->input->post("project_path"));
+          
 
             redirect("main", "refresh");
 
@@ -78,11 +78,13 @@ class New_projects extends CI_Controller {
             exec("./Scripts/symbolic.sh $value  $path_private");
            // echo $test;
         }
-
+        
+      $this->create_symbolic_link_primer16S($this->input->post("project_path"));
 
     }
+    
 
-     public function create_symbolic_link_primer16S($private_path){
+    public function create_symbolic_link_primer16S($private_path){
        
      $path_array = array(
            "/var/www/html/owncloud/data/primer16S/silva.bacteria.fasta",
@@ -90,15 +92,18 @@ class New_projects extends CI_Controller {
            "/var/www/html/owncloud/data/primer16S/silva.v34.fasta",
            "/var/www/html/owncloud/data/primer16S/silva.v345.fasta",
            "/var/www/html/owncloud/data/primer16S/silva.v4.fasta",
-           "/var/www/html/owncloud/data/primer16S/silva.v45.fasta"
+           "/var/www/html/owncloud/data/primer16S/silva.v45.fasta",
+           "/var/www/html/owncloud/data/primer16S/trainset16_022016.rdp.fasta",
+           "/var/www/html/owncloud/data/primer16S/trainset16_022016.rdp.tax"
+
            );
 
         $replace = str_replace("..","/var/www/html",$private_path);
         $path_private = $replace."/input/";
-       // echo $path_private;
+   
         foreach ($path_array as $value){
             exec("./Scripts/symbolic.sh $value  $path_private");
-           // echo $test;
+
         }
 
 

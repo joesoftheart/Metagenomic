@@ -23,8 +23,6 @@
     }
 
 
-
-
     public function recheck(){
 
       $id_project = $_REQUEST['data_status'];
@@ -56,15 +54,15 @@
      
            }
 
-        if($level != "0" && $step_run == "4" ){
+        // if($level != "0" && $step_run == "4" ){
 
-            $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
-            $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
+        //     $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+        //     $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
 
-        }
+        // }
         
 
-        echo json_encode(array($status,$step_run,$id_job,$tg_body,$ts_body));
+      echo json_encode(array($status,$step_run,$id_job,$tg_body,$ts_body));
 
     }
 
@@ -269,6 +267,8 @@
 
 
 
+
+
     public function get_json(){
       $value = $_REQUEST['data_array'];
 
@@ -305,17 +305,34 @@
             if($customer != null){
                 $alignment = $customer;
             }
-            else if($alignment == "silva"){
-                $alignment = "silva.v4.fasta";
-            }
+            
             else if ($alignment == "gg") {
                 $alignment = "gg_13_8_99.fasta";
             }
             else if ($alignment == "rdp") {
                 $alignment = "trainset16_022016.rdp.fasta";
             }
-    
-        
+
+            else if($alignment == "v_full"){
+                $alignment = "silva.bacteria.fasta";
+            }
+            else if($alignment == "v1-v3"){
+                $alignment = "silva.v123.fasta";
+            }
+            else if($alignment == "v3-v4"){
+                $alignment = "silva.v34.fasta";
+            }
+            else if($alignment == "v4"){
+                $alignment = "silva.v4.fasta";
+            }
+            else if($alignment == "v3-v5"){
+                $alignment = "silva.v345.fasta ";
+            }
+            else if($alignment == "v4-v5"){
+                $alignment = "silva.v45.fasta";
+            }
+
+
 
          $reference = '';
          $taxonomy ='';
@@ -434,6 +451,34 @@
            $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data ,'level' => '0' );
            $this->update_status($id_project,$data);
        }
+
+
+      #Check data projects-run
+
+        $count_run = $this->mongo_db->where(array('project_id'=> $id_project))->count('projects_run');
+
+         if($count_run == 0){
+             $data = array(
+              'max_amb' =>  ,
+              'max_homo' =>  ,
+              'min_read' =>  ,
+              'max_read' => ,
+              'align_seq' =>  ,
+              'diffs' =>  ,
+              'cutoff' => , 
+              'db_taxon' =>  , 
+              'rm_taxon' =>  ,
+              'mode' => ,
+              'project_id' =>  ,
+              'calculator_tree' => ,
+              'p' =>  ,
+              'level' => );
+          
+       }else{
+
+           
+       }
+
        
 
     }
@@ -1169,7 +1214,7 @@
       }
 
 
-      public function on_move($user,$project,$project_data,$tg_body,$ts_body){
+    public function on_move($user,$project,$project_data,$tg_body,$ts_body){
 
          # check & create folder user
          $path_img = FCPATH."img_user/$user/$project/";   
@@ -1193,7 +1238,13 @@
      
                    closedir($read);
                 }
+
+               unlink($path_img."bin.svg");
+               unlink($path_img."jclass.svg");
+               unlink($path_img."thetayc.svg");
             }
+
+          
 
 
         
@@ -1203,6 +1254,79 @@
          #create file excel_table_summary.xlsx
          $this->create_file_excel_s($user,$project,$ts_body); 
 
+      }
+
+
+
+     public function on_showimg($id_project){
+
+
+         $user = "";
+         $project = "";
+
+
+
+        #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {
+                           
+                $name_job = $r['job_name'];
+                $path_job = $r['path_log'];
+                $user = $r['user'];
+                $project = $r['project'];
+                $project_analysis = $r['project_analysis'];
+                $file_design = $r['f_design'];
+                $file_metadata = $r['f_metadata'];
+                $project_data = $r['project_data'];
+                $level = $r['level'];
+         }
+
+
+
+        $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+                  
+        $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
+        
+
+      
+         $data_img = array();
+         $path_img = FCPATH."img_user/$user/$project/";   
+      
+        
+            if (is_dir($path_img)) {
+                if ($read = opendir($path_img)){
+                      while (($img = readdir($read)) !== false) {
+                        
+                        $allowed =  array('png','svg');
+                        $ext = pathinfo($img, PATHINFO_EXTENSION);
+                        $name = pathinfo($img);
+
+                        if(in_array($ext,$allowed)) {
+                           
+                            array_push($data_img, $img); 
+                        }
+                      }
+     
+                   closedir($read);
+                }
+
+            }
+
+            $data['id_project'] =  $id_project;
+            $data['user'] = $user;
+            $data['project'] = $project; 
+            $data['data_img'] = $data_img;
+            $data['project_analysis'] = $project_analysis;
+            $data['tg_body'] = $tg_body;
+            $data['ts_body'] = $ts_body;
+
+         
+
+            $this->load->view('header');
+            $this->load->view('graph_advance',$data);
+            $this->load->view('footer');
+         
+      
       }
 
 
