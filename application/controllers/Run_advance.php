@@ -54,15 +54,15 @@
      
            }
 
-        if($level != "0" && $step_run == "4" ){
+        // if($level != "0" && $step_run == "4" ){
 
-            $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
-            $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
+        //     $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+        //     $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
 
-        }
+        // }
         
 
-        echo json_encode(array($status,$step_run,$id_job,$tg_body,$ts_body));
+      echo json_encode(array($status,$step_run,$id_job,$tg_body,$ts_body));
 
     }
 
@@ -267,6 +267,8 @@
 
 
 
+
+
     public function get_json(){
       $value = $_REQUEST['data_array'];
 
@@ -303,17 +305,34 @@
             if($customer != null){
                 $alignment = $customer;
             }
-            else if($alignment == "silva"){
-                $alignment = "silva.v4.fasta";
-            }
+            
             else if ($alignment == "gg") {
                 $alignment = "gg_13_8_99.fasta";
             }
             else if ($alignment == "rdp") {
                 $alignment = "trainset16_022016.rdp.fasta";
             }
-    
-        
+
+            else if($alignment == "v_full"){
+                $alignment = "silva.bacteria.fasta";
+            }
+            else if($alignment == "v1-v3"){
+                $alignment = "silva.v123.fasta";
+            }
+            else if($alignment == "v3-v4"){
+                $alignment = "silva.v34.fasta";
+            }
+            else if($alignment == "v4"){
+                $alignment = "silva.v4.fasta";
+            }
+            else if($alignment == "v3-v5"){
+                $alignment = "silva.v345.fasta ";
+            }
+            else if($alignment == "v4-v5"){
+                $alignment = "silva.v45.fasta";
+            }
+
+
 
          $reference = '';
          $taxonomy ='';
@@ -382,7 +401,7 @@
                    $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project_data $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
                   
             }
-            elseif ($project_analysis == "otu") {
+            elseif ($project_analysis == "OTUs") {
 
                 $count = $this->mongo_db->where(array('id_project'=> $id_project))->count('advance_classifly');
                   if($count == 0){
@@ -432,6 +451,34 @@
            $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data ,'level' => '0' );
            $this->update_status($id_project,$data);
        }
+
+
+      #Check data projects-run
+
+        $count_run = $this->mongo_db->where(array('project_id'=> $id_project))->count('projects_run');
+
+         if($count_run == 0){
+             $data = array(
+              'max_amb' =>  ,
+              'max_homo' =>  ,
+              'min_read' =>  ,
+              'max_read' => ,
+              'align_seq' =>  ,
+              'diffs' =>  ,
+              'cutoff' => , 
+              'db_taxon' =>  , 
+              'rm_taxon' =>  ,
+              'mode' => ,
+              'project_id' =>  ,
+              'calculator_tree' => ,
+              'p' =>  ,
+              'level' => );
+          
+       }else{
+
+           
+       }
+
        
 
     }
@@ -519,7 +566,7 @@
 
                 $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
 
-             }elseif ($project_analysis == "otu") {
+             }elseif ($project_analysis == "OTUs") {
 
                 $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
              }
@@ -618,7 +665,7 @@
 
                 $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype2.php $user $project_data $path_input $path_out $size $path_log";
            }
-           else if($project_analysis == "otu") {
+           else if($project_analysis == "OTUs") {
 
                 $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu2.php $user $project_data $path_input $path_out $size $path_log";
            }
@@ -695,7 +742,7 @@
                     $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
 
                   }
-                  elseif ($project_analysis == "otu") {
+                  elseif ($project_analysis == "OTUs") {
 
                     $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
                     
@@ -766,7 +813,7 @@
 
                 $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
 
-             }elseif ($project_analysis == "otu") {
+             }elseif ($project_analysis == "OTUs") {
 
                 $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
              }
@@ -822,7 +869,7 @@
                   $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
 
                  }
-                 elseif ($project_analysis == "otu") {
+                 elseif ($project_analysis == "OTUs") {
 
                   $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
                  }
@@ -1029,7 +1076,7 @@
                 $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num";
                
            }
-           else if($project_analysis == "otu") {
+           else if($project_analysis == "OTUs") {
                 
                 $label_num = "0.03";
 
@@ -1112,7 +1159,7 @@
         if($file_design == "0" && $file_metadata == "0"){
              $divisor = 25 ;
         }else if($file_design != "0" || $file_metadata != "0"){
-             $divisor = 32 ;
+             $divisor = 26 ;
         }
 
          
@@ -1167,7 +1214,7 @@
       }
 
 
-      public function on_move($user,$project,$project_data,$tg_body,$ts_body){
+    public function on_move($user,$project,$project_data,$tg_body,$ts_body){
 
          # check & create folder user
          $path_img = FCPATH."img_user/$user/$project/";   
@@ -1191,7 +1238,13 @@
      
                    closedir($read);
                 }
+
+               unlink($path_img."bin.svg");
+               unlink($path_img."jclass.svg");
+               unlink($path_img."thetayc.svg");
             }
+
+          
 
 
         
@@ -1205,11 +1258,84 @@
 
 
 
+     public function on_showimg($id_project){
+
+
+         $user = "";
+         $project = "";
+
+
+
+        #Query data status-process
+        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+         foreach ($array_status as $r) {
+                           
+                $name_job = $r['job_name'];
+                $path_job = $r['path_log'];
+                $user = $r['user'];
+                $project = $r['project'];
+                $project_analysis = $r['project_analysis'];
+                $file_design = $r['f_design'];
+                $file_metadata = $r['f_metadata'];
+                $project_data = $r['project_data'];
+                $level = $r['level'];
+         }
+
+
+
+        $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+                  
+        $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
+        
+
+      
+         $data_img = array();
+         $path_img = FCPATH."img_user/$user/$project/";   
+      
+        
+            if (is_dir($path_img)) {
+                if ($read = opendir($path_img)){
+                      while (($img = readdir($read)) !== false) {
+                        
+                        $allowed =  array('png','svg');
+                        $ext = pathinfo($img, PATHINFO_EXTENSION);
+                        $name = pathinfo($img);
+
+                        if(in_array($ext,$allowed)) {
+                           
+                            array_push($data_img, $img); 
+                        }
+                      }
+     
+                   closedir($read);
+                }
+
+            }
+
+            $data['id_project'] =  $id_project;
+            $data['user'] = $user;
+            $data['project'] = $project; 
+            $data['data_img'] = $data_img;
+            $data['project_analysis'] = $project_analysis;
+            $data['tg_body'] = $tg_body;
+            $data['ts_body'] = $ts_body;
+
+         
+
+            $this->load->view('header');
+            $this->load->view('graph_advance',$data);
+            $this->load->view('footer');
+         
+      
+      }
+
+
+
    public function read_file_groups_ave_std_summary($user,$project,$project_analysis,$level){
    
          $path = FCPATH."owncloud/data/$user/files/$project/output/";
 
-        if($project_analysis == "otu"){
+        if($project_analysis == "OTUs"){
 
                $file_groups_ave_std_summary = "final.opti_mcc.groups.ave-std.summary";
                $path_file_original_g = $path.$file_groups_ave_std_summary;
@@ -1285,7 +1411,7 @@
           
          $path = FCPATH."owncloud/data/$user/files/$project/output/";
 
-         if($project_analysis == "otu"){
+         if($project_analysis == "OTUs"){
 
                      $file_summary = "final.opti_mcc.summary";
                      $path_file_original_s = $path.$file_summary;

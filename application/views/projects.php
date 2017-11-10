@@ -482,11 +482,91 @@ Beta – Diversity:
                              <div id="collapse2" class="panel-collapse collapse">
                                 <div class="panel-body">
                                  <label> Alignment step </label>
-                                    <select class="uk-select" name="alignment">
-                                        <option value="silva" selected> Silva</option>
+                                    <select class="uk-select" name="alignment" id="type_alignment">
+                                        <option  value="silva" selected> Silva</option>
                                          <option value="gg"> Greengenes</option>
                                          <option value="rdp"> RDP</option>
                                      </select>
+                                    
+
+
+                                   <div  id="row_option_silva"> 
+
+                                    
+                                  <img src="<?php echo site_url('images/img_silva');?>" width="65%" height="55%">
+
+
+                                       <div class="radio">
+                                         <label>
+                                           <input name="option_silva" value="v_full" type="radio" class="radio_silva"> 
+                                             Silva (Default)
+                                          </label>
+                                        </div>
+                                        <div class="radio">
+                                         <label>
+                                           <input name="option_silva" value="v1-v3" type="radio" class="radio_silva"> 
+                                           V1–V3 region with primers 27F and 534R
+                                           &nbsp;<i class="fa fa-question-circle-o"onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div16');">  
+                                           </i>
+                                          </label>
+                                        </div>
+                                        <div class="radio">
+                                         <label>
+                                           <input name="option_silva" value="v3-v4" type="radio" class="radio_silva">
+                                           V3 – V4 region with primers 341F and 802R
+                                             &nbsp;<i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div17');"></i>
+                                          </label>
+                                        </div>
+                                        <div class="radio">
+                                         <label>
+                                           <input name="option_silva" value="v4" type="radio" class="radio_silva">
+                                           V4 region with primers 515F and 806R
+                                             &nbsp;<i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div18');">
+                                             </i>
+                                          </label>
+                                        </div>
+                                        <div class="radio">
+                                         <label>
+                                           <input name="option_silva" value="v3-v5" type="radio" class="radio_silva">
+                                           V3-V5 region with primer 341F and 909R
+                                             &nbsp;<i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div19');">
+                                            </i>
+                                          </label>
+                                         </div>
+                                         <div class="radio">
+                                         <label>
+                                           <input name="option_silva" value="v4-v5" type="radio" class="radio_silva"> 
+                                           V4-V5 region with primers 518F and 926R
+                                           &nbsp;<i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div20');">
+                                            </i>
+                                          </label>
+                                         </div>
+
+                                   </div>
+
+                                <script type="text/javascript">
+                                       
+                                         $(function(){
+                                            //$('#row_option_silva').hide();
+                                            $('#type_alignment').change(function(){
+                                               
+                                            if($('#type_alignment').val() == 'silva'){
+
+                                                $('#row_option_silva').show();
+
+                                               }else{
+
+                                                $('#row_option_silva').hide(); 
+                                                $(".radio_silva").prop('checked', false);
+
+                                               }
+
+                                            });
+
+                                         });
+
+                                 </script>
+
                                  <div class="col-lg-12 uk-margin"></div>
                                      <label> OR Upload file fasta </label>
                                         (Limit size 800 MB) 
@@ -1158,93 +1238,56 @@ Beta – Diversity:
 
      <!-- Result && Graph -->
      <li>
-         <div class="row">
-            <div class="col-lg-6">
-                 <div class="panel-body">
-                 <label>Ven diagram</label>
-                 <div id="sharedsobs_img">
-                    <img id="sharedsobs_img_pass" src="#"/>
-                  
-                 </div>
-                 </div>
-             </div>
-             <div class="col-lg-6">
-                 <div class="panel-body">
-                 <label>Heatmap</label>
-                 <div id="heartmap_img">
-                     <img id="heartmap_img_pass" src="#" />
-                 </div>
-                 </div>
-            </div>
-         </div>
+       
 
-         <hr class="uk-divider-icon">
-         <div class="row">
-             <div class="col-lg-6" >
-                 <div class="panel-body">
-                 <label>Bioplot</label>
-                 <div id="bioplot_otu_img">
-                     <img id="bioplot_otu_img_pass"  src="#" /> 
-                 </div>
-                 </div>
-             </div>
-             <div class="col-lg-6" >
-                 <div class="panel-body">
-                 <b>Bioplot</b><br>
-                 <div id="bioplot_meta_img">
-                    <img id="bioplot_meta_img_pass"  src=""/>
-                 </div>
-                 </div>
-             </div>
-        </div>
 
         <hr class="uk-divider-icon">
-             <div class="row">
-                 <div class="col-lg-6">
-                 <div class="panel-body">
-                    <label>Rarefaction</label>
-                    <div id="rare_img">
-                         <img id="rare_img_pass"  src="#" /> 
-                    </div>
-                    </div>
-                 </div>
-                <div class="col-lg-6">
-                <div class="panel-body">
-                <label>RelativePhylum</label>
-                    <div id="abun_img">
-                       <img id="abun_img_pass"  src="#" />
-                    </div> 
-                 </div> 
-                 </div>
+            <div class="panel-body">       
+            <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+               
+
+            <div class="alert alert-info">
+               <center>
+            
+                <button type="button" class="btn btn-info btn-circle btn-xl"  >
+                     <i class="fa fa-file-word-o"></i>
+                </button>
+
+            
+                   <h4>  Report  </h4>
+                </center>
+            </div>    
+          
+
+             </div>
+             </div>
              </div>
 
-             <hr class="uk-divider-icon">
-                 <div class="panel-body">
-                 <label>NMDS</label>
-                 <div class="row">
-                     <div class="col-lg-6 col-lg-offset-3" >
-                     
-                     <div id="nmd_img">
-                         <img id="nmd_img_pass" src="#" /> 
-                     </div>
-                     </div>
-                     </div>
-                 </div>
-             <hr class="uk-divider-icon">
-                 <div class="panel-body">
-                 <label>Alpha</label>
-                 <div class="row">
-                     <div class="col-lg-6 col-lg-offset-3">
-                      <div id="alpha_img">
-                         <img id="alpha_img_pass" src="#" />
-                     </div> 
-                     </div>
-                     </div>
-            </div>
+        <hr class="uk-divider-icon">
+             <div class="panel-body">
+             <div class="row">
+             <div class="col-lg-6 col-lg-offset-3">
 
-            <!-- Table  -->   
+             <div class="alert alert-info">
+             <center>
+            
+              <button type="button" class="btn btn-warning  btn-circle btn-xl" id="btn_graph">
+                <i class="fa fa-file-image-o"></i>
+              </button>
+                     <h4>Graph</h4>
+             </center>
+            
+             </div>    
+     
+
+             </div>
+             </div>
+             </div>
+
+     <!-- Table  -->   
            
-            <?php if($project_analysis == "otu"){
+           <!--  <?php if($project_analysis == "OTUs"){
 
                      $file_groups_ave_std_summary = "final.opti_mcc.groups.ave-std.summary";
                      $file_summary = "final.opti_mcc.summary";
@@ -1256,32 +1299,34 @@ Beta – Diversity:
                   
                     }
 
-            ?>
+            ?> -->
            
-            <div class="panel-body">
+           <!--  <div class="panel-body"> -->
              <!-- Table groups.ave-std.summary -->
-              <hr class="uk-divider-icon">
-              <label><?php echo $file_groups_ave_std_summary; ?></label>
-              <div class="row">
+             <!--  <hr class="uk-divider-icon">
+              <label><?php echo $file_groups_ave_std_summary; ?></label> -->
+            <!--   <div class="row">
                      <div class="col-lg-12">
                      <div class="table-responsive">
-                    
-                            <div id="html-content-1">
+                     -->
+                          <!--   <div id="html-content-1">
                              <table class="table table-striped table-bordered table-hover" style="text-align: center">
                                
                                 <tbody id="body_tg">
                                
                               </tbody>
                             </table>
-                            </div><!-- #html-content-1-->
+                            </div> -->
+                            <!-- #html-content-1-->
 
+                     <!-- </div>
                      </div>
-                     </div>
-                     </div>    <!-- End Table groups.ave-std.summary -->
+                     </div>  -->   
+                     <!-- End Table groups.ave-std.summary -->
 
 
              <!--  Table file_summary -->
-             <hr class="uk-divider-icon">
+            <!--  <hr class="uk-divider-icon">
 
              <label><?php echo $file_summary; ?></label>
 
@@ -1296,19 +1341,21 @@ Beta – Diversity:
 
                         
                               </tbody>
-                            </table>
-                            </div><!-- #html-content-2-->
-
+                            </table> -->
+                           <!--  </div> -->
+                            <!-- #html-content-2-->
+<!-- 
                      </div>
                      </div>
                      <div class="col-lg-12 uk-margin"></div>
                         <center>
                                <input  class="btn btn-outline btn-info" value="Download all zip" id="zipall"> 
                         </center> 
-                     </div><!-- End Table file_summary -->
+                     </div> -->
+                     <!-- End Table file_summary -->
              
-            </div> 
-           
+        <!--     </div> 
+            -->
 
     </li>
     <!-- End Result && Graph -->
@@ -1365,7 +1412,7 @@ Beta – Diversity:
 </style>
 <script type="text/javascript">  
 
-document.getElementById("zipall").onclick = function(){
+document.getElementById("btn_graph").onclick = function(){
 
     $.ajax({ 
           type:"post",
@@ -1375,9 +1422,9 @@ document.getElementById("zipall").onclick = function(){
              success:function(data){
                 var dir = JSON.parse(data); 
                 if(dir == "TRUE"){
-                   location.href="<?php echo site_url('Run_advance/down_zip');?>?current=<?=$current_project?>";           
+                   location.href=" <?php echo site_url('Run_advance/on_showimg/'.$current_project); ?>";           
                 }else{
-                    alert("FALSE");
+                    alert("you don't run mode advance");
                 }
               
             }
@@ -1398,20 +1445,31 @@ $(document).ready(function (){
                   var maximum_homopolymer = document.forms["Pre-form"]["maximum_homopolymer"].value;
                   var minimum_reads_length = document.forms["Pre-form"]["minimum_reads_length"].value;
                   var maximum_reads_length = document.forms["Pre-form"]["maximum_reads_length"].value;
+
                   var alignment = document.forms["Pre-form"]["alignment"].value;
+                  var option_silva = document.forms["Pre-form"]["option_silva"].value;
+
                   var customer = document.forms["Pre-form"]["customer"].value;
                   var diffs  = document.forms["Pre-form"]["diffs"].value;
                   var classify = document.forms["Pre-form"]["classify"].value;
                   var cutoff = document.forms["Pre-form"]["cutoff"].value;
                   var optionsRadios = document.forms["Pre-form"]["optionsRadios"].value;
                   var taxon = document.forms["Pre-form"]["taxon"].value;
+
+                  if(alignment == 'silva'){
+                     alignment = option_silva;
+                  }
                   
                   var array_data = new Array(username,project,maximum_ambiguous,maximum_homopolymer,minimum_reads_length,maximum_reads_length,alignment,customer,diffs,classify,cutoff,optionsRadios,taxon);
       
-                  if(maximum_ambiguous != "" && maximum_homopolymer != "" && minimum_reads_length != "" && maximum_reads_length != ""){
+                  if(maximum_ambiguous != "" && maximum_homopolymer != "" && minimum_reads_length != "" && maximum_reads_length != "" && alignment != ""){
+
                         $(".Pre-test").hide();
                         $(".Pre-show").show();
                         getvalue(array_data);
+                     
+                        //console.log("alignment : " + alignment); 
+
                    }    
                 
             });

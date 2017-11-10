@@ -103,7 +103,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                         ?>
 
                                         <?php // print_r($result_file) ?>
-
+                                       
 
                                         <label>Select sample from owncloud :</label>
                                         <select class="uk-select  uk-width-1-2" name="project_path">

@@ -13,8 +13,13 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
+<<<<<<< HEAD
+    run($user,$id,$project,$path);
+   
+=======
     phylotype_count($user,$id,$project,$path);
 
+>>>>>>> 5f70178346f493f992bf621ad19695ce2023ce1f
     }
 
 
