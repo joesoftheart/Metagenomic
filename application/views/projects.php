@@ -1248,15 +1248,15 @@ Beta – Diversity:
                
 
             <div class="alert alert-info">
-               <center>
-            
-                <button type="button" class="btn btn-info btn-circle btn-xl"  >
+            <center>
+            <a href="<?php echo base_url();?>report_pdf/fpdf/<?php echo $current_project?>">
+            <button type="button" class="btn btn-info btn-circle btn-xl">
                      <i class="fa fa-file-word-o"></i>
-                </button>
-
+            </button>
+            </a>
             
                    <h4>  Report  </h4>
-                </center>
+            </center>
             </div>    
           
 
@@ -1568,6 +1568,7 @@ $(document).ready(function (){
                          $(".Pre-test3").hide();
                          $(".Pre-show3").show();
                          get_analysis(array_data);
+
                          
                      }
                       

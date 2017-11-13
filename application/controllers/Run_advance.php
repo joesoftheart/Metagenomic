@@ -459,22 +459,48 @@
 
          if($count_run == 0){
              $data = array(
-              'max_amb' =>  ,
-              'max_homo' =>  ,
-              'min_read' =>  ,
-              'max_read' => ,
-              'align_seq' =>  ,
-              'diffs' =>  ,
-              'cutoff' => , 
-              'db_taxon' =>  , 
-              'rm_taxon' =>  ,
-              'mode' => ,
-              'project_id' =>  ,
-              'calculator_tree' => ,
-              'p' =>  ,
-              'level' => );
+              'max_amb' =>  $maximum_ambiguous ,
+              'max_homo' => $maximum_homopolymer  ,
+              'min_read' => $minimum_reads_length ,
+              'max_read' => $maximum_reads_length,
+              'align_seq' => $alignment ,
+              'diffs' =>  $diffs,
+              'cutoff' => $cutoff , 
+              'db_taxon' => $reference  , 
+              'rm_taxon' => $taxon ,
+              'mode' => 'advance',             
+              'project_id' => $id_project ,
+              'tax_leval'=> 'null',
+              'calculator_tree_st' => 'null' ,
+              'calculator_tree_me' => 'null' ,
+              'method' => 'null' ,
+              'corr_meta' => 'null' ,
+              'corr_otu' => 'null');
+
+             $this->insert_project_run($data);
           
        }else{
+
+              $data = array(
+              'max_amb' =>  $maximum_ambiguous ,
+              'max_homo' => $maximum_homopolymer  ,
+              'min_read' => $minimum_reads_length ,
+              'max_read' => $maximum_reads_length,
+              'align_seq' => $alignment ,
+              'diffs' =>  $diffs,
+              'cutoff' => $cutoff , 
+              'db_taxon' => $reference  , 
+              'rm_taxon' => $taxon ,
+              'mode' => 'advance',
+              'project_id' => $id_project ,
+              'tax_leval'=> 'null',
+              'calculator_tree_st' => 'null',
+              'calculator_tree_me' => 'null' ,
+              'method' => 'null' ,
+              'corr_meta' => 'null' ,
+              'corr_otu' => 'null');
+
+              $this->update_project_run($id_project,$data);
 
            
        }
@@ -952,9 +978,11 @@
 
             if($d_pcoa_st == null){
                $d_pcoa_st = "0";
+              
             }
             if($d_pcoa_me == null){
               $d_pcoa_me = "0";
+             
             }
 
         #NMDS 
@@ -966,10 +994,22 @@
              
              if($d_nmds_st == null){
                   $d_nmds_st = "0";
+                  
              }
              if($d_nmds_me == null){
                   $d_nmds_me = "0";
+                  
              }
+         
+       # Use  Ordination method (PCoA OR MNDS)
+          $Ordination_method = "";
+
+             if($d_nmds_st != null || $d_nmds_me != null){
+                 $Ordination_method = "NMDS";
+             }else{
+                  $Ordination_method = "PCoA";
+             }
+
 
         # Options 
 
@@ -1107,6 +1147,20 @@
 
          $data = array('status' => '1' ,'step_run' => '3' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'f_design' => $file_design ,'f_metadata' => $file_metadata , 'project_data' => $project_data ,'level' => $level );
          $this->update_status($id_project,$data);
+
+
+
+
+          $data = array(
+              
+              'tax_leval'=> $level,
+              'calculator_tree_st' => $d_upgma_st,
+              'calculator_tree_me' => $d_upgma_me ,
+              'method' => $Ordination_method ,
+              'corr_meta' => $method_meta ,
+              'corr_otu' => $method_otu);
+
+              $this->update_project_run($id_project,$data);
 
 
 
@@ -1653,6 +1707,21 @@
            
           
 
+     }
+
+
+     public function insert_project_run($data){
+       
+        # insert data projects_run
+        $this->mongo_db->insert('projects_run',$data);
+
+     }
+
+     public function update_project_run($id_project,$data){
+
+       # update data projects_run
+        $this->mongo_db->where(array('project_id' => $id_project , 'mode' => 'advance' ))->set($data)->update('projects_run');
+    
      }
 
      public function check_dirzip(){

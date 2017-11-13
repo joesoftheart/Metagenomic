@@ -1586,6 +1586,8 @@ function phylotype_picrust($user,$project,$path_in,$path_out){
                    if($check_run == false){
 
                       remove_logfile_mothur2($path_out);
+                      remove_file_tree_sum($path_in);
+
                       change_name($user,$project,$path_in,$path_out);
                       break;  
                    }
@@ -1668,6 +1670,31 @@ function change_name($user,$project,$path_in,$path_out){
                 }
             } 
      }
+
+
+# Remove file gg_13_8_99.gg.tree.sum
+
+   function remove_file_tree_sum($path_in){ 
+            
+            $path_dir = $path_in;
+            if (is_dir($path_dir)) {
+                if ($read = opendir($path_dir)){
+                      while (($logfile = readdir($read)) !== false) {
+                        
+                        $allowed =  array('sum');
+                        $ext = pathinfo($logfile, PATHINFO_EXTENSION);
+
+                        if(in_array($ext,$allowed)) {
+                           
+                            unlink($path_dir.$logfile);
+                        }
+                      }
+     
+                   closedir($read);
+                }
+            } 
+     }
+
 
 
 
