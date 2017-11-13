@@ -257,6 +257,9 @@
                                 <a href="<?php echo site_url('share_projects') ?>">Share projects</a>
                             </li>
                             <li>
+                                <a href="<?php echo site_url('Run_sra/sra_projects') ?>"> SRA</a>
+                            </li>
+                            <li>
                                 <a href="#5">...</a>
                             </li>
                         </ul>

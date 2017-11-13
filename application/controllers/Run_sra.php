@@ -28,6 +28,17 @@
  	}
 
 
+  public function sra_projects(){
+       $data['rs']  = $this->mongo_db->get_where('projects', array("user_id" => $this->session->userdata["logged_in"]["_id"]));
+        $data['rs_user'] = $this->mongo_db->get('user_login');
+
+        $this->load->view('header',$data);
+        $this->load->view('sra_projects',$data);
+        $this->load->view('footer');
+
+  }
+
+
  	public function index($id){
    
  		  
@@ -380,9 +391,9 @@
         }
          
 
-         $path = FCPATH."owncloud/data/$user/files/$project/input/stability.tsv";
+     $path = FCPATH."owncloud/data/$user/files/$project/input/stability.tsv";
 
-         $data_new = "";
+     $data_new = "";
  		 $count = 0;
          $myfile = fopen($path,'r') or die ("Unable to open file");
                while(($lines = fgets($myfile)) !== false){
