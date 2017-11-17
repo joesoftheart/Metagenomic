@@ -98,7 +98,7 @@ if (isset($this->session->userdata['logged_in'])) {
                             
                                 <?php
                                 $file_read = array('fastq');
-                                $project_path = $r['project_path'];
+                                $project_path = $rt['project_path'];
                                 $project_name = basename($project_path);
                                 $path_owncloud = "../owncloud/data/$username/files/$project_name/input";
                                 $show = $this->manage_file->num_file($file_read, $path_owncloud);
@@ -133,7 +133,7 @@ if (isset($this->session->userdata['logged_in'])) {
      
 
      <!-- Start "show more >>" -->
-      <?php if ($j > 3) { ?>
+      <?php if ($j > 4) { ?>
                 <button id="text_pro" onclick="toggleTextPro()" href="#toggle-animation"
                         class="uk-button uk-button-link uk-navbar-right" type="button"
                         uk-toggle="target: #toggle-animation; animation: uk-animation-fade">show more >>

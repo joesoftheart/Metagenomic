@@ -21,11 +21,34 @@
         $this->load->library('user_agent');
         $this->load->library('email');
 
-        include(APPPATH.'../setting_sge.php');
-        putenv("SGE_ROOT=$SGE_ROOT");
-        putenv("PATH=$PATH");
+        // include(APPPATH.'../setting_sge.php');
+        // putenv("SGE_ROOT=$SGE_ROOT");
+        // putenv("PATH=$PATH");
 
  	}
+
+  public function keep_file_fastq(){
+
+    $user = 'aumza';
+    $project = 'testrun';
+    $response = shell_exec("./Scripts/scriptFTPtoNCBI.sh $user $project");
+
+    echo "$response";
+
+
+
+  }
+
+
+  public function sra_projects(){
+       $data['rs']  = $this->mongo_db->get_where('projects', array("user_id" => $this->session->userdata["logged_in"]["_id"]));
+        $data['rs_user'] = $this->mongo_db->get('user_login');
+
+        $this->load->view('header',$data);
+        $this->load->view('sra_projects',$data);
+        $this->load->view('footer');
+
+  }
 
 
  	public function index($id){
@@ -380,9 +403,9 @@
         }
          
 
-         $path = FCPATH."owncloud/data/$user/files/$project/input/stability.tsv";
+     $path = FCPATH."owncloud/data/$user/files/$project/input/stability.tsv";
 
-         $data_new = "";
+     $data_new = "";
  		 $count = 0;
          $myfile = fopen($path,'r') or die ("Unable to open file");
                while(($lines = fgets($myfile)) !== false){

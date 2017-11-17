@@ -26,7 +26,7 @@ for($i=0; $i < sizeof($val_name_cal); $i++){
    $file_taxonomy = "owncloud/data/$user/files/$project/output/final.tx.".$level.".cons.taxonomy";
 
    
-   create_file_output_biplot($file_subsample,$file_taxonomy,$file_output_biplot);
+  create_file_output_biplot($file_subsample,$file_taxonomy,$file_output_biplot);
 
 }
 
