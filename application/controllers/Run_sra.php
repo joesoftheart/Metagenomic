@@ -21,11 +21,23 @@
         $this->load->library('user_agent');
         $this->load->library('email');
 
-        include(APPPATH.'../setting_sge.php');
-        putenv("SGE_ROOT=$SGE_ROOT");
-        putenv("PATH=$PATH");
+        // include(APPPATH.'../setting_sge.php');
+        // putenv("SGE_ROOT=$SGE_ROOT");
+        // putenv("PATH=$PATH");
 
  	}
+
+  public function keep_file_fastq(){
+
+    $user = 'aumza';
+    $project = 'testrun';
+    $response = shell_exec("./Scripts/scriptFTPtoNCBI.sh $user $project");
+
+    echo "$response";
+
+
+
+  }
 
 
   public function sra_projects(){

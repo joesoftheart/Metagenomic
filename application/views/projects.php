@@ -1249,11 +1249,10 @@ Beta – Diversity:
 
             <div class="alert alert-info">
             <center>
-            <a href="<?php echo base_url();?>report_pdf/fpdf/<?php echo $current_project?>">
-            <button type="button" class="btn btn-info btn-circle btn-xl">
+    
+            <button type="button" class="btn btn-info btn-circle btn-xl" id="btn_reports">
                      <i class="fa fa-file-word-o"></i>
             </button>
-            </a>
             
                    <h4>  Report  </h4>
             </center>
@@ -1412,6 +1411,28 @@ Beta – Diversity:
 </style>
 <script type="text/javascript">  
 
+
+document.getElementById("btn_reports").onclick = function(){
+
+    $.ajax({ 
+          type:"post",
+          datatype:"json",
+          url:"<?php echo base_url('Run_advance/chk_data_project_run'); ?>",
+          data:{current:"<?=$current_project?>"},
+             success:function(data){
+                var chk = JSON.parse(data); 
+                if(chk == "t"){
+                   location.href="<?php echo base_url();?>report_pdf/fpdf/<?php echo $current_project?>";           
+                }else{
+                    alert("you don't run mode advance");
+                }
+              
+            }
+                   
+     });
+
+};
+
 document.getElementById("btn_graph").onclick = function(){
 
     $.ajax({ 
@@ -1432,6 +1453,9 @@ document.getElementById("btn_graph").onclick = function(){
      });
 
 };
+
+
+
 
 $(document).ready(function (){ 
 

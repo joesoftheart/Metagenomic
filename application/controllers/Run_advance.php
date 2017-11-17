@@ -267,6 +267,24 @@
 
 
 
+    public function chk_data_project_run(){
+        
+        $id_project = $_REQUEST['current'];
+
+        #Check data projects-run
+        $count_run = $this->mongo_db->where(array('project_id'=> $id_project))->count('projects_run');
+
+        if($count_run == 0){
+            echo json_encode("f");
+        }
+        else{
+            echo json_encode("t");
+           
+        }
+    }
+
+
+
 
 
     public function get_json(){
