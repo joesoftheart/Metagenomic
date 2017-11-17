@@ -459,20 +459,20 @@
 
          if($count_run == 0){
              $data = array(
-              'max_amb' =>  ,
-              'max_homo' =>  ,
-              'min_read' =>  ,
-              'max_read' => ,
-              'align_seq' =>  ,
-              'diffs' =>  ,
-              'cutoff' => , 
-              'db_taxon' =>  , 
-              'rm_taxon' =>  ,
-              'mode' => ,
-              'project_id' =>  ,
-              'calculator_tree' => ,
-              'p' =>  ,
-              'level' => );
+              'max_amb' =>  '',
+              'max_homo' => '' ,
+              'min_read' => '' ,
+              'max_read' => '',
+              'align_seq' => '' ,
+              'diffs' => '' ,
+              'cutoff' => '',
+              'db_taxon' =>  '',
+              'rm_taxon' =>  '',
+              'mode' => '',
+              'project_id' =>  '',
+              'calculator_tree' => '',
+              'p' => '' ,
+              'level' => '');
           
        }else{
 

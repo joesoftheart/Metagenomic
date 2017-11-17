@@ -13,13 +13,8 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-<<<<<<< HEAD
-    run($user,$id,$project,$path);
-   
-=======
     phylotype_count($user,$id,$project,$path);
 
->>>>>>> 5f70178346f493f992bf621ad19695ce2023ce1f
     }
 
 
@@ -451,7 +446,7 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
          if($check_run == false){
              echo "go to phylotype_count->";
              sleep(180);
-             phylotype_count($user,$id, $project,$path);
+          //   phylotype_count($user,$id, $project,$path);
              break;
          }
      }
@@ -626,10 +621,10 @@ pcoa(phylip=final.tx.jclass.2.lt.ave.dist,inputdir=$path/input/,outputdir=$path/
 nmds(phylip=final.tx.morisitahorn.2.lt.ave.dist, mindim=3, maxdim=3,inputdir=$path/input/,outputdir=$path/output/)
 nmds(phylip=final.tx.thetayc.2.lt.ave.dist, mindim=2, maxdim=2,inputdir=$path/input/,outputdir=$path/output/)
 nmds(phylip=final.tx.jclass.2.lt.ave.dist, mindim=3, maxdim=3,inputdir=$path/input/,outputdir=$path/output/)
-#amova(phylip=final.tx.thetayc.2.lt.ave.dist, design=soil.design,inputdir=$path/input/,outputdir=$path/output/) #No need
-#homova(phylip=final.tx.thetayc.2.lt.ave.dist, design=soil.design,inputdir=$path/input/,outputdir=$path/output/)
 corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, shared=final.tx.2.subsample.shared, method=spearman, numaxes=2, label=2,inputdir=$path/input/,outputdir=$path/output/)
-corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, method=pearson, numaxes=2, label=2,inputdir=$path/input/,outputdir=$path/output/)";
+corr.axes(axes=final.tx.thetayc.2.lt.ave.nmds.axes, metadata=soilpro.metadata, method=pearson, numaxes=2, label=2,inputdir=$path/input/,outputdir=$path/output/)
+amova(phylip=final.tx.thetayc.2.lt.ave.dist, design=soil.design,inputdir=$path/input/,outputdir=$path/output/) #No need
+homova(phylip=final.tx.thetayc.2.lt.ave.dist, design=soil.design,inputdir=$path/input/,outputdir=$path/output/)";
      file_put_contents('owncloud/data/' . $user . '/files/' . $project . '/input/run.batch', $cmd);
      $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
      exec($cmd);

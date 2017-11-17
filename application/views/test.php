@@ -1,27 +1,52 @@
-<div id="page-wrapper">
-    <div class="row">
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+foreach ($row as $value => $data) {
+if ($data != null ) {
+$split = preg_split('/,/', $data);
 
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
+if ($count_genus == null) {
+for ($j = 0; $j < count($split); $j++) {
+$count_genus[$j] =  $split[$j];
+$count_genus2[$j] =  $split[$j];
+if ($num < $split[$j]){
+$num = $split[$j];
+$key_index = $j;
+$key_sam = $value;
+}
+}
+}else{
+for ($j = 1; $j < count($split); $j++) {
+$count_genus[$j] +=  $split[$j];
+$count_genus2[$j] =  $split[$j];
+if ($num < $split[$j]){
+$num = $split[$j];
+$key_index = $j;
+$key_sam = $value;
+}
+}
 
-            </div>
-        </div>
-    </div>
-</div>
+}
+
+}
+
+$max_for_sam[$value] = max($count_genus2);
+}
+
+echo $key_index.'<br>';
+echo $num.'<br>';
+$k_genus = 0;
+$max_genus = 0;
+foreach ($max_for_sam as $key => $value) {
+if ($value >= $max_genus) {
+$max_genus = max($count_genus);
+$k_genus = $key;
+}
+}
+echo $max_genus.'<br>';
+
+$row_default = explode("\n", $genus);
+$split_row = preg_split('/,/', $row_default[0]);
+echo $split_row[$key_index].'<br>';
+echo $num * 100 / $count_genus[$key_index].'<br>';
+
+echo $key_sam.'<br>';
+
