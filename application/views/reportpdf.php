@@ -288,12 +288,7 @@ class RPDF extends FPDF
 $this->myfpdf = new RPDF();
 $this->myfpdf->SetMargins(25, 0);
 $this->myfpdf->SetDisplayMode(90 );
-$header = array('Joe','Pond','Keap','Bank','Kuk','Ton');
-$dat = array('หล่อ','พ่อรวย','แฟนสวย','สาวตรึม','ล้อโต','ลูก ');
-$data = array();
-for ($i = 0;$i<5;$i++){
-    $data[] = $dat;
-}
+
 //print_r($data);
 $headers = array('Joe','Pond','Keap','Bank');
 $dataa = $this->myfpdf->LoadData();
@@ -322,6 +317,7 @@ foreach ($projects_t as $r_project){
     $project_date_time = $r_project['project_date_time'];
     $project_num_sam = $r_project['project_num_sam'];
     $project_group_sam = $r_project['project_group_sam'];
+    $project_path = $r_project['project_path'];
     $date = explode(" ", $project_date_time);
     $time = $date[1];
     $date = $date[0];
@@ -333,6 +329,8 @@ foreach ($projects_t as $r_project){
     }
 
 }
+
+
 foreach ($projects_run_t as $r_pro_run){
     $max_amb = $r_pro_run['max_amb'];
     $max_homo = $r_pro_run['max_homo'];
@@ -367,10 +365,20 @@ foreach ($projects_run_t as $r_pro_run){
     $graph = $r_pro_run['graph'];
     $calculators = $r_pro_run['calculators'];
     $calculators_bio = $r_pro_run['calculators_bio'];
-
+    $table_alpha = $r_pro_run['table_alpha'];
 
 
 }
+
+$header = array('groups','Good s coverage','Observed OTUs','Chao','Shannon');
+$dat = array('หล่อ','พ่อรวย','แฟนสวย','สาวตรึม','ล้อโต','ลูก ');
+$data = array();
+for ($i = 0;$i<count($table_alpha);$i++){
+    $data[] = explode(':', $table_alpha[$i]);
+}
+
+
+
 
 $near_sam = preg_split('/:/', $near_sam);
 $near_sam1 = $near_sam[0];
@@ -379,7 +387,7 @@ $near_sam2 = $near_sam[1];
 
 $nam_com_phy = "";
 for ($i = 0; $i < count($common_sample_phylumn); $i++) {
-    $nam_com_phy = $nam_com_phy . "   " . $common_sample_phylumn[$i];
+    $nam_com_phy = $nam_com_phy . " " . $common_sample_phylumn[$i];
 }
 $index = 0;
 $num = 0;
@@ -406,10 +414,16 @@ for ($i = 0; $i < count($abun_genus); $i++) {
     $replce = str_replace('%', '', $split[4]);
 
     if ($i != $index) {
-        $name_dataset_genus = $name_dataset_genus . "" . $split[0];
-        $percent_genus = $percent_genus . "" . $split[4];
-        $name_other_genus = $name_other_genus . "" . $split[5];
 
+        if($name_other_genus == ""){
+            $name_other_genus = $split[5];
+            $percent_genus = $split[4];
+            $name_dataset_genus = $split[0];
+        }else {
+            $percent_genus = $percent_genus . "," . $split[4];
+            $name_other_genus = $name_other_genus . "," . $split[5];
+            $name_dataset_genus = $name_dataset_genus . "," . $split[0];
+        }
     }
 
 }
@@ -418,8 +432,19 @@ $name_dataset_otu = "";
 $num_dataset_otu = "";
 for ($i = 0; $i < count($name_sample_num_ven); $i++) {
     $split = preg_split('/:/',$abun_genus[$i]);
-    $name_dataset_otu = $name_dataset_otu . "" . $split[0];
-    $num_dataset_otu = $num_dataset_otu . "" . $split[1];
+    if ($name_dataset_otu == "") {
+        $name_dataset_otu = $split[0];
+    }else{
+        $name_dataset_otu = $name_dataset_otu . "," . $split[0];
+    }
+
+    if ($num_dataset_otu == "") {
+        $num_dataset_otu = $split[1];
+    }else{
+        $num_dataset_otu = $num_dataset_otu . "," . $split[1];
+    }
+
+
 }
 
 
@@ -433,7 +458,7 @@ $this->myfpdf->SetFont('Times','B',12);
 $this->myfpdf->Cell(0,8,'Project Name : '.$project_name,0,1);
 $this->myfpdf->Cell(0,8,'Project type : '.$project_type,0,1);
 $this->myfpdf->Cell(0,8,'Program analysis : '.$project_program,0,1);
-$this->myfpdf->Cell(0,8,'Running mode : standard/advance',0,1);
+$this->myfpdf->Cell(0,8,'Running mode : '.$mode,0,1);
 $this->myfpdf->Cell(0,8,'Data pre-processing :',0,1);
 //$this->myfpdf->DumpFont('Symbol', '179');
 $this->myfpdf->SetFont('Times','',12);
@@ -452,10 +477,10 @@ $this->myfpdf->MultiCell(0,6,'The cleaned sequences were clustered based on '.$p
 // Page 2
 $this->myfpdf->AddPage();
 $this->myfpdf->SetFont('Times','',12);
-$this->myfpdf->MultiCell(0, 10,$this->myfpdf->WriteHTML('<b>Table 1 </b>Alpha diversity estimator of bacterial 18S analysis at '.$methods.' level') . '', 0);
+$this->myfpdf->MultiCell(0, 10,$this->myfpdf->WriteHTML('<b>Table 1 </b>Alpha diversity estimator of bacterial 16S analysis at '.$methods.' level') . '', 0);
 $this->myfpdf->SetFont('angsa','',12);
 $this->myfpdf->Table($header,$data);
-$this->myfpdf->Image(base_url() . 'images/box_plot.png','40','90','110  ','70','PNG');
+$this->myfpdf->Image(base_url() . $project_path.'/output/Alpha.png','40','90','110  ','70','PNG');
 $this->myfpdf->Cell(0, 120, '', 0, 1);
 $this->myfpdf->SetFont('Times','',12);
 $this->myfpdf->MultiCell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 1  </b>Box plots of alpha-diversity estimator based on Chao and Shannon comparing these samples') .'');
@@ -464,31 +489,31 @@ $this->myfpdf->MultiCell(0, 6, '        The platform also produce rarefaction gr
 
 //Page 3
 $this->myfpdf->AddPage();
-$this->myfpdf->Image(base_url() . 'images/rare_plot.png','50','14','110  ','80','PNG');
+$this->myfpdf->Image(base_url() . 'images/rare_plot.png','50','14','90  ','60','PNG');
 $this->myfpdf->SetFont('Times', 'B', 12);
-$this->myfpdf->Cell(0,70,'',0,1);
+$this->myfpdf->Cell(0,50,'',0,1);
 $this->myfpdf->Cell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 2.</b>Rarefaction curve of 18S sequences among the '.$sample_big_rare.' groups').'', 0, 1);
 $this->myfpdf->SetFont('Times', '', 12);
 $this->myfpdf->MultiCell(0,6,'      Phyla relative abundance plot array all the phylum found in each sample, corresponding to the quantity of each phylum identified (percentage). It displays the phylum abundances for the sequences being read. It can be seen that, phylum '.$name_phylumn.' is the most abundances in dataset '.$nam_com_phy.',while for dataset '.$nam_com_phy.' and ## the most common phylum found was '.$name_phylumn.'.');
-$this->myfpdf->Image(base_url() . 'images/phylumn_plot.png','50','130','110  ','100','');
-$this->myfpdf->Cell(0, 80, '',0,1);
+$this->myfpdf->Image(base_url() . 'images/phylumn_plot.png','50','120','100  ','90','');
+$this->myfpdf->Cell(0, 100, '',0,1);
 $this->myfpdf->SetFont('Times', '', 12);
 $this->myfpdf->Cell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 3.</b>Taxonomic classification of bacterial phylum in '.$sample_big_phy.' groups.').'', 0, 1);
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->MultiCell(0,6,'      Heatmap (appendix ##) display a graphical representation of a data by assigning a range of values that represent relative abundance of each genus, with diffe­rent colours. This in turns highlight hidden interactions or trends in the dataset. The data summited indicates that the major genus found in dataset '.$name_dataset.' is '.$name_genus.' and their relative abundance was '.$percent.'. While for dataset '.$name_dataset_genus.' the main genus was also found to be genus name with the abundance of '.$name_other_genus.' (*number of datasets)'.$percent_genus.'.');
+$this->myfpdf->MultiCell(0,6,'      Heatmap (appendix ##) display a graphical representation of a data by assigning a range of values that represent relative abundance of each genus, with diffe­rent colours. This in turns highlight hidden interactions or trends in the dataset. The data summited indicates that the major genus found in dataset '.$name_dataset.' is '.$name_genus.' and their relative abundance was '.$percent.'. While for dataset '.$name_dataset_genus.' the main genus was also found to be '.$name_other_genus.' with the abundance of '.$percent_genus.' (*number of datasets).','','L');
 
 //page 4
 $this->myfpdf->AddPage();
 $this->myfpdf->Image(base_url() . 'images/abun_plot.png','25','14','170  ','80','PNG');
 $this->myfpdf->SetFont('Times', 'B', 12);
-$this->myfpdf->Cell(0,65,'',0,1);
+$this->myfpdf->Cell(0,73,'',0,1);
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 4 </b>Relative abundances of the bacterial genera among '.$project_num_sam.' groups. The bacterial genus with less than 0.05% as their relative abundance was not shown. The categories of ages were showed in color on the left; navy (teenage), magenta (middle-age), and blue (elderly-age).').'', 0, 1);
+$this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 4 </b>Relative abundances of the bacterial genera among '.$project_num_sam.' groups. The bacterial genus with less than 0.05% as their relative abundance was not shown.').'', 0, 1);
 $this->myfpdf->SetFont('Times','B',12);
 $this->myfpdf->Cell(0, 10, 'Microbial comparision by beta diversity', 0, 1);
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->MultiCell(0,6,'      Venn diagram (appendix ##) show number of unique OTUs identified for each set of data submitted, while the overlapping region represent the shared OTUs between one another. The analysis indicates that dataset '.$name_dataset_otu.' have a total of '.$num_dataset_otu.' and ## OTUs, respectively. Some species maybe common and observed in all samples submitted, hence the number will be shown in the most overlapped region; in this case, it’ll be a total of '.$num_otu.' OTUs. ');
-$this->myfpdf->Image(base_url() . 'images/ven_plot.png','50','160','110  ','80','');
+$this->myfpdf->MultiCell(0,6,'      Venn diagram (appendix ##) show number of unique OTUs identified for each set of data submitted, while the overlapping region represent the shared OTUs between one another. The analysis indicates that dataset '.$name_dataset_otu.' have a total of '.$num_dataset_otu.' and ## OTUs, respectively. Some species maybe common and observed in all samples submitted, hence the number will be shown in the most overlapped region; in this case, it’ll be a total of '.$num_otu.' OTUs. ','','L');
+$this->myfpdf->Image(base_url() . 'images/ven_plot.png','50','160','90  ','70','');
 $this->myfpdf->Cell(0, 80, '',0,1);
 $this->myfpdf->SetFont('Times', '', 12);
 $this->myfpdf->MultiCell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 5 </b>Venn diagram that illustrates overlap of OTUs, compared between '.$name_dataset_otu).'', 0, 1);

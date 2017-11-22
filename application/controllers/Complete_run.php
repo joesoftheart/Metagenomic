@@ -433,14 +433,16 @@ class Complete_run extends CI_Controller {
         $arr_chao = array();
         $arr_shanon = array();
         $index =0;
+        $table_alpha = array();
         foreach ($row as $value => $data){
             if ($data != null){
                 $row_data = preg_split("/\s+/", $data);
 
-                if($row_data[0] == 2) {
+                if($row_data[0] == 2 and $row_data[2] == "ave") {
                     $arr_out[$index] = $row_data[5];
                     $arr_chao[$index] = $row_data[9];
                     $arr_shanon[$index] = $row_data[12];
+                    $table_alpha[$index] = $row_data[1] . ":" . $row_data[4] . ":" . $row_data[5] . ":" . $row_data[9] . ":" . $row_data[12];
                     $index++;
                 }
             }
@@ -611,35 +613,65 @@ class Complete_run extends CI_Controller {
         $max_for_sam = array();
         $index_genus =0;
         $name_sample_num_ven = array();
+        $index_no_unc = array();
+        $split_index = preg_split('/,/', $row_name[0]);
+        for ($i = 1;$i<count($split_index);$i++){
+            if (preg_match('/unclassified/',$split_index[$i])) {
+                array_push($index_no_unc,$i);
+            }else{
+
+            }
+        }
+
         foreach ($row as $value => $data) {
             if ($data != null ) {
                 $split = preg_split('/,/', $data);
                 if ($count_genus == null) {
                     for ($j = 1; $j < count($split); $j++) {
-                        $count_genus[$j] =  $split[$j];
-                        $count_genus2[$j] =  $split[$j];
+                        if (in_array($j,$index_no_unc)) {
+
+                        }else{
+
+
+                            $count_genus[$j] =  $split[$j];
+                            $count_genus2[$j] =  $split[$j];
+                        }
                     }
                 }else{
                     for ($j = 1; $j < count($split); $j++) {
-                        $count_genus[$j] +=  $split[$j];
-                        $count_genus2[$j] =  $split[$j];
+                        if (in_array($j,$index_no_unc)) {
+
+
+                        }else{
+                            $count_genus[$j] += $split[$j];
+                            $count_genus2[$j] = $split[$j];
+                        }
                     }
                 }
                 $num = 0;
                 $key_index = null;
 
                 for ($k = 1; $k < count($count_genus2); $k++) {
-                    if ($num < $count_genus2[$k]){
-                        $num = $count_genus2[$k];
-                        $key_index = $k;
+                    if (in_array($k,$index_no_unc)) {
+
+
+                    }else{
+                        if ($num < $count_genus2[$k]) {
+                            $num = $count_genus2[$k];
+                            $key_index = $k;
+                        }
                     }
                 }
 
                 $total = 0;
                 foreach ($row2 as $value_e => $data_a){
-                    if ($data_a != null ) {
-                        $split1 = preg_split('/,/', $data_a);
-                        $total += $split1[$key_index];
+                    if (in_array($j,$index_no_unc)) {
+
+                    }else {
+                        if ($data_a != null) {
+                            $split1 = preg_split('/,/', $data_a);
+                            $total += $split1[$key_index];
+                        }
                     }
                 }
 
@@ -650,7 +682,7 @@ class Complete_run extends CI_Controller {
                 $percent = $maxximun * 100 / $total;
 
 
-                $genus_pack[$index_genus] =  $split[0] .":" . $maxximun  . ":" . $key_index . ":". $total .":" . round($percent,2)."%" .":" . $genus_name;
+              echo  $genus_pack[$index_genus] =  $split[0] .":" . $maxximun  . ":" . $key_index . ":". $total .":" . round($percent,2)."%" .":" . $genus_name;
                 echo '<br>';
                 $index_genus++;
             }
@@ -793,7 +825,9 @@ class Complete_run extends CI_Controller {
             "abun_genus" => $abun_genus,
             "name_sample_num_ven" => $name_sample_num_ven,
             "num_otu" => $num_otu,
-            "near_sam" => $near_sam
+            "near_sam" => $near_sam,
+            "table_alpha" => $table_alpha
+
         );
 
         $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('projects_run');
