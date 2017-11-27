@@ -13,7 +13,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    phylotype_count($user,$id,$project,$path);
+    classify_system($user,$id,$project,$path);
 
     }
 
@@ -159,10 +159,53 @@ summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/inpu
          $check_run = exec("qstat -j $id_job");
          if($check_run == false){
              echo "go to align_seqs ->";
-             replace_group($user, $id, $project, $path);
+             readlogs_make_contigs_summary($user, $id, $project, $path,$id_job);
              break;
          }
      }
+}
+
+function readlogs_make_contigs_summary($user, $id, $project, $path,$id_job){
+    echo "\n";
+    echo "Run read_log_sungrid :";
+    $name = $user."_".$id."_make_contigs_summary.o".$id_job;
+    $file = file_get_contents("Logs_sge/phylotype/".$name);
+
+    if (file_exists("owncloud/data/$user/files/$project/output/database.txt")){
+        file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "");
+
+    }
+
+
+    $start = 0;
+    $end =0;
+    $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum|Mean).*\$/m";
+    if(preg_match_all($pattern, $file, $matches)){
+        $val = implode("\n", $matches[0]);
+        $sum = explode("\n", $val);
+        $index = 0;
+        foreach ($sum as $key => $value) {
+
+            if ($index == 7) {
+                $avg = preg_split('/\s+/', $value);
+                echo $avg[6].'<br>';
+                file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "count_seqs:".$avg[6]."\n", FILE_APPEND);
+            }
+
+            if ($index == 8) {
+                  $sum_seqs = preg_split('/\s+/', $value);
+                file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "avg_length:".$sum_seqs[3]."\n", FILE_APPEND);
+            }
+
+
+            $index++;
+        }
+    }else{
+        echo "No match readlogs_make_contigs_summary";
+    }
+    replace_group($user, $id, $project, $path);
+
+
 }
 
 
@@ -405,7 +448,7 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
          if($check_run == false){
              echo "go to classify_system->";
              sleep(180);
-             classify_system($user,$id, $project,$path);
+          //   classify_system($user,$id, $project,$path);
 
              break;
          }
@@ -415,18 +458,10 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
 
 // Classify_system
  function classify_system($user,$id, $project,$path){
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "pre-cluster-chimera-finish"."\n", FILE_APPEND);
-     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-sequence-remove"."\n", FILE_APPEND);
-     echo "\n";
+   echo "\n";
      echo "Run classify_system :";
     $jobname = $user."_".$id."_classify_system";
-    $cmd ="classify.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=gg_13_8_99.fasta, taxonomy=gg_13_8_99.gg.tax, cutoff=80, processors=8,inputdir=$path/input/,outputdir=$path/output/)
-remove.lineage(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxon=taxon=Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified,inputdir=$path/input/,outputdir=$path/output/)
-summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/output/)
-summary.tax(taxonomy=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=$path/input/,outputdir=$path/output/)
-system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta owncloud/data/$user/files/$project/output/final.fasta)
-system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table owncloud/data/$user/files/$project/output/final.count_table)
-system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy owncloud/data/$user/files/$project/output/final.taxonomy)";
+    $cmd ="classify.seqs(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=gg_13_8_99.fasta, taxonomy=gg_13_8_99.gg.tax, cutoff=80, processors=8,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
     $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
      exec($cmd);
@@ -444,12 +479,87 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
      while ($loop) {
          $check_run = exec("qstat -j $id_job");
          if($check_run == false){
-             echo "go to phylotype_count->";
+             echo "go to remove_lineage->";
              sleep(180);
-          //   phylotype_count($user,$id, $project,$path);
+
              break;
          }
      }
+}
+
+
+// Classify_system
+function remove_lineage($user,$id, $project,$path){
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "pre-cluster-chimera-finish"."\n", FILE_APPEND);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-sequence-remove"."\n", FILE_APPEND);
+    echo "\n";
+    echo "Run remove_lineage :";
+    $jobname = $user."_".$id."_remove_lineage";
+    $cmd ="remove.lineage(fasta=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxon=taxon=Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified,inputdir=$path/input/,outputdir=$path/output/)
+summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/output/)
+summary.tax(taxonomy=stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy, count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=$path/input/,outputdir=$path/output/)
+system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta owncloud/data/$user/files/$project/output/final.fasta)
+system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table owncloud/data/$user/files/$project/output/final.count_table)
+system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.gg.wang.pick.taxonomy owncloud/data/$user/files/$project/output/final.taxonomy)";
+    file_put_contents('owncloud/data/'.$user.'/files/'.$project.'/input/run.batch', $cmd);
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y Mothur/mothur ../owncloud/data/$user/files/$project/input/run.batch ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat,$output);
+    $id_job = "" ; # give job id
+    foreach ($output as $key_var => $value ) {
+
+        if($key_var == "1"){
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if($check_run == false){
+            echo "go to phylotype_count->";
+            sleep(180);
+            readlogs_classify_system($user,$id, $project,$path,$id_job);
+            break;
+        }
+    }
+}
+
+
+
+function readlogs_classify_system($user, $id, $project, $path, $id_job){
+    echo "\n";
+    echo "Run readlogs_classify_system :";
+    $name = $user."_".$id."_classify_system.o".$id_job;
+    $file = file_get_contents("Logs_sge/phylotype/".$name);
+
+    $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum|Mean|total).*\$/m";
+    if(preg_match_all($pattern, $file, $matches)){
+        $val = implode("\n", $matches[0]);
+        $sum = explode("\n", $val);
+        $index = 0;
+
+        foreach ($sum as $key => $value) {
+
+            if ($index == 8) {
+                $avg = preg_split('/\s+/', $value);
+                file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "num_seqs:".$avg[2]."\n", FILE_APPEND);
+            }
+
+            if ($index == 9) {
+                $sum_seqs = preg_split('/\s+/', $value);
+                file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "avg_reads:".$sum_seqs[4]."\n", FILE_APPEND);
+
+            }
+
+
+            $index++;
+        }
+    }
+
+
+   // phylotype_count($user, $id, $project, $path);
 }
 
 
@@ -1108,6 +1218,10 @@ function change_name($user, $id, $project, $path){
                     if (in_array("bin", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "bin.svg");
                         echo $value." change to  bin.svg";
+                    }
+                    if (in_array("sharedotus", $file_name)) {
+                        rename($dir . "/" . $value, $dir . "/" . "sharedotus.sharedotus");
+                        echo $value." change to sharedsobs.svg";
                     }
                     if (in_array("sharedsobs", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "sharedsobs.svg");

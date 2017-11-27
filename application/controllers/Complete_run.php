@@ -537,6 +537,34 @@ class Complete_run extends CI_Controller {
         }
 //        echo "Sam :".$name_sample[$index_low]."low :".$num_low;
         $sample_low = $name_sample[$index_low];
+
+
+        $read_logs = file_get_contents($path_owncloud_phylotype."database.txt");
+        $row = explode("\n", $read_logs);
+
+
+        $index =0;
+        $count_seqs = null;
+        $avg_lenght = null;
+        $num_seqs = null;
+        $avg_reads = null;
+        foreach ($row as $value => $data){
+            if ($data != null){
+                $row_data = preg_split("/:/", $data);
+
+                if($index == 0) {
+                    $count_seqs =   $row_data[1];
+                }else if($index == 1){
+                    $avg_lenght = $row_data[1];
+                }else if($index == 2){
+                    $num_seqs = $row_data[1];
+                }else if($index == 3){
+                    $avg_reads = $row_data[1];
+                }
+            }
+            $index++;
+        }
+
 //        echo ">>>>>>>>>>>>>>>>>>>>>End Page 1-2<<<<<<<<<<<<<<<<<br>";
 //        echo "Bigsam_rare :". $sample_height.'<br>';
         $sample_big_rare = $sample_height;
@@ -615,63 +643,36 @@ class Complete_run extends CI_Controller {
         $name_sample_num_ven = array();
         $index_no_unc = array();
         $split_index = preg_split('/,/', $row_name[0]);
-        for ($i = 1;$i<count($split_index);$i++){
-            if (preg_match('/unclassified/',$split_index[$i])) {
-                array_push($index_no_unc,$i);
-            }else{
-
-            }
-        }
 
         foreach ($row as $value => $data) {
             if ($data != null ) {
                 $split = preg_split('/,/', $data);
                 if ($count_genus == null) {
                     for ($j = 1; $j < count($split); $j++) {
-                        if (in_array($j,$index_no_unc)) {
-
-                        }else{
-
-
-                            $count_genus[$j] =  $split[$j];
-                            $count_genus2[$j] =  $split[$j];
-                        }
+                        $count_genus[$j] =  $split[$j];
+                        $count_genus2[$j] =  $split[$j];
                     }
                 }else{
                     for ($j = 1; $j < count($split); $j++) {
-                        if (in_array($j,$index_no_unc)) {
-
-
-                        }else{
-                            $count_genus[$j] += $split[$j];
-                            $count_genus2[$j] = $split[$j];
-                        }
+                        $count_genus[$j] +=  $split[$j];
+                        $count_genus2[$j] =  $split[$j];
                     }
                 }
                 $num = 0;
                 $key_index = null;
 
                 for ($k = 1; $k < count($count_genus2); $k++) {
-                    if (in_array($k,$index_no_unc)) {
-
-
-                    }else{
-                        if ($num < $count_genus2[$k]) {
-                            $num = $count_genus2[$k];
-                            $key_index = $k;
-                        }
+                    if ($num < $count_genus2[$k]){
+                        $num = $count_genus2[$k];
+                        $key_index = $k;
                     }
                 }
 
                 $total = 0;
                 foreach ($row2 as $value_e => $data_a){
-                    if (in_array($j,$index_no_unc)) {
-
-                    }else {
-                        if ($data_a != null) {
-                            $split1 = preg_split('/,/', $data_a);
-                            $total += $split1[$key_index];
-                        }
+                    if ($data_a != null ) {
+                        $split1 = preg_split('/,/', $data_a);
+                        $total += $split1[$key_index];
                     }
                 }
 
@@ -682,14 +683,14 @@ class Complete_run extends CI_Controller {
                 $percent = $maxximun * 100 / $total;
 
 
-              echo  $genus_pack[$index_genus] =  $split[0] .":" . $maxximun  . ":" . $key_index . ":". $total .":" . round($percent,2)."%" .":" . $genus_name;
-                echo '<br>';
+                $genus_pack[$index_genus] =  $split[0] .":" . $maxximun  . ":" . $key_index . ":". $total .":" . round($percent,2)."%" .":" . $genus_name;
+
                 $index_genus++;
             }
         }
         $abun_genus = $genus_pack;
         $svg_file = file_get_contents($path_owncloud_phylotype . "final.tx.2.subsample.2.sharedsobs.S1_1_16s_S1-S2_1_16s_S3-S3_1_16s_S5-S4_1_16s_S7.svg");
-
+       // $svg_file = file_get_contents($path_owncloud_phylotype . "sharedsobs.svg");
         $find_string   = '<text';
         $position = strpos($svg_file, $find_string);
 
@@ -720,6 +721,7 @@ class Complete_run extends CI_Controller {
 
 
         $svg_file2 = file_get_contents($path_owncloud_phylotype . "final.tx.2.subsample.2.sharedsobs.S1_1_16s_S1-S2_1_16s_S3-S3_1_16s_S5-S4_1_16s_S7.sharedotus");
+//        $svg_file2 = file_get_contents($path_owncloud_phylotype . "sharedotus.sharedotus");
         $row_otu = explode("\n", $svg_file2);
         foreach ($row_otu as $value => $data){
             if ($data != null) {
@@ -798,6 +800,99 @@ class Complete_run extends CI_Controller {
         }
         $near_sam = $near_sam1 . ":" . $near_sam2;
 
+
+
+        $table_stat = file_get_contents($path_owncloud_phylotype."final.tx.summary");
+        $row = explode("\n", $table_stat);
+        array_shift($row);
+        $arr_sam1 = array();
+        $arr_sam2 = array();
+        $arr_lennon = array();
+        $arr_jclass = array();
+        $arr_morisitahorn = array();
+        $arr_sorabund = array();
+        $arr_theten = array();
+        $arr_thetayc = array();
+        $arr_braycurtis = array();
+
+        $index =0;
+        $table_stat = array();
+        foreach ($row as $value => $data){
+            if ($data != null){
+                $row_data = preg_split("/\s+/", $data);
+
+                if($row_data[0] == 2 ) {
+                    $arr_sam1[$index] = $row_data[1];
+                    $arr_sam2[$index] = $row_data[2];
+                    $arr_lennon[$index] = $row_data[3];
+                    $arr_jclass[$index] = $row_data[4];
+                    $arr_morisitahorn[$index] = $row_data[5];
+                    $arr_sorabund[$index] = $row_data[6];
+                    $arr_theten[$index] = $row_data[7];
+                    $arr_thetayc[$index] = $row_data[8];
+                    $arr_braycurtis[$index] = $row_data[9];
+                    $table_stat[$index] = $row_data[1] . ":" . $row_data[2] . ":" . $row_data[3] . ":" . $row_data[4] . ":" . $row_data[5] . ":" . $row_data[6] . ":" . $row_data[7] . ":" . $row_data[8] . ":" . $row_data[9];
+                    $index++;
+                }
+            }
+
+        }
+
+
+        $amova = file_get_contents($path_owncloud_phylotype."final.tx.thetayc.2.lt.ave.amova");
+        $row = explode("\n", $amova);
+
+
+        $index =0;
+        $amova = array();
+        $name_vs_sam = array();
+        $p_value = array();
+        foreach ($row as $value => $data){
+            if ($data != null){
+                $row_data = preg_split("/\s+/", $data);
+
+                if($index == 0) {
+
+
+//                    $name_vs_sam = array_push($name_vs_sam, $row_data[0]);
+//                    $table_stat[$index] = $row_data[1] . ":" . $row_data[2] . ":" . $row_data[3] . ":" . $row_data[4] . ":" . $row_data[5] . ":" . $row_data[6] . ":" . $row_data[7] . ":" . $row_data[8] . ":" . $row_data[9];
+//
+                }else if ($index % 7 == 0) {
+                    if ($name_vs_sam == null) {
+                        $name_vs_sam = $row_data[0];
+                    }else{
+                        $name_vs_sam = $name_vs_sam . ":" . $row_data[0];
+                    }
+                  //  $name_vs_sam = array_push($name_vs_sam, $row_data[0]);
+                }
+
+                if ($row_data[0] == "p-value:"){
+                    if ($p_value == null) {
+                        $p_value = $row_data[1];
+                    }else{
+                        $p_value = $p_value . ":" . $row_data[1];
+                    }
+                   // $p_value = array_push($p_value, $row_data[1]);;
+                }
+
+            }
+            $index++;
+        }
+
+
+        $homova = file_get_contents($path_owncloud_phylotype."final.tx.thetayc.2.lt.ave.homova");
+        $row = explode("\n", $homova);
+
+
+        $index =0;
+        $name_vs_sam_homo = null;
+        $p_value_homo = null;
+        $split_homova = preg_split('/\s+/', $row[1]);
+        $name_vs_sam_homo = $split_homova[0];
+        $p_value_homo = $split_homova[2];
+
+
+
 //
 //        echo ">>>>>>>>>>>>>>>>>>>>>End Page 5 <<<<<<<<<<<<<<<<<br>";
 //        echo "In db";
@@ -826,7 +921,18 @@ class Complete_run extends CI_Controller {
             "name_sample_num_ven" => $name_sample_num_ven,
             "num_otu" => $num_otu,
             "near_sam" => $near_sam,
-            "table_alpha" => $table_alpha
+            "table_alpha" => $table_alpha,
+            "table_stat" => $table_stat,
+            "name_vs_sam" => $name_vs_sam,
+            "p_value" => $p_value,
+            "name_vs_sam_homo" => $name_vs_sam_homo,
+            "p_value_homo" => $p_value_homo,
+            "count_seqs" => $count_seqs,
+            "avg_lenght" => $avg_lenght,
+            "num_seqs2" => $num_seqs,
+            "avg_reads" => $avg_reads
+
+
 
         );
 

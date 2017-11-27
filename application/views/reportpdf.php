@@ -1,6 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 define('FPDF_FONTPATH','font/');
 
+
+
+
 function hex2dec($couleur = "#000000"){
     $R = substr($couleur, 1, 2);
     $rouge = hexdec($R);
@@ -137,15 +140,18 @@ class RPDF extends FPDF
 
     function Statistical($header,$dataa)
     {
+
+
         // Header
         foreach($header as $col)
-            $this->Cell(30, 7, iconv('UTF-8', 'cp874', $col),1);
+
+            $this->Cell(20, 7, iconv('UTF-8', 'cp874', $col),1);
         $this->Ln();
         // Data
         foreach($dataa as $row)
         {
             foreach($row as $col)
-                $this->Cell(30, 7, iconv('UTF-8', 'cp874', $col),1);
+                $this->Cell(20, 7, iconv('UTF-8', 'cp874', $col),1);
             $this->Ln();
         }
 
@@ -289,11 +295,9 @@ $this->myfpdf = new RPDF();
 $this->myfpdf->SetMargins(25, 0);
 $this->myfpdf->SetDisplayMode(90 );
 
-//print_r($data);
-$headers = array('Joe','Pond','Keap','Bank');
-$dataa = $this->myfpdf->LoadData();
-$d = array('0' => 'joe','1' => 'joeee', '2' => 'joeeee');
-//$dataa[] = $d;
+
+
+
 $this->myfpdf->AddFont('angsa', '', 'angsa.php');
 $this->myfpdf->AddFont('angsa', 'B', 'angsab.php');
 $this->myfpdf->AddFont('angsa', 'I', 'angsai.php');
@@ -366,15 +370,56 @@ foreach ($projects_run_t as $r_pro_run){
     $calculators = $r_pro_run['calculators'];
     $calculators_bio = $r_pro_run['calculators_bio'];
     $table_alpha = $r_pro_run['table_alpha'];
-
+    $table_stat = $r_pro_run['table_stat'];
+    $name_vs_sam = $r_pro_run['name_vs_sam'];
+    $p_value = $r_pro_run['p_value'];
+    $name_vs_sam_homo = $r_pro_run['name_vs_sam_homo'];
+    $p_value_homo = $r_pro_run['p_value_homo'];
+    $count_seqs = $r_pro_run['count_seqs'];
+    $avg_lenght = $r_pro_run['avg_lenght'];
+    $avg_reads = $r_pro_run['avg_reads'];
+    $num_seqs2 = $r_pro_run['num_seqs2'];
 
 }
 
+
+
+$name_vs_sam = preg_split('/:/', $name_vs_sam);
+$p_value = preg_split('/:/', $p_value);
+$name_patten = null;
+$name_patten_homo = null;
+
+$index = 0;
+for ($i = 0; $i < count($name_vs_sam); $i++) {
+    $name_place = str_replace('-', ' vs ', $name_vs_sam[$index]);
+    $p_value_place = "p = " . $p_value[$index];
+
+    if ($name_patten == null) {
+        $name_patten = $name_place . "," . $p_value_place.";";
+    }else{
+        $name_patten = $name_patten .  $name_place . "," . $p_value_place.";";
+    }
+
+}
+
+$name_place_homo = str_replace('-', ' vs ', $name_vs_sam_homo);
+$p_value_place_homo = "p = " . $p_value_homo;
+
+$name_patten_homo = $name_place_homo . "," . $p_value_place_homo;
+
+
+
+
 $header = array('groups','Good s coverage','Observed OTUs','Chao','Shannon');
-$dat = array('หล่อ','พ่อรวย','แฟนสวย','สาวตรึม','ล้อโต','ลูก ');
 $data = array();
 for ($i = 0;$i<count($table_alpha);$i++){
     $data[] = explode(':', $table_alpha[$i]);
+}
+
+$headers = array('comparision','','lennon','jclass','morisitahorn','sarabund','theten','thetayc','braycurtis');
+$dataa = array();
+for ($i = 0;$i<count($table_stat);$i++){
+    $dataa[] = explode(':', $table_stat[$i]);
 }
 
 
@@ -452,6 +497,8 @@ for ($i = 0; $i < count($name_sample_num_ven); $i++) {
 
 
 
+
+
 // echo "dbvdfbdb";
 
 $this->myfpdf->SetFont('Times','B',12);
@@ -462,7 +509,7 @@ $this->myfpdf->Cell(0,8,'Running mode : '.$mode,0,1);
 $this->myfpdf->Cell(0,8,'Data pre-processing :',0,1);
 //$this->myfpdf->DumpFont('Symbol', '179');
 $this->myfpdf->SetFont('Times','',12);
-$this->myfpdf->MultiCell(0, 6, 'The data set '.$project_name.' was uploaded on '.$date.' at '.$time.' and contains '.$project_num_sam.' sequences with an average length of [[[246]]] bps.  Raw sequencing data obtained from '.$project_sequencing.' platform were implemented according to '.$project_program.' MiSeq SOP. First, raw sequences were joined the reads into contigs using make.contigs function from Mothur program (version 1.39.5). After that they were pre-processed to remove ambiguous base > '.$max_amb.'. Then, sequences were aligned using SILVA bacterial database. This makes sequences that did not overlap in the desired region are excluded including the sequences of homopolymer bases > '.$max_amb.' with the minimum and maximum length of reads were set to '.$min_read.' and '.$max_read.' bp, respectively. Moreover, pre.cluster function was used to merge low frequency sequences with very close higher frequency sequencings using a modified single linage algorithm. This is to reduce the sequencing error. The chimeras were also screened using UCHIME function and removed from the sequences set. The clean sequences were classified the taxonomy using the Naïve Bayesian Classifier method, described by Wang et al. with Greengenes database (August 2013 release of gg_13_8_99). The minimum bootstrap confidence score of 80% was used for taxonomic assignment. In the step of the clustering of sequences was performed using '.$project_type.'-based methods at '.$methods.' level with Mothur program.');
+$this->myfpdf->MultiCell(0, 6, 'The data set '.$project_name.' was uploaded on '.$date.' at '.$time.' and contains '.$count_seqs.' sequences with an average length of '.$avg_lenght.' bps.  Raw sequencing data obtained from '.$project_sequencing.' platform were implemented according to '.$project_program.' MiSeq SOP. First, raw sequences were joined the reads into contigs using make.contigs function from Mothur program (version 1.39.5). After that they were pre-processed to remove ambiguous base > '.$max_amb.'. Then, sequences were aligned using SILVA bacterial database. This makes sequences that did not overlap in the desired region are excluded including the sequences of homopolymer bases > '.$max_amb.' with the minimum and maximum length of reads were set to '.$min_read.' and '.$max_read.' bp, respectively. Moreover, pre.cluster function was used to merge low frequency sequences with very close higher frequency sequencings using a modified single linage algorithm. This is to reduce the sequencing error. The chimeras were also screened using UCHIME function and removed from the sequences set. The clean sequences were classified the taxonomy using the Naïve Bayesian Classifier method, described by Wang et al. with Greengenes database (August 2013 release of gg_13_8_99). The minimum bootstrap confidence score of 80% was used for taxonomic assignment. In the step of the clustering of sequences was performed using '.$project_type.'-based methods at '.$methods.' level with Mothur program.');
 $this->myfpdf->SetFont('Times', 'UB',12);
 $this->myfpdf->Cell(0, 10, 'Summary Report',0,1);
 $this->myfpdf->SetFont('Times', '',12);
@@ -470,7 +517,7 @@ $this->myfpdf->MultiCell(0, 6, 'A total of '.$project_group_sam.' datasets has b
 $this->myfpdf->SetFont('Times', 'B', 12);
 $this->myfpdf->Cell(0, 10, 'Diversity, richness and composition of microbial communities',0,1);
 $this->myfpdf->SetFont('Times','',12);
-$this->myfpdf->MultiCell(0,6,'The cleaned sequences were clustered based on '.$project_analysis.' method. After data pre-processing, an average reads length is [[[xxx]]] bp with number of dataset of '.$project_num_sam.' sequences. The '.$project_analysis.' of these data represented '.$t_range_otu.' OTUs per group in average. The alpha diversity was estimated microbial community richness (Chao1) and diversity (Shannon) from subsampling data based on the library size at [[[xxx]]]. The '.$max_chao.' and the '.$min_chao.' displayed the highest and the lowest species richness, respectively. The Shannon index estimated the diversity in the community. It displayed that there is the most diverse of bacteria in '.$max_shanon.' and the lowest diverse of bacteria in '.$min_shanon.'. ');
+$this->myfpdf->MultiCell(0,6,'The cleaned sequences were clustered based on '.$project_analysis.' method. After data pre-processing, an average reads length is '.$num_seqs2.' bp with number of dataset of '.$avg_reads.' sequences. The '.$project_analysis.' of these data represented '.$t_range_otu.' OTUs per group in average. The alpha diversity was estimated microbial community richness (Chao1) and diversity (Shannon) from subsampling data based on the library size at [[[xxx]]]. The '.$max_chao.' and the '.$min_chao.' displayed the highest and the lowest species richness, respectively. The Shannon index estimated the diversity in the community. It displayed that there is the most diverse of bacteria in '.$max_shanon.' and the lowest diverse of bacteria in '.$min_shanon.'. ');
 
 
 
@@ -525,6 +572,7 @@ $this->myfpdf->MultiCell(0,6,'      The community dissimilarities among differen
 $this->myfpdf->AddPage();
 $this->myfpdf->SetFont('Times', '', 12);
 $this->myfpdf->Cell(0, 10, $this->myfpdf->WriteHTML('<b>Table 2</b> Statistical analysis of beta analysis among '.$project_num_sam.' samples based on the calculators').'', 0, 1);
+$this->myfpdf->SetFont('Times', '', 9);
 $this->myfpdf->Statistical($headers,$dataa);
 $this->myfpdf->SetFont('Times','',12);
 $this->myfpdf->MultiCell(0,6,'      Two ordination methods for community comparison among samples such as Principal Coordinates analysis (PCoA) and Non-metric multidimensional scaling (NMDS) are one of the most common analyses in microbial ecology which were constructed from dissimilarity matrices.');
@@ -547,7 +595,7 @@ $this->myfpdf->AddPage();
 $this->myfpdf->Image(base_url().'images/nmds2_plot.png',50,14,110,90);
 $this->myfpdf->Cell(0,90,'',0,1);
 $this->myfpdf->MultiCell(0,6,$this->myfpdf->WriteHTML('<b>Figure 8.</b>       '.$graph.' based on '.$calculators.' index with biplot, calculated '.$calculators_bio.'’s correlation method, representing the direction of OTUs or genus which related among groups.').'');
-$this->myfpdf->MultiCell(0,6,'      Moreover, the distance-based analysis of molecular variance (AMOVA) or Homogeneity of molecular variance (HOMOVA) are used to assess significant differences among treatment samples. AMOVA testing displayed different bacterial communities between xxx vs xxx, p = 0.082; xxx vs xxx, p = 0.328. Homova testing displayed the difference in variation between the two groups (xxx vs xxx, p=0.023).');
+$this->myfpdf->MultiCell(0,6,'      Moreover, the distance-based analysis of molecular variance (AMOVA) or Homogeneity of molecular variance (HOMOVA) are used to assess significant differences among treatment samples. AMOVA testing displayed different bacterial communities between '.$name_patten.'. Homova testing displayed the difference in variation between the two groups '.$name_patten_homo.'.');
 $this->myfpdf->SetFont('Times', 'B', 12);
 $this->myfpdf->Cell(0,10,'Predicted metabolic functions based on 16S rRNA data using PICRUSt',0,1);
 $this->myfpdf->SetFont('Times','',12);
@@ -562,11 +610,7 @@ $this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 9.</b> Extend
 
 
 // Page Test
-$this->myfpdf->AddPage();
-$this->myfpdf->SetFont('Symbol');
-$this->myfpdf->WriteHTML('<p>I will display &#8805;</p>
-<p>I will display &#x2265;</p>
-<p>I will display &ge;</p>');
+
 
 $this->myfpdf->Output();
 
