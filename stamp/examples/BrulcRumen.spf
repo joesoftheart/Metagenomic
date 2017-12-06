@@ -1,0 +1,638 @@
+Subsystem Hierarchy 1	Subsystem Hierarchy 2	Subsystem Name	Rumen_80F6	Rumen_640F6	Rumen_710F6	Rumen_Planktonic
+Respiration	Electron donating reactions	Hydrogenases	62	73	43	94
+Stress Response	Stress Response	Copper_homeostasis	51	61	566	62
+DNA Metabolism	DNA Metabolism	Restriction-Modification_System	115	123	346	111
+Sulfur Metabolism	Organic sulfur assimilation	Taurine_Utilization	0	0	1	0
+Carbohydrates	Organic acids	Propionyl-CoA_to_Succinyl-CoA_Module	2	9	5	4
+Protein Metabolism	Protein processing and modification	Inteins	23	22	10	27
+Respiration	Electron donating reactions	Respiratory_Complex_I	27	25	572	25
+Protein Metabolism	Selenoproteins	Glycine_reductase,_sarcosine_reductase_and_betaine_reductase	4	6	13	6
+Cell Wall and Capsule	Cell wall of Mycobacteria	linker_unit-arabinogalactan_synthesis	0	0	0	1
+DNA Metabolism	DNA repair	DNA_repair_and_recombination_eukaryotic	1	1	0	2
+Carbohydrates	Monosaccharides	L-rhamnose_utilization	34	34	29	39
+Cell Wall and Capsule	Capsular and extracellular polysacchrides	Alginate_metabolism	25	34	24	29
+Protein Metabolism	Protein biosynthesis	Translation_factors_bacterial	98	93	232	93
+DNA Metabolism	DNA repair	DNA_repair,_bacterial_RecFOR_pathway	17	28	77	26
+Carbohydrates	Organic acids	Propionate-CoA_to_Succinate_Module	6	13	343	1
+Clustering-based subsystems	Hypothetical protein possible functionally linked with Alanyl-tRNA synthetase	CBSS-257314.1.peg.488	23	32	29	41
+Membrane Transport	Uni- Sym- and Antiporters	Na(+)_H(+)_antiporter	2	1	66	0
+Cell Wall and Capsule	Capsular and extracellular polysacchrides	Rhamnose_containing_glycans	62	54	81	62
+Clustering-based subsystems	Chemotaxis, response regulators	CBSS-323850.3.peg.3142	0	0	15	0
+Clustering-based subsystems	Clustering-based subsystems	Sporulation-related_Hypotheticals	2	3	0	1
+Clustering-based subsystems	Clustering-based subsystems	Competence_or_DNA_damage-inducible_protein_CinA_and_related_protein_families	39	57	102	48
+Cell Wall and Capsule	Capsular and extracellular polysacchrides	Colanic_acid_biosynthesis	2	5	2	3
+Clustering-based subsystems	Clustering-based subsystems	CBSS-320372.3.peg.6046	33	47	125	47
+Nucleosides and Nucleotides	Pyrimidines	Pyrimidine_utilization	2	0	42	2
+Protein Metabolism	Protein biosynthesis	Ribosome_LSU_eukaryotic_and_archaeal	3	7	6	15
+Unclassified	Unclassified	RuvABC_plus_a_hypothetical	29	36	118	39
+Protein Metabolism	Protein biosynthesis	Ribosome_SSU_bacterial	176	208	430	223
+Clustering-based subsystems	Clustering-based subsystems	CBSS-296591.1.peg.2330	81	115	241	120
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Folate and pterines	p-Aminobenzoyl-Glutamate_Utilization	0	0	1	1
+Amino Acids and Derivatives	Lysine, threonine, methionine, and cysteine	Methionine_Biosynthesis	211	282	854	281
+Virulence	Adhesion	Adhesion_of_Campylobacter	1	4	11	4
+Protein Metabolism	Protein biosynthesis	Iojap	7	6	10	7
+Cofactors, Vitamins, Prosthetic Groups, Pigments	NAD and NADP	NAD_and_NADP_cofactor_biosynthesis_global	48	53	224	71
+Carbohydrates	Organic acids	Tricarballylate_Utilization	0	0	0	1
+Clustering-based subsystems	Ribosome-related cluster	A_Gammaproteobacteria_Cluster_Relating_to_Translation	0	0	5	2
+Virulence	Regulation of virulence	Streptococcus_pyogenes_virulence_regulators	0	0	1	0
+Regulation and Cell signaling	Regulation and Cell signaling	GJO_regulatory_system_scratch	0	1	16	0
+Clustering-based subsystems	Clustering-based subsystems	CBSS-176299.4.peg.1996	101	138	344	118
+Virulence	Invasion and intracellular resistance	Listeria_surface_proteins:_Internalin-like_proteins	0	3	15	1
+Respiration	Electron donating reactions	Formate_dehydrogenase	1	0	0	2
+Metabolism of Aromatic Compounds	Metabolism of central aromatic intermediates	Phenylacetate_pathway_of_aromatic_compound_degradation	15	23	54	17
+Dormancy and Sporulation	Spore DNA protection	Small_acid-soluble_spore_proteins	0	2	0	0
+RNA Metabolism	RNA processing and modification	Polyadenylation_bacterial	6	8	175	5
+Respiration	Electron accepting reactions	Ubiquinone_Menaquinone-cytochrome_c_reductase_complexes	2	3	101	0
+Stress Response	Periplasmic Stress	Periplasmic_Stress_Response	3	1	8	0
+Carbohydrates	Di- and oligosaccharides	Beta-Glucoside_Metabolism	17	10	33	18
+Clustering-based subsystems	Ribosome-related cluster	CBSS-138119.3.peg.2719	32	53	229	59
+Amino Acids and Derivatives	Aromatic amino acids and derivatives	Chorismate_Synthesis	16	16	198	20
+Carbohydrates	Monosaccharides	L-fucose_utilization_temp	18	18	12	21
+Protein Metabolism	Secretion	General_Secretion_Pathway	1	1	20	1
+Amino Acids and Derivatives	Lysine, threonine, methionine, and cysteine	Methionine_Salvage	3	4	10	10
+Clustering-based subsystems	Clustering-based subsystems	CBSS-393124.3.peg.2657	1	2	0	4
+Clustering-based subsystems	Fatty acid metabolic cluster	CBSS-218491.3.peg.427	43	24	105	39
+Nucleosides and Nucleotides	Detoxification	Nudix_proteins_(nucleoside_triphosphate_hydrolases)	19	16	85	17
+Clustering-based subsystems	Probably GTP or GMP signaling related	CBSS-176299.4.peg.1292	30	38	206	42
+Nitrogen Metabolism	Nitrogen Metabolism	Cyanate_hydrolysis	0	1	2	0
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Coenzyme A	Coenzyme_A_Biosynthesis	28	31	312	16
+RNA Metabolism	RNA processing and modification	Wyeosine-MimG_Biosynthesis	0	0	0	3
+Clustering-based subsystems	Clustering-based subsystems	Conenzyme_B12_related_Hypothetical:_Clusters_with_cobST	0	0	0	1
+Metabolism of Aromatic Compounds	Metabolism of Aromatic Compounds	Benzoate_transport_and_degradation_cluster	0	0	5	0
+Carbohydrates	Central carbohydrate metabolism	Pyruvate_metabolism_I:_anaplerotic_reactions,_PEP	138	184	325	175
+Metabolism of Aromatic Compounds	Metabolism of Aromatic Compounds	Aromatic_Amin_Catabolism	1	3	29	7
+Protein Metabolism	Protein biosynthesis	Pyrrolysine	0	0	1	0
+Stress Response	Stress Response	Bacterial_hemoglobins	0	0	9	0
+Clustering-based subsystems	Lysine, threonine, methionine, and cysteine	CBSS-84588.1.peg.1247	0	0	0	1
+Stress Response	Stress Response	SigmaB_stress_responce_regulation	6	11	9	13
+Virulence	Resistance to antibiotics and toxic compounds	Multidrug_Resistance,_2-protein_version_Found_in_Gram-positive_bacteria	0	0	1	0
+Clustering-based subsystems	Clustering-based subsystems	LMPTP_YwlE_cluster	1	0	1	1
+Cell Wall and Capsule	Gram-Negative cell wall components	KDO2-Lipid_A_biosynthesis	37	29	301	26
+Motility and Chemotaxis	Social motility and nonflagellar swimming in bacteria	Bacterial_motility:Gliding	26	28	279	22
+Regulation and Cell signaling	Regulation and Cell signaling	cAMP_signaling_in_bacteria	30	31	317	32
+Unclassified	Unclassified	Selenoprotein_O	0	2	38	0
+Virulence	Iron Scavenging Mechanisms	Iron_acquisition_in_Vibrio	0	0	1	0
+Cell Division and Cell Cycle	Cell cycle in Prokaryota	Bacterial_Cytoskeleton	82	128	527	125
+RNA Metabolism	Transcription	Rrf2_family_transcriptional_regulators	1	0	1	1
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Thiamine and thiamine pyrophosphate	Thiamin_biosynthesis	19	17	144	19
+Carbohydrates	Aminosugars	(GlcNAc)2_Catabolic_Operon	9	15	6	9
+Virulence	Resistance to antibiotics and toxic compounds	Acriflavin_resistance_cluster	2	2	6	6
+Clustering-based subsystems	Sulfatases and sulfatase modifying factor 1 (and a hypothetical)	Sulfatases_and_sulfatase_modifying_factor_1	0	1	1	1
+Sulfur Metabolism	Sulfur Metabolism	Thioredoxin-disulfide_reductase	13	22	221	17
+Respiration	Electron donating reactions	Energy-conserving_hydrogenase_(ferredoxin)	3	1	1	0
+Virulence	Type III, Type IV, ESAT secretion systems	Mannose-sensitive_hemagglutinin_type_4_pilus	0	0	0	2
+Virulence	Type VI secretion systems	Type_VI_secretion_systems	2	2	3	0
+Amino Acids and Derivatives	Lysine, threonine, methionine, and cysteine	Threonine_and_Homoserine_Biosynthesis	72	89	218	79
+Metabolism of Aromatic Compounds	Anaerobic degradation of aromatic compounds	Anaerobic_benzoate_metabolism	4	2	36	2
+Virulence	Resistance to antibiotics and toxic compounds	Multidrug_Resistance_Efflux_Pumps	65	101	477	92
+Virulence	Iron Scavenging Mechanisms	Hemin_transport_system	0	1	10	0
+Carbohydrates	Sugar alcohols	Ribitol,_Xylitol,_Arabitol,_Mannitol_and_Sorbitol_utilization	20	16	1	17
+Stress Response	Osmotic stress	Osmoregulation	5	6	4	8
+RNA Metabolism	RNA processing and modification	tRNA_modification_Archaea_Henri	11	28	28	17
+Clustering-based subsystems	Translation	CBSS-326442.4.peg.1852	38	55	265	53
+Stress Response	Oxidative stress	Oxidative_stress	29	48	334	45
+Unclassified	Unclassified	Iron-sulfur_cluster_assembly	19	27	188	15
+Carbohydrates	CO2 fixation	Acetyl-CoA_pathway_of_CO2_fixation	0	0	1	0
+Clustering-based subsystems	Clustering-based subsystems	Conserved_gene_cluster_possibly_involved_in_RNA_metabolism	8	10	13	7
+Respiration	Electron donating reactions	Coenzyme_F420_hydrogenase	0	1	1	2
+Clustering-based subsystems	Clustering-based subsystems	CBSS-243277.1.peg.4359	3	5	55	4
+Stress Response	Stress Response	Heat_shock_dnaK_gene_cluster_extended	51	83	92	83
+DNA Metabolism	DNA repair	DNA_repair,_UvrABC_system	181	238	500	234
+Protein Metabolism	Protein folding	Periplasmic_disulfide_interchange	12	7	150	5
+Membrane Transport	ABC transporters	ABC_transporter_L-proline_glycine_betaine_(TC_3.A.1.12.1)	0	0	0	1
+Membrane Transport	Membrane Transport	Transport_of_Manganese	0	0	7	1
+Membrane Transport	Membrane Transport	Potassium_homeostasis	26	18	73	20
+Membrane Transport	Membrane Transport	Choline_Transport	0	2	0	3
+Miscellaneous	Miscellaneous	Transporters_In_Models	29	37	162	42
+Miscellaneous	Miscellaneous	Archease2	0	0	2	1
+Virulence	Resistance to antibiotics and toxic compounds	Streptothricin_resistance	0	0	2	0
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Quinone cofactors	Pyrroloquinoline_Quinone_biosynthesis	1	0	12	0
+Unclassified	Unclassified	CR_clusters_Euk_7_GlucoseP_isomerase	0	2	4	1
+Carbohydrates	Sugar alcohols	Glycerol_and_Glycerol-3-phosphate_Uptake_and_Utilization	15	21	20	25
+Membrane Transport	ABC transporters	ABC_transporter_dipeptide_(TC_3.A.1.5.2)	9	17	23	23
+Fatty Acids and Lipids	Fatty acids	Fatty_Acid_Biosynthesis_FASI	0	1	4	1
+Carbohydrates	Sugar alcohols	Inositol_catabolism	11	16	15	13
+Protein Metabolism	Protein biosynthesis	Translation_elongation_factors_eukaryotic_and_archaeal	1	1	1	7
+Potassium metabolism	Potassium metabolism	Glutathione-regulated_potassium-efflux_system_and_associated_functions	34	44	351	26
+RNA Metabolism	RNA processing and modification	tRNA_nucleotidyltransferase	6	10	4	10
+Unclassified	Unclassified	CR_clusters_Euk_1	0	2	2	5
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Pyridoxine	Pyridoxin_(Vitamin_B6)_Biosynthesis	16	24	86	21
+Respiration	Electron accepting reactions	Anaerobic_respiratory_reductases	15	21	100	19
+Clustering-based subsystems	CRISPRs and associated hypotheticals	CBSS-216592.1.peg.3534	0	2	2	3
+Carbohydrates	One-carbon Metabolism	One-carbon_metabolism_by_tetrahydropterines	13	21	87	16
+Respiration	Respiration	Biogenesis_of_cbb3-type_cytochrome_c_oxidases	4	5	200	0
+Clustering-based subsystems	Clustering-based subsystems	CBSS-288681.3.peg.1039	10	13	22	21
+Clustering-based subsystems	Clustering-based subsystems	CBSS-630.2.peg.3360	16	23	110	12
+RNA Metabolism	RNA processing and modification	tRNA_modification_E.coli	51	75	970	41
+Respiration	Electron accepting reactions	Terminal_cytochrome_oxidases	22	25	103	19
+Cell Wall and Capsule	Cell Wall and Capsule	Peptidoglycan_Biosynthesis	204	227	785	196
+Virulence	Virulence	Ton_and_Tol_transport_systems	19	19	150	14
+Virulence	Pathogenicity islands	Staphylococcal_pathogenicity_islands_SaPI	14	22	12	16
+Amino Acids and Derivatives	Aromatic amino acids and derivatives	Phenylalanine_and_Tyrosine_Branches_from_Chorismate	15	3	9	7
+Carbohydrates	Monosaccharides	Xylose_utilization	50	58	31	62
+Stress Response	Stress Response	Acid_resistance_mechanisms	19	22	39	13
+Carbohydrates	CO2 fixation	Calvin-Benson_cycle	21	29	252	20
+Regulation and Cell signaling	Regulation and Cell signaling	HPr_catabolite_repression_system	7	3	8	4
+Virulence	Type III, Type IV, ESAT secretion systems	Type_4_secretion_and_conjugative_transfer	3	1	6	3
+Regulation and Cell signaling	Regulation and Cell signaling	MazEF_toxin-antitoxing_(programmed_cell_death)_system	0	0	1	0
+Clustering-based subsystems	recX  and regulatory cluster	CBSS-261594.1.peg.788	9	15	86	10
+Cell Wall and Capsule	Capsular and extracellular polysacchrides	Lipid_A_modifications	0	0	3	0
+Cell Division and Cell Cycle	Cell cycle in Prokaryota	Two_cell_division_clusters_relating_to_chromosome_partitioning	22	26	148	32
+Virulence	Resistance to antibiotics and toxic compounds	MexE-MexF-OprN_Multidrug_Efflux_System	0	0	0	1
+Respiration	Respiration	Tetrathionate_respiration	2	0	0	1
+Clustering-based subsystems	Probably Pyrimidine biosynthesis-related	CBSS-306254.1.peg.1508	16	17	68	24
+Amino Acids and Derivatives	Aromatic amino acids and derivatives	Aminotransferases:Aromatic_Pathway_and_More,_A_work_in_progress	2	5	26	2
+Clustering-based subsystems	Fatty acid metabolic cluster	CBSS-246196.1.peg.364	16	18	164	17
+Unclassified	Unclassified	Branched_chain_amino_acid_degradation_regulons	1	3	45	2
+Carbohydrates	One-carbon Metabolism	Serine-glyoxylate_cycle	119	134	1266	125
+Cell Wall and Capsule	Cell Wall and Capsule	Sortase	5	5	2	4
+Protein Metabolism	Protein biosynthesis	Ribosome_SSU_chloroplast	0	0	1	1
+Unclassified	Unclassified	YgfZ-Fe-S_clustering	0	2	25	0
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Tetrapyrroles	Cobalamin_synthesis	4	2	17	13
+Clustering-based subsystems	Clustering-based subsystems	CBSS-261591.3.peg.3916	19	25	118	18
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Coenzyme M	coenzyme_M_biosynthesis	1	0	1	2
+Membrane Transport	Membrane Transport	Transport_of_Zinc	5	4	93	6
+Prophage	structural proteins-tail	Prophage_tail_proteins	0	0	1	0
+Membrane Transport	Sugar Phosphotransferase Systems, PTS	Fructose_and_Mannose_Inducible_PTS	0	2	0	2
+Carbohydrates	Monosaccharides	Lactose_utilization	1	5	4	5
+Nitrogen Metabolism	Nitrogen Metabolism	Allantoin_degradation	6	11	27	10
+Membrane Transport	ABC transporters	ABC_transporter_glutamate_aspartate_(TC_3.A.1.3.4)	2	3	71	2
+Respiration	Electron donating reactions	Na(+)-translocating_NADH-quinone_oxidoreductase_and_rnf-like_group_of_electron_transport_complexes	55	73	388	49
+Unclassified	Unclassified	CBSS-83333.1.peg.946	3	1	1	1
+Metabolism of Aromatic Compounds	Peripheral pathways for catabolism of aromatic compounds	p-Hydroxybenzoate_degradation	0	0	25	0
+Cell Wall and Capsule	Gram-Negative cell wall components	Major_Outer_Membrane_Proteins	3	9	124	3
+Carbohydrates	Central carbohydrate metabolism	Pyruvate_Alanine_Serine_Interconversions	12	14	18	9
+Protein Metabolism	Protein folding	Thermosome,_archaeal	1	1	1	2
+Clustering-based subsystems	Biosynthesis of galactoglycans and related lipopolysacharides	CBSS-258594.1.peg.3339	35	45	128	52
+Miscellaneous	Miscellaneous	Carbonate_Biomineralization	1	1	0	1
+Clustering-based subsystems	DNA polymerase III epsilon cluster	CBSS-342610.3.peg.1536	1	5	15	1
+Carbohydrates	Clustering-based subsystems	Putative_sugar_ABC_transporter_(ytf_cluster)	0	0	1	0
+Stress Response	Oxidative stress	Redox-dependent_regulation_of_nucleus_processes	10	12	66	9
+DNA Metabolism	DNA Metabolism	DNA_structural_proteins,_bacterial	7	13	36	10
+Carbohydrates	Monosaccharides	L-Arabinose_utilization	90	100	52	90
+Carbohydrates	Organic acids	Glycerate_metabolism	18	13	103	16
+Respiration	Electron accepting reactions	trimethylamine_N-oxide_(TMAO)_reductase	0	1	102	4
+Clustering-based subsystems	DNA metabolism	CBSS-269801.1.peg.2186	0	0	3	0
+Unclassified	Unclassified	Experimental-Ubiquinone_BiosynthesisVDC	6	14	444	8
+Cell Division and Cell Cycle	Cell Division and Cell Cycle	YgjD_and_YeaZ	7	5	13	5
+Amino Acids and Derivatives	Alanine, serine, and glycine	Alanine_biosynthesis	9	23	64	21
+Clustering-based subsystems	Clustering-based subsystems	EC699-706	6	12	119	11
+Clustering-based subsystems	PmbA Related Hypothetical	PmbA_and_a_Hypothetical_Protein	1	6	3	6
+Carbohydrates	CO2 fixation	CO2_uptake,_carboxysome	1	2	0	1
+Membrane Transport	ABC transporters	Transport_of_Nickel_and_Cobalt	2	2	3	9
+Clustering-based subsystems	Clustering-based subsystems	CBSS-335283.3.peg.454	61	84	316	85
+Carbohydrates	CO2 fixation	Carboxysome	0	2	0	0
+Unclassified	Unclassified	Sugar_catabolome_in_Shewanella_species	2	3	1	0
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Lipoic acid	Lipoic_acid_metabolism	6	0	90	1
+Carbohydrates	CO2 fixation	Photorespiration_(oxidative_C2_cycle)	1	1	14	1
+Carbohydrates	Di- and oligosaccharides	Unknown_oligosaccharide_utilization_Sde_1396	1	2	1	0
+Carbohydrates	Sugar alcohols	Hexitol_degradation	36	47	40	56
+RNA Metabolism	Transcription	RNA_polymerase_II	0	0	1	0
+Virulence	Prophage, Transposon	Listeria_phi-A118-like_prophages	0	0	1	0
+Clustering-based subsystems	Protein export?	CBSS-393121.3.peg.2760	111	168	294	125
+Unclassified	Unclassified	COG1272_Experimental	0	1	0	0
+Secondary Metabolism	Biosynthesis of phenylpropanoids	Phenylpropionate_Degradation	4	7	1	5
+Nucleosides and Nucleotides	Nucleosides and Nucleotides	De_Novo_Pyrimidine_Synthesis	133	157	285	178
+Cell Division and Cell Cycle	Cell cycle in Prokaryota	Murein_hydrolase_regulation_and_cell_death	0	4	26	1
+Amino Acids and Derivatives	Aromatic amino acids and derivatives	Common_Pathway_For_Synthesis_of_Aromatic_Compounds_(DAHP_synthase_to_chorismate)	25	34	95	38
+Clustering-based subsystems	Clustering-based subsystems	CBSS-314225.3.peg.515	6	9	3	6
+RNA Metabolism	Transcription	RNA_polymerase_chloroplast	1	1	2	4
+Membrane Transport	ABC transporters	ABC_transporter_peptide_(TC_3.A.1.5.5)	1	1	0	0
+Nitrogen Metabolism	Nitrogen Metabolism	Ammonia_assimilation	10	8	45	5
+RNA Metabolism	Transcription	Transcription_initiation,_bacterial_sigma_factors	25	32	129	30
+Cell Wall and Capsule	Capsular and extracellular polysacchrides	Exopolysaccharide_Biosynthesis	2	2	3	3
+Unclassified	Unclassified	Acetone_Butanol_Ethanol_Synthesis	13	23	28	28
+Amino Acids and Derivatives	Arginine; urea cycle, polyamines	Arginine_Biosynthesis_extended	30	24	7	15
+Carbohydrates	Monosaccharides	D-galactonate_catabolism	1	0	0	1
+Clustering-based subsystems	Related to N-acetylglucosamine utilization subsystem?	CBSS-176279.3.peg.298	3	6	68	1
+Respiration	Electron accepting reactions	Terminal_cytochrome_C_oxidases	2	4	13	4
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Riboflavin, FMN, FAD	Flavodoxin	12	10	7	17
+Amino Acids and Derivatives	Arginine; urea cycle, polyamines	Polyamine_Metabolism	74	88	306	57
+Amino Acids and Derivatives	Arginine; urea cycle, polyamines	Arginine_and_Ornithine_Degradation	6	11	103	17
+Virulence	Posttranslational modification	N-linked_Glycosylation_in_Bacteria	12	12	59	10
+Protein Metabolism	Protein biosynthesis	Ribosome_LSU_bacterial	250	326	719	277
+Protein Metabolism	Protein biosynthesis	Universal_GTPases	256	358	869	341
+Carbohydrates	Central carbohydrate metabolism	TCA_Cycle	128	152	420	166
+Clustering-based subsystems	Carotenoid biosynthesis	CBSS-320388.3.peg.3759	0	0	1	1
+Protein Metabolism	Protein biosynthesis	Ribosome_LSU_mitochondrial	0	0	1	0
+Clustering-based subsystems	Clustering-based subsystems	CBSS-345072.3.peg.1318	29	22	10	23
+Amino Acids and Derivatives	Histidine Metabolism	Histidine_Degradation	41	35	175	35
+Metabolism of Aromatic Compounds	Metabolism of central aromatic intermediates	Homogentisate_pathway_of_aromatic_compound_degradation	0	1	7	0
+DNA Metabolism	DNA replication	DNA_topoisomerases,_Type_I,_ATP-independent	2	3	9	4
+Carbohydrates	Di- and oligosaccharides	Lactose_and_Galactose_Uptake_and_Utilization	103	94	84	99
+Cell Wall and Capsule	Cell Wall and Capsule	UDP-N-acetylmuramate_from_Fructose-6-phosphate_Biosynthesis	32	62	72	49
+Membrane Transport	Membrane Transport	Transport_of_Molybdenum	1	3	32	2
+Carbohydrates	Di- and oligosaccharides	Sucrose_utilization_Shewanella	2	1	1	0
+Metabolism of Aromatic Compounds	Peripheral pathways for catabolism of aromatic compounds	Benzoate_catabolism	0	0	1	0
+Sulfur Metabolism	Inorganic sulfur assimilation	Sulfate_assimilation	0	5	10	1
+Amino Acids and Derivatives	Alanine, serine, and glycine	Serine_Biosynthesis	21	24	158	28
+Secondary Metabolism	Plant Octadecanoids	Octadecanoids	0	0	1	0
+Virulence	Adhesion	Adhesins_in_Staphylococcus	2	2	0	0
+Protein Metabolism	Protein biosynthesis	Glu-tRNA(Gln)_transamidation	2	1	4	2
+Virulence	Resistance to antibiotics and toxic compounds	Zinc_resistance	1	1	1	0
+Regulation and Cell signaling	Regulation and Cell signaling	Glutaredoxins	17	37	294	35
+Cell Wall and Capsule	Cell Wall and Capsule	YjeE	12	4	48	8
+Clustering-based subsystems	Tricarboxylate transporter	CBSS-49338.1.peg.459	5	5	24	10
+Nucleosides and Nucleotides	Detoxification	Nucleoside_triphosphate_pyrophosphohydrolase_MazG	0	1	0	0
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Riboflavin, FMN, FAD	Riboflavin,_FMN_and_FAD_metabolism	13	19	126	11
+Carbohydrates	Quorum sensing and biofilm formation	Biofilm_Adhesin_Biosynthesis	0	0	1	0
+Carbohydrates	Organic acids	Malonate_decarboxylase	1	0	10	2
+Carbohydrates	Fermentation	Acetyl-CoA_fermentation_to_Butyrate	28	25	335	26
+Carbohydrates	One-carbon Metabolism	Methanogenesis	6	4	3	24
+Carbohydrates	Organic acids	Glyoxylate_Synthesis	2	2	3	6
+Cell Division and Cell Cycle	Cell cycle in Prokaryota	Cyanobacterial_Circadian_Clock	3	4	31	5
+Nucleosides and Nucleotides	Pyrimidines	pyrimidine_conversions	101	131	255	121
+Carbohydrates	Organic acids	Lactate_utilization	10	20	110	11
+Clustering-based subsystems	Clustering-based subsystems	CBSS-316273.3.peg.227	6	12	183	8
+Amino Acids and Derivatives	Arginine; urea cycle, polyamines	Arginine_Deiminase_Pathway	5	17	12	19
+Clustering-based subsystems	Clustering-based subsystems	Bacterial_RNA-metabolizing_Zn-dependent_hydrolases	54	57	43	81
+Metabolism of Aromatic Compounds	Peripheral pathways for catabolism of aromatic compounds	Quinate_degradation	1	1	3	2
+Cell Wall and Capsule	Capsular and extracellular polysacchrides	Serotype_determining_Capsular_polysaccharide_biosynthesis_in_Staphylococcus	5	8	5	7
+Amino Acids and Derivatives	Lysine, threonine, methionine, and cysteine	Threonine_degradation	22	15	35	29
+Clustering-based subsystems	Recombination related cluster	CBSS-258594.1.peg.613	40	57	92	67
+Carbohydrates	Sugar alcohols	Ethanolamine_utilization	4	5	1	7
+Unclassified	Unclassified	CBSS-393121.3.peg.1913	24	25	168	33
+Respiration	Respiration	Biogenesis_of_cytochrome_c_oxidases	2	0	4	0
+Clustering-based subsystems	Isoprenoid/cell wall biosynthesis: PREDICTED UNDECAPRENYL DIPHOSPHATE PHOSPHATASE	CBSS-83331.1.peg.3039	56	67	317	71
+Fatty Acids and Lipids	Phospholipids	Glycerolipid_and_Glycerophospholipid_Metabolism_in_Bacteria	69	77	610	56
+Carbohydrates	Carbohydrates	Lacto-N-Biose_I_and_Galacto-N-Biose_Metabolic_Pathway	1	4	0	1
+Carbohydrates	Monosaccharides	D-Galacturonate_Utilization	21	14	5	19
+Unclassified	Unclassified	CBSS-269801.1.peg.1725	1	2	3	1
+Fatty Acids and Lipids	Fatty acids	Fatty_Acid_Biosynthesis_FASII	22	28	247	36
+Virulence	Resistance to antibiotics and toxic compounds	Resistance_to_Vancomycin	4	2	1	3
+RNA Metabolism	RNA processing and modification	Queuosine-Archaeosine_Biosynthesis	81	89	112	108
+Cell Wall and Capsule	Gram-Positive cell wall components	Teichuronic_acid_biosynthesis	20	15	20	20
+Clustering-based subsystems	Clustering-based subsystems	CBSS-342610.3.peg.1794	21	17	42	7
+Virulence	Iron Scavenging Mechanisms	Heme,_hemin_uptake_and_utilization_systems_in_GramPositives	0	4	16	1
+Cell Wall and Capsule	Gram-Negative cell wall components	Lipid_A-Ara4N_pathway_(_Polymyxin_resistance_)	5	13	23	16
+Carbohydrates	Di- and oligosaccharides	Trehalose_Biosynthesis	48	40	38	53
+RNA Metabolism	RNA processing and modification	RNA_3&#39;-terminal_phosphate_cyclase	3	2	37	5
+Clustering-based subsystems	Type III secretion system, extended	CBSS-243265.1.peg.3592	0	0	1	0
+Sulfur Metabolism	Organic sulfur assimilation	Alkanesulfonate_assimilation	6	6	8	7
+Photosynthesis	Electron transport and photophosphorylation	Photosystem_I	1	0	1	0
+Carbohydrates	Monosaccharides	D-ribose_utilization	21	34	75	30
+Virulence	Virulence	Type_1_pili_(mannose-sensitive_fimbriae)	0	0	1	0
+Stress Response	Stress Response	Universal_stress_protein_family	0	2	11	0
+DNA Metabolism	DNA Metabolism	Conjugative_transposon,_Bacteroidales	32	34	13	27
+Nitrogen Metabolism	Nitrogen Metabolism	Nitrogen_fixation	2	0	1	1
+Protein Metabolism	Secretion	General_secretory_pathway_(Sec-SRP)_complex_(TC_3.A.5.1.1)	61	75	235	66
+Fatty Acids and Lipids	Fatty Acids and Lipids	Polyhydroxybutyrate_metabolism	16	13	54	12
+Virulence	Detection	MLST	1	1	4	2
+Carbohydrates	Central carbohydrate metabolism	Entner-Doudoroff_Pathway	121	166	105	137
+Virulence	Regulation of virulence	Streptococcal_Mga_Regulon	0	0	1	0
+Virulence	Iron Scavenging Mechanisms	Transport_of_Iron	36	46	97	50
+Clustering-based subsystems	Probably organic hydroperoxide resistance related hypothetical protein	CBSS-269482.1.peg.1294	2	10	84	3
+DNA Metabolism	DNA repair	DNA_Repair_Base_Excision	47	44	145	37
+Stress Response	Stress Response	Hfl_operon	1	4	2	1
+Clustering-based subsystems	Clustering-based subsystems	CBSS-393133.3.peg.2787	0	2	5	0
+DNA Metabolism	DNA Metabolism	CRISPRs	9	2	2	3
+Clustering-based subsystems	Clustering-based subsystems	CBSS-281090.3.peg.464	19	11	144	21
+Clustering-based subsystems	Putative GGDEF domain protein related to agglutinin secretion	CBSS-323850.3.peg.3284	9	5	89	6
+DNA Metabolism	DNA repair	DNA_repair,_bacterial	164	202	667	186
+Clustering-based subsystems	Cytochrome biogenesis	CBSS-196164.1.peg.461	6	6	69	4
+Respiration	Electron donating reactions	Membrane-bound_Ni,_Fe-hydrogenase	2	7	0	1
+Regulation and Cell signaling	Regulation and Cell signaling	Stringent_Response,_(p)ppGpp_metabolism	35	34	130	34
+Carbohydrates	Aminosugars	Chitin_and_N-acetylglucosamine_utilization	19	10	18	9
+Carbohydrates	Fermentation	Acetoin,_butanediol_metabolism	20	18	35	26
+Carbohydrates	Aminosugars	N-Acetyl-Galactosamine_and_Galactosamine_Utilization	0	3	0	0
+Respiration	Respiration	Formate_hydrogenase	33	50	113	51
+DNA Metabolism	DNA replication	DNA_replication,_archaeal	3	1	3	21
+Virulence	Prophage, Transposon	Staphylococcal_phi-Mu50B-like_prophages	0	0	1	0
+Clustering-based subsystems	Sarcosine oxidase	CBSS-188.1.peg.6170	7	5	6	11
+Stress Response	Stress Response	Carbon_Starvation	10	17	110	14
+Membrane Transport	ABC transporters	ABC_transporter_branched-chain_amino_acid_(TC_3.A.1.4.1)	15	23	19	26
+Clustering-based subsystems	Lipoprotein B cluster	CBSS-221988.1.peg.2137	2	0	2	1
+Stress Response	Stress Response	Phage_shock_protein_(psp)_operon	0	0	0	1
+Miscellaneous	Miscellaneous	YbbK	0	1	0	0
+Carbohydrates	Fermentation	Fermentations:_Lactate	31	38	170	44
+Amino Acids and Derivatives	Branched-chain amino acids	Branched-Chain_Amino_Acid_Biosynthesis	94	126	589	146
+Virulence	Virulence	Streptococcus_pyogenes_Virulome	2	2	0	1
+Carbohydrates	Clustering-based subsystems	Cluster_Ytf_and_putative_sugar_transporter	2	2	1	3
+Membrane Transport	Membrane Transport	Folate_transporters	4	5	38	5
+Virulence	Resistance to antibiotics and toxic compounds	The_mdtABCD_multidrug_resistance_cluster	0	0	2	1
+Clustering-based subsystems	Siderophore biosynthesis	CBSS-243265.1.peg.4415	1	0	3	0
+Protein Metabolism	Protein biosynthesis	Ribosome_SSU_eukaryotic_and_archaeal	2	3	2	17
+Clustering-based subsystems	Cytochrome biogenesis	CBSS-196164.1.peg.1690	40	57	130	45
+Metabolism of Aromatic Compounds	Metabolism of central aromatic intermediates	Catechol_branch_of_beta-ketoadipate_pathway	1	5	66	0
+Respiration	Electron donating reactions	NiFe_hydrogenase_maturation	8	9	8	28
+Clustering-based subsystems	Hypothetical associated with RecF	Hypothetical_Coupled_to_RecF	3	2	1	2
+Unclassified	Unclassified	CRnot_mitoch_clusters_Euk_1	1	2	0	1
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Biotin	Biotin_biosynthesis	1	4	89	4
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Isoprenoids	Carotenoids	1	4	8	3
+Protein Metabolism	Protein folding	Protein_chaperones	145	171	527	201
+Nucleosides and Nucleotides	Nucleosides and Nucleotides	Ribonucleotide_reduction	58	80	207	89
+Protein Metabolism	Protein biosynthesis	Ribosome_activity_modulation	3	3	7	4
+Carbohydrates	Organic acids	Citrate_Metabolism,_Transport,_and_Regulation	3	4	0	4
+Amino Acids and Derivatives	Aromatic amino acids and derivatives	Aromatic_amino_acid_degradation	4	1	16	3
+Clustering-based subsystems	Clustering-based subsystems	CBSS-393131.3.peg.612	9	19	8	24
+Membrane Transport	Sugar Phosphotransferase Systems, PTS	Sucrose-specific_PTS	0	0	1	1
+Clustering-based subsystems	Two related proteases	CBSS-257314.1.peg.676	5	0	5	1
+Respiration	Sodium Ion-Coupled Energetics	Na+_translocating_decarboxylases_and_related_biotin-dependent_enzymes	38	34	10	22
+Motility and Chemotaxis	Motility and Chemotaxis	Bacterial_Chemotaxis	24	27	65	33
+Carbohydrates	Organic acids	Propanediol_utilization	1	1	2	4
+Carbohydrates	Central carbohydrate metabolism	Pyruvate_metabolism_II:_acetyl-CoA,_acetogenesis_from_pyruvate	17	33	437	25
+Virulence	Resistance to antibiotics and toxic compounds	Beta-lactamase	4	5	40	6
+Nitrogen Metabolism	Nitrogen Metabolism	Denitrification	1	3	42	1
+Virulence	Type III, Type IV, ESAT secretion systems	Type_III_secretion_system_orphans	9	4	98	0
+Respiration	Electron donating reactions	Succinate_dehydrogenase	20	21	57	23
+Clustering-based subsystems	TldD cluster	CBSS-354.1.peg.2917	4	7	108	1
+Metabolism of Aromatic Compounds	Peripheral pathways for catabolism of aromatic compounds	Naphtalene_and_antracene_degradation	0	0	1	0
+Clustering-based subsystems	Hypothetical in Lysine biosynthetic cluster	CBSS-323850.3.peg.3269	16	18	47	21
+Clustering-based subsystems	Nucleotidyl-phosphate metabolic cluster	CBSS-222523.1.peg.1311	1	1	3	0
+Fatty Acids and Lipids	Fatty acids	Unsaturated_Fatty_Acid_Metabolism	1	0	1	0
+Cell Wall and Capsule	Gram-Negative cell wall components	LOS_core_oligosaccharide_biosynthesis	21	23	18	24
+Amino Acids and Derivatives	Branched-chain amino acids	Isoleucine_degradation	2	2	10	6
+Membrane Transport	ABC transporters	ABC_transporter_oligopeptide_(TC_3.A.1.5.1)	60	90	119	98
+Membrane Transport	ABC transporters	ABC_transporter_molybdenum_(TC_3.A.1.8.1)	0	0	1	0
+Amino Acids and Derivatives	Lysine, threonine, methionine, and cysteine	Lysine_biosynthesis_AAA_pathway_2	0	0	0	1
+Clustering-based subsystems	Clustering-based subsystems	EC49-61	7	1	32	2
+RNA Metabolism	RNA processing and modification	tRNA_splicing	0	1	0	0
+RNA Metabolism	Transcription	Transcription_factors_bacterial	60	63	320	75
+DNA Metabolism	DNA uptake, competence	Late_competence	0	3	6	1
+Membrane Transport	ABC transporters	ABC_transporter_iron(III)_dicitrate_(TC_3.A.1.14.1)	0	1	2	1
+Virulence	Resistance to antibiotics and toxic compounds	Arsenic_resistance	1	3	57	1
+Carbohydrates	Di- and oligosaccharides	Melibiose_Utilization	0	4	4	6
+Protein Metabolism	Protein folding	GroEL_GroES	32	43	105	39
+Carbohydrates	Clustering-based subsystems	Unknown_sugar_utilization_(cluster_yphABCDEFG)	5	5	1	2
+Carbohydrates	Central carbohydrate metabolism	Methylglyoxal_Metabolism	3	2	34	1
+Stress Response	Oxidative stress	Rubrerythrin	12	15	13	13
+Unclassified	Unclassified	Fatty_acid_degradation_regulons	1	0	4	1
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Tetrapyrroles	Heme_and_Siroheme_Biosynthesis	31	39	571	60
+Carbohydrates	Methanogenesis	Methanogenesis_from_methylated_compounds	1	0	0	0
+Unclassified	Unclassified	TrmE_experimental	51	65	133	44
+Virulence	Resistance to antibiotics and toxic compounds	Integrons	0	0	1	0
+Virulence	Resistance to antibiotics and toxic compounds	Tetracycline_resistance,_ribosome_protection_type	111	163	66	141
+Secondary Metabolism	Bacterial cytostatics, differentiation factors and antibiotics	Phenazine_biosynthesis	0	1	0	0
+Carbohydrates	One-carbon Metabolism	Formaldehyde_assimilation:_Ribulose_monophosphate_pathway	0	0	0	1
+Clustering-based subsystems	Clustering-based subsystems	CBSS-224911.1.peg.435	1	2	34	0
+Regulation and Cell signaling	Regulation and Cell signaling	Phytochromes	1	1	1	1
+Clustering-based subsystems	Clustering-based subsystems	CBSS-237727.3.peg.501	0	0	0	2
+Carbohydrates	Organic acids	Methylcitrate_cycle	3	2	98	0
+Carbohydrates	Monosaccharides	D-Sorbitol(D-Glucitol)_and_L-Sorbose_Utilization	0	5	8	3
+Unclassified	Unclassified	CBSS-83332.1.peg.3803	117	154	869	129
+Metabolism of Aromatic Compounds	Metabolism of central aromatic intermediates	N-heterocyclic_aromatic_compound_degradation	0	0	1	0
+Unclassified	Unclassified	PQQ-dependent_quinoprotein_dehydrogenases	2	0	15	1
+Prophage	Prophage	Prophage_lysogenic_conversion_modules	3	2	1	3
+Cell Wall and Capsule	Gram-Positive cell wall components	Spore_Coat	5	10	3	8
+Carbohydrates	Central carbohydrate metabolism	Glycolate,_glyoxylate_interconversions	2	7	64	5
+Phosphorus Metabolism	Phosphorus Metabolism	Phosphate_metabolism	56	82	810	93
+RNA Metabolism	RNA Metabolism	Group_II_intron-associated_genes	45	64	103	51
+Membrane Transport	ABC transporters	ABC_transporter_of_unknown_substrate_X	1	0	0	1
+Phosphorus Metabolism	Phosphorus Metabolism	High_affinity_phosphate_transporter_and_control_of_PHO_regulon	2	3	19	4
+Carbohydrates	Sugar alcohols	Di-Inositol-Phosphate_biosynthesis	0	2	1	1
+Amino Acids and Derivatives	Glutamine, glutamate, aspartate, asparagine; ammonia assimilation	Glutamine,_Glutamate,_Aspartate_and_Asparagine_Biosynthesis	51	48	117	60
+Stress Response	Osmotic stress	Hyperosmotic_ectoine_biosynthesis	1	1	1	0
+Cell Wall and Capsule	Capsular and extracellular polysacchrides	Sialic_Acid_Metabolism	98	86	243	91
+Protein Metabolism	Protein biosynthesis	Translation_elongation_factor_G_family	50	80	55	69
+Sulfur Metabolism	Organic sulfur assimilation	Utilization_of_glutathione_as_a_sulphur_source	2	1	20	3
+Cell Division and Cell Cycle	Cell cycle in Prokaryota	Sporulation_Cluster_III_A	1	1	0	0
+Amino Acids and Derivatives	Arginine; urea cycle, polyamines	Arginine_Biosynthesis	53	61	444	77
+Respiration	Respiration	Carbon_monoxide_induced_hydrogenase	2	2	2	10
+Clustering-based subsystems	tRNA sulfuration	CBSS-89187.3.peg.2957	5	8	69	6
+Clustering-based subsystems	Lysine, threonine, methionine, and cysteine	YeiH	2	1	35	0
+Clustering-based subsystems	Clustering-based subsystems	Putative_hemin_transporter	0	2	7	0
+Clustering-based subsystems	Clustering-based subsystems	CBSS-176280.1.peg.1561	0	0	1	0
+Protein Metabolism	Secretion	HtrA_and_Sec_secretion	1	0	6	1
+Virulence	Iron Scavenging Mechanisms	Campylobacter_Iron_Metabolism	32	50	95	62
+Carbohydrates	Organic acids	Alpha-acetolactate_operon	0	0	2	0
+Virulence	Resistance to antibiotics and toxic compounds	Mercury_resistance_operon	0	0	1	0
+Amino Acids and Derivatives	Proline and 4-hydroxyproline	Proline_Synthesis	20	27	137	28
+Clustering-based subsystems	Clustering-based subsystems	CBSS-323097.3.peg.2594	14	16	29	12
+Stress Response	Oxidative stress	Protection_from_Reactive_Oxygen_Species	0	0	7	1
+Respiration	Respiration	Biogenesis_of_c-type_cytochromes	6	7	105	4
+Clustering-based subsystems	Clustering-based subsystems	CBSS-176279.3.peg.868	26	39	75	28
+Amino Acids and Derivatives	Osmotic stress	Choline_and_Betaine_Uptake_and_Betaine_Biosynthesis	7	17	286	8
+Regulation and Cell signaling	Regulation and Cell signaling	Two-component_regulatory_systems_in_Campylobacter	0	2	4	2
+Regulation and Cell signaling	Regulation and Cell signaling	DNA-binding_regulatory_proteins,_strays	4	3	112	0
+Unclassified	Unclassified	Iron-sulfur_experimental	162	269	746	209
+RNA Metabolism	Transcription	RNA_polymerase_archaeal	2	1	3	18
+Clustering-based subsystems	Clustering-based subsystems	CBSS-312309.3.peg.1965	21	19	165	22
+Carbohydrates	Central carbohydrate metabolism	Glyoxylate_bypass	0	0	1	0
+Clustering-based subsystems	Putrescine/GABA utilization cluster-temporal,to add to SSs	GABA_and_putrescine_metabolism_from_cluters	1	2	29	2
+Virulence	Iron Scavenging Mechanisms	Siderophore_Yersiniabactin_Biosynthesis	0	2	0	1
+Clustering-based subsystems	Clustering-based subsystems	CBSS-221109.1.peg.2233	0	0	6	0
+Clustering-based subsystems	Clustering-based subsystems	LMPTP_YfkJ_cluster	1	0	0	0
+Macromolecular Synthesis	Control of Macromolecuar Synthesis	CBSS-243277.1.peg.511	3	13	245	2
+RNA Metabolism	Transcription	RNA_polymerase_I	0	0	0	1
+Carbohydrates	Monosaccharides	Fructose_utilization	0	1	4	2
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Folate and pterines	Molybdopterin_biosynthesis	2	9	81	6
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Folate and pterines	Pterin_metabolism_3	3	8	225	1
+Respiration	ATP synthases	V-Type_ATP_synthase	21	43	33	54
+Carbohydrates	Monosaccharides	L-fucose_utilization	17	18	12	19
+Clustering-based subsystems	Clustering-based subsystems	CBSS-176279.3.peg.1389	0	2	34	0
+Carbohydrates	Central carbohydrate metabolism	Embden-Meyerhof_and_Gluconeogenesis_Archaeal	24	46	135	35
+RNA Metabolism	RNA processing and modification	ATP-dependent_RNA_helicases,_bacterial	5	9	81	13
+Virulence	Toxins and superantigens	Streptolysin_S_Biosynthesis_and_Transport	0	2	2	0
+Stress Response	Oxidative stress	Glutathione_Redox_Metabolism	25	42	148	40
+Clustering-based subsystems	Clustering-based subsystems	CBSS-222523.1.peg.3937	2	1	5	2
+Protein Metabolism	Protein biosynthesis	Ribosome_biogenesis_bacterial	45	48	172	53
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Tetrapyrroles	Chlorophyll_Biosynthesis	0	2	0	0
+Amino Acids and Derivatives	Proline and 4-hydroxyproline	Proline,_4-hydroxyproline_uptake_and_utilization	89	108	242	101
+Phosphorus Metabolism	Phosphorus Metabolism	P_uptake_(cyanobacteria)	1	0	1	1
+Protein Metabolism	Protein biosynthesis	tRNA_aminoacylation	578	772	1556	683
+Respiration	ATP synthases	F0F1-type_ATP_synthase	73	104	364	96
+Carbohydrates	Di- and oligosaccharides	Fructooligosaccharides(FOS)_and_Raffinose_Utilization	18	34	23	34
+Cell Wall and Capsule	Multi-enzyme complex	Cellulosome	45	38	8	26
+Clustering-based subsystems	Clustering-based subsystems	CBSS-316057.3.peg.1294	4	5	45	8
+Carbohydrates	Di- and oligosaccharides	Sucrose_utilization	3	1	7	2
+Amino Acids and Derivatives	Arginine; urea cycle, polyamines	Urea_decomposition	0	1	5	1
+Cell Wall and Capsule	Capsular and extracellular polysacchrides	Phosphorylcholine_incorporation_in_LPS	4	4	5	11
+Clustering-based subsystems	Clustering-based subsystems	CBSS-393123.3.peg.1754	1	1	1	2
+Amino Acids and Derivatives	Aromatic amino acids and derivatives	Chorismate:_Intermediate_for_synthesis_of_PAPA_antibiotics,_PABA,_anthranilate,_3-hydroxyanthranilate_and_more.	18	15	156	18
+Clustering-based subsystems	Clustering-based subsystems	CBSS-269801.1.peg.1715	4	5	2	5
+Sulfur Metabolism	Sulfur Metabolism	Sulfate_reduction-associated_complexes	0	3	0	1
+Membrane Transport	ABC transporters	ABC_transporter_ferrichrome_(TC_3.A.1.14.3)	1	0	7	0
+Clustering-based subsystems	Clustering-based subsystems	CBSS-228410.1.peg.134	18	11	131	15
+Respiration	Respiration	Soluble_cytochromes_and_functionally_related_electron_carriers	11	20	111	17
+Clustering-based subsystems	Clustering-based subsystems	CBSS-393123.3.peg.2365	5	3	5	2
+Virulence	Regulation of virulence	Vibrio_Polysaccharide_(VPS)_Biosynthesis	0	1	1	1
+DNA Metabolism	DNA uptake, competence	gram_plus_late_competence	0	0	1	0
+Stress Response	Stress Response	Flavohaemoglobin	2	6	159	2
+Unclassified	Unclassified	Experimental-FO	1	1	0	8
+Carbohydrates	Monosaccharides	Deoxyribose_and_Deoxynucleoside_Catabolism	26	40	44	28
+Nitrogen Metabolism	Nitrogen Metabolism	Dissimilatory_nitrite_reductase	0	0	1	0
+Amino Acids and Derivatives	Alanine, serine, and glycine	Glycine_and_Serine_Utilization	59	79	40	74
+Protein Metabolism	Lipoproteins	Lipoprotein_Biosynthesis	10	10	57	9
+Cell Division and Cell Cycle	Cell cycle in Prokaryota	Bacterial_Cell_Division	82	101	221	120
+Carbohydrates	Monosaccharides	D-allose_utilization	1	5	4	3
+Unclassified	Unclassified	YrdC-YciO	19	20	25	26
+Clustering-based subsystems	Cell Division	CBSS-393130.3.peg.794	5	9	13	11
+Virulence	Resistance to antibiotics and toxic compounds	Multidrug_Resistance,_Tripartite_Systems_Found_in_Gram_Negative_Bacteria	0	0	1	0
+Carbohydrates	Monosaccharides	L-ascorbate_utilization_(and_related_gene_clusters)	15	8	7	8
+Unclassified	Unclassified	CBSS-412883.3.peg.2513	4	4	62	5
+Virulence	Virulence	C_jejuni_colonization_of_chick_caeca	1	0	1	0
+Clustering-based subsystems	Clustering-based subsystems	CBSS-196620.1.peg.2477	1	2	8	2
+Virulence	Prophage, Transposon	IbrA_and_IbrB:_co-activators_of_prophage_gene_expression	0	0	1	0
+Stress Response	Stress Response	Dimethylarginine_metabolism	1	4	4	2
+Carbohydrates	Di- and oligosaccharides	Trehalose_Uptake_and_Utilization	5	5	14	8
+Carbohydrates	Fermentation	Fermentations:_Mixed_acid	9	13	3	12
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Folate and pterines	YgfZ	44	53	199	53
+Carbohydrates	Monosaccharides	D-gluconate_and_ketogluconates_metabolism	10	17	30	14
+Carbohydrates	Di- and oligosaccharides	Maltose_and_Maltodextrin_Utilization	169	228	147	239
+Carbohydrates	Clustering-based subsystems	Unknown_sugar_utilization_(cluster_ydeVWYZ)	0	0	0	1
+Cell Wall and Capsule	Capsular and extracellular polysacchrides	dTDP-rhamnose_synthesis	79	58	75	95
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Folate and pterines	5-FCL-like_protein	30	42	18	29
+Metabolism of Aromatic Compounds	Metabolism of Aromatic Compounds	Acetophenone_carboxylase	0	0	1	0
+Sulfur Metabolism	Inorganic sulfur assimilation	Inorganic_Sulfur_Assimilation	5	6	141	5
+Carbohydrates	Fermentation	Butanol_Biosynthesis	40	56	463	43
+Unclassified	Unclassified	USS-DB-7	15	16	28	15
+Virulence	Resistance to antibiotics and toxic compounds	USS-DB-6	0	1	0	0
+Virulence	Resistance to antibiotics and toxic compounds	USS-DB-1	0	0	1	0
+Metabolism of Aromatic Compounds	Peripheral pathways for catabolism of aromatic compounds	Benzoate_degradation	4	4	125	0
+Amino Acids and Derivatives	Lysine, threonine, methionine, and cysteine	Lysine_Biosynthesis_DAP_Pathway	87	109	447	121
+Amino Acids and Derivatives	Lysine, threonine, methionine, and cysteine	Superpathway_of_cysteine_biosynthesis	0	0	13	1
+RNA Metabolism	RNA processing and modification	rRNA_modification_Bacteria	8	2	26	6
+Carbohydrates	Monosaccharides	D-Tagatose_and_Galactitol_Utilization	2	3	8	4
+Cell Wall and Capsule	Gram-Positive cell wall components	D-Alanyl_Lipoteichoic_Acid_Biosynthesis	2	7	1	2
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Tetrapyrroles	Heme_biosynthesis_orphans	0	0	1	2
+RNA Metabolism	Transcription	RNA_polymerase_bacterial	239	294	655	297
+Stress Response	Osmotic stress	Synthesis_of_osmoregulated_periplasmic_glucans	1	6	2	1
+Cell Wall and Capsule	Gram-Positive cell wall components	Teichoic_and_lipoteichoic_acids_biosynthesis	12	10	15	11
+Amino Acids and Derivatives	Histidine Metabolism	Histidine_Biosynthesis	74	86	459	117
+Cell Wall and Capsule	Gram-Negative cell wall components	Perosamine_Synthesis_Vibrio	11	15	6	8
+Virulence	Type III, Type IV, ESAT secretion systems	ESAT-6_proteins_secretion_system_in_Firmicutes	5	4	3	10
+Regulation and Cell signaling	Regulation and Cell signaling	Sex_pheromones_in_Enterococcus_faecalis_and_other_Firmicutes	0	2	24	7
+Virulence	Adhesion	Widespread_colonization_island	6	3	2	4
+Carbohydrates	Monosaccharides	D-galactarate,_D-glucarate_and_D-glycerate_catabolism	0	2	4	4
+Sulfur Metabolism	Organic sulfur assimilation	Alkanesulfonates_Utilization	0	0	1	0
+Amino Acids and Derivatives	Proline and 4-hydroxyproline	A_Hypothetical_Protein_Related_to_Proline_Metabolism	0	0	1	0
+Stress Response	Stress Response	Copper_homeostasis:_copper_tolerance	0	0	2	0
+Metabolism of Aromatic Compounds	Metabolism of central aromatic intermediates	Protocatechuate_branch_of_beta-ketoadipate_pathway	0	3	27	1
+Fatty Acids and Lipids	Triacylglycerols	Triacylglycerol_metabolism	2	5	47	1
+Metabolism of Aromatic Compounds	Peripheral pathways for catabolism of aromatic compounds	Toluene_degradation	0	0	1	0
+Amino Acids and Derivatives	Branched-chain amino acids	Leucine_Degradation_and_HMG-CoA_Metabolism	0	0	4	0
+Secondary Metabolism	Plant Alkaloids	Alkaloid_biosynthesis_from_L-lysine	0	0	0	1
+Metabolism of Aromatic Compounds	Metabolism of Aromatic Compounds	Cresol_degradation	0	0	5	0
+RNA Metabolism	RNA processing and modification	Ribonuclease_P_archaeal_and_eukaryal	0	0	1	1
+Nitrogen Metabolism	Nitrogen Metabolism	Nitrate_and_nitrite_ammonification	11	24	419	8
+Nucleosides and Nucleotides	Nucleosides and Nucleotides	Purine_Utilization	30	24	60	30
+Clustering-based subsystems	Clustering-based subsystems	CBSS-370552.3.peg.1240	4	2	7	1
+Amino Acids and Derivatives	Alanine, serine, and glycine	Glycine_cleavage_system	41	45	337	43
+Stress Response	Stress Response	Tolerance_to_Furfural-Induced_Stress	2	0	0	2
+Protein Metabolism	Protein biosynthesis	Asp-tRNA(Asn)_transamidation	79	120	351	109
+Virulence	Resistance to antibiotics and toxic compounds	Aminoglycoside_adenylyltransferases	0	1	0	1
+Membrane Transport	Lipoprotein sorting	Lipoprotein_sorting_system	4	5	81	7
+Clustering-based subsystems	Hypothetical lipase related to Phosphatidate metabolism	CBSS-316407.3.peg.1371	12	10	75	12
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Coenzyme B	Coenzyme_B_synthesis	0	1	0	2
+Membrane Transport	ABC transporters	ABC_transporter_tungstate_(TC_3.A.1.6.2)	2	1	1	3
+Amino Acids and Derivatives	Lysine, threonine, methionine, and cysteine	Methionine_Degradation	1	0	0	0
+Membrane Transport	ABC transporters	ABC_transporter_alkylphosphonate_(TC_3.A.1.9.1)	2	0	2	4
+Nucleosides and Nucleotides	Purines	De_Novo_Purine_Biosynthesis	121	190	574	167
+Membrane Transport	Uni- Sym- and Antiporters	Sodium_Hydrogen_Antiporter	1	0	6	1
+Unclassified	Unclassified	Staphylococcus_aureus_hypothetical_repetitive_gene_loci	0	0	1	0
+Stress Response	Cold shock	Cold_shock,_CspA_family_of_proteins	1	0	17	1
+DNA Metabolism	DNA Metabolism	Type_I_Restriction-Modification	18	18	17	21
+Amino Acids and Derivatives	Branched-chain amino acids	Ketoisovalerate_oxidoreductase	6	8	5	13
+RNA Metabolism	RNA processing and modification	tRNA_processing	47	60	233	51
+Sulfur Metabolism	Sulfur Metabolism	Galactosylceramide_and_Sulfatide_metabolism	55	70	39	81
+Carbohydrates	Central carbohydrate metabolism	Glycogen_metabolism	42	59	29	50
+Protein Metabolism	Protein biosynthesis	Ribosome_LSU_chloroplast	0	1	2	0
+Virulence	Iron Scavenging Mechanisms	Siderophore_enterobactin_biosynthesis_and_ferric_enterbactin_transport	1	4	3	4
+Metabolism of Aromatic Compounds	Peripheral pathways for catabolism of aromatic compounds	Phenylpropanoid_compound_degradation	0	1	34	1
+Virulence	Iron Scavenging Mechanisms	Siderophore_pyochelin	0	0	1	0
+Stress Response	Detoxification	D-tyrosyl-tRNA(Tyr)_deacylase	8	6	20	6
+RNA Metabolism	RNA processing and modification	RNA_processing_and_degradation,_bacterial	18	31	308	21
+Amino Acids and Derivatives	Branched-chain amino acids	Valine_degradation	4	8	166	2
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Folate and pterines	Folate_Biosynthesis	116	126	324	101
+RNA Metabolism	RNA processing and modification	Ribonuclease_H	7	9	11	6
+Phosphorus Metabolism	Phosphorus Metabolism	Alkylphosphonate_utilization	8	9	22	6
+Protein Metabolism	Protein degradation	Proteasome_bacterial	80	92	277	96
+Cell Wall and Capsule	Gram-Negative cell wall components	Lipopolysaccharide_assembly	8	13	198	4
+Clustering-based subsystems	Recombination related cluster	CBSS-198094.1.peg.4426	16	20	12	21
+Clustering-based subsystems	Cell Division	CBSS-281309.1.peg.50	121	143	481	139
+Metabolism of Aromatic Compounds	Metabolism of Aromatic Compounds	Gentisare_degradation	0	1	13	0
+Nucleosides and Nucleotides	Purines	Purine_conversions	174	199	438	213
+Cofactors, Vitamins, Prosthetic Groups, Pigments	NAD and NADP	NAD_regulation	2	8	84	3
+Clustering-based subsystems	Clustering-based subsystems	CBSS-292415.3.peg.2341	0	2	22	0
+Nitrogen Metabolism	Nitrogen Metabolism	Nitric_oxide_synthase	0	0	2	0
+Cell Wall and Capsule	Gram-Negative cell wall components	Outer_membrane	7	10	22	3
+Amino Acids and Derivatives	Branched-chain amino acids	HMG_CoA_Synthesis	3	6	122	3
+Clustering-based subsystems	Putative asociate of RNA polymerase sigma-54 factor rpoN	CBSS-316057.3.peg.1308	12	13	73	7
+Protein Metabolism	Secretion	Twin-arginine_translocation_system	4	2	40	1
+DNA Metabolism	DNA replication	DNA_topoisomerases,_Type_II,_ATP-dependent	36	53	363	41
+Protein Metabolism	Protein biosynthesis	tRNA_aminoacylation,_mitochondrial	1	1	0	1
+Unclassified	Unclassified	Experimental_-Creatinine_degradation	0	0	11	0
+Clustering-based subsystems	Clustering-based subsystems	CBSS-251221.1.peg.1863	16	21	85	22
+Amino Acids and Derivatives	Lysine, threonine, methionine, and cysteine	Cysteine_Biosynthesis	7	9	269	6
+Clustering-based subsystems	Pigment biosynthesis	CBSS-176299.3.peg.235	6	12	5	11
+DNA Metabolism	DNA repair	ATP-dependent_Nuclease	0	2	9	4
+DNA Metabolism	DNA Metabolism	YcfH	6	10	31	3
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Isoprenoids	Isoprenoid_Biosynthesis	51	69	261	51
+Unclassified	Unclassified	YgfZ-Fe-S	6	7	184	3
+Clustering-based subsystems	Cell Division	Cell_Division_Cluster	28	39	30	36
+Clustering-based subsystems	Clustering-based subsystems	CBSS-56780.10.peg.1536	26	26	111	28
+Virulence	Resistance to antibiotics and toxic compounds	Cobalt-zinc-cadmium_resistance	27	25	256	19
+Carbohydrates	Monosaccharides	Mannose_Metabolism	64	53	31	46
+Virulence	Resistance to antibiotics and toxic compounds	Tolerance_to_colicin_E2	0	0	1	0
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Fe-S clusters	Fe-S_cluster_assembly	25	25	29	39
+Carbohydrates	Central carbohydrate metabolism	Pyruvate:ferredoxin_oxidoreductase	99	144	68	104
+Protein Metabolism	Selenoproteins	Selenocysteine_metabolism	5	6	4	5
+Clustering-based subsystems	Clustering-based subsystems	CBSS-266117.6.peg.2476	17	34	120	20
+Clustering-based subsystems	Clustering-based subsystems	CBSS-262719.3.peg.410	0	3	4	1
+Clustering-based subsystems	Clustering-based subsystems	CBSS-316279.3.peg.746	9	7	38	5
+Cell Wall and Capsule	Capsular and extracellular polysacchrides	O-Methyl_Phosphoramidate_Capsule_Modification_in_Campylobacter	0	0	0	2
+RNA Metabolism	RNA processing and modification	eukaryotic_rRNA_modification_and_related_functions	2	0	0	1
+Membrane Transport	ABC transporters	ABC_transporter_glutamine_(TC_3.A.1.3.2)	13	23	17	28
+Unclassified	Unclassified	Zinc_regulated_enzymes	0	0	22	4
+Motility and Chemotaxis	Flagellar motility in Prokaryota	Flagellum	32	38	56	40
+Nitrogen Metabolism	Nitrogen Metabolism	Nitrosative_stress	6	7	10	9
+Carbohydrates	Carbohydrates	beta-glucuronide_utilization	1	0	0	0
+Clustering-based subsystems	Clustering-based subsystems	CBSS-235.1.peg.567	3	6	90	4
+Clustering-based subsystems	Probably Ybbk-related hypothetical membrane proteins	CBSS-316057.3.peg.659	5	8	46	8
+Virulence	Resistance to antibiotics and toxic compounds	Resistance_to_fluoroquinolones	125	176	197	176
+Virulence	Posttranslational modification	Pseudaminic_Acid_Biosynthesis	0	0	0	1
+Stress Response	Resistance to antibiotics and toxic compounds	Bacitracin_Stress_Response	0	3	10	2
+Unclassified	Unclassified	YaaA	0	0	30	0
+Amino Acids and Derivatives	Alanine, serine, and glycine	Glycine_Biosynthesis	22	23	21	29
+Clustering-based subsystems	Clustering-based subsystems	CBSS-176279.3.peg.1262	2	0	0	0
+Respiration	Reverse electron transport	Archaeal_membrane_bound_hydrogenases	5	3	4	15
+Clustering-based subsystems	Clustering-based subsystems	CBSS-160492.1.peg.550	6	12	37	9
+Amino Acids and Derivatives	Lysine, threonine, methionine, and cysteine	Lysine_degradation	23	34	189	31
+Metabolism of Aromatic Compounds	Peripheral pathways for catabolism of aromatic compounds	Biphenyl_Degradation	0	0	1	1
+RNA Metabolism	Transcription	RNA_polymerase_archaeal_initiation_factors	0	3	0	4
+Unclassified	Unclassified	YHI9	2	8	28	1
+Membrane Transport	Membrane Transport	ECF_class_transporters	8	12	8	9
+Clustering-based subsystems	Cluster of Unknown Function	CBSS-221988.1.peg.771	3	5	8	2
+Carbohydrates	Central carbohydrate metabolism	Dehydrogenase_complexes	18	23	381	11
+Nucleosides and Nucleotides	Nucleosides and Nucleotides	Hydantoin_metabolism	3	8	82	11
+Clustering-based subsystems	Ribosomal Protein L28P relates to a set of uncharacterized proteins	A_Gram-positive_cluster_that_relates_ribosomal_protein_L28P_to_a_set_of_uncharacterized_proteins	12	15	23	19
+DNA Metabolism	DNA repair	2-phosphoglycolate_salvage	1	1	39	1
+Phosphorus Metabolism	Phosphorus Metabolism	Phosphonate_metabolism	1	2	0	4
+Clustering-based subsystems	Related to Menaquinone-cytochrome C reductase  	CBSS-393130.3.peg.129	0	0	3	0
+Carbohydrates	Monosaccharides	Mannitol_Utilization	5	8	10	9
+Membrane Transport	Sugar Phosphotransferase Systems, PTS	Galactose-inducible_PTS	0	0	1	0
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Folate and pterines	Methanopterin_biosynthesis2	0	2	0	4
+Respiration	Electron donating reactions	H2:CoM-S-S-HTP_oxidoreductase	0	1	1	3
+Cell Wall and Capsule	Gram-Negative cell wall components	Capsular_heptose_biosynthesis	6	2	3	13
+Protein Metabolism	Protein degradation	Protein_degradation	45	41	157	38
+Clustering-based subsystems	Urate degradation	CBSS-205922.3.peg.1809	0	1	9	0
+Clustering-based subsystems	Translation	CBSS-243265.1.peg.198	8	7	13	2
+Clustering-based subsystems	Flagella protein?	CBSS-323098.3.peg.2823	0	0	2	0
+Protein Metabolism	Protein biosynthesis	Translation_initiation_factors_eukaryotic_and_archaeal	0	2	0	1
+Clustering-based subsystems	Clustering-based subsystems	Conserved_gene_cluster_associated_with_Met-tRNA_formyltransferase	38	72	337	54
+Carbohydrates	Central carbohydrate metabolism	Pentose_phosphate_pathway	62	56	128	75
+Virulence	Resistance to antibiotics and toxic compounds	Methicillin_resistance_in_Staphylococci	0	2	0	2
+Clustering-based subsystems	Clustering-based subsystems	CBSS-257314.1.peg.752	13	35	46	26
+Fatty Acids and Lipids	Isoprenoids	Archaeal_lipids	3	0	1	1
+Carbohydrates	Central carbohydrate metabolism	Dihydroxyacetone_kinases	1	6	3	3
+Phosphorus Metabolism	Phosphorus Metabolism	Phosphoenolpyruvate_phosphomutase	8	12	9	18
+Virulence	Iron Scavenging Mechanisms	Pyoverdine_biosynthesis_new	2	2	7	1
+Amino Acids and Derivatives	Aromatic amino acids and derivatives	Aromatic_amino_acid_interconversions_with_aryl_acids	38	52	32	69
+Clustering-based subsystems	Clustering-based subsystems	NusA-TFII_Cluster	0	0	0	1
+Cell Wall and Capsule	Capsular and extracellular polysacchrides	CMP-N-acetylneuraminate_Biosynthesis	16	27	29	22
+Amino Acids and Derivatives	Aromatic amino acids and derivatives	Tryptophan_synthesis	51	69	257	83
+Virulence	Prophage, Transposon	Tn552	0	0	1	0
+Carbohydrates	Di- and oligosaccharides	Sucrose_Metabolism	134	155	178	161
+DNA Metabolism	DNA replication	DNA-replication	263	320	935	288
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Tetrapyrroles	Coenzyme_B12_biosynthesis	46	38	35	73
+Virulence	Type III, Type IV, ESAT secretion systems	Type_IV_pilus	7	19	181	5
+Respiration	Electron donating reactions	Respiratory_dehydrogenases_1	18	24	213	9
+Protein Metabolism	Protein degradation	Proteolysis_in_bacteria,_ATP-dependent	5	5	12	11
+RNA Metabolism	RNA processing and modification	rRNA_modification_Haloferax	0	0	0	1
+Clustering-based subsystems	Clustering-based subsystems	CBSS-316057.3.peg.3521	6	4	115	10
+Regulation and Cell signaling	Regulation and Cell signaling	Orphan_regulatory_proteins	0	1	4	0
+Clustering-based subsystems	Clustering-based subsystems	SA:14-24	6	7	19	6
+Protein Metabolism	Protein folding	Peptidyl-prolyl_cis-trans_isomerase	6	10	109	6
+Virulence	Prophage, Transposon	Bacterial_Endolysins:_autolysins,_phage,_and_phage-like_lysins	0	0	1	0
+Cofactors, Vitamins, Prosthetic Groups, Pigments	Quinone cofactors	Menaquinone_and_Phylloquinone_Biosynthesis	8	10	47	13
+Metabolism of Aromatic Compounds	Metabolism of central aromatic intermediates	Central_meta-cleavage_pathway_of_aromatic_compound_degradation	0	1	9	1

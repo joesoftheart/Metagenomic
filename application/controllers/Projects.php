@@ -27,8 +27,6 @@ class Projects extends CI_Controller
         ob_start();
         $data['rs'] = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
         $data['rs_process'] = $this->mongo_db->limit(1)->get('status_process');
-        
-
 
 
        foreach ($data['rs'] as $r) {
@@ -83,7 +81,7 @@ class Projects extends CI_Controller
 
     public function standard_run($id)
     {
-
+        echo "Standard";
 
         if ($this->input->post("max_amb") != null){
 
@@ -160,7 +158,7 @@ class Projects extends CI_Controller
 
         if ($project_analysis == "OTUs"){
             $cmd = "qsub -N $jobname -o Logs_sge/otu/ -e Logs_sge/otu/  -cwd -b y /usr/bin/php -f Scripts/standard_run_otu.php $user $id $project $path";
-            exec($cmd);
+             exec($cmd);
             redirect("/process/index/".$id);
         }else if ($project_analysis == "phylotype"){
             $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/php -f Scripts/standard_run_phylotype.php $user $id $project $path";
