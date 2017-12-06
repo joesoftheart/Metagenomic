@@ -28,6 +28,9 @@
   -install.packages("ellipse")
   -install.packages("ggrepel")
   -install.packages("ggplot")
+  -install.packages("gplots")
+  -install.packages("ape")
+  -install.packages("calibrate")
   
 #install Php
 1. For CentOS/RHEL 7:
