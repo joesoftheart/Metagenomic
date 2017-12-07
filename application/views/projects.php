@@ -400,7 +400,7 @@ Beta – Diversity:
          <link href="<?php echo base_url();?>tooltip/loading.css" rel="stylesheet" />
          <link href="<?php echo base_url();?>tooltip/tooltip.css" rel="stylesheet" />
          <script src="<?php echo base_url();?>tooltip/tooltip.js" type="text/javascript"></script>
-         <!--<script src="<?php echo base_url();?>tooltip/html2canvas.js" type="text/javascript"></script>-->
+        <!--  <script src="<?php echo base_url();?>tooltip/html2canvas.js" type="text/javascript"></script> -->
 
          <div class="sw-theme-arrows">
              <ul class="nav-tabs step-anchor" uk-switcher="animation: uk-animation-fade">
@@ -1115,7 +1115,7 @@ Beta – Diversity:
                                  <label> Create file design 
                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div11');">
                                 </i> 
-                                  <a href="<?php echo site_url('Run_advance/create_file_design');?>?current=<?=$current_project?>" target="_blank"><input type="button" class="btn btn-outline btn-info" value="create design" id="check_design"></a> 
+ <a href="<?php echo site_url();?>createdesign/<?=$current_project?>" target="_blank"><input type="button" class="btn btn-outline btn-info" value="create design" id="check_design"></a> 
                               </label>         
                                  <div>
                                      <p id="pass_design" class="fa fa-file-text-o" > No file design </p>                    
@@ -1138,7 +1138,7 @@ Beta – Diversity:
                                  <label> Create file metadata 
                                      <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div13');">
                                 </i> 
-                                    <a href="<?php echo base_url('Run_advance/create_file_metadata');?>?current=<?=$current_project?>"  target="_blank"><input type="button" class="btn btn-outline btn-info" value="create metadata" id="check_metadata">
+<a href="<?php echo base_url();?>createmetadata/<?=$current_project?>"  target="_blank"><input type="button" class="btn btn-outline btn-info" value="create metadata" id="check_metadata">
                                     </a>
                                 </label>   
                              <div>
@@ -1417,7 +1417,7 @@ document.getElementById("btn_reports").onclick = function(){
     $.ajax({ 
           type:"post",
           datatype:"json",
-          url:"<?php echo base_url('Run_advance/chk_data_project_run'); ?>",
+          url:"<?php echo base_url('ckprorun'); ?>",
           data:{current:"<?=$current_project?>"},
              success:function(data){
                 var chk = JSON.parse(data); 
@@ -1438,12 +1438,12 @@ document.getElementById("btn_graph").onclick = function(){
     $.ajax({ 
           type:"post",
           datatype:"json",
-          url:"<?php echo base_url('Run_advance/check_dirzip'); ?>",
+          url:"<?php echo base_url('chkdir'); ?>",
           data:{current:"<?=$current_project?>"},
              success:function(data){
                 var dir = JSON.parse(data); 
                 if(dir == "TRUE"){
-                   location.href=" <?php echo site_url('Run_advance/on_showimg/'.$current_project); ?>";           
+                   location.href=" <?php echo site_url('showimg/'.$current_project); ?>";           
                 }else{
                     alert("you don't run mode advance");
                 }
@@ -1675,41 +1675,41 @@ $(document).ready(function (){
  });
 
 
-function getCanvas1(){
-      var element = $("#html-content-1");
-      var getCanvas; 
-      var cur = "<?php echo $current_project?>";
-     setTimeout(function(){
-        html2canvas( element, {
-             onrendered: function (canvas) {
-                 getCanvas = canvas;
-                 var imgageData = getCanvas.toDataURL("image/png");
-                 $.post("<?php echo base_url('Run_advance/getCanvas1');?>",{data:imgageData,current:cur});
+// function getCanvas1(){
+//       var element = $("#html-content-1");
+//       var getCanvas; 
+//       var cur = "<?php echo $current_project?>";
+//      setTimeout(function(){
+//         html2canvas( element, {
+//              onrendered: function (canvas) {
+//                  getCanvas = canvas;
+//                  var imgageData = getCanvas.toDataURL("image/png");
+//                  $.post("<?php echo base_url('Run_advance/getCanvas1');?>",{data:imgageData,current:cur});
               
-             }
-        });
+//              }
+//         });
 
-     },5000);
+//      },5000);
         
-}
+// }
 
-function getCanvas2(){
-      var element = $("#html-content-2");
-      var getCanvas; 
-      var cur = "<?php echo $current_project?>";
-     setTimeout(function(){
-        html2canvas( element, {
-             onrendered: function (canvas) {
-                 getCanvas = canvas;
-                 var imgageData = getCanvas.toDataURL("image/png");
-                 $.post("<?php echo base_url('Run_advance/getCanvas2');?>",{data:imgageData,current:cur});
+// function getCanvas2(){
+//       var element = $("#html-content-2");
+//       var getCanvas; 
+//       var cur = "<?php echo $current_project?>";
+//      setTimeout(function(){
+//         html2canvas( element, {
+//              onrendered: function (canvas) {
+//                  getCanvas = canvas;
+//                  var imgageData = getCanvas.toDataURL("image/png");
+//                  $.post("<?php echo base_url('Run_advance/getCanvas2');?>",{data:imgageData,current:cur});
               
-             }
-        });
+//              }
+//         });
 
-     },5000);
+//      },5000);
         
-}
+// }
 
 
 </script> 

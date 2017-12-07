@@ -74,6 +74,16 @@ class Projects extends CI_Controller
             $data['username'] = $user;
             $data['project']  = $project;
             $data['currentproject'] = $ar;
+
+                 $img_source = 'images/check.png';
+                 $img_code = base64_encode(file_get_contents($img_source));
+           $data['src'] = 'data:'.mime_content_type($img_source).';base64,'.$img_code;
+
+                 $img_source = 'images/ajax-loader.gif';
+                 $img_code = base64_encode(file_get_contents($img_source));
+           $data['srcload'] = 'data:'.mime_content_type($img_source).';base64,'.$img_code;
+
+
             $this->load->view('script_advance',$data);
 
           

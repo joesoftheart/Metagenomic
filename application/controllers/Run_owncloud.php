@@ -10,9 +10,9 @@ class Run_owncloud extends CI_Controller {
         parent::__construct();
         $this->load->helper(array('url','path'));
        
-        include(APPPATH.'../setting_sge.php');
-        putenv("SGE_ROOT=$SGE_ROOT");
-        putenv("PATH=$PATH");
+        // include(APPPATH.'../setting_sge.php');
+        // putenv("SGE_ROOT=$SGE_ROOT");
+        // putenv("PATH=$PATH");
 
 
 
@@ -20,8 +20,23 @@ class Run_owncloud extends CI_Controller {
     }
 
     public function ex_string(){
-        $lable = explode('_', "gg_13_8_99.fasta");
-        echo $lable[0];
+        //$lable = explode('_', "gg_13_8_99.fasta");
+       // echo $lable[0];
+    
+       $out =  shell_exec('ls -la /usr/bin/python');
+       print_r($out);
+      
+         $img_source = 'images/check.png';
+         $img_code = base64_encode(file_get_contents($img_source));
+        
+         $src = 'data:'.mime_content_type($img_source).';base64,'.$img_code;
+
+         echo '<img src="',$src,'"/>';
+
+
+       // $this->load->view('test');
+    
+
     }
      
 

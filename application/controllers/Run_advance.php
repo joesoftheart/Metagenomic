@@ -63,13 +63,17 @@
         
 
       echo json_encode(array($status,$step_run,$id_job,$tg_body,$ts_body));
+      
 
+    
     }
 
 
     public function create_file_design(){
 
-      $id_project = $_REQUEST['current'];
+      //$id_project = $_REQUEST['current'];
+      $id_project = $this->uri->segment(2);
+
       $data['sample_name'] ="";
       #Query data Sample_Name
         $array_samples = $this->mongo_db->get_where('sample_name',array('project_id' => $id_project));
@@ -85,7 +89,10 @@
 
     public function create_file_metadata(){
 
-      $id_project = $_REQUEST['current'];
+      //$id_project = $_REQUEST['current'];
+        
+      $id_project = $this->uri->segment(2);
+
       $data['sample_name'] = "";
       #Query data Sample_Name
         $array_samples = $this->mongo_db->get_where('sample_name',array('project_id' => $id_project));
@@ -99,8 +106,13 @@
 
     public function write_design(){
        
-       $user = $_REQUEST['user'];
-       $id_project = $_REQUEST['project_id'];
+       //$user = $_REQUEST['user'];
+      // $id_project = $_REQUEST['project_id'];
+       
+        $user = $this->uri->segment(2);
+        $id_project = $this->uri->segment(3);
+
+
        $project = "";
 
        # Query data Project By ID
@@ -125,8 +137,12 @@
 
     public function check_file_design(){
 
-       $user = $_REQUEST['user'];
-       $id_project = $_REQUEST['project_id'];
+      // $user = $_REQUEST['user'];
+     //  $id_project = $_REQUEST['project_id'];
+       
+       $user = $this->uri->segment(2);
+       $id_project = $this->uri->segment(3);
+
        $project = "";
 
        # Query data Project By ID
@@ -152,8 +168,11 @@
    
      public function write_metadata(){
 
-       $user = $_REQUEST['user'];
-       $id_project = $_REQUEST['project_id'];
+       //$user = $_REQUEST['user'];
+       //$id_project = $_REQUEST['project_id'];
+
+       $user = $this->uri->segment(2);
+       $id_project = $this->uri->segment(3);
        $project = "";
 
        # Query data Project By ID
@@ -181,8 +200,11 @@
 
      public function check_file_metadata(){
 
-       $user = $_REQUEST['user'];
-       $id_project = $_REQUEST['project_id'];
+       //$user = $_REQUEST['user'];
+       //$id_project = $_REQUEST['project_id'];
+       
+       $user = $this->uri->segment(2);
+       $id_project = $this->uri->segment(3);
        $project = "";
 
        # Query data Project By ID
@@ -272,7 +294,7 @@
         $id_project = $_REQUEST['current'];
 
         #Check data projects-run
-        $count_run = $this->mongo_db->where(array('project_id'=> $id_project))->count('projects_run');
+        $count_run = $this->mongo_db->where(array('project_id'=> $id_project,'mode'=>'advance'))->count('projects_run');
 
         if($count_run == 0){
             echo json_encode("f");
@@ -1336,8 +1358,6 @@
          $user = "";
          $project = "";
 
-
-
         #Query data status-process
         $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
          foreach ($array_status as $r) {
@@ -1777,7 +1797,8 @@
     public function down_zip(){
 
 
-        $id_project = $_REQUEST['current'];
+        //$id_project = $_REQUEST['current'];
+         $id_project = $this->uri->segment(2);
 
         #Query data status-process
         $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
@@ -1794,70 +1815,70 @@
 
      }
 
-     public function getCanvas1(){
+     // public function getCanvas1(){
 
-       $img_data = $_REQUEST['data'];
-       $id_project = $_REQUEST['current'];
+     //   $img_data = $_REQUEST['data'];
+     //   $id_project = $_REQUEST['current'];
         
-        $user = "NULL";
-        $folder = "NULL";
+     //    $user = "NULL";
+     //    $folder = "NULL";
 
-        #Query data status-process
-        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
-         foreach ($array_status as $r) {             
+     //    #Query data status-process
+     //    $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+     //     foreach ($array_status as $r) {             
               
-                $user = $r['user'];
-                $folder = $r['project'];
+     //            $user = $r['user'];
+     //            $folder = $r['project'];
     
-         }
+     //     }
 
-         $path_img = FCPATH."img_user/$user/$folder/table_groups_ave_std_summary.png";  
+     //     $path_img = FCPATH."img_user/$user/$folder/table_groups_ave_std_summary.png";  
 
-         if(!file_exists($path_img)){
+     //     if(!file_exists($path_img)){
     
-              $upload_dir = "img_user/".$user."/".$folder."/";
-              $img = str_replace('data:image/png;base64','', $img_data);
-              $img = str_replace(' ', '+', $img);
-               $data = base64_decode($img);
+     //          $upload_dir = "img_user/".$user."/".$folder."/";
+     //          $img = str_replace('data:image/png;base64','', $img_data);
+     //          $img = str_replace(' ', '+', $img);
+     //           $data = base64_decode($img);
 
-               $file = $upload_dir."table_groups_ave_std_summary.png";
-               file_put_contents($file, $data);
-         }
+     //           $file = $upload_dir."table_groups_ave_std_summary.png";
+     //           file_put_contents($file, $data);
+     //     }
        
       
-     }
+     // }
 
-     public function getCanvas2(){
+     // public function getCanvas2(){
 
-       $img_data = $_REQUEST['data'];
-       $id_project = $_REQUEST['current'];
+     //   $img_data = $_REQUEST['data'];
+     //   $id_project = $_REQUEST['current'];
         
-        $user = "NULL";
-        $folder = "NULL";
+     //    $user = "NULL";
+     //    $folder = "NULL";
 
-        #Query data status-process
-        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
-         foreach ($array_status as $r) {             
+     //    #Query data status-process
+     //    $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+     //     foreach ($array_status as $r) {             
               
-                $user = $r['user'];
-                $folder = $r['project'];
+     //            $user = $r['user'];
+     //            $folder = $r['project'];
     
-         }
+     //     }
 
-         $path_img = FCPATH."img_user/$user/$folder/table_summary.png";  
+     //     $path_img = FCPATH."img_user/$user/$folder/table_summary.png";  
 
-          if(!file_exists($path_img)){
+     //      if(!file_exists($path_img)){
 
-              $upload_dir = "img_user/".$user."/".$folder."/";
-              $img = str_replace('data:image/png;base64','', $img_data);
-              $img = str_replace(' ', '+', $img);
-              $data = base64_decode($img);
+     //          $upload_dir = "img_user/".$user."/".$folder."/";
+     //          $img = str_replace('data:image/png;base64','', $img_data);
+     //          $img = str_replace(' ', '+', $img);
+     //          $data = base64_decode($img);
 
-               $file = $upload_dir."table_summary.png";
-               file_put_contents($file, $data);
-          }
+     //           $file = $upload_dir."table_summary.png";
+     //           file_put_contents($file, $data);
+     //      }
       
-     }
+     // }
 
 
 

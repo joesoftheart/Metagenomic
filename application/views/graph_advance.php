@@ -46,10 +46,23 @@ if (isset($this->session->userdata['logged_in'])) {
      	 <label><?=$data_img[$i]?></label>
      <div class="row">
      <div class="col-lg-8 col-lg-offset-2">
-     
-   
-      <img src="<?php echo site_url('img_user/');?><?=$user?>/<?=$project?>/<?=$data_img[$i]?>"  >
-          	
+         
+       <?php 
+
+         $src = null;
+         $img_source = 'img_user/'.$user.'/'.$project.'/'.$data_img[$i];
+         $img_code = base64_encode(file_get_contents($img_source));
+        
+         if($data_img[$i] == end($data_img)){
+            $src = 'data:image/svg+xml;base64,'.$img_code;
+         }else{
+             $src = 'data:'.mime_content_type($img_source).';base64,'.$img_code;
+         }
+
+          echo '<img src="',$src,'"/>';  
+
+         ?>
+ 	
      </div>
      </div>
      </div>
@@ -190,12 +203,12 @@ document.getElementById("zipall").onclick = function(){
     $.ajax({ 
           type:"post",
           datatype:"json",
-          url:"<?php echo base_url('Run_advance/check_dirzip'); ?>",
+          url:"<?php echo base_url('chkdir'); ?>",
           data:{current:"<?=$id_project?>"},
              success:function(data){
                 var dir = JSON.parse(data); 
                 if(dir == "TRUE"){
-                   location.href="<?php echo site_url('Run_advance/down_zip');?>?current=<?=$id_project?>";           
+                   location.href="<?php echo site_url();?>dowfile/<?=$id_project?>";           
                 }else{
                     alert("FALSE");
                 }
