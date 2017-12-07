@@ -17,7 +17,7 @@ class Projects extends CI_Controller
         $this->load->helper('html');
         $CI = &get_instance();
         $CI->load->library("session");
-        include(APPPATH . '../setting_sge.php');
+        include('setting_sge.php');
         putenv("SGE_ROOT=$SGE_ROOT");
         putenv("PATH=$PATH");
     }
@@ -27,8 +27,6 @@ class Projects extends CI_Controller
         ob_start();
         $data['rs'] = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
         $data['rs_process'] = $this->mongo_db->limit(1)->get('status_process');
-        
-
 
 
        foreach ($data['rs'] as $r) {
@@ -93,7 +91,7 @@ class Projects extends CI_Controller
 
     public function standard_run($id)
     {
-
+        echo "Standard";
 
         if ($this->input->post("max_amb") != null){
 
@@ -131,54 +129,54 @@ class Projects extends CI_Controller
         }
 
         $data = $this->mongo_db->get_where("projects", array("_id" => new MongoId($id)));
-//        foreach ($data as $r) {
-//            $sample_folder = $r['project_path'];
-//            $id = $r['_id'];
-//            $project_analysis = $r['project_analysis'];
-//        }
-//        $project = basename($sample_folder);
-//        $user = $this->session->userdata['logged_in']['username'];
-//
-//        $path = "owncloud/data/$user/files/$project";
-//
-//        $config['upload_path'] = $path;
-//        $config['allowed_types'] = '*';
-//        $config['max_size'] = '3000';
-//        // $config['max_width'] = '1024';
-//        // $config['max_height'] = '1024';
-//        $this->load->library('upload');
-//        $this->upload->initialize($config);
-//
-//        if ($this->upload->do_upload("design")) {
-//            $data = $this->upload->data();
-//
-//        } else {
-//            echo "cannot upload design ";
-//        }
-//
-//        if ($this->upload->do_upload("metadata")) {
-//            $data = $this->upload->data();
-//
-//        } else {
-//            echo "cannot upload metadata";
-//        }
-//
-//
-//        $jobname = $user . "_" . $id . "_start_run";
-//
-//
-//
-//        if ($project_analysis == "OTUs"){
-//            $cmd = "qsub -N $jobname -o Logs_sge/otu/ -e Logs_sge/otu/  -cwd -b y /usr/bin/php -f Scripts/standard_run_otu.php $user $id $project $path";
-//            exec($cmd);
-//            redirect("/process/index/".$id);
-//        }else if ($project_analysis == "phylotype"){
-//            $cmd = "qsub -N $jobname -o Logs_sge/phylotype/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/php -f Scripts/standard_run_phylotype.php $user $id $project $path";
-//            exec($cmd);
-//            redirect("/process/index/".$id);
-//        }else {
-//            echo "Not run";
-//        }
+        foreach ($data as $r) {
+            $sample_folder = $r['project_path'];
+            $id = $r['_id'];
+            $project_analysis = $r['project_analysis'];
+        }
+        $project = basename($sample_folder);
+        $user = $this->session->userdata['logged_in']['username'];
+
+        $path = "owncloud/data/$user/files/$project";
+
+        $config['upload_path'] = $path;
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '3000';
+        // $config['max_width'] = '1024';
+        // $config['max_height'] = '1024';
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+
+        if ($this->upload->do_upload("design")) {
+            $data = $this->upload->data();
+
+        } else {
+            echo "cannot upload design ";
+        }
+
+        if ($this->upload->do_upload("metadata")) {
+            $data = $this->upload->data();
+
+        } else {
+            echo "cannot upload metadata";
+        }
+
+
+        $jobname = $user . "_" . $id . "_start_run";
+
+
+
+        if ($project_analysis == "OTUs"){
+            $cmd = "qsub -N $jobname -o Logs_sge/otu/ -e Logs_sge/otu/  -cwd -b y /usr/bin/php -f Scripts/standard_run_otu.php $user $id $project $path";
+             exec($cmd);
+            redirect("/process/index/".$id);
+        }else if ($project_analysis == "phylotype"){
+            $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/php -f Scripts/standard_run_phylotype.php $user $id $project $path";
+            exec($cmd);
+            redirect("/process/index/".$id);
+        }else {
+            echo "Not run";
+        }
     }
 
 

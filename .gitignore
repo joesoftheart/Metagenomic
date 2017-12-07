@@ -12,7 +12,7 @@
 /Mothur/*
 /Logs_sge/*
 /database_classification/*
-
+/stamp/*
 
 # User-specific stuff:
 .idea/**/workspace.xml

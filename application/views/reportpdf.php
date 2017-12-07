@@ -1,6 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 define('FPDF_FONTPATH','font/');
 
+
+
+
 function hex2dec($couleur = "#000000"){
     $R = substr($couleur, 1, 2);
     $rouge = hexdec($R);
@@ -137,15 +140,18 @@ class RPDF extends FPDF
 
     function Statistical($header,$dataa)
     {
+
+
         // Header
         foreach($header as $col)
-            $this->Cell(30, 7, iconv('UTF-8', 'cp874', $col),1);
+
+            $this->Cell(20, 7, iconv('UTF-8', 'cp874', $col),1);
         $this->Ln();
         // Data
         foreach($dataa as $row)
         {
             foreach($row as $col)
-                $this->Cell(30, 7, iconv('UTF-8', 'cp874', $col),1);
+                $this->Cell(20, 7, iconv('UTF-8', 'cp874', $col),1);
             $this->Ln();
         }
 
@@ -288,17 +294,10 @@ class RPDF extends FPDF
 $this->myfpdf = new RPDF();
 $this->myfpdf->SetMargins(25, 0);
 $this->myfpdf->SetDisplayMode(90 );
-$header = array('Joe','Pond','Keap','Bank','Kuk','Ton');
-$dat = array('หล่อ','พ่อรวย','แฟนสวย','สาวตรึม','ล้อโต','ลูก ');
-$data = array();
-for ($i = 0;$i<5;$i++){
-    $data[] = $dat;
-}
-//print_r($data);
-$headers = array('Joe','Pond','Keap','Bank');
-$dataa = $this->myfpdf->LoadData();
-$d = array('0' => 'joe','1' => 'joeee', '2' => 'joeeee');
-//$dataa[] = $d;
+
+
+
+
 $this->myfpdf->AddFont('angsa', '', 'angsa.php');
 $this->myfpdf->AddFont('angsa', 'B', 'angsab.php');
 $this->myfpdf->AddFont('angsa', 'I', 'angsai.php');
@@ -322,6 +321,7 @@ foreach ($projects_t as $r_project){
     $project_date_time = $r_project['project_date_time'];
     $project_num_sam = $r_project['project_num_sam'];
     $project_group_sam = $r_project['project_group_sam'];
+    $project_path = $r_project['project_path'];
     $date = explode(" ", $project_date_time);
     $time = $date[1];
     $date = $date[0];
@@ -333,6 +333,8 @@ foreach ($projects_t as $r_project){
     }
 
 }
+
+
 foreach ($projects_run_t as $r_pro_run){
     $max_amb = $r_pro_run['max_amb'];
     $max_homo = $r_pro_run['max_homo'];
@@ -345,18 +347,169 @@ foreach ($projects_run_t as $r_pro_run){
     $rm_taxon = $r_pro_run['rm_taxon'];
     $tax_level = $r_pro_run['tax_level'];
     $mode = $r_pro_run['mode'];
+    $t_range_otu = $r_pro_run['t_range_otu'];
+    $avg_read_pre= $r_pro_run['avg_read_pre'];
+    $lib_size= $r_pro_run['lib_size'];
+    $min_otu= $r_pro_run['min_otu'];
+    $max_otu= $r_pro_run['max_otu'];
+    $max_chao= $r_pro_run['max_chao'];
+    $min_chao= $r_pro_run['min_chao'];
+    $max_shanon= $r_pro_run['max_shanon'];
+    $min_shanon= $r_pro_run['min_shanon'];
+    $sample_hi= $r_pro_run['sample_hi'];
+    $sample_low= $r_pro_run['sample_low'];
+    $sample_big_rare= $r_pro_run['sample_big_rare'];
+    $name_phylumn= $r_pro_run['name_phylumn'];
+    $common_sample_phylumn= $r_pro_run['common_sample_phylumn'];
+    $sample_big_phy= $r_pro_run['sample_big_phy'];
+    $abun_genus= $r_pro_run['abun_genus'];
+    $name_sample_num_ven= $r_pro_run['name_sample_num_ven'];
+    $num_otu= $r_pro_run['num_otu'];
+    $near_sam = $r_pro_run['near_sam'];
+    $graph = $r_pro_run['graph'];
+    $calculators = $r_pro_run['calculators'];
+    $calculators_bio = $r_pro_run['calculators_bio'];
+    $table_alpha = $r_pro_run['table_alpha'];
+    $table_stat = $r_pro_run['table_stat'];
+    $name_vs_sam = $r_pro_run['name_vs_sam'];
+    $p_value = $r_pro_run['p_value'];
+    $name_vs_sam_homo = $r_pro_run['name_vs_sam_homo'];
+    $p_value_homo = $r_pro_run['p_value_homo'];
+    $count_seqs = $r_pro_run['count_seqs'];
+    $avg_lenght = $r_pro_run['avg_lenght'];
+    $avg_reads = $r_pro_run['avg_reads'];
+    $num_seqs2 = $r_pro_run['num_seqs2'];
+
+}
+
+
+
+$name_vs_sam = preg_split('/:/', $name_vs_sam);
+$p_value = preg_split('/:/', $p_value);
+$name_patten = null;
+$name_patten_homo = null;
+
+$index = 0;
+for ($i = 0; $i < count($name_vs_sam); $i++) {
+    $name_place = str_replace('-', ' vs ', $name_vs_sam[$index]);
+    $p_value_place = "p = " . $p_value[$index];
+
+    if ($name_patten == null) {
+        $name_patten = $name_place . "," . $p_value_place.";";
+    }else{
+        $name_patten = $name_patten .  $name_place . "," . $p_value_place.";";
+    }
+
+}
+
+$name_place_homo = str_replace('-', ' vs ', $name_vs_sam_homo);
+$p_value_place_homo = "p = " . $p_value_homo;
+
+$name_patten_homo = $name_place_homo . "," . $p_value_place_homo;
+
+
+
+
+$header = array('groups','Good s coverage','Observed OTUs','Chao','Shannon');
+$data = array();
+for ($i = 0;$i<count($table_alpha);$i++){
+    $data[] = explode(':', $table_alpha[$i]);
+}
+
+$headers = array('comparision','','lennon','jclass','morisitahorn','sarabund','theten','thetayc','braycurtis');
+$dataa = array();
+for ($i = 0;$i<count($table_stat);$i++){
+    $dataa[] = explode(':', $table_stat[$i]);
+}
+
+
+
+
+$near_sam = preg_split('/:/', $near_sam);
+$near_sam1 = $near_sam[0];
+$near_sam2 = $near_sam[1];
+
+
+$nam_com_phy = "";
+for ($i = 0; $i < count($common_sample_phylumn); $i++) {
+    $nam_com_phy = $nam_com_phy . " " . $common_sample_phylumn[$i];
+}
+$index = 0;
+$num = 0;
+for ($i = 0; $i < count($abun_genus); $i++) {
+    $split = preg_split('/:/',$abun_genus[$i]);
+    $replce = str_replace('%', '', $split[4]);
+
+    if ($num < $replce) {
+        $num = $replce;
+        $index = $i;
+        $name_dataset = $split[0];
+        $name_genus = $split[5];
+        $percent = $split[4];
+    }else{
+
+    }
+
+}
+$name_dataset_genus = "";
+$percent_genus = "";
+$name_other_genus = "";
+for ($i = 0; $i < count($abun_genus); $i++) {
+    $split = preg_split('/:/',$abun_genus[$i]);
+    $replce = str_replace('%', '', $split[4]);
+
+    if ($i != $index) {
+
+        if($name_other_genus == ""){
+            $name_other_genus = $split[5];
+            $percent_genus = $split[4];
+            $name_dataset_genus = $split[0];
+        }else {
+            $percent_genus = $percent_genus . "," . $split[4];
+            $name_other_genus = $name_other_genus . "," . $split[5];
+            $name_dataset_genus = $name_dataset_genus . "," . $split[0];
+        }
+    }
+
+}
+
+$name_dataset_otu = "";
+$num_dataset_otu = "";
+for ($i = 0; $i < count($name_sample_num_ven); $i++) {
+    $split = preg_split('/:/',$abun_genus[$i]);
+    if ($name_dataset_otu == "") {
+        $name_dataset_otu = $split[0];
+    }else{
+        $name_dataset_otu = $name_dataset_otu . "," . $split[0];
+    }
+
+    if ($num_dataset_otu == "") {
+        $num_dataset_otu = $split[1];
+    }else{
+        $num_dataset_otu = $num_dataset_otu . "," . $split[1];
+    }
 
 
 }
+
+
+
+
+
+
+
+
+// echo "dbvdfbdb";
+
 $this->myfpdf->SetFont('Times','B',12);
 $this->myfpdf->Cell(0,8,'Project Name : '.$project_name,0,1);
 $this->myfpdf->Cell(0,8,'Project type : '.$project_type,0,1);
 $this->myfpdf->Cell(0,8,'Program analysis : '.$project_program,0,1);
-$this->myfpdf->Cell(0,8,'Running mode : standard/advance',0,1);
+$this->myfpdf->Cell(0,8,'Running mode : '.$mode,0,1);
 $this->myfpdf->Cell(0,8,'Data pre-processing :',0,1);
 //$this->myfpdf->DumpFont('Symbol', '179');
 $this->myfpdf->SetFont('Times','',12);
-$this->myfpdf->MultiCell(0, 6, 'The data set '.$project_name.' was uploaded on '.$date.' at '.$time.' and contains '.$project_num_sam.' sequences with an average length of [[[246]]] bps.  Raw sequencing data obtained from '.$project_sequencing.' platform were implemented according to '.$project_program.' MiSeq SOP. First, raw sequences were joined the reads into contigs using make.contigs function from Mothur program (version 1.39.5). After that they were pre-processed to remove ambiguous base > '.$max_amb.'. Then, sequences were aligned using SILVA bacterial database. This makes sequences that did not overlap in the desired region are excluded including the sequences of homopolymer bases > '.$max_amb.' with the minimum and maximum length of reads were set to '.$min_read.' and '.$max_read.' bp, respectively. Moreover, pre.cluster function was used to merge low frequency sequences with very close higher frequency sequencings using a modified single linage algorithm. This is to reduce the sequencing error. The chimeras were also screened using UCHIME function and removed from the sequences set. The clean sequences were classified the taxonomy using the Naïve Bayesian Classifier method, described by Wang et al. with Greengenes database (August 2013 release of gg_13_8_99). The minimum bootstrap confidence score of 80% was used for taxonomic assignment. In the step of the clustering of sequences was performed using '.$project_type.'-based methods at '.$methods.' level with Mothur program.');
+$this->myfpdf->MultiCell(0, 6, 'The data set '.$project_name.' was uploaded on '.$date.' at '.$time.' and contains '.$count_seqs.' sequences with an average length of '.$avg_lenght.' bps.  Raw sequencing data obtained from '.$project_sequencing.' platform were implemented according to '.$project_program.' MiSeq SOP. First, raw sequences were joined the reads into contigs using make.contigs function from Mothur program (version 1.39.5). After that they were pre-processed to remove ambiguous base > '.$max_amb.'. Then, sequences were aligned using SILVA bacterial database. This makes sequences that did not overlap in the desired region are excluded including the sequences of homopolymer bases > '.$max_amb.' with the minimum and maximum length of reads were set to '.$min_read.' and '.$max_read.' bp, respectively. Moreover, pre.cluster function was used to merge low frequency sequences with very close higher frequency sequencings using a modified single linage algorithm. This is to reduce the sequencing error. The chimeras were also screened using UCHIME function and removed from the sequences set. The clean sequences were classified the taxonomy using the Naïve Bayesian Classifier method, described by Wang et al. with Greengenes database (August 2013 release of gg_13_8_99). The minimum bootstrap confidence score of 80% was used for taxonomic assignment. In the step of the clustering of sequences was performed using '.$project_type.'-based methods at '.$methods.' level with Mothur program.');
 $this->myfpdf->SetFont('Times', 'UB',12);
 $this->myfpdf->Cell(0, 10, 'Summary Report',0,1);
 $this->myfpdf->SetFont('Times', '',12);
@@ -364,53 +517,53 @@ $this->myfpdf->MultiCell(0, 6, 'A total of '.$project_group_sam.' datasets has b
 $this->myfpdf->SetFont('Times', 'B', 12);
 $this->myfpdf->Cell(0, 10, 'Diversity, richness and composition of microbial communities',0,1);
 $this->myfpdf->SetFont('Times','',12);
-$this->myfpdf->MultiCell(0,6,'The cleaned sequences were clustered based on '.$project_analysis.' method. After data pre-processing, an average reads length is [[[xxx]]] bp with number of dataset of '.$project_num_sam.' sequences. The '.$project_analysis.' of these data represented [[[xxx–xxx]]] OTUs per group in average. The alpha diversity was estimated microbial community richness (Chao1) and diversity (Shannon) from subsampling data based on the library size at [[[xxx]]]. The [[[xxx]]] and the [[[xxx]]] displayed the highest and the lowest species richness, respectively. The Shannon index estimated the diversity in the community. It displayed that there is the most diverse of bacteria in [[[xxx]]] and the lowest diverse of bacteria in [[[xxx]]]. ');
+$this->myfpdf->MultiCell(0,6,'The cleaned sequences were clustered based on '.$project_analysis.' method. After data pre-processing, an average reads length is '.$num_seqs2.' bp with number of dataset of '.$avg_reads.' sequences. The '.$project_analysis.' of these data represented '.$t_range_otu.' OTUs per group in average. The alpha diversity was estimated microbial community richness (Chao1) and diversity (Shannon) from subsampling data based on the library size at [[[xxx]]]. The '.$max_chao.' and the '.$min_chao.' displayed the highest and the lowest species richness, respectively. The Shannon index estimated the diversity in the community. It displayed that there is the most diverse of bacteria in '.$max_shanon.' and the lowest diverse of bacteria in '.$min_shanon.'. ');
 
 
 
 // Page 2
 $this->myfpdf->AddPage();
 $this->myfpdf->SetFont('Times','',12);
-$this->myfpdf->MultiCell(0, 10,$this->myfpdf->WriteHTML('<b>Table 1 </b>Alpha diversity estimator of bacterial 18S analysis at '.$methods.' level') . '', 0);
+$this->myfpdf->MultiCell(0, 10,$this->myfpdf->WriteHTML('<b>Table 1 </b>Alpha diversity estimator of bacterial 16S analysis at '.$methods.' level') . '', 0);
 $this->myfpdf->SetFont('angsa','',12);
 $this->myfpdf->Table($header,$data);
-$this->myfpdf->Image(base_url() . 'images/box_plot.png','40','90','110  ','80','PNG');
+$this->myfpdf->Image(base_url() . $project_path.'/output/Alpha.png','40','90','110  ','70','PNG');
 $this->myfpdf->Cell(0, 120, '', 0, 1);
 $this->myfpdf->SetFont('Times','',12);
 $this->myfpdf->MultiCell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 1  </b>Box plots of alpha-diversity estimator based on Chao and Shannon comparing these samples') .'');
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->MultiCell(0, 6, '        The platform also produce rarefaction graph (appendix ##) which help exhibit a relationship between number of different observed OTUs (y-axis) and tagged samples (x-axis) with the slope of the graph being the ratio between the two axes. This graph allows calculation of species richness to be displayed and compare between each dataset, the indicator for a reliable data is the shape of the curve. When the curve rises and plateau (parallel to x-axis) this pointed out that the data can be trusted and that the information obtained reflected the majority of bacteria. According to the sample submitted, the dataset with the highest level of specie variation is dataset ## while the lowest is dataset ##');
+$this->myfpdf->MultiCell(0, 6, '        The platform also produce rarefaction graph (appendix ##) which help exhibit a relationship between number of different observed OTUs (y-axis) and tagged samples (x-axis) with the slope of the graph being the ratio between the two axes. This graph allows calculation of species richness to be displayed and compare between each dataset, the indicator for a reliable data is the shape of the curve. When the curve rises and plateau (parallel to x-axis) this pointed out that the data can be trusted and that the information obtained reflected the majority of bacteria. According to the sample submitted, the dataset with the highest level of specie variation is dataset '.$sample_hi.' while the lowest is dataset '.$sample_low.'');
 
 //Page 3
 $this->myfpdf->AddPage();
-$this->myfpdf->Image(base_url() . 'images/rare_plot.png','50','14','110  ','80','PNG');
+$this->myfpdf->Image(base_url() . 'images/rare_plot.png','50','14','90  ','60','PNG');
 $this->myfpdf->SetFont('Times', 'B', 12);
-$this->myfpdf->Cell(0,70,'',0,1);
-$this->myfpdf->Cell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 2.</b>Rarefaction curve of 18S sequences among the xxx groups').'', 0, 1);
+$this->myfpdf->Cell(0,50,'',0,1);
+$this->myfpdf->Cell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 2.</b>Rarefaction curve of 18S sequences among the '.$sample_big_rare.' groups').'', 0, 1);
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->MultiCell(0,6,'      Phyla relative abundance plot array all the phylum found in each sample, corresponding to the quantity of each phylum identified (percentage). It displays the phylum abundances for the sequences being read. It can be seen that, phylum Phylum name is the most abundances in dataset ##,while for dataset ## and ## the most common phylum found was Phylum name.');
-$this->myfpdf->Image(base_url() . 'images/phylumn_plot.png','50','130','110  ','100','');
+$this->myfpdf->MultiCell(0,6,'      Phyla relative abundance plot array all the phylum found in each sample, corresponding to the quantity of each phylum identified (percentage). It displays the phylum abundances for the sequences being read. It can be seen that, phylum '.$name_phylumn.' is the most abundances in dataset '.$nam_com_phy.',while for dataset '.$nam_com_phy.' and ## the most common phylum found was '.$name_phylumn.'.');
+$this->myfpdf->Image(base_url() . 'images/phylumn_plot.png','50','120','100  ','90','');
 $this->myfpdf->Cell(0, 100, '',0,1);
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->Cell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 3.</b>Taxonomic classification of bacterial phylum in xx groups.').'', 0, 1);
+$this->myfpdf->Cell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 3.</b>Taxonomic classification of bacterial phylum in '.$sample_big_phy.' groups.').'', 0, 1);
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->MultiCell(0,6,'      Heatmap (appendix ##) display a graphical representation of a data by assigning a range of values that represent relative abundance of each genus, with diffe­rent colours. This in turns highlight hidden interactions or trends in the dataset. The data summited indicates that the major genus found in dataset ## is genus name and their relative abundance was #.##. While for dataset ## the main genus was also found to be genus name with the abundance of #.##..... (*number of datasets).');
+$this->myfpdf->MultiCell(0,6,'      Heatmap (appendix ##) display a graphical representation of a data by assigning a range of values that represent relative abundance of each genus, with diffe­rent colours. This in turns highlight hidden interactions or trends in the dataset. The data summited indicates that the major genus found in dataset '.$name_dataset.' is '.$name_genus.' and their relative abundance was '.$percent.'. While for dataset '.$name_dataset_genus.' the main genus was also found to be '.$name_other_genus.' with the abundance of '.$percent_genus.' (*number of datasets).','','L');
 
 //page 4
 $this->myfpdf->AddPage();
 $this->myfpdf->Image(base_url() . 'images/abun_plot.png','25','14','170  ','80','PNG');
 $this->myfpdf->SetFont('Times', 'B', 12);
-$this->myfpdf->Cell(0,75,'',0,1);
+$this->myfpdf->Cell(0,73,'',0,1);
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 4 </b>Relative abundances of the bacterial genera among xxx groups. The bacterial genus with less than 0.05% as their relative abundance was not shown. The categories of ages were showed in color on the left; navy (teenage), magenta (middle-age), and blue (elderly-age).').'', 0, 1);
+$this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 4 </b>Relative abundances of the bacterial genera among '.$project_num_sam.' groups. The bacterial genus with less than 0.05% as their relative abundance was not shown.').'', 0, 1);
 $this->myfpdf->SetFont('Times','B',12);
 $this->myfpdf->Cell(0, 10, 'Microbial comparision by beta diversity', 0, 1);
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->MultiCell(0,6,'      Venn diagram (appendix ##) show number of unique OTUs identified for each set of data submitted, while the overlapping region represent the shared OTUs between one another. The analysis indicates that dataset ##....and ## have a total of ##...... and ## OTUs, respectively. Some species maybe common and observed in all samples submitted, hence the number will be shown in the most overlapped region; in this case, it’ll be a total of ## OTUs. ');
-$this->myfpdf->Image(base_url() . 'images/ven_plot.png','50','160','110  ','80','');
+$this->myfpdf->MultiCell(0,6,'      Venn diagram (appendix ##) show number of unique OTUs identified for each set of data submitted, while the overlapping region represent the shared OTUs between one another. The analysis indicates that dataset '.$name_dataset_otu.' have a total of '.$num_dataset_otu.' and ## OTUs, respectively. Some species maybe common and observed in all samples submitted, hence the number will be shown in the most overlapped region; in this case, it’ll be a total of '.$num_otu.' OTUs. ','','L');
+$this->myfpdf->Image(base_url() . 'images/ven_plot.png','50','160','90  ','70','');
 $this->myfpdf->Cell(0, 80, '',0,1);
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->MultiCell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 5 </b>Venn diagram that illustrates overlap of OTUs for cheeks, compared between teenage.hea.cheeks, teenage.acn.cheeks1, elderly.hea.cheeks and teenage.acn.cheeks').'', 0, 1);
+$this->myfpdf->MultiCell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 5 </b>Venn diagram that illustrates overlap of OTUs, compared between '.$name_dataset_otu).'', 0, 1);
 $this->myfpdf->SetFont('Times', '', 12);
 $this->myfpdf->MultiCell(0,6,'      The community dissimilarities among different samples which can be described in term of membership and structure are calculated using the calculators: Lennon, Jclass, Morisita-Horn, Sorenson (sorabund), Smith theta (Thetan), ThetaYC and Bray-Curtis index.');
 
@@ -418,30 +571,31 @@ $this->myfpdf->MultiCell(0,6,'      The community dissimilarities among differen
 //Page 5
 $this->myfpdf->AddPage();
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->Cell(0, 10, $this->myfpdf->WriteHTML('<b>Table 2</b> Statistical analysis of beta analysis among xxx samples based on the calculators').'', 0, 1);
+$this->myfpdf->Cell(0, 10, $this->myfpdf->WriteHTML('<b>Table 2</b> Statistical analysis of beta analysis among '.$project_num_sam.' samples based on the calculators').'', 0, 1);
+$this->myfpdf->SetFont('Times', '', 9);
 $this->myfpdf->Statistical($headers,$dataa);
 $this->myfpdf->SetFont('Times','',12);
 $this->myfpdf->MultiCell(0,6,'      Two ordination methods for community comparison among samples such as Principal Coordinates analysis (PCoA) and Non-metric multidimensional scaling (NMDS) are one of the most common analyses in microbial ecology which were constructed from dissimilarity matrices.');
 $this->myfpdf->Cell(0, 6, '', 0, 1);
-$this->myfpdf->MultiCell(0, 6, 'PCoA and NMDS plot compresses all the information (multiple dimension/factors) into a two-dimensional graph with x-axis and y-axis being MDS1 and MDS2 , PC1 and PC2, respectively. This plot indicates the similarity between bacterial community structure. From the analysis, the data shows that the closest relationship occur between dataset ## and ##. ');
+$this->myfpdf->MultiCell(0, 6, 'PCoA and NMDS plot compresses all the information (multiple dimension/factors) into a two-dimensional graph with x-axis and y-axis being MDS1 and MDS2 , PC1 and PC2, respectively. This plot indicates the similarity between bacterial community structure. From the analysis, the data shows that the closest relationship occur between dataset '.$near_sam1.' and '.$near_sam2.'. ');
 $this->myfpdf->Image(base_url() . 'images/nmds_plot.png',50,150,120,100);
 $this->myfpdf->SetFont('Times','',12);
 $this->myfpdf->Cell(0, 105,'',0,1);
-$this->myfpdf->MultiCell(0,6,$this->myfpdf->WriteHTML('<b>Figure 6</b> NMDS/PCoA based on xxx dissimilarity index that shows the bacterial community structure among xxx samples at 0.03 dissimilarity level/genus level').'      ');
+$this->myfpdf->MultiCell(0,6,$this->myfpdf->WriteHTML('<b>Figure 6</b> '.$graph.' based on '.$calculators.' dissimilarity index that shows the bacterial community structure among '.$project_num_sam.' samples at '.$methods.' level').'.');
 
 //Page 6
 $this->myfpdf->AddPage();
-$this->myfpdf->MultiCell(0, 6, "        Biplot (appendix ##) present the evaluated data in a graph form. Biplot was visualized from performing using mothur subroutine 'corr.axes'. This visualization help illustrates the interaction between the submitted data and other metadata such as pH, temperature, salinity and the correlation of the relative abundance of each OTU along the two axes in the PCoA or NMDS. The arrow represent the direction of metadata or the environment or OTUs which related among groups to axes of PCoA or NMDS. Different bacteria can interact and respond to changes in metadata in different ways, some may respond more when pH changes but the opposite trend may be observed for salinity due to its high salt tolerance level. This graph will serve as a tool to spot metadata in which it effects one sample more than another, this plot is represent NMDS/PCoA, based on xxx index with biplot, calculated by Spearman/Pearson's correlation.");
+$this->myfpdf->MultiCell(0, 6, "        Biplot (appendix ##) present the evaluated data in a graph form. Biplot was visualized from performing using mothur subroutine 'corr.axes'. This visualization help illustrates the interaction between the submitted data and other metadata such as pH, temperature, salinity and the correlation of the relative abundance of each OTU along the two axes in the PCoA or NMDS. The arrow represent the direction of metadata or the environment or OTUs which related among groups to axes of PCoA or NMDS. Different bacteria can interact and respond to changes in metadata in different ways, some may respond more when pH changes but the opposite trend may be observed for salinity due to its high salt tolerance level. This graph will serve as a tool to spot metadata in which it effects one sample more than another, this plot is represent $graph, based on $calculators index with biplot, calculated by $calculators_bio's correlation.");
 $this->myfpdf->Image(base_url().'images/bi_plot.png',50,80,110,90);
 $this->myfpdf->Cell(0,85,'',0,1);
-$this->myfpdf->MultiCell(0,6,$this->myfpdf->WriteHTML('<b>Figure 7</b>       NMDS/PCoA based on xxx index with biplot, calculated Spearman/Pearson’s correlation method, representing the direction of metadata or the environment which related with other samples.').'');
+$this->myfpdf->MultiCell(0,6,$this->myfpdf->WriteHTML('<b>Figure 7</b>       '.$graph.' based on '.$calculators.' index with biplot, calculated '.$calculators_bio.'’s correlation method, representing the direction of metadata or the environment which related with other samples.').'');
 
 //Page 7
 $this->myfpdf->AddPage();
 $this->myfpdf->Image(base_url().'images/nmds2_plot.png',50,14,110,90);
 $this->myfpdf->Cell(0,90,'',0,1);
-$this->myfpdf->MultiCell(0,6,$this->myfpdf->WriteHTML('<b>Figure 8.</b>       NMDS/PCoA based on xxx index with biplot, calculated Spearman/Pearson’s correlation method, representing the direction of OTUs or genus which related among groups.').'');
-$this->myfpdf->MultiCell(0,6,'      Moreover, the distance-based analysis of molecular variance (AMOVA) or Homogeneity of molecular variance (HOMOVA) are used to assess significant differences among treatment samples. AMOVA testing displayed different bacterial communities between xxx vs xxx, p = 0.082; xxx vs xxx, p = 0.328. Homova testing displayed the difference in variation between the two groups (xxx vs xxx, p=0.023).');
+$this->myfpdf->MultiCell(0,6,$this->myfpdf->WriteHTML('<b>Figure 8.</b>       '.$graph.' based on '.$calculators.' index with biplot, calculated '.$calculators_bio.'’s correlation method, representing the direction of OTUs or genus which related among groups.').'');
+$this->myfpdf->MultiCell(0,6,'      Moreover, the distance-based analysis of molecular variance (AMOVA) or Homogeneity of molecular variance (HOMOVA) are used to assess significant differences among treatment samples. AMOVA testing displayed different bacterial communities between '.$name_patten.'. Homova testing displayed the difference in variation between the two groups '.$name_patten_homo.'.');
 $this->myfpdf->SetFont('Times', 'B', 12);
 $this->myfpdf->Cell(0,10,'Predicted metabolic functions based on 16S rRNA data using PICRUSt',0,1);
 $this->myfpdf->SetFont('Times','',12);
@@ -456,11 +610,7 @@ $this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 9.</b> Extend
 
 
 // Page Test
-$this->myfpdf->AddPage();
-$this->myfpdf->SetFont('Symbol');
-$this->myfpdf->WriteHTML('<p>I will display &#8805;</p>
-<p>I will display &#x2265;</p>
-<p>I will display &ge;</p>');
+
 
 $this->myfpdf->Output();
 

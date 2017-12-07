@@ -499,6 +499,22 @@
 
          if($count_run == 0){
              $data = array(
+<<<<<<< HEAD
+              'max_amb' =>  '',
+              'max_homo' => '' ,
+              'min_read' => '' ,
+              'max_read' => '',
+              'align_seq' => '' ,
+              'diffs' => '' ,
+              'cutoff' => '',
+              'db_taxon' =>  '',
+              'rm_taxon' =>  '',
+              'mode' => '',
+              'project_id' =>  '',
+              'calculator_tree' => '',
+              'p' => '' ,
+              'level' => '');
+=======
               'max_amb' =>  $maximum_ambiguous ,
               'max_homo' => $maximum_homopolymer  ,
               'min_read' => $minimum_reads_length ,
@@ -518,6 +534,7 @@
               'corr_otu' => 'null');
 
              $this->insert_project_run($data);
+>>>>>>> d33a0e99d25b26dc8c793db3f3a747382de1279a
           
        }else{
 
