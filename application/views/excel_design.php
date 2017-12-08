@@ -230,7 +230,7 @@ function getExcel(){
          $.ajax({
             type:"post",
             datatype:"json",
-            url:"<?php echo base_url('Run_advance/write_design');?>?user="+user+"&project_id="+project,
+            url:"<?php echo base_url('wrtdesign');?>/"+user+"/"+project,
             data:{data_excel: excel},
             success:function(data){
                         var ex_u = $.parseJSON(data);

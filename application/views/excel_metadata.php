@@ -256,7 +256,7 @@ function getExcel(){
          $.ajax({
             type:"post",
             datatype:"json",
-            url:"<?php echo base_url('Run_advance/write_metadata');?>?user="+user+"&project_id="+project,
+            url:"<?php echo base_url('wrtmetadata');?>/"+user+"/"+project,
             data:{data_excel: excel},
             success:function(data){
                         var user_file = $.parseJSON(data);

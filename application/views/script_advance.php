@@ -1,6 +1,3 @@
-<?php  
-   #echo "script: ".$username." ".$project." ".$currentproject;
-?>
 
 <input type="hidden" id="advance_num" value="0">
 
@@ -8,6 +5,7 @@
 
 
 function advance_mode(obj){
+
             var pid = "<?=$currentproject ?>";
             var user = "<?=$username ?>";
             var project = "<?=$project ?>";
@@ -22,9 +20,10 @@ function advance_mode(obj){
             $.ajax({
                    type:"post",
                    datatype:"json",
-                   url:"<?php echo base_url('Run_advance/recheck'); ?>",
+                   url:"<?php echo base_url('recheck'); ?>",
                    data:{data_status: pid},
                    success:function(data){
+
                         var status = $.parseJSON(data);
                         if(status[0] == "0" && status[1] == "4"){
                            alert('No Run Queue');
@@ -156,7 +155,8 @@ $(document).on('change', '#custo_mer', function(){
                         }
                         else if(file_mb <= 800){
                           //alert(file_name+' '+f_size+' '+type);
-                          get_fasta(form_data);
+                         get_fasta(form_data);
+
                         }else{
                             alert('file is too large : '+ f_size);
                             document.getElementById('custo_mer').value = ""; 
@@ -179,7 +179,7 @@ function get_fasta(file_data){
            $.ajax({
                    type:"post",
                    dataType: 'text',
-                   url:"<?php echo base_url('Run_advance/check_fasta'); ?>",
+                   url:"<?php echo base_url('upfasta'); ?>",
                    data: file_data,
                    cache: false,
                    processData: false,
@@ -233,7 +233,7 @@ function getvalue(array_data){
             $.ajax({ 
                     type:"post",
                     datatype:"json",
-                    url:"<?php echo base_url('Run_advance/get_json'); ?>",
+                    url:"<?php echo base_url('preprocess'); ?>",
                     data:{data_array: data_value},
                     success:function(data){
                       var data_job = $.parseJSON(data);
@@ -258,7 +258,7 @@ function checkrun(job_val){
                 $.ajax({ 
                     type:"post",
                     datatype:"json",
-                    url:"<?php echo base_url('Run_advance/check_run'); ?>",
+                    url:"<?php echo base_url('chkpreprocess'); ?>",
                     data:{data_job: job_val },
                     success:function(data){
                       //console.log("data : " + JSON.parse(data));
@@ -291,7 +291,7 @@ function get_prepare(data){
             $.ajax({ 
                     type:"post",
                     datatype:"json",
-                    url:"<?php echo base_url('Run_advance/read_count'); ?>",
+                    url:"<?php echo base_url('readcount'); ?>",
                     data:{data_count: data },
                     success:function(data){
                      var d_group  = "";  
@@ -337,7 +337,7 @@ function get_subsample(array_data){
            $.ajax({
                    type:"post",
                    datatype:"json",
-                   url:"<?php echo base_url('Run_advance/run_sub_sample'); ?>",
+                   url:"<?php echo base_url('subsample'); ?>",
                    data:{data_sample: data_value},
                    success:function(data){
                         var job_sample = $.parseJSON(data);
@@ -362,7 +362,7 @@ function check_subsample(jobsample){
                 $.ajax({ 
                     type:"post",
                     datatype:"json",
-                    url:"<?php echo base_url('Run_advance/check_subsample'); ?>",
+                    url:"<?php echo base_url('chksample'); ?>",
                     data:{job_sample: jobsample },
                     success:function(data){
                      var sample_data = $.parseJSON(data);
@@ -479,7 +479,7 @@ function get_analysis(array_data){
            $.ajax({
                    type:"post",
                    datatype:"json",
-                   url:"<?php echo base_url('Run_advance/run_analysis'); ?>",
+                   url:"<?php echo base_url('analysis'); ?>",
                    data:{data_analysis: data_value},
                    success:function(data){
                         var job_analysis = $.parseJSON(data);
@@ -508,7 +508,7 @@ function ckeck_analysis(job_analy){
                 $.ajax({ 
                     type:"post",
                     datatype:"json",
-                    url:"<?php echo base_url('Run_advance/check_analysis'); ?>",
+                    url:"<?php echo base_url('chkanalysis'); ?>",
                     data:{job_analysis: job_analy },
                     success:function(data){
                       //var analysis = JSON.parse(data);
@@ -555,9 +555,9 @@ function ckeck_analysis(job_analy){
 
 
 
-function addImage(u,p){
-      var user =u; 
-      var project =p;
+//function addImage(u,p){
+//      var user =u; 
+ //     var project =p;
 
      // $('#sharedsobs_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/sharedsobs.svg')?>");
      // $('#heartmap_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/heartmap.png')?>");
@@ -570,9 +570,9 @@ function addImage(u,p){
      
      
   
-}
+//}
 
-function table_groups(data){
+//function table_groups(data){
 
   // var get_tbody = "";
   //  for(var i=0 ;i < data.length; i++ ){
@@ -595,10 +595,10 @@ function table_groups(data){
     
    //$('#body_tg').html(get_tbody);
    //getCanvas1();
-}
+//}
 
 
-function table_summary(data){
+//function table_summary(data){
 
   // var get_tbody = "";
   //  for(var i=0 ;i < data.length; i++ ){
@@ -640,7 +640,7 @@ function table_summary(data){
    //$('#body_ts').html(get_tbody);
    //getCanvas2();
  
-}
+//}
 
 $(document).ready(function(){
 
@@ -653,20 +653,20 @@ $(document).ready(function(){
                  var interval = null;
                  interval = setInterval(function(){   
                  time--;
-                   $('#img_design').attr("src","<?php echo base_url('images/ajax-loader.gif')?>");
+                   $('#img_design').attr("src","<?php echo $srcload;?>");
                     
                     if(time === 0){
                      $.ajax({ 
                        type:"post",
                        datatype:"json",
-                       url:"<?php echo base_url('Run_advance/check_file_design');?>?user="+user+"&project_id="+project,
+                       url:"<?php echo base_url('checkdesign');?>/"+user+"/"+project,
                          success:function(data){
                             var design = JSON.parse(data);
                              if(design != "No File" || design_stop == "stop"){
                                    clearInterval(interval);
                                    $('#pass_design').text(" "+design);
                                    document.getElementById('p_design').value = design;
-                                   $('#img_design').attr("src","<?php echo base_url('images/check.png')?>");
+                             $('#img_design').attr("src","<?php echo $src;?>");
                                   
                              }
                              else{  
@@ -688,20 +688,20 @@ $(document).ready(function(){
                  var interval = null;
                  interval = setInterval(function(){   
                  time--;
-                  $('#img_metadata').attr("src","<?php echo base_url('images/ajax-loader.gif')?>");
+                  $('#img_metadata').attr("src","<?php echo $srcload;?>");
                     
                     if(time === 0){
                      $.ajax({ 
                        type:"post",
                        datatype:"json",
-                       url:"<?php echo base_url('Run_advance/check_file_metadata');?>?user="+user+"&project_id="+project,
+                       url:"<?php echo base_url('checkmetadata');?>/"+user+"/"+project,
                          success:function(data){
                              var metadata = JSON.parse(data);
                              if(metadata  != "No File" || metadata_stop == "stop"){
                                    clearInterval(interval);
                                    $('#pass_metadata').text(" "+metadata);
                                    document.getElementById('p_metadata').value = metadata;
-                                   $('#img_metadata').attr("src","<?php echo base_url('images/check.png')?>");
+                            $('#img_metadata').attr("src","<?php echo $src;?>");
                              }
                              else{  
                                   time = 5;  
