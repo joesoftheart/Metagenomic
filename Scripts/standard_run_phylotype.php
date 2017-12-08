@@ -20,7 +20,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    convert_biom($user,$id,$project,$path);
+    biom_to_stamp($user,$id,$project,$path);
     }
 
 // Run Program
@@ -1191,7 +1191,95 @@ function phylotype_picrust($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Finish phylotype_picrust go to Change name->";
-            change_name($user, $id, $project, $path);
+            phylotype_picrust2($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+
+function phylotype_picrust2($user, $id, $project, $path){
+    echo "\n";
+    echo "Run phylotype_picrust2 :";
+
+    $path_input = "owncloud/data/$user/files/$project/output/normalized_otus.1.biom";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/metagenome_predictions.1.biom";
+    $jobname = $user . "_" . $id . "_phylotype_picrust2";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y picrust-1.1.1/scripts/qsubMoPhylo5andpicrust $path_input $path_output_biom ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish phylotype_picrust go to Change name->";
+            phylotype_picrust3($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+function phylotype_picrust3($user, $id, $project, $path){
+//    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make-biom-finish"."\n", FILE_APPEND);
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "picrust"."\n", FILE_APPEND);
+    echo "\n";
+    echo "Run phylotype_picrust3 :";
+
+    $path_input = "owncloud/data/$user/files/$project/output/metagenome_predictions.1.biom";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/predicted_metagenomes.1.L2.biom";
+    $jobname = $user . "_" . $id . "_phylotype_picrust3";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y picrust-1.1.1/scripts/qsubMoPhylo5andpicrust1 $path_input $path_output_biom ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish phylotype_picrust go to Change name->";
+            biom_to_stamp($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+
+function biom_to_stamp($user, $id, $project, $path){
+    echo "\n";
+    echo "Run biom_to_stamp :";
+
+    $path_input = "owncloud/data/$user/files/$project/output/predicted_metagenomes.1.L2.biom";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/pathways1L1.spf";
+    $jobname = $user . "_" . $id . "_biom_to_stamp";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y picrust-1.1.1/scripts/qsubBiomtoStamp $path_input $path_output_biom ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish phylotype_picrust go to Change name->";
+            //  change_name($user, $id, $project, $path);
             break;
         }
     }

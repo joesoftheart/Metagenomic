@@ -17,7 +17,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    run($user,$id,$project,$path);
+    phylotype_picrust($user,$id,$project,$path);
     }
 
 
@@ -1163,7 +1163,7 @@ function phylotype_picrust($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Finish phylotype_picrust ->";
-            change_name($user, $id, $project, $path);
+         //   change_name($user, $id, $project, $path);
             break;
         }
     }
