@@ -20,7 +20,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    biom_to_stamp($user,$id,$project,$path);
+    classify_system($user,$id,$project,$path,"","");
     }
 
 // Run Program
@@ -489,7 +489,7 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
          $check_run = exec("qstat -j $id_job");
          if($check_run == false){
              echo "go to classify_system->";
-             classify_system($user,$id, $project,$path);
+            // classify_system($user,$id, $project,$path);
              break;
          }
      }
@@ -559,7 +559,7 @@ function readlogs_classify_system($user, $id, $project, $path, $id_job){
 
             if ($index == 9) {
                 $sum_seqs = preg_split('/\s+/', $value);
-                file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "avg_reads:".$sum_seqs[4]."\n", FILE_APPEND);
+                file_put_contents("owncloud/data/$user/f/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.summaryiles/$project/output/database.txt", "avg_reads:".$sum_seqs[4]."\n", FILE_APPEND);
 
             }
 
@@ -1191,7 +1191,7 @@ function phylotype_picrust($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Finish phylotype_picrust go to Change name->";
-            phylotype_picrust2($user, $id, $project, $path);
+         //   phylotype_picrust2($user, $id, $project, $path);
             break;
         }
     }
@@ -1279,12 +1279,72 @@ function biom_to_stamp($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Finish phylotype_picrust go to Change name->";
-            //  change_name($user, $id, $project, $path);
+            remove_float($user, $id, $project, $path);
             break;
         }
     }
 }
 
+function remove_float($user, $id, $project, $path){
+    echo "\n";
+    echo "Run remove_float :";
+
+    $path_input = "owncloud/data/$user/files/$project/output/pathways1L1.spf";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/pathways1L1.spf";
+    $jobname = $user . "_" . $id . "_biom_to_stamp";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y /usr/bin/php -f R_Script/replace_string.php $path_input";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish stamp->";
+             stamp($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+
+
+
+
+function stamp($user, $id, $project,$path){
+    echo "\n";
+    echo "Run stamp:";
+
+    $path_input = "owncloud/data/$user/files/$project/output/pathways1L1.spf";
+    $path_output_tsv = "owncloud/data/$user/files/$project/output/Resultpathways1L1.tsv";
+    $jobname = $user . "_" . $id . "_biom_to_stamp";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y stamp/qsubStamp $path_input $path_output_tsv ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish phylotype_picrust go to Change name->";
+            //  change_name($user, $id, $project, $path);
+            break;
+        }
+    }
+}
 
 
 function change_name($user, $id, $project, $path){
