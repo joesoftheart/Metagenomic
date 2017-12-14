@@ -20,7 +20,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    classify_system($user,$id,$project,$path,"","");
+    phylotype_picrust($user,$id,$project,$path);
     }
 
 // Run Program
@@ -167,15 +167,17 @@ summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/inpu
      }
 }
 
+
+
 function readlogs_make_contigs_oligos($user, $id, $project, $path,$id_job){
     echo "\n";
     echo "Run readlogs_make_contigs_oligos :";
     $name = $user."_".$id."_readlogs_make_contigs_oligos.o".$id_job;
     $file = file_get_contents("Logs_sge/phylotype/".$name);
 
-    if (file_exists("owncloud/data/$user/files/$project/output/database.txt")){
+
         file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "");
-    }
+
 
     $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum|Mean).*\$/m";
     if(preg_match_all($pattern, $file, $matches)){
@@ -212,11 +214,8 @@ function readlogs_make_contigs_summary($user, $id, $project, $path,$id_job){
     echo "Run readlogs_make_contigs_summary :";
     $name = $user."_".$id."_make_contigs_summary.o".$id_job;
     $file = file_get_contents("Logs_sge/phylotype/".$name);
-
-    if (file_exists("owncloud/data/$user/files/$project/output/database.txt")){
         file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "");
 
-    }
 
 
     $start = 0;
@@ -529,7 +528,7 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
          $check_run = exec("qstat -j $id_job");
          if($check_run == false){
              echo "go to readlogs_classify_system->";
-             readlogs_classify_system($user, $id, $project, $path, $id_job);
+           //  readlogs_classify_system($user, $id, $project, $path, $id_job);
              break;
          }
      }
@@ -1175,7 +1174,7 @@ function phylotype_picrust($user, $id, $project, $path){
     $path_input = "owncloud/data/$user/files/$project/output/final.tx.1.biom";
     $path_output_biom = "owncloud/data/$user/files/$project/output/final.biom";
     $jobname = $user . "_" . $id . "_phylotype_picrust";
-    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y picrust-1.1.1/scripts/qsubMoPhylo5andpicrust_norm $path_input $path_output_biom ";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y picrust/scripts/qsubMoPhylo5andpicrust_norm $path_input $path_output_biom ";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -1378,7 +1377,7 @@ function change_name($user, $id, $project, $path){
                         echo $value." change to  bin.svg";
                     }
                     if (in_array("sharedotus", $file_name)) {
-                        rename($dir . "/" . $value, $dir . "/" . "sharedotus.sharedotus");
+                        rename($dir . "/" . $value, $dir . "/" . "sharedsobs.sharedotus");
                         echo $value." change to sharedsobs.svg";
                     }
                     if (in_array("sharedsobs", $file_name)) {
