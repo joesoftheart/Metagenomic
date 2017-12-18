@@ -416,6 +416,7 @@ function check_subsample(jobsample){
                                    document.getElementById('beta').value = Number(sample_data[3][i]);
                                    document.getElementById('myradio').value = sample_data[3][i];
                                    document.getElementById('myradio1').value = sample_data[3][i];
+                                   document.getElementById('max_num_subsample').value = sample_data[3][i];
                                    $('#sub_sample').attr({'max': Number(sample_data[3][i])});
                                    $('#alpha').attr({'max': Number(sample_data[3][i])});
                                    $('#beta').attr({'max': Number(sample_data[3][i])});

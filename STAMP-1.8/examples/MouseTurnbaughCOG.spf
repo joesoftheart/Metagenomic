@@ -1,0 +1,1598 @@
+COG classes	COG category names	COG category codes	COG annotations	COG IDs	lean3	lean1	ob2	ob1	lean2
+Metabolism	Amino acid transport and metabolism	E	Acetylglutamate semialdehyde dehydrogenase	COG0002	2	1	2	3	2
+Metabolism	Nucleotide transport and metabolism	F	Purine nucleoside phosphorylase	COG0005	0	1	1	2	0
+Metabolism	Amino acid transport and metabolism	E	Xaa-Pro aminopeptidase	COG0006	0	1	1	2	4
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Glutamyl- and glutaminyl-tRNA synthetases	COG0008	1	1	2	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Putative translation factor (SUA5)	COG0009	0	2	2	0	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Predicted GTPase, probable translation factor	COG0012	2	1	1	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Alanyl-tRNA synthetase	COG0013	0	1	1	0	2
+Metabolism	Amino acid transport and metabolism	E	Gamma-glutamyl phosphate reductase	COG0014	0	2	0	1	1
+Metabolism	Nucleotide transport and metabolism	F	Adenylosuccinate lyase	COG0015	1	0	1	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Phenylalanyl-tRNA synthetase alpha subunit	COG0016	0	2	1	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Aspartyl/asparaginyl-tRNA synthetases	COG0017	0	1	4	0	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Arginyl-tRNA synthetase	COG0018	2	4	1	0	3
+Metabolism	Amino acid transport and metabolism	E	Diaminopimelate decarboxylase	COG0019	2	2	2	3	3
+Metabolism	Lipid transport and metabolism	I	Undecaprenyl pyrophosphate synthase	COG0020	0	1	0	1	1
+Metabolism	Carbohydrate transport and metabolism	G	Transketolase	COG0021	1	1	1	0	0
+Metabolism	Energy production and conversion	C	Pyruvate/2-oxoglutarate dehydrogenase complex, dehydrogenase (E1) component, eukaryotic type, beta subunit	COG0022	1	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Translation initiation factor 1 (eIF-1/SUI1) and related proteins	COG0023	1	0	1	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Methionine aminopeptidase	COG0024	1	1	0	0	2
+Metabolism	Nucleotide transport and metabolism	F	Formate-dependent phosphoribosylglycinamide formyltransferase (GAR transformylase)	COG0027	1	2	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Thiamine pyrophosphate-requiring enzymes [acetolactate synthase, pyruvate dehydrogenase (cytochrome), glyoxylate carboligase, phosphonopyruvate decarboxylase]	COG0028	1	1	4	3	2
+Metabolism	Coenzyme transport and metabolism	H	Aspartate oxidase	COG0029	2	0	0	2	3
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Dimethyladenosine transferase (rRNA methylation)	COG0030	0	0	3	0	3
+Metabolism	Amino acid transport and metabolism	E	Cysteine synthase	COG0031	1	0	1	1	1
+Metabolism	Nucleotide transport and metabolism	F	Glutamine phosphoribosylpyrophosphate amidotransferase	COG0034	3	0	1	1	3
+Metabolism	Nucleotide transport and metabolism	F	Uracil phosphoribosyltransferase	COG0035	2	0	1	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Pentose-5-phosphate-3-epimerase	COG0036	4	3	1	1	1
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Predicted ATPase of the PP-loop superfamily implicated in cell cycle control	COG0037	1	0	0	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Chloride channel protein EriC	COG0038	0	2	0	3	2
+Metabolism	Energy production and conversion	C	Malate/lactate dehydrogenases	COG0039	2	0	1	1	2
+Metabolism	Amino acid transport and metabolism	E	ATP phosphoribosyltransferase	COG0040	0	0	2	0	2
+Metabolism	Nucleotide transport and metabolism	F	Phosphoribosylcarboxyaminoimidazole (NCAIR) mutase	COG0041	1	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	tRNA-dihydrouridine synthase	COG0042	0	1	1	0	1
+Metabolism	Nucleotide transport and metabolism	F	Dihydroorotase and related cyclic amidohydrolases	COG0044	1	0	0	0	3
+Metabolism	Nucleotide transport and metabolism	F	Phosphoribosylformylglycinamidine (FGAM) synthase, synthetase domain	COG0046	3	0	1	0	2
+Metabolism	Nucleotide transport and metabolism	F	Phosphoribosylformylglycinamidine (FGAM) synthase, glutamine amidotransferase domain	COG0047	1	2	0	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S12	COG0048	0	0	0	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S7	COG0049	0	0	1	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	GTPases - translation elongation factors	COG0050	2	1	2	0	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S10	COG0051	1	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S2	COG0052	1	1	2	1	0
+Metabolism	Inorganic ion transport and metabolism	P	Predicted Co/Zn/Cd cation transporters	COG0053	0	1	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	Riboflavin synthase beta-chain	COG0054	0	3	0	0	0
+Metabolism	Energy production and conversion	C	F0F1-type ATP synthase, beta subunit	COG0055	1	0	0	0	1
+Metabolism	Energy production and conversion	C	F0F1-type ATP synthase, alpha subunit	COG0056	1	1	3	2	1
+Metabolism	Carbohydrate transport and metabolism	G	Glyceraldehyde-3-phosphate dehydrogenase/erythrose-4-phosphate dehydrogenase	COG0057	1	0	1	1	2
+Metabolism	Carbohydrate transport and metabolism	G	Glucan phosphorylase	COG0058	4	2	4	4	2
+Metabolism	Amino acid transport and metabolism	E	Ketol-acid reductoisomerase	COG0059	1	1	1	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Isoleucyl-tRNA synthetase	COG0060	3	2	0	2	2
+Metabolism	Carbohydrate transport and metabolism	G	Predicted sugar kinase	COG0061	0	1	1	4	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG0062	0	1	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Predicted sugar kinase	COG0063	0	0	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Asp-tRNAAsn/Glu-tRNAGln amidotransferase B subunit (PET112 homolog)	COG0064	1	0	2	0	0
+Metabolism	Amino acid transport and metabolism	E	3-isopropylmalate dehydratase large subunit	COG0065	0	1	0	2	0
+Metabolism	Amino acid transport and metabolism	E	3-isopropylmalate dehydratase small subunit	COG0066	1	2	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Glutamate synthase domain 1	COG0067	0	4	0	2	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Hydrogenase maturation factor	COG0068	0	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Glutamate synthase domain 2	COG0069	1	1	1	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Phenylalanyl-tRNA synthetase beta subunit	COG0072	1	1	1	0	0
+Poorly characterized	General function prediction only	R	EMAP domain	COG0073	2	2	2	0	2
+Metabolism	Energy production and conversion	C	Succinyl-CoA synthetase, alpha subunit	COG0074	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Serine-pyruvate aminotransferase/archaeal aspartate aminotransferase	COG0075	0	0	1	1	0
+Metabolism	Amino acid transport and metabolism	E	Glutamate decarboxylase and related PLP-dependent proteins	COG0076	0	1	1	1	0
+Metabolism	Amino acid transport and metabolism	E	Prephenate dehydratase	COG0077	3	2	2	1	1
+Metabolism	Amino acid transport and metabolism	E	Ornithine carbamoyltransferase	COG0078	2	0	1	4	1
+Metabolism	Amino acid transport and metabolism	E	Histidinol-phosphate/aromatic aminotransferase and cobyric acid decarboxylase	COG0079	1	1	1	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L1	COG0081	0	0	1	0	1
+Metabolism	Amino acid transport and metabolism	E	Chorismate synthase	COG0082	0	1	0	1	1
+Information storage and processing	Replication, recombination and repair	L	Mg-dependent DNase	COG0084	1	0	0	3	1
+Information storage and processing	Transcription	K	DNA-directed RNA polymerase, beta subunit/140 kD subunit	COG0085	4	2	5	4	2
+Information storage and processing	Transcription	K	DNA-directed RNA polymerase, beta' subunit/160 kD subunit	COG0086	4	0	3	2	4
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L3	COG0087	0	0	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L4	COG0088	1	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L23	COG0089	2	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L2	COG0090	1	2	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L22	COG0091	0	1	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S3	COG0092	1	2	1	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L5	COG0094	0	1	0	1	0
+Metabolism	Coenzyme transport and metabolism	H	Lipoate-protein ligase A	COG0095	1	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S8	COG0096	0	0	0	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L6P/L9E	COG0097	0	0	1	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S5	COG0098	0	1	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S11	COG0100	0	1	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Pseudouridylate synthase	COG0101	1	0	0	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L13	COG0102	0	1	0	2	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S9	COG0103	1	1	0	1	1
+Metabolism	Nucleotide transport and metabolism	F	Adenylosuccinate synthase	COG0104	1	1	0	1	2
+Metabolism	Nucleotide transport and metabolism	F	Nucleoside diphosphate kinase	COG0105	0	1	0	0	2
+Metabolism	Amino acid transport and metabolism	E	Phosphoribosylformimino-5-aminoimidazole carboxamide ribonucleotide (ProFAR) isomerase	COG0106	0	1	1	0	0
+Metabolism	Amino acid transport and metabolism	E	Imidazoleglycerol-phosphate synthase	COG0107	3	0	1	1	1
+Metabolism	Coenzyme transport and metabolism	H	3,4-dihydroxy-2-butanone 4-phosphate synthase	COG0108	2	1	0	1	0
+Poorly characterized	General function prediction only	R	Acetyltransferase (isoleucine patch superfamily)	COG0110	6	3	1	3	6
+Metabolism	Coenzyme transport and metabolism	H	Phosphoglycerate dehydrogenase and related dehydrogenases	COG0111	1	2	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Glycine/serine hydroxymethyltransferase	COG0112	4	4	0	3	1
+Metabolism	Coenzyme transport and metabolism	H	Delta-aminolevulinic acid dehydratase	COG0113	0	0	0	1	0
+Information storage and processing	Replication, recombination and repair	L	Predicted N6-adenine-specific DNA methylase	COG0116	1	2	0	0	1
+Metabolism	Coenzyme transport and metabolism	H	Pyrimidine deaminase	COG0117	0	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	Glutamine amidotransferase	COG0118	0	0	1	1	1
+Metabolism	Amino acid transport and metabolism	E	Isopropylmalate/homocitrate/citramalate synthases	COG0119	0	2	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Ribose 5-phosphate isomerase	COG0120	0	1	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Histidyl-tRNA synthetase	COG0124	1	0	0	1	1
+Metabolism	Carbohydrate transport and metabolism	G	3-phosphoglycerate kinase	COG0126	1	2	0	2	2
+Metabolism	Nucleotide transport and metabolism	F	Xanthosine triphosphate pyrophosphatase	COG0127	1	1	0	1	1
+Metabolism	Amino acid transport and metabolism	E	5-enolpyruvylshikimate-3-phosphate synthase	COG0128	1	1	1	0	1
+Metabolism	Amino acid transport and metabolism	E	Dihydroxyacid dehydratase/phosphogluconate dehydratase	COG0129	2	3	1	0	3
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Pseudouridine synthase	COG0130	2	0	2	1	1
+Metabolism	Amino acid transport and metabolism	E	Imidazoleglycerol-phosphate dehydratase	COG0131	0	0	0	1	1
+Metabolism	Coenzyme transport and metabolism	H	Dethiobiotin synthetase	COG0132	0	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	Indole-3-glycerol phosphate synthase	COG0134	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Phosphoribosylanthranilate isomerase	COG0135	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Aspartate-semialdehyde dehydrogenase	COG0136	1	2	0	1	1
+Metabolism	Amino acid transport and metabolism	E	Argininosuccinate synthase	COG0137	0	1	0	0	3
+Metabolism	Nucleotide transport and metabolism	F	AICAR transformylase/IMP cyclohydrolase PurH (only IMP cyclohydrolase domain in Aful)	COG0138	1	3	1	2	1
+Metabolism	Amino acid transport and metabolism	E	Phosphoribosyl-AMP cyclohydrolase	COG0139	0	2	0	2	1
+Metabolism	Amino acid transport and metabolism	E	Phosphoribosyl-ATP pyrophosphohydrolase	COG0140	0	0	1	1	0
+Metabolism	Amino acid transport and metabolism	E	Histidinol dehydrogenase	COG0141	2	0	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	Geranylgeranyl pyrophosphate synthase	COG0142	3	3	1	0	4
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Methionyl-tRNA synthetase	COG0143	1	1	0	4	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	tRNA and rRNA cytosine-C5-methylases	COG0144	0	0	1	1	0
+Metabolism	Amino acid transport and metabolism	E	Anthranilate/para-aminobenzoate synthases component I	COG0147	0	1	2	1	1
+Metabolism	Carbohydrate transport and metabolism	G	Enolase	COG0148	1	2	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Triosephosphate isomerase	COG0149	1	1	0	1	0
+Metabolism	Nucleotide transport and metabolism	F	Phosphoribosylaminoimidazole (AIR) synthetase	COG0150	2	0	1	3	0
+Metabolism	Nucleotide transport and metabolism	F	Phosphoribosylamine-glycine ligase	COG0151	0	1	2	2	4
+Metabolism	Nucleotide transport and metabolism	F	Phosphoribosylaminoimidazolesuccinocarboxamide (SAICAR) synthase	COG0152	0	1	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Galactokinase	COG0153	1	3	1	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Asp-tRNAAsn/Glu-tRNAGln amidotransferase A subunit and related amidases	COG0154	0	1	0	0	2
+Metabolism	Inorganic ion transport and metabolism	P	Sulfite reductase, beta subunit (hemoprotein)	COG0155	0	0	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	7-keto-8-aminopelargonate synthetase and related enzymes	COG0156	1	0	0	0	3
+Metabolism	Coenzyme transport and metabolism	H	Nicotinate-nucleotide pyrophosphorylase	COG0157	0	0	1	0	3
+Metabolism	Amino acid transport and metabolism	E	Tryptophan synthase alpha chain	COG0159	0	0	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	Adenosylmethionine-8-amino-7-oxononanoate aminotransferase	COG0161	0	0	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Tyrosyl-tRNA synthetase	COG0162	1	0	1	3	1
+Information storage and processing	Replication, recombination and repair	L	Ribonuclease HII	COG0164	1	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Argininosuccinate lyase	COG0165	2	2	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Glucose-6-phosphate isomerase	COG0166	2	1	0	1	1
+Metabolism	Nucleotide transport and metabolism	F	Dihydroorotate dehydrogenase	COG0167	0	2	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	Trk-type K+ transport systems, membrane components	COG0168	1	1	2	1	2
+Metabolism	Amino acid transport and metabolism	E	Shikimate 5-dehydrogenase	COG0169	2	1	0	0	1
+Metabolism	Coenzyme transport and metabolism	H	NAD synthase	COG0171	0	1	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Seryl-tRNA synthetase	COG0172	1	2	2	2	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Aspartyl-tRNA synthetase	COG0173	2	2	4	5	3
+Metabolism	Amino acid transport and metabolism	E	Glutamine synthetase	COG0174	1	0	0	0	0
+Metabolism	Amino acid transport and metabolism	E	3'-phosphoadenosine 5'-phosphosulfate sulfotransferase (PAPS reductase)/FAD synthetase and related enzymes	COG0175	0	0	0	1	1
+Metabolism	Carbohydrate transport and metabolism	G	Transaldolase	COG0176	3	0	0	1	0
+Information storage and processing	Replication, recombination and repair	L	Predicted EndoIII-related endonuclease	COG0177	0	1	0	1	0
+Information storage and processing	Replication, recombination and repair	L	Excinuclease ATPase subunit	COG0178	2	4	2	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Tryptophanyl-tRNA synthetase	COG0180	0	1	1	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Predicted translation initiation factor 2B subunit, eIF-2B alpha/beta/delta family	COG0182	0	0	1	1	0
+Metabolism	Lipid transport and metabolism	I	Acetyl-CoA acetyltransferase	COG0183	1	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S15P/S13E	COG0184	1	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S19	COG0185	1	1	0	0	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S17	COG0186	1	0	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Type IIA topoisomerase (DNA gyrase/topo II, topoisomerase IV), B subunit	COG0187	8	5	3	2	2
+Information storage and processing	Replication, recombination and repair	L	Type IIA topoisomerase (DNA gyrase/topo II, topoisomerase IV), A subunit	COG0188	5	4	2	4	1
+Metabolism	Coenzyme transport and metabolism	H	Glutathione synthase/Ribosomal protein S6 modification enzyme (glutaminyl transferase)	COG0189	0	0	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Fructose/tagatose bisphosphate aldolase	COG0191	1	1	1	1	0
+Metabolism	Coenzyme transport and metabolism	H	S-adenosylmethionine synthetase	COG0192	2	2	1	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Peptidyl-tRNA hydrolase	COG0193	1	1	0	0	2
+Metabolism	Nucleotide transport and metabolism	F	Guanylate kinase	COG0194	1	0	0	1	0
+Information storage and processing	Transcription	K	Transcription elongation factor	COG0195	0	0	0	0	1
+Metabolism	Coenzyme transport and metabolism	H	FAD synthase	COG0196	0	2	1	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S14	COG0199	0	1	0	0	1
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Preprotein translocase subunit SecY	COG0201	1	0	1	1	1
+Information storage and processing	Transcription	K	DNA-directed RNA polymerase, alpha subunit/40 kD subunit	COG0202	1	0	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L17	COG0203	0	2	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	6-phosphofructokinase	COG0205	2	2	2	1	3
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Cell division GTPase	COG0206	2	1	0	1	1
+Metabolism	Nucleotide transport and metabolism	F	Thymidylate synthase	COG0207	1	0	1	0	2
+Metabolism	Nucleotide transport and metabolism	F	Ribonucleotide reductase, alpha subunit	COG0209	1	0	1	0	2
+Information storage and processing	Replication, recombination and repair	L	Superfamily I DNA and RNA helicases	COG0210	0	2	5	2	4
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L27	COG0211	1	1	0	2	0
+Metabolism	Coenzyme transport and metabolism	H	5-formyltetrahydrofolate cyclo-ligase	COG0212	3	0	0	0	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Cysteinyl-tRNA synthetase	COG0215	1	0	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Protein chain release factor A	COG0216	1	4	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG0217	0	4	1	1	1
+Poorly characterized	General function prediction only	R	Predicted GTPase	COG0218	0	0	0	1	2
+Poorly characterized	General function prediction only	R	Predicted S-adenosylmethionine-dependent methyltransferase	COG0220	1	0	0	1	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L7/L12	COG0222	1	2	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Methionyl-tRNA formyltransferase	COG0223	1	0	1	0	0
+Metabolism	Energy production and conversion	C	F0F1-type ATP synthase, gamma subunit	COG0224	0	0	1	0	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Peptide methionine sulfoxide reductase	COG0225	0	0	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type phosphate transport system, periplasmic component	COG0226	1	1	1	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L28	COG0227	1	0	0	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S16	COG0228	1	0	0	0	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Conserved domain frequently associated with peptide methionine sulfoxide reductase	COG0229	0	2	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Translation elongation factor P (EF-P)/translation initiation factor 5A (eIF-5A)	COG0231	0	2	1	0	0
+Metabolism	Nucleotide transport and metabolism	F	dGTP triphosphohydrolase	COG0232	1	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosome recycling factor	COG0233	2	0	0	1	2
+Metabolism	Carbohydrate transport and metabolism	G	Ribulose-5-phosphate 4-epimerase and related epimerases and aldolases	COG0235	2	1	1	2	4
+Metabolism	Lipid transport and metabolism	I	Acyl carrier protein	COG0236	0	1	2	2	1
+Metabolism	Coenzyme transport and metabolism	H	Dephospho-CoA kinase	COG0237	0	0	1	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S18	COG0238	0	1	0	0	0
+Metabolism	Energy production and conversion	C	Glycerol-3-phosphate dehydrogenase	COG0240	2	1	2	1	3
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	N-formylmethionyl-tRNA deformylase	COG0242	0	0	0	0	4
+Metabolism	Energy production and conversion	C	Anaerobic dehydrogenases, typically selenocysteine-containing	COG0243	4	1	3	2	11
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L10	COG0244	1	1	0	0	1
+Metabolism	Lipid transport and metabolism	I	2C-methyl-D-erythritol 2,4-cyclodiphosphate synthase	COG0245	0	1	2	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Mannitol-1-phosphate/altronate dehydrogenases	COG0246	1	0	0	0	0
+Metabolism	Energy production and conversion	C	Fe-S oxidoreductase	COG0247	1	0	1	0	0
+Metabolism	Nucleotide transport and metabolism	F	Exopolyphosphatase	COG0248	0	0	0	1	1
+Information storage and processing	Replication, recombination and repair	L	Mismatch repair ATPase (MutS family)	COG0249	1	2	3	3	3
+Information storage and processing	Transcription	K	Transcription antiterminator	COG0250	1	0	1	2	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Putative translation initiation inhibitor, yjgF family	COG0251	1	0	1	1	2
+Metabolism	Amino acid transport and metabolism	E	L-asparaginase/archaeal Glu-tRNAGln amidotransferase subunit D	COG0252	1	0	0	1	3
+Metabolism	Amino acid transport and metabolism	E	Diaminopimelate epimerase	COG0253	0	1	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L31	COG0254	1	0	1	0	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L18	COG0256	0	1	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L36	COG0257	0	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	5'-3' exonuclease (including N-terminal domain of PolI)	COG0258	0	0	2	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L21	COG0261	1	2	0	0	1
+Metabolism	Coenzyme transport and metabolism	H	Dihydrofolate reductase	COG0262	0	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Glutamate 5-kinase	COG0263	0	1	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Translation elongation factor Ts	COG0264	2	3	0	0	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Trypsin-like serine proteases, typically periplasmic, contain C-terminal PDZ domain	COG0265	1	0	1	0	1
+Information storage and processing	Replication, recombination and repair	L	Site-specific DNA methylase	COG0270	4	1	1	4	1
+Information storage and processing	Replication, recombination and repair	L	NAD-dependent DNA ligase (contains BRCT domain type II)	COG0272	2	0	1	2	1
+Metabolism	Nucleotide transport and metabolism	F	Deoxyribose-phosphate aldolase	COG0274	2	2	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted S-adenosylmethionine-dependent methyltransferase involved in cell envelope biogenesis	COG0275	0	0	0	1	1
+Metabolism	Coenzyme transport and metabolism	H	Protoheme ferro-lyase (ferrochelatase)	COG0276	0	0	0	0	1
+Metabolism	Energy production and conversion	C	FAD/FMN-containing dehydrogenases	COG0277	0	0	1	2	0
+Metabolism	Energy production and conversion	C	Phosphotransacetylase	COG0280	2	0	1	0	1
+Metabolism	Energy production and conversion	C	Malic enzyme	COG0281	1	1	0	2	1
+Metabolism	Energy production and conversion	C	Acetate kinase	COG0282	4	3	1	0	3
+Metabolism	Nucleotide transport and metabolism	F	Cytidylate kinase	COG0283	0	3	1	1	1
+Metabolism	Nucleotide transport and metabolism	F	Orotidine-5'-phosphate decarboxylase	COG0284	1	2	0	1	0
+Metabolism	Coenzyme transport and metabolism	H	Folylpolyglutamate synthase	COG0285	1	2	0	0	1
+Cellular processes and signaling	Defense mechanisms	V	Type I restriction-modification system methyltransferase subunit	COG0286	5	5	0	4	3
+Metabolism	Amino acid transport and metabolism	E	Prephenate dehydrogenase	COG0287	0	0	0	2	0
+Metabolism	Inorganic ion transport and metabolism	P	Carbonic anhydrase	COG0288	0	1	0	0	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Translation initiation factor 3 (IF-3)	COG0290	0	2	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L35	COG0291	0	1	0	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L20	COG0292	0	0	1	0	0
+Metabolism	Nucleotide transport and metabolism	F	Cytidine deaminase	COG0295	1	0	1	1	1
+Metabolism	Carbohydrate transport and metabolism	G	1,4-alpha-glucan branching enzyme	COG0296	2	1	0	2	2
+Metabolism	Carbohydrate transport and metabolism	G	Glycogen synthase	COG0297	1	1	1	0	3
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Hydrogenase maturation factor	COG0298	0	1	0	0	0
+Metabolism	Nucleotide transport and metabolism	F	Folate-dependent phosphoribosylglycinamide formyltransferase PurN	COG0299	2	2	0	0	2
+Poorly characterized	General function prediction only	R	Short-chain dehydrogenases of various substrate specificities	COG0300	1	1	3	1	0
+Metabolism	Coenzyme transport and metabolism	H	Thiamine biosynthesis ATP pyrophosphatase	COG0301	0	0	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	GTP cyclohydrolase I	COG0302	1	0	0	0	0
+Metabolism	Coenzyme transport and metabolism	H	Molybdopterin biosynthesis enzyme	COG0303	0	0	0	0	1
+Metabolism	Lipid transport and metabolism	I	3-oxoacyl-(acyl-carrier-protein) synthase	COG0304	0	4	2	0	1
+Information storage and processing	Replication, recombination and repair	L	Replicative DNA helicase	COG0305	0	0	1	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Phosphate/sulphate permeases	COG0306	0	0	1	1	0
+Metabolism	Coenzyme transport and metabolism	H	Riboflavin synthase alpha chain	COG0307	0	0	0	0	2
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Hydrogenase maturation factor	COG0309	0	0	1	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Guanosine polyphosphate pyrophosphohydrolases/synthetases	COG0317	3	3	4	2	7
+Metabolism	Lipid transport and metabolism	I	Acyl-CoA synthetases (AMP-forming)/AMP-acid ligases II	COG0318	0	3	0	3	1
+Poorly characterized	General function prediction only	R	Predicted metal-dependent hydrolase	COG0319	2	2	0	1	1
+Metabolism	Coenzyme transport and metabolism	H	Lipoate synthase	COG0320	0	0	1	0	0
+Information storage and processing	Replication, recombination and repair	L	Nuclease subunit of the excinuclease complex	COG0322	0	4	3	0	2
+Information storage and processing	Replication, recombination and repair	L	DNA mismatch repair enzyme (predicted ATPase)	COG0323	3	3	2	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	tRNA delta(2)-isopentenylpyrophosphate transferase	COG0324	1	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted enzyme with a TIM-barrel fold	COG0325	2	1	1	0	2
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Molecular chaperone, HSP90 family	COG0326	2	0	1	3	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG0327	1	1	0	1	0
+Information storage and processing	Replication, recombination and repair	L	Ribonuclease HI	COG0328	0	1	0	1	1
+Metabolism	Amino acid transport and metabolism	E	Dihydrodipicolinate synthase/N-acetylneuraminate lyase	COG0329	2	1	2	2	3
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Membrane protease subunits, stomatin/prohibitin homologs	COG0330	2	0	0	0	1
+Metabolism	Lipid transport and metabolism	I	(acyl-carrier-protein) S-malonyltransferase	COG0331	2	3	0	0	2
+Metabolism	Lipid transport and metabolism	I	3-oxoacyl-[acyl-carrier-protein] synthase III	COG0332	2	1	0	2	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L32	COG0333	0	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Glutamate dehydrogenase/leucine dehydrogenase	COG0334	1	2	1	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L19	COG0335	1	0	0	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	tRNA-(guanine-N1)-methyltransferase	COG0336	2	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	3-dehydroquinate synthetase	COG0337	1	0	0	0	1
+Information storage and processing	Replication, recombination and repair	L	Site-specific DNA methylase	COG0338	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Zn-dependent oligopeptidases	COG0339	2	2	2	0	5
+Metabolism	Coenzyme transport and metabolism	H	Biotin-(acetyl-CoA carboxylase) ligase	COG0340	1	1	2	0	2
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Preprotein translocase subunit SecF	COG0341	1	2	0	0	0
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Preprotein translocase subunit SecD	COG0342	0	2	1	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Queuine/archaeosine tRNA-ribosyltransferase	COG0343	0	0	0	2	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG0344	0	0	1	1	0
+Metabolism	Amino acid transport and metabolism	E	Pyrroline-5-carboxylate reductase	COG0345	1	1	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Lactoylglutathione lyase and related lyases	COG0346	1	0	1	1	0
+Metabolism	Amino acid transport and metabolism	E	Nitrogen regulatory protein PII	COG0347	0	0	1	0	0
+Metabolism	Energy production and conversion	C	Polyferredoxin	COG0348	1	0	1	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribonuclease D	COG0349	0	1	0	0	0
+Metabolism	Coenzyme transport and metabolism	H	Hydroxymethylpyrimidine/phosphomethylpyrimidine kinase	COG0351	0	0	0	0	1
+Metabolism	Coenzyme transport and metabolism	H	Thiamine monophosphate synthase	COG0352	2	2	2	1	3
+Information storage and processing	Replication, recombination and repair	L	Recombinational DNA repair protein (RecF pathway)	COG0353	1	0	1	0	0
+Metabolism	Energy production and conversion	C	F0F1-type ATP synthase, epsilon subunit (mitochondrial delta subunit)	COG0355	0	0	1	0	0
+Metabolism	Energy production and conversion	C	F0F1-type ATP synthase, subunit a	COG0356	2	1	0	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted S-adenosylmethionine-dependent methyltransferase involved in bacterial cell division	COG0357	0	0	0	0	2
+Information storage and processing	Replication, recombination and repair	L	DNA primase (bacterial type)	COG0358	1	2	4	2	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S6	COG0360	1	1	1	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Translation initiation factor 1 (IF-1)	COG0361	0	1	0	0	3
+Metabolism	Carbohydrate transport and metabolism	G	6-phosphogluconate dehydrogenase	COG0362	0	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	6-phosphogluconolactonase/Glucosamine-6-phosphate isomerase/deaminase	COG0363	0	2	0	0	0
+Metabolism	Lipid transport and metabolism	I	Acyl-coenzyme A synthetases/AMP-(fatty) acid ligases	COG0365	0	0	0	0	3
+Metabolism	Carbohydrate transport and metabolism	G	Glycosidases	COG0366	3	2	5	0	2
+Metabolism	Amino acid transport and metabolism	E	Asparagine synthase (glutamine-hydrolyzing)	COG0367	0	0	0	1	2
+Metabolism	Inorganic ion transport and metabolism	P	Fe2+ transport system protein B	COG0370	1	3	1	2	1
+Metabolism	Energy production and conversion	C	Glycerol dehydrogenase and related enzymes	COG0371	0	0	0	1	0
+Metabolism	Energy production and conversion	C	Citrate synthase	COG0372	1	0	0	1	0
+Metabolism	Coenzyme transport and metabolism	H	Glutamyl-tRNA reductase	COG0373	0	1	1	1	0
+Metabolism	Energy production and conversion	C	Ni,Fe-hydrogenase I large subunit	COG0374	1	0	0	0	0
+Metabolism	Energy production and conversion	C	NADH:ubiquinone oxidoreductase 20 kD subunit and related Fe-S oxidoreductases	COG0377	0	1	0	1	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Ni2+-binding GTPase involved in regulation of expression and maturation of urease and hydrogenase	COG0378	0	0	0	1	0
+Metabolism	Coenzyme transport and metabolism	H	Quinolinate synthase	COG0379	1	1	1	1	4
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-N-acetylglucosamine 2-epimerase	COG0381	0	1	2	2	1
+Metabolism	Carbohydrate transport and metabolism	G	Alpha-mannosidase	COG0383	1	1	1	1	1
+Poorly characterized	General function prediction only	R	Predicted amidohydrolase	COG0388	1	1	1	0	5
+Poorly characterized	Function unknown	S	Predicted integral membrane protein	COG0392	0	0	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG0393	0	0	0	1	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Protein-tyrosine-phosphatase	COG0394	1	3	1	1	0
+Metabolism	Carbohydrate transport and metabolism	G	ABC-type sugar transport system, permease component	COG0395	1	2	1	3	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	ABC-type transport system involved in Fe-S cluster assembly, ATPase component	COG0396	0	1	1	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted pyridoxal phosphate-dependent enzyme apparently involved in regulation of cell wall biogenesis	COG0399	2	10	4	3	8
+Metabolism	Nucleotide transport and metabolism	F	Cytosine deaminase and related metal-dependent hydrolases	COG0402	2	2	0	3	0
+Metabolism	Amino acid transport and metabolism	E	Glycine cleavage system protein P (pyridoxal-binding), N-terminal domain	COG0403	1	0	0	0	4
+Metabolism	Amino acid transport and metabolism	E	Glycine cleavage system T protein (aminomethyltransferase)	COG0404	0	0	2	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Fructose-2,6-bisphosphatase	COG0406	1	0	0	0	0
+Metabolism	Coenzyme transport and metabolism	H	Ketopantoate hydroxymethyltransferase	COG0413	0	1	0	1	1
+Metabolism	Coenzyme transport and metabolism	H	Panthothenate synthetase	COG0414	0	0	0	0	2
+Information storage and processing	Replication, recombination and repair	L	ATPase involved in DNA repair	COG0419	1	1	0	2	0
+Information storage and processing	Replication, recombination and repair	L	DNA repair exonuclease	COG0420	0	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	Spermidine synthase	COG0421	1	0	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	Thiamine biosynthesis protein ThiC	COG0422	1	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Glycyl-tRNA synthetase (class II)	COG0423	0	1	0	1	1
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Nucleotide-binding protein implicated in inhibition of septum formation	COG0424	0	3	0	0	0
+Metabolism	Energy production and conversion	C	Uncharacterized flavoproteins	COG0426	2	1	1	1	2
+Metabolism	Energy production and conversion	C	Acetyl-CoA hydrolase	COG0427	0	3	0	1	1
+Metabolism	Inorganic ion transport and metabolism	P	Predicted divalent heavy-metal cations transporter	COG0428	0	1	1	0	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG0432	0	0	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Aspartate/tyrosine/aromatic aminotransferase	COG0436	4	4	1	1	7
+Metabolism	Energy production and conversion	C	Fe-S-cluster-containing hydrogenase components 1	COG0437	1	1	1	0	5
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Glycosyltransferase	COG0438	7	7	6	9	7
+Metabolism	Lipid transport and metabolism	I	Biotin carboxylase	COG0439	1	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	Acetolactate synthase, small (regulatory) subunit	COG0440	1	1	1	0	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Threonyl-tRNA synthetase	COG0441	0	3	1	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Prolyl-tRNA synthetase	COG0442	1	1	0	0	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Molecular chaperone	COG0443	3	1	1	1	2
+Metabolism	Amino acid transport and metabolism	E	ABC-type dipeptide/oligopeptide/nickel transport system, ATPase component	COG0444	4	3	2	4	1
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	NAD/FAD-utilizing enzyme apparently involved in cell division	COG0445	0	2	1	1	6
+Metabolism	Coenzyme transport and metabolism	H	Dihydroxynaphthoic acid synthase	COG0447	1	1	1	0	0
+Metabolism	Carbohydrate transport and metabolism	G	ADP-glucose pyrophosphorylase	COG0448	1	0	3	2	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Glucosamine 6-phosphate synthetase, contains amidotransferase and phosphosugar isomerase domains	COG0449	0	0	1	2	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Peroxiredoxin	COG0450	1	0	1	0	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Nucleoside-diphosphate-sugar epimerases	COG0451	7	5	3	6	6
+Metabolism	Coenzyme transport and metabolism	H	Phosphopantothenoylcysteine synthetase/decarboxylase	COG0452	1	0	1	1	3
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	ATPases involved in chromosome partitioning	COG0455	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Acetyltransferases	COG0456	0	2	0	3	0
+Metabolism	Amino acid transport and metabolism	E	Carbamoylphosphate synthase large subunit (split gene in MJ)	COG0458	0	3	0	1	3
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Chaperonin GroEL (HSP60 family)	COG0459	0	1	0	1	2
+Metabolism	Amino acid transport and metabolism	E	Homoserine dehydrogenase	COG0460	1	1	1	4	1
+Metabolism	Nucleotide transport and metabolism	F	Orotate phosphoribosyltransferase	COG0461	1	1	0	0	3
+Metabolism	Nucleotide transport and metabolism	F	Phosphoribosylpyrophosphate synthetase	COG0462	0	0	0	1	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Glycosyltransferases involved in cell wall biogenesis	COG0463	0	4	5	4	4
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	ATPases of the AAA+ class	COG0464	1	1	0	0	3
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	ATP-dependent Zn proteases	COG0465	2	0	0	1	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	ATP-dependent Lon protease, bacterial type	COG0466	0	2	2	0	0
+Information storage and processing	Replication, recombination and repair	L	RecA/RadA recombinase	COG0468	1	0	1	1	4
+Metabolism	Carbohydrate transport and metabolism	G	Pyruvate kinase	COG0469	1	1	1	1	0
+Metabolism	Inorganic ion transport and metabolism	P	Di- and tricarboxylate transporters	COG0471	1	1	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-N-acetylmuramyl pentapeptide phosphotransferase/UDP-N-acetylglucosamine-1-phosphate transferase	COG0472	4	1	0	0	2
+Metabolism	Energy production and conversion	C	Isocitrate/isopropylmalate dehydrogenase	COG0473	0	2	1	1	0
+Metabolism	Inorganic ion transport and metabolism	P	Cation transport ATPase	COG0474	3	2	1	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Kef-type K+ transport systems, membrane components	COG0475	2	1	0	3	0
+Metabolism	Coenzyme transport and metabolism	H	Dinucleotide-utilizing enzymes involved in molybdopterin and thiamine biosynthesis family 2	COG0476	0	2	0	0	0
+Metabolism	Energy production and conversion	C	Succinate dehydrogenase/fumarate reductase, Fe-S protein subunit	COG0479	0	0	0	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Translation elongation factors (GTPases)	COG0480	2	1	2	2	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Membrane GTPase LepA	COG0481	3	2	2	2	5
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Predicted tRNA(5-methylaminomethyl-2-thiouridylate) methyltransferase, contains the PP-loop ATPase domain	COG0482	0	2	0	0	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	DnaJ-class molecular chaperone with C-terminal Zn finger domain	COG0484	1	1	1	1	0
+Poorly characterized	General function prediction only	R	Predicted GTPase	COG0486	1	1	1	1	1
+Poorly characterized	General function prediction only	R	ATPase components of ABC transporters with duplicated ATPase domains	COG0488	3	7	1	1	1
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	ATPases involved in chromosome partitioning	COG0489	2	3	2	0	0
+Poorly characterized	General function prediction only	R	Zn-dependent hydrolases, including glyoxylases	COG0491	1	2	0	2	3
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Thioredoxin reductase	COG0492	0	2	1	2	4
+Metabolism	Amino acid transport and metabolism	E	NADPH-dependent glutamate synthase beta chain and related oxidoreductases	COG0493	3	5	0	4	1
+Information storage and processing	Replication, recombination and repair	L	NTP pyrophosphohydrolases including oxidative damage repair enzymes	COG0494	0	0	1	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Leucyl-tRNA synthetase	COG0495	1	0	1	2	0
+Poorly characterized	General function prediction only	R	Predicted acid phosphatase	COG0496	2	0	0	1	0
+Information storage and processing	Replication, recombination and repair	L	ATPase involved in DNA repair	COG0497	1	0	2	3	2
+Metabolism	Amino acid transport and metabolism	E	Threonine synthase	COG0498	3	0	0	0	1
+Metabolism	Coenzyme transport and metabolism	H	S-adenosylhomocysteine hydrolase	COG0499	1	0	0	1	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Zn-dependent protease with chaperone function	COG0501	1	0	0	0	0
+Metabolism	Coenzyme transport and metabolism	H	Biotin synthase and related enzymes	COG0502	0	1	2	2	2
+Metabolism	Nucleotide transport and metabolism	F	Adenine/guanine phosphoribosyltransferases and related PRPP-binding proteins	COG0503	2	1	0	0	0
+Metabolism	Nucleotide transport and metabolism	F	CTP synthase (UTP-ammonia lyase)	COG0504	2	0	1	0	4
+Metabolism	Amino acid transport and metabolism	E	Carbamoylphosphate synthase small subunit	COG0505	2	2	0	0	1
+Information storage and processing	Replication, recombination and repair	L	ATP-dependent exoDNAse (exonuclease V), alpha subunit - helicase superfamily I member	COG0507	2	3	1	3	1
+Metabolism	Energy production and conversion	C	Pyruvate/2-oxoglutarate dehydrogenase complex, dihydrolipoamide acyltransferase (E2) component, and related enzymes	COG0508	1	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Glycine cleavage system H protein (lipoate-binding)	COG0509	2	1	0	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted choline kinase involved in LPS biosynthesis	COG0510	0	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	Anthranilate/para-aminobenzoate synthases component II	COG0512	0	2	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Superfamily II DNA and RNA helicases	COG0513	1	2	2	1	4
+Information storage and processing	Replication, recombination and repair	L	Superfamily II DNA helicase	COG0514	1	2	2	1	4
+Poorly characterized	General function prediction only	R	Serine/threonine protein kinase	COG0515	0	0	0	1	1
+Metabolism	Nucleotide transport and metabolism	F	IMP dehydrogenase/GMP reductase	COG0516	1	4	0	0	0
+Poorly characterized	General function prediction only	R	FOG: CBS domain	COG0517	0	0	1	0	0
+Metabolism	Nucleotide transport and metabolism	F	GMP synthase - Glutamine amidotransferase domain	COG0518	1	0	0	1	0
+Metabolism	Nucleotide transport and metabolism	F	GMP synthase, PP-ATPase domain/subunit	COG0519	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Selenocysteine lyase	COG0520	1	1	0	3	4
+Metabolism	Coenzyme transport and metabolism	H	Molybdopterin biosynthesis enzymes	COG0521	0	0	1	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S4 and related proteins	COG0522	1	2	2	1	1
+Poorly characterized	General function prediction only	R	Putative GTPases (G3E family)	COG0523	0	0	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Sugar kinases, ribokinase family	COG0524	3	4	1	2	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Valyl-tRNA synthetase	COG0525	0	0	0	0	2
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Thiol-disulfide isomerase and thioredoxins	COG0526	0	1	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Aspartokinases	COG0527	1	1	0	2	1
+Metabolism	Nucleotide transport and metabolism	F	Uridylate kinase	COG0528	0	2	1	1	2
+Metabolism	Inorganic ion transport and metabolism	P	Adenylylsulfate kinase and related kinases	COG0529	0	0	0	1	0
+Metabolism	Inorganic ion transport and metabolism	P	Ca2+/Na+ antiporter	COG0530	0	2	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Amino acid transporters	COG0531	1	2	1	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Translation initiation factor 2 (IF-2; GTPase)	COG0532	2	1	3	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Metal-dependent proteases with possible chaperone activity	COG0533	2	2	1	1	0
+Cellular processes and signaling	Defense mechanisms	V	Na+-driven multidrug efflux pump	COG0534	7	7	2	5	7
+Poorly characterized	General function prediction only	R	Predicted Fe-S oxidoreductases	COG0535	2	0	3	1	0
+Poorly characterized	General function prediction only	R	Predicted GTPase	COG0536	1	0	1	0	1
+Metabolism	Nucleotide transport and metabolism	F	Diadenosine tetraphosphate (Ap4A) hydrolase and other HIT family hydrolases	COG0537	1	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S1	COG0539	1	1	0	3	0
+Metabolism	Nucleotide transport and metabolism	F	Aspartate carbamoyltransferase, catalytic chain	COG0540	0	3	1	0	2
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Signal recognition particle GTPase	COG0541	0	0	1	0	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	ATPases with chaperone activity, ATP-binding subunit	COG0542	3	2	5	3	4
+Metabolism	Coenzyme transport and metabolism	H	2-polyprenylphenol hydroxylase and related flavodoxin oxidoreductases	COG0543	3	4	0	2	2
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	FKBP-type peptidyl-prolyl cis-trans isomerase (trigger factor)	COG0544	1	1	0	0	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	FKBP-type peptidyl-prolyl cis-trans isomerases 1	COG0545	3	5	1	1	3
+Poorly characterized	General function prediction only	R	Predicted phosphatases	COG0546	2	0	1	2	0
+Metabolism	Amino acid transport and metabolism	E	Anthranilate phosphoribosyltransferase	COG0547	2	1	0	2	0
+Metabolism	Amino acid transport and metabolism	E	Acetylglutamate kinase	COG0548	2	0	0	2	1
+Metabolism	Amino acid transport and metabolism	E	Carbamate kinase	COG0549	2	1	0	1	0
+Information storage and processing	Replication, recombination and repair	L	Topoisomerase IA	COG0550	7	4	6	7	8
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Signal recognition particle GTPase	COG0552	0	1	0	0	1
+Information storage and processing	Transcription	K	Superfamily II DNA/RNA helicases, SNF2 family	COG0553	0	1	2	0	1
+Metabolism	Energy production and conversion	C	Glycerol kinase	COG0554	0	0	2	1	1
+Information storage and processing	Replication, recombination and repair	L	Helicase subunit of the DNA excision repair complex	COG0556	1	0	0	2	2
+Information storage and processing	Transcription	K	Exoribonuclease R	COG0557	0	1	1	1	2
+Metabolism	Lipid transport and metabolism	I	Phosphatidylglycerophosphate synthase	COG0558	0	1	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Phosphoserine phosphatase	COG0560	0	0	0	0	2
+Poorly characterized	General function prediction only	R	Predicted hydrolases of the HAD superfamily	COG0561	0	0	1	2	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-galactopyranose mutase	COG0562	2	0	1	2	4
+Metabolism	Nucleotide transport and metabolism	F	Adenylate kinase and related kinases	COG0563	0	2	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Pseudouridylate synthases, 23S RNA-specific	COG0564	1	2	1	6	3
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	rRNA methylases	COG0566	2	1	0	3	3
+Information storage and processing	Transcription	K	DNA-directed RNA polymerase, sigma subunit (sigma70/sigma32)	COG0568	0	2	3	2	1
+Metabolism	Inorganic ion transport and metabolism	P	K+ transport systems, NAD-binding component	COG0569	0	2	1	2	1
+Information storage and processing	Transcription	K	dsRNA-specific ribonuclease	COG0571	1	2	0	2	1
+Metabolism	Nucleotide transport and metabolism	F	Uridine kinase	COG0572	0	2	0	1	1
+Metabolism	Carbohydrate transport and metabolism	G	Phosphoenolpyruvate synthase/pyruvate phosphate dikinase	COG0574	2	3	0	5	2
+Metabolism	Lipid transport and metabolism	I	CDP-diglyceride synthetase	COG0575	1	0	0	0	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Molecular chaperone GrpE (heat shock protein)	COG0576	0	0	0	0	1
+Cellular processes and signaling	Defense mechanisms	V	ABC-type antimicrobial peptide transport system, permease component	COG0577	3	2	0	0	0
+Metabolism	Energy production and conversion	C	Glycerol-3-phosphate dehydrogenase	COG0578	0	0	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type phosphate transport system, permease component	COG0581	0	0	1	0	0
+Information storage and processing	Transcription	K	Transcriptional regulator	COG0583	2	3	1	1	2
+Metabolism	Energy production and conversion	C	Glycerophosphoryl diester phosphodiesterase	COG0584	0	0	0	1	1
+Poorly characterized	Function unknown	S	Uncharacterized membrane-associated protein	COG0586	0	2	0	1	1
+Information storage and processing	Replication, recombination and repair	L	DNA polymerase III, alpha subunit	COG0587	1	2	1	1	2
+Metabolism	Carbohydrate transport and metabolism	G	Phosphoglycerate mutase 1	COG0588	0	0	1	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Universal stress protein UspA and related nucleotide-binding proteins	COG0589	2	0	1	0	1
+Metabolism	Nucleotide transport and metabolism	F	Cytosine/adenosine deaminases	COG0590	0	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Na+/proline symporter	COG0591	0	0	0	0	2
+Information storage and processing	Replication, recombination and repair	L	DNA polymerase sliding clamp subunit (PCNA homolog)	COG0592	3	1	1	2	1
+Information storage and processing	Replication, recombination and repair	L	ATPase involved in DNA replication initiation	COG0593	2	2	1	1	0
+Poorly characterized	General function prediction only	R	Predicted hydrolase of the metallo-beta-lactamase superfamily	COG0595	0	1	1	1	0
+Poorly characterized	General function prediction only	R	Predicted hydrolases or acyltransferases (alpha/beta hydrolase superfamily)	COG0596	1	0	1	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Lipoprotein signal peptidase	COG0597	0	0	0	1	1
+Metabolism	Inorganic ion transport and metabolism	P	Mg2+ and Co2+ transporters	COG0598	1	0	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized homolog of gamma-carboxymuconolactone decarboxylase subunit	COG0599	0	0	1	0	0
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type nitrate/sulfonate/bicarbonate transport system, permease component	COG0600	0	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	ABC-type dipeptide/oligopeptide/nickel transport systems, permease components	COG0601	3	0	1	2	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Organic radical activating enzymes	COG0602	1	1	1	1	0
+Poorly characterized	General function prediction only	R	Predicted PP-loop superfamily ATPase	COG0603	2	1	1	0	2
+Metabolism	Energy production and conversion	C	NADPH:quinone reductase and related Zn-dependent oxidoreductases	COG0604	0	1	0	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Superoxide dismutase	COG0605	1	2	0	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Predicted ATPase with chaperone activity	COG0606	0	0	0	0	3
+Metabolism	Inorganic ion transport and metabolism	P	Rhodanese-related sulfurtransferase	COG0607	1	0	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Single-stranded DNA-specific exonuclease	COG0608	1	0	0	4	0
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type Fe3+-siderophore transport system, permease component	COG0609	0	1	0	1	0
+Cellular processes and signaling	Defense mechanisms	V	Type I site-specific restriction-modification system, R (restriction) subunit and related helicases	COG0610	3	3	1	10	1
+Metabolism	Coenzyme transport and metabolism	H	Thiamine monophosphate kinase	COG0611	0	0	1	0	1
+Poorly characterized	General function prediction only	R	Predicted Zn-dependent peptidases	COG0612	2	3	0	1	1
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type Fe3+-hydroxamate transport system, periplasmic component	COG0614	0	2	2	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Cytidylyltransferase	COG0615	0	0	0	3	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Periplasmic serine proteases (ClpP class)	COG0616	0	1	0	2	0
+Poorly characterized	General function prediction only	R	Exopolyphosphatase-related proteins	COG0618	0	3	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Methionine synthase II (cobalamin-independent)	COG0620	0	1	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	2-methylthioadenine synthetase	COG0621	3	4	1	5	2
+Poorly characterized	General function prediction only	R	Predicted phosphoesterase	COG0622	0	0	2	2	0
+Metabolism	Lipid transport and metabolism	I	Enoyl-[acyl-carrier-protein] reductase (NADH)	COG0623	2	0	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Acetylornithine deacetylase/Succinyl-diaminopimelate desuccinylase and related deacylases	COG0624	1	2	1	1	1
+Metabolism	Amino acid transport and metabolism	E	Cystathionine beta-lyases/cystathionine gamma-synthases	COG0626	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted esterase	COG0627	1	0	1	0	0
+Poorly characterized	General function prediction only	R	Predicted permease	COG0628	2	0	0	0	1
+Information storage and processing	Replication, recombination and repair	L	Single-stranded DNA-binding protein	COG0629	0	1	0	1	2
+Cellular processes and signaling	Signal transduction mechanisms	T	Serine/threonine protein phosphatase	COG0631	1	0	0	3	0
+Information storage and processing	Replication, recombination and repair	L	Holliday junction resolvasome, DNA-binding subunit	COG0632	1	1	2	0	1
+Metabolism	Nucleotide transport and metabolism	F	Hypoxanthine-guanine phosphoribosyltransferase	COG0634	1	1	0	1	2
+Metabolism	Coenzyme transport and metabolism	H	Coproporphyrinogen III oxidase and related Fe-S oxidoreductases	COG0635	0	1	0	0	3
+Poorly characterized	General function prediction only	R	Predicted phosphatase/phosphohexomutase	COG0637	1	5	3	0	4
+Information storage and processing	Transcription	K	Predicted transcriptional regulators	COG0640	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Arylsulfatase regulator (Fe-S oxidoreductase)	COG0641	1	1	0	0	1
+Cellular processes and signaling	Signal transduction mechanisms	T	Signal transduction histidine kinase	COG0642	6	8	12	17	7
+Cellular processes and signaling	Cell motility	N	Chemotaxis protein histidine kinase and related kinases	COG0643	1	0	1	3	2
+Metabolism	Energy production and conversion	C	Dehydrogenases (flavoproteins)	COG0644	1	0	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Methionine synthase I (cobalamin-dependent), methyltransferase domain	COG0646	0	1	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Predicted sugar phosphatases of the HAD superfamily	COG0647	0	0	0	1	0
+Information storage and processing	Replication, recombination and repair	L	Endonuclease IV	COG0648	1	0	0	0	0
+Metabolism	Energy production and conversion	C	NADH:ubiquinone oxidoreductase 49 kD subunit 7	COG0649	2	2	0	1	0
+Metabolism	Energy production and conversion	C	Formate hydrogenlyase subunit 3/Multisubunit Na+/H+ antiporter, MnhD subunit	COG0651	0	2	0	0	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Peptidyl-prolyl cis-trans isomerase (rotamase) - cyclophilin family	COG0652	1	2	0	1	3
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Preprotein translocase subunit SecA (ATPase, RNA helicase)	COG0653	4	3	3	3	6
+Poorly characterized	General function prediction only	R	Multimeric flavodoxin WrbA	COG0655	1	2	0	0	1
+Poorly characterized	General function prediction only	R	Aldo/keto reductases, related to diketogulonate reductase	COG0656	2	1	1	0	0
+Metabolism	Lipid transport and metabolism	I	Esterase/lipase	COG0657	0	2	0	0	4
+Poorly characterized	General function prediction only	R	Predicted membrane metal-binding protein	COG0658	0	0	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	Sulfate permease and related transporters (MFS superfamily)	COG0659	1	1	0	0	2
+Poorly characterized	General function prediction only	R	Carbonic anhydrases/acetyltransferases, isoleucine patch superfamily	COG0663	0	0	1	0	1
+Cellular processes and signaling	Signal transduction mechanisms	T	cAMP-binding proteins - catabolite gene activator and regulatory subunit of cAMP-dependent protein kinases	COG0664	2	1	1	0	2
+Poorly characterized	General function prediction only	R	FOG: Ankyrin repeat	COG0666	0	0	0	1	0
+Metabolism	Energy production and conversion	C	Predicted oxidoreductases (related to aryl-alcohol dehydrogenases)	COG0667	1	2	0	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Small-conductance mechanosensitive channel	COG0668	1	2	2	0	0
+Metabolism	Coenzyme transport and metabolism	H	Phosphopantetheine adenylyltransferase	COG0669	1	1	1	0	1
+Poorly characterized	General function prediction only	R	Integral membrane protein, interacts with FtsH	COG0670	1	0	0	1	1
+Metabolism	Lipid transport and metabolism	I	Membrane-associated phospholipid phosphatase	COG0671	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted dehydrogenases and related proteins	COG0673	2	2	0	3	4
+Metabolism	Energy production and conversion	C	Pyruvate:ferredoxin oxidoreductase and related 2-oxoacid:ferredoxin oxidoreductases, alpha subunit	COG0674	0	3	2	1	1
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG0675	1	2	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-N-acetyl-D-mannosaminuronate dehydrogenase	COG0677	0	3	2	2	1
+Poorly characterized	General function prediction only	R	Predicted permeases	COG0679	1	0	0	0	0
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Signal peptidase I	COG0681	0	1	0	1	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Prolipoprotein diacylglyceryltransferase	COG0682	2	2	0	0	0
+Metabolism	Amino acid transport and metabolism	E	5,10-methylenetetrahydrofolate reductase	COG0685	0	1	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Alanine dehydrogenase	COG0686	1	0	0	1	3
+Metabolism	Lipid transport and metabolism	I	Phosphatidylserine decarboxylase	COG0688	0	2	0	0	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	tmRNA-binding protein	COG0691	0	0	1	1	0
+Information storage and processing	Replication, recombination and repair	L	Uracil DNA glycosylase	COG0692	0	0	1	0	2
+Poorly characterized	General function prediction only	R	Putative intracellular protease/amidase	COG0693	0	2	2	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Thioredoxin-like proteins and domains	COG0694	0	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Phosphoglyceromutase	COG0696	0	0	0	1	3
+Metabolism	Carbohydrate transport and metabolism	G	Ribose 5-phosphate isomerase RpiB	COG0698	1	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	Shikimate kinase	COG0703	0	2	0	0	0
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Preprotein translocase subunit YidC	COG0706	2	0	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Exonuclease III	COG0708	1	1	1	1	1
+Metabolism	Energy production and conversion	C	F0F1-type ATP synthase, subunit b	COG0711	1	1	1	0	1
+Metabolism	Energy production and conversion	C	F0F1-type ATP synthase, delta subunit (mitochondrial oligomycin sensitivity protein)	COG0712	2	0	1	0	0
+Poorly characterized	General function prediction only	R	MoxR-like ATPases	COG0714	2	1	1	3	3
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type nitrate/sulfonate/bicarbonate transport systems, periplasmic components	COG0715	0	1	1	1	1
+Metabolism	Energy production and conversion	C	Flavodoxins	COG0716	1	0	1	0	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	ABC-type transport system involved in Fe-S cluster assembly, permease component	COG0719	1	2	0	3	2
+Metabolism	Coenzyme transport and metabolism	H	6-pyruvoyl-tetrahydropterin synthase	COG0720	1	0	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type molybdate transport system, periplasmic component	COG0725	0	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Predicted xylanase/chitin deacetylase	COG0726	4	2	1	2	2
+Metabolism	Energy production and conversion	C	Fe-S oxidoreductases	COG0731	0	2	0	0	0
+Cellular processes and signaling	Defense mechanisms	V	Restriction endonuclease S subunits	COG0732	0	0	0	0	1
+Poorly characterized	General function prediction only	R	Na+-dependent transporters of the SNF family	COG0733	2	4	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	Fe2+/Zn2+ uptake regulation proteins	COG0735	1	2	0	0	2
+Metabolism	Nucleotide transport and metabolism	F	5'-nucleotidase/2',3'-cyclic phosphodiesterase and related esterases	COG0737	1	0	2	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Fucose permease	COG0738	1	4	0	0	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Membrane proteins related to metalloendopeptidases	COG0739	0	2	0	3	2
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Protease subunit of ATP-dependent Clp proteases	COG0740	2	3	4	2	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Soluble lytic murein transglycosylase and related regulatory proteins (some contain LysM/invasin domains)	COG0741	0	2	0	0	0
+Information storage and processing	Replication, recombination and repair	L	N6-adenine-specific methylase	COG0742	0	0	0	0	2
+Metabolism	Lipid transport and metabolism	I	1-deoxy-D-xylulose 5-phosphate reductoisomerase	COG0743	0	0	0	0	4
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Membrane carboxypeptidase (penicillin-binding protein)	COG0744	2	3	0	1	1
+Cellular processes and signaling	Signal transduction mechanisms	T	Response regulators consisting of a CheY-like receiver domain and a winged-helix DNA-binding domain	COG0745	13	11	14	18	11
+Metabolism	Coenzyme transport and metabolism	H	Molybdopterin-guanine dinucleotide biosynthesis protein A	COG0746	0	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	ABC-type dipeptide transport system, periplasmic component	COG0747	1	1	2	2	1
+Information storage and processing	Replication, recombination and repair	L	DNA polymerase I - 3'-5' exonuclease and polymerase domains	COG0749	1	0	0	1	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted membrane-associated Zn-dependent proteases 1	COG0750	2	0	0	0	3
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Glycyl-tRNA synthetase, beta subunit	COG0751	0	1	0	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Catalase	COG0753	0	2	0	2	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	ABC-type transport system involved in cytochrome c biogenesis, permease component	COG0755	0	1	0	1	1
+Metabolism	Nucleotide transport and metabolism	F	dUTPase	COG0756	2	0	2	3	2
+Metabolism	Amino acid transport and metabolism	E	3-dehydroquinate dehydratase II	COG0757	1	2	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Predicted Rossmann fold nucleotide-binding protein involved in DNA uptake	COG0758	0	0	1	0	3
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Parvulin-like peptidyl-prolyl isomerase	COG0760	0	2	1	0	0
+Metabolism	Lipid transport and metabolism	I	Penicillin tolerance protein	COG0761	0	2	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Lipid A disaccharide synthetase	COG0763	0	1	0	0	0
+Metabolism	Lipid transport and metabolism	I	3-hydroxymyristoyl/3-hydroxydecanoyl-(acyl carrier protein) dehydratases	COG0764	0	1	0	0	1
+Metabolism	Amino acid transport and metabolism	E	ABC-type amino acid transport system, permease component	COG0765	0	1	0	1	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-N-acetylglucosamine enolpyruvyl transferase	COG0766	2	2	1	2	0
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	ABC-type transport system involved in resistance to organic solvents, permease component	COG0767	0	3	1	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Cell division protein FtsI/penicillin-binding protein 2	COG0768	2	3	1	8	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-N-acetylmuramyl tripeptide synthase	COG0769	1	1	0	2	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-N-acetylmuramyl pentapeptide synthase	COG0770	0	1	1	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-N-acetylmuramoylalanine-D-glutamate ligase	COG0771	1	1	2	2	1
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Bacterial cell division membrane protein	COG0772	2	0	1	0	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-N-acetylmuramate-alanine ligase	COG0773	0	3	0	0	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-3-O-acyl-N-acetylglucosamine deacetylase	COG0774	2	1	0	0	0
+Metabolism	Nucleotide transport and metabolism	F	Nucleoside phosphorylase	COG0775	0	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Bacterial nucleoid DNA-binding protein	COG0776	2	0	0	1	2
+Metabolism	Lipid transport and metabolism	I	Acetyl-CoA carboxylase beta subunit	COG0777	0	1	0	1	1
+Metabolism	Energy production and conversion	C	Nitroreductase	COG0778	1	1	1	3	2
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG0779	0	1	1	0	0
+Poorly characterized	General function prediction only	R	Enzyme related to GTP cyclohydrolase I	COG0780	0	1	0	1	0
+Information storage and processing	Transcription	K	Transcription termination factor	COG0781	1	0	1	1	0
+Information storage and processing	Transcription	K	Transcription elongation factor	COG0782	3	0	0	1	0
+Cellular processes and signaling	Signal transduction mechanisms	T	FOG: CheY-like receiver	COG0784	0	2	3	4	0
+Metabolism	Amino acid transport and metabolism	E	Na+/glutamate symporter	COG0786	0	0	0	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Alanine racemase	COG0787	0	0	1	0	0
+Metabolism	Nucleotide transport and metabolism	F	Formyltetrahydrofolate hydrolase	COG0788	0	0	0	0	1
+Information storage and processing	Transcription	K	Predicted transcriptional regulators	COG0789	1	0	0	1	1
+Poorly characterized	General function prediction only	R	FOG: TPR repeat, SEL1 subfamily	COG0790	0	2	0	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Cell wall-associated hydrolases (invasion-associated proteins)	COG0791	3	1	1	3	1
+Information storage and processing	Replication, recombination and repair	L	Predicted endonuclease distantly related to archaeal Holliday junction resolvase	COG0792	0	1	0	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Periplasmic protease	COG0793	4	2	5	3	3
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted sugar phosphate isomerase involved in capsule formation	COG0794	2	1	2	0	0
+Poorly characterized	General function prediction only	R	Predicted permeases	COG0795	1	0	3	0	4
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Glutamate racemase	COG0796	0	0	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized homolog of plant Iojap protein	COG0799	1	0	1	1	1
+Metabolism	Carbohydrate transport and metabolism	G	2-keto-3-deoxy-6-phosphogluconate aldolase	COG0800	0	0	1	1	1
+Metabolism	Coenzyme transport and metabolism	H	7,8-dihydro-6-hydroxymethylpterin-pyrophosphokinase	COG0801	1	1	0	1	1
+Poorly characterized	General function prediction only	R	Predicted ATPase or kinase	COG0802	0	3	0	1	0
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type metal ion transport system, periplasmic component/surface adhesin	COG0803	0	1	0	0	1
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Sec-independent protein secretion pathway component TatC	COG0805	1	0	1	0	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	RimM protein, required for 16S rRNA processing	COG0806	0	0	1	0	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	S-adenosylmethionine:tRNA-ribosyltransferase-isomerase (queuine synthetase)	COG0809	0	3	0	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Periplasmic protein TonB, links inner and outer membranes	COG0810	2	4	0	0	1
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Biopolymer transport proteins	COG0811	0	1	0	0	3
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-N-acetylmuramate dehydrogenase	COG0812	0	0	0	0	1
+Metabolism	Nucleotide transport and metabolism	F	Purine-nucleoside phosphorylase	COG0813	0	0	1	0	0
+Information storage and processing	Replication, recombination and repair	L	Predicted endonuclease involved in recombination (possible Holliday junction resolvase in Mycoplasmas and B. subtilis)	COG0816	1	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Holliday junction resolvasome, endonuclease subunit	COG0817	1	0	0	0	2
+Information storage and processing	Transcription	K	Putative transcription activator	COG0819	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted Fe-S-cluster redox enzyme	COG0820	1	2	2	2	1
+Metabolism	Lipid transport and metabolism	I	Enzyme involved in the deoxyxylulose pathway of isoprenoid biosynthesis	COG0821	4	1	2	1	1
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Periplasmic component of the Tol biopolymer transport system	COG0823	0	2	0	2	0
+Poorly characterized	General function prediction only	R	Predicted thioesterase	COG0824	0	4	1	0	2
+Metabolism	Lipid transport and metabolism	I	Acetyl-CoA carboxylase alpha subunit	COG0825	0	0	0	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Collagenase and related proteases	COG0826	1	4	2	1	2
+Information storage and processing	Replication, recombination and repair	L	Adenine-specific DNA methylase	COG0827	1	0	2	0	0
+Metabolism	Amino acid transport and metabolism	E	Urea amidohydrolase (urease) gamma subunit	COG0831	0	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	ABC-type amino acid transport/signal transduction systems, periplasmic component/domain	COG0834	0	1	2	1	1
+Cellular processes and signaling	Cell motility	N	Chemotaxis signal transduction protein	COG0835	2	0	0	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Mannose-1-phosphate guanylyltransferase	COG0836	2	2	0	0	0
+Metabolism	Energy production and conversion	C	NADH:ubiquinone oxidoreductase subunit 3 (chain A)	COG0838	0	0	0	0	2
+Cellular processes and signaling	Cell motility	N	Methyl-accepting chemotaxis protein	COG0840	0	3	2	12	3
+Cellular processes and signaling	Defense mechanisms	V	Cation/multidrug efflux pump	COG0841	2	10	0	5	3
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Membrane-fusion protein	COG0845	3	2	4	3	3
+Information storage and processing	Transcription	K	NAD-dependent protein deacetylases, SIR2 family	COG0846	2	0	0	0	0
+Information storage and processing	Replication, recombination and repair	L	DNA polymerase III, epsilon subunit and related 3'-5' exonucleases	COG0847	0	0	0	0	2
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Biopolymer transport protein	COG0848	0	0	0	1	0
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Actin-like ATPase involved in cell division	COG0849	1	0	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	Aspartate 1-decarboxylase	COG0853	0	1	0	1	0
+Metabolism	Coenzyme transport and metabolism	H	Pyridoxal phosphate biosynthesis protein	COG0854	0	0	1	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Polyphosphate kinase	COG0855	1	1	1	3	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosome-binding factor A	COG0858	2	0	0	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	ADP-heptose:LPS heptosyltransferase	COG0859	0	0	0	0	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	N-acetylmuramoyl-L-alanine amidase	COG0860	2	0	2	1	4
+Information storage and processing	Replication, recombination and repair	L	DNA modification methylase	COG0863	0	2	0	4	0
+Metabolism	Amino acid transport and metabolism	E	Glycine cleavage system protein P (pyridoxal-binding), C-terminal domain	COG1003	0	1	1	2	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted UDP-glucose 6-dehydrogenase	COG1004	0	1	0	3	2
+Metabolism	Energy production and conversion	C	NADH:ubiquinone oxidoreductase subunit 1 (chain H)	COG1005	0	1	0	0	1
+Metabolism	Energy production and conversion	C	NADH:ubiquinone oxidoreductase subunit 2 (chain N)	COG1007	1	1	0	0	1
+Metabolism	Energy production and conversion	C	NADH:ubiquinone oxidoreductase subunit 4 (chain M)	COG1008	0	0	1	0	0
+Metabolism	Energy production and conversion	C	NADH:ubiquinone oxidoreductase subunit 5 (chain L)/Multisubunit Na+/H+ antiporter, MnhA subunit	COG1009	1	1	0	1	0
+Metabolism	Coenzyme transport and metabolism	H	Precorrin-3B methylase	COG1010	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted hydrolase (HAD superfamily)	COG1011	2	1	3	1	2
+Metabolism	Energy production and conversion	C	NAD-dependent aldehyde dehydrogenases	COG1012	2	1	2	1	0
+Metabolism	Energy production and conversion	C	Pyruvate:ferredoxin oxidoreductase and related 2-oxoacid:ferredoxin oxidoreductases, beta subunit	COG1013	1	5	4	0	4
+Metabolism	Energy production and conversion	C	Pyruvate:ferredoxin oxidoreductase and related 2-oxoacid:ferredoxin oxidoreductases, gamma subunit	COG1014	1	4	0	2	3
+Metabolism	Carbohydrate transport and metabolism	G	Phosphopentomutase	COG1015	1	0	0	1	0
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	Non-ribosomal peptide synthetase modules and related proteins	COG1020	2	1	0	2	0
+Metabolism	Lipid transport and metabolism	I	Long-chain acyl-CoA synthetases (AMP-forming)	COG1022	1	2	0	1	1
+Metabolism	Lipid transport and metabolism	I	Enoyl-CoA hydratase/carnithine racemase	COG1024	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Predicted Zn-dependent peptidases, insulinase-like	COG1026	1	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Aspartate ammonia-lyase	COG1027	0	2	0	0	0
+Metabolism	Lipid transport and metabolism	I	Dehydrogenases with different specificities (related to short-chain alcohol dehydrogenases)	COG1028	2	6	4	2	6
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Membrane-bound serine protease (ClpP class)	COG1030	0	0	0	0	2
+Metabolism	Energy production and conversion	C	Fe-S oxidoreductase	COG1032	1	0	1	0	2
+Poorly characterized	General function prediction only	R	Predicted exporters of the RND superfamily	COG1033	0	0	1	2	0
+Metabolism	Energy production and conversion	C	Coenzyme F420-reducing hydrogenase, beta subunit	COG1035	0	0	1	0	0
+Metabolism	Energy production and conversion	C	Pyruvate carboxylase	COG1038	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted amidophosphoribosyltransferases	COG1040	0	0	0	0	3
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Acyl-[acyl carrier protein]--UDP-N-acetylglucosamine O-acyltransferase	COG1043	1	2	0	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-3-O-[3-hydroxymyristoyl] glucosamine N-acyltransferase	COG1044	2	0	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Serine acetyltransferase	COG1045	2	0	0	1	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	FKBP-type peptidyl-prolyl cis-trans isomerases 2	COG1047	0	1	1	1	1
+Metabolism	Energy production and conversion	C	Aconitase A	COG1048	1	0	0	0	2
+Metabolism	Nucleotide transport and metabolism	F	ADP-ribose pyrophosphatase	COG1051	1	1	1	0	0
+Metabolism	Energy production and conversion	C	Lactate dehydrogenase and related dehydrogenases	COG1052	1	1	0	2	1
+Metabolism	Energy production and conversion	C	Succinate dehydrogenase/fumarate reductase, flavoprotein subunit	COG1053	0	2	0	2	5
+Metabolism	Inorganic ion transport and metabolism	P	Na+/H+ antiporter NhaD and related arsenite permeases	COG1055	0	1	0	1	1
+Metabolism	Coenzyme transport and metabolism	H	Nicotinic acid mononucleotide adenylyltransferase	COG1057	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Predicted nucleotide-utilizing enzyme related to molybdopterin-biosynthesis enzyme MoeA	COG1058	1	0	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	Thiamine biosynthesis enzyme ThiH and related uncharacterized enzymes	COG1060	0	0	1	1	1
+Information storage and processing	Transcription	K	DNA or RNA helicases of superfamily II	COG1061	0	1	0	0	1
+Metabolism	Energy production and conversion	C	Zn-dependent alcohol dehydrogenases, class III	COG1062	0	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Threonine dehydrogenase and related Zn-dependent dehydrogenases	COG1063	3	3	0	3	0
+Poorly characterized	General function prediction only	R	Zn-dependent alcohol dehydrogenases	COG1064	0	1	1	0	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Predicted ATP-dependent serine protease	COG1066	0	0	1	4	2
+Metabolism	Carbohydrate transport and metabolism	G	Sugar (pentulose and hexulose) kinases	COG1070	1	1	0	3	5
+Metabolism	Energy production and conversion	C	Pyruvate/2-oxoglutarate dehydrogenase complex, dehydrogenase (E1) component, eukaryotic type, alpha subunit	COG1071	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Hydrolases of the alpha/beta superfamily	COG1073	0	0	1	0	2
+Information storage and processing	Replication, recombination and repair	L	ATP-dependent exoDNAse (exonuclease V) beta subunit (contains helicase and exonuclease domains)	COG1074	0	0	1	5	0
+Poorly characterized	General function prediction only	R	Predicted acetyltransferases and hydrolases with the alpha/beta hydrolase fold	COG1075	1	0	0	0	0
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Actin-like ATPase involved in cell morphogenesis	COG1077	0	0	0	2	0
+Metabolism	Carbohydrate transport and metabolism	G	Phosphoenolpyruvate-protein kinase (PTS system EI component in bacteria)	COG1080	1	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Sugar phosphate isomerases/epimerases	COG1082	1	1	0	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	CMP-N-acetylneuraminic acid synthetase	COG1083	0	0	0	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted nucleoside-diphosphate sugar epimerases	COG1086	2	2	4	4	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	UDP-glucose 4-epimerase	COG1087	0	2	2	0	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	dTDP-D-glucose 4,6-dehydratase	COG1088	2	1	2	3	3
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	GDP-D-mannose dehydratase	COG1089	2	1	0	1	3
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	dTDP-4-dehydrorhamnose reductase	COG1091	2	1	1	0	1
+Poorly characterized	General function prediction only	R	Predicted SAM-dependent methyltransferases	COG1092	1	3	0	0	1
+Poorly characterized	General function prediction only	R	ABC-type uncharacterized transport system, ATPase component	COG1101	1	0	0	0	0
+Metabolism	Nucleotide transport and metabolism	F	Cytidylate kinase	COG1102	2	0	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Cysteine sulfinate desulfinase/cysteine desulfurase and related enzymes	COG1104	0	0	1	1	1
+Metabolism	Carbohydrate transport and metabolism	G	Fructose-1-phosphate kinase and related fructose-6-phosphate kinase (PfkB)	COG1105	1	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted ATPases	COG1106	2	0	0	3	0
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type Mn2+/Zn2+ transport systems, permease components	COG1108	0	4	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Phosphomannomutase	COG1109	2	1	1	0	1
+Information storage and processing	Replication, recombination and repair	L	Superfamily I DNA and RNA helicases and helicase subunits	COG1112	1	1	0	1	1
+Metabolism	Amino acid transport and metabolism	E	Gamma-aminobutyrate permease and related permeases	COG1113	0	1	1	0	0
+Metabolism	Amino acid transport and metabolism	E	Na+/alanine symporter	COG1115	2	0	2	1	1
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type nitrate/sulfonate/bicarbonate transport system, ATPase component	COG1116	0	0	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type phosphate transport system, ATPase component	COG1117	0	0	3	0	0
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type molybdenum transport system, ATPase component/photorepair protein PhrA	COG1119	0	1	0	0	0
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type cobalamin/Fe3+-siderophores transport systems, ATPase components	COG1120	0	0	0	3	2
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type Mn/Zn transport systems, ATPase component	COG1121	0	1	0	0	3
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type cobalt transport system, ATPase component	COG1122	2	2	1	0	1
+Metabolism	Amino acid transport and metabolism	E	ABC-type dipeptide/oligopeptide/nickel transport system, ATPase component	COG1124	0	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	ABC-type polar amino acid transport system, ATPase component	COG1126	1	1	0	1	0
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	ABC-type transport system involved in resistance to organic solvents, ATPase component	COG1127	0	0	1	0	0
+Metabolism	Carbohydrate transport and metabolism	G	ABC-type sugar transport system, ATPase component	COG1129	1	0	1	3	2
+Cellular processes and signaling	Defense mechanisms	V	ABC-type multidrug transport system, ATPase component	COG1131	4	7	9	10	1
+Cellular processes and signaling	Defense mechanisms	V	ABC-type multidrug transport system, ATPase and permease components	COG1132	3	5	4	7	3
+Metabolism	Carbohydrate transport and metabolism	G	ABC-type polysaccharide/polyol phosphate transport system, ATPase component	COG1134	3	0	3	1	0
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type metal ion transport system, ATPase component	COG1135	1	0	0	0	0
+Cellular processes and signaling	Defense mechanisms	V	ABC-type antimicrobial peptide transport system, ATPase component	COG1136	4	9	8	10	2
+Poorly characterized	General function prediction only	R	ABC-type (unclassified) transport system, ATPase component	COG1137	1	0	0	0	1
+Metabolism	Energy production and conversion	C	Formate hydrogenlyase subunit 6/NADH:ubiquinone oxidoreductase 23 kD subunit (chain I)	COG1143	0	1	0	0	4
+Metabolism	Energy production and conversion	C	Pyruvate:ferredoxin oxidoreductase and related 2-oxoacid:ferredoxin oxidoreductases, delta subunit	COG1144	0	1	0	0	0
+Metabolism	Energy production and conversion	C	MinD superfamily P-loop ATPase containing an inserted ferredoxin domain	COG1149	1	0	0	0	1
+Metabolism	Coenzyme transport and metabolism	H	Deoxyxylulose-5-phosphate synthase	COG1154	1	3	3	2	3
+Metabolism	Energy production and conversion	C	Archaeal/vacuolar-type H+-ATPase subunit A	COG1155	1	0	0	0	0
+Information storage and processing	Transcription	K	Transcription termination factor	COG1158	0	0	1	0	2
+Poorly characterized	General function prediction only	R	GTPase	COG1159	2	3	0	0	1
+Poorly characterized	General function prediction only	R	Predicted GTPases	COG1160	3	1	1	0	1
+Poorly characterized	General function prediction only	R	Predicted GTPases	COG1162	2	1	2	1	1
+Metabolism	Amino acid transport and metabolism	E	Oligoendopeptidase F	COG1164	1	0	0	0	0
+Metabolism	Coenzyme transport and metabolism	H	2-succinyl-6-hydroxy-2,4-cyclohexadiene-1-carboxylate synthase	COG1165	0	1	0	1	1
+Metabolism	Amino acid transport and metabolism	E	Arginine decarboxylase (spermidine biosynthesis)	COG1166	0	0	0	0	1
+Information storage and processing	Transcription	K	Transcriptional regulators containing a DNA-binding HTH domain and an aminotransferase domain (MocR family) and their eukaryotic orthologs	COG1167	1	1	3	3	0
+Metabolism	Amino acid transport and metabolism	E	Bifunctional PLP-dependent enzyme with beta-cystathionase and maltose regulon repressor activities	COG1168	3	1	3	1	0
+Metabolism	Coenzyme transport and metabolism	H	Isochorismate synthase	COG1169	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Threonine dehydratase	COG1171	0	1	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Ribose/xylose/arabinose/galactoside ABC-type transport systems, permease components	COG1172	1	0	1	2	0
+Metabolism	Amino acid transport and metabolism	E	ABC-type dipeptide/oligopeptide/nickel transport systems, permease components	COG1173	0	0	3	0	0
+Metabolism	Carbohydrate transport and metabolism	G	ABC-type sugar transport systems, permease components	COG1175	2	2	2	2	1
+Metabolism	Amino acid transport and metabolism	E	ABC-type spermidine/putrescine transport system, permease component I	COG1176	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	ABC-type spermidine/putrescine transport system, permease component II	COG1177	0	0	1	0	0
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type Fe3+ transport system, permease component	COG1178	0	0	0	1	0
+Metabolism	Coenzyme transport and metabolism	H	Dinucleotide-utilizing enzymes involved in molybdopterin and thiamine biosynthesis family 1	COG1179	0	0	1	0	3
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Pyruvate-formate lyase-activating enzyme	COG1180	2	1	0	3	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	D-alanine-D-alanine ligase and related ATP-grasp enzymes	COG1181	1	4	2	0	2
+Metabolism	Lipid transport and metabolism	I	Phosphatidylserine synthase	COG1183	0	2	0	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Polyribonucleotide nucleotidyltransferase (polynucleotide phosphorylase)	COG1185	1	2	0	3	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Protein chain release factor B	COG1186	1	0	0	1	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	16S rRNA uridine-516 pseudouridylate synthase and related pseudouridylate synthases	COG1187	0	1	0	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosome-associated heat shock protein implicated in the recycling of the 50S subunit (S4 paralog)	COG1188	0	1	1	0	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Predicted rRNA methylase	COG1189	0	0	1	2	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Lysyl-tRNA synthetase (class II)	COG1190	1	3	1	3	1
+Information storage and processing	Transcription	K	DNA-directed RNA polymerase specialized sigma subunit	COG1191	2	0	0	2	0
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	ATPases involved in chromosome partitioning	COG1192	5	4	2	12	6
+Information storage and processing	Replication, recombination and repair	L	Mismatch repair ATPase (MutS family)	COG1193	2	0	1	2	2
+Information storage and processing	Replication, recombination and repair	L	Recombinational DNA repair ATPase (RecF pathway)	COG1195	5	2	1	1	1
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Chromosome segregation ATPases	COG1196	2	0	1	4	0
+Information storage and processing	Replication, recombination and repair	L	Transcription-repair coupling factor (superfamily II helicase)	COG1197	2	2	1	1	2
+Information storage and processing	Replication, recombination and repair	L	Primosomal protein N' (replication factor Y) - superfamily II helicase	COG1198	3	1	2	2	2
+Information storage and processing	Transcription	K	Rad3-related DNA helicases	COG1199	0	0	1	1	0
+Information storage and processing	Replication, recombination and repair	L	RecG-like helicase	COG1200	0	5	1	1	0
+Poorly characterized	General function prediction only	R	Lhr-like helicases	COG1201	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Distinct helicase family with a unique C-terminal domain including a metal-binding cysteine cluster	COG1205	0	0	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	NAD(FAD)-utilizing enzyme possibly involved in translation	COG1206	0	0	0	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	N-acetylglucosamine-1-phosphate uridyltransferase (contains nucleotidyltransferase and I-patch acetyltransferase domains)	COG1207	1	0	1	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Nucleoside-diphosphate-sugar pyrophosphorylase involved in lipopolysaccharide biosynthesis/translation initiation factor 2B, gamma/epsilon subunits (eIF-2Bgamma/eIF-2Bepsilon)	COG1208	6	0	1	6	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	dTDP-glucose pyrophosphorylase	COG1209	2	2	2	0	4
+Metabolism	Lipid transport and metabolism	I	4-diphosphocytidyl-2-methyl-D-erithritol synthase	COG1211	1	0	1	1	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	CMP-2-keto-3-deoxyoctulosonic acid synthetase	COG1212	0	0	0	0	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted sugar nucleotidyltransferases	COG1213	0	0	0	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Inactive homolog of metal-dependent proteases, putative molecular chaperone	COG1214	4	1	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Glycosyltransferases, probably involved in cell wall biogenesis	COG1215	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Predicted glycosyltransferases	COG1216	3	0	3	1	4
+Cellular processes and signaling	Signal transduction mechanisms	T	Predicted membrane GTPase involved in stress response	COG1217	0	0	0	0	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	ATP-dependent protease Clp, ATPase subunit	COG1219	0	0	2	1	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	ATP-dependent protease HslVU (ClpYQ), ATPase subunit	COG1220	1	0	0	0	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Peroxiredoxin	COG1225	1	0	3	0	1
+Metabolism	Energy production and conversion	C	Inorganic pyrophosphatase/exopolyphosphatase	COG1227	0	0	1	1	1
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	Imidazolonepropionase and related amidohydrolases	COG1228	1	1	1	1	2
+Poorly characterized	General function prediction only	R	Metal-dependent hydrolases of the beta-lactamase superfamily III	COG1234	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Metal-dependent hydrolases of the beta-lactamase superfamily I	COG1235	0	1	0	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Predicted exonuclease of the beta-lactamase fold involved in RNA processing	COG1236	0	0	0	2	0
+Metabolism	Coenzyme transport and metabolism	H	Mg-chelatase subunit ChlD	COG1240	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted Fe-S oxidoreductase	COG1242	0	1	0	1	0
+Information storage and processing	Transcription	K	Histone acetyltransferase	COG1243	0	0	1	0	1
+Metabolism	Energy production and conversion	C	Pyruvate/2-oxoglutarate dehydrogenase complex, dihydrolipoamide dehydrogenase (E3) component, and related enzymes	COG1249	0	2	1	0	2
+Metabolism	Energy production and conversion	C	NAD(P)H-nitrite reductase	COG1251	0	0	1	1	0
+Metabolism	Energy production and conversion	C	NADH dehydrogenase, FAD-containing subunit	COG1252	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Hemolysins and related proteins containing CBS domains	COG1253	1	2	3	0	1
+Cellular processes and signaling	Cell motility	N	Flagellar hook-associated protein	COG1256	6	1	2	3	3
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1259	1	0	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1262	0	3	0	1	1
+Metabolism	Carbohydrate transport and metabolism	G	Phosphotransferase system IIC components, glucose/maltose/N-acetylglucosamine-specific	COG1263	1	0	2	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Phosphotransferase system IIB components	COG1264	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Predicted metal-dependent membrane protease	COG1266	0	0	0	1	0
+Metabolism	Lipid transport and metabolism	I	Phosphatidylglycerophosphatase A and related proteins	COG1267	0	0	0	0	1
+Poorly characterized	General function prediction only	R	Uncharacterized conserved protein	COG1268	0	0	1	0	0
+Metabolism	Energy production and conversion	C	Archaeal/vacuolar-type H+-ATPase subunit I	COG1269	0	1	0	0	1
+Metabolism	Coenzyme transport and metabolism	H	Cobalamin biosynthesis protein CobD/CbiB	COG1270	0	2	0	1	0
+Metabolism	Energy production and conversion	C	Cytochrome bd-type quinol oxidase, subunit 1	COG1271	1	1	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1273	0	0	2	0	0
+Metabolism	Amino acid transport and metabolism	E	Putative threonine efflux protein	COG1280	1	1	0	0	2
+Metabolism	Inorganic ion transport and metabolism	P	Na+/phosphate symporter	COG1283	0	1	1	2	3
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1284	0	0	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized membrane protein	COG1285	0	1	1	0	0
+Poorly characterized	General function prediction only	R	Uncharacterized membrane protein, required for colicin V production	COG1286	0	0	0	1	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG1288	3	0	1	0	0
+Cellular processes and signaling	Cell motility	N	Flagellar motor component	COG1291	2	0	0	1	0
+Information storage and processing	Transcription	K	Predicted RNA-binding protein homologous to eukaryotic snRNP	COG1293	1	0	0	0	0
+Metabolism	Energy production and conversion	C	Cytochrome bd-type quinol oxidase, subunit 2	COG1294	0	1	0	1	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG1297	1	1	1	2	1
+Cellular processes and signaling	Cell motility	N	Flagellar biosynthesis pathway, component FlhA	COG1298	0	2	0	2	0
+Metabolism	Energy production and conversion	C	Na+/H+-dicarboxylate symporters	COG1301	0	1	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1302	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Transglutaminase-like enzymes, putative cysteine proteases	COG1305	0	0	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1307	1	3	0	1	1
+Information storage and processing	Transcription	K	Transcriptional regulator	COG1309	2	2	1	4	4
+Metabolism	Carbohydrate transport and metabolism	G	D-mannonate dehydratase	COG1312	1	0	0	0	0
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Preprotein translocase subunit SecG	COG1314	0	1	1	0	1
+Information storage and processing	Replication, recombination and repair	L	Predicted polymerase, most proteins contain PALM domain, HD hydrolase domain and Zn-ribbon domain	COG1315	0	1	0	0	0
+Information storage and processing	Transcription	K	Transcriptional regulator	COG1316	0	0	1	0	0
+Information storage and processing	Transcription	K	Mn-dependent transcriptional regulator	COG1321	0	1	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1322	0	0	0	1	0
+Metabolism	Nucleotide transport and metabolism	F	Oxygen-sensitive ribonucleoside-triphosphate reductase	COG1328	3	3	1	4	3
+Cellular processes and signaling	Cell motility	N	Uncharacterized flagellar protein FlaG	COG1334	0	0	1	1	0
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	Amidases related to nicotinamidase	COG1335	1	0	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Uncharacterized protein predicted to be involved in DNA repair (RAMP superfamily)	COG1337	1	0	0	0	0
+Cellular processes and signaling	Cell motility	N	Flagellin and related hook-associated proteins	COG1344	4	4	3	12	2
+Cellular processes and signaling	Cell motility	N	Flagellar capping protein	COG1345	1	0	0	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Putative effector of murein hydrolase	COG1346	1	1	0	0	1
+Metabolism	Energy production and conversion	C	Na+-transporting NADH:ubiquinone oxidoreductase, subunit NqrD	COG1347	1	0	0	0	0
+Information storage and processing	Transcription	K	Transcriptional regulators of sugar metabolism	COG1349	1	1	0	0	1
+Poorly characterized	General function prediction only	R	Predicted alternative tryptophan synthase beta-subunit (paralog of TrpB)	COG1350	0	1	1	0	1
+Metabolism	Nucleotide transport and metabolism	F	Predicted alternative thymidylate synthase	COG1351	0	1	1	0	1
+Cellular processes and signaling	Cell motility	N	Methylase of chemotaxis methyl-accepting proteins	COG1352	1	1	1	0	0
+Poorly characterized	General function prediction only	R	Predicted hydrolase of the HD superfamily (permuted catalytic motifs)	COG1353	0	0	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1359	0	0	1	1	0
+Cellular processes and signaling	Cell motility	N	Flagellar motor protein	COG1360	1	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Aspartyl aminopeptidase	COG1362	1	0	3	3	0
+Metabolism	Carbohydrate transport and metabolism	G	Cellulase M and related proteins	COG1363	1	1	0	1	0
+Metabolism	Amino acid transport and metabolism	E	N-acetylglutamate synthase (N-acetylornithine aminotransferase)	COG1364	1	0	0	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Anti-anti-sigma regulatory factor (antagonist of anti-sigma factor)	COG1366	1	0	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Phosphoglycerol transferase and related proteins, alkaline phosphatase superfamily	COG1368	0	2	0	0	2
+Poorly characterized	General function prediction only	R	Predicted ATPase (AAA+ superfamily)	COG1373	2	3	0	0	3
+Cellular processes and signaling	Cell motility	N	Flagellar biosynthesis pathway, component FlhB	COG1377	0	0	0	0	1
+Information storage and processing	Replication, recombination and repair	L	Recombinational DNA repair protein (RecF pathway)	COG1381	0	0	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1385	0	2	0	0	2
+Information storage and processing	Transcription	K	Predicted transcriptional regulator containing the HTH domain	COG1386	0	0	0	1	0
+Metabolism	Inorganic ion transport and metabolism	P	Phosphate transport regulator (distant homolog of PhoU)	COG1392	0	1	0	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Arsenate reductase and related proteins, glutaredoxin family	COG1393	1	0	0	1	0
+Metabolism	Energy production and conversion	C	Archaeal/vacuolar-type H+-ATPase subunit D	COG1394	0	1	0	0	0
+Information storage and processing	Transcription	K	Predicted transcriptional regulators	COG1396	1	1	0	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	ADP-ribosylglycohydrolase	COG1397	0	2	0	0	0
+Poorly characterized	General function prediction only	R	Predicted metal-binding, possibly nucleic acid-binding protein	COG1399	0	0	0	0	1
+Cellular processes and signaling	Defense mechanisms	V	GTPase subunit of restriction endonuclease	COG1401	1	0	0	0	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Subtilisin-like serine proteases	COG1404	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted phosphohydrolases	COG1408	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted phosphohydrolases	COG1409	0	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Methionine synthase I, cobalamin-binding domain	COG1410	0	2	1	1	0
+Poorly characterized	General function prediction only	R	Predicted HD superfamily hydrolase	COG1418	1	3	1	0	2
+Information storage and processing	Transcription	K	Transcriptional regulator of heat shock gene	COG1420	1	0	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	Cobalamin biosynthesis protein CobN and related Mg-chelatases	COG1429	0	0	1	1	2
+Metabolism	Nucleotide transport and metabolism	F	Thymidine kinase	COG1435	0	0	0	2	0
+Metabolism	Energy production and conversion	C	Archaeal/vacuolar-type H+-ATPase subunit F	COG1436	1	0	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Lipopolysaccharide biosynthesis proteins, LPS:glycosyltransferases	COG1442	0	0	0	1	0
+Metabolism	Lipid transport and metabolism	I	Isopentenyldiphosphate isomerase	COG1443	0	0	1	0	2
+Metabolism	Carbohydrate transport and metabolism	G	Phosphotransferase system fructose-specific component IIB	COG1445	0	0	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Alpha-amylase/alpha-mannosidase	COG1449	0	1	0	1	1
+Poorly characterized	General function prediction only	R	Predicted metal-dependent hydrolase	COG1451	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted oxidoreductases of the aldo/keto reductase family	COG1453	0	0	0	2	2
+Metabolism	Energy production and conversion	C	Alcohol dehydrogenase, class IV	COG1454	1	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Phosphotransferase system cellobiose-specific component IIC	COG1455	1	0	0	0	0
+Metabolism	Nucleotide transport and metabolism	F	Purine-cytosine permease and related proteins	COG1457	0	0	0	1	0
+Cellular processes and signaling	Cell motility	N	Type II secretory pathway, component PulF	COG1459	0	0	1	0	1
+Poorly characterized	General function prediction only	R	Predicted kinase related to dihydroxyacetone kinase	COG1461	1	0	0	2	1
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	ABC-type transport system involved in resistance to organic solvents, periplasmic component	COG1463	0	1	0	0	2
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type metal ion transport system, periplasmic component/surface antigen	COG1464	0	0	1	0	0
+Information storage and processing	Replication, recombination and repair	L	DNA polymerase III, delta subunit	COG1466	0	1	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Beta-glucosidase-related glycosidases	COG1472	5	2	2	2	3
+Poorly characterized	General function prediction only	R	Metal-dependent amidase/aminoacylase/carboxypeptidase	COG1473	1	0	0	1	0
+Information storage and processing	Transcription	K	Predicted transcriptional regulators	COG1475	1	3	3	2	2
+Information storage and processing	Transcription	K	Predicted transcriptional regulators	COG1476	0	0	3	4	1
+Metabolism	Coenzyme transport and metabolism	H	Membrane-associated lipoprotein involved in thiamine biosynthesis	COG1477	2	3	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1479	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted membrane-associated HD superfamily hydrolase	COG1480	1	3	0	2	2
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1481	0	0	1	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Phosphomannose isomerase	COG1482	1	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	DNA replication protein	COG1484	3	2	2	1	5
+Metabolism	Carbohydrate transport and metabolism	G	Alpha-galactosidases/6-phospho-beta-glucosidases, family 4 of glycosyl hydrolases	COG1486	0	0	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	Nicotinic acid phosphoribosyltransferase	COG1488	0	0	0	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	D-Tyr-tRNAtyr deacylase	COG1490	1	3	0	0	0
+Metabolism	Coenzyme transport and metabolism	H	Cobyric acid synthase	COG1492	1	0	2	2	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Serine kinase of the HPr protein, regulates carbohydrate metabolism	COG1493	0	0	1	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Alpha-glucosidases, family 31 of glycosyl hydrolases	COG1501	3	2	3	1	2
+Metabolism	Lipid transport and metabolism	I	Phosphatidylserine/phosphatidylglycerophosphate/cardiolipin synthases and related enzymes	COG1502	0	0	0	2	2
+Metabolism	Amino acid transport and metabolism	E	Serine proteases of the peptidase family S9A	COG1505	1	3	2	2	1
+Metabolism	Amino acid transport and metabolism	E	Dipeptidyl aminopeptidases/acylaminoacyl-peptidases	COG1506	0	2	2	0	0
+Information storage and processing	Transcription	K	DNA-directed RNA polymerase specialized sigma subunit, sigma54 homolog	COG1508	0	0	2	1	2
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG1511	3	0	1	0	1
+Cellular processes and signaling	Cell motility	N	Flagellin-specific chaperone FliS	COG1516	1	0	0	1	0
+Information storage and processing	Replication, recombination and repair	L	Uncharacterized protein predicted to be involved in DNA repair	COG1518	0	0	1	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	3-deoxy-D-manno-octulosonic-acid transferase	COG1519	0	2	1	0	2
+Information storage and processing	Transcription	K	Putative transcriptional regulator, homolog of Bvg accessory factor	COG1521	0	2	1	0	2
+Information storage and processing	Transcription	K	Transcriptional regulators	COG1522	2	0	2	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Type II secretory pathway, pullulanase PulA and related glycosidases	COG1523	2	0	1	1	0
+Poorly characterized	General function prediction only	R	Uncharacterized proteins of the AP superfamily	COG1524	1	0	0	0	0
+Metabolism	Energy production and conversion	C	Archaeal/vacuolar-type H+-ATPase subunit C	COG1527	1	0	0	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Ferritin-like protein	COG1528	0	1	0	0	1
+Metabolism	Energy production and conversion	C	Aerobic-type carbon monoxide dehydrogenase, large subunit CoxL/CutL homologs	COG1529	0	0	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribonucleases G and E	COG1530	1	1	0	1	1
+Information storage and processing	Replication, recombination and repair	L	DNA repair photolyase	COG1533	0	0	1	0	0
+Cellular processes and signaling	Cell motility	N	Flagellar motor switch protein	COG1536	1	0	0	1	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Outer membrane protein	COG1538	3	6	2	5	6
+Metabolism	Coenzyme transport and metabolism	H	Dihydroneopterin aldolase	COG1539	0	0	0	1	2
+Metabolism	Coenzyme transport and metabolism	H	Coenzyme F390 synthetase	COG1541	2	0	1	2	1
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosome-associated protein Y (PSrp-1)	COG1544	0	1	0	1	0
+Poorly characterized	General function prediction only	R	Uncharacterized protein (competence- and mitomycin-induced)	COG1546	0	1	0	1	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Carbon storage regulator (could also regulate swarming and quorum sensing)	COG1551	0	0	0	1	0
+Information storage and processing	Replication, recombination and repair	L	DNA uptake protein and related DNA-binding proteins	COG1555	0	0	0	0	1
+Poorly characterized	General function prediction only	R	Predicted periplasmic solute-binding protein	COG1559	1	0	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized stress-induced protein	COG1561	0	0	0	1	1
+Metabolism	Coenzyme transport and metabolism	H	Thiamine pyrophosphokinase	COG1564	0	0	0	2	0
+Cellular processes and signaling	Defense mechanisms	V	Multidrug resistance efflux pump	COG1566	1	2	0	1	3
+Information storage and processing	Replication, recombination and repair	L	Exonuclease VII, large subunit	COG1570	2	1	3	2	0
+Information storage and processing	Replication, recombination and repair	L	Uracil-DNA glycosylase	COG1573	0	1	0	0	1
+Poorly characterized	General function prediction only	R	Predicted metal-dependent hydrolase with the TIM-barrel fold	COG1574	3	0	0	0	1
+Metabolism	Coenzyme transport and metabolism	H	1,4-dihydroxy-2-naphthoate octaprenyltransferase	COG1575	0	0	0	0	2
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1576	0	0	0	2	0
+Poorly characterized	General function prediction only	R	Zn-ribbon protein, possibly nucleic acid-binding	COG1579	1	1	1	0	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Membrane protein implicated in regulation of membrane protease activity	COG1585	0	1	0	0	1
+Metabolism	Coenzyme transport and metabolism	H	Uroporphyrinogen-III synthase	COG1587	1	0	1	0	1
+Metabolism	Energy production and conversion	C	Rubrerythrin	COG1592	3	0	3	0	4
+Metabolism	Carbohydrate transport and metabolism	G	TRAP-type C4-dicarboxylate transport system, large permease component	COG1593	1	0	0	1	0
+Information storage and processing	Transcription	K	DNA-directed RNA polymerase specialized sigma subunit, sigma24 homolog	COG1595	9	4	9	12	7
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Periplasmic protein involved in polysaccharide export	COG1596	0	0	0	0	2
+Metabolism	Lipid transport and metabolism	I	Sphingosine kinase and enzymes related to eukaryotic diacylglycerol kinase	COG1597	1	0	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1598	0	0	0	0	1
+Metabolism	Energy production and conversion	C	Uncharacterized Fe-S protein	COG1600	0	1	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Chorismate mutase	COG1605	0	0	0	0	1
+Information storage and processing	Transcription	K	Transcriptional regulators	COG1609	1	0	1	4	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1610	0	1	1	0	1
+Poorly characterized	General function prediction only	R	Predicted Rossmann fold nucleotide-binding protein	COG1611	0	1	0	1	1
+Cellular processes and signaling	Defense mechanisms	V	Uncharacterized proteins, homologs of microcin C7 resistance protein MccF	COG1619	0	1	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Beta-fructosidases (levanase/invertase)	COG1621	2	1	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1624	1	2	1	2	1
+Metabolism	Energy production and conversion	C	Fe-S oxidoreductase, related to NifB/MoaA family	COG1625	0	0	0	1	0
+Metabolism	Inorganic ion transport and metabolism	P	Outer membrane receptor proteins, mostly Fe transport	COG1629	0	2	0	1	2
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1636	0	1	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	TRAP-type C4-dicarboxylate transport system, periplasmic component	COG1638	0	1	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	4-alpha-glucanotransferase	COG1640	2	1	0	1	3
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1641	0	1	0	1	0
+Information storage and processing	Replication, recombination and repair	L	HrpA-like helicases	COG1643	0	1	3	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1649	0	0	1	0	1
+Poorly characterized	Function unknown	S	Uncharacterized protein containing LysM domain	COG1652	2	0	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	ABC-type sugar transport system, periplasmic component	COG1653	1	3	2	6	2
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1655	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted P-loop-containing kinase	COG1660	0	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives, IS1 family	COG1662	53	5	34	49	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Tetraacyldisaccharide-1-P 4'-kinase	COG1663	1	0	1	1	0
+Metabolism	Energy production and conversion	C	ABC-type Na+ efflux pump, permease component	COG1668	1	1	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Acetyltransferases, including N-acetylases of ribosomal proteins	COG1670	1	3	2	1	1
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	DNA segregation ATPase FtsK/SpoIIIE and related proteins	COG1674	2	5	0	4	1
+Cellular processes and signaling	Defense mechanisms	V	Beta-lactamase class C and other penicillin binding proteins	COG1680	2	1	1	1	2
+Metabolism	Carbohydrate transport and metabolism	G	ABC-type polysaccharide/polyol phosphate export systems, permease component	COG1682	1	0	1	0	0
+Cellular processes and signaling	Cell motility	N	Flagellar biosynthesis pathway, component FliR	COG1684	1	0	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	D-alanyl-D-alanine carboxypeptidase	COG1686	0	0	0	2	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1690	3	0	0	1	1
+Poorly characterized	General function prediction only	R	NCAIR mutase (PurE)-related proteins	COG1691	0	1	0	1	0
+Poorly characterized	General function prediction only	R	Predicted pyrophosphatase	COG1694	0	0	2	1	0
+Information storage and processing	Transcription	K	Predicted transcriptional regulators	COG1695	0	0	1	1	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted membrane protein involved in D-alanine export	COG1696	2	2	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1699	0	0	1	1	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Phosphate starvation-inducible protein PhoH, predicted ATPase	COG1702	1	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	Putative periplasmic protein kinase ArgK and related GTPases of G3E family	COG1703	2	1	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1704	1	1	1	0	0
+Cellular processes and signaling	Cell motility	N	Muramidase (flagellum-specific)	COG1705	0	1	0	1	1
+Poorly characterized	General function prediction only	R	Uncharacterized conserved protein (some members contain a von Willebrand factor type A (vWA) domain)	COG1721	0	0	0	2	0
+Information storage and processing	Replication, recombination and repair	L	Exonuclease VII small subunit	COG1722	0	0	0	1	1
+Information storage and processing	Transcription	K	Predicted transcriptional regulators	COG1725	0	2	0	0	1
+Metabolism	Energy production and conversion	C	Na+-transporting NADH:ubiquinone oxidoreductase, subunit NqrA	COG1726	1	1	0	0	3
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1728	0	0	0	2	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1729	0	0	0	0	2
+Information storage and processing	Transcription	K	Predicted transcriptional regulators	COG1733	0	1	1	1	3
+Cellular processes and signaling	Signal transduction mechanisms	T	DnaK suppressor protein	COG1734	0	1	0	0	0
+Information storage and processing	Transcription	K	Transcriptional regulators	COG1737	0	0	2	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG1739	0	0	0	1	1
+Information storage and processing	Replication, recombination and repair	L	Adenine-specific DNA methylase containing a Zn-ribbon	COG1743	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Uncharacterized ABC-type transport system, periplasmic component/surface lipoprotein	COG1744	1	0	3	0	0
+Metabolism	Amino acid transport and metabolism	E	Saccharopine dehydrogenase and related proteins	COG1748	1	2	1	0	4
+Poorly characterized	General function prediction only	R	Predicted esterase of the alpha-beta hydrolase superfamily	COG1752	0	0	1	0	1
+Poorly characterized	General function prediction only	R	Uncharacterized C-terminal domain of topoisomerase IA	COG1754	0	1	0	1	1
+Metabolism	Energy production and conversion	C	Na+/H+ antiporter	COG1757	1	2	0	0	2
+Metabolism	Amino acid transport and metabolism	E	L-serine deaminase	COG1760	0	1	0	0	4
+Cellular processes and signaling	Cell motility	N	Flagellar biosynthesis/type III secretory pathway lipoprotein	COG1766	1	0	0	1	0
+Metabolism	Energy production and conversion	C	Rubredoxin	COG1773	0	0	1	0	1
+Poorly characterized	Function unknown	S	Uncharacterized homolog of PSP1	COG1774	2	1	1	1	1
+Metabolism	Amino acid transport and metabolism	E	Benzoyl-CoA reductase/2-hydroxyglutaryl-CoA dehydratase subunit, BcrC/BadD/HgdB	COG1775	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Low specificity phosphatase (HAD superfamily)	COG1778	0	1	0	0	0
+Metabolism	Nucleotide transport and metabolism	F	Protein involved in ribonucleotide reduction	COG1780	0	1	0	0	0
+Metabolism	Nucleotide transport and metabolism	F	Aspartate carbamoyltransferase, regulatory subunit	COG1781	0	2	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	Alkaline phosphatase	COG1785	1	0	2	0	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Cell shape-determining protein	COG1792	4	0	0	1	1
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG1799	0	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Methylglyoxal synthase	COG1803	0	1	0	0	0
+Metabolism	Energy production and conversion	C	Predicted acyl-CoA transferases/carnitine dehydratase	COG1804	0	2	1	0	0
+Metabolism	Energy production and conversion	C	Na+-transporting NADH:ubiquinone oxidoreductase, subunit NqrB	COG1805	1	1	0	0	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	4-amino-4-deoxy-L-arabinose transferase and related glycosyltransferases of PMT family	COG1807	1	0	0	1	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG1808	0	0	0	0	1
+Poorly characterized	General function prediction only	R	Uncharacterized membrane protein, possible Na+ channel or pump	COG1811	0	1	0	0	0
+Information storage and processing	Transcription	K	Predicted transcription factor, homolog of eukaryotic MBF1	COG1813	0	0	1	0	0
+Cellular processes and signaling	Cell motility	N	Flagellar basal body protein	COG1815	0	0	0	2	0
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Sec-independent protein secretion pathway components	COG1826	0	1	0	0	0
+Metabolism	Lipid transport and metabolism	I	Predicted acyltransferases	COG1835	0	1	1	0	1
+Metabolism	Energy production and conversion	C	Tartrate dehydratase beta subunit/Fumarate hydratase class I, C-terminal domain	COG1838	1	1	1	1	0
+Cellular processes and signaling	Cell motility	N	Flagellar hook capping protein	COG1843	0	0	0	1	0
+Information storage and processing	Transcription	K	Transcriptional regulators	COG1846	1	0	2	0	1
+Poorly characterized	General function prediction only	R	Predicted RNA-binding protein	COG1847	0	1	0	1	0
+Poorly characterized	General function prediction only	R	Conserved protein/domain typically associated with flavoprotein oxygenases, DIM6/NTAB family	COG1853	1	2	0	0	1
+Cellular processes and signaling	Signal transduction mechanisms	T	LuxS protein involved in autoinducer AI2 synthesis	COG1854	0	1	0	1	2
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Preprotein translocase subunit YajC	COG1862	0	2	0	0	0
+Metabolism	Nucleotide transport and metabolism	F	DNA/RNA endonuclease G, NUC1	COG1864	1	0	2	0	1
+Metabolism	Energy production and conversion	C	Phosphoenolpyruvate carboxykinase (ATP)	COG1866	1	2	2	1	0
+Cellular processes and signaling	Cell motility	N	Flagellar motor switch protein	COG1868	0	0	0	1	0
+Cellular processes and signaling	Cell motility	N	Chemotaxis protein; stimulates methylation of MCP proteins	COG1871	0	1	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Beta-galactosidase	COG1874	0	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	ABC-type sugar transport system, periplasmic component	COG1879	0	4	3	1	1
+Metabolism	Energy production and conversion	C	Pyruvate-formate lyase	COG1882	0	1	1	1	2
+Metabolism	Energy production and conversion	C	Na+-transporting methylmalonyl-CoA/oxaloacetate decarboxylase, beta subunit	COG1883	1	0	2	2	1
+Metabolism	Lipid transport and metabolism	I	Methylmalonyl-CoA mutase, N-terminal domain/subunit	COG1884	1	3	1	0	1
+Cellular processes and signaling	Cell motility	N	Flagellar motor switch/type III secretory pathway protein	COG1886	0	0	0	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Putative glycosyl/glycerophosphate transferases involved in teichoic acid biosynthesis TagF/TagB/EpsJ/RodC	COG1887	1	0	0	1	2
+Metabolism	Coenzyme transport and metabolism	H	Ketopantoate reductase	COG1893	0	0	0	0	1
+Metabolism	Energy production and conversion	C	NADH:ubiquinone oxidoreductase, NADH-binding (51 kD) subunit	COG1894	0	0	0	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	dTDP-4-dehydrorhamnose 3,5-epimerase and related enzymes	COG1898	2	0	0	0	1
+Metabolism	Energy production and conversion	C	NADH:flavin oxidoreductases, Old Yellow Enzyme family	COG1902	0	3	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Glucuronate isomerase	COG1904	1	1	0	0	1
+Metabolism	Energy production and conversion	C	NADH:ubiquinone oxidoreductase 24 kD subunit	COG1905	1	0	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein, contains double-stranded beta-helix domain	COG1917	1	0	0	1	1
+Metabolism	Inorganic ion transport and metabolism	P	Fe2+ transport system protein A	COG1918	0	1	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Teichoic acid biosynthesis proteins	COG1922	1	0	1	2	0
+Metabolism	Lipid transport and metabolism	I	Activator of 2-hydroxyglutaryl-CoA dehydratase (HSP70-class ATPase domain)	COG1924	0	0	1	2	0
+Metabolism	Carbohydrate transport and metabolism	G	Phosphotransferase system, HPr-related proteins	COG1925	0	0	1	1	0
+Metabolism	Coenzyme transport and metabolism	H	Phosphoserine aminotransferase	COG1932	3	1	2	1	1
+Information storage and processing	Transcription	K	Transcriptional regulator/sugar kinase	COG1940	4	3	2	1	3
+Poorly characterized	General function prediction only	R	Uncharacterized protein, 4-oxalocrotonate tautomerase homolog	COG1942	0	3	1	0	1
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG1943	2	0	1	1	0
+Metabolism	Lipid transport and metabolism	I	Acyl-CoA thioesterase	COG1946	0	1	0	0	0
+Metabolism	Lipid transport and metabolism	I	4-diphosphocytidyl-2C-methyl-D-erythritol 2-phosphate synthase	COG1947	0	1	0	0	1
+Metabolism	Energy production and conversion	C	Tartrate dehydratase alpha subunit/Fumarate hydratase class I, N-terminal domain	COG1951	0	1	0	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	GAF domain-containing protein	COG1956	1	2	0	2	0
+Metabolism	Nucleotide transport and metabolism	F	Inosine-uridine nucleoside N-ribohydrolase	COG1957	0	2	1	0	0
+Information storage and processing	Transcription	K	Predicted transcriptional regulator	COG1959	1	0	0	0	1
+Metabolism	Lipid transport and metabolism	I	Acyl-CoA dehydrogenases	COG1960	2	0	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Site-specific recombinases, DNA invertase Pin homologs	COG1961	4	7	9	8	3
+Cellular processes and signaling	Signal transduction mechanisms	T	Carbon starvation protein, predicted membrane protein	COG1966	0	1	0	0	0
+Cellular processes and signaling	Defense mechanisms	V	Uncharacterized bacitracin resistance protein	COG1968	0	0	1	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Large-conductance mechanosensitive channel	COG1970	1	2	0	0	2
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Xanthine and CO dehydrogenases maturation factor, XdhC/CoxF family	COG1975	0	0	0	0	1
+Metabolism	Energy production and conversion	C	Uncharacterized oxidoreductases, Fe-dependent alcohol dehydrogenase family	COG1979	0	1	1	0	2
+Metabolism	Coenzyme transport and metabolism	H	Pyrimidine reductase, riboflavin biosynthesis	COG1985	1	2	1	0	0
+Poorly characterized	General function prediction only	R	Zn-dependent proteases	COG1994	0	0	1	0	1
+Metabolism	Coenzyme transport and metabolism	H	Pyridoxal phosphate biosynthesis protein	COG1995	1	0	0	1	2
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG2001	0	2	0	2	0
+Information storage and processing	Replication, recombination and repair	L	DNA repair proteins	COG2003	2	0	1	1	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG2006	0	0	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Threonine aldolase	COG2008	0	0	1	0	1
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type metal ion transport system, permease component	COG2011	1	0	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Galactose mutarotase and related enzymes	COG2017	0	1	1	2	1
+Metabolism	Amino acid transport and metabolism	E	Homoserine acetyltransferase	COG2021	0	2	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	Uncharacterized enzyme of thiazole biosynthesis	COG2022	0	1	1	1	1
+Metabolism	Energy production and conversion	C	Electron transfer flavoprotein, alpha subunit	COG2025	0	3	1	4	5
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	D-alanyl-D-alanine carboxypeptidase (penicillin-binding protein 4)	COG2027	0	1	1	1	0
+Metabolism	Coenzyme transport and metabolism	H	NaMN:DMB phosphoribosyltransferase	COG2038	0	0	0	2	1
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	Uncharacterized protein, possibly involved in aromatic compounds catabolism	COG2050	0	0	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	Chromate transport protein ChrA	COG2059	1	3	2	2	0
+Cellular processes and signaling	Cell motility	N	Flagellar basal body L-ring protein	COG2063	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Glutaminase	COG2066	1	0	0	0	0
+Metabolism	Lipid transport and metabolism	I	Long-chain fatty acid transport protein	COG2067	0	0	0	0	2
+Poorly characterized	General function prediction only	R	Uncharacterized MobA-related protein	COG2068	0	0	0	1	1
+Metabolism	Energy production and conversion	C	CO dehydrogenase/acetyl-CoA synthase delta subunit (corrinoid Fe-S protein)	COG2069	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Dioxygenases related to 2-nitropropane dioxygenase	COG2070	0	0	0	2	0
+Poorly characterized	General function prediction only	R	Predicted glutamine amidotransferases	COG2071	0	0	0	1	0
+Metabolism	Coenzyme transport and metabolism	H	Cobalamin biosynthesis protein CbiG	COG2073	0	0	0	2	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Peroxiredoxin	COG2077	1	2	0	2	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG2078	1	0	0	0	0
+Metabolism	Coenzyme transport and metabolism	H	Precorrin isomerase	COG2082	0	3	0	0	0
+Metabolism	Energy production and conversion	C	Electron transfer flavoprotein, beta subunit	COG2086	3	2	1	1	0
+Metabolism	Coenzyme transport and metabolism	H	Adenosyl cobinamide kinase/adenosyl cobinamide phosphate guanylyltransferase	COG2087	1	0	0	3	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Sialic acid synthase	COG2089	3	0	1	3	0
+Metabolism	Coenzyme transport and metabolism	H	Phosphopantetheinyl transferase	COG2091	0	0	1	0	3
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG2096	1	2	0	0	1
+Metabolism	Coenzyme transport and metabolism	H	Precorrin-6x reductase	COG2099	1	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted sugar phosphate isomerase	COG2103	2	1	0	0	0
+Poorly characterized	General function prediction only	R	Uncharacterized conserved protein related to pyruvate formate-lyase activating enzyme	COG2108	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Predicted phosphatase homologous to the C-terminal domain of histone macroH2A1	COG2110	0	1	0	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Adenylate cyclase, family 3 (some proteins contain HAMP domain)	COG2114	0	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Xylose isomerase	COG2115	0	1	0	0	2
+Metabolism	Inorganic ion transport and metabolism	P	Formate/nitrite family of transporters	COG2116	1	1	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized proteins, LmbE homologs	COG2120	0	0	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG2127	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted phosphoesterases, related to the Icc protein	COG2129	0	0	1	0	0
+Metabolism	Nucleotide transport and metabolism	F	Deoxycytidylate deaminase	COG2131	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Uncharacterized protein conserved in bacteria	COG2137	1	1	1	0	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Thioredoxin-related protein	COG2143	0	1	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Sugar transferases involved in lipopolysaccharide synthesis	COG2148	1	0	3	5	1
+Poorly characterized	General function prediction only	R	Predicted metal-sulfur cluster biosynthetic enzyme	COG2151	1	0	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Predicted glycosylase	COG2152	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted metal-dependent hydrolase of the TIM-barrel fold	COG2159	0	0	1	1	0
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	Arylamine N-acetyltransferase	COG2162	0	0	0	1	0
+Poorly characterized	General function prediction only	R	SufE protein probably involved in Fe-S center assembly	COG2166	0	0	1	1	1
+Metabolism	Amino acid transport and metabolism	E	Tetrahydrodipicolinate N-succinyltransferase	COG2171	0	0	1	0	1
+Cellular processes and signaling	Signal transduction mechanisms	T	Anti-sigma regulatory factor (Ser/Thr protein kinase)	COG2172	0	0	0	1	0
+Information storage and processing	Replication, recombination and repair	L	DNA polymerase III, alpha subunit (gram-positive type)	COG2176	5	1	1	3	0
+Metabolism	Carbohydrate transport and metabolism	G	Maltose-binding periplasmic proteins/domains	COG2182	0	1	1	0	1
+Information storage and processing	Transcription	K	Transcriptional accessory protein	COG2183	2	1	1	0	0
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Protein involved in cell division	COG2184	1	1	1	2	0
+Metabolism	Lipid transport and metabolism	I	Methylmalonyl-CoA mutase, C-terminal domain/subunit (cobalamin-binding)	COG2185	0	0	0	0	1
+Information storage and processing	Transcription	K	Transcriptional regulators	COG2188	0	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Adenine specific DNA methylase Mod	COG2189	0	2	1	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Phosphotransferase system IIA components	COG2190	1	0	0	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Predicted carbamoyl transferase, NodU family	COG2192	0	0	3	0	0
+Poorly characterized	General function prediction only	R	Predicted membrane-associated, metal-dependent hydrolase	COG2194	1	3	2	1	0
+Metabolism	Amino acid transport and metabolism	E	Di- and tripeptidases	COG2195	3	2	0	1	2
+Cellular processes and signaling	Signal transduction mechanisms	T	Response regulator containing a CheY-like receiver domain and an HTH DNA-binding domain	COG2197	2	4	6	5	4
+Cellular processes and signaling	Signal transduction mechanisms	T	FOG: HPt domain	COG2198	0	1	0	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	FOG: GGDEF domain	COG2199	3	0	0	1	0
+Cellular processes and signaling	Signal transduction mechanisms	T	FOG: EAL domain	COG2200	1	0	0	2	0
+Cellular processes and signaling	Cell motility	N	Chemotaxis response regulator containing a CheY-like receiver domain and a methylesterase domain	COG2201	1	1	0	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	FOG: PAS/PAC domain	COG2202	0	0	0	1	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Response regulator containing CheY-like receiver, AAA-type ATPase, and DNA-binding domains	COG2204	1	6	3	3	2
+Cellular processes and signaling	Signal transduction mechanisms	T	Osmosensitive K+ channel histidine kinase	COG2205	3	2	2	4	1
+Cellular processes and signaling	Signal transduction mechanisms	T	HD-GYP domain	COG2206	0	0	0	2	0
+Information storage and processing	Transcription	K	AraC-type DNA-binding domain-containing proteins	COG2207	2	6	5	6	3
+Metabolism	Energy production and conversion	C	Na+-transporting NADH:ubiquinone oxidoreductase, subunit NqrE	COG2209	0	0	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Na+/melibiose symporter and related transporters	COG2211	1	3	1	1	3
+Metabolism	Carbohydrate transport and metabolism	G	Phosphotransferase system, mannitol-specific IIBC component	COG2213	0	0	0	2	0
+Metabolism	Inorganic ion transport and metabolism	P	Cation transport ATPase	COG2217	0	1	3	3	1
+Poorly characterized	General function prediction only	R	Predicted Zn-dependent hydrolases of the beta-lactamase fold	COG2220	0	0	0	0	1
+Metabolism	Energy production and conversion	C	Dissimilatory sulfite reductase (desulfoviridin), alpha and beta subunits	COG2221	0	1	0	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted phosphosugar isomerases	COG2222	0	1	0	0	0
+Metabolism	Coenzyme transport and metabolism	H	Methylase involved in ubiquinone/menaquinone biosynthesis	COG2226	4	2	0	1	0
+Metabolism	Coenzyme transport and metabolism	H	2-polyprenyl-3-methyl-5-hydroxy-6-metoxy-1,4-benzoquinol methylase	COG2227	1	0	2	0	0
+Metabolism	Nucleotide transport and metabolism	F	Xanthine/uracil permeases	COG2233	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Predicted aminopeptidases	COG2234	1	2	0	1	2
+Metabolism	Amino acid transport and metabolism	E	Arginine deiminase	COG2235	0	0	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	Mg/Co/Ni transporter MgtE (contains CBS domain)	COG2239	1	4	1	0	4
+Metabolism	Coenzyme transport and metabolism	H	Pyridoxal/pyridoxine/pyridoxamine kinase	COG2240	0	0	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	Precorrin-6B methylase 1	COG2241	1	0	0	0	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG2246	1	1	0	0	0
+Poorly characterized	General function prediction only	R	Putative NADPH-quinone reductase (modulator of drug activity B)	COG2249	0	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Holliday junction resolvasome, helicase subunit	COG2255	0	0	1	0	1
+Information storage and processing	Replication, recombination and repair	L	ATPase related to the helicase subunit of the Holliday junction resolvase	COG2256	0	1	0	1	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG2259	0	1	0	0	0
+Poorly characterized	General function prediction only	R	GTPases	COG2262	1	3	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein L11 methylase	COG2264	0	1	0	0	2
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	SAM-dependent methyltransferases related to tRNA (uracil-5-)-methyltransferase	COG2265	4	3	1	0	3
+Metabolism	Lipid transport and metabolism	I	Lysophospholipase	COG2267	1	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Sugar phosphate permease	COG2271	1	2	0	0	5
+Metabolism	Lipid transport and metabolism	I	Carboxylesterase type B	COG2272	1	1	1	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Beta-glucanase/Beta-glucan synthetase	COG2273	0	1	0	0	0
+Cellular processes and signaling	Defense mechanisms	V	ABC-type bacteriocin/lantibiotic exporters, contain an N-terminal double-glycine peptidase domain	COG2274	5	6	2	4	1
+Metabolism	Carbohydrate transport and metabolism	G	Citrate lyase beta subunit	COG2301	0	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Leucyl aminopeptidase (aminopeptidase T)	COG2309	1	0	0	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Uncharacterized proteins involved in stress response, homologs of TerZ and putative cAMP-binding protein CABP1	COG2310	1	0	0	0	3
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG2315	0	2	1	0	0
+Poorly characterized	General function prediction only	R	Predicted hydrolase (HD superfamily)	COG2316	0	0	0	0	1
+Poorly characterized	General function prediction only	R	Predicted metalloprotease	COG2321	1	2	0	1	2
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG2326	1	1	1	0	0
+Poorly characterized	General function prediction only	R	Uncharacterized enzyme involved in biosynthesis of extracellular polysaccharides	COG2329	0	0	0	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Cytochrome c-type biogenesis protein CcmE	COG2332	2	0	0	1	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Growth inhibitor	COG2337	0	1	1	0	0
+Poorly characterized	General function prediction only	R	AT-rich DNA-binding protein	COG2344	0	2	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG2350	0	0	1	0	0
+Information storage and processing	Replication, recombination and repair	L	Endonuclease I	COG2356	0	0	0	0	1
+Poorly characterized	General function prediction only	R	TRAP-type uncharacterized transport system, periplasmic component	COG2358	0	0	0	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Leu/Phe-tRNA-protein transferase	COG2360	0	1	0	0	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG2364	1	0	0	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Protein tyrosine/serine phosphatase	COG2365	0	0	0	2	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Urease accessory protein UreE	COG2371	1	0	0	1	0
+Poorly characterized	General function prediction only	R	Large extracellular alpha-helical protein	COG2373	2	1	0	1	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Predicted molecular chaperone distantly related to HSP70-fold metalloproteases	COG2377	0	2	0	0	0
+Information storage and processing	Transcription	K	Predicted transcriptional regulator	COG2378	1	2	2	1	3
+Metabolism	Inorganic ion transport and metabolism	P	Enterochelin esterase and related enzymes	COG2382	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Predicted SAM-dependent methyltransferase	COG2384	1	0	0	0	0
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Sporulation protein and related proteins	COG2385	2	0	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	L-fucose isomerase and related proteins	COG2407	2	1	1	1	1
+Poorly characterized	General function prediction only	R	Predicted drug exporters of the RND superfamily	COG2409	1	0	0	0	0
+Metabolism	Energy production and conversion	C	Aldehyde:ferredoxin oxidoreductase	COG2414	0	0	0	2	1
+Metabolism	Energy production and conversion	C	Predicted acetamidase/formamidase	COG2421	0	0	0	1	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG2431	0	1	0	0	0
+Metabolism	Energy production and conversion	C	Ferredoxin-like protein	COG2440	0	1	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG2456	1	0	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG2461	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Uncharacterized FAD-dependent dehydrogenases	COG2509	1	0	0	2	1
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG2510	0	1	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	PEP phosphonomutase and related enzymes	COG2513	1	0	0	0	0
+Metabolism	Amino acid transport and metabolism	E	1-aminocyclopropane-1-carboxylate deaminase	COG2515	1	0	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG2604	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Predicted kinase related to galactokinase and mevalonate kinase	COG2605	2	1	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG2606	2	0	0	2	0
+Metabolism	Carbohydrate transport and metabolism	G	H+/gluconate symporter and related permeases	COG2610	1	0	0	1	0
+Metabolism	Inorganic ion transport and metabolism	P	Hemerythrin	COG2703	0	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	3-carboxymuconate cyclase	COG2706	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Uncharacterized membrane protein, required for spore maturation in B.subtilis.	COG2715	0	0	0	1	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG2717	0	0	0	0	1
+Cellular processes and signaling	Defense mechanisms	V	Uncharacterized vancomycin resistance protein	COG2720	1	0	1	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Altronate dehydratase	COG2721	0	2	0	1	1
+Metabolism	Carbohydrate transport and metabolism	G	Beta-glucosidase/6-phospho-beta-glucosidase/beta-galactosidase	COG2723	0	0	4	1	0
+Poorly characterized	General function prediction only	R	Predicted Zn-dependent protease	COG2738	0	0	1	0	0
+Metabolism	Amino acid transport and metabolism	E	Lysophospholipase L1 and related esterases	COG2755	0	1	0	1	1
+Metabolism	Nucleotide transport and metabolism	F	Formyltetrahydrofolate synthetase	COG2759	0	1	3	2	1
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	Predicted dithiol-disulfide isomerase involved in polyketide biosynthesis	COG2761	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Uncharacterized Fe-S center protein	COG2768	0	1	2	2	1
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG2801	3	3	4	2	0
+Cellular processes and signaling	Cell motility	N	Type II secretory pathway, ATPase PulE/Tfp pilus assembly pathway, ATPase PilB	COG2804	0	0	0	0	1
+Cellular processes and signaling	Cell motility	N	Tfp pilus assembly protein, pilus retraction ATPase PilT	COG2805	0	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	DNA polymerase III, gamma/tau subunits	COG2812	0	1	2	1	1
+Metabolism	Carbohydrate transport and metabolism	G	Arabinose efflux permease	COG2814	2	1	1	0	3
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG2815	2	1	1	0	1
+Metabolism	Nucleotide transport and metabolism	F	Uridine phosphorylase	COG2820	0	3	0	1	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Outer membrane protein	COG2825	0	1	0	0	1
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives, IS30 family	COG2826	2	1	2	1	3
+Information storage and processing	Replication, recombination and repair	L	Predicted endonuclease containing a URI domain	COG2827	0	0	0	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Outer membrane phospholipase A	COG2829	0	1	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Putative enzyme of poly-gamma-glutamate biosynthesis (capsule formation)	COG2843	0	2	0	0	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG2855	2	0	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Predicted Zn peptidase	COG2856	0	0	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG2859	0	1	0	0	3
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG2862	0	0	0	0	1
+Information storage and processing	Transcription	K	Predicted transcriptional regulator containing an HTH domain and an uncharacterized domain shared with the mammalian protein Schlafen	COG2865	3	3	2	3	3
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Predicted ribosomal protein	COG2868	1	0	0	0	0
+Metabolism	Energy production and conversion	C	Na+-transporting NADH:ubiquinone oxidoreductase, subunit NqrC	COG2869	0	0	0	0	1
+Metabolism	Energy production and conversion	C	Na+-transporting NADH:ubiquinone oxidoreductase, subunit NqrF	COG2871	1	0	0	0	0
+Metabolism	Amino acid transport and metabolism	E	O-acetylhomoserine sulfhydrylase	COG2873	0	0	2	3	1
+Metabolism	Coenzyme transport and metabolism	H	Precorrin-4 methylase	COG2875	0	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	3-deoxy-D-arabino-heptulosonate 7-phosphate (DAHP) synthase	COG2876	0	1	1	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	3-deoxy-D-manno-octulosonic acid (KDO) 8-phosphate synthase	COG2877	0	4	0	1	0
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Predicted ATPase involved in cell division	COG2884	0	0	0	1	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Outer membrane protein and related peptidoglycan-associated (lipo)proteins	COG2885	1	6	1	2	6
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Methylase of polypeptide chain release factors	COG2890	3	0	2	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Cell shape-determining protein	COG2891	0	1	0	0	0
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Septum formation inhibitor-activating ATPase	COG2894	0	1	1	0	0
+Metabolism	Inorganic ion transport and metabolism	P	GTPases - Sulfate adenylate transferase subunit 1	COG2895	0	0	0	1	0
+Metabolism	Coenzyme transport and metabolism	H	Molybdenum cofactor biosynthesis enzyme	COG2896	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Putative NADH-flavin reductase	COG2910	0	0	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG2911	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted acyl esterases	COG2936	1	0	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	N-acyl-D-glucosamine 2-epimerase	COG2942	0	2	0	0	2
+Poorly characterized	Function unknown	S	Uncharacterized membrane protein	COG2949	0	0	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG2954	1	0	1	1	0
+Metabolism	Amino acid transport and metabolism	E	Peptidylarginine deiminase and related enzymes	COG2957	0	1	0	0	2
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG2966	0	1	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Predicted N-acetylglucosamine kinase	COG2971	0	1	0	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Predicted signal transduction protein with a C-terminal ATPase domain	COG2972	3	1	0	4	0
+Poorly characterized	General function prediction only	R	ABC-type uncharacterized transport system, periplasmic component	COG2984	1	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted permease	COG2985	0	0	3	0	4
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG2996	0	0	1	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Na+/H+ antiporter	COG3004	0	0	1	1	1
+Metabolism	Carbohydrate transport and metabolism	G	Putative N-acetylmannosamine-6-phosphate epimerase	COG3010	2	0	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Uncharacterized lipoprotein NlpE involved in copper resistance	COG3015	0	0	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3022	2	0	0	0	0
+Cellular processes and signaling	Defense mechanisms	V	Negative regulator of beta-lactamase expression	COG3023	0	0	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Tryptophanase	COG3033	1	0	1	0	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Penicillin V acylase and related amidases	COG3049	0	3	0	2	1
+Metabolism	Energy production and conversion	C	Citrate lyase, gamma subunit	COG3052	0	1	0	0	0
+Cellular processes and signaling	Cell motility	N	Tfp pilus assembly protein PilF	COG3063	0	2	0	1	1
+Cellular processes and signaling	Signal transduction mechanisms	T	Positive regulator of sigma E activity	COG3086	0	0	0	1	0
+Cellular processes and signaling	Signal transduction mechanisms	T	SH3 domain protein	COG3103	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Dipeptide/tripeptide permease	COG3104	2	4	0	0	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Thioredoxin domain-containing protein	COG3118	0	1	0	1	1
+Metabolism	Inorganic ion transport and metabolism	P	Arylsulfatase A and related enzymes	COG3119	0	3	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3124	0	0	0	1	0
+Metabolism	Inorganic ion transport and metabolism	P	Uncharacterized protein involved in copper resistance	COG3142	0	0	0	0	1
+Cellular processes and signaling	Cell motility	N	Flagellar hook-length control protein	COG3144	0	1	0	0	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG3152	0	1	0	0	1
+Poorly characterized	General function prediction only	R	Putative hemolysin	COG3176	0	1	2	0	4
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3177	2	0	0	4	2
+Poorly characterized	General function prediction only	R	Predicted phosphotransferase related to Ser/Thr protein kinases	COG3178	1	1	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3181	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	4-hydroxyphenylpyruvate dioxygenase and related hemolysins	COG3185	1	0	0	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Heat shock protein	COG3187	0	0	0	2	0
+Metabolism	Amino acid transport and metabolism	E	Ethanolamine utilization protein	COG3192	1	0	1	0	0
+Metabolism	Coenzyme transport and metabolism	H	Nicotinamide mononucleotide transporter	COG3201	0	0	0	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Outer membrane protein (porin)	COG3203	0	1	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Rhs family protein	COG3209	2	0	1	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3236	0	0	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3247	1	0	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Beta-galactosidase/beta-glucuronidase	COG3250	5	4	1	2	4
+Metabolism	Energy production and conversion	C	Ni,Fe-hydrogenase III large subunit	COG3261	1	0	0	0	2
+Metabolism	Energy production and conversion	C	Ni,Fe-hydrogenase III component G	COG3262	0	0	1	0	1
+Metabolism	Inorganic ion transport and metabolism	P	NhaP-type Na+/H+ and K+/H+ antiporters with a unique C-terminal domain	COG3263	0	0	0	1	0
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Type II secretory pathway, component ExeA (predicted ATPase)	COG3267	5	0	1	2	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3270	0	1	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3274	0	1	0	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Putative regulator of cell autolysis	COG3275	0	1	0	1	2
+Information storage and processing	Transcription	K	Response regulator of the LytR/AlgR family	COG3279	1	4	2	5	5
+Metabolism	Energy production and conversion	C	NAD/NADP transhydrogenase alpha subunit	COG3288	0	1	0	0	1
+Cellular processes and signaling	Signal transduction mechanisms	T	Signal transduction histidine kinase regulating citrate/malate metabolism	COG3290	1	1	2	4	1
+Cellular processes and signaling	Signal transduction mechanisms	T	Predicted periplasmic ligand-binding sensor domain	COG3292	0	2	0	0	1
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG3293	1	2	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized homolog of phage Mu protein gp47	COG3299	0	0	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	Formate-dependent nitrite reductase, membrane component	COG3301	1	0	1	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Formate-dependent nitrite reductase, periplasmic cytochrome c552 subunit	COG3303	0	1	0	0	0
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	O-Methyltransferase involved in polyketide biosynthesis	COG3315	0	0	0	1	0
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG3316	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted metal-binding protein related to the C-terminal domain of SecA	COG3318	0	0	0	0	1
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	Putative dehydrogenase domain of multifunctional non-ribosomal peptide synthetases and related enzymes	COG3320	0	0	1	0	0
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	Polyketide synthase modules and related proteins	COG3321	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted enzyme related to lactoylglutathione lyase	COG3324	0	1	1	0	0
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG3328	11	1	6	3	4
+Poorly characterized	General function prediction only	R	Penicillin-binding protein-related factor A, putative recombinase	COG3331	0	1	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3333	0	0	0	1	0
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG3335	1	0	1	1	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3339	1	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted double-stranded RNA/RNA-DNA hybrid binding protein	COG3341	0	1	0	2	4
+Information storage and processing	Replication, recombination and repair	L	Retron-type reverse transcriptase	COG3344	4	3	7	2	4
+Metabolism	Carbohydrate transport and metabolism	G	Alpha-galactosidase	COG3345	2	1	1	2	2
+Metabolism	Nucleotide transport and metabolism	F	Archaeal IMP cyclohydrolase	COG3363	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Predicted ATPase	COG3378	1	0	0	4	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3379	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Uncharacterized component of anaerobic dehydrogenases	COG3381	0	0	1	0	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3382	1	1	0	0	0
+Poorly characterized	General function prediction only	R	Uncharacterized anaerobic dehydrogenase	COG3383	0	0	0	0	1
+Information storage and processing	Replication, recombination and repair	L	FOG: Transposase and inactivated derivatives	COG3385	1	0	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Adenine-specific DNA methylase	COG3392	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Predicted acetyltransferase	COG3393	0	0	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3402	1	0	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Methenyl tetrahydrofolate cyclohydrolase	COG3404	3	1	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Glycogen debranching enzyme	COG3408	1	0	1	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Putative peptidoglycan-binding domain-containing protein	COG3409	1	0	2	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3421	0	0	0	0	1
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG3428	0	0	1	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Predicted signal transduction protein containing EAL and modified HD-GYP domains	COG3434	0	0	0	0	1
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG3436	1	0	1	1	0
+Information storage and processing	Transcription	K	Response regulator containing a CheY-like receiver domain and an HD-GYP domain	COG3437	2	1	1	1	0
+Poorly characterized	General function prediction only	R	Predicted glutamine amidotransferase	COG3442	0	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Phosphotransferase system, mannose/fructose/N-acetylgalactosamine-specific component IIB	COG3444	0	0	1	0	0
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Type IV secretory pathway, VirB4 components	COG3451	1	5	2	3	1
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	Acetyl esterase (deacetylase)	COG3458	1	0	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Cellobiose phosphorylase	COG3459	2	6	0	2	2
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG3464	6	5	4	3	2
+Poorly characterized	General function prediction only	R	Predicted flavin-nucleotide-binding protein	COG3467	0	1	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3472	0	0	0	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	LPS biosynthesis protein	COG3475	0	0	3	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Predicted secreted protein containing a PDZ domain	COG3480	0	2	0	0	0
+Poorly characterized	General function prediction only	R	Predicted HD-superfamily hydrolase	COG3481	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted periplasmic lipoprotein	COG3489	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Phage tail sheath protein FI	COG3497	0	1	0	1	1
+Poorly characterized	General function prediction only	R	Phage tail tube protein FII	COG3498	0	0	1	1	0
+Poorly characterized	General function prediction only	R	Phage protein D	COG3500	0	0	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3501	1	0	0	0	0
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Type IV secretory pathway, VirD4 components	COG3505	5	1	3	9	9
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3506	0	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Beta-xylosidase	COG3507	1	1	1	3	5
+Metabolism	Carbohydrate transport and metabolism	G	N-acetyl-beta-hexosaminidase	COG3525	0	0	0	0	3
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3533	2	0	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Alpha-L-arabinofuranosidase	COG3534	0	0	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Putative alpha-1,2-mannosidase	COG3537	2	3	2	3	8
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3538	1	0	0	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Mn-containing catalase	COG3546	0	0	0	2	0
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG3547	1	1	2	4	0
+Poorly characterized	General function prediction only	R	Uncharacterized protein related to capsule biosynthesis enzymes	COG3550	1	1	0	1	1
+Information storage and processing	Transcription	K	Phage anti-repressor protein	COG3561	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Metal-dependent hydrolase	COG3568	1	1	0	1	0
+Poorly characterized	General function prediction only	R	Predicted aspartyl protease	COG3577	0	0	0	0	2
+Metabolism	Amino acid transport and metabolism	E	Aminopeptidase C	COG3579	0	0	1	0	1
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3581	2	0	1	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Predicted metalloendopeptidase	COG3590	0	1	1	0	0
+Information storage and processing	Replication, recombination and repair	L	Predicted ATP-dependent endonuclease of the OLD family	COG3593	0	0	0	1	0
+Information storage and processing	Replication, recombination and repair	L	RecA-family ATPase	COG3598	1	0	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3610	0	1	0	1	1
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG3619	0	0	0	1	0
+Information storage and processing	Transcription	K	Predicted transcriptional regulator with C-terminal CBS domains	COG3620	0	0	0	1	1
+Metabolism	Carbohydrate transport and metabolism	G	Putative L-xylulose-5-phosphate 3-epimerase	COG3623	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Phage baseplate assembly protein W	COG3628	0	1	0	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	DNA-binding transcriptional activator of the SARP family	COG3629	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Na+/serine symporter	COG3633	0	1	0	0	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Alkyl hydroperoxide reductase, large subunit	COG3634	0	2	0	0	0
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	CO dehydrogenase maturation factor	COG3640	0	0	0	1	0
+Metabolism	Amino acid transport and metabolism	E	Glutamate formiminotransferase	COG3643	1	0	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized phage-encoded protein	COG3646	0	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Uncharacterized protein predicted to be involved in DNA repair	COG3649	0	0	0	2	0
+Metabolism	Secondary metabolites biosynthesis, transport and catabolism	Q	N-acyl-D-aspartate/D-glutamate deacylase	COG3653	1	0	0	0	0
+Information storage and processing	Replication, recombination and repair	L	G:T/U mismatch-specific DNA glycosylase	COG3663	1	2	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3665	0	0	2	0	0
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG3666	0	2	0	0	1
+Poorly characterized	General function prediction only	R	Plasmid stabilization system protein	COG3668	0	0	2	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Alpha-L-fucosidase	COG3669	1	1	0	0	0
+Information storage and processing	Transcription	K	Predicted transcriptional regulator	COG3682	1	1	2	1	2
+Metabolism	Carbohydrate transport and metabolism	G	Beta-1,4-xylanase	COG3693	0	2	0	4	1
+Information storage and processing	Replication, recombination and repair	L	Predicted methylated DNA-protein cysteine methyltransferase	COG3695	1	0	0	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Putative silver efflux pump	COG3696	2	2	0	0	1
+Metabolism	Amino acid transport and metabolism	E	ATP phosphoribosyltransferase involved in histidine biosynthesis	COG3705	1	0	0	1	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Response regulator containing a CheY-like receiver domain and a GGDEF domain	COG3706	1	0	0	0	1
+Information storage and processing	Transcription	K	Transcriptional antiterminator	COG3711	1	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Phosphotransferase system, mannose/fructose/N-acetylgalactosamine-specific component IIC	COG3715	0	0	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	5-keto 4-deoxyuronate isomerase	COG3717	0	0	2	0	1
+Information storage and processing	Replication, recombination and repair	L	Recombinational DNA repair protein (RecE pathway)	COG3723	1	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	DNA G:T-mismatch repair endonuclease	COG3727	0	1	0	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Phosphate-selective porin	COG3746	0	1	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Lipopolysaccharide biosynthesis protein	COG3754	1	0	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Lyzozyme M1 (1,4-beta-N-acetylmuramidase)	COG3757	0	0	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3760	1	0	0	2	0
+Poorly characterized	General function prediction only	R	Phage-related lysozyme (muraminidase)	COG3772	0	2	1	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Cell wall hydrolyses involved in spore germination	COG3773	1	0	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Mannosyltransferase OCH1 and related enzymes	COG3774	0	1	0	2	1
+Metabolism	Carbohydrate transport and metabolism	G	Phosphotransferase system, galactitol-specific IIC component	COG3775	1	0	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3786	0	0	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3797	0	0	0	1	0
+Metabolism	Energy production and conversion	C	Inorganic pyrophosphatase	COG3808	0	1	1	1	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG3817	1	0	1	1	0
+Poorly characterized	General function prediction only	R	ABC-type sugar transport system, auxiliary component	COG3822	1	0	0	0	0
+Information storage and processing	Transcription	K	Transcriptional regulator containing PAS, AAA-type ATPase, and DNA-binding domains	COG3829	0	5	0	2	2
+Information storage and processing	Transcription	K	Sugar diacid utilization regulator	COG3835	0	0	0	1	0
+Metabolism	Carbohydrate transport and metabolism	G	ABC-type sugar transport systems, ATPase components	COG3839	0	0	0	2	0
+Metabolism	Amino acid transport and metabolism	E	ABC-type spermidine/putrescine transport systems, ATPase components	COG3842	0	1	0	0	0
+Poorly characterized	General function prediction only	R	ABC-type uncharacterized transport systems, ATPase components	COG3845	0	1	1	0	1
+Cellular processes and signaling	Signal transduction mechanisms	T	Signal transduction histidine kinase, nitrate/nitrite-specific	COG3850	0	0	0	0	1
+Metabolism	Inorganic ion transport and metabolism	P	Uncharacterized protein involved in tellurite resistance	COG3853	0	0	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Uncharacterized protein conserved in bacteria	COG3855	1	0	1	0	3
+Information storage and processing	Replication, recombination and repair	L	ATP-dependent nuclease, subunit B	COG3857	2	3	1	3	0
+Metabolism	Carbohydrate transport and metabolism	G	Arabinogalactan endo-1,4-beta-galactosidase	COG3867	0	1	0	2	2
+Poorly characterized	General function prediction only	R	Uncharacterized stress protein (general stress protein 26)	COG3871	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Predicted metal-dependent enzyme	COG3872	0	0	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3876	0	0	1	0	2
+Metabolism	Lipid transport and metabolism	I	Acyl-ACP thioesterase	COG3884	0	0	0	0	2
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3885	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Predicted solute binding protein	COG3889	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Putative secretion activating protein	COG3926	0	1	0	0	0
+Information storage and processing	Transcription	K	Transcriptional antiterminator	COG3933	1	0	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Endo-beta-mannanase	COG3934	0	1	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG3937	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Virulence protein	COG3943	1	1	0	1	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Capsular polysaccharide biosynthesis protein	COG3944	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Protein containing tetrapyrrole methyltransferase domain and MazG-like (predicted pyrophosphatase) domain	COG3956	1	0	1	0	2
+Metabolism	Carbohydrate transport and metabolism	G	Phosphoketolase	COG3957	1	0	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Transketolase, C-terminal subunit	COG3958	1	0	1	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Transketolase, N-terminal subunit	COG3959	1	1	0	1	1
+Metabolism	Amino acid transport and metabolism	E	Acetolactate synthase	COG3962	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Predicted amidohydrolase	COG3964	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Uncharacterized protein related to glutamine synthetase	COG3968	3	2	1	3	0
+Poorly characterized	General function prediction only	R	Superfamily I DNA and RNA helicases	COG3973	1	1	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG3976	0	0	2	1	0
+Poorly characterized	General function prediction only	R	Predicted acetyltransferase	COG3981	1	1	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4095	0	0	0	0	1
+Cellular processes and signaling	Defense mechanisms	V	Type I site-specific restriction-modification system, R (restriction) subunit and related helicases	COG4096	0	0	1	2	0
+Poorly characterized	General function prediction only	R	Predicted peptidase	COG4099	1	0	0	1	1
+Poorly characterized	General function prediction only	R	DNA uptake lipoprotein	COG4105	0	0	0	0	3
+Poorly characterized	General function prediction only	R	Trans-aconitate methyltransferase	COG4106	1	0	0	0	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Peptide chain release factor RF-3	COG4108	1	3	1	2	3
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4121	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted O-methyltransferase	COG4122	1	1	1	0	0
+Poorly characterized	General function prediction only	R	Predicted O-methyltransferase	COG4123	0	1	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Beta-mannanase	COG4124	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted symporter	COG4146	0	0	1	0	0
+Poorly characterized	General function prediction only	R	ABC-type uncharacterized transport system, ATPase component	COG4152	0	0	0	2	1
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4185	1	0	1	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Beta- N-acetylglucosaminidase	COG4193	0	1	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4198	3	0	1	2	0
+Metabolism	Coenzyme transport and metabolism	H	Outer membrane cobalamin receptor protein	COG4206	0	4	2	0	2
+Metabolism	Carbohydrate transport and metabolism	G	ABC-type polysaccharide transport system, permease component	COG4209	1	0	1	0	0
+Information storage and processing	Transcription	K	Antirepressor regulating drug resistance, predicted signal transduction N-terminal membrane component	COG4219	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Short-chain alcohol dehydrogenase of unknown specificity	COG4221	0	1	1	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4224	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Predicted unsaturated glucuronyl hydrolase involved in regulation of bacterial surface properties, and related proteins	COG4225	3	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Antirestriction protein	COG4227	1	0	0	0	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Thiol:disulfide interchange protein	COG4232	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Uncharacterized protein encoded in toxicity protection region of plasmid R478, contains von Willebrand factor (vWF) domain	COG4245	0	0	2	0	0
+Poorly characterized	Function unknown	S	Putative virion core protein (lumpy skin disease virus)	COG4260	0	0	0	0	1
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG4267	0	0	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4283	0	0	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4299	1	0	0	1	2
+Poorly characterized	General function prediction only	R	Bacteriophage P2-related tail formation protein	COG4385	1	0	0	1	0
+Poorly characterized	General function prediction only	R	Mu-like prophage major head subunit gpT	COG4397	0	0	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4399	0	0	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4430	1	0	0	0	0
+Cellular processes and signaling	Defense mechanisms	V	Inner membrane protein involved in colicin E2 resistance	COG4452	0	0	1	1	0
+Metabolism	Carbohydrate transport and metabolism	G	Capsular polysaccharide biosynthesis protein	COG4464	0	3	0	0	0
+Metabolism	Carbohydrate transport and metabolism	G	Galactose-1-phosphate uridyltransferase	COG4468	1	1	0	1	2
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4472	1	0	0	0	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG4485	1	0	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4496	0	1	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4509	2	0	2	3	2
+Information storage and processing	Replication, recombination and repair	L	Superfamily II RNA helicase	COG4581	1	0	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Transposase and inactivated derivatives	COG4584	1	1	5	2	1
+Poorly characterized	General function prediction only	R	ABC-type uncharacterized transport system, ATPase component	COG4586	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted CDP-diglyceride synthetase/phosphatidate cytidylyltransferase	COG4589	1	1	0	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	ABC-type transport system, involved in lipoprotein release, permease component	COG4591	0	2	3	5	0
+Poorly characterized	General function prediction only	R	ABC-type uncharacterized transport system, permease component	COG4603	0	1	0	0	0
+Metabolism	Inorganic ion transport and metabolism	P	ABC-type enterochelin transport system, ATPase component	COG4604	0	0	0	0	1
+Metabolism	Amino acid transport and metabolism	E	ABC-type oligopeptide transport system, ATPase component	COG4608	1	0	1	1	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted soluble lytic transglycosylase fused to an ABC-type amino acid-binding protein	COG4623	1	0	1	3	1
+Poorly characterized	General function prediction only	R	Iron only hydrogenase large subunit, C-terminal domain	COG4624	0	1	1	1	0
+Poorly characterized	General function prediction only	R	Phage terminase-like protein, large subunit	COG4626	5	2	4	2	2
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in cyanobacteria	COG4636	0	0	1	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4641	0	0	0	1	0
+Information storage and processing	Transcription	K	DNA methylase	COG4646	6	4	8	9	2
+Poorly characterized	General function prediction only	R	Predicted phage phi-C31 gp36 major capsid-like protein	COG4653	1	1	0	1	1
+Metabolism	Energy production and conversion	C	Predicted NADH:ubiquinone oxidoreductase, subunit RnfC	COG4656	0	3	1	2	0
+Metabolism	Energy production and conversion	C	Predicted NADH:ubiquinone oxidoreductase, subunit RnfA	COG4657	0	1	0	0	1
+Metabolism	Energy production and conversion	C	Predicted NADH:ubiquinone oxidoreductase, subunit RnfD	COG4658	2	0	1	1	0
+Metabolism	Energy production and conversion	C	Predicted NADH:ubiquinone oxidoreductase, subunit RnfG	COG4659	1	1	0	0	0
+Metabolism	Energy production and conversion	C	Predicted NADH:ubiquinone oxidoreductase, subunit RnfE	COG4660	0	1	1	0	0
+Poorly characterized	General function prediction only	R	TRAP-type uncharacterized transport system, fused permease components	COG4666	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted esterase of the alpha-beta hydrolase superfamily	COG4667	1	1	1	2	0
+Poorly characterized	Function unknown	S	Phage-related protein	COG4679	0	0	0	0	1
+Metabolism	Amino acid transport and metabolism	E	Dipeptidase	COG4690	0	1	0	0	2
+Poorly characterized	Function unknown	S	Phage-related protein	COG4695	1	0	1	1	1
+Poorly characterized	Function unknown	S	Myosin-crossreactive antigen	COG4716	1	0	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4717	0	0	0	0	1
+Metabolism	Carbohydrate transport and metabolism	G	Endo-beta-N-acetylglucosaminidase D	COG4724	0	0	1	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Transcriptional activator, adenine-specific DNA methyltransferase	COG4725	1	1	4	0	0
+Poorly characterized	General function prediction only	R	Antirestriction protein	COG4734	0	0	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4744	0	1	1	0	0
+Poorly characterized	General function prediction only	R	ACT domain-containing protein	COG4747	1	0	0	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Response regulator containing CheY-like receiver domain and AraC-type DNA-binding domain	COG4753	1	0	0	2	0
+Metabolism	Lipid transport and metabolism	I	Acetyl/propionyl-CoA carboxylase, alpha subunit	COG4770	0	3	1	0	0
+Metabolism	Inorganic ion transport and metabolism	P	Outer membrane receptor for ferrienterochelin and colicins	COG4771	0	1	2	0	2
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Outer membrane protein/protective antigen OMA87	COG4775	2	0	0	1	1
+Poorly characterized	General function prediction only	R	Putative Zn-dependent protease, contains TPR repeats	COG4783	0	1	0	0	0
+Cellular processes and signaling	Cell motility	N	Flagellar basal body rod protein	COG4786	1	0	1	1	0
+Metabolism	Lipid transport and metabolism	I	Acetyl-CoA carboxylase, carboxyltransferase component (subunits alpha and beta)	COG4799	2	1	1	0	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4804	1	1	2	3	1
+Metabolism	Carbohydrate transport and metabolism	G	L-rhamnose isomerase	COG4806	1	0	2	1	0
+Poorly characterized	General function prediction only	R	Uncharacterized protein with an alpha/beta hydrolase fold	COG4814	0	1	0	0	0
+Cellular processes and signaling	Defense mechanisms	V	Abortive infection bacteriophage resistance protein	COG4823	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Phage-related holin (Lysis protein)	COG4824	0	0	0	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Serine protease inhibitor	COG4826	2	1	1	2	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4832	0	0	0	0	2
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4834	0	0	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4842	0	0	0	1	0
+Cellular processes and signaling	Defense mechanisms	V	Chloramphenicol O-acetyltransferase	COG4845	139	104	81	117	2
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4853	1	0	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4864	0	1	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4866	0	0	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4868	0	1	0	0	2
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG4905	0	0	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG4922	0	1	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4925	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Predicted choloylglycine hydrolase	COG4927	0	1	0	0	0
+Poorly characterized	General function prediction only	R	Predicted P-loop ATPase	COG4928	0	0	0	0	1
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Predicted ATP-dependent Lon-type protease	COG4930	1	0	0	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Predicted outer membrane protein	COG4932	0	1	3	3	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG4938	0	2	0	0	0
+Poorly characterized	Function unknown	S	Major membrane immunogen, membrane-anchored lipoprotein	COG4939	0	0	0	1	1
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Membrane-bound metallopeptidase	COG4942	0	0	1	0	1
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	L-alanine-DL-glutamate epimerase and related enzymes of enolase superfamily	COG4948	0	0	1	0	2
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	Type IV secretory pathway, protease TraF	COG4959	0	0	1	1	0
+Cellular processes and signaling	Intracellular trafficking, secretion, and vesicular transport	U	Flp pilus assembly protein, ATPase CpaF	COG4962	2	0	0	1	1
+Information storage and processing	Replication, recombination and repair	L	Site-specific recombinase XerD	COG4974	13	13	9	19	13
+Information storage and processing	Transcription	K	Transcriptional regulator containing an amidase domain and an AraC-type DNA-binding HTH domain	COG4977	1	2	1	0	0
+Information storage and processing	Transcription	K	Transcriptional regulator, effector-binding domain/component	COG4978	0	0	0	1	0
+Metabolism	Energy production and conversion	C	ABC-type transport system involved in cytochrome bd biosynthesis, ATPase and permease components	COG4988	0	1	0	0	0
+Metabolism	Amino acid transport and metabolism	E	Ornithine/acetylornithine aminotransferase	COG4992	2	0	0	2	1
+Cellular processes and signaling	Signal transduction mechanisms	T	Signal transduction histidine kinase involved in nitrogen fixation and metabolism regulation	COG5000	0	1	1	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Signal transduction histidine kinase	COG5002	2	2	0	0	0
+Poorly characterized	General function prediction only	R	Predicted permease, DMT superfamily	COG5006	0	1	1	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Membrane carboxypeptidase/penicillin-binding protein	COG5009	0	2	0	3	2
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG5011	0	0	1	0	0
+Poorly characterized	General function prediction only	R	Predicted cobalamin binding protein	COG5012	1	0	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG5015	0	0	0	0	1
+Metabolism	Energy production and conversion	C	Pyruvate/oxaloacetate carboxyltransferase	COG5016	1	1	1	2	0
+Metabolism	Inorganic ion transport and metabolism	P	SPX domain-containing protein involved in vacuolar polyphosphate accumulation	COG5036	0	0	0	1	0
+Information storage and processing	Translation, ribosomal structure and biogenesis	J	Ribosomal protein S10E	COG5045	0	0	0	0	1
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Alpha-tubulin suppressor and related RCC1 domain-containing proteins	COG5184	0	0	0	1	1
+Poorly characterized	General function prediction only	R	FOG: Glucan-binding domain (YG repeat)	COG5263	1	0	1	0	1
+Poorly characterized	General function prediction only	R	AAA ATPase containing von Willebrand factor type A (vWA) domain	COG5271	1	0	0	0	0
+Cellular processes and signaling	Cell cycle control, cell division, chromosome partitioning	D	Uncharacterized protein involved in cytokinesis, contains TGc (transglutaminase/protease-like) domain	COG5279	0	0	0	1	0
+Poorly characterized	Function unknown	S	Phage-related minor tail protein	COG5280	1	1	0	1	0
+Poorly characterized	Function unknown	S	Uncharacterized protein conserved in bacteria	COG5294	1	0	0	1	0
+Poorly characterized	General function prediction only	R	Phage-related tail fibre protein	COG5301	0	0	1	0	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Spore coat assembly protein	COG5337	1	0	0	0	0
+Poorly characterized	Function unknown	S	Predicted membrane protein	COG5373	0	1	0	0	0
+Information storage and processing	Replication, recombination and repair	L	Phage-related protein, predicted endonuclease	COG5377	0	0	0	1	0
+Cellular processes and signaling	Posttranslational modification, protein turnover, chaperones	O	ATP-dependent protease HslVU (ClpYQ), peptidase subunit	COG5405	1	0	0	0	0
+Poorly characterized	Function unknown	S	Phage-related protein	COG5412	4	1	3	2	2
+Information storage and processing	Replication, recombination and repair	L	Transposase	COG5421	9	1	1	5	3
+Poorly characterized	Function unknown	S	Predicted metal-binding protein	COG5423	0	0	0	0	1
+Poorly characterized	Function unknown	S	Uncharacterized membrane protein	COG5426	0	0	0	1	0
+Information storage and processing	Replication, recombination and repair	L	Transposase	COG5433	0	1	1	1	0
+Cellular processes and signaling	Cell wall/membrane/envelope biogenesis	M	Endopolygalacturonase	COG5434	0	2	0	1	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG5476	1	0	0	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG5484	0	0	0	1	0
+Cellular processes and signaling	Cell motility	N	Bacterial surface proteins containing Ig-like domains	COG5492	0	0	2	1	1
+Poorly characterized	Function unknown	S	Uncharacterized conserved protein	COG5495	0	0	1	0	0
+Poorly characterized	Function unknown	S	Uncharacterized conserved small protein	COG5503	1	0	0	0	0
+Poorly characterized	General function prediction only	R	Bacteriophage capsid protein	COG5511	0	0	0	2	0
+Poorly characterized	General function prediction only	R	Bacteriophage tail assembly protein	COG5525	0	0	0	1	0
+Poorly characterized	General function prediction only	R	Predicted P-loop ATPase and inactivated derivatives	COG5545	2	2	3	3	1
+Metabolism	Energy production and conversion	C	Polysulphide reductase	COG5557	0	0	0	0	1
+Poorly characterized	General function prediction only	R	Bacteriophage head-tail adaptor	COG5614	1	0	1	0	0
+Cellular processes and signaling	Signal transduction mechanisms	T	Predicted NTPase (NACHT family)	COG5635	0	0	1	0	0

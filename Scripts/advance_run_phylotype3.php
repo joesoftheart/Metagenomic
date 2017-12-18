@@ -68,8 +68,10 @@
 
          if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != "" && $argv[6] =! "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != ""){
              echo "Check Parameter Success"."\n";
-             collect_rarefaction_summary($user,$project,$path_in,$path_out);
-             
+             //collect_rarefaction_summary($user,$project,$path_in,$path_out);
+             //make_biom($user,$project,$path_in,$path_out);
+             //biom_to_stamp($user,$project,$path_in,$path_out);
+             stamp($user,$project,$path_in,$path_out);
              
          }else{
 
@@ -1460,7 +1462,7 @@ function plot_graph_r_Tree($user,$project,$path_in,$path_out){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
 
-            make_biom($user,$project,$path_in,$path_out);
+            //make_biom($user,$project,$path_in,$path_out);
             break;
         }
     }
@@ -1468,15 +1470,21 @@ function plot_graph_r_Tree($user,$project,$path_in,$path_out){
 }
 
 
-
+# Run separately 
 
 function make_biom($user,$project,$path_in,$path_out){
    
 
+   #  silva , rdp => $label = 1
+   #  greengene   => $label = 2
+
+
+   $label = '2';
+
    echo "make_biom"."\n";
    $jobname = $user."_make_biom";
    
-   $make = "make.biom(shared=final.tx.shared, label=".$GLOBALS['level'].",constaxonomy=final.tx.".$GLOBALS['level'].".cons.taxonomy, reftaxonomy=gg_13_8_99.gg.tax, picrust=99_otu_map.txt,inputdir=$path_in,outputdir=$path_out)";
+   $make = "make.biom(shared=final.tx.shared, label=".$label.",constaxonomy=final.tx.".$label.".cons.taxonomy, reftaxonomy=gg_13_8_99.gg.tax, picrust=99_otu_map.txt,inputdir=$path_in,outputdir=$path_out)";
 
    file_put_contents($path_in.'/advance.batch', $make);
 
@@ -1512,16 +1520,21 @@ function make_biom($user,$project,$path_in,$path_out){
 }
 
 function convert_biom($user,$project,$path_in,$path_out){
+   
 
+     #  silva , rdp => $label = 1
+     #  greengene   => $label = 2
+    
+    $label = '2';
 
     echo "convert_biom"."\n";
 
     $jobname = $user."_convert_biom";
     $log = $GLOBALS['path_log'];
 
-    $path_input_biom  = $path_out."final.tx.".$GLOBALS['level'].".biom";
-    $path_output_biom = $path_out."normalized_otus.".$GLOBALS['level'].".biom";
-    $path_output_txt  = $path_out."final.tx.".$GLOBALS['level'].".txt";
+    $path_input_biom  = $path_out."final.tx.".$label.".biom";
+    $path_output_biom = $path_out."normalized_otus.".$label.".biom";
+    $path_output_txt  = $path_out."final.tx.".$label.".txt";
    
     $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y picrust-1.1.1/scripts/convert_biom $path_input_biom $path_output_biom $path_output_txt";
 
@@ -1555,12 +1568,17 @@ function convert_biom($user,$project,$path_in,$path_out){
 
 function phylotype_picrust($user,$project,$path_in,$path_out){
 
+     #  silva , rdp => $label = 1
+     #  greengene   => $label = 2
+
+    $label = '2';
+
     echo "phylotype_picrust"."\n";
 
     $jobname = $user."_phylotype_picrust";
     $log = $GLOBALS['path_log'];
 
-    $path_input_biom = $path_out."final.tx.".$GLOBALS['level'].".biom";
+    $path_input_biom = $path_out."final.tx.".$label.".biom";
     $path_output_biom = $path_out."final.biom";
 
 
@@ -1588,10 +1606,218 @@ function phylotype_picrust($user,$project,$path_in,$path_out){
                       remove_logfile_mothur2($path_out);
                       remove_file_tree_sum($path_in);
 
-                      change_name($user,$project,$path_in,$path_out);
+                      //change_name($user,$project,$path_in,$path_out);
+                      phylotype_picrust2($user,$project,$path_in,$path_out);
                       break;  
                    }
           }   
+
+}
+
+
+
+
+function phylotype_picrust2($user,$project,$path_in,$path_out){
+    
+
+
+     #  silva , rdp => $label = 1
+     #  greengene   => $label = 2
+    
+   $label = '2';
+
+    echo "phylotype_picrust2"."\n";
+
+    $jobname = $user."_phylotype_picrust2";
+    $log = $GLOBALS['path_log'];
+
+  $normalized_otus = $path_out."normalized_otus.".$label.".biom";
+  $metagenome_predictions = $path_out."metagenome_predictions.".$label.".biom";
+
+
+    $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y  picrust-1.1.1/scripts/qsubMoPhylo5andpicrust $normalized_otus $metagenome_predictions";
+
+     shell_exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+               
+        $id_job = "" ; # give job id 
+        foreach ($output as $key_var => $value ) {
+              
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }        
+         }
+         $loop = true;
+         while ($loop) {
+
+                   $check_run = exec("qstat -j $id_job");
+
+                   if($check_run == false){
+                      phylotype_picrust3($user,$project,$path_in,$path_out);
+                      break;  
+                   }
+          }   
+
+
+}
+
+# Run separately  
+
+
+function phylotype_picrust3($user,$project,$path_in,$path_out){
+
+    
+     #  silva , rdp => $label = 1
+     #  greengene   => $label = 2
+
+
+    $label = '2';
+
+    echo "phylotype_picrust3"."\n";
+
+    $jobname = $user."_phylotype_picrust3";
+    $log = $GLOBALS['path_log'];
+
+  
+
+  $metagenome_predictions = $path_out."metagenome_predictions.".$label.".biom";
+
+   # $L = Please select level of KEGG pathway  level 1,2 or 3
+   $L = "L2";
+  
+  $predicted_metagenomes = $path_out."predicted_metagenomes.".$label.".".$L.".biom";
+    
+
+    $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y  picrust-1.1.1/scripts/qsubMoPhylo5andpicrust1 $metagenome_predictions $label $predicted_metagenomes ";
+
+     shell_exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+               
+        $id_job = "" ; # give job id 
+        foreach ($output as $key_var => $value ) {
+              
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }        
+         }
+         $loop = true;
+         while ($loop) {
+
+                   $check_run = exec("qstat -j $id_job");
+
+                   if($check_run == false){
+                      biom_to_stamp($user,$project,$path_in,$path_out);
+                      break;  
+                   }
+          }   
+
+}
+
+function biom_to_stamp($user,$project,$path_in,$path_out){
+
+     #  silva , rdp => $label = 1
+     #  greengene   => $label = 2
+    
+   $label = '2';
+
+    echo "biom_to_stamp"."\n";
+
+    $jobname = $user."_biom_to_stamp";
+    $log = $GLOBALS['path_log'];
+
+   # $L = Please select level of KEGG pathway  level 1,2 or 3
+   $L = "L2";
+
+   $predicted_metagenomes = $path_out."predicted_metagenomes.".$label.".".$L.".biom";
+
+   $pathways = $path_out."pathways".$label.$L.".spf";
+    
+
+    $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y  picrust-1.1.1/scripts/qsubBiomtoStamp $predicted_metagenomes $pathways";
+
+     shell_exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+               
+        $id_job = "" ; # give job id 
+        foreach ($output as $key_var => $value ) {
+              
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }        
+         }
+         $loop = true;
+         while ($loop) {
+
+                   $check_run = exec("qstat -j $id_job");
+
+                   if($check_run == false){
+
+                      break;  
+                   }
+          }   
+
+}
+
+function stamp($user,$project,$path_in,$path_out){
+
+   
+     #  silva , rdp => $label = 1
+     #  greengene   => $label = 2
+
+     $label = '2';
+
+     # $L = Please select level of KEGG pathway  level 1,2 or 3
+     $L = "L2";
+
+    echo "stamp"."\n";
+
+    $jobname = $user."_stamp";
+    $log = $GLOBALS['path_log'];
+
+  
+    //$pathways = $path_out."pathways".$label.$L.".spf";
+    $pathways = "../".$path_out."pathwaysL2modi.spf";
+    $sample1 = "soils1";
+    $sample2 = "soils2";
+    $statistical_test ="G‐test";
+    $ci_method = "DP: Newcombe-Wilson";
+    $p_value = "0.05";
+    $myResultsPathway = "../".$path_out."myResultsPathway".$L.".tsv";
+   
+
+    $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y STAMP-1.8/qsubStamp.sh $pathways $myResultsPathway";
+
+   
+
+     shell_exec($cmd);
+     $check_qstat = "qstat  -j '$jobname' ";
+     exec($check_qstat,$output);
+               
+        $id_job = "" ; # give job id 
+        foreach ($output as $key_var => $value ) {
+              
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }        
+         }
+         $loop = true;
+         while ($loop) {
+
+                   $check_run = exec("qstat -j $id_job");
+
+                   if($check_run == false){
+
+                      break;  
+                   }
+          }   
+
 
 }
 
