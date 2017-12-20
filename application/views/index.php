@@ -14,7 +14,6 @@ if (isset($this->session->userdata['logged_in'])) {
 <div id="page-wrapper">
 
 
-
     <div class="row">
 
         <div class="col-lg-12">
@@ -46,110 +45,109 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-primary">
                     <a href="<?php echo site_url('projects/index/' . $r['_id']) ?>" style="color:#FFFFFF">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-2">
-                                <i class="fa fa-book fa-3x"></i>
-                            </div>
-                            <div class="col-xs-10 text-right">
-                                <?php
-                                $file_read = array('fastq');
-                                $project_path = $r['project_path'];
-                                $project_name = basename($project_path);
-                                $path_owncloud = "../owncloud/data/$username/files/$project_name/input";
-                                $show = $this->manage_file->num_file($file_read, $path_owncloud);
-                                ?>
-                                <div class="huge"><h5 style="color: #FFFFFF"><?php echo $show;?> samples</h5></div>
-                                <div style="text-align: left"><?= $r['project_name']; ?></div>
-                            </div>
-                        </div>
-                    </a>
-                 </div>
-             
-            </div>
-            </div>
-
-        <?php $i++;  } ?>  
-        <?php    }     ?> <!--foreach ($rs as $r) -->
-    
-    <!-- End Show Project Default = 4 -->
-
-     <!-- Start Hide Project morethan > 4 -->
-     
-       <div class="row">
-       <div class="col-lg-12">
-
-       <div id="toggle-animation"   aria-hidden="true" hidden="hidden">
-                
-            <?php $j = 0 ?>
-            <?php foreach ($rs as $rt) { ?>
-            <?php if ($j > 3) { ?>
-            <div class="col-lg-3 col-md-6">
-                   
-                    <div class="panel panel-primary">       
                         <div class="panel-heading">
-
                             <div class="row">
-                             <a href="<?php echo site_url('projects/index/' . $rt['_id']) ?>" style="color:#FFFFFF">
-                             <div class="col-xs-2">
-                                  <i class="fa fa-book fa-3x"> </i>
-                             </div>
-                             <div class="col-xs-10 text-right">
-                            
-                                <?php
-                                $file_read = array('fastq');
-                                $project_path = $rt['project_path'];
-                                $project_name = basename($project_path);
-                                $path_owncloud = "../owncloud/data/$username/files/$project_name/input";
-                                $show = $this->manage_file->num_file($file_read, $path_owncloud);
-                                ?>
-                             <div class="huge">
-                                    <h5 style="color: #FFFFFF;">
-                                       <?php echo $show;?> samples
-                                    </h5>
-                             </div>
-                             <div style="text-align: left">
-                                    <?= $rt['project_name']; ?>
-                             </div>
-                             </div>
-                           
-                             </a>
-                             </div>
-                        </div>
-                    </div>
-            </div> <!-- class="col-lg-3 col-md-6"-->
-            <?php }
+                                <div class="col-xs-2">
+                                    <i class="fa fa-book fa-3x"></i>
+                                </div>
+                                <div class="col-xs-10 text-right">
+                                    <?php
+                                    $file_read = array('fastq');
+                                    $project_path = $r['project_path'];
+                                    $project_name = basename($project_path);
+                                    $path_owncloud = "../owncloud/data/$username/files/$project_name/input";
+                                    $show = $this->manage_file->num_file($file_read, $path_owncloud);
+                                    ?>
+                                    <div class="huge"><h5 style="color: #FFFFFF"><?php echo $show; ?> samples</h5></div>
+                                    <div style="text-align: left"><?= $r['project_name']; ?></div>
+                                </div>
+                            </div>
+                    </a>
+                </div>
 
-                  $j++; ?>
+            </div>
+        </div>
 
-             <?php } ?> <!--foreach ($rs as $rt) -->
+        <?php $i++;
+        } ?>
+        <?php } ?> <!--foreach ($rs as $r) -->
 
-        </div> <!-- id="toggle-animation"-->
-        </div> <!-- class="col-lg-12 -->
+        <!-- End Show Project Default = 4 -->
+
+        <!-- Start Hide Project morethan > 4 -->
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div id="toggle-animation" aria-hidden="true" hidden="hidden">
+
+                    <?php $j = 0 ?>
+                    <?php foreach ($rs as $rt) { ?>
+                        <?php if ($j > 3) { ?>
+                            <div class="col-lg-3 col-md-6">
+
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+
+                                        <div class="row">
+                                            <a href="<?php echo site_url('projects/index/' . $rt['_id']) ?>"
+                                               style="color:#FFFFFF">
+                                                <div class="col-xs-2">
+                                                    <i class="fa fa-book fa-3x"> </i>
+                                                </div>
+                                                <div class="col-xs-10 text-right">
+
+                                                    <?php
+                                                    $file_read = array('fastq');
+                                                    $project_path = $rt['project_path'];
+                                                    $project_name = basename($project_path);
+                                                    $path_owncloud = "../owncloud/data/$username/files/$project_name/input";
+                                                    $show = $this->manage_file->num_file($file_read, $path_owncloud);
+                                                    ?>
+                                                    <div class="huge">
+                                                        <h5 style="color: #FFFFFF;">
+                                                            <?php echo $show; ?> samples
+                                                        </h5>
+                                                    </div>
+                                                    <div style="text-align: left">
+                                                        <?= $rt['project_name']; ?>
+                                                    </div>
+                                                </div>
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- class="col-lg-3 col-md-6"-->
+                        <?php }
+
+                        $j++; ?>
+
+                    <?php } ?> <!--foreach ($rs as $rt) -->
+
+                </div> <!-- id="toggle-animation"-->
+            </div> <!-- class="col-lg-12 -->
         </div> <!-- class="row"-->
-   
-     <!-- End Hide Project morethan > 4 -->
 
-     
+        <!-- End Hide Project morethan > 4 -->
 
-     <!-- Start "show more >>" -->
-      <?php if ($j > 4) { ?>
-                <button id="text_pro" onclick="toggleTextPro()" href="#toggle-animation"
-                        class="uk-button uk-button-link uk-navbar-right" type="button"
-                        uk-toggle="target: #toggle-animation; animation: uk-animation-fade">show more >>
-                </button><?php } ?>
-            <div id="show"> </div>
-    <!-- End "show more >>" -->    
 
+        <!-- Start "show more >>" -->
+        <?php if ($j > 4) { ?>
+            <button id="text_pro" onclick="toggleTextPro()" href="#toggle-animation"
+                    class="uk-button uk-button-link uk-navbar-right" type="button"
+                    uk-toggle="target: #toggle-animation; animation: uk-animation-fade">show more >>
+            </button><?php } ?>
+        <div id="show"></div>
+        <!-- End "show more >>" -->
 
 
     </div>   <!-- class="row" Show Project Default = 4 -->
-    
-    </div>
+
+</div>
 </div>
 </div>
 <!-- /#page-wrapper -->
-
 
 
 <!--            <div class="uk-child-width-1-2 uk-child-width-1-5@s uk-grid-match" uk-grid>-->
@@ -160,7 +158,7 @@ if (isset($this->session->userdata['logged_in'])) {
 <!--                            <a href="--><?php //echo site_url('projects/index/' . $r['_id']) ?><!--">-->
 <!--                                <div class="uk-card uk-card-default  uk-card-small uk-animation-fade uk-animation-fast uk-card-hover">-->
 <!--                                    <div class="uk-card-badge uk-label">10/11/12</div>-->
-<!--                                    <div class="uk-card-title uk-text-small uk-text-center">--><?//= $r['project_name']; ?><!--</div>-->
+<!--                                    <div class="uk-card-title uk-text-small uk-text-center">--><? //= $r['project_name']; ?><!--</div>-->
 <!--                                    <div class="uk-nav-left" style="margin-left: 10%"><i class="fa fa-file fa-3x"></i></div>-->
 <!--                                    <br>-->
 <!--                                </div>-->
@@ -174,47 +172,44 @@ if (isset($this->session->userdata['logged_in'])) {
 <!---->
 <!--            </div>-->
 
-          
-          
-              
-           
-            <!---->
-            <!--                    <h5 class="page-header">samples</h5>-->
-            <!--                    <div class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid >-->
-            <!--                        --><?php //$i = 0 ?>
-            <!--                        --><?php //foreach ($rs as $r) {  ?>
-            <!--                            --><?php //if ($i < 4){  ?>
-            <!--                                <div  class="uk-animation-toggle">-->
-            <!--                                    <div  class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">-->
-            <!--                                        <h5 class="uk-card-title uk-text-small">-->
-            <? //=$r['project_name'];?><!--</h5>-->
-            <!--                                        <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div>--><?php //echo $i ?>
-            <!--                                        <p class="uk-text-center">Fade</p>-->
-            <!--                                    </div>-->
-            <!--                                </div>-->
-            <!--                            --><?php //$i++; }   ?>
-            <!---->
-            <!--                        --><?php //} ?>
-            <!--                    </div><br>-->
-            <!---->
-            <!--                    <div id="toggle-animation2" class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid aria-hidden="true" hidden="hidden">-->
-            <!--                        --><?php //foreach ($rs as $r) {  ?>
-            <!--                            --><?php //if ($i >= 4){  ?>
-            <!--                                <div  class="uk-animation-toggle">-->
-            <!--                                    <div id="toggle-animation2" class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">-->
-            <!--                                        <h5 class="uk-card-title uk-text-small">-->
-            <? //=$r['project_name'];?><!--</h5>-->
-            <!--                                        <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div>--><?php //echo $i ?>
-            <!--                                        <p class="uk-text-center">Fade</p>-->
-            <!--                                    </div>-->
-            <!--                                </div>-->
-            <!--                            --><?php //$i++; }  ?>
-            <!---->
-            <!--                        --><?php //} ?>
-            <!--                    </div>-->
-            <!--                    <button id="text_sam" onclick="toggleTextSam()" href="#toggle-animation2" class="uk-button uk-button-link uk-navbar-right" type="button" uk-toggle="target: #toggle-animation2; animation: uk-animation-fade">show more >></button>-->
-            <!---->
-            <!---->
+
+<!---->
+<!--                    <h5 class="page-header">samples</h5>-->
+<!--                    <div class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid >-->
+<!--                        --><?php //$i = 0 ?>
+<!--                        --><?php //foreach ($rs as $r) {  ?>
+<!--                            --><?php //if ($i < 4){  ?>
+<!--                                <div  class="uk-animation-toggle">-->
+<!--                                    <div  class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">-->
+<!--                                        <h5 class="uk-card-title uk-text-small">-->
+<? //=$r['project_name'];?><!--</h5>-->
+<!--                                        <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div>--><?php //echo $i ?>
+<!--                                        <p class="uk-text-center">Fade</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            --><?php //$i++; }   ?>
+<!---->
+<!--                        --><?php //} ?>
+<!--                    </div><br>-->
+<!---->
+<!--                    <div id="toggle-animation2" class="uk-child-width-1-2 uk-child-width-1-4@s uk-grid-match" uk-grid aria-hidden="true" hidden="hidden">-->
+<!--                        --><?php //foreach ($rs as $r) {  ?>
+<!--                            --><?php //if ($i >= 4){  ?>
+<!--                                <div  class="uk-animation-toggle">-->
+<!--                                    <div id="toggle-animation2" class="uk-card uk-card-default uk-card-small uk-animation-fade uk-animation-fast">-->
+<!--                                        <h5 class="uk-card-title uk-text-small">-->
+<? //=$r['project_name'];?><!--</h5>-->
+<!--                                        <div class="uk-nav-center"><i class="fa fa-file fa-3x"></i></div>--><?php //echo $i ?>
+<!--                                        <p class="uk-text-center">Fade</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            --><?php //$i++; }  ?>
+<!---->
+<!--                        --><?php //} ?>
+<!--                    </div>-->
+<!--                    <button id="text_sam" onclick="toggleTextSam()" href="#toggle-animation2" class="uk-button uk-button-link uk-navbar-right" type="button" uk-toggle="target: #toggle-animation2; animation: uk-animation-fade">show more >></button>-->
+<!---->
+<!---->
 
 
 <script>
@@ -289,9 +284,9 @@ if (isset($this->session->userdata['logged_in'])) {
     //            return false;
     //        });
     //    });
-//    $('.click-project').click(function () {
-//        url:
-//
-//    })
+    //    $('.click-project').click(function () {
+    //        url:
+    //
+    //    })
 </script>
 

@@ -1,12 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * Created by PhpStorm.
  * User: root
  * Date: 4/24/17
  * Time: 6:28 PM
  */
-class Other_test extends CI_Controller {
+class Other_test extends CI_Controller
+{
     public function __construct()
     {
         parent::__construct();

@@ -1,13 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * Created by PhpStorm.
  * User: root
  * Date: 3/30/17
  * Time: 6:01 PM
  */
-
-class  Edit_project extends CI_Controller {
+class  Edit_project extends CI_Controller
+{
 
     public function __construct()
     {
@@ -17,18 +18,20 @@ class  Edit_project extends CI_Controller {
     }
 
 
-    public function index(){
+    public function index()
+    {
 
 
     }
 
-    public function edit_project($id){
+    public function edit_project($id)
+    {
         $file_read = array('fastq');
-        $project_path = $this->input->post("project_path")."/input/";
+        $project_path = $this->input->post("project_path") . "/input/";
         $show = $this->manage_file->num_file($file_read, $project_path);
 
 
-        if ($this->input->post("save")){
+        if ($this->input->post("save")) {
             $data_project = array("project_name" => $this->input->post("project_name"),
                 "project_title" => $this->input->post("project_title"),
                 "project_detail" => $this->input->post("project_detail"),
@@ -39,7 +42,7 @@ class  Edit_project extends CI_Controller {
                 "project_analysis" => $this->input->post("project_analysis"),
                 "project_path" => $this->input->post("project_path"),
                 "project_num_sam" => $show,
-                "project_group_sam" => $show/2,
+                "project_group_sam" => $show / 2,
                 "project_date_time" => date("Y-m-d H:i:s")
             );
 
@@ -50,8 +53,8 @@ class  Edit_project extends CI_Controller {
         ob_start();
         $data['rs'] = $this->mongo_db->get_where('projects', array("_id" => new \MongoId($id)));
 
-        $this->load->view("header",$data);
-        $this->load->view("edit_project",$data);
+        $this->load->view("header", $data);
+        $this->load->view("edit_project", $data);
         $this->load->view("footer");
 
 

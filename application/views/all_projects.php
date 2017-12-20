@@ -36,7 +36,7 @@ if (isset($this->session->userdata['logged_in'])) {
                     <th>Type</th>
                     <th>Samples</th>
                     <th>Manage</th>
-       
+
                 </tr>
                 </thead>
                 <tbody>
@@ -51,9 +51,9 @@ if (isset($this->session->userdata['logged_in'])) {
                             &nbsp;
                             <?php echo anchor("all_projects/delete_project/" . $r['_id'], "Delete", array('class' => 'btn btn-default btn-sm'))
                             ?>&nbsp;<a href="#modal-sections<?php echo $r['_id'] ?>" class="btn btn-default btn-sm"
-                                       uk-toggle> Share</a> 
+                                       uk-toggle> Share</a>
                         </td>
-            
+
 
                         <div id="modal-sections<?php echo $r['_id'] ?>" uk-modal="center: true">
                             <form action="all_projects/share_project_to" method="post">

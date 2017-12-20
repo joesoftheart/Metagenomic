@@ -31,21 +31,24 @@ if (isset($this->session->userdata['logged_in'])) {
     <div class="row">
 
 
-    <div class="col-lg-4 col-sm-6 text-center mb-4">
-<!--        <a href="--><?php //echo base_url();?><!--complete_run/on_check_remove_progress/--><?php //echo $current_project?><!--"> <img class="img-circle" src="--><?php //echo base_url() ?><!--images/restart2.png" alt=""></a>-->
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+            <!--        <a href="--><?php //echo base_url();?><!--complete_run/on_check_remove_progress/-->
+            <?php //echo $current_project?><!--"> <img class="img-circle" src="-->
+            <?php //echo base_url() ?><!--images/restart2.png" alt=""></a>-->
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+            <a href="<?php echo base_url(); ?>graph_result/index/<?php echo $current_project ?>"><img class="img-circle"
+                                                                                                      src="<?php echo base_url() ?>images/graph_result2.png"
+                                                                                                      alt=""></a>
+
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+            <a href="<?php echo base_url(); ?>report_pdf/fpdf/<?php echo $current_project ?>"><img class="img-circle"
+                                                                                                   src="<?php echo base_url() ?>images/report2.png"
+                                                                                                   alt=""></a>
+
+        </div>
     </div>
-    <div class="col-lg-4 col-sm-6 text-center mb-4">
-        <a href="<?php echo base_url();?>graph_result/index/<?php echo $current_project?>"><img class="img-circle" src="<?php echo base_url() ?>images/graph_result2.png" alt=""></a>
-
-    </div>
-    <div class="col-lg-4 col-sm-6 text-center mb-4">
-        <a href="<?php echo base_url();?>report_pdf/fpdf/<?php echo $current_project?>"><img class="img-circle" src="<?php echo base_url() ?>images/report2.png" alt=""></a>
-
-    </div>
-    </div>
-
-
-
 
 
 </div>

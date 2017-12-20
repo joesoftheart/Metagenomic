@@ -1,13 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * Created by PhpStorm.
  * User: root
  * Date: 4/3/17
  * Time: 11:15 PM
  */
-
-class Profile extends CI_Controller{
+class Profile extends CI_Controller
+{
 
 
     public function __construct()
@@ -16,21 +17,20 @@ class Profile extends CI_Controller{
     }
 
 
-
-    public function index(){
+    public function index()
+    {
         ob_start();
         $id_user = (string)$this->session->userdata['logged_in']['_id'];
-        $data['rs_user'] = $this->mongo_db->get_where('user_details',array("user_id" => $id_user));
+        $data['rs_user'] = $this->mongo_db->get_where('user_details', array("user_id" => $id_user));
 
-        $this->load->view('header',$data);
-        $this->load->view('profile',$data);
+        $this->load->view('header', $data);
+        $this->load->view('profile', $data);
         $this->load->view('footer');
-
 
 
     }
 
-    public function change_img($id_user,$username)
+    public function change_img($id_user, $username)
     {
         echo "OK";
         $data = array();
@@ -46,7 +46,8 @@ class Profile extends CI_Controller{
         $this->load->library('upload', $config);
         if (!$this->upload->do_upload('pictures')) {
             $error = array('error' => $this->upload->display_errors());
-             var_dump( $error); die; //check errors
+            var_dump($error);
+            die; //check errors
         } else {
             $fileName = $this->upload->data();
             $data['pictures'] = $fileName['file_name'];
@@ -61,20 +62,21 @@ class Profile extends CI_Controller{
         $data_user_update = array("user_id" => $id_user,
             "user_img_profile" => $this->uri->segment(4));
 
-        $data = $this->mongo_db->get_where('user_details',array("user_id" => $id_user));
-        if ($data != null ){
+        $data = $this->mongo_db->get_where('user_details', array("user_id" => $id_user));
+        if ($data != null) {
             $this->mongo_db->where(array("user_id" => $id_user))->set($data_user_update)->update('user_details');
             redirect("profile", "refresh");
-        }else{
+        } else {
             $this->mongo_db->insert('user_details', $data_user);
             redirect('profile', 'refresh');
         }
 
-       // redirect("profile", "refresh");
+        // redirect("profile", "refresh");
     }
 
 
-    public function update_profile($id_user,$username){
+    public function update_profile($id_user, $username)
+    {
         $data_user = array("first_name" => $this->input->post("first_name"),
             "last_name" => $this->input->post("last_name"),
             "address" => $this->input->post("address"),
@@ -91,22 +93,14 @@ class Profile extends CI_Controller{
             "user_id" => $id_user);
 
 
-
-
-        $data = $this->mongo_db->get_where('user_details',array("user_id" => $id_user));
-        if ($data != null ){
+        $data = $this->mongo_db->get_where('user_details', array("user_id" => $id_user));
+        if ($data != null) {
             $this->mongo_db->where(array("user_id" => $id_user))->set($data_user_update)->update('user_details');
             redirect("profile", "refresh");
-        }else{
+        } else {
             $this->mongo_db->insert('user_details', $data_user);
             redirect('profile', 'refresh');
         }
-
-
-
-
-
-
 
 
     }

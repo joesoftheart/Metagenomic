@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class  Test extends CI_Controller
 {
 
@@ -8,21 +9,23 @@ class  Test extends CI_Controller
         parent::__construct();
     }
 
-    public function index(){
+    public function index()
+    {
         $this->load->view('header');
         $this->load->view('test');
-       $this->load->view('footer');
+        $this->load->view('footer');
     }
 
-    public function test(){
+    public function test()
+    {
         $dir = "../owncloud/data/joesoftheart/files/SAMPLE_OTU/output";
 
-        $file_read = array( 'svg', 'html', 'js', 'css' );
+        $file_read = array('svg', 'html', 'js', 'css');
         $dir_ignore = array();
 
-        $scan_result = scandir( $dir );
+        $scan_result = scandir($dir);
 
-        foreach ( $scan_result as $key => $value ) {
+        foreach ($scan_result as $key => $value) {
 
             if (!in_array($value, array('.', '..'))) {
 
@@ -39,7 +42,7 @@ class  Test extends CI_Controller
                     $type = array_reverse($type);
                     if (in_array($type[0], $file_read)) {
                         echo $value;
-                        $file_name = preg_split("/[.]/",$value );
+                        $file_name = preg_split("/[.]/", $value);
                         if (in_array("bin", $file_name)) {
                             rename($dir . "/" . $value, $dir . "/" . "bin.svg");
                         }
@@ -59,28 +62,29 @@ class  Test extends CI_Controller
     }
 
 
-public function scanDirectories($rootDir, $allData=array()) {
-    // set filenames invisible if you want
-    $invisibleFileNames = array(".", "..", ".htaccess", ".htpasswd");
-    // run through content of root directory
-    $dirContent = scandir($rootDir);
-    foreach($dirContent as $key => $content) {
-        // filter all files not accessible
-        $path = $rootDir.'/'.$content;
-        if(!in_array($content, $invisibleFileNames)) {
-            // if content is file & readable, add to array
-            if(is_file($path) && is_readable($path)) {
-                // save file name with path
-                $allData[] = $path;
-                // if content is a directory and readable, add path and name
-            }elseif(is_dir($path) && is_readable($path)) {
-                // recursive callback to open new directory
-                $allData = scanDirectories($path, $allData);
+    public function scanDirectories($rootDir, $allData = array())
+    {
+        // set filenames invisible if you want
+        $invisibleFileNames = array(".", "..", ".htaccess", ".htpasswd");
+        // run through content of root directory
+        $dirContent = scandir($rootDir);
+        foreach ($dirContent as $key => $content) {
+            // filter all files not accessible
+            $path = $rootDir . '/' . $content;
+            if (!in_array($content, $invisibleFileNames)) {
+                // if content is file & readable, add to array
+                if (is_file($path) && is_readable($path)) {
+                    // save file name with path
+                    $allData[] = $path;
+                    // if content is a directory and readable, add path and name
+                } elseif (is_dir($path) && is_readable($path)) {
+                    // recursive callback to open new directory
+                    $allData = scanDirectories($path, $allData);
+                }
             }
         }
+        return $allData;
     }
-    return $allData;
-}
 
 
     public function chang_name()
@@ -111,7 +115,7 @@ public function scanDirectories($rootDir, $allData=array()) {
                             }
                         }
 
-                         $result_files[$value] = $value;
+                        $result_files[$value] = $value;
                         //echo "<br/>";
                     }
 
@@ -131,24 +135,24 @@ public function scanDirectories($rootDir, $allData=array()) {
         if ($cdir != null) {
             foreach ($cdir as $key => $value) {
                 if (!in_array($value, array('.', '..'))) {
-                  //  echo $path_owncloud . DIRECTORY_SEPARATOR . $value;
+                    //  echo $path_owncloud . DIRECTORY_SEPARATOR . $value;
                     if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
-                        $file_in_dir = scandir($path_owncloud . "/". $value);
+                        $file_in_dir = scandir($path_owncloud . "/" . $value);
                         echo "iok";
 
 
-
-                    }else{
+                    } else {
                         //echo "out";
                     }
 
                 }
             }
-        }else{
+        } else {
             echo "out";
         }
 
 
     }
 }
+
 ?>

@@ -34,8 +34,8 @@ if (isset($this->session->userdata['logged_in'])) {
                     <th>Project_analysis</th>
                     <th>Type</th>
                     <th>SRA</th>
-                   
-                   
+
+
                 </tr>
                 </thead>
                 <tbody>
@@ -44,15 +44,14 @@ if (isset($this->session->userdata['logged_in'])) {
                         <td><?php echo $r["project_name"] ?></td>
                         <td><?php echo $r["project_analysis"] ?></td>
                         <td class="center"><?php echo $r["project_type"] ?></td>
-                        <td>  <?php echo anchor("#" . $r['_id'], "SRA", array('class' => 'btn btn-outline btn-success btn-sm','id'=> $r['_id'],'onclick'=>'checkfile(this.id); return false')) ?>
-                            
+                        <td>  <?php echo anchor("#" . $r['_id'], "SRA", array('class' => 'btn btn-outline btn-success btn-sm', 'id' => $r['_id'], 'onclick' => 'checkfile(this.id); return false')) ?>
+
                         </td>
-                       
-                       
+
 
                     </tr>
                 <?php } ?>
-              
+
                 </tbody>
             </table>
             <!-- /.table-responsive -->
@@ -61,23 +60,23 @@ if (isset($this->session->userdata['logged_in'])) {
     </div>
 </div>
 <script>
-    
-function checkfile(id){
+
+    function checkfile(id) {
         $.ajax({
-                type:"post",
-                dataType: "json",
-                url: "<?php echo site_url('Run_sra/checkFiles/');?>",
-                data:{getid:id},
-                cache:false,
-                    success:function(data){
-                        if(data == "T"){
-                              window.location.href ="<?php echo site_url('Run_sra/index/"+id+"');?>"; 
-                         }else{
-                             alert("don't have stability.files");
-                          
-                         }
-                     }
-               });
-}
+            type: "post",
+            dataType: "json",
+            url: "<?php echo site_url('Run_sra/checkFiles/');?>",
+            data: {getid: id},
+            cache: false,
+            success: function (data) {
+                if (data == "T") {
+                    window.location.href = "<?php echo site_url('Run_sra/index/"+id+"');?>";
+                } else {
+                    alert("don't have stability.files");
+
+                }
+            }
+        });
+    }
 
 </script>
