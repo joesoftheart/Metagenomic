@@ -275,7 +275,7 @@ class Complete_run extends CI_Controller {
             }
         }
 
-        $svg_file = file_get_contents($path_owncloud_otu . "final.tx.2.subsample.2.sharedsobs.S1_1_16s_S1-S2_1_16s_S3-S3_1_16s_S5-S4_1_16s_S7.svg");
+        $svg_file = file_get_contents($path_owncloud_otu . "sharedsobs.svg");
 
         $find_string   = '<text';
         $position = strpos($svg_file, $find_string);
@@ -302,7 +302,7 @@ class Complete_run extends CI_Controller {
 
 
 
-        $svg_file2 = file_get_contents($path_owncloud_otu . "final.tx.2.subsample.2.sharedsobs.S1_1_16s_S1-S2_1_16s_S3-S3_1_16s_S5-S4_1_16s_S7.sharedotus");
+        $svg_file2 = file_get_contents($path_owncloud_otu . "sharedsobs.sharedotus");
         $row_otu = explode("\n", $svg_file2);
         foreach ($row_otu as $value => $data){
             if ($data != null) {
@@ -689,7 +689,7 @@ class Complete_run extends CI_Controller {
             }
         }
         $abun_genus = $genus_pack;
-        $svg_file = file_get_contents($path_owncloud_phylotype . "final.tx.2.subsample.2.sharedsobs.S1_1_16s_S1-S2_1_16s_S3-S3_1_16s_S5-S4_1_16s_S7.svg");
+        $svg_file = file_get_contents($path_owncloud_phylotype . "sharedsobs.svg");
        // $svg_file = file_get_contents($path_owncloud_phylotype . "sharedsobs.svg");
         $find_string   = '<text';
         $position = strpos($svg_file, $find_string);
@@ -720,7 +720,7 @@ class Complete_run extends CI_Controller {
 
 
 
-        $svg_file2 = file_get_contents($path_owncloud_phylotype . "final.tx.2.subsample.2.sharedsobs.S1_1_16s_S1-S2_1_16s_S3-S3_1_16s_S5-S4_1_16s_S7.sharedotus");
+        $svg_file2 = file_get_contents($path_owncloud_phylotype . "sharedsobs.sharedotus");
 //        $svg_file2 = file_get_contents($path_owncloud_phylotype . "sharedotus.sharedotus");
         $row_otu = explode("\n", $svg_file2);
         foreach ($row_otu as $value => $data){
@@ -854,8 +854,8 @@ class Complete_run extends CI_Controller {
                 if($index == 0) {
 
 
-//                    $name_vs_sam = array_push($name_vs_sam, $row_data[0]);
-//                    $table_stat[$index] = $row_data[1] . ":" . $row_data[2] . ":" . $row_data[3] . ":" . $row_data[4] . ":" . $row_data[5] . ":" . $row_data[6] . ":" . $row_data[7] . ":" . $row_data[8] . ":" . $row_data[9];
+                    $name_vs_sam = array_push($name_vs_sam, $row_data[0]);
+                    $table_stat[$index] = $row_data[1] . ":" . $row_data[2] . ":" . $row_data[3] . ":" . $row_data[4] . ":" . $row_data[5] . ":" . $row_data[6] . ":" . $row_data[7] . ":" . $row_data[8] . ":" . $row_data[9];
 //
                 }else if ($index % 7 == 0) {
                     if ($name_vs_sam == null) {

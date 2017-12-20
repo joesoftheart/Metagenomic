@@ -71,6 +71,7 @@
              //collect_rarefaction_summary($user,$project,$path_in,$path_out);
              //make_biom($user,$project,$path_in,$path_out);
              //biom_to_stamp($user,$project,$path_in,$path_out);
+             //remove_float($user,$project,$path_in,$path_out);
              stamp($user,$project,$path_in,$path_out);
              
          }else{
@@ -1757,11 +1758,53 @@ function biom_to_stamp($user,$project,$path_in,$path_out){
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
-
+                      remove_float($user,$project,$path_in,$path_out);
                       break;  
                    }
           }   
 
+}
+
+
+
+function remove_float($user,$project,$path_in,$path_out){
+    
+    echo "remove_float"."\n";
+
+    $jobname = $user."_remove_float";
+    $log = $GLOBALS['path_log'];
+
+    
+     #  silva , rdp => $label = 1
+     #  greengene   => $label = 2
+
+     $label = '2';
+
+     # $L = Please select level of KEGG pathway  level 1,2 or 3
+     $L = "L2";
+
+    $pathways = $path_out."pathways".$label.$L.".spf";
+
+    $cmd = "qsub -N '$jobname' -o $log -cwd -j y -b y  /usr/bin/php -f R_Script/replace_string.php $pathways";
+   
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            stamp($user,$project,$path_in,$path_out);
+            break;
+        }
+    }
 }
 
 function stamp($user,$project,$path_in,$path_out){
@@ -1780,21 +1823,26 @@ function stamp($user,$project,$path_in,$path_out){
     $jobname = $user."_stamp";
     $log = $GLOBALS['path_log'];
 
-  
-    //$pathways = $path_out."pathways".$label.$L.".spf";
-    $pathways = "../".$path_out."pathwaysL2modi.spf";
-    $sample1 = "soils1";
-    $sample2 = "soils2";
-    $statistical_test ="G‐test";
+    $pathways = "../".$path_out."pathways".$label.$L.".spf";
+    $myResultsPathway = "../".$path_out."myResultsPathway".$L.".tsv";
+    $sample1 = "S1_1_16s_S1";
+    $sample2 = "S2_1_16s_S3";
+    $statistical_test = "G-test (w/ Yates' correction)";
     $ci_method = "DP: Newcombe-Wilson";
     $p_value = "0.05";
-    $myResultsPathway = "../".$path_out."myResultsPathway".$L.".tsv";
-   
+    
+    
 
-    $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y STAMP-1.8/qsubStamp.sh $pathways $myResultsPathway";
+    $function = 'python  STAMP-1.8/commandLine.py --file '.$pathways.' --sample1 '.$sample1.' --sample2 '.$sample2.' --statTest "'.$statistical_test.'" --CI "'.$ci_method.'" -p '.$p_value.' --coverage 0.95 --outputTable '.$myResultsPathway.'';
 
-   
+     file_put_contents($path_in.'qsubStamp.sh', $function);
+     chmod($path_in.'qsubStamp.sh',0775);
+     $getPath = "../".$path_in."qsubStamp.sh";
 
+     $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y STAMP-1.8/$getPath";
+
+    //$cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y STAMP-1.8/qsubStamp.sh $pathways $sample1 $sample2 $myResultsPathway  $p_value";
+    
      shell_exec($cmd);
      $check_qstat = "qstat  -j '$jobname' ";
      exec($check_qstat,$output);

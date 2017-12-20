@@ -1238,8 +1238,27 @@ Beta – Diversity:
 
      <!-- Result && Graph -->
      <li>
-       
 
+         <hr class="uk-divider-icon">
+             <div class="panel-body">
+             <div class="row">
+             <div class="col-lg-6 col-lg-offset-3">
+
+             <div class="alert alert-info">
+             <center>
+            
+            <button type="button" class="btn btn-success  btn-circle btn-xl" id="btn_picrust_stamp">
+                <i class="fa fa-play-circle-o"></i>
+              </button>
+                     <h4>Run PICRUST and STAMP</h4>
+             </center>
+            
+             </div>    
+     
+
+             </div>
+             </div>
+             </div>
 
         <hr class="uk-divider-icon">
             <div class="panel-body">       
@@ -1275,6 +1294,27 @@ Beta – Diversity:
                 <i class="fa fa-file-image-o"></i>
               </button>
                      <h4>Graph</h4>
+             </center>
+            
+             </div>    
+     
+
+             </div>
+             </div>
+             </div>
+
+         <hr class="uk-divider-icon">
+             <div class="panel-body">
+             <div class="row">
+             <div class="col-lg-6 col-lg-offset-3">
+
+             <div class="alert alert-info">
+             <center>
+            
+            <button type="button" class="btn btn-danger  btn-circle btn-xl" id="">
+                <i class="fa fa-refresh"></i>
+              </button>
+                     <h4>Re-Run Mothur</h4>
              </center>
             
              </div>    
@@ -1410,6 +1450,15 @@ Beta – Diversity:
 
 </style>
 <script type="text/javascript">  
+
+
+
+document.getElementById("btn_picrust_stamp").onclick = function(){
+ 
+     location.href="<?php echo base_url();?>Run_picrust_stamp/index/<?php echo $current_project?>";           
+              
+};
+
 
 
 document.getElementById("btn_reports").onclick = function(){

@@ -1,5 +1,0 @@
-#$ -S /bin/sh
-#$ -cwd
-#$ -j y
-
-python STAMP-1.8/commandLine.py --file pathwaysL2modi.spf --sample1 soils1 --sample2 soils2 --statTest "G-test" --CI "DP: Newcombe-Wilson" -p 0.05 --coverage 0.95 --outputTable aum.tsv 

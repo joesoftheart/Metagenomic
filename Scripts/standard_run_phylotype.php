@@ -20,7 +20,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null  && $path != null && $id != null){
-    biom_to_stamp($user,$id,$project,$path);
+    phylotype_picrust($user,$id,$project,$path);
     }
 
 // Run Program
@@ -167,15 +167,17 @@ summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/inpu
      }
 }
 
+
+
 function readlogs_make_contigs_oligos($user, $id, $project, $path,$id_job){
     echo "\n";
     echo "Run readlogs_make_contigs_oligos :";
     $name = $user."_".$id."_readlogs_make_contigs_oligos.o".$id_job;
     $file = file_get_contents("Logs_sge/phylotype/".$name);
 
-    if (file_exists("owncloud/data/$user/files/$project/output/database.txt")){
+
         file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "");
-    }
+
 
     $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum|Mean).*\$/m";
     if(preg_match_all($pattern, $file, $matches)){
@@ -212,11 +214,8 @@ function readlogs_make_contigs_summary($user, $id, $project, $path,$id_job){
     echo "Run readlogs_make_contigs_summary :";
     $name = $user."_".$id."_make_contigs_summary.o".$id_job;
     $file = file_get_contents("Logs_sge/phylotype/".$name);
-
-    if (file_exists("owncloud/data/$user/files/$project/output/database.txt")){
         file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "");
 
-    }
 
 
     $start = 0;
@@ -489,7 +488,7 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
          $check_run = exec("qstat -j $id_job");
          if($check_run == false){
              echo "go to classify_system->";
-             classify_system($user,$id, $project,$path);
+            // classify_system($user,$id, $project,$path);
              break;
          }
      }
@@ -529,7 +528,7 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
          $check_run = exec("qstat -j $id_job");
          if($check_run == false){
              echo "go to readlogs_classify_system->";
-             readlogs_classify_system($user, $id, $project, $path, $id_job);
+           //  readlogs_classify_system($user, $id, $project, $path, $id_job);
              break;
          }
      }
@@ -559,7 +558,7 @@ function readlogs_classify_system($user, $id, $project, $path, $id_job){
 
             if ($index == 9) {
                 $sum_seqs = preg_split('/\s+/', $value);
-                file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "avg_reads:".$sum_seqs[4]."\n", FILE_APPEND);
+                file_put_contents("owncloud/data/$user/f/stability.trim.contigs.good.unique.good.filter.unique.precluster.pick.summaryiles/$project/output/database.txt", "avg_reads:".$sum_seqs[4]."\n", FILE_APPEND);
 
             }
 
@@ -1175,7 +1174,7 @@ function phylotype_picrust($user, $id, $project, $path){
     $path_input = "owncloud/data/$user/files/$project/output/final.tx.1.biom";
     $path_output_biom = "owncloud/data/$user/files/$project/output/final.biom";
     $jobname = $user . "_" . $id . "_phylotype_picrust";
-    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y picrust-1.1.1/scripts/qsubMoPhylo5andpicrust_norm $path_input $path_output_biom ";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y picrust/scripts/qsubMoPhylo5andpicrust_norm $path_input $path_output_biom ";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -1191,7 +1190,7 @@ function phylotype_picrust($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Finish phylotype_picrust go to Change name->";
-            phylotype_picrust2($user, $id, $project, $path);
+         //   phylotype_picrust2($user, $id, $project, $path);
             break;
         }
     }
@@ -1279,12 +1278,72 @@ function biom_to_stamp($user, $id, $project, $path){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "Finish phylotype_picrust go to Change name->";
-            //  change_name($user, $id, $project, $path);
+            remove_float($user, $id, $project, $path);
             break;
         }
     }
 }
 
+function remove_float($user, $id, $project, $path){
+    echo "\n";
+    echo "Run remove_float :";
+
+    $path_input = "owncloud/data/$user/files/$project/output/pathways1L1.spf";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/pathways1L1.spf";
+    $jobname = $user . "_" . $id . "_biom_to_stamp";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y /usr/bin/php -f R_Script/replace_string.php $path_input";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish stamp->";
+             stamp($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+
+
+
+
+function stamp($user, $id, $project,$path){
+    echo "\n";
+    echo "Run stamp:";
+
+    $path_input = "owncloud/data/$user/files/$project/output/pathways1L1.spf";
+    $path_output_tsv = "owncloud/data/$user/files/$project/output/Resultpathways1L1.tsv";
+    $jobname = $user . "_" . $id . "_biom_to_stamp";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y stamp/qsubStamp $path_input $path_output_tsv ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish phylotype_picrust go to Change name->";
+            //  change_name($user, $id, $project, $path);
+            break;
+        }
+    }
+}
 
 
 function change_name($user, $id, $project, $path){
@@ -1318,7 +1377,7 @@ function change_name($user, $id, $project, $path){
                         echo $value." change to  bin.svg";
                     }
                     if (in_array("sharedotus", $file_name)) {
-                        rename($dir . "/" . $value, $dir . "/" . "sharedotus.sharedotus");
+                        rename($dir . "/" . $value, $dir . "/" . "sharedsobs.sharedotus");
                         echo $value." change to sharedsobs.svg";
                     }
                     if (in_array("sharedsobs", $file_name)) {

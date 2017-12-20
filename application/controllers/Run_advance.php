@@ -74,7 +74,7 @@
       //$id_project = $_REQUEST['current'];
       $id_project = $this->uri->segment(2);
 
-      $data['sample_name'] ="";
+      $data['sample_name'] = "";
       #Query data Sample_Name
         $array_samples = $this->mongo_db->get_where('sample_name',array('project_id' => $id_project));
            foreach ($array_samples as $r) {
