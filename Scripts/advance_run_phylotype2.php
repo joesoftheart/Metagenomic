@@ -1,3 +1,4 @@
+
 <?php
 
 include('setting_sge.php');
@@ -49,6 +50,7 @@ function sub_sample($user, $project, $path_in, $path_out)
             $data = explode(":", $value);
             $id_job = $data[1];
         }
+
     }
     $loop = true;
     while ($loop) {

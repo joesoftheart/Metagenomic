@@ -53,6 +53,7 @@
                     alert('Run step ' + status[1]);
                     $('.sw-theme-arrows > .nav-tabs > .pre').next('li').find('a').trigger('click');
                     $(".Pre-test2").hide();
+
                     $(".Pre-show2").show();
                     var data = new Array(status[2], pid);
                     check_subsample(data);
@@ -389,36 +390,39 @@
                             }
 
                             /*start div value vene*/
-                            var group = "";
-                            group += "<option value=0> </option>";
-                            for (var i = 0; i < sample_data[2].length; i++) {
-                                group += "<option value=" + sample_data[2][i] + ">" + sample_data[2][i] + "</option>";
-                            }
 
-                            $('#venn1').html(group);
-                            $('#venn2').html(group);
-                            $('#venn3').html(group);
-                            $('#venn4').html(group);
+                             var group = "";
+                                 group += "<option value=0> </option>";
+                                 for (var i=0; i < sample_data[2].length; i++) {
+                                   group += "<option value="+sample_data[2][i]+">"+sample_data[2][i]+"</option>";    
+                                 }
 
-                            /*end div value vene*/
+                                 $('#venn1').html(group);
+                                 $('#venn2').html(group);
+                                 $('#venn3').html(group);
+                                 $('#venn4').html(group);
 
+                             /*end div value vene*/
 
-                            var sam_group = "";
-                            for (var i = 0; i < sample_data[3].length; i++) {
+   
+                             var sam_group  = "";  
+                             for(var i=0 ;i < sample_data[3].length; i++){
 
-                                if (i == sample_data[3].length - 1) {
+                                if(i == sample_data[3].length-1){
 
-                                    document.getElementById('sub_sample').value = Number(sample_data[3][i]);
-                                    document.getElementById('show_group').value = sam_group;
-                                    document.getElementById('alpha').value = Number(sample_data[3][i]);
-                                    document.getElementById('beta').value = Number(sample_data[3][i]);
-                                    document.getElementById('myradio').value = sample_data[3][i];
-                                    document.getElementById('myradio1').value = sample_data[3][i];
-                                    $('#sub_sample').attr({'max': Number(sample_data[3][i])});
-                                    $('#alpha').attr({'max': Number(sample_data[3][i])});
-                                    $('#beta').attr({'max': Number(sample_data[3][i])});
+                                   document.getElementById('sub_sample').value = Number(sample_data[3][i]);
+                                   document.getElementById('show_group').value = sam_group; 
+                                   document.getElementById('alpha').value = Number(sample_data[3][i]);
+                                   document.getElementById('beta').value = Number(sample_data[3][i]);
+                                   document.getElementById('myradio').value = sample_data[3][i];
+                                   document.getElementById('myradio1').value = sample_data[3][i];
+                                   document.getElementById('max_num_subsample').value = sample_data[3][i];
+                                   $('#sub_sample').attr({'max': Number(sample_data[3][i])});
+                                   $('#alpha').attr({'max': Number(sample_data[3][i])});
+                                   $('#beta').attr({'max': Number(sample_data[3][i])});
+                                   
+                                }else{
 
-                                } else {
                                     sam_group += sample_data[3][i];
                                 }
                             }

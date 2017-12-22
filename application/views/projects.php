@@ -1628,130 +1628,92 @@ Beta – Diversity:
                                     </li>  <!-- End Analysis -->
 
 
-                                    <!-- Result && Graph -->
-                                    <li>
 
+     <!-- Result && Graph -->
+     <li>
 
-                                        <hr class="uk-divider-icon">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-lg-offset-3">
-
-
-                                                    <div class="alert alert-info">
-                                                        <center>
-
-                                                            <button type="button" class="btn btn-info btn-circle btn-xl"
-                                                                    id="btn_reports">
-                                                                <i class="fa fa-file-word-o"></i>
-                                                            </button>
-
-                                                            <h4> Report </h4>
-                                                        </center>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <hr class="uk-divider-icon">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-lg-offset-3">
-
-                                                    <div class="alert alert-info">
-                                                        <center>
-
-                                                            <button type="button"
-                                                                    class="btn btn-warning  btn-circle btn-xl"
-                                                                    id="btn_graph">
-                                                                <i class="fa fa-file-image-o"></i>
-                                                            </button>
-                                                            <h4>Graph</h4>
-                                                        </center>
-
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Table  -->
-
-                                        <!--  <?php if ($project_analysis == "OTUs") {
-
-                                            $file_groups_ave_std_summary = "final.opti_mcc.groups.ave-std.summary";
-                                            $file_summary = "final.opti_mcc.summary";
-
-                                        } else {
-
-                                            $file_groups_ave_std_summary = "final.tx.groups.ave-std.summary";
-                                            $file_summary = "final.tx.summary";
-
-                                        }
-
-                                        ?> -->
-
-                                        <!--  <div class="panel-body"> -->
-                                        <!-- Table groups.ave-std.summary -->
-                                        <!--  <hr class="uk-divider-icon">
-              <label><?php echo $file_groups_ave_std_summary; ?></label> -->
-                                        <!--   <div class="row">
-                                                 <div class="col-lg-12">
-                                                 <div class="table-responsive">
-                                                 -->
-                                        <!--   <div id="html-content-1">
-                                           <table class="table table-striped table-bordered table-hover" style="text-align: center">
-
-                                              <tbody id="body_tg">
-
-                                            </tbody>
-                                          </table>
-                                          </div> -->
-                                        <!-- #html-content-1-->
-
-                                        <!-- </div>
-                                        </div>
-                                        </div>  -->
-                                        <!-- End Table groups.ave-std.summary -->
-
-
-                                        <!--  Table file_summary -->
-                                        <!--  <hr class="uk-divider-icon">
-
-             <label><?php echo $file_summary; ?></label>
-
+         <hr class="uk-divider-icon">
+             <div class="panel-body">
              <div class="row">
-                <div class="col-lg-12">
-                 <div class="table-responsive">  
-                  
-                            <div id="html-content-2">
-                             <table class="table table-striped table-bordered dataTable" style="text-align: center">
-                                
-                                <tbody id="body_ts">
+             <div class="col-lg-6 col-lg-offset-3">
 
-                        
-                              </tbody>
-                            </table> -->
-                                        <!--  </div> -->
-                                        <!-- #html-content-2-->
-                                        <!--
-                                                             </div>
-                                                             </div>
-                                                             <div class="col-lg-12 uk-margin"></div>
-                                                                <center>
-                                                                       <input  class="btn btn-outline btn-info" value="Download all zip" id="zipall">
-                                                                </center>
-                                                             </div> -->
-                                        <!-- End Table file_summary -->
+             <div class="alert alert-info">
+             <center>
+            
+            <button type="button" class="btn btn-success  btn-circle btn-xl" id="btn_picrust_stamp">
+                <i class="fa fa-play-circle-o"></i>
+              </button>
+                     <h4>Run PICRUST and STAMP</h4>
+             </center>
+            
+             </div>    
+     
 
-                                        <!--     </div>
-                                            -->
+             </div>
+             </div>
+             </div>
 
-                                    </li>
-                                    <!-- End Result && Graph -->
+        <hr class="uk-divider-icon">
+        <div class="panel-body">
+         <div class="row">
+         <div class="col-lg-6 col-lg-offset-3">
+          <div class="alert alert-info">
+            <center>
+            <button type="button" class="btn btn-info btn-circle btn-xl" id="btn_reports">
+
+            <i class="fa fa-file-word-o"></i>
+            </button>
+              <h4> Report </h4>
+            </center>
+          </div>
+            </div>
+           </div>
+          </div>
+
+
+        <hr class="uk-divider-icon">
+             <div class="panel-body">
+             <div class="row">
+             <div class="col-lg-6 col-lg-offset-3">
+
+             <div class="alert alert-info">
+             <center>
+
+              <button type="button" class="btn btn-warning  btn-circle btn-xl" id="btn_graph">
+                <i class="fa fa-file-image-o"></i>
+              </button>
+                     <h4>Graph</h4>
+             </center>
+
+             </div>
+
+
+             </div>
+             </div>
+             </div>
+
+         <hr class="uk-divider-icon">
+             <div class="panel-body">
+             <div class="row">
+             <div class="col-lg-6 col-lg-offset-3">
+
+             <div class="alert alert-info">
+             <center>
+
+            <button type="button" class="btn btn-danger  btn-circle btn-xl" id="">
+                <i class="fa fa-refresh"></i>
+              </button>
+                     <h4>Re-Run Mothur</h4>
+             </center>
+
+             </div>
+
+
+             </div>
+             </div>
+             </div>
+
+                     <!-- End Result && Graph -->
 
 
                                 </ul>
@@ -1784,26 +1746,7 @@ Beta – Diversity:
     </script>
 
     <!--  Advance Script -->
-    <style>
-        #html-content-1 {
-            display: inline-block;
-            background-color: #FAFAFA;
-            padding-left: 10px;
-            padding-top: 10px;
-            padding-right: 10px;
-            padding-bottom: 10px;
-        }
 
-        #html-content-2 {
-            display: inline-block;
-            background-color: #FAFAFA;
-            padding-left: 15px;
-            padding-top: 10px;
-            padding-right: 15px;
-            padding-bottom: 10px;
-        }
-
-    </style>
     <script type="text/javascript">
 
 
@@ -1821,12 +1764,19 @@ Beta – Diversity:
                     } else {
                         alert("you don't run mode advance");
                     }
-
                 }
-
             });
-
         };
+
+
+document.getElementById("btn_picrust_stamp").onclick = function(){
+ 
+     location.href="<?php echo base_url();?>Run_picrust_stamp/index/<?php echo $current_project?>";           
+              
+};
+
+
+
 
         document.getElementById("btn_graph").onclick = function () {
 
@@ -2067,41 +2017,6 @@ Beta – Diversity:
         });
 
 
-        // function getCanvas1(){
-        //       var element = $("#html-content-1");
-        //       var getCanvas;
-        //       var cur = "<?php echo $current_project?>";
-        //      setTimeout(function(){
-        //         html2canvas( element, {
-        //              onrendered: function (canvas) {
-        //                  getCanvas = canvas;
-        //                  var imgageData = getCanvas.toDataURL("image/png");
-        //                  $.post("<?php echo base_url('Run_advance/getCanvas1');?>",{data:imgageData,current:cur});
-
-        //              }
-        //         });
-
-        //      },5000);
-
-        // }
-
-        // function getCanvas2(){
-        //       var element = $("#html-content-2");
-        //       var getCanvas;
-        //       var cur = "<?php echo $current_project?>";
-        //      setTimeout(function(){
-        //         html2canvas( element, {
-        //              onrendered: function (canvas) {
-        //                  getCanvas = canvas;
-        //                  var imgageData = getCanvas.toDataURL("image/png");
-        //                  $.post("<?php echo base_url('Run_advance/getCanvas2');?>",{data:imgageData,current:cur});
-
-        //              }
-        //         });
-
-        //      },5000);
-
-        // }
 
 
     </script>

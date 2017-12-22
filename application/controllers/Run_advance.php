@@ -33,6 +33,7 @@ Class Run_advance extends CI_Controller
         $step_run = "";
         $id_job = "";
 
+
         $user = "";
         $project = "";
         $project_analysis = "";
@@ -51,6 +52,7 @@ Class Run_advance extends CI_Controller
 
             $user = $r['user'];
             $project = $r['project'];
+
             $project_analysis = $r['project_analysis'];
             $level = $r['level'];
 
@@ -84,7 +86,11 @@ Class Run_advance extends CI_Controller
 
             $data['sample_name'] = $r['name_sample'];
 
-        }
+
+           }
+
+
+
 
 
         $this->load->view('excel_design', $data);

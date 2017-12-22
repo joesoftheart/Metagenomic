@@ -1,111 +1,119 @@
-<?php
 
-include('setting_sge.php');
-putenv("SGE_ROOT=$SGE_ROOT");
-putenv("PATH=$PATH");
+<?php  
 
-$user = $argv[1];
-$project = $argv[2];
-$path_in = $argv[3];
-$path_out = $argv[4];
-$GLOBALS['path_log'] = $argv[5];
+    include('setting_sge.php');
+    putenv("SGE_ROOT=$SGE_ROOT");
+    putenv("PATH=$PATH");
 
-$GLOBALS['level'] = $argv[6];
-$GLOBALS['size_alpha'] = $argv[7];
-$GLOBALS['size_beta'] = $argv[8];
-$GLOBALS['group_sam'] = $argv[9];
-$GLOBALS['group_ven'] = $argv[10];
+         $user = $argv[1];
+         $project = $argv[2];
+         $path_in = $argv[3];
+         $path_out = $argv[4];
+         $GLOBALS['path_log'] = $argv[5];
 
-$GLOBALS['d_upgma_st'] = $argv[11];
-$GLOBALS['d_upgma_me'] = $argv[12];
+         $GLOBALS['level']= $argv[6];
+         $GLOBALS['size_alpha'] = $argv[7];
+         $GLOBALS['size_beta'] = $argv[8];
+         $GLOBALS['group_sam'] = $argv[9];
+         $GLOBALS['group_ven'] =$argv[10];
 
-$GLOBALS['d_pcoa_st'] = $argv[13];
-$GLOBALS['d_pcoa_me'] = $argv[14];
+         $GLOBALS['d_upgma_st'] = $argv[11];
+         $GLOBALS['d_upgma_me'] = $argv[12];
 
-$GLOBALS['nmds'] = $argv[15];
+         $GLOBALS['d_pcoa_st'] = $argv[13];
+         $GLOBALS['d_pcoa_me'] = $argv[14];
+         
+         $GLOBALS['nmds']  = $argv[15];
 
-$GLOBALS['d_nmds_st'] = $argv[16];
-$GLOBALS['d_nmds_me'] = $argv[17];
+         $GLOBALS['d_nmds_st'] = $argv[16];
+         $GLOBALS['d_nmds_me'] = $argv[17];
+         
 
+         $GLOBALS['file_design'] = $argv[18];
+         $GLOBALS['file_metadata'] = $argv[19];
+         $GLOBALS['ah_mova'] = $argv[20];
 
-$GLOBALS['file_design'] = $argv[18];
-$GLOBALS['file_metadata'] = $argv[19];
-$GLOBALS['ah_mova'] = $argv[20];
+         
+         $GLOBALS['correlation_meta'] = $argv[21];
+         $GLOBALS['method_meta'] = $argv[22];
+         $GLOBALS['axes_meta'] = $argv[23];
 
+         $GLOBALS['correlation_otu'] = $argv[24];
+         $GLOBALS['method_otu'] = $argv[25];
+         $GLOBALS['axes_otu'] = $argv[26];
 
-$GLOBALS['correlation_meta'] = $argv[21];
-$GLOBALS['method_meta'] = $argv[22];
-$GLOBALS['axes_meta'] = $argv[23];
+         $GLOBALS['label_num'] = $argv[27];
+         
 
-$GLOBALS['correlation_otu'] = $argv[24];
-$GLOBALS['method_otu'] = $argv[25];
-$GLOBALS['axes_otu'] = $argv[26];
+      
+         
+         # Check PCoA & NMDS
+         $GLOBALS['check'] = "";
 
-$GLOBALS['label_num'] = $argv[27];
-
-
-# Check PCoA & NMDS
-$GLOBALS['check'] = "";
-
-if ($GLOBALS['d_pcoa_st'] != "0" || $GLOBALS['d_pcoa_me'] != "0") {
-    $GLOBALS['check'] = "pcoa";
-} elseif ($GLOBALS['d_nmds_st'] != "0" || $GLOBALS['d_nmds_me'] != "0") {
-    $GLOBALS['check'] = "nmds";
-}
-
-
-# Keep value method PCoA or nmds by metadata
-$GLOBALS['value_method_meta'] = null;
-
-# Keep value method PCoA or nmds by otu
-$GLOBALS['value_method_otu'] = null;
-
-# Keep value method tree
-$GLOBALS['tree_cal'] = null;
+         if($GLOBALS['d_pcoa_st'] != "0" || $GLOBALS['d_pcoa_me'] != "0"){
+             $GLOBALS['check'] = "pcoa";
+         }elseif ($GLOBALS['d_nmds_st'] != "0" || $GLOBALS['d_nmds_me'] != "0") {
+             $GLOBALS['check'] = "nmds";
+         }
 
 
-if ($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != "" && $argv[6] = !"" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != "") {
-    echo "Check Parameter Success" . "\n";
-    collect_rarefaction_summary($user, $project, $path_in, $path_out);
+         # Keep value method PCoA or nmds by metadata
+           $GLOBALS['value_method_meta'] = null;
+
+         # Keep value method PCoA or nmds by otu
+           $GLOBALS['value_method_otu'] = null;
+
+          # Keep value method tree
+            $GLOBALS['tree_cal'] = null;
 
 
-} else {
+         if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != "" && $argv[6] =! "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != ""){
+             echo "Check Parameter Success"."\n";
+             //collect_rarefaction_summary($user,$project,$path_in,$path_out);
+             //make_biom($user,$project,$path_in,$path_out);
+             //biom_to_stamp($user,$project,$path_in,$path_out);
+             //remove_float($user,$project,$path_in,$path_out);
+             stamp($user,$project,$path_in,$path_out);
+             
+         }else{
 
-    echo "user : " . $user . "\n";
-    echo "project : " . $project . "\n";
-    echo "path_in : " . $path_in . "\n";
-    echo "path_out : " . $path_out . "\n";
-    echo "path_log : " . $GLOBALS['path_log'] . "\n";
-    echo "level : " . $GLOBALS['level'] . "\n";
+              echo "user : ".$user."\n";
+              echo "project : ".$project."\n"; 
+              echo "path_in : ".$path_in."\n";
+              echo "path_out : ".$path_out."\n";
+              echo "path_log : ".$GLOBALS['path_log']."\n";
+              echo "level : ".$GLOBALS['level']."\n";
+             
+              echo "size_alpha : ".$GLOBALS['size_alpha']."\n";
+              echo "size_beta : ".$GLOBALS['size_beta']."\n";
+              echo "group_sam : ".$GLOBALS['group_sam']."\n";
+              echo "group_ven : ".$GLOBALS['group_ven']."\n";
 
-    echo "size_alpha : " . $GLOBALS['size_alpha'] . "\n";
-    echo "size_beta : " . $GLOBALS['size_beta'] . "\n";
-    echo "group_sam : " . $GLOBALS['group_sam'] . "\n";
-    echo "group_ven : " . $GLOBALS['group_ven'] . "\n";
+              echo "d_upgma_st : ".$GLOBALS['d_upgma_st']."\n";
+              echo "d_upgma_me : ".$GLOBALS['d_upgma_me']."\n";
 
-    echo "d_upgma_st : " . $GLOBALS['d_upgma_st'] . "\n";
-    echo "d_upgma_me : " . $GLOBALS['d_upgma_me'] . "\n";
+              echo "d_pcoa_st : ".$GLOBALS['d_pcoa_st']."\n";
+              echo "d_pcoa_me : ".$GLOBALS['d_pcoa_me']."\n";
+         
+              echo "nmds : ".$GLOBALS['nmds']."\n";
 
-    echo "d_pcoa_st : " . $GLOBALS['d_pcoa_st'] . "\n";
-    echo "d_pcoa_me : " . $GLOBALS['d_pcoa_me'] . "\n";
+              echo "d_nmds_st : ".$GLOBALS['d_nmds_st']."\n";
+              echo "d_nmds_me : ".$GLOBALS['d_nmds_me']."\n" ;
 
-    echo "nmds : " . $GLOBALS['nmds'] . "\n";
+              echo "file_design : ".$GLOBALS['file_design']."\n";
+              echo "file_metadata : ".$GLOBALS['file_metadata']."\n" ;
+              echo "ah_mova : ".$GLOBALS['ah_mova']."\n";
+             
+              echo "correlation_meta : ".$GLOBALS['correlation_meta']."\n";
+              echo "method_meta : ".$GLOBALS['method_meta']."\n";
+              echo "axes_meta : ".$GLOBALS['axes_meta']."\n";
 
-    echo "d_nmds_st : " . $GLOBALS['d_nmds_st'] . "\n";
-    echo "d_nmds_me : " . $GLOBALS['d_nmds_me'] . "\n";
+              echo "correlation_otu : ".$GLOBALS['correlation_otu']."\n";
+              echo "method_otu : ".$GLOBALS['method_otu']."\n";
+              echo "axes_otu : ".$GLOBALS['axes_otu']."\n";
+         }
 
-    echo "file_design : " . $GLOBALS['file_design'] . "\n";
-    echo "file_metadata : " . $GLOBALS['file_metadata'] . "\n";
-    echo "ah_mova : " . $GLOBALS['ah_mova'] . "\n";
 
-    echo "correlation_meta : " . $GLOBALS['correlation_meta'] . "\n";
-    echo "method_meta : " . $GLOBALS['method_meta'] . "\n";
-    echo "axes_meta : " . $GLOBALS['axes_meta'] . "\n";
-
-    echo "correlation_otu : " . $GLOBALS['correlation_otu'] . "\n";
-    echo "method_otu : " . $GLOBALS['method_otu'] . "\n";
-    echo "axes_otu : " . $GLOBALS['axes_otu'] . "\n";
-}
 
 
 function collect_rarefaction_summary($user, $project, $path_in, $path_out)
@@ -1460,7 +1468,9 @@ function plot_graph_r_Tree($user, $project, $path_in, $path_out)
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
 
-            make_biom($user, $project, $path_in, $path_out);
+
+            //make_biom($user,$project,$path_in,$path_out);
+
             break;
         }
     }
@@ -1468,14 +1478,22 @@ function plot_graph_r_Tree($user, $project, $path_in, $path_out)
 }
 
 
+
 function make_biom($user, $project, $path_in, $path_out)
 {
 
 
-    echo "make_biom" . "\n";
-    $jobname = $user . "_make_biom";
+   #  silva , rdp => $label = 1
+   #  greengene   => $label = 2
 
-    $make = "make.biom(shared=final.tx.shared, label=" . $GLOBALS['level'] . ",constaxonomy=final.tx." . $GLOBALS['level'] . ".cons.taxonomy, reftaxonomy=gg_13_8_99.gg.tax, picrust=99_otu_map.txt,inputdir=$path_in,outputdir=$path_out)";
+
+   $label = '2';
+
+   echo "make_biom"."\n";
+   $jobname = $user."_make_biom";
+   
+   $make = "make.biom(shared=final.tx.shared, label=".$label.",constaxonomy=final.tx.".$label.".cons.taxonomy, reftaxonomy=gg_13_8_99.gg.tax, picrust=99_otu_map.txt,inputdir=$path_in,outputdir=$path_out)";
+
 
     file_put_contents($path_in . '/advance.batch', $make);
 
@@ -1509,18 +1527,25 @@ function make_biom($user, $project, $path_in, $path_out)
 
 }
 
-function convert_biom($user, $project, $path_in, $path_out)
-{
 
+function convert_biom($user,$project,$path_in,$path_out){
+   
+
+
+     #  silva , rdp => $label = 1
+     #  greengene   => $label = 2
+    
+    $label = '2';
 
     echo "convert_biom" . "\n";
 
     $jobname = $user . "_convert_biom";
     $log = $GLOBALS['path_log'];
 
-    $path_input_biom = $path_out . "final.tx." . $GLOBALS['level'] . ".biom";
-    $path_output_biom = $path_out . "normalized_otus." . $GLOBALS['level'] . ".biom";
-    $path_output_txt = $path_out . "final.tx." . $GLOBALS['level'] . ".txt";
+
+    $path_input_biom  = $path_out."final.tx.".$label.".biom";
+    $path_output_biom = $path_out."normalized_otus.".$label.".biom";
+    $path_output_txt  = $path_out."final.tx.".$label.".txt";
 
     $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y picrust-1.1.1/scripts/convert_biom $path_input_biom $path_output_biom $path_output_txt";
 
@@ -1555,16 +1580,25 @@ function convert_biom($user, $project, $path_in, $path_out)
 function phylotype_picrust($user, $project, $path_in, $path_out)
 {
 
+
+    #  silva , rdp => $label = 1
+    #  greengene   => $label = 2
+
+    $label = '2';
+
     echo "phylotype_picrust" . "\n";
+
 
     $jobname = $user . "_phylotype_picrust";
     $log = $GLOBALS['path_log'];
 
-    $path_input_biom = $path_out . "final.tx." . $GLOBALS['level'] . ".biom";
+
+    $path_input_biom = $path_out . "final.tx." . $label . ".biom";
     $path_output_biom = $path_out . "final.biom";
 
 
     $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y  picrust-1.1.1/scripts/qsubMoPhylo5andpicrust_norm $path_input_biom $path_output_biom ";
+
 
     shell_exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1573,129 +1607,392 @@ function phylotype_picrust($user, $project, $path_in, $path_out)
     $id_job = ""; # give job id
     foreach ($output as $key_var => $value) {
 
-        if ($key_var == "1") {
-            $data = explode(":", $value);
-            $id_job = $data[1];
+
+        shell_exec($cmd);
+        $check_qstat = "qstat  -j '$jobname' ";
+        exec($check_qstat, $output);
+
+        $id_job = ""; # give job id
+        foreach ($output as $key_var => $value) {
+
+            if ($key_var == "1") {
+                $data = explode(":", $value);
+                $id_job = $data[1];
+            }
         }
-    }
-    $loop = true;
-    while ($loop) {
+        $loop = true;
+        while ($loop) {
 
-        $check_run = exec("qstat -j $id_job");
+            $check_run = exec("qstat -j $id_job");
 
-        if ($check_run == false) {
+            if ($check_run == false) {
 
-            remove_logfile_mothur2($path_out);
-            remove_file_tree_sum($path_in);
+                remove_logfile_mothur2($path_out);
+                remove_file_tree_sum($path_in);
 
-            change_name($user, $project, $path_in, $path_out);
-            break;
+                //change_name($user,$project,$path_in,$path_out);
+                phylotype_picrust2($user, $project, $path_in, $path_out);
+                break;
+            }
         }
-    }
 
+    }
 }
 
-
-function change_name($user, $project, $path_in, $path_out)
-{
-
-
-    echo "change_name" . "\n";
-
-    $dir = $path_out;
-    $file_read = array('svg');
-    $dir_ignore = array();
-    $scan_result = scandir($dir);
-
-    foreach ($scan_result as $key => $value) {
-
-        if (!in_array($value, array('.', '..'))) {
-
-            if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
-
-                if (in_array($value, $dir_ignore)) {
-                    continue;
-                }
+    function phylotype_picrust2($user, $project, $path_in, $path_out)
+    {
 
 
-            } else {
+        #  silva , rdp => $label = 1
+        #  greengene   => $label = 2
 
-                $type = explode('.', $value);
-                $type = array_reverse($type);
-                if (in_array($type[0], $file_read)) {
+        $label = '2';
 
-                    $file_name = preg_split("/[.]/", $value);
-                    if (in_array("bin", $file_name)) {
-                        rename($dir . "/" . $value, $dir . "/" . "bin.svg");
-                        //echo $value." => "."change to bin.svg"."\n";
+        echo "phylotype_picrust2" . "\n";
+
+        $jobname = $user . "_phylotype_picrust2";
+        $log = $GLOBALS['path_log'];
+
+        $normalized_otus = $path_out . "normalized_otus." . $label . ".biom";
+        $metagenome_predictions = $path_out . "metagenome_predictions." . $label . ".biom";
+
+
+        $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y  picrust-1.1.1/scripts/qsubMoPhylo5andpicrust $normalized_otus $metagenome_predictions";
+
+        shell_exec($cmd);
+        $check_qstat = "qstat  -j '$jobname' ";
+        exec($check_qstat, $output);
+
+        $id_job = ""; # give job id
+        foreach ($output as $key_var => $value) {
+
+            if ($key_var == "1") {
+                $data = explode(":", $value);
+                $id_job = $data[1];
+            }
+        }
+        $loop = true;
+        while ($loop) {
+
+            $check_run = exec("qstat -j $id_job");
+
+            if ($check_run == false) {
+                phylotype_picrust3($user, $project, $path_in, $path_out);
+                break;
+            }
+        }
+
+
+    }
+
+# Run separately  
+
+
+    function phylotype_picrust3($user, $project, $path_in, $path_out)
+    {
+
+
+        #  silva , rdp => $label = 1
+        #  greengene   => $label = 2
+
+
+        $label = '2';
+
+        echo "phylotype_picrust3" . "\n";
+
+        $jobname = $user . "_phylotype_picrust3";
+        $log = $GLOBALS['path_log'];
+
+
+        $metagenome_predictions = $path_out . "metagenome_predictions." . $label . ".biom";
+
+        # $L = Please select level of KEGG pathway  level 1,2 or 3
+        $L = "L2";
+
+        $predicted_metagenomes = $path_out . "predicted_metagenomes." . $label . "." . $L . ".biom";
+
+
+        $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y  picrust-1.1.1/scripts/qsubMoPhylo5andpicrust1 $metagenome_predictions $label $predicted_metagenomes ";
+
+        shell_exec($cmd);
+        $check_qstat = "qstat  -j '$jobname' ";
+        exec($check_qstat, $output);
+
+        $id_job = ""; # give job id
+        foreach ($output as $key_var => $value) {
+
+            if ($key_var == "1") {
+                $data = explode(":", $value);
+                $id_job = $data[1];
+            }
+        }
+        $loop = true;
+        while ($loop) {
+
+            $check_run = exec("qstat -j $id_job");
+
+            if ($check_run == false) {
+                biom_to_stamp($user, $project, $path_in, $path_out);
+                break;
+            }
+        }
+
+    }
+
+    function biom_to_stamp($user, $project, $path_in, $path_out)
+    {
+
+        #  silva , rdp => $label = 1
+        #  greengene   => $label = 2
+
+        $label = '2';
+
+        echo "biom_to_stamp" . "\n";
+
+        $jobname = $user . "_biom_to_stamp";
+        $log = $GLOBALS['path_log'];
+
+        # $L = Please select level of KEGG pathway  level 1,2 or 3
+        $L = "L2";
+
+        $predicted_metagenomes = $path_out . "predicted_metagenomes." . $label . "." . $L . ".biom";
+
+        $pathways = $path_out . "pathways" . $label . $L . ".spf";
+
+
+        $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y  picrust-1.1.1/scripts/qsubBiomtoStamp $predicted_metagenomes $pathways";
+
+        shell_exec($cmd);
+        $check_qstat = "qstat  -j '$jobname' ";
+        exec($check_qstat, $output);
+
+        $id_job = ""; # give job id
+        foreach ($output as $key_var => $value) {
+
+            if ($key_var == "1") {
+                $data = explode(":", $value);
+                $id_job = $data[1];
+            }
+        }
+        $loop = true;
+        while ($loop) {
+
+            $check_run = exec("qstat -j $id_job");
+
+            if ($check_run == false) {
+                remove_float($user, $project, $path_in, $path_out);
+                break;
+            }
+        }
+
+    }
+
+
+    function remove_float($user, $project, $path_in, $path_out)
+    {
+
+        echo "remove_float" . "\n";
+
+        $jobname = $user . "_remove_float";
+        $log = $GLOBALS['path_log'];
+
+
+        #  silva , rdp => $label = 1
+        #  greengene   => $label = 2
+
+        $label = '2';
+
+        # $L = Please select level of KEGG pathway  level 1,2 or 3
+        $L = "L2";
+
+        $pathways = $path_out . "pathways" . $label . $L . ".spf";
+
+        $cmd = "qsub -N '$jobname' -o $log -cwd -j y -b y  /usr/bin/php -f R_Script/replace_string.php $pathways";
+
+        exec($cmd);
+        $check_qstat = "qstat  -j '$jobname' ";
+        exec($check_qstat, $output);
+        $id_job = ""; # give job id
+        foreach ($output as $key_var => $value) {
+            if ($key_var == "1") {
+                $data = explode(":", $value);
+                $id_job = $data[1];
+            }
+        }
+        $loop = true;
+        while ($loop) {
+
+            $check_run = exec("qstat -j $id_job");
+            if ($check_run == false) {
+                stamp($user, $project, $path_in, $path_out);
+                break;
+            }
+        }
+    }
+
+    function stamp($user, $project, $path_in, $path_out)
+    {
+
+
+        #  silva , rdp => $label = 1
+        #  greengene   => $label = 2
+
+        $label = '2';
+
+        # $L = Please select level of KEGG pathway  level 1,2 or 3
+        $L = "L2";
+
+        echo "stamp" . "\n";
+
+        $jobname = $user . "_stamp";
+        $log = $GLOBALS['path_log'];
+
+        $pathways = "../" . $path_out . "pathways" . $label . $L . ".spf";
+        $myResultsPathway = "../" . $path_out . "myResultsPathway" . $L . ".tsv";
+        $sample1 = "S1_1_16s_S1";
+        $sample2 = "S2_1_16s_S3";
+        $statistical_test = "G-test (w/ Yates' correction)";
+        $ci_method = "DP: Newcombe-Wilson";
+        $p_value = "0.05";
+
+
+        $function = 'python  STAMP-1.8/commandLine.py --file ' . $pathways . ' --sample1 ' . $sample1 . ' --sample2 ' . $sample2 . ' --statTest "' . $statistical_test . '" --CI "' . $ci_method . '" -p ' . $p_value . ' --coverage 0.95 --outputTable ' . $myResultsPathway . '';
+
+        file_put_contents($path_in . 'qsubStamp.sh', $function);
+        chmod($path_in . 'qsubStamp.sh', 0775);
+        $getPath = "../" . $path_in . "qsubStamp.sh";
+
+        $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y STAMP-1.8/$getPath";
+
+        //$cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y STAMP-1.8/qsubStamp.sh $pathways $sample1 $sample2 $myResultsPathway  $p_value";
+
+        shell_exec($cmd);
+        $check_qstat = "qstat  -j '$jobname' ";
+        exec($check_qstat, $output);
+
+        $id_job = ""; # give job id
+        foreach ($output as $key_var => $value) {
+
+            if ($key_var == "1") {
+                $data = explode(":", $value);
+                $id_job = $data[1];
+            }
+        }
+        $loop = true;
+        while ($loop) {
+
+            $check_run = exec("qstat -j $id_job");
+
+            if ($check_run == false) {
+
+                break;
+            }
+        }
+
+
+    }
+
+
+    function change_name($user, $project, $path_in, $path_out)
+    {
+
+
+        echo "change_name" . "\n";
+
+        $dir = $path_out;
+        $file_read = array('svg');
+        $dir_ignore = array();
+        $scan_result = scandir($dir);
+
+        foreach ($scan_result as $key => $value) {
+
+            if (!in_array($value, array('.', '..'))) {
+
+                if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
+
+                    if (in_array($value, $dir_ignore)) {
+                        continue;
                     }
-                    if (in_array("sharedsobs", $file_name)) {
-                        rename($dir . "/" . $value, $dir . "/" . "sharedsobs.svg");
-                        //echo $value." => "."change to sharedsobs.svg"."\n";
-                    }
-                    if (in_array("jclass", $file_name)) {
-                        rename($dir . "/" . $value, $dir . "/" . "jclass.svg");
-                        //echo $value." => "."change to jclass.svg"."\n";
-                    }
-                    if (in_array("thetayc", $file_name)) {
-                        rename($dir . "/" . $value, $dir . "/" . "thetayc.svg");
-                        //echo $value." => "."change to thetayc.svg"."\n";
+
+
+                } else {
+
+                    $type = explode('.', $value);
+                    $type = array_reverse($type);
+                    if (in_array($type[0], $file_read)) {
+
+                        $file_name = preg_split("/[.]/", $value);
+                        if (in_array("bin", $file_name)) {
+                            rename($dir . "/" . $value, $dir . "/" . "bin.svg");
+                            //echo $value." => "."change to bin.svg"."\n";
+                        }
+                        if (in_array("sharedsobs", $file_name)) {
+                            rename($dir . "/" . $value, $dir . "/" . "sharedsobs.svg");
+                            //echo $value." => "."change to sharedsobs.svg"."\n";
+                        }
+                        if (in_array("jclass", $file_name)) {
+                            rename($dir . "/" . $value, $dir . "/" . "jclass.svg");
+                            //echo $value." => "."change to jclass.svg"."\n";
+                        }
+                        if (in_array("thetayc", $file_name)) {
+                            rename($dir . "/" . $value, $dir . "/" . "thetayc.svg");
+                            //echo $value." => "."change to thetayc.svg"."\n";
+                        }
                     }
                 }
             }
         }
     }
-}
 
 
 # Remove log mothur
 
-function remove_logfile_mothur2($path_out)
-{
+    function remove_logfile_mothur2($path_out)
+    {
 
-    $path_dir = $path_out;
-    if (is_dir($path_dir)) {
-        if ($read = opendir($path_dir)) {
-            while (($logfile = readdir($read)) !== false) {
+        $path_dir = $path_out;
+        if (is_dir($path_dir)) {
+            if ($read = opendir($path_dir)) {
+                while (($logfile = readdir($read)) !== false) {
 
-                $allowed = array('logfile');
-                $ext = pathinfo($logfile, PATHINFO_EXTENSION);
+                    $allowed = array('logfile');
+                    $ext = pathinfo($logfile, PATHINFO_EXTENSION);
 
-                if (in_array($ext, $allowed)) {
+                    if (in_array($ext, $allowed)) {
 
-                    unlink($path_dir . $logfile);
+                        unlink($path_dir . $logfile);
+                    }
                 }
-            }
 
-            closedir($read);
+                closedir($read);
+            }
         }
     }
-}
 
 
 # Remove file gg_13_8_99.gg.tree.sum
 
-function remove_file_tree_sum($path_in)
-{
+    function remove_file_tree_sum($path_in)
+    {
 
-    $path_dir = $path_in;
-    if (is_dir($path_dir)) {
-        if ($read = opendir($path_dir)) {
-            while (($logfile = readdir($read)) !== false) {
+        $path_dir = $path_in;
+        if (is_dir($path_dir)) {
+            if ($read = opendir($path_dir)) {
+                while (($logfile = readdir($read)) !== false) {
 
-                $allowed = array('sum');
-                $ext = pathinfo($logfile, PATHINFO_EXTENSION);
+                    $allowed = array('sum');
+                    $ext = pathinfo($logfile, PATHINFO_EXTENSION);
 
-                if (in_array($ext, $allowed)) {
+                    if (in_array($ext, $allowed)) {
 
-                    unlink($path_dir . $logfile);
+                        unlink($path_dir . $logfile);
+                    }
                 }
-            }
 
-            closedir($read);
+                closedir($read);
+            }
         }
     }
-}
 
 
 ?>
