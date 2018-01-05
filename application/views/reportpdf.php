@@ -432,9 +432,7 @@ for ($i = 0; $i < count($abun_genus); $i++) {
         $name_genus = $split[5];
         $percent = $split[4];
     } else {
-
     }
-
 }
 $name_dataset_genus = "";
 $percent_genus = "";
@@ -496,7 +494,7 @@ $this->myfpdf->MultiCell(0, 6, 'A total of ' . $project_group_sam . ' datasets h
 $this->myfpdf->SetFont('Times', 'B', 12);
 $this->myfpdf->Cell(0, 10, 'Diversity, richness and composition of microbial communities', 0, 1);
 $this->myfpdf->SetFont('Times', '', 12);
-$this->myfpdf->MultiCell(0, 6, 'The cleaned sequences were clustered based on ' . $project_analysis . ' method. After data pre-processing, an average reads length is ' . $num_seqs2 . ' bp with number of dataset of ' . $avg_reads . ' sequences. The ' . $project_analysis . ' of these data represented ' . $t_range_otu . ' OTUs per group in average. The alpha diversity was estimated microbial community richness (Chao1) and diversity (Shannon) from subsampling data based on the library size at [[[xxx]]]. The ' . $max_chao . ' and the ' . $min_chao . ' displayed the highest and the lowest species richness, respectively. The Shannon index estimated the diversity in the community. It displayed that there is the most diverse of bacteria in ' . $max_shanon . ' and the lowest diverse of bacteria in ' . $min_shanon . '. ');
+$this->myfpdf->MultiCell(0, 6, 'The cleaned sequences were clustered based on ' . $project_analysis . ' method. After data pre-processing, an average reads length is ' . $num_seqs2 . ' bp with number of dataset of ' . $avg_reads . ' sequences. The ' . $project_analysis . ' of these data represented ' . $t_range_otu . ' OTUs per group in average. The alpha diversity was estimated microbial community richness (Chao1) and diversity (Shannon) from subsampling data based on the library size at '. $lib_size .'. The ' . $max_chao . ' and the ' . $min_chao . ' displayed the highest and the lowest species richness, respectively. The Shannon index estimated the diversity in the community. It displayed that there is the most diverse of bacteria in ' . $max_shanon . ' and the lowest diverse of bacteria in ' . $min_shanon . '. ');
 
 
 // Page 2
@@ -514,7 +512,7 @@ $this->myfpdf->MultiCell(0, 6, '        The platform also produce rarefaction gr
 
 //Page 3
 $this->myfpdf->AddPage();
-$this->myfpdf->Image(base_url() . 'images/rare_plot.png', '50', '14', '90  ', '60', 'PNG');
+$this->myfpdf->Image(base_url() . $project_path . '/output/Rare.png', '50', '14', '90  ', '60', 'PNG');
 $this->myfpdf->SetFont('Times', 'B', 12);
 $this->myfpdf->Cell(0, 50, '', 0, 1);
 $this->myfpdf->Cell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 2.</b>Rarefaction curve of 18S sequences among the ' . $sample_big_rare . ' groups') . '', 0, 1);
@@ -538,7 +536,7 @@ $this->myfpdf->SetFont('Times', 'B', 12);
 $this->myfpdf->Cell(0, 10, 'Microbial comparision by beta diversity', 0, 1);
 $this->myfpdf->SetFont('Times', '', 12);
 $this->myfpdf->MultiCell(0, 6, '      Venn diagram (appendix ##) show number of unique OTUs identified for each set of data submitted, while the overlapping region represent the shared OTUs between one another. The analysis indicates that dataset ' . $name_dataset_otu . ' have a total of ' . $num_dataset_otu . ' and ## OTUs, respectively. Some species maybe common and observed in all samples submitted, hence the number will be shown in the most overlapped region; in this case, it’ll be a total of ' . $num_otu . ' OTUs. ', '', 'L');
-$this->myfpdf->Image(base_url() . 'images/ven_plot.png', '50', '160', '90  ', '70', '');
+$this->myfpdf->Image(base_url() . $project_path . '/output/sharedsobs.png', '50', '160', '90  ', '70', '');
 $this->myfpdf->Cell(0, 80, '', 0, 1);
 $this->myfpdf->SetFont('Times', '', 12);
 $this->myfpdf->MultiCell(0, 10, $this->myfpdf->WriteHTML('<b>Figure 5 </b>Venn diagram that illustrates overlap of OTUs, compared between ' . $name_dataset_otu) . '', 0, 1);
@@ -556,7 +554,7 @@ $this->myfpdf->SetFont('Times', '', 12);
 $this->myfpdf->MultiCell(0, 6, '      Two ordination methods for community comparison among samples such as Principal Coordinates analysis (PCoA) and Non-metric multidimensional scaling (NMDS) are one of the most common analyses in microbial ecology which were constructed from dissimilarity matrices.');
 $this->myfpdf->Cell(0, 6, '', 0, 1);
 $this->myfpdf->MultiCell(0, 6, 'PCoA and NMDS plot compresses all the information (multiple dimension/factors) into a two-dimensional graph with x-axis and y-axis being MDS1 and MDS2 , PC1 and PC2, respectively. This plot indicates the similarity between bacterial community structure. From the analysis, the data shows that the closest relationship occur between dataset ' . $near_sam1 . ' and ' . $near_sam2 . '. ');
-$this->myfpdf->Image(base_url() . 'images/nmds_plot.png', 50, 150, 120, 100);
+$this->myfpdf->Image(base_url() . $project_path . '/output/NMD.png', 50, 150, 120, 90);
 $this->myfpdf->SetFont('Times', '', 12);
 $this->myfpdf->Cell(0, 105, '', 0, 1);
 $this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 6</b> ' . $graph . ' based on ' . $calculators . ' dissimilarity index that shows the bacterial community structure among ' . $project_num_sam . ' samples at ' . $methods . ' level') . '.');
@@ -564,13 +562,13 @@ $this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 6</b> ' . $gr
 //Page 6
 $this->myfpdf->AddPage();
 $this->myfpdf->MultiCell(0, 6, "        Biplot (appendix ##) present the evaluated data in a graph form. Biplot was visualized from performing using mothur subroutine 'corr.axes'. This visualization help illustrates the interaction between the submitted data and other metadata such as pH, temperature, salinity and the correlation of the relative abundance of each OTU along the two axes in the PCoA or NMDS. The arrow represent the direction of metadata or the environment or OTUs which related among groups to axes of PCoA or NMDS. Different bacteria can interact and respond to changes in metadata in different ways, some may respond more when pH changes but the opposite trend may be observed for salinity due to its high salt tolerance level. This graph will serve as a tool to spot metadata in which it effects one sample more than another, this plot is represent $graph, based on $calculators index with biplot, calculated by $calculators_bio's correlation.");
-$this->myfpdf->Image(base_url() . 'images/bi_plot.png', 50, 80, 110, 90);
+$this->myfpdf->Image(base_url() . $project_path . '/output/NewNMDS_withBiplotwithMetadata.png', 50, 80, 110, 90);
 $this->myfpdf->Cell(0, 85, '', 0, 1);
 $this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 7</b>       ' . $graph . ' based on ' . $calculators . ' index with biplot, calculated ' . $calculators_bio . '’s correlation method, representing the direction of metadata or the environment which related with other samples.') . '');
 
 //Page 7
 $this->myfpdf->AddPage();
-$this->myfpdf->Image(base_url() . 'images/nmds2_plot.png', 50, 14, 110, 90);
+$this->myfpdf->Image(base_url() . $project_path . '/output/NewNMDS_withBiplotwithOTU.png', 50, 14, 110, 90);
 $this->myfpdf->Cell(0, 90, '', 0, 1);
 $this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 8.</b>       ' . $graph . ' based on ' . $calculators . ' index with biplot, calculated ' . $calculators_bio . '’s correlation method, representing the direction of OTUs or genus which related among groups.') . '');
 $this->myfpdf->MultiCell(0, 6, '      Moreover, the distance-based analysis of molecular variance (AMOVA) or Homogeneity of molecular variance (HOMOVA) are used to assess significant differences among treatment samples. AMOVA testing displayed different bacterial communities between ' . $name_patten . '. Homova testing displayed the difference in variation between the two groups ' . $name_patten_homo . '.');
@@ -581,7 +579,7 @@ $this->myfpdf->MultiCell(0, 6, 'PICRUSt is an approach for inferring community m
 
 //Page 8
 $this->myfpdf->AddPage();
-$this->myfpdf->Image(base_url() . 'images/stat_plot.png', 20, 18, 170, 90);
+$this->myfpdf->Image(base_url() . $project_path . '/output/Resultpathways0.png', 20, 18, 170, 90);
 $this->myfpdf->SetFont('Times', '', 12);
 $this->myfpdf->Cell('0', 100, '', 0, 1);
 $this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 9.</b> Extended error bar plot of the predicted metagenome functions in KEGG (level 2) between soil source 1 and soil source 2') . '');

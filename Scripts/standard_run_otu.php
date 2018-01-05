@@ -12,28 +12,20 @@ putenv("PATH=$PATH");
 //putenv( "SGE_CELL=default");
 //putenv("SGE_QMASTER_PORT=6444");
 //putenv("SGE_EXECD_PORT=6445");
-
-
 // check value params
 if ($user != null && $project != null && $path != null && $id != null) {
     run($user, $id, $project, $path);
 }
-
-
 // Run Program
 function run($user, $id, $project, $path)
 {
     file_put_contents('owncloud/data/' . $user . '/files/' . $project . '/input/run.batch', "");
     check_file($user, $id, $project, $path);
 }
-
-
 $progres_f = "owncloud/data/$user/files/$project/output/progress.txt";
-// Check file
+// check file
 function check_file($user, $id, $project, $path)
 {
-
-
     echo "\n";
     echo "Run check_file :";
     $path_stability = "../owncloud/data/$user/files/$project/input/stability.files";
@@ -46,7 +38,6 @@ function check_file($user, $id, $project, $path)
         run_makefile($user, $id, $project, $path);
     }
 }
-
 // check file oligos
 function check_oligos($user, $id, $project, $path)
 {
@@ -73,9 +64,7 @@ function check_oligos($user, $id, $project, $path)
         make_contigs_summary($user, $id, $project, $path);
     }
 }
-
-
-// Make file
+// make file
 function run_makefile($user, $id, $project, $path)
 {
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality" . "\n", FILE_APPEND);
@@ -105,9 +94,7 @@ function run_makefile($user, $id, $project, $path)
         }
     }
 }
-
-
-// Make contig oligos
+// make contig oligos
 function make_contigs_oligos($file_oligo, $user, $id, $project, $path)
 {
     echo "\n";
@@ -134,13 +121,11 @@ function make_contigs_oligos($file_oligo, $user, $id, $project, $path)
         if ($check_run == false) {
             echo "go to replace_group ->";
             readlogs_make_contigs_oligos($user, $id, $project, $path, $id_job);
-
             break;
         }
     }
 }
-
-// make.contigs && summary.seqs
+// make contigs summary
 function make_contigs_summary($user, $id, $project, $path)
 {
     echo "\n";
@@ -164,14 +149,13 @@ summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path/inpu
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-            echo "success read logs  to replace_group";
+            echo "go to reads log make contigs summary";
             readlogs_make_contigs_summary($user, $id, $project, $path,$id_job);
             break;
         }
     }
 }
-
-
+// read log to report
 function readlogs_make_contigs_oligos($user, $id, $project, $path, $id_job)
 {
     echo "\n";
@@ -182,7 +166,6 @@ function readlogs_make_contigs_oligos($user, $id, $project, $path, $id_job)
     if (file_exists("owncloud/data/$user/files/$project/output/database.txt")) {
         file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "");
     }
-
     $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum|Mean).*\$/m";
     if (preg_match_all($pattern, $file, $matches)) {
         $val = implode("\n", $matches[0]);
@@ -212,7 +195,7 @@ function readlogs_make_contigs_oligos($user, $id, $project, $path, $id_job)
 
 
 }
-
+// read log to report
 function readlogs_make_contigs_summary($user, $id, $project, $path, $id_job)
 {
     echo "\n";
@@ -244,7 +227,7 @@ function readlogs_make_contigs_summary($user, $id, $project, $path, $id_job)
     echo "success read logs  to replace_group";
     replace_group($user, $id, $project, $path);
 }
-
+// replace name because - not use
 function replace_group($user, $id, $project, $path)
 {
     echo "\n";
@@ -283,8 +266,7 @@ function replace_group($user, $id, $project, $path)
     echo "go to screen_seqs ->";
     screen_seqs($user, $id, $project, $path);
 }
-
-// make.contigs && summary.seqs
+// screen seqs
 function screen_seqs($user, $id, $project, $path)
 {
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "quality-finish" . "\n", FILE_APPEND);
@@ -319,14 +301,11 @@ summary.seqs(count=stability.trim.contigs.good.count_table,inputdir=$path/input/
         }
     }
 }
-
-
-// Summary-seqs
+// align-seqs
 function align_seqs($user, $id, $project, $path)
 {
     echo "\n";
     echo "Run align_seqs";
-
     $jobname = $user . "_" . $id . "_align_seqs";
     $cmd = "align.seqs(fasta=stability.trim.contigs.good.unique.fasta, reference=silva.v4.fasta, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table,inputdir=$path/input/,outputdir=$path/output/)";
@@ -352,8 +331,7 @@ summary.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.tri
         }
     }
 }
-
-
+// read start an end
 function read_log_sungrid_start_end($user, $id, $project, $path, $id_job)
 {
     $path_logs = $path . "/logs/";
@@ -368,7 +346,6 @@ function read_log_sungrid_start_end($user, $id, $project, $path, $id_job)
     $start = 0;
     $end = 0;
     $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum).*\$/m";
-
     if (preg_match_all($pattern, $file, $matches)) {
         $val = implode("\n", $matches[0]);
         $sum = explode("\n", $val);
@@ -383,18 +360,14 @@ function read_log_sungrid_start_end($user, $id, $project, $path, $id_job)
             }
         }
     }
-
     #start
     $count_start = array_count_values($start_array);
     $start_max = max($count_start);
     $start_min = min($count_start);
-
     #end
     $count_end = array_count_values($end_array);
     $end_max = max($count_end);
     $end_min = min($count_end);
-
-
     if (($start_min == $start_max) || ($end_min == $end_max)) {
         foreach ($sum as $key => $value) {
             echo $value . "<br/>";
@@ -422,17 +395,13 @@ function read_log_sungrid_start_end($user, $id, $project, $path, $id_job)
             echo "\n";
             echo "Start and End null value";
         }
-
     }
-
 }
-
-
-// Screen remove
+// avg
 function avg_seq_before_filter($user, $id, $project, $path, $start, $end)
 {
     echo "\n";
-    echo "Before screen_remove :";
+    echo " Run avg_seq_before_filter :";
     $jobname = $user . "_" . $id . "_avg_seq_before_filter";
     $cmd = "screen.seqs(fasta=stability.trim.contigs.good.unique.align, count=stability.trim.contigs.good.count_table, summary=stability.trim.contigs.good.unique.summary, start=$start, end=$end, maxambig=8, maxhomop=8, maxlength=260, processors=8,inputdir=$path/input/,outputdir=$path/output/)
 summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/output/)";
@@ -458,8 +427,7 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
         }
     }
 }
-
-// Screen remove
+// screen remove
 function screen_remove($user, $id, $project, $path)
 {
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "align-sequence-finish" . "\n", FILE_APPEND);
@@ -495,14 +463,11 @@ summary.seqs(fasta=current, count=current,inputdir=$path/input/,outputdir=$path/
         }
     }
 }
-
-
-// Classify_system
+// classify
 function classify_system($user, $id, $project, $path)
 {
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "pre-cluster-chimera-finish" . "\n", FILE_APPEND);
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-sequence-remove" . "\n", FILE_APPEND);
-
     echo "\n";
     echo "Run classify_system :";
     $jobname = $user . "_" . $id . "_classify_system";
@@ -520,7 +485,6 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
     exec($check_qstat, $output);
     $id_job = ""; # give job id
     foreach ($output as $key_var => $value) {
-
         if ($key_var == "1") {
             $data = explode(":", $value);
             $id_job = $data[1];
@@ -530,28 +494,24 @@ system(cp owncloud/data/$user/files/$project/output/stability.trim.contigs.good.
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-            echo "go to phylotype_count->";
-
+            echo "go to readlogs_classify_system->";
             readlogs_classify_system($user, $id, $project, $path, $id_job);
-
             break;
         }
     }
 }
-
+// read log class to report
 function readlogs_classify_system($user, $id, $project, $path, $id_job)
 {
     echo "\n";
     echo "Run readlogs_classify_system :";
     $name = $user . "_" . $id . "_classify_system.o" . $id_job;
     $file = file_get_contents("Logs_sge/phylotype/" . $name);
-
     $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum|Mean|total).*\$/m";
     if (preg_match_all($pattern, $file, $matches)) {
         $val = implode("\n", $matches[0]);
         $sum = explode("\n", $val);
         $index = 0;
-
         foreach ($sum as $key => $value) {
 
             if ($index == 8) {
@@ -562,20 +522,14 @@ function readlogs_classify_system($user, $id, $project, $path, $id_job)
             if ($index == 9) {
                 $sum_seqs = preg_split('/\s+/', $value);
                 file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "avg_reads:" . $sum_seqs[4] . "\n", FILE_APPEND);
-
             }
-
-
             $index++;
         }
     }
-
     echo "go to phylotype_count->";
     phylotype_count($user, $id, $project, $path);
 }
-
-
-// Phylotype count
+// phylotype count
 function phylotype_count($user, $id, $project, $path)
 {
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-sequence-remove-finish" . "\n", FILE_APPEND);
@@ -607,31 +561,25 @@ count.groups(shared=final.opti_mcc.shared,inputdir=$path/input/,outputdir=$path/
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
             echo "go to read_log_sungrid_phylotype_count->";
-            sleep(180);
             read_log_sungrid_phylotype_count($user, $id, $project, $path, $id_job_string);
             break;
         }
     }
 }
-
-
+// read log lib size to report
 function read_log_sungrid_phylotype_count($user, $id, $project, $path, $id_job_string)
 {
-
     echo "\n";
     echo "Run read_log_sungrid_phylotype_count :";
     $name = $user . "_" . $id . "_phylotype_count.o" . $id_job_string;
     $file_name = str_replace(' ', '', $name);
     $searchfor = 'contains';
-    $file = file_get_contents("Logs_sge/otu/" . $file_name);
-
-
+    $file = file_get_contents("Logs_sge/phylotype/" . $file_name);
     $pattern = preg_quote($searchfor, '/');
 // finalise the regular expression, matching the whole line
     $pattern = "/^.*$pattern.*\$/m";
 // search, and store all matching occurences in $matches
     if (preg_match_all($pattern, $file, $matches)) {
-
         $i = 0;
         $t = array();
         foreach ($matches[0] as $ma) {
@@ -643,19 +591,16 @@ function read_log_sungrid_phylotype_count($user, $id, $project, $path, $id_job_s
             }
         }
         $size = min($t);
-        echo $size;
+        file_put_contents("owncloud/data/$user/files/$project/output/database.txt", "lib_size:" . $size . "\n", FILE_APPEND);
+        echo "Size :" . $size;
         echo "<br>";
         echo "Go to sub_sample_sammary->";
         sub_sample_summary($user, $id, $project, $path, $size);
     } else {
         echo "No matches found";
     }
-
-
 }
-
-
-// Sub samplr sammary
+// sub sample and sammary
 function sub_sample_summary($user, $id, $project, $path, $size)
 {
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "classify-otu-finish" . "\n", FILE_APPEND);
@@ -690,7 +635,7 @@ summary.single(shared=final.opti_mcc.shared, calc=nseqs-coverage-sobs-invsimpson
         }
     }
 }
-
+// read name sample use plot mathur
 function read_name_sample($user, $id, $project, $path, $size)
 {
     $group_sample = array();
@@ -705,11 +650,9 @@ function read_name_sample($user, $id, $project, $path, $size)
             if ($parts[0] != null) {
                 $group_sample[$i] = $parts[0];
                 $i++;
-
             }
         }
         fclose($file);
-
         foreach ($group_sample as $value) {
             $sample = str_replace("-", "_", $value);
             if ($name_sample == null) {
@@ -719,12 +662,10 @@ function read_name_sample($user, $id, $project, $path, $size)
             }
         }
         echo "go to plot_graph->";
-        echo "Name sample : " . $name_sample;
         plot_graph($user, $id, $project, $path, $size, $name_sample);
     }
 }
-
-// Last funtion plot graph
+// plot graph by mothur program
 function plot_graph($user, $id, $project, $path, $size, $name_sample)
 {
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot_graph" . "\n", FILE_APPEND);
@@ -774,8 +715,7 @@ corr.axes(axes=final.opti_mcc.thetayc.0.03.lt.ave.pcoa.axes, metadata=soilpro.me
 
 
 }
-
-
+// create file input heatmap
 function create_file_input_heatmap($user, $id, $project, $path)
 {
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "alpha-beta-diversity-finish" . "\n", FILE_APPEND);
@@ -806,8 +746,7 @@ function create_file_input_heatmap($user, $id, $project, $path)
     }
 
 }
-
-
+// create_file_input_abun
 function create_file_input_abun($user, $id, $project, $path)
 {
     echo "\n";
@@ -835,7 +774,7 @@ function create_file_input_abun($user, $id, $project, $path)
     }
 
 }
-
+//create_input_alphash
 function create_input_alphash($user, $id, $project, $path)
 {
     echo "\n";
@@ -863,8 +802,7 @@ function create_input_alphash($user, $id, $project, $path)
     }
 
 }
-
-
+//create_input_biplot
 function create_input_biplot($user, $id, $project, $path)
 {
     echo "\n";
@@ -892,8 +830,7 @@ function create_input_biplot($user, $id, $project, $path)
     }
 
 }
-
-
+// plot_graph_r_heatmap
 function plot_graph_r_heatmap($user, $id, $project, $path)
 {
     echo "\n";
@@ -923,7 +860,7 @@ function plot_graph_r_heatmap($user, $id, $project, $path)
     }
 
 }
-
+// plot_graph_r_NMD
 function plot_graph_r_NMD($user, $id, $project, $path)
 {
     echo "\n";
@@ -953,7 +890,7 @@ function plot_graph_r_NMD($user, $id, $project, $path)
     }
 
 }
-
+// plot_graph_r_Rare
 function plot_graph_r_Rare($user, $id, $project, $path)
 {
     echo "\n";
@@ -983,8 +920,7 @@ function plot_graph_r_Rare($user, $id, $project, $path)
     }
 
 }
-
-
+// plot_graph_r_Abun
 function plot_graph_r_Abun($user, $id, $project, $path)
 {
     echo "\n";
@@ -1014,8 +950,7 @@ function plot_graph_r_Abun($user, $id, $project, $path)
     }
 
 }
-
-
+// plot_graph_r_Alphash
 function plot_graph_r_Alphash($user, $id, $project, $path)
 {
     echo "\n";
@@ -1044,8 +979,7 @@ function plot_graph_r_Alphash($user, $id, $project, $path)
     }
 
 }
-
-
+// plot_graph_r_Biplot
 function plot_graph_r_Biplot($user, $id, $project, $path)
 {
 
@@ -1079,7 +1013,7 @@ function plot_graph_r_Biplot($user, $id, $project, $path)
     }
 
 }
-
+// plot_graph_r_Tree
 function plot_graph_r_Tree($user, $id, $project, $path)
 {
 
@@ -1111,16 +1045,13 @@ function plot_graph_r_Tree($user, $id, $project, $path)
     }
 
 }
-
-
+// make_biom file
 function make_biom($user, $id, $project, $path)
 {
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "plot-graph-finish" . "\n", FILE_APPEND);
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make-biom" . "\n", FILE_APPEND);
-
     echo "\n";
     echo "Run make_biom :";
-
     $jobname = $user . "_" . $id . "_make_biom";
     $cmd = "make.biom(shared=final.opti.mcc.shared, label=0.03,constaxonomy=final.opti_mcc.0.03.cons.taxonomy, reftaxonomy=gg_13_8_99.gg.tax, picrust=99_otu_map.txt,inputdir=$path/input/,outputdir=$path/output/)";
     file_put_contents('owncloud/data/' . $user . '/files/' . $project . '/input/run.batch', $cmd);
@@ -1145,14 +1076,12 @@ function make_biom($user, $id, $project, $path)
         }
     }
 }
-
-
+// convert_biom because error
 function convert_biom($user, $id, $project, $path)
 {
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make-biom-finish" . "\n", FILE_APPEND);
     echo "\n";
     echo "Run convert_biom :";
-
     $jobname = $user . "_" . $id . "_convert_biom";
     $path_input = "owncloud/data/$user/files/$project/output/final.tx.1.biom";
     $path_output_biom = "owncloud/data/$user/files/$project/output/normalized_otus.1.biom";
@@ -1172,25 +1101,22 @@ function convert_biom($user, $id, $project, $path)
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-            echo "Finish convert_biom ->";
+            echo "Finish convert_biom go to phylotype_picrust->";
             phylotype_picrust($user, $id, $project, $path);
             break;
         }
     }
-
 }
-
+// phylotype_picrust1
 function phylotype_picrust($user, $id, $project, $path)
 {
-//    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "make-biom-finish"."\n", FILE_APPEND);
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "picrust" . "\n", FILE_APPEND);
     echo "\n";
     echo "Run phylotype_picrust :";
-
     $path_input = "owncloud/data/$user/files/$project/output/final.tx.1.biom";
     $path_output_biom = "owncloud/data/$user/files/$project/output/final.biom";
     $jobname = $user . "_" . $id . "_phylotype_picrust";
-    $cmd = "qsub -N '$jobname' -o Logs_sge/otu/ -e Logs_sge/otu/ -cwd -b y picrust-1.1.1/scripts/qsubMoPhylo5andpicrust_norm $path_input $path_output_biom ";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y picrust/scripts/qsubMoPhylo5andpicrust_norm $path_input $path_output_biom ";
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
     exec($check_qstat, $output);
@@ -1205,47 +1131,343 @@ function phylotype_picrust($user, $id, $project, $path)
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-            echo "Finish phylotype_picrust ->";
-            //   change_name($user, $id, $project, $path);
+            echo "Finish phylotype_picrust go to phylotype_picrust2->";
+            phylotype_picrust2($user, $id, $project, $path);
             break;
         }
     }
 }
+// phylotype_picrust2
+function phylotype_picrust2($user, $id, $project, $path)
+{
+    echo "\n";
+    echo "Run phylotype_picrust2 :";
+    $path_input = "owncloud/data/$user/files/$project/output/normalized_otus.1.biom";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/metagenome_predictions.1.biom";
+    $jobname = $user . "_" . $id . "_phylotype_picrust2";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y picrust-1.1.1/scripts/qsubMoPhylo5andpicrust $path_input $path_output_biom ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish phylotype_picrust2 go to phylotype_picrust3->";
+            phylotype_picrust3($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+// phylotype_picrust3
+function phylotype_picrust3($user, $id, $project, $path)
+{
+    file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "picrust" . "\n", FILE_APPEND);
+    echo "\n";
+    echo "Run phylotype_picrust3 :";
+    $path_input = "owncloud/data/$user/files/$project/output/metagenome_predictions.1.biom";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/predicted_metagenomes.1.L2.biom";
+    $jobname = $user . "_" . $id . "_phylotype_picrust3";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y picrust-1.1.1/scripts/qsubMoPhylo5andpicrust1 $path_input $path_output_biom ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish phylotype_picrust3 go to Biom to stamp->";
+            biom_to_stamp($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+// make file biom_to_stamp
+function biom_to_stamp($user, $id, $project, $path)
+{
+    echo "\n";
+    echo "Run biom_to_stamp :";
+    $path_input = "owncloud/data/$user/files/$project/output/predicted_metagenomes.1.L2.biom";
+    $path_output_biom = "owncloud/data/$user/files/$project/output/pathways1L1.spf";
+    $jobname = $user . "_" . $id . "_biom_to_stamp";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y picrust-1.1.1/scripts/qsubBiomtoStamp $path_input $path_output_biom ";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish biom_to_stamp go to remove_float->";
+            remove_float($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+// remove_float because not use float
+function remove_float($user, $id, $project, $path)
+{
+    echo "\n";
+    echo "Run remove_float :";
+    $path_input = "owncloud/data/$user/files/$project/output/pathways1L1.spf";
+    $jobname = $user . "_" . $id . "_biom_to_stamp";
+    $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y /usr/bin/php -f R_Script/replace_string.php $path_input";
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish remove float->";
+            read_name_sample_to_plotgraph($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+// read name sample to plot graph
+function read_name_sample_to_plotgraph($user, $id, $project, $path)
+{
+    echo "\n";
+    echo "Run read_name_sample :";
+    $group_sample = array();
+    $name_sample = null;
+    if ($file = fopen('../owncloud/data/' . $user . '/files/' . $project . '/input/stability.files', "r")) {
+        $i = 0;
+        while (!feof($file)) {
+            $line = fgets($file);
+            $parts = preg_split('/\s+/', $line);
 
+            if ($parts[0] != null) {
+                $group_sample[$i] = $parts[0];
+                $i++;
 
+            }
+        }
+        fclose($file);
+        $k =1;
+        foreach ($group_sample as $value) {
+            $k++;
+            $sample = str_replace("-", "_", $value);
+            if ($name_sample == null) {
+                $name_sample = $sample;
+            } else {
+                $name_sample = $name_sample . ":" . $sample;
+            }
+        }
+        echo $name_sample;
+        if ($k < 5 ){
+            echo " less 4 sam Go to run stamp -> ";
+            stamp($user, $id, $project, $path,$name_sample);
+        }else{
+            echo "more 4 sam Go ro change name";
+            change_name($user, $id, $project, $path);
+        }
+
+    }
+}
+// run make file tsv use to plot graph stat
+function stamp($user, $id, $project, $path,$name_sample)
+
+{
+    echo "\n";
+    echo "Run stamp:";
+    $split_name = preg_split('/:/',$name_sample);
+    $name1 = $split_name[0];
+    $name2 = $split_name[1];
+    $name3 = $split_name[2];
+    $name4 = $split_name[3];
+    for ($i=0;$i<5;$i++){
+        if($i == 0){
+            $path_input = "../owncloud/data/$user/files/$project/output/pathways1L1.spf";
+            $path_output_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $jobname = $user . "_" . $id . "_stamp";
+            $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y stamp/qsubStamp $path_input $path_output_tsv $name1 $name2 ";
+            exec($cmd);
+        }
+        if($i == 1){
+            $path_input = "../owncloud/data/$user/files/$project/output/pathways1L1.spf";
+            $path_output_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $jobname = $user . "_" . $id . "_stamp";
+            $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y stamp/qsubStamp $path_input $path_output_tsv $name1 $name3 ";
+            exec($cmd);
+        }
+        if($i == 2){
+            $path_input = "../owncloud/data/$user/files/$project/output/pathways1L1.spf";
+            $path_output_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $jobname = $user . "_" . $id . "_stamp";
+            $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y stamp/qsubStamp $path_input $path_output_tsv $name1 $name4 ";
+            exec($cmd);
+        }
+        if($i == 3){
+            $path_input = "../owncloud/data/$user/files/$project/output/pathways1L1.spf";
+            $path_output_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $jobname = $user . "_" . $id . "_stamp";
+            $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y stamp/qsubStamp $path_input $path_output_tsv $name2 $name3 ";
+            exec($cmd);
+        }
+        if($i == 4){
+            $path_input = "../owncloud/data/$user/files/$project/output/pathways1L1.spf";
+            $path_output_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $jobname = $user . "_" . $id . "_stamp";
+            $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y stamp/qsubStamp $path_input $path_output_tsv $name2 $name4 ";
+            exec($cmd);
+        }
+        if($i == 5){
+            $path_input = "../owncloud/data/$user/files/$project/output/pathways1L1.spf";
+            $path_output_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $jobname = $user . "_" . $id . "_stamp";
+            $cmd = "qsub -N '$jobname'.$i -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y stamp/qsubStamp $path_input $path_output_tsv $name3 $name4 ";
+            exec($cmd);
+        }
+    }
+    $check_qstat = "qstat  -j '$jobname'.'5' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Finish run stamp go to Change name->";
+            plot_graph_stat($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+// stamp plot graph stat
+function plot_graph_stat($user, $id, $project, $path){
+    echo "\n";
+    echo "Run plot graph stat:";
+    for($i=0;$i< 5;$i++){
+        if($i == 0){
+            $path_input_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $path_output_graph_stat = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.png";
+            $jobname = $user . "_" . $id . "_plot_graph_r_STAT'$i'";
+            $cmd = "qsub -N $jobname -o Logs_sge/phylotype/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/Rscript  R_Script/barplotwitherrorstampModi.R $path_input_tsv $path_output_graph_stat";
+            exec($cmd);
+        }
+        if($i == 0){
+            $path_input_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $path_output_graph_stat = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.png";
+            $jobname = $user . "_" . $id . "_plot_graph_r_STAT'$i'";
+            $cmd = "qsub -N $jobname -o Logs_sge/phylotype/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/Rscript  R_Script/barplotwitherrorstampModi.R $path_input_tsv $path_output_graph_stat";
+            exec($cmd);
+        }
+        if($i == 1){
+            $path_input_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $path_output_graph_stat = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.png";
+            $jobname = $user . "_" . $id . "_plot_graph_r_STAT'$i'";
+            $cmd = "qsub -N $jobname -o Logs_sge/phylotype/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/Rscript  R_Script/barplotwitherrorstampModi.R $path_input_tsv $path_output_graph_stat";
+            exec($cmd);
+        }
+        if($i == 2){
+            $path_input_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $path_output_graph_stat = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.png";
+            $jobname = $user . "_" . $id . "_plot_graph_r_STAT'$i'";
+            $cmd = "qsub -N $jobname -o Logs_sge/phylotype/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/Rscript  R_Script/barplotwitherrorstampModi.R $path_input_tsv $path_output_graph_stat";
+            exec($cmd);
+        }
+        if($i == 3){
+            $path_input_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $path_output_graph_stat = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.png";
+            $jobname = $user . "_" . $id . "_plot_graph_r_STAT'$i'";
+            $cmd = "qsub -N $jobname -o Logs_sge/phylotype/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/Rscript  R_Script/barplotwitherrorstampModi.R $path_input_tsv $path_output_graph_stat";
+            exec($cmd);
+        }
+        if($i == 4){
+            $path_input_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
+            $path_output_graph_stat = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.png";
+            $jobname = $user . "_" . $id . "_plot_graph_r_STAT'$i'";
+            $cmd = "qsub -N $jobname -o Logs_sge/phylotype/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/Rscript  R_Script/barplotwitherrorstampModi.R $path_input_tsv $path_output_graph_stat";
+            exec($cmd);
+        }
+    }
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+            echo "Go to plot_graph_r_Rare->";
+            change_name($user, $id, $project, $path);
+            break;
+        }
+    }
+}
+// change_name file graph use show in report
 function change_name($user, $id, $project, $path)
 {
+    echo "\n";
+    echo "Run changname :";
     $dir = $path . "/output";
-    $file_read = array('svg');
+    $file_read = array('svg','sharedotus');
     $dir_ignore = array();
     $scan_result = scandir($dir);
-
     foreach ($scan_result as $key => $value) {
-
         if (!in_array($value, array('.', '..'))) {
-
             if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
-
                 if (in_array($value, $dir_ignore)) {
                     continue;
                 }
-
-
             } else {
-
                 $type = explode('.', $value);
                 $type = array_reverse($type);
                 if (in_array($type[0], $file_read)) {
-
                     $file_name = preg_split("/[.]/", $value);
                     if (in_array("bin", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "bin.svg");
                         echo $value . " change to  bin.svg";
                     }
-                    if (in_array("sharedsobs", $file_name)) {
+                    if (in_array("sharedsobs", $file_name) and in_array("svg", $file_name) ) {
                         rename($dir . "/" . $value, $dir . "/" . "sharedsobs.svg");
                         echo $value . " change to sharedsobs.svg";
                     }
+                    if (in_array("sharedotus", $file_name)) {
+                        rename($dir . "/" . $value, $dir . "/" . "sharedsobs.sharedotus");
+                        echo $value . " change to sharedsobs.sharedotus";
+                    }
+
                     if (in_array("jclass", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "jclass.svg");
                         echo $value . " change to jclass.svg";
@@ -1259,10 +1481,9 @@ function change_name($user, $id, $project, $path)
         }
     }
     file_put_contents("owncloud/data/$user/files/$project/output/progress.txt", "picrust-finish" . "\n", FILE_APPEND);
-    on_check_remove_database($user, $id, $project, $path);
+    //on_check_remove_database($user, $id, $project, $path);
 }
-
-
+// on_check remove database
 function on_check_remove_database($user, $id, $project, $path)
 {
 
@@ -1288,7 +1509,7 @@ function on_check_remove_database($user, $id, $project, $path)
     // on_check_remove_progress($user, $id, $project, $path);
 
 }
-
+// check remove progress
 function on_check_remove_progress($user, $id, $project, $path)
 {
 
@@ -1314,8 +1535,6 @@ function on_check_remove_progress($user, $id, $project, $path)
     change_name($user, $id, $project, $path);
 
 }
-
-
 ?>
 
 

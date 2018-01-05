@@ -545,22 +545,27 @@ class Complete_run extends CI_Controller
         $avg_lenght = null;
         $num_seqs = null;
         $avg_reads = null;
+        $lib_size = null;
         foreach ($row as $value => $data) {
             if ($data != null) {
                 $row_data = preg_split("/:/", $data);
 
-                if ($index == 0) {
-                    $count_seqs = $row_data[1];
-                } else if ($index == 1) {
-                    $avg_lenght = $row_data[1];
-                } else if ($index == 2) {
-                    $num_seqs = $row_data[1];
-                } else if ($index == 3) {
-                    $avg_reads = $row_data[1];
-                }
+
+                    if ("count_seqs" == $row_data[0]) {
+                        $count_seqs = $row_data[1];
+                    } else if ("avg_length" == $row_data[0]) {
+                        $avg_lenght = $row_data[1];
+                    } else if ("num_seqs" == $row_data[0]) {
+                        $num_seqs = $row_data[1];
+                    } else if ("avg_reads" == $row_data[0]) {
+                        $avg_reads = $row_data[1];
+                    } else if ("lib_size" == $row_data[0]) {
+                        $lib_size = $row_data[1];
+                    }
+                $index++;
             }
-            $index++;
         }
+
 
 //        echo ">>>>>>>>>>>>>>>>>>>>>End Page 1-2<<<<<<<<<<<<<<<<<br>";
 //        echo "Bigsam_rare :". $sample_height.'<br>';
@@ -897,7 +902,7 @@ class Complete_run extends CI_Controller
         $data = array("avg_read_pre" => "",
             "num_seqs" => "",
             "t_range_otu" => $t_range_otu,
-            "lib_size" => "",
+            "lib_size" => $lib_size,
             "min_otu" => $min_otu,
             "max_otu" => $max_otu,
             "max_chao" => $max_chao,

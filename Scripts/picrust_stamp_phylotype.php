@@ -59,7 +59,7 @@ function convert_biom($user,$project,$path_in,$path_out){
      #  silva , rdp => $label = 1
      #  greengene   => $label = 2
     
-    $label = '2';
+    $label = '2';stam
 
     echo "convert_biom"."\n";
 
