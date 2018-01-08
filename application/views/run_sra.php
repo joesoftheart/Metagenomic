@@ -34,7 +34,9 @@ if (isset($this->session->userdata['logged_in'])) {
             <ol class="breadcrumb">
                 <li <?php if ($controller_name == 'main') {
                     echo "class=active";
-                } ?>><?php if ($controller_name == 'main') { ?>Home<?php } else { ?><a href="<?php echo site_url('main') ?>">Home</a><?php } ?></li>
+                } ?>>
+                <?php if ($controller_name == 'main') { ?>Home<?php } else { ?><a href="<?php echo site_url('main') ?>">Home</a><?php } ?>
+              </li>
                 <li class="active">SRA</li>
             </ol>
             <h3 class="page-header">SRA</h3>

@@ -117,6 +117,17 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
         </div>
 
+        <div class="col-lg-7 col-lg-push-1">
+        <div class="form-group">
+            <label>• Result table and plot  : </label>
+            <select class="uk-select" name="table_and_plot">
+                 <option value="Extended error bar">Extended error bar</option>
+                 <option selected value="Table">Table</option>
+
+            </select>
+        </div>
+        </div>
+
         </div><!--class="panel-group" id="accordion"-->
         </div><!--class="panel-body"-->
 

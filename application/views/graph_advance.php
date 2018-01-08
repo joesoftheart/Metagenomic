@@ -90,9 +90,97 @@ if (isset($this->session->userdata['logged_in'])) {
     }
 
  ?>
+  <style type="text/css">
+    .scrollit {
+          overflow:scroll;
+          height:350px;
+     }
+        #table {
+            width: 100%;
+        }
+        #thead, #tbody, #tr, #td, #th { display: block; }
+        #tr:after {
+            content: ' ';
+            display: block;
+            visibility: hidden;
+            clear: both;
+
+        }
+        #thead th {
+            height: 50px;
+            width: 19.7%;
+            text-align: center;
+            /*font-size: 13px;*/
+            /*white-space: nowrap;*/
+        }
+        #tbody {
+            height: 350px;
+            overflow-y: auto;
+        }
+        #tbody  td, thead th {
+            width: 20%;
+            float: left;
+        }
+  </style>
+     
+     
 
      <div class="panel-body">
-             <!-- Table groups.ave-std.summary -->
+      <label>myResultsPathwayL2.tsv</label>
+      <div class="row">
+      <div class="col-lg-12">
+      <div class="table-responsive">
+                    
+                   
+      <table class="table table-striped table-bordered" id="table"  >
+                               
+        
+         <?php   $path = FCPATH."owncloud/data/aumza/files/testrun/output/myResultsPathwayL2.tsv";
+           
+           if(file_exists($path)){
+               
+              $myfile = fopen($path,'r') or die ("Unable to open file");
+              $row = 0;
+              while(($lines = fgets($myfile)) !== false){
+                  $line = explode("\t", $lines);
+                   if($row == 0){
+                       echo " <thead id='thead'> <tr id='tr'>"; 
+                       echo "<th id='th'>".$line[0]."</th>".
+                       "<th id='th'>".$line[1]. "</th>".
+                       "<th id='th'>".str_replace('1',$line[2] ,$line[6] ). "</th>".
+                       "<th id='th'>".str_replace('2',$line[3] ,$line[7] ). "</th>".
+                       "<th id='th'>".$line[9]. "</th>";
+                       echo "</tr></thead><tbody id='tbody'>";
+                    }else{
+                        echo "<tr id='tr'>"; 
+                        echo "<td id='td' class='filterable-cell' align='left'>".$line[0]."</td>".
+                         "<td id='td' class='filterable-cell' align='left'>".$line[1]. "</td>".
+                         "<td id='td' class='filterable-cell' align='center'>".number_format(floatval($line[6]),3,'.',''). "</td>".
+                         "<td id='td' class='filterable-cell' align='center'>".number_format(floatval($line[7]),3,'.',''). "</td>".
+                         "<td id='td' class='filterable-cell' align='center'>".sprintf("%.3e",$line[9]). "</td>";
+                        echo "</tr>";
+                   }
+
+                    $row++;
+
+               }    
+              fclose($myfile);  
+          } 
+        ?>
+                               
+        </tbody>
+        </table>
+ 
+                         
+        </div>
+        </div>
+        </div>    <!-- End Table  -->
+
+
+
+
+         <hr class="uk-divider-icon">
+        <!-- Table groups.ave-std.summary -->
         <label><?php echo $file_groups_ave_std_summary; ?></label>
          <div class="row">
             <div class="col-lg-12">
@@ -108,17 +196,17 @@ if (isset($this->session->userdata['logged_in'])) {
 
                   	echo "<tr>";
                   	echo "<td>".$tg_body[$i][0]."</td>";
-      			  	echo "<td>".$tg_body[$i][1]."</td>";
-      				echo "<td>".$tg_body[$i][2]."</td>";
-     				echo "<td>".$tg_body[$i][3]."</td>";
-      				echo "<td>".$tg_body[$i][4]."</td>";
-      				echo "<td>".$tg_body[$i][5]."</td>";
-      				echo "<td>".$tg_body[$i][6]."</td>";
-      				echo "<td>".$tg_body[$i][7]."</td>";
-      				echo "<td>".$tg_body[$i][8]."</td>";
-      				echo "<td>".$tg_body[$i][9]."</td>";
-      				echo "<td>".$tg_body[$i][10]."</td>";
-      				echo "</tr>";
+      			  	    echo "<td>".$tg_body[$i][1]."</td>";
+      				      echo "<td>".$tg_body[$i][2]."</td>";
+     				        echo "<td>".$tg_body[$i][3]."</td>";
+      				      echo "<td>".$tg_body[$i][4]."</td>";
+      				      echo "<td>".$tg_body[$i][5]."</td>";
+      				      echo "<td>".$tg_body[$i][6]."</td>";
+      				      echo "<td>".$tg_body[$i][7]."</td>";
+      				      echo "<td>".$tg_body[$i][8]."</td>";
+      				      echo "<td>".$tg_body[$i][9]."</td>";
+      				      echo "<td>".$tg_body[$i][10]."</td>";
+      				      echo "</tr>";
 
                   }
                 ?>
@@ -132,18 +220,18 @@ if (isset($this->session->userdata['logged_in'])) {
 
         <hr class="uk-divider-icon">
 
-        <label><?php echo $file_summary; ?></label>
+      <label><?php echo $file_summary; ?></label>
         <div class="row">
             <div class="col-lg-12">
             <div class="table-responsive">  
-<table class="table table-striped table-bordered dataTable" style="text-align: center">
+      <table class="table table-striped table-bordered dataTable" style="text-align: center">
                                 
-<tbody id="body_ts">
-  <?php                
+       <tbody id="body_ts">
+        <?php                
 
-     for($i=0 ; $i < sizeof($ts_body); $i++ ){
+          for($i=0 ; $i < sizeof($ts_body); $i++ ){
 
-      if($i == 0){
+           if($i == 0){
 
               echo "<tr>";
               echo "<td colspan='2'>".$ts_body[$i][0]."</td>";
@@ -158,7 +246,7 @@ if (isset($this->session->userdata['logged_in'])) {
               echo "<td>".$ts_body[$i][9]."</td>";
               echo "</tr>";
 
-      }else{
+          }else{
             echo "<tr>";
             echo "<td>".$ts_body[$i][0]."</td>";
             echo "<td>".$ts_body[$i][1]."</td>";
@@ -173,15 +261,13 @@ if (isset($this->session->userdata['logged_in'])) {
             echo "<td>".$ts_body[$i][10]."</td>";
             echo "</tr>";
 
-      }
+          }
 
-   }
+       }
               
- ?>
-  </tbody>
-</table>
-                       
-
+      ?>
+     </tbody>
+    </table>
             </div>
             </div>
             <div class="col-lg-12 uk-margin"></div>
@@ -190,8 +276,6 @@ if (isset($this->session->userdata['logged_in'])) {
                  </center> 
          </div><!-- End Table file_summary -->   
     </div> 
-
-
 
 </div>
 

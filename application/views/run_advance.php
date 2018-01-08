@@ -12,389 +12,44 @@ if (isset($this->session->userdata['logged_in'])) {
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12 ">
-            <?php // echo "User :" . $username . "   Email :" . $email . "   ID :" . $id . "    PROJECT_SESS :" . $current_project ;?>
-            <br>
-            <?php foreach ($rs as $r) {
-                //   echo "Name project :" . $r['project_name'];
-            }
-            ?>
+           
             <?php $controller_name = $this->uri->segment(1); ?>
             <br>
-            <ol class="breadcrumb">
-                <li <?php if ($controller_name == 'main') {
-                    echo "class=active";
-                } ?>><?php if ($controller_name == 'main') { ?>Home<?php } else { ?><a
-                        href="<?php echo site_url('main') ?>">Home</a><?php } ?></li>
-                <li <?php if ($controller_name == 'projects') {
-                    echo "class=active";
-                } ?>><?php if ($controller_name == 'projects') { ?>Current projects<?php } else { ?><a
-                        href="<?php echo site_url('projects/index/' . $current_project) ?>">Current
-                            project</a><?php } ?></li>
-            </ol>
-        </div>
-
-    </div>
-
-    <?php
-
-    foreach ($rs as $r) {
-        $sample_folder = $r['project_path'];
-    }
-    $project = basename($sample_folder);
-    $user = $this->session->userdata['logged_in']['username'];
-
-    $path = "../owncloud/data/$user/files/$project/output/";
-
-
-    ?>
-
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="uk-child-width-1-6\@xl" uk-grid>
-                <div>
-                    <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
-                        <li class="uk-active "><a class="uk-text-capitalize uk-text-bold" href="#">Standard Mode <i class="fa fa-question-circle-o" aria-hidden="true" title="“Standard Mode” was designed in such a way that will optimize and generate the meaningful information/result/output for most of the samples submitted. In many cases, however, data requires a fine adjustment to the pipeline parameter for meaningful output/result. Thus the “Advance Mode” could be more appreciated." uk-tooltip></i></a>
-
-                        </li>
-
-                        <li><a class="uk-text-capitalize uk-text-bold" href="1" onclick="advance_mode(this);">Advance Mode <i class="fa fa-question-circle-o" aria-hidden="true" title="“Advance Mode”, is designed for the optimum use of the software.  Users can make changes to the pipeline parameter which in turns increase the flexibility of the software. This mode allows the pipeline to be adjusted so that it will be able to handle with different types of data. Hence, it will be more applicable to different type of experiments. Introductions and recommendations to steps including quality control, align sequences & clean alignment, pre-cluster sequences & chimera detection, classify sequences, remove bacterial sequences, OTU preparation, which are provided in the section below. " uk-tooltip></i></a></li>
-
-
-                    </ul>
-                    <ul class="uk-switcher" >
-
-                        <li >
-                            <div >
-
-                                <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
-                                    <li><a href="#">Run</a></li>
-<!--                                    <li><a href="#">Result & Graph</a></li>-->
-                                </ul>
-                                <ul class="uk-switcher uk-margin">
-                                    <li >
-                                        <!-- Standard run -->
-                                        <?php echo form_open_multipart('projects/standard_run/' . $current_project) ?>
-
-
-
-                                        <div class="panel panel-info ">
-                                            <div class="panel-heading">Run Standard</div>
-                                            <div class="panel-body">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1.Quality control  #1 <i class="fa fa-question-circle-o" aria-hidden="true" title="In “Quality Control” section, every setting is made to control the overall result’s reliability and resolution. The term ‘ambiguous’ refers to n-base, an unknown/unidentified base, hence it is of our best interest to keep the value of ‘maximum ambiguous’ as low as possible. The same trend was applied to the ‘maximum homopolymer’ since homopolymer refers to the repeated bases (<8 is recommended). The minimum and maximum read length recommended for this software is between 100 – 250 base pairs. Although, depending on different dataset, the parameter setting of the software may varies." uk-tooltip></i></a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseOne" class="panel-collapse collapse">
-                                                <div class="panel-body">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2.Align sequence & Clean alignment #2 <i class="fa fa-question-circle-o" aria-hidden="true" title="There are 3 options for the “Alignment Step” in total which are SILVA, Greengenes and RDP. The default was set to be SILVA due to the fact that this database has a better performance at doing alignment than other databases. (REFERENCE) " uk-tooltip></i></a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseTwo" class="panel-collapse collapse">
-                                                <div class="panel-body">
-
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <label>Screen reads </label>
-                                                        </div>
-                                                        <div class="col-lg-7">
-
-                                                            <table border="0" class="uk-table uk-table-middle">
-                                                                <div class="form-group">
-                                                                <tr>
-                                                                    <td>maximum ambiguous :</td>
-                                                                    <td><input class="uk-input form-control "  type="text" name="max_amb" value="8"
-                                                                               readonly="readonly" placeholder="8" ></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>maximum homopolymer :</td>
-                                                                    <td><input class="uk-input form-control" type="text" name="max_homo" value="8"
-                                                                               readonly="readonly" placeholder="8" ></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>minimum reads length :</td>
-                                                                    <td><input class="uk-input form-control" type="text" name="min_read" value="100"
-                                                                               readonly="readonly"  placeholder="100" ></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>maximum reads length :</td>
-                                                                    <td><input class="uk-input form-control" type="text" name="max_read" value="260"
-                                                                               readonly="readonly" placeholder="260" ></td>
-                                                                </tr>
-                                                                </div>
-                                                            </table>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <label>Alignment step </label>
-                                                        </div>
-                                                        <div class="col-lg-7">
-                                                            <div class="form-group">
-                                                            <select class="uk-select uk-margin" name="align_seq" readonly="readonly">
-                                                                <option>silva.v4.fasta</option>
-                                                            </select>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3.Pre-cluster sequence & Chimera detection #3 <i class="fa fa-question-circle-o" aria-hidden="true" title="This step is performed to check for the strand similarities, in other words, to check for a possible error in some strands. The main objective of this step is to de-noise the sequences, thus providing a better resolution. To check for errors the recommended number of different bases between strand are <2. [Pre-Cluster Sequences]
-In addition to that, it is possible that the (PCR-based) amplification steps in NGS-platform may cause some errors. This type of errors may cause certain mismatched cases between primer/dimer and their template strand. [Chimera Detection]" uk-tooltip></i></a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseThree" class="panel-collapse collapse"></i>
-                                                <div class="panel-body">
-
-                                                    <div class="row">
-
-                                                        <div class="col-sm-2">
-                                                            <label>Pre-cluster step</label>
-                                                        </div>
-                                                        <div class="col-lg-7">
-                                                            <div class="form_control">
-                                                            <select class="uk-select" name="diffs" readonly="readonly">
-                                                                <option value="2">diffs=2</option>
-
-                                                            </select>
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                    </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">4.Classify sequences & Remove non-bacterial sequence #4  <i class="fa fa-question-circle-o" aria-hidden="true" title="To prepare for a taxonomy classification, the a recommended database is Greengenes (set as default). Similar to the reason being the AM software, this consists of a software known as PICRUst, which was designed to predict the function of samples submitted. Furthermore, Greengenes database works at the best performance together with this software. Optionally, if the users are not interested in predicting functions and would like to change the database, SILVA and RDP are also available.
-	Greengenes database is the only database that provide information down to species level, while SILVA and RDP can provide only information at the level of genus. In contrast to Greengenes, RDP database was cleaner and SILVA was mostly use for alignment (SILVA > RDP, in terms of taxa). “Taxon Elimination” is designed to remove the unwanted data (i.e., helping to clean the result). The default was set to eliminate the taxon of chloroplast, mitochondria, eukaryote, and unknown. Optionally, users can eliminate other information, which include an option to remove archaea-unknown and archaea-unknown & bacteria-unknown" uk-tooltip></i></a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseFour" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <div class="col-lg-3">
-                                                        <label>Prepare for taxonomy classification </label>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <table class="uk-table uk-table-middle">
-                                                            <tr>
-                                                                <td>database</td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                    <select class="uk-select " name="db_taxon" readonly="readonly">
-                                                                        <option>gg_13_8_99.fasta</option>
-                                                                    </select>
-                                                                    </div>
-                                                                </td>
-
-                                                            </tr>
-                                                            <tr>
-                                                                <td>cutoff</td>
-                                                                <td><div class="form-group"><input class="uk-input form-control" type="text" name="cutoff"
-                                                                           value="80" placeholder="80" readonly="readonly"></div> </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>taxon elimination</td>
-                                                                <td>
-                                                                    <div class="form-group">
-
-                                                                        <textarea class="uk-textarea form-control" name="rm_taxon" readonly="readonly">Chloroplast-Mitochondria-Eukaryota-unknown</textarea>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">5.Alpha/Beta diversity analysis #5  <i class="fa fa-question-circle-o" aria-hidden="true" title="Alpha – Diversity:
-	“Alpha – Diversity” is set as a default setting. This analysis will calculate the statistic for the community of bacteria within the group. A total of 5 statistical analysis will be provided in a table such as nseq, cover, sobs, Chao and Shannon.
-Beta – Diversity:
-	“Beta – Diversity” will analyze the community of bacteria between different groups. During this step choices to view diagrams for different statistical calculator can be made. A total 7 statistical analysis will be provided in a table, i.e. lennon, jclass, moristahorn, sorabund, thetan, thetayc and braycurtis.  " uk-tooltip></i></a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseFive" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <label>Alpha diversity</label>
-                                                        </div>
-                                                        <div class="col-lg-7 col-lg-offset-3">
-                                                            **subsamples detect from files<br>
-                                                            subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <label>Beta diversity</label>
-                                                        </div>
-                                                        <div class="col-lg-7 col-lg-offset-3">
-                                                            **The number of total reads/groups after the preprocess<br>
-                                                            **subsamples detect from files<br>
-                                                            subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>
-                                                            <div class="row">
-
-                                                                <table>
-                                                                    <tr>
-                                                                        <td>
-                                                                            Level 2 is used for analysis :
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="form-group">
-                                                                            <select class="uk-select" name="tax_level" readonly="readonly">
-                                                                                <option>1</option>
-                                                                                <option value="2" selected>2</option>
-                                                                                <option>3</option>
-                                                                                <option>4</option>
-                                                                                <option>5</option>
-                                                                                <option>6</option>
-                                                                            </select>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-
-                                                                <div class="col-lg-6">
-
-                                                                    <ul>
-                                                                        <li>venn diagram</li>
-                                                                        <li>UPGMA tree</li>
-                                                                        <ul>
-                                                                            <li>Thetayc</li>
-                                                                            <li>Jclass</li>
-                                                                        </ul>
-                                                                        <li>PCOA</li>
-                                                                        <ul>
-                                                                            <li>Thetayc</li>
-                                                                            <li>Jclass</li>
-                                                                        </ul>
-                                                                        <li>NMDS</li>
-                                                                        <ul>
-                                                                            <li>Thetayc</li>
-                                                                            <li>Jclass</li>
-                                                                        </ul>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <label>Option</label>
-                                                        </div>
-                                                        <div class="col-lg-6">
-
-                                                            <ul>
-
-                                                                <?php
-                                                                foreach ($rs as $r) {
-                                                                    $sample_folder = $r['project_path'];
-
-                                                                }
-                                                                $project = basename($sample_folder);
-                                                                $path_owncloud = "../owncloud/data/" . $username . "/files/" . $project . "/data/input/";
-                                                                $file_files = array('design');
-                                                                $file_metadata = array('metadata');
-                                                                $check_file = '0';
-                                                                $check_metadata = '0';
-                                                                $result_folder = array();
-                                                                $result_file = array();
-
-                                                                if (is_dir($path_owncloud)) {
-                                                                    $select_folder = array_diff(scandir($path_owncloud, 1), array('.', '..'));
-                                                                    $cdir = scandir($path_owncloud);
-                                                                    foreach ($cdir as $key => $value) {
-
-                                                                        if (!in_array($value, array('.', '..'))) {
-                                                                            if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
-                                                                                $result_folder[$value] = $value;
-
-                                                                            } else {
-
-                                                                                $type = explode('.', $value);
-                                                                                $type = array_reverse($type);
-                                                                                if (in_array($type[0], $file_files)) {
-
-                                                                                    $check_file = 'have_files';
-                                                                                }
-
-                                                                                if (in_array($type[0], $file_metadata)) {
-
-                                                                                    $check_metadata = 'have_metadata';
-
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-
-
-                                                                ?>
-
-                                                                <?php if ($check_file == '0') { ?>
-                                                                    <li>Please upload
-                                                                        file.design? <?php echo form_upload('design'); ?></li>
-                                                                <?php } ?>
-
-                                                                <?php if ($check_metadata == '0') { ?>
-                                                                    <li>Please upload
-                                                                        file.metadata? <?php echo form_upload('metadata'); ?></li>
-                                                                <?php } ?>
-                                                            </ul>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                <button  type="submit" name="save" class="btn btn-default pull-right">
-                                                    Submit
-                                                </button>
-                                            </div>
-
-                                        </div>
-
-                                    </li>
-
-
-                                </ul>
-
-                            </div>
-
-                            <?php echo form_close()?>
-
-
-                        </li>
-
-
-                        <!-- End Standard run -->
-
-
-     <!-- ADVANCE  -->
+            
+ <ol class="breadcrumb">
+    <li <?php if($controller_name == 'main'){ echo "class=active";} ?> >
+            
+         <?php if ($controller_name == 'main') { ?> Home         
+         <?php } else { ?>     
+                 <a href="<?php echo site_url('main') ?>">Home</a> 
+         <?php } ?>    
+    </li>
+    <li <?php if($controller_name == 'projects'){ echo "class=active"; }?>>
+         <?php if ($controller_name == 'projects') { ?>  Current projects
+         <?php } else { ?>
+            <a href="<?php echo site_url('projects/index/' . $current_project) ?>">
+               Current project
+            </a>
+        <?php } ?>  / Run Advance Mode 
+   </li>
+</ol>
+          
+     </div>
+ </div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+    <div class="uk-child-width-1-6\@xl" uk-grid>
+    <div>
+        <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
+ 
+        <li class="uk-active" >
+                <a class="uk-text-capitalize uk-text-bold" href="1" onclick="advance_mode(this);">Advance Mode </a>
+        </li>
+        </ul>
+        <ul class="uk-switcher">
+    <!-- ADVANCE  -->
      <li>
          <link href="<?php echo base_url();?>tooltip/smart_wizard_theme_arrows.css" rel="stylesheet" />
          <link href="<?php echo base_url();?>tooltip/loading.css" rel="stylesheet" />
@@ -405,7 +60,7 @@ Beta – Diversity:
          <div class="sw-theme-arrows">
              <ul class="nav-tabs step-anchor" uk-switcher="animation: uk-animation-fade">
                  <li class="pre"><a href="#">Step 1<br />Preprocess & Prepare in taxonomy</a></li>
-                 <li class="pre2"><a href="#">Step 2<br />Prepare <?=$project_analysis ?> </a></li>
+                 <li class="pre2"><a href="#">Step 2<br />Prepare <?= $project_analysis ?> </a></li>
                  <li class="pre3"><a href="#">Step 3<br />Analysis</a></li>
                  <li><a href="#">Step 4<br />Result & graph</a></li>
              </ul>
@@ -906,9 +561,8 @@ Beta – Diversity:
                                      </div>
 
                                      <div class="Silva_RDP" style="display:none">
-                                     <p class="col-lg-6"> 
-                                            Silva / RDP : </p>
-                                             <div class="col-lg-6 col-lg-pull-4">
+                                     <label class="col-lg-6"> Silva/RDP : </label>
+                                             <div class="col-lg-6 col-lg-pull-3">
                                                  <select class="uk-select" id="sr_level">
                                                      <option value="1"> genus</option>
                                                      <option value="2"> family</option>
@@ -920,8 +574,8 @@ Beta – Diversity:
                                      </div>
 
                                      <div class="Otu" style="display:none">
-                                     <p class="col-lg-6"> OTU : </p>
-                                             <div class="col-lg-6 col-lg-pull-5">
+                                     <label class="col-lg-6"> OTU : </label>
+                                             <div class="col-lg-6 col-lg-pull-3">
                                                  <select class="uk-select" id="o_level">
                                                      <option value="0.03" selected> 0.03</option>
                                                      <option value="0.05"> 0.05</option>
@@ -1098,163 +752,132 @@ Beta – Diversity:
                          </div>
                          </div>
                          </div>
+                        
+                         <div class="panel panel-info">
+                         <div class="panel-heading">
+                             <h4 class="panel-title">
 
-   
-<link href="<?php echo base_url();?>tooltip/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="<?php echo base_url();?>tooltip/bootstrap-toggle.min.js"></script>
-
-     <div class="panel panel-info">
-     <div class="panel-heading">
-     <h4 class="panel-title">
-
-     <!-- data-toggle="collapse" data-parent="#accordion" href="#collapse11" -->
-      <a  class="YourID" id="YourIN" >
-      7. Optional
-         <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div12');"></i>                        
-     </a> 
-    </h4>
-    </div>
-    <div id="collapse11" class="panel-collapse collapse">
-    <div class="panel-body">
-    
-    <div class="col-lg-12 uk-margin">
-        <h5>
-         <b>7.1  Other Statistical Analysis :</b>
-         <input id="toggle-event1" type="checkbox" data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" >           
-        </h5>
-     </div>
-    <div class="col-lg-11">
-    <fieldset class="optionset1" disabled>
+   <!-- data-toggle="collapse" data-parent="#accordion" href="#collapse11" -->
+   <a  class="YourID" id="YourIN" >
+    7. Optional
+                                <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div12');"></i>  
+                                 
+                                 </a> 
+                             </h4>
+                         </div>
+                         <div id="collapse11" class="panel-collapse collapse">
+                         <div class="panel-body">
+                            <div class="col-lg-12 uk-margin">
+   <h5>7.1  Other Statistical Analysis : </h5>   
+                            </div>
+                             
+                             
                              <div class="col-lg-8 col-lg-push-1"> 
                                  <label> Create file design 
                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div11');">
                                 </i> 
-                              <a href="<?php echo site_url();?>createdesign/<?=$current_project?>" target="_blank"><input type="button" class="btn btn-outline btn-info" value="create design" id="check_design" ></a> 
+ <a href="<?php echo site_url();?>createdesign/<?=$current_project?>" target="_blank"><input type="button" class="btn btn-outline btn-info" value="create design" id="check_design"></a> 
                               </label>         
                                  <div>
                                      <p id="pass_design" class="fa fa-file-text-o" > No file design </p>                    
                                      <input type="hidden" id="p_design" name="f_design" value="nodesign">
-                                     <img id="img_design" >
+                                     <img id="img_design" src="">
                                 </div>
-                                <p class="opt1" style="display: none;"> <font color="red">*Required</font></p>
                              </div>
                             
                              <div class="col-lg-10 col-lg-push-1 uk-margin"> 
+
                                  <label> Create file metadata 
                                      <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div13');">
                                 </i> 
-                              <a href="<?php echo base_url();?>createmetadata/<?=$current_project?>"  target="_blank"><input type="button" class="btn btn-outline btn-info" value="create metadata" id="check_metadata" >
+<a href="<?php echo base_url();?>createmetadata/<?=$current_project?>"  target="_blank"><input type="button" class="btn btn-outline btn-info" value="create metadata" id="check_metadata">
                                     </a>
                                 </label>   
                              <div>
                                  <p id="pass_metadata" class="fa fa-file-text-o"> No file metadata </p>
                                  <input type="hidden" id="p_metadata" name="f_metadata" value="nometadata">
-                                 <img id="img_metadata">
+                                 <img id="img_metadata" src="">
                              </div>
-                              <p class="opt1" style="display: none;"> <font color="red">*Required</font></p>
                              </div>
 
-
-                            <div class="col-lg-8 col-lg-push-1 uk-margin">                             
-                            <input type="checkbox" id="amova_id" name="amova"  value="amova" > Amova 
-                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div9');">
-                                 </i>
-                                 <br/>
-
-                            <input type="checkbox" id="homova_id" name="homova"  value="homova" > Homova 
-                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div10');"></i> 
-                                 <br/>
-
-                            <input type="checkbox" id="anosim_id" name="anosim"  value="anosim" > Anosim 
-                                 <i class="fa fa-question-circle-o"></i>  
-                                 <br/>
-                            <p class="opt1" style="display: none;"> <font color="red">*Required</font></p>
-                            </div>
+                              <div class="col-lg-8 col-lg-push-1 ">                
+                                 <div class="radio">
+                                    <label><input name="optionsRadios2" value="amova" type="radio"> Amova </label>
+                                    <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div9');"></i>   
+                                </div>
+                                 <div class="radio">
+                                    <label> <input name="optionsRadios2"  value="homova" type="radio" > Homova </label>
+                                     <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div10');"></i>  
+                                </div>
+                                <div class="radio">
+                                    <label> <input name="optionsRadios2"  value="anosim" type="radio" > Anosim </label>
+                                     <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div10');"></i>  
+                                </div>
+                             </div>
 
 
                             <label class="col-lg-6 col-lg-push-1">
-                                    <input type="checkbox" id="correlation_meta"  value="meta"  > correlation with metadata
+                                    <input type="checkbox" id="correlation_meta"  value="meta" > correlation with metadata
                                      <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div14');">
                                      </i> 
+
                             </label>
-                           
                             <div class="col-lg-4 col-lg-pull-1">
-                                <select class="uk-select" name="method_meta" >
+                                <select class="uk-select" name="method_meta">
                                     <option value="spearman"> spearman </option>
                                     <option value="pearson"> pearson </option>     
                                 </select>
                              </div>
                              <div class="col-lg-2 col-lg-pull-1">
-                                <select class="uk-select"  name="axes_meta" >
-                                    <?php  if($project_analysis =='OTUs'){ ?>
-                                            <option value="0.03"> 0.03 </option>
-                                            <option value="0.05"> 0.05 </option>
-                                    <?php }else{  ?>
-                                        <option value="2"> 2 </option>
-                                        <option value="3" id="setm3"> 3 </option>
-                                        <option value="1" id="setm1"> 1 </option>
-                                       
-                                       
-                                    <?php } ?>
+                                <select class="uk-select" name="axes_meta">
+                                    <option value="2"> 2 </option>
+                                    <option value="3"> 3 </option>
                                 </select>
                              </div>
-                             <div class="col-lg-12 col-lg-push-1">
-                                <p class="opt1" style="display: none;"> <font color="red">*Required</font></p>
-                            </div>
+                              
                             
-                            <label class="col-lg-6 col-lg-push-1 uk-margin">
+                            <label class="col-lg-6 col-lg-push-1">
                                     <input type="checkbox" id="correlation_otu"  value="otu" > correlation of each OTU 
                                      <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div15');">
                                      </i> 
+
                              </label>
-                            <div class="col-lg-4 col-lg-pull-1 uk-margin">
-                                     <select class="uk-select"  name="method_otu" >
+                                 <div class="col-lg-4 col-lg-pull-1">
+                                     <select class="uk-select" name="method_otu">
                                          <option value="spearman"> spearman </option>
                                          <option value="pearson"> pearson </option>     
                                      </select>
-                            </div>
-                            <div class="col-lg-2 col-lg-pull-1 uk-margin">
-                                    <select class="uk-select"  name="axes_otu" >
-                                        <?php  if($project_analysis =='OTUs'){ ?>
-                                            <option value="0.03"> 0.03 </option>
-                                            <option value="0.05"> 0.05 </option>
-                                        <?php }else{  ?>
-                                            <option value="2"> 2 </option>
-                                        <option value="3" id="seto3"> 3 </option>
-                                        <option value="1" id="seto1"> 1 </option>
-                                        <?php } ?>
-                                    </select>  
-                            </div>
-                            <div class="col-lg-12 col-lg-push-1">
-                                <p class="opt1" style="display: none;"> <font color="red">*Required</font></p>
-                            </div>
+                                 </div>
+                                 <div class="col-lg-2 col-lg-pull-1">
+                                     <select class="uk-select" name="axes_otu">
+                                         <option value="2"> 2 </option>
+                                         <option value="3"> 3 </option>
+                                     </select>
+                                 </div>
 
 
-        </fieldset>
-        </div>
-    <div class="col-lg-12 uk-margin">
-    <h5>
-    <b>7.2  PICRUSt  and STAMP :</b>
-        <input id="toggle-event2" type="checkbox" data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" >
-    </h5> 
-    </div> 
-    <div class="col-lg-10">
-    <fieldset class="optionset2" disabled>
 
-         <div class="col-lg-10 col-lg-push-1">
-         <div class="form-group">
-         <label class="col-lg-8 col-lg-pull-1 uk-margin">PICRUSt</label>
+        <div class="col-lg-12 uk-margin">
+          <h5>7.2  PICRUSt  and STAMP : </h5> 
+        </div> 
+
+        <div class="col-lg-10 col-lg-push-1">
+        <div class="form-group">
+        <label class="col-lg-8 col-lg-pull-1 uk-margin">PICRUSt</label>
          <div class="col-lg-12">
-         <label>• Default Please select level of KEGG pathway : </label>
+          <label>• Default Please select level of KEGG pathway : </label>
              <label class="radio-inline">
-                 <input name="kegg"  value="L1" type="radio">1
+                 <input name="kegg"  value="1" type="radio">1
              </label>
              <label class="radio-inline">
-                 <input name="kegg"  value="L2" checked type="radio">2
+                 <input name="kegg"  value="2" checked type="radio">2
+             </label>
+             <label class="radio-inline">
+                <input name="kegg"  value="3" type="radio">3
              </label>
          </div>
-         </div>
-         </div>
+        </div>
+        </div>
 
        <div class="col-lg-12 uk-margin"></div>
 
@@ -1266,63 +889,68 @@ Beta – Diversity:
         <div class="col-lg-10 ">
         <div class="form-group">      
           <label>• Sample comparison : </label>
-
-          <select class="uk-select" name="sample_comparison" id="sample_name">
-         
+          <select class="uk-select" name="sample_comparison">
+           <?php foreach ($samname as $val_sam) { ?>
+           <option value="<?php echo $val_sam; ?>"> <?php echo $val_sam; ?></option>
+           <?php } ?>
           </select>
         </div>
-         <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
         </div>
          
         <div class="col-lg-10 ">
         <div class="form-group">                                   
         <label>• Selected statistical test : </label>
             <select class="uk-select" name="statistical_test">
-                <option value="0"></option>
                 <option value="Bootstrap">Bootstrap</option>
-                <option value="Chi-square">Chi-square test</option>
-                <option value="Chi-square2">Chi-square test(w/Yates' correction)</option>
-                <option value="Difference">Difference between proportions</option>
-                <option value="Fisher">Fisher 's exact test</option>
+                <option value="Chi-square test">Chi-square test</option>
+                <option value="Chi-square test(w/Yates' correction)">Chi-square test(w/Yates' correction)</option>
+                <option value="Difference between proportions">Difference between proportions</option>
+                <option selected value="Fisher 's exact test">Fisher 's exact test</option>
                 <option value="G‐test">G‐test</option>
-                <option value="G‐test2">G‐test (w/ Yates' correction)</option>
+                <option value="G‐test (w/ Yates' correction)">G‐test (w/ Yates' correction)</option>
                 <option value="Hypergeometric">Hypergeometric</option>
                 <option value="Permutation">Permutation</option>
             </select>
         </div>
-         <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
         </div>
 
         <div class="col-lg-10 ">
         <div class="form-group">
             <label>• CI method : </label>
             <select class="uk-select" name="ci_method">
-                 <option value="0"></option>
-                 <option value="DP1">DP: Newcombe‐Wilson</option>
-                 <option value="DP2">DP: Asymptotic</option>
-                 <option value="DP3">DP: Asymptotic-CC</option>
-                 <option value="OR1">OR: Haldane adjustment</option>
-                 <option value="RP1">RP: Asymptotic</option>
+                 <option selected value="DP: Newcombe‐Wilson">DP: Newcombe‐Wilson</option>
+                 <option value="DP: Asymptotic">DP: Asymptotic</option>
+                 <option value="DP: Asymptotic‐CC">DP: Asymptotic‐CC</option>
+                 <option value="OR: Haldane adjustment">OR: Haldane adjustment</option>
+                 <option value="RP: Asymptotic">RP: Asymptotic</option>
             </select>
         </div>
-         <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
         </div>
 
         <div class="col-lg-10 ">
         <div class="form-group">
             <label>• P‐value : </label>
             <select class="uk-select" name="p_value">
-                 <option value="0">None</option>
-                 <option value="0.05">0.05</option>
+                 <option value="None">None</option>
+                 <option selected value="0.05">0.05</option>
                  <option value="0.01">0.01</option>
                
             </select>
         </div>
-         <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
+        </div>
+
+        <div class="col-lg-10">
+        <div class="form-group">
+            <label>• Result table and plot  : </label>
+            <select class="uk-select" name="table_and_plot">
+             <option selected value="Extended error bar">Extended error bar</option>
+            <option  value="Table">Table</option>
+            </select>
         </div>
         </div>
-    </fieldset>
-    </div>
+        </div>
+
+
 
         </div>
         </div>
@@ -1333,9 +961,9 @@ Beta – Diversity:
          <div class="col-lg-4 col-lg-push-2">
             <input id="sub-test3" class="btn btn-primary" value="Run Preprocess">
          </div>
-    <div class="col-lg-12 uk-margin"></div>
+         <div class="col-lg-12 uk-margin"></div>
 
-    </form>  <!-- end Analysis form-->
+     </form>  <!-- end Analysis form-->
 
     <script type="text/javascript">
             
@@ -1358,31 +986,34 @@ Beta – Diversity:
         
     </script>
 
-    <!-- Modal -->
-    <div class="panel-body">
-        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" style="display: none;"> 
+          <!-- Modal -->
+                <div class="panel-body">
+                     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" style="display: none;"> 
                      <div class="modal-dialog">
                      <div class="modal-content">
                      <div class="modal-header">
                      <button type="button" id="close_modal" class="close" aria-hidden="true">×</button>
                      <h4 class="modal-title" id="myModalLabel1"> 7. Optional</h4>                                                     
-                   </div>
-        <div class="modal-body">
+                </div>
+                <div class="modal-body">
                    <h5>This step is the optional analysis. You can select other statistics and/or determine the predicted metabolic functions using PICRUSt and evaluate them statistically with STAMP.</h5>
-        </div>
-        <div class="modal-footer">
-             <button class="btn btn-primary" id="close_modal" aria-hidden="true" >OK </button>
-        </div>
-        </div> <!-- /.modal-content -->
-        </div> <!-- /.modal-dialog -->                                         
-        </div>
-    </div><!-- End Modal -->   
 
-    </div>  <!-- /.col-lg-11 -->
-    </div><!-- /.row -->
-    </div> <!-- Pre-test3 -->
+                 </div>
+                 <div class="modal-footer"></div>
+                 </div> <!-- /.modal-content -->
+                 </div> <!-- /.modal-dialog -->                                         
+                 </div>
+                 </div><!-- End Modal -->   
 
-    <div class="row">
+
+
+
+        </div>  <!-- /.col-lg-11 -->
+        </div><!-- /.row -->
+ 
+        </div> <!-- Pre-test3 -->
+
+        <div class="row">
                  <div class="col-lg-11">
                     <div class="Pre-show3" style="display:none"> 
                       
@@ -1406,13 +1037,16 @@ Beta – Diversity:
                      </div> 
                      </div> 
                  </div> 
-    </div>
+        </div>
 
     </li>  <!-- End Analysis -->
 
    
+
+
      <!-- Result && Graph -->
      <li>
+
 
         <hr class="uk-divider-icon">
             <div class="panel-body">       
@@ -1430,6 +1064,8 @@ Beta – Diversity:
                    <h4>  Report  </h4>
             </center>
             </div>    
+          
+
              </div>
              </div>
              </div>
@@ -1449,6 +1085,8 @@ Beta – Diversity:
              </center>
             
              </div>    
+     
+
              </div>
              </div>
              </div>
@@ -1468,72 +1106,31 @@ Beta – Diversity:
              </center>
             
              </div>    
+     
+
              </div>
              </div>
              </div>
+      </li>
+    <!-- End Result && Graph -->
+    </ul>
+    </div>
+    </li>
+    <!-- End EDVANCE  -->
 
-    
-     </li>
-     <!-- End Result && Graph -->
-
-
-            </ul>
-            </div>
-          </li>
-          <!-- End EDVANCE  -->
-        </ul>
-         <!-- end class="uk-switcher" -->
-      </div>
+    </ul>
+    <!-- end class="uk-switcher" -->  
     </div>
     </div>
-
+    </div>
 </div>
 
 
-    <script>
-        $(document).ready(function () {
-            $("#btn_test_run").click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url();?>projects/standard_run/<?php echo $current_project;?>"
-                });// you have missed this bracket
-                return false;
-
-
-            });
-        });
-
-    </script>
-
-<!--  Advance Script -->
-
+  
 
 <script type="text/javascript">  
-  var console_event1 = false;
-  var console_event2 = false;
- $('#toggle-event1').change(function(){
-     console_event1 = $(this).prop('checked');
-     if($(this).prop('checked')){
-          $(".optionset1").removeAttr("disabled");
-          $(".opt1").show();
-         
-     }else{
-          $(".optionset1").attr("disabled", true);
-          $(".opt1").hide();
-     }
 
-  })
 
- $('#toggle-event2').change(function(){
-     console_event2 = $(this).prop('checked');
-     if($(this).prop('checked')){
-          $(".optionset2").removeAttr("disabled")
-          $(".opt2").show();
-     }else{
-          $(".optionset2").attr("disabled", true);
-          $(".opt2").hide();
-     }
-  })
 
 document.getElementById("btn_reports").onclick = function(){
 
@@ -1578,6 +1175,8 @@ document.getElementById("btn_graph").onclick = function(){
 };
 
 
+
+
 $(document).ready(function (){ 
 
           $('li.pre').attr('id','active');
@@ -1611,7 +1210,10 @@ $(document).ready(function (){
 
                         $(".Pre-test").hide();
                         $(".Pre-show").show();
-                        getvalue(array_data);           
+                        getvalue(array_data);
+                     
+                        //console.log("alignment : " + alignment); 
+
                    }    
                 
             });
@@ -1645,13 +1247,8 @@ $(document).ready(function (){
             var design_stop = "";
             var metadata_stop = "";
             var check_ven_all = null;
-            var amova = null;
-            var homova = null;
-            var anosim = null;
             var correlation_meta = null;
             var correlation_otu  = null;
-
-            var checkstatus = null;
 
            $("#sub-test3").click(function () {
                 var username = document.forms["Analysis-form"]["username"].value;
@@ -1674,6 +1271,7 @@ $(document).ready(function (){
                 var file_design = document.forms["Analysis-form"]["f_design"].value;
                 var file_metadata = document.forms["Analysis-form"]["f_metadata"].value;
 
+                var ah_mova = document.forms["Analysis-form"]["optionsRadios2"].value;
 
                 var method_meta = document.forms["Analysis-form"]["method_meta"].value;
                 var axes_meta = document.forms["Analysis-form"]["axes_meta"].value;
@@ -1700,79 +1298,37 @@ $(document).ready(function (){
                    var d_nmds_st = create_var(nmds_st);
                    var d_nmds_me = create_var(nmds_me);
 
-
-     var kegg = document.forms["Analysis-form"]["kegg"].value;
-     var sample_comparison = document.forms["Analysis-form"]["sample_comparison"].value;
-     var statistical_test =  document.forms["Analysis-form"]["statistical_test"].value;
-     var ci_method = document.forms["Analysis-form"]["ci_method"].value;
-     var p_value = document.forms["Analysis-form"]["p_value"].value;
-     
     
-     
-     // if(console_event2){}
-     if(console_event1){
-        
-      }   
+    var kegg = document.forms["Analysis-form"]["kegg"].value;
+    var sample_comparison = document.forms["Analysis-form"]["sample_comparison"].value;
+    var statistical_test =  document.forms["Analysis-form"]["statistical_test"].value;
+    var ci_method = document.forms["Analysis-form"]["ci_method"].value;
+    var p_value = document.forms["Analysis-form"]["p_value"].value;
+    var table_and_plot = document.forms["Analysis-form"]["table_and_plot"].value;
 
-    design_stop = "stop";
-    metadata_stop = "stop";
+
+                   
+                 
+                  design_stop = "stop";
+                  metadata_stop = "stop";
                   
 
-    if(username != "" && project != "" &&  level != "" &&  venn1 != "0" && venn2 != "0" && check_ven_all == "start" ){
-      
-      if((d_upgma_st != 0 || d_upgma_me != 0 ) && (d_pcoa_st != 0 || d_pcoa_me != 0 || d_nmds_st != 0 || d_nmds_me != 0 )){
+                 if(username != "" && project != "" &&  level != "" &&  venn1 != "0" && venn2 != "0" && check_ven_all == "start" ){
 
-         var array_data = new Array(
-                             username,
-                             project,
-                             level,
-                             ch_alpha,
-                             size_alpha,
-                             ch_beta,
-                             size_beta,
-                             venn1,
-                             venn2,
-                             venn3,
-                             venn4,
-                             d_upgma_st,
-                             d_upgma_me,
-                             d_pcoa_st,
-                             d_pcoa_me,
-                             nmds,
-                             d_nmds_st,
-                             d_nmds_me,
-                             file_design,
-                             file_metadata,
-                             amova,
-                             homova,
-                             anosim,
-                             correlation_meta,
-                             method_meta,
-                             axes_meta,
-                             correlation_otu,
-                             method_otu,
-                             axes_otu,
-                             kegg,
-                             sample_comparison,
-                             statistical_test,
-                             ci_method,
-                             p_value
-                        );
-           
-             console.log(array_data);
-             console.log(correlation_meta);
-             console.log(correlation_otu);
-             console.log(amova);
-             console.log(homova);
-             console.log(anosim);
-            //$(".Pre-test3").hide();
-            //$(".Pre-show3").show();
-            //get_analysis(array_data);
-                
-       }
-     }
+                     if((d_upgma_st != 0 || d_upgma_me != 0 ) && (d_pcoa_st != 0 || d_pcoa_me != 0 || d_nmds_st != 0 || d_nmds_me != 0 )){
+
+                         var array_data = new Array(username,project,level,ch_alpha,size_alpha,ch_beta,size_beta,venn1,venn2,venn3,venn4,d_upgma_st,d_upgma_me,d_pcoa_st,d_pcoa_me,nmds,d_nmds_st,d_nmds_me,file_design,file_metadata,ah_mova,correlation_meta,method_meta,axes_meta,correlation_otu,method_otu,axes_otu);
+                        
+                         $(".Pre-test3").hide();
+                         $(".Pre-show3").show();
+                         get_analysis(array_data);
+
+                         
+                     }
+                      
+                 }
                   
- });
+            });
 
 
            var ven1,ven2,ven3,ven4;
@@ -1846,48 +1402,9 @@ $(document).ready(function (){
                 }
             });
 
-           $('#amova_id').change(function(){
-               if($(this).is(':checked')){
-                   amova = $("#amova_id").val();
-               }else{
-                   amova = null;
-               }
-           });
-
-           $('#homova_id').change(function(){
-               if($(this).is(':checked')){
-                   homova = $("#homova_id").val();
-               }else{
-                   homova = null;
-               }
-           });
-
-           $('#anosim_id').change(function(){
-              if($(this).is(':checked')){
-                   anosim = $("#anosim_id").val();
-              }else{
-                   anosim = null;
-              }
-           });
-
  });
 
-
 </script> 
-
 <!--  End Advance Script -->
 
-    <script>
-        function printContent(el) {
-            var restorepage = document.body.innerHTML;
-            var printcontent = document.getElementById(el).innerHTML;
-            document.body.innerHTML = printcontent;
-            window.print();
-            document.body.innerHTML = restorepage;
-
-        }
-    </script>
-
-             
-             
-
+   

@@ -28,15 +28,9 @@ function advance_mode(obj){
                         if(status[0] == "0" && status[1] == "4"){
                            alert('No Run Queue');
 
-                            // if(status[3] != "0" && status[4] != "0"){
-                            //       //table_groups(status[3]);
-                            //       //table_summary(status[4]);
-                            // }
-                            
                              $('li.pre').attr('id','active');
                              $('li.pre2').attr('id','');
                              $('li.pre3').attr('id','');
-                             //addImage(user,project);
 
                         }else if(status[0] != "0" && status[1] == "1" && check == 1){
                            alert('Run step '+status[1] );
@@ -372,13 +366,16 @@ function check_subsample(jobsample){
                                $('.Greengene').show();
                                $('.Silva_RDP').hide();
                                $('.Otu').hide();
-                               
+                               $('#setm1').hide();
+                               $('#seto1').hide();
                                document.getElementById('g_level').setAttribute("name","level");
 
                            }else if((sample_data[1] == "silva") || (sample_data[1] == "rdp")) {
                                $('.Greengene').hide();
                                $('.Silva_RDP').show();
                                $('.Otu').hide();
+                               $('#setm3').hide();
+                               $('#seto3').hide();
                                document.getElementById('sr_level').setAttribute("name","level");
                            }
                            else{
@@ -396,14 +393,25 @@ function check_subsample(jobsample){
                                  for (var i=0; i < sample_data[2].length; i++) {
                                    group += "<option value="+sample_data[2][i]+">"+sample_data[2][i]+"</option>";    
                                  }
-
                                  $('#venn1').html(group);
                                  $('#venn2').html(group);
                                  $('#venn3').html(group);
                                  $('#venn4').html(group);
 
                              /*end div value vene*/
+                             
+                           
+                             /*start div sample-name*/
+                              var samname = "";
+                                  samname += "<option value=0> </option>";
+                              for (var i=0; i < sample_data[4].length; i++) {
 
+                                   samname += "<option value="+sample_data[4][i]+">"+sample_data[4][i]+"</option>";    
+                             }
+
+                             $('#sample_name').html(samname);
+
+                            /*end div sample-name*/
    
                              var sam_group  = "";  
                              for(var i=0 ;i < sample_data[3].length; i++){
@@ -518,10 +526,6 @@ function ckeck_analysis(job_analy){
                       if( analysis[0] == "0"){
                          clearInterval(interval);
 
-                             //table_groups(analysis[2]);
-                             //table_summary(analysis[3]);
-
-                             //addImage(u,p);
                            
                              $('.sw-theme-arrows > .nav-tabs > .pre3').next('li').find('a').trigger('click'); 
                              $(".Pre-show3").hide();
@@ -554,94 +558,6 @@ function ckeck_analysis(job_analy){
 
 }
 
-
-
-//function addImage(u,p){
-//      var user =u; 
- //     var project =p;
-
-     // $('#sharedsobs_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/sharedsobs.svg')?>");
-     // $('#heartmap_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/heartmap.png')?>");
-                             
-     // $('#rare_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Rare.png')?>");
-     // $('#abun_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Abun.png')?>");
-     
-     // $('#alpha_img_pass').attr("src","<?php echo base_url('img_user/"+user+"/"+project+"/Alpha.png')?>");
-
-     
-     
-  
-//}
-
-//function table_groups(data){
-
-  // var get_tbody = "";
-  //  for(var i=0 ;i < data.length; i++ ){
-
-  //     get_tbody += "<tr>";
-  //     get_tbody += "<td>"+data[i][0]+"</td>";
-  //     get_tbody += "<td>"+data[i][1]+"</td>";
-  //     get_tbody += "<td>"+data[i][2]+"</td>";
-  //     get_tbody += "<td>"+data[i][3]+"</td>";
-  //     get_tbody += "<td>"+data[i][4]+"</td>";
-  //     get_tbody += "<td>"+data[i][5]+"</td>";
-  //     get_tbody += "<td>"+data[i][6]+"</td>";
-  //     get_tbody += "<td>"+data[i][7]+"</td>";
-  //     get_tbody += "<td>"+data[i][8]+"</td>";
-  //     get_tbody += "<td>"+data[i][9]+"</td>";
-  //     get_tbody += "<td>"+data[i][10]+"</td>";
-  //     get_tbody += "</tr>";
-
-  //  }
-    
-   //$('#body_tg').html(get_tbody);
-   //getCanvas1();
-//}
-
-
-//function table_summary(data){
-
-  // var get_tbody = "";
-  //  for(var i=0 ;i < data.length; i++ ){
-
-  //     if(i == 0){
-
-  //             get_tbody += "<tr>";
-  //             get_tbody += "<td colspan='2'>"+data[i][0]+"</td>";
-  //             get_tbody += "<td>"+data[i][1]+"</td>";
-  //             get_tbody += "<td>"+data[i][2]+"</td>";
-  //             get_tbody += "<td>"+data[i][3]+"</td>";
-  //             get_tbody += "<td>"+data[i][4]+"</td>";
-  //             get_tbody += "<td>"+data[i][5]+"</td>";
-  //             get_tbody += "<td>"+data[i][6]+"</td>";
-  //             get_tbody += "<td>"+data[i][7]+"</td>";
-  //             get_tbody += "<td>"+data[i][8]+"</td>";
-  //             get_tbody += "<td>"+data[i][9]+"</td>";
-  //             get_tbody += "</tr>";
-
-  //     }else{
-  //           get_tbody += "<tr>";
-  //           get_tbody += "<td>"+data[i][0]+"</td>";
-  //           get_tbody += "<td>"+data[i][1]+"</td>";
-  //           get_tbody += "<td>"+data[i][2]+"</td>";
-  //           get_tbody += "<td>"+data[i][3]+"</td>";
-  //           get_tbody += "<td>"+data[i][4]+"</td>";
-  //           get_tbody += "<td>"+data[i][5]+"</td>";
-  //           get_tbody += "<td>"+data[i][6]+"</td>";
-  //           get_tbody += "<td>"+data[i][7]+"</td>";
-  //           get_tbody += "<td>"+data[i][8]+"</td>";
-  //           get_tbody += "<td>"+data[i][9]+"</td>";
-  //           get_tbody += "<td>"+data[i][10]+"</td>";
-  //           get_tbody += "</tr>";
-
-  //     }
-
-  //  }
-    
-   //$('#body_ts').html(get_tbody);
-   //getCanvas2();
- 
-//}
 
 $(document).ready(function(){
 

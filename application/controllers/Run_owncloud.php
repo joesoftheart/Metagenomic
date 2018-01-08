@@ -19,6 +19,50 @@ class Run_owncloud extends CI_Controller {
   
     }
 
+    public function testread(){
+       $path = FCPATH."owncloud/data/aumza/files/testrun/output/myResultsPathwayL2.tsv";
+
+           echo "<table border='1'>";
+           if(file_exists($path)){
+               
+                $myfile = fopen($path,'r') or die ("Unable to open file");
+              
+                   $row = 0;
+                    while(($lines = fgets($myfile)) !== false){
+                        $line = explode("\t", $lines);
+                       if($row == 0){
+                           echo "<tr>"; 
+                           echo "<td>".$line[0]."</td>".
+                                "<td>".$line[1]. "</td>".
+                                "<td>".str_replace('1',$line[2] ,$line[6] ). "</td>".
+                                "<td>".str_replace('2',$line[3] ,$line[7] ). "</td>".
+                                "<td>".$line[9]. "</td>";
+                           echo "</tr>";
+                       }else{
+                          echo "<tr>"; 
+                          echo "<td>".$line[0]."</td>".
+                               "<td>".$line[1]. "</td>".
+                               "<td>".number_format(floatval($line[6]),3,'.',''). "</td>".
+                               "<td>".number_format(floatval($line[7]),3,'.',''). "</td>".
+                               "<td>".sprintf("%.3e",$line[9]). "</td>";
+                          echo "</tr>";
+                       }
+
+                    $row++;
+
+                    }
+                    
+                    
+                fclose($myfile);  
+          
+           } 
+
+           echo "</table>";
+
+    }
+
+
+
     public function ex_string(){
         //$lable = explode('_', "gg_13_8_99.fasta");
        // echo $lable[0];

@@ -30,18 +30,29 @@
 
          $GLOBALS['file_design'] = $argv[18];
          $GLOBALS['file_metadata'] = $argv[19];
-         $GLOBALS['ah_mova'] = $argv[20];
+           
+         $GLOBALS['amova']  = $argv[20];
+         $GLOBALS['homova'] = $argv[21];
+         $GLOBALS['anosim'] = $argv[22];
 
-         
-         $GLOBALS['correlation_meta'] = $argv[21];
-         $GLOBALS['method_meta'] = $argv[22];
-         $GLOBALS['axes_meta'] = $argv[23];
+         $GLOBALS['correlation_meta'] = $argv[23];
+         $GLOBALS['method_meta'] = $argv[24];
+         $GLOBALS['axes_meta'] = $argv[25];
 
-         $GLOBALS['correlation_otu'] = $argv[24];
-         $GLOBALS['method_otu'] = $argv[25];
-         $GLOBALS['axes_otu'] = $argv[26];
+         $GLOBALS['correlation_otu'] = $argv[26];
+         $GLOBALS['method_otu'] = $argv[27];
+         $GLOBALS['axes_otu'] = $argv[28];
 
-         $GLOBALS['label_num'] = $argv[27];
+         $GLOBALS['label_num'] = $argv[29];
+
+          
+          #PICRUSt  and STAMP
+          $GLOBALS['kegg'] = $argv[30];
+          $GLOBALS['sample_comparison'] = $argv[31];
+          $GLOBALS['statistical_test'] = $argv[32];
+          $GLOBALS['ci_method'] = $argv[33];
+          $GLOBALS['p_value'] = $argv[34];
+       
          
 
       
@@ -69,11 +80,13 @@
          if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != "" && $argv[6] =! "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != ""){
              echo "Check Parameter Success"."\n";
              //collect_rarefaction_summary($user,$project,$path_in,$path_out);
-             //make_biom($user,$project,$path_in,$path_out);
+             make_biom($user,$project,$path_in,$path_out);
              //biom_to_stamp($user,$project,$path_in,$path_out);
              //remove_float($user,$project,$path_in,$path_out);
-             stamp($user,$project,$path_in,$path_out);
-             
+             //stamp($user,$project,$path_in,$path_out);
+             //plot_STAMP($user,$project,$path_in,$path_out);
+       
+   
          }else{
 
               echo "user : ".$user."\n";
@@ -101,7 +114,10 @@
 
               echo "file_design : ".$GLOBALS['file_design']."\n";
               echo "file_metadata : ".$GLOBALS['file_metadata']."\n" ;
-              echo "ah_mova : ".$GLOBALS['ah_mova']."\n";
+
+              echo "amova  : ".$GLOBALS['amova']."\n";
+              echo "homova : ".$GLOBALS['homova']."\n";
+              echo "anosim : ".$GLOBALS['anosim']."\n";
              
               echo "correlation_meta : ".$GLOBALS['correlation_meta']."\n";
               echo "method_meta : ".$GLOBALS['method_meta']."\n";
@@ -112,7 +128,7 @@
               echo "axes_otu : ".$GLOBALS['axes_otu']."\n";
          }
 
-
+    #1
     function collect_rarefaction_summary($user,$project,$path_in,$path_out){
            echo "collect_rarefaction_summary"."\n";
 
@@ -154,11 +170,8 @@
               }   
     }
 
-
-
-         
-
-    function dist_summary_shared($user,$project,$path_in,$path_out){
+  #2
+  function dist_summary_shared($user,$project,$path_in,$path_out){
              
               echo "dist_summary_shared"."\n";
               $jobname = $user."_dist_summary_shared";
@@ -198,10 +211,8 @@
               }   
     }
 
-         
-
-          
-     function venn($user,$project,$path_in,$path_out){
+  #3       
+  function venn($user,$project,$path_in,$path_out){
               
               echo "venn"."\n";
 
@@ -241,8 +252,8 @@
               }   
        }
 
-
-       function tree_shared($user,$project,$path_in,$path_out){
+    #4
+    function tree_shared($user,$project,$path_in,$path_out){
          
          echo "tree_shared"."\n";
          $jobname = $user."_tree_shared";
@@ -319,12 +330,8 @@
 
        }
 
-
-
-       
-
-       
-       function pcoa($user,$project,$path_in,$path_out){
+    #5
+    function pcoa($user,$project,$path_in,$path_out){
           
           echo "pcoa"."\n";
           $jobname = $user."_pcoa";
@@ -389,8 +396,8 @@
           
        }
 
-
-       function nmds($user,$project,$path_in,$path_out){
+    #6
+    function nmds($user,$project,$path_in,$path_out){
 
           echo "nmds"."\n";
           $jobname = $user."_nmds";
@@ -440,7 +447,7 @@
 
                    if($check_run == false){
 
-                      amova_homova($user,$project,$path_in,$path_out);
+                      amova_homova_anosim($user,$project,$path_in,$path_out);
                       
 
                       break;
@@ -459,15 +466,16 @@
 
        }
 
-       function amova_homova($user,$project,$path_in,$path_out){
+  #7  use file design
+  function amova_homova_anosim($user,$project,$path_in,$path_out){
          
-          echo "amova_homova"."\n";
-          $jobname = $user."_amova_homova";
+          echo "amova_homova_anosim"."\n";
+          $jobname = $user."_amova_homova_anosim";
 
           $make = "";
 
           # Amova
-         if($GLOBALS['ah_mova'] == "amova" && $GLOBALS['file_design'] != "0"){
+         if($GLOBALS['amova'] == "amova" && $GLOBALS['file_design'] != "0"){
               # PCoA
             if($GLOBALS['check'] == "pcoa"){
                   # community structure
@@ -516,7 +524,7 @@
         }
 
         # Homova
-        elseif ($GLOBALS['ah_mova'] == "homova" && $GLOBALS['file_design'] != "0") {
+        if ($GLOBALS['homova'] == "homova" && $GLOBALS['file_design'] != "0") {
                 # PCoA
                if($GLOBALS['check'] == "pcoa"){
                   # community structure
@@ -563,8 +571,56 @@
                }
 
          }
-          # run command   
 
+         # Anosim
+         if ($GLOBALS['anosim'] == "anosim" && $GLOBALS['file_design'] != "0") {
+                # PCoA
+               if($GLOBALS['check'] == "pcoa"){
+                  # community structure
+                  if($GLOBALS['d_pcoa_st']  != "0"){
+
+                    $d_pcoa_st = explode(",", $GLOBALS['d_pcoa_st']);
+                    for($i = 0 ; $i < sizeof($d_pcoa_st); $i++){
+
+                     $make .="anosim(phylip=final.tx.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.dist, design=".$GLOBALS['file_design'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                    }
+                  }
+                  # community membership
+                  if($GLOBALS['d_pcoa_me']  != "0"){
+
+                      $d_pcoa_me = explode(",", $GLOBALS['d_pcoa_me']);
+                      for($i = 0 ; $i < sizeof($d_pcoa_me); $i++){
+
+                        $make .="anosim(phylip=final.tx.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.dist, design=".$GLOBALS['file_design'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+
+                      }
+                  }
+
+               }# NMDS
+               elseif ($GLOBALS['check'] == "nmds") {
+                 # community structure
+                 if($GLOBALS['d_nmds_st'] != "0"){
+                      $d_nmds_st = explode(",", $GLOBALS['d_nmds_st']);
+                      for($i = 0 ; $i < sizeof($d_nmds_st); $i++){
+
+                         $make .="anosim(phylip=final.tx.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.dist, design=".$GLOBALS['file_design'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+
+                       }
+                  }
+                  # community membership
+                  if($GLOBALS['d_nmds_me']  != "0"){
+                      $d_nmds_me = explode(",", $GLOBALS['d_nmds_me']);
+                      for($i = 0 ; $i < sizeof($d_nmds_me); $i++){
+                         
+                         $make .="anosim(phylip=final.tx.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.dist, design=".$GLOBALS['file_design'].",inputdir=$path_in,outputdir=$path_out)"."\n";
+                      }
+                 }
+                
+               }
+
+         }
+
+          # run command   
           if($make != "" ){
 
            file_put_contents($path_in.'/advance.batch', $make);
@@ -597,7 +653,7 @@
 
          }elseif ($make == "") {
 
-             echo "Not command amova_homova !"."\n";
+             echo "Not command amova_homova_anosim !"."\n";
              parsimony($user,$project,$path_in,$path_out);
              break;
            
@@ -605,8 +661,8 @@
  
 
       }
-
-       function corr_axes($user,$project,$path_in,$path_out){
+  #8 use file metadata
+  function corr_axes($user,$project,$path_in,$path_out){
 
           echo "corr_axes"."\n";
           $jobname = $user."_corr_axes";
@@ -773,9 +829,8 @@
         
       }
 
-
-
-      function parsimony($user,$project,$path_in,$path_out){
+  #9 use file design
+  function parsimony($user,$project,$path_in,$path_out){
 
            echo "parsimony"."\n";
 
@@ -844,18 +899,19 @@
                    
      }
 
-
-  # hide output
-       
-   function heatmap_bin_sim($user,$project,$path_in,$path_out){
+  #10
+  # hide output 
+  function heatmap_bin_sim($user,$project,$path_in,$path_out){
        
          echo "heatmap_bin_sim"."\n";
 
          $jobname = $user."_heatmap_bin_sim";
+         
+         $path_out_hidden = $path_out."/hiddencommand/";
 
-         $make = "heatmap.bin(shared=final.tx.".$GLOBALS['level'].".subsample.shared, scale=log2, numotu=10,inputdir=$path_out,outputdir=$path_out)
-                  heatmap.sim(phylip=final.tx.thetayc.".$GLOBALS['level'].".lt.ave.dist,inputdir=$path_out,outputdir=$path_out) 
-                  heatmap.sim(phylip=final.tx.jclass.".$GLOBALS['level'].".lt.ave.dist,inputdir=$path_out,outputdir=$path_out) ";
+         $make = "heatmap.bin(shared=final.tx.".$GLOBALS['level'].".subsample.shared, scale=log2, numotu=10,inputdir=$path_out,outputdir=$path_out_hidden)
+                  heatmap.sim(phylip=final.tx.thetayc.".$GLOBALS['level'].".lt.ave.dist,inputdir=$path_out,outputdir=$path_out_hidden) 
+                  heatmap.sim(phylip=final.tx.jclass.".$GLOBALS['level'].".lt.ave.dist,inputdir=$path_out,outputdir=$path_out_hidden) ";
   
         file_put_contents($path_in.'/advance.batch', $make);
                $log = $GLOBALS['path_log'];
@@ -889,18 +945,17 @@
               } 
     }   
 
-
-
-
+  #11 use file design
   # hide output
   function unifrac($user,$project,$path_in,$path_out) {
 
 
      echo "unifrac"."\n";
 
-     $path_out_plot = "owncloud/data/$user/files/$project/output_plot/";
+      $path_out_plot = "owncloud/data/$user/files/$project/output_plot/";
 
       $jobname = $user."_unifrac";
+      $path_out_hidden = $path_out."/hiddencommand/";
 
       $make = "";
 
@@ -909,8 +964,8 @@
             $d_upgma_st = explode(",", $GLOBALS['d_upgma_st']);
             for($i = 0 ; $i < sizeof($d_upgma_st); $i++){
               
-             $make .="unifrac.weighted(tree=final.tx.".$d_upgma_st[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T ,inputdir=$path_in,outputdir=$path_out) 
-                      unifrac.unweighted(tree=final.tx.".$d_upgma_st[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T, groups=all ,inputdir=$path_in,outputdir=$path_out)"."\n";
+             $make .="unifrac.weighted(tree=final.tx.".$d_upgma_st[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T ,inputdir=$path_in,outputdir=$path_out_hidden) 
+                      unifrac.unweighted(tree=final.tx.".$d_upgma_st[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T, groups=all ,inputdir=$path_in,outputdir=$path_out_hidden)"."\n";
             }
          }
          # community membership
@@ -918,8 +973,8 @@
             $d_upgma_me = explode(",", $GLOBALS['d_upgma_me']);
             for($i = 0 ; $i < sizeof($d_upgma_me); $i++){
               
-             $make .="unifrac.weighted(tree=final.tx.".$d_upgma_me[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T ,inputdir=$path_in,outputdir=$path_out) 
-                      unifrac.unweighted(tree=final.tx.".$d_upgma_me[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T, groups=all ,inputdir=$path_in,outputdir=$path_out)"."\n";
+             $make .="unifrac.weighted(tree=final.tx.".$d_upgma_me[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T ,inputdir=$path_in,outputdir=$path_out_hidden) 
+                      unifrac.unweighted(tree=final.tx.".$d_upgma_me[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T, groups=all ,inputdir=$path_in,outputdir=$path_out_hidden)"."\n";
                
             }
          } 
@@ -970,9 +1025,9 @@
            
    }
 
+  
   # Remove log mothur
-
-   function remove_logfile_mothur($path_out){ 
+  function remove_logfile_mothur($path_out){ 
             
             $path_dir = $path_out;
             if (is_dir($path_dir)) {
@@ -993,9 +1048,8 @@
             } 
      }
 
-
+#12
 # Graph 
-
 function create_file_input_heatmap($user,$project,$path_in,$path_out){
      
      echo "create_file_input_heatmap "."\n";
@@ -1033,7 +1087,7 @@ function create_file_input_heatmap($user,$project,$path_in,$path_out){
 
  }
 
-
+#13
  function create_file_input_abun($user,$project,$path_in,$path_out){
     
     echo "create_file_input_abun "."\n";
@@ -1071,6 +1125,7 @@ function create_file_input_heatmap($user,$project,$path_in,$path_out){
 
 }
 
+#14
 function create_input_alphash($user,$project,$path_in,$path_out){
    
     echo "create_input_alphash "."\n";
@@ -1101,7 +1156,7 @@ function create_input_alphash($user,$project,$path_in,$path_out){
 
 }
 
-
+#15
 function create_input_biplot($user,$project,$path_in,$path_out){
     
     echo "create_input_biplot"."\n";
@@ -1144,10 +1199,8 @@ function create_input_biplot($user,$project,$path_in,$path_out){
 
 }
 
-
-
-
-  function plot_graph_r_heatmap($user,$project,$path_in,$path_out){
+#16
+function plot_graph_r_heatmap($user,$project,$path_in,$path_out){
 
 
      echo "plot_graph_r_heatmap "."\n";
@@ -1181,7 +1234,8 @@ function create_input_biplot($user,$project,$path_in,$path_out){
 
  }
 
- function plot_graph_r_NMD($user,$project,$path_in,$path_out){
+#17
+function plot_graph_r_NMD($user,$project,$path_in,$path_out){
 
    
     echo "plot_graph_r_NMD "."\n";
@@ -1251,7 +1305,7 @@ function create_input_biplot($user,$project,$path_in,$path_out){
 
 }
 
-
+#18
 function plot_graph_r_Rare($user,$project,$path_in,$path_out){
 
  
@@ -1286,7 +1340,7 @@ function plot_graph_r_Rare($user,$project,$path_in,$path_out){
 
 }
 
-
+#19
 function plot_graph_r_Abun($user,$project,$path_in,$path_out){
 
     
@@ -1321,7 +1375,7 @@ function plot_graph_r_Abun($user,$project,$path_in,$path_out){
 
 }
 
-
+#20
 function plot_graph_r_Alphash($user,$project,$path_in,$path_out){
 
     
@@ -1357,7 +1411,7 @@ function plot_graph_r_Alphash($user,$project,$path_in,$path_out){
 
 }
 
-
+#21
 function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
   
    
@@ -1435,7 +1489,7 @@ function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
 
 }
 
-
+#22
 function plot_graph_r_Tree($user,$project,$path_in,$path_out){
 
     echo "plot_graph_r_Tree "."\n";
@@ -1463,24 +1517,21 @@ function plot_graph_r_Tree($user,$project,$path_in,$path_out){
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
 
-            //make_biom($user,$project,$path_in,$path_out);
+            make_biom($user,$project,$path_in,$path_out);
             break;
         }
     }
 
 }
 
-
-# Run separately 
-
+#24
+# Run make_biom for Mothur GO To PICRUSt  and STAMP 
 function make_biom($user,$project,$path_in,$path_out){
-   
+
 
    #  silva , rdp => $label = 1
    #  greengene   => $label = 2
-
-
-   $label = '2';
+   $label = $GLOBALS['label_num'];
 
    echo "make_biom"."\n";
    $jobname = $user."_make_biom";
@@ -1511,8 +1562,23 @@ function make_biom($user,$project,$path_in,$path_out){
 
                    if($check_run == false){
 
-                      convert_biom($user,$project,$path_in,$path_out);
-                      break;   
+                     if($GLOBALS['kegg'] != "0" &&
+                        $GLOBALS['sample_comparison'] != "0" &&
+                        $GLOBALS['statistical_test'] != "0"  &&  
+                        $GLOBALS['ci_method'] != "0" &&
+                        $GLOBALS['p_value'] != "0" ){
+
+                          convert_biom($user,$project,$path_in,$path_out);
+                          break; 
+
+                      }else{
+
+                           change_name($user,$project,$path_in,$path_out);
+                           remove_logfile_mothur2($path_out);
+                           remove_file_tree_sum($path_in);
+                           break; 
+                      }
+                       
                    }
               }   
    
@@ -1520,13 +1586,13 @@ function make_biom($user,$project,$path_in,$path_out){
 
 }
 
+#25
 function convert_biom($user,$project,$path_in,$path_out){
    
 
-     #  silva , rdp => $label = 1
-     #  greengene   => $label = 2
-    
-    $label = '2';
+    #  silva , rdp => $label = 1
+    #  greengene   => $label = 2
+    $label = $GLOBALS['label_num'];
 
     echo "convert_biom"."\n";
 
@@ -1567,12 +1633,12 @@ function convert_biom($user,$project,$path_in,$path_out){
 
 }
 
+#26
 function phylotype_picrust($user,$project,$path_in,$path_out){
 
      #  silva , rdp => $label = 1
      #  greengene   => $label = 2
-
-    $label = '2';
+     $label = $GLOBALS['label_num'];
 
     echo "phylotype_picrust"."\n";
 
@@ -1604,10 +1670,6 @@ function phylotype_picrust($user,$project,$path_in,$path_out){
 
                    if($check_run == false){
 
-                      remove_logfile_mothur2($path_out);
-                      remove_file_tree_sum($path_in);
-
-                      //change_name($user,$project,$path_in,$path_out);
                       phylotype_picrust2($user,$project,$path_in,$path_out);
                       break;  
                    }
@@ -1616,21 +1678,17 @@ function phylotype_picrust($user,$project,$path_in,$path_out){
 }
 
 
-
-
+#27
 function phylotype_picrust2($user,$project,$path_in,$path_out){
-    
-
-
+   
      #  silva , rdp => $label = 1
      #  greengene   => $label = 2
-    
-   $label = '2';
+  $label = $GLOBALS['label_num'];
 
-    echo "phylotype_picrust2"."\n";
+  echo "phylotype_picrust2"."\n";
 
-    $jobname = $user."_phylotype_picrust2";
-    $log = $GLOBALS['path_log'];
+  $jobname = $user."_phylotype_picrust2";
+  $log = $GLOBALS['path_log'];
 
   $normalized_otus = $path_out."normalized_otus.".$label.".biom";
   $metagenome_predictions = $path_out."metagenome_predictions.".$label.".biom";
@@ -1664,29 +1722,22 @@ function phylotype_picrust2($user,$project,$path_in,$path_out){
 
 }
 
-# Run separately  
-
-
+#28
 function phylotype_picrust3($user,$project,$path_in,$path_out){
 
-    
      #  silva , rdp => $label = 1
      #  greengene   => $label = 2
+  $label = $GLOBALS['label_num'];
 
-
-    $label = '2';
-
-    echo "phylotype_picrust3"."\n";
+  echo "phylotype_picrust3"."\n";
 
     $jobname = $user."_phylotype_picrust3";
     $log = $GLOBALS['path_log'];
 
-  
-
   $metagenome_predictions = $path_out."metagenome_predictions.".$label.".biom";
 
    # $L = Please select level of KEGG pathway  level 1,2 or 3
-   $L = "L2";
+   $L = $GLOBALS['kegg'];
   
   $predicted_metagenomes = $path_out."predicted_metagenomes.".$label.".".$L.".biom";
     
@@ -1718,12 +1769,12 @@ function phylotype_picrust3($user,$project,$path_in,$path_out){
 
 }
 
+#29
 function biom_to_stamp($user,$project,$path_in,$path_out){
 
-     #  silva , rdp => $label = 1
-     #  greengene   => $label = 2
-    
-   $label = '2';
+    #  silva , rdp => $label = 1
+    #  greengene   => $label = 2
+    $label = $GLOBALS['label_num'];
 
     echo "biom_to_stamp"."\n";
 
@@ -1731,7 +1782,7 @@ function biom_to_stamp($user,$project,$path_in,$path_out){
     $log = $GLOBALS['path_log'];
 
    # $L = Please select level of KEGG pathway  level 1,2 or 3
-   $L = "L2";
+   $L = $GLOBALS['kegg'];
 
    $predicted_metagenomes = $path_out."predicted_metagenomes.".$label.".".$L.".biom";
 
@@ -1765,8 +1816,7 @@ function biom_to_stamp($user,$project,$path_in,$path_out){
 
 }
 
-
-
+#30
 function remove_float($user,$project,$path_in,$path_out){
     
     echo "remove_float"."\n";
@@ -1774,14 +1824,12 @@ function remove_float($user,$project,$path_in,$path_out){
     $jobname = $user."_remove_float";
     $log = $GLOBALS['path_log'];
 
-    
      #  silva , rdp => $label = 1
      #  greengene   => $label = 2
-
-     $label = '2';
+     $label = $GLOBALS['label_num'];
 
      # $L = Please select level of KEGG pathway  level 1,2 or 3
-     $L = "L2";
+     $L = $GLOBALS['kegg'];
 
     $pathways = $path_out."pathways".$label.$L.".spf";
 
@@ -1807,16 +1855,15 @@ function remove_float($user,$project,$path_in,$path_out){
     }
 }
 
+#31
 function stamp($user,$project,$path_in,$path_out){
 
-   
-     #  silva , rdp => $label = 1
-     #  greengene   => $label = 2
+    #  silva , rdp => $label = 1
+    #  greengene   => $label = 2
+    $label = $GLOBALS['label_num'];
 
-     $label = '2';
-
-     # $L = Please select level of KEGG pathway  level 1,2 or 3
-     $L = "L2";
+    # $L = Please select level of KEGG pathway  level 1,2 or 3
+    $L = $GLOBALS['kegg'];
 
     echo "stamp"."\n";
 
@@ -1825,12 +1872,43 @@ function stamp($user,$project,$path_in,$path_out){
 
     $pathways = "../".$path_out."pathways".$label.$L.".spf";
     $myResultsPathway = "../".$path_out."myResultsPathway".$L.".tsv";
-    $sample1 = "S1_1_16s_S1";
-    $sample2 = "S2_1_16s_S3";
-    $statistical_test = "G-test (w/ Yates' correction)";
-    $ci_method = "DP: Newcombe-Wilson";
-    $p_value = "0.05";
-    
+
+     
+    list($sample1,$sample2)=explode("--vs--",  $GLOBALS['sample_comparison']);
+    $sample1 = $sample1;
+    $sample2 = $sample2;
+
+    #Selected statistical test : 
+    $statistical_test = $GLOBALS['statistical_test'];
+
+    if($GLOBALS['statistical_test'] == "Chi-square"  ){
+        $statistical_test = "Chi-square test";
+    }elseif ($GLOBALS['statistical_test'] =="Chi-square2" ) {
+        $statistical_test = "Chi-square test (w/ Yates' correction)";
+    }elseif ($GLOBALS['statistical_test'] == "Difference") {
+        $statistical_test = "Difference between proportions";
+    }elseif ($GLOBALS['statistical_test'] == "Fisher") {
+      $statistical_test = "Fisher's exact test";
+    }elseif ($GLOBALS['statistical_test'] == "G‐test2" ) {
+      $statistical_test = "G-test (w/ Yates' correction)";
+    }
+
+    # CI method : 
+    $ci_method = null;
+
+    if($GLOBALS['ci_method'] == "DP1"){
+         $ci_method = "DP: Newcombe-Wilson";
+    }elseif ($GLOBALS['ci_method'] == "DP2") {
+        $ci_method = "DP: Asymptotic";
+    }elseif ($GLOBALS['ci_method'] == "DP3") {
+        $ci_method = "DP: Asymptotic-CC";
+    }elseif ($GLOBALS['ci_method'] == "OR1") {
+        $ci_method = "OR: Haldane adjustment";
+    }else{
+        $ci_method = "RP: Asymptotic";
+    }
+
+    $p_value = $GLOBALS['p_value'];
     
 
     $function = 'python  STAMP-1.8/commandLine.py --file '.$pathways.' --sample1 '.$sample1.' --sample2 '.$sample2.' --statTest "'.$statistical_test.'" --CI "'.$ci_method.'" -p '.$p_value.' --coverage 0.95 --outputTable '.$myResultsPathway.'';
@@ -1841,7 +1919,6 @@ function stamp($user,$project,$path_in,$path_out){
 
      $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y STAMP-1.8/$getPath";
 
-    //$cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y STAMP-1.8/qsubStamp.sh $pathways $sample1 $sample2 $myResultsPathway  $p_value";
     
      shell_exec($cmd);
      $check_qstat = "qstat  -j '$jobname' ";
@@ -1862,6 +1939,8 @@ function stamp($user,$project,$path_in,$path_out){
 
                    if($check_run == false){
 
+                      plot_STAMP($user,$project,$path_in,$path_out);
+                      
                       break;  
                    }
           }   
@@ -1869,9 +1948,47 @@ function stamp($user,$project,$path_in,$path_out){
 
 }
 
+#32
+function plot_STAMP($user,$project,$path_in,$path_out){
 
+    echo "plot_STAMP"."\n";
+
+    # $L = Please select level of KEGG pathway  level 1,2 or 3
+    $L = $GLOBALS['kegg'];
+
+    $myResultsPathway = "owncloud/data/$user/files/$project/output/myResultsPathway".$L.".tsv";
+    $path_to_save = "owncloud/data/$user/files/$project/output/bar_plot_STAMP.png";
+
+    $jobname = $user ."_plot_STAMP";
+    $log = $GLOBALS['path_log'];
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/barplotwitherrorstampModi.R $myResultsPathway $path_to_save";
+   
+    exec($cmd);
+    $check_qstat = "qstat  -j '$jobname' ";
+    exec($check_qstat, $output);
+    $id_job = ""; # give job id
+    foreach ($output as $key_var => $value) {
+        if ($key_var == "1") {
+            $data = explode(":", $value);
+            $id_job = $data[1];
+        }
+    }
+    $loop = true;
+    while ($loop) {
+        $check_run = exec("qstat -j $id_job");
+        if ($check_run == false) {
+
+            change_name($user,$project,$path_in,$path_out);
+            remove_logfile_mothur2($path_out);
+            remove_file_tree_sum($path_in);
+            break;
+        }
+    }
+
+}
+
+#33
 function change_name($user,$project,$path_in,$path_out){
-
 
     echo "change_name"."\n";
 
@@ -1890,7 +2007,6 @@ function change_name($user,$project,$path_in,$path_out){
                     continue;
                 }
 
-
             } else {
 
                 $type = explode('.', $value);
@@ -1900,26 +2016,25 @@ function change_name($user,$project,$path_in,$path_out){
                     $file_name = preg_split("/[.]/",$value );
                     if (in_array("bin", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "bin.svg");
-                        //echo $value." => "."change to bin.svg"."\n";
+                       
                     }
                     if (in_array("sharedsobs", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "sharedsobs.svg");
-                        //echo $value." => "."change to sharedsobs.svg"."\n";
+                       
                     }
                     if (in_array("jclass", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "jclass.svg");
-                        //echo $value." => "."change to jclass.svg"."\n";
+                       
                     }
                     if (in_array("thetayc", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "thetayc.svg");
-                        //echo $value." => "."change to thetayc.svg"."\n";
+                        
                     }
                 }
             }
         }
     }
 }
-
 
 
 # Remove log mothur

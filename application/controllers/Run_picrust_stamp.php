@@ -26,7 +26,7 @@ class Run_picrust_stamp extends CI_Controller
 
          $id = $this->uri->segment(3);
          $data['samname'] = $this->samset($id);
-    	 $this->session->set_userdata('current_project',$id);
+    	   $this->session->set_userdata('current_project',$id);
          $this->load->view('header');
          $this->load->view('run_picrust_stamp',$data);
          $this->load->view('footer');

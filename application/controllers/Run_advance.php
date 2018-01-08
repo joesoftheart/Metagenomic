@@ -23,6 +23,49 @@
     }
 
 
+
+    // public function runadvance(){
+
+    // $id_project = "5a090de381b813981fdd0099"; 
+
+    // $read = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
+  
+    // $project_name = null;
+    // $project_analysis = null;
+    // $id = null;
+
+    // foreach ($read as $r) {
+
+    //     $id = (string)$r['_id'];
+    //     $project_name = $r['project_name'];
+    //     $project_analysis = $r['project_analysis'];
+    //  }
+    
+    //  $this->session->userdata['logged_in']['username'];
+    //  $data['project_analysis'] = $project_analysis;
+    //  $this->load->view('header', $data);
+    //  $this->load->view('run_advance', $data);
+    //  $this->load->view('footer');
+
+      
+    //   $data['username'] = $this->session->userdata['logged_in']['username'];
+    //   $data['project']  = $project_name;
+    //   $data['currentproject'] = $id;
+
+    //   $img_source = 'images/check.png';
+    //   $img_code = base64_encode(file_get_contents($img_source));
+    //   $data['src'] = 'data:'.mime_content_type($img_source).';base64,'.$img_code;
+
+    //   $img_source = 'images/ajax-loader.gif';
+    //   $img_code = base64_encode(file_get_contents($img_source));
+    //   $data['srcload'] = 'data:'.mime_content_type($img_source).';base64,'.$img_code;
+
+    //   $this->load->view('script_advance',$data);
+
+    // }
+
+
+
     public function recheck(){
 
       $id_project = $_REQUEST['data_status'];
@@ -417,48 +460,20 @@
             }
         
 
-
         #Create  jobname  advance
-            $jobname = $user."-".$project."-".$project_analysis."-"."advance";
+         $jobname = $user."-".$project."-".$project_analysis."-"."advance";
 
            
         #Check type Project is Phylotype OR OTU
-            if($project_analysis == "phylotype"){
-
-                $count = $this->mongo_db->where(array('id_project'=> $id_project))->count('advance_classifly');
-                  if($count == 0){
-                        $data = array('user' => $user,'project_name' => $project,'id_project' => $id_project,'classifly' => $classifly);
-    
-                        # insert data project
-                          $this->mongo_db->insert('advance_classifly', $data);
-                  }else{
-
-                        # update classifly
-                        $this->mongo_db->where(array('id_project'=> $id_project))->set('classifly', $classifly)->update('advance_classifly');     
-                  }
+         if($project_analysis == "phylotype"){
 
                    $taxon = str_replace(";", ",", $taxon);
                    $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project_data $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
-                  
-            }
-            elseif ($project_analysis == "OTUs") {
-
-                $count = $this->mongo_db->where(array('id_project'=> $id_project))->count('advance_classifly');
-                  if($count == 0){
-                        $data = array('user' => $user,'project_name' => $project,'id_project' => $id_project,'classifly' => $project_analysis);
-    
-                        # insert data project
-                          $this->mongo_db->insert('advance_classifly', $data);
-                  }else{
-
-                        # update classifly
-                        $this->mongo_db->where(array('id_project'=> $id_project))->set('classifly', $project_analysis)->update('advance_classifly');     
-                  }
-                  
+         }elseif ($project_analysis == "OTUs") {
+      
                   $taxon = str_replace(";", ",", $taxon); 
                   $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project_data $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
-            }
-
+         }
            
          # Run Qsub Advance 
          shell_exec($cmd);
@@ -475,28 +490,93 @@
               }
 
          $id_job = trim($id_job);
-         
          echo json_encode(array($id_job,$id_project));
 
-        
+        # Insert data run project to status_process
+          if($project_analysis == "phylotype"){
 
-     #Check data status-process
+                  #Check data status-process
+                  $count = $this->mongo_db->where(array('project_id'=> $id_project))->count('status_process');
+                   if($count == 0){
+                          $data = array(
+                                'status' => '1' ,
+                                'step_run' => '1' ,
+                                'job_id' => $id_job ,
+                                'job_name' => $jobname ,
+                                'path_log' => $path_log ,
+                                'project_id' => $id_project ,
+                                'user' => $user,
+                                'project' => $project ,
+                                'project_analysis' => $project_analysis ,
+                                'classifly' => $classifly,
+                                'f_design' => '0' ,
+                                'f_metadata' => '0' ,
+                                'project_data' => $project_data ,
+                                'level' => '0');
+                          $this->insert_status($data);
+                    }else{
+                          $data = array(
+                                 'status' => '1' ,
+                                 'step_run' => '1' ,
+                                 'job_id' => $id_job ,
+                                 'job_name' => $jobname ,
+                                 'path_log' => $path_log ,
+                                 'project_id' => $id_project ,
+                                 'user' => $user, 
+                                 'project' => $project , 
+                                 'project_analysis' => $project_analysis ,
+                                 'classifly' => $classifly,
+                                 'f_design' => '0' ,
+                                 'f_metadata' => '0' ,
+                                 'project_data' => $project_data ,
+                                 'level' => '0' );
+                          $this->update_status($id_project,$data);
+                    }
+          }elseif ($project_analysis == "OTUs") {
+      
+                  #Check data status-process
+                  $count = $this->mongo_db->where(array('project_id'=> $id_project))->count('status_process');
+                   if($count == 0){
+                          $data = array(
+                                'status' => '1' ,
+                                'step_run' => '1' ,
+                                'job_id' => $id_job ,
+                                'job_name' => $jobname ,
+                                'path_log' => $path_log ,
+                                'project_id' => $id_project ,
+                                'user' => $user,
+                                'project' => $project ,
+                                'project_analysis' => $project_analysis ,
+                                'classifly' => 'OTUs',
+                                'f_design' => '0' ,
+                                'f_metadata' => '0' ,
+                                'project_data' => $project_data ,
+                                'level' => '0');
+                          $this->insert_status($data);
+                    }else{
+                          $data = array(
+                                 'status' => '1' ,
+                                 'step_run' => '1' ,
+                                 'job_id' => $id_job ,
+                                 'job_name' => $jobname ,
+                                 'path_log' => $path_log ,
+                                 'project_id' => $id_project ,
+                                 'user' => $user, 
+                                 'project' => $project , 
+                                 'project_analysis' => $project_analysis ,
+                                 'classifly' => 'OTUs',
+                                 'f_design' => '0' ,
+                                 'f_metadata' => '0' ,
+                                 'project_data' => $project_data ,
+                                 'level' => '0' );
+                          $this->update_status($id_project,$data);
+                    }
+          }
 
-       $count = $this->mongo_db->where(array('project_id'=> $id_project))->count('status_process');
-       if($count == 0){
-           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data ,'level' => '0');
-           $this->insert_status($data);
-       }else{
-
-           $data = array('status' => '1' ,'step_run' => '1' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log ,'project_id' => $id_project ,'user' => $user, 'project' => $project , 'project_analysis' => $project_analysis ,'classifly' => $classifly,'f_design' => '0' ,'f_metadata' => '0' ,'project_data' => $project_data ,'level' => '0' );
-           $this->update_status($id_project,$data);
-       }
-
-
-      #Check data projects-run
-
+      #Check data projects-run 
         $count_run = $this->mongo_db->where(array('project_id'=> $id_project))->count('projects_run');
 
+         # keep data run to report
          if($count_run == 0){
              $data = array(
 
@@ -519,7 +599,6 @@
               'corr_otu' => 'null');
 
              $this->insert_project_run($data);
-
           
        }else{
 
@@ -543,11 +622,7 @@
               'corr_otu' => 'null');
 
               $this->update_project_run($id_project,$data);
-
-           
-       }
-
-       
+       }  
 
     }
    
@@ -694,16 +769,6 @@
         $id_project = $data[1];
         $size = $data[2];
 
-        $classifly = "";
-
-        # Query type classifly
-        $array_classifly = $this->mongo_db->get_where('advance_classifly',array('id_project' => $id_project));
-         foreach ($array_classifly as $r) {
-                           
-                $classifly = $r['classifly'];
-               
-         }
-       
 
        $project = "";
        $project_analysis = "";
@@ -804,6 +869,9 @@
                 # call function read_min_sample
                 $count_min = $this->read_min_sample($id_project);
 
+                # call function samset
+                $samname = $this->samset($id_project);
+
                # Check type Project Phylotype OTU
                   if($project_analysis == "phylotype"){
 
@@ -826,11 +894,10 @@
                   }
                   fclose($myfile);
 
-                   echo json_encode(array(0,$classifly,$sam_name,$count_min));
+              echo json_encode(array(0,$classifly,$sam_name,$count_min,$samname));
  
-            }
-             else
-                 {
+            }else
+                {
 
                      $file = FCPATH."$path_job$name_job.o$id_job";
                      $count = 0 ;
@@ -905,6 +972,29 @@
            return $data_read_count;
 
       }
+
+
+
+  public function samset($id_project){
+
+      $samplename = array();
+     
+      $sample_name = null ;
+       
+      #Query data Sample_Name
+      $array_samples = $this->mongo_db->get_where('sample_name',array('project_id' => $id_project));
+           foreach ($array_samples as $r) {
+             $sample_name = $r['name_sample'];
+           }
+
+         for ($i=0; $i < sizeof($sample_name); $i++) {  
+             for ($j= 1; $j < sizeof($sample_name)-$i; $j++) { 
+              array_push($samplename ,$sample_name[$i]."--vs--".$sample_name[$j+$i]);
+             }    
+         }
+      return $samplename;
+
+    }
 
 
 
@@ -992,7 +1082,6 @@
             $size_beta = trim($ch_beta);
          }
 
-
          $venn1 = $data[7];
          $venn2 = $data[8];
          $venn3 = $data[9];
@@ -1059,25 +1148,36 @@
            $file_design = $data[18];
            $file_metadata = $data[19];
 
-        #Amova & Homova
-           $ah_mova = $data[20];
+        #Amova or Homova or Anosim
+           $amova = $data[20];
+           $homova = $data[21];
+           $anosim = $data[22];
+
 
         #correlation with Metadata 
-           $correlation_meta = $data[21];
+           $correlation_meta = $data[23];
            
         #Method & Number of axes Metadata 
-           $method_meta = $data[22];
-           $axes_meta  = $data[23];
+           $method_meta = $data[24];
+           $axes_meta  = $data[25];
 
 
         # correlation of each OTU 
-           $correlation_otu = $data[24];
+           $correlation_otu = $data[26];
            
         #Method & Number of axes OTU 
-           $method_otu = $data[25];
-           $axes_otu  = $data[26];
+           $method_otu = $data[27];
+           $axes_otu  = $data[28];
 
+        #PICRUSt  and STAMP
+           $kegg = $data[29];
+           $sample_comparison = $data[30];
+           $statistical_test = $data[31];
+           $ci_method = $data[32];
+           $p_value = $data[33];
+          
 
+          
      
         #check variable
           if($file_design == "nodesign"){
@@ -1155,14 +1255,14 @@
 
            if ($project_analysis == "phylotype") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $amova $homova $anosim $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num $kegg $sample_comparison $statistical_test $ci_method $p_value ";
                
            }
            else if($project_analysis == "OTUs") {
                 
                 $label_num = "0.03";
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $ah_mova $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $amova $homova $anosim $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num $kegg $sample_comparison $statistical_test $ci_method $p_value ";
            }
              
  
@@ -1264,9 +1364,9 @@
 
             if($check_run == false){
               
-                  $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+                  $tg_body = null; //$this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
                   
-                  $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
+                  $ts_body = null;//$this->read_file_summary($user,$project,$project_analysis,$level);
                  
                   $this->on_move($user,$project,$project_data,$tg_body,$ts_body);
 
