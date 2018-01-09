@@ -30,15 +30,15 @@ if (isset($this->session->userdata['logged_in'])) {
                                 <?php echo form_open('new_projects/insert_project') ?>
                                 <div class="form-group">
                                     <label>Project Name :</label>
-                                    <input class="form-control" name="project_name" type="text"/>
+                                    <input class="form-control" name="project_name" type="text" required/>
                                     <label>Title Name :</label>
                                     <input class="form-control" name="project_title" type="text"/>
                                     <label>Project detail:</label>
-                                    <textarea class="form-control" name="project_detail"></textarea>
-                                    <div class="form-group">
+                                    <textarea class="form-control" name="project_detail" ></textarea>
+                                    <div class="form-group" >
                                         <label>Project permission :</label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_permission" id="" value="private">private
+                                            <input type="radio" name="project_permission" id="" value="private" required>private
                                         </label>
                                         <label class="radio-inline">
                                             <input type="radio" name="project_permission" id="" value="public">public
@@ -49,12 +49,12 @@ if (isset($this->session->userdata['logged_in'])) {
                                         </label>
                                     </div>
                                     <label>Raw sequencing data from :</label>
-                                    <select class="uk-select uk-width-1-4" name="project_sequencing">
+                                    <select class="uk-select uk-width-1-4" name="project_sequencing" required>
                                         <option value="illumina">illumina</option>
                                         <option value="other">other</option>
                                     </select><br><br>
                                     <label>Project type :</label>
-                                    <select class="uk-select uk-width-1-4" name="project_type">
+                                    <select class="uk-select uk-width-1-4" name="project_type" required>
                                         <option value="16s">16s</option>
                                         <option value="18s">18s</option>
                                         <option value="its">ITS</option>
@@ -62,7 +62,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <label>Select program :</label>
                                     <div class="form-group">
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_program" id="mothur" value="mothur">Mothur
+                                            <input type="radio" name="project_program" id="mothur" value="mothur" required>Mothur
 
                                         </label>
 
@@ -106,7 +106,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                                         <label>Select sample from owncloud :</label>
-                                        <select class="uk-select  uk-width-1-2" name="project_path">
+                                        <select class="uk-select  uk-width-1-2" name="project_path" required>
                                             <?php if ($result_folder != null) { ?>
                                                 <?php foreach ($result_folder as $r) { ?>
                                                     <option value="<?php echo $path_owncloud . $r; ?>"><?php echo $r; ?></option>
@@ -126,6 +126,41 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                                     </div>
+                                    <label>Plaase check your reads sequence which you receive NGS platform:  </label>
+                                    <div class="form-group" >
+                                        <label class="radio-inline">
+                                            <input type="radio" name="project_platform" id="platform_mi" value="miseq" required>Miseq lilumina
+
+                                        </label><br>
+                                                <div class="form-group hide" id="miseq" >
+                                                    <label class="radio-inline">
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="project_platform_type" id="miseq_without_barcodes"  value="miseq_without_barcodes" required>Paired-end fastq file without barcode
+                                                        </label><br>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="project_platform_type" id="miseq_barcodes_primers" value="miseq_barcodes_primers">Paired-end file contrain barcodes and primers
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="project_platform" id="platform_pro" value="proton">Ion Proton
+
+                                        </label>
+                                        <div class="form-group hide " id="proton">
+                                            <label class="radio-inline">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="project_platform_type" id="proton_barcodes_primers" value="proton_barcodes_primers" >Fastq file contrain barcodes and primers
+                                                </label><br>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="project_platform_type" id="proton_barcodes_fasta"  value="proton_barcodes_fasta" required>Only fasta file contrain barcodes and primers (no quality file
+                                                    )
+                                                </label>
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+
                                 </div>
 
                                 <!--                                <label>Would you like to create new submission for SRA of NCBI :</label>-->
@@ -256,5 +291,21 @@ if (isset($this->session->userdata['logged_in'])) {
     });
     $('#uparse').on('change', function () {
         $('#program').addClass("hide");
+    });
+    $('#mothur').on('change', function () {
+        $('#program').removeClass("hide");
+    });
+    $('#platform_mi').on('change', function () {
+        $('#miseq').removeClass("hide");
+        $('#proton').addClass("hide");
+        $('#proton_barcodes_primers').prop('checked',false);
+        $('#proton_barcodes_fasta').prop('checked',false);
+        $('')
+    });
+    $('#platform_pro').on('change', function () {
+        $('#miseq_without_barcodes').prop('checked',false);
+        $('#miseq_barcodes_primers').prop('checked',false);
+        $('#proton').removeClass("hide");
+        $('#miseq').addClass("hide");
     });
 </script>
