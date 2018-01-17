@@ -15,7 +15,7 @@ if (isset($this->session->userdata['logged_in'])) {
             <?php // echo "User :" . $username . "   Email :" . $email . "   ID :" . $id . "    PROJECT_SESS :" . $current_project ;?>
             <br>
             <?php foreach ($rs as $r) {
-                //   echo "Name project :" . $r['project_name'];
+                   $type_primers =  $r['project_platform_type'];
             }
             ?>
             <?php $controller_name = $this->uri->segment(1); ?>
@@ -375,11 +375,13 @@ Beta – Diversity:
 
                                                                         }
                                                                         $project = basename($sample_folder);
-                                                                        $path_owncloud = "../owncloud/data/" . $username . "/files/" . $project . "/data/input/";
+                                                                        $path_owncloud = "../owncloud/data/" . $username . "/files/" . $project . "/input/";
                                                                         $file_files = array('design');
                                                                         $file_metadata = array('metadata');
+                                                                        $file_oligos = array('oligos');
                                                                         $check_file = '0';
                                                                         $check_metadata = '0';
+                                                                        $check_oligos = '0';
                                                                         $result_folder = array();
                                                                         $result_file = array();
 
@@ -388,23 +390,22 @@ Beta – Diversity:
                                                                             $cdir = scandir($path_owncloud);
                                                                             foreach ($cdir as $key => $value) {
 
+
                                                                                 if (!in_array($value, array('.', '..'))) {
                                                                                     if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
-                                                                                        $result_folder[$value] = $value;
+                                                                                       $result_folder[$value] = $value;
 
                                                                                     } else {
-
                                                                                         $type = explode('.', $value);
                                                                                         $type = array_reverse($type);
                                                                                         if (in_array($type[0], $file_files)) {
-
                                                                                             $check_file = 'have_files';
                                                                                         }
-
                                                                                         if (in_array($type[0], $file_metadata)) {
-
                                                                                             $check_metadata = 'have_metadata';
-
+                                                                                        }
+                                                                                        if (in_array($type[0], $file_metadata)) {
+                                                                                            $file_oligos = 'have_oligos';
                                                                                         }
                                                                                     }
                                                                                 }
@@ -416,13 +417,23 @@ Beta – Diversity:
 
                                                                         <?php if ($check_file == '0') { ?>
                                                                             <li>Please upload
-                                                                                file.design? <?php echo form_upload('design'); ?></li>
+                                                                                file.design? <?php echo form_upload('design','','required'); ?></li>
                                                                         <?php } ?>
 
                                                                         <?php if ($check_metadata == '0') { ?>
                                                                             <li>Please upload
-                                                                                file.metadata? <?php echo form_upload('metadata'); ?></li>
+                                                                                file.metadata? <?php echo form_upload('metadata','','required'); ?></li>
                                                                         <?php } ?>
+                                                                        <li>
+                                                                        <?php if ($check_oligos == '0') { ?>
+                                                                            Please upload
+                                                                                file.oligos? <?php echo form_upload('oligos','','required'); ?>
+                                                                            <?php if ($type_primers != ""){ ?>
+
+                                                                                <button  type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Create Oligos</button>
+                                                                            <?php } ?>
+                                                                        <?php } ?></li>
+
                                                                     </ul>
 
                                                                 </div>
@@ -433,6 +444,7 @@ Beta – Diversity:
                                                 <button type="submit" name="save" class="btn btn-default pull-right">
                                                     Submit
                                                 </button>
+
                                             </div>
 
                                         </div>
@@ -444,8 +456,44 @@ Beta – Diversity:
 
                             </div>
 
-                            <?php echo form_close() ?>
 
+
+                            <?php echo form_close() ?>
+                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                Launch Demo Modal
+                            </button>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <form id="contact_form" action="<?php echo base_url() ?>projects/save_oligos/" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                            <div class="input_fields_wrap_primer">
+                                                <button class="add_field_button_primer">Add More Fields primer</button> <button class="add_field_button_barcode">Add More Fields bar</button>
+                                                <div><input type="text" value="primer" name="col1[]"><input type="text" name="col2[]"><input type="text" value="NONE" name="col3[]"></div>
+                                            </div>
+                                            </div>
+                                            <div class="row">
+                                            <div class="input_fields_wrap_barcode">
+
+                                                <div><input type="text" value="barcode" name="colbar1[]"><input type="text" name="colbar2[]"><input type="text" value="NONE" name="colbar3[]"><input type="text"  name="colbar4[]"></div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
 
                         </li>
 
@@ -2031,6 +2079,49 @@ document.getElementById("btn_picrust_stamp").onclick = function(){
             document.body.innerHTML = restorepage;
 
         }
+
+
+        $(document).ready(function() {
+            var max_fields      = 10; //maximum input boxes allowed
+            var wrapper         = $(".input_fields_wrap_primer"); //Fields wrapper
+            var add_button      = $(".add_field_button_primer"); //Add button ID
+
+            var x = 1; //initlal text box count
+            $(add_button).click(function(e){ //on add input button click
+                e.preventDefault();
+                if(x < max_fields){ //max input box allowed
+                    x++; //text box increment
+                    $(wrapper).append('<div><input type="text" value="primer" name="col1[]"/><input type="text" name="col2[]"/><input type="text" value="NONE" name="col3[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+                }
+            });
+
+            $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); x--;
+            })
+
+            var max_fields_bar      = 10; //maximum input boxes allowed
+            var wrapper_bar         = $(".input_fields_wrap_barcode"); //Fields wrapper
+            var add_button_bar      = $(".add_field_button_barcode"); //Add button ID
+
+            var y = 1; //initlal text box count
+            $(add_button_bar).click(function(e){ //on add input button click
+                e.preventDefault();
+                if(y < max_fields_bar){ //max input box allowed
+                    y++; //text box increment
+                    $(wrapper_bar).append('<div><input type="text" value="barcode" name="colbar1[]"/><input type="text" name="colbar2[]"/><input type="text"  name="colbar3[]"/><input type="text" value="NONE" name="colbar4[]"/><a href="#" class="remove_field_barcode">Remove bar</a></div>'); //add input box
+                }
+            });
+
+            $(wrapper_bar).on("click",".remove_field_barcode", function(e){ //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); y--;
+            })
+
+
+
+
+        });
     </script>
+
+
 
 

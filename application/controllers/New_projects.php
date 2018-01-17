@@ -110,9 +110,5 @@ class New_projects extends CI_Controller
             exec("./Scripts/symbolic.sh $value  $path_private");
 
         }
-
-
     }
-
-
 }

@@ -65,7 +65,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <input type="radio" name="project_program" id="mothur" value="mothur" required>Mothur
 
                                         </label>
-
+div
                                         <!--                                    <label>Select analysis :</label> -->
                                         <select class="uk-select  uk-width-1-4 hide" id="program"
                                                 name="project_analysis">

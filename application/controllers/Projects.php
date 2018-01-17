@@ -33,6 +33,7 @@ class Projects extends CI_Controller
         foreach ($data['rs'] as $r) {
             $sample_folder = $r['project_path'];
             $data['project_analysis'] = $r['project_analysis'];
+
         }
         $project = basename($sample_folder);
         $user = $this->session->userdata['logged_in']['username'];
@@ -88,6 +89,37 @@ class Projects extends CI_Controller
     }
 
 
+
+    public function save_oligos(){
+        $data = $this->mongo_db->get_where("projects", array("_id" => new MongoId($this->session->userdata['current_project'])));
+        foreach ($data as $r) {
+            $sample_folder = $r['project_path'];
+            $id = $r['_id'];
+            $project_analysis = $r['project_analysis'];
+        }
+        $project = basename($sample_folder);
+        $user = $this->session->userdata['logged_in']['username'];
+
+        $path = "owncloud/data/$user/files/$project/input/";
+        $primer = $this->input->post("col1[]");
+        $primer_seq = $this->input->post("col2[]");
+        $primer_type = $this->input->post("col3[]");
+        $barcode = $this->input->post("colbar1[]");
+        $barcode_seq = $this->input->post("colbar2[]");
+        $barcode_type = $this->input->post("colbar3[]");
+        $barcode_add_on = $this->input->post("colbar4[]");
+        $myfile = $path."/oligo.oligos";
+        for ($i=0;$i < count($primer);$i++){
+            echo $primer[$i];
+            file_put_contents($myfile, $primer[$i]."\t".$primer_seq[$i]."\t".$primer_type[$i]."\n", FILE_APPEND);
+        }
+        for ($i=0;$i < count($barcode);$i++){
+            echo $barcode[$i];
+            file_put_contents($myfile, $barcode[$i]."\t".$barcode_seq[$i]."\t".$barcode_type[$i]."\t".$barcode_add_on[$i]."\n", FILE_APPEND);
+        }
+    }
+
+
     public function standard_run($id)
     {
         echo "Standard";
@@ -135,30 +167,53 @@ class Projects extends CI_Controller
         $project = basename($sample_folder);
         $user = $this->session->userdata['logged_in']['username'];
 
-        $path = "owncloud/data/$user/files/$project";
+        $path = "owncloud/data/$user/files/$project/input";
 
         $config['upload_path'] = $path;
         $config['allowed_types'] = '*';
         $config['max_size'] = '3000';
+        //$config['allowed_types']  = 'metadata|oligos|design';
         // $config['max_width'] = '1024';
         // $config['max_height'] = '1024';
         $this->load->library('upload');
         $this->upload->initialize($config);
 
-        if ($this->upload->do_upload("design")) {
-            $data = $this->upload->data();
+        if ( ! $this->upload->do_upload('oligos'))
+        {
+            $error = array('error' => $this->upload->display_errors());
 
-        } else {
-            echo "cannot upload design ";
+            echo  $error;
         }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
 
-        if ($this->upload->do_upload("metadata")) {
-            $data = $this->upload->data();
-
-        } else {
-            echo "cannot upload metadata";
+            echo 'upload_success';
         }
+        if ( ! $this->upload->do_upload('design'))
+        {
+            $error = array('error' => $this->upload->display_errors());
 
+            echo  $error;
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+
+            echo 'upload_success';
+        }
+        if ( ! $this->upload->do_upload('metadata'))
+        {
+            $error = array('error' => $this->upload->display_errors());
+
+            $this->load->view('upload_form', $error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+
+            echo 'upload_success';
+        }
 
         $jobname = $user . "_" . $id . "_start_run";
 
