@@ -50,6 +50,8 @@ class New_projects extends CI_Controller
                 "project_analysis" => $this->input->post("project_analysis"),
                 "project_permission" => $this->input->post("project_permission"),
                 "project_path" => $this->input->post("project_path"),
+                "project_platform_sam" => $this->input->post("project_platform"),
+                "project_platform_type" => $this->input->post("project_platform_type"),
                 "project_num_sam" => $show,
                 "project_group_sam" => $show / 2,
                 "project_date_time" => date("Y-m-d H:i:s"),

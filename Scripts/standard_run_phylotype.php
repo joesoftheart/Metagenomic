@@ -18,7 +18,7 @@ putenv("PATH=$PATH");
 
 // check value params
 if ($user != null && $project != null && $path != null && $id != null) {
-    run($user, $id, $project,$path);
+    read_name_sample_to_plotgraph($user, $id, $project,$path);
 }
 // Run Program
 function run($user, $id, $project, $path)
@@ -526,7 +526,7 @@ function readlogs_classify_system($user, $id, $project, $path, $id_job)
         }
     }
     echo "go to phylotype_count->";
-    phylotype_count($user, $id, $project, $path);
+   // phylotype_count($user, $id, $project, $path);
 }
 // phylotype count
 function phylotype_count($user, $id, $project, $path)
@@ -777,7 +777,7 @@ function create_file_input_abun($user, $id, $project, $path)
         }
     }
 }
-//create_input_alphash
+// create_input_alphash
 function create_input_alphash($user, $id, $project, $path)
 {
     echo "\n";
@@ -805,7 +805,7 @@ function create_input_alphash($user, $id, $project, $path)
     }
 
 }
-//create_input_biplot
+// pcreate_input_biplot
 function create_input_biplot($user, $id, $project, $path)
 {
     echo "\n";
@@ -1274,7 +1274,7 @@ function read_name_sample_to_plotgraph($user, $id, $project, $path)
             }
         }
         fclose($file);
-        $k =1;
+        $k =0;
         foreach ($group_sample as $value) {
             $k++;
             $sample = str_replace("-", "_", $value);
@@ -1324,7 +1324,7 @@ function stamp($user, $id, $project, $path,$name_sample)
             $path_input = "../owncloud/data/$user/files/$project/output/pathways1L1.spf";
             $path_output_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
             $jobname = $user . "_" . $id . "_stamp";
-            $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y stamp/qsubStamp $path_input $path_output_tsv $name1 $name4 ";
+            $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y s$jobnametamp/qsubStamp $path_input $path_output_tsv $name1 $name4 ";
             exec($cmd);
         }
         if($i == 3){
@@ -1344,13 +1344,13 @@ function stamp($user, $id, $project, $path,$name_sample)
         if($i == 5){
             $path_input = "../owncloud/data/$user/files/$project/output/pathways1L1.spf";
             $path_output_tsv = "../owncloud/data/$user/files/$project/output/Resultpathways'$i'.tsv";
-            $jobname = $user . "_" . $id . "_stamp";
-            $cmd = "qsub -N '$jobname'.$i -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y stamp/qsubStamp $path_input $path_output_tsv $name3 $name4 ";
+            $jobname5 = $user . "_" . $id . "_stamp";
+            $cmd = "qsub -N '$jobname' -o Logs_sge/phylotype/ -e Logs_sge/phylotype/ -cwd -b y stamp/qsubStamp $path_input $path_output_tsv $name3 $name4 ";
             exec($cmd);
         }
     }
 
-    $check_qstat = "qstat  -j '$jobname'.'5' ";
+    $check_qstat = "qstat  -j $jobname5 ";
     exec($check_qstat, $output);
     $id_job = ""; # give job id
     foreach ($output as $key_var => $value) {
