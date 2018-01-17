@@ -92,6 +92,8 @@ class New_projects extends CI_Controller
     {
 
         $path_array = array(
+            "/var/www/html/owncloud/data/primer16S/silva.nr_v128.align",
+            "/var/www/html/owncloud/data/primer16S/silva.nr_v128.tax",
             "/var/www/html/owncloud/data/primer16S/silva.bacteria.fasta",
             "/var/www/html/owncloud/data/primer16S/silva.v123.fasta",
             "/var/www/html/owncloud/data/primer16S/silva.v34.fasta",
