@@ -160,7 +160,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                         </select>
 
 
-                                        <?php } ?>
+
 
 
                                         <!--                                    <br>-->
@@ -171,7 +171,57 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
                                     </div>
+
                                 </div>
+                                <label>Plaase check your reads sequence which you receive NGS platform:  </label>
+                                <div class="form-group" >
+                                    <label class="radio-inline">
+                                        <input type="radio" name="project_platform" id="platform_mi" value="miseq" <?php if ($r['project_platform_sam'] == "miseq") {
+                                            echo "checked";
+                                        } ?>>Miseq lilumina
+
+                                    </label><br>
+                                    <div class="form-group " id="miseq" >
+                                        <label class="radio-inline">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="project_platform_type" id="miseq_without_barcodes"  value="miseq_without_barcodes"   <?php if ($r['project_platform_type'] == "miseq_without_barcodes") {
+                                                    echo "checked";
+                                                } ?>>Paired-end fastq file without barcode
+                                            </label><br>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="project_platform_type" id="miseq_barcodes_primers" value="miseq_barcodes_primers" <?php if ($r['project_platform_type'] == "miseq_barcodes_primers") {
+                                                    echo "checked";
+                                                } ?>>Paired-end file contrain barcodes and primers
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="project_platform" id="platform_pro" value="proton" <?php if ($r['project_platform_sam'] == "proton") {
+                                            echo "checked";
+                                        } ?>>Ion Proton
+
+                                    </label>
+                                    <div class="form-group " id="proton">
+                                        <label class="radio-inline">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="project_platform_type" id="proton_barcodes_primers" value="proton_barcodes_primers" <?php if ($r['project_platform_type'] == "proton_barcodes_primers") {
+                                                    echo "checked";
+                                                } ?>>Fastq file contrain barcodes and primers
+                                            </label><br>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="project_platform_type" id="proton_barcodes_fasta"  value="proton_barcodes_fasta" <?php if ($r['project_platform_type'] == "proton_barcodes_fasta") {
+                                                    echo "checked";
+                                                } ?>>Only fasta file contrain barcodes and primers (no quality file
+                                                )
+                                            </label>
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <?php } ?>
                                 <button type="submit" name="save" value="submit" class="btn btn-default">Submit</button>
                                 <button type="reset" name="reset" class="btn btn-default">Clear</button>
                             </div>
@@ -196,5 +246,18 @@ if (isset($this->session->userdata['logged_in'])) {
     });
     $('#uparse').on('change', function () {
         $('#program').addClass("hide");
+    });
+    $('#platform_mi').on('change', function () {
+        $('#miseq').removeClass("hide");
+        $('#proton').addClass("hide");
+        $('#proton_barcodes_primers').prop('checked',false);
+        $('#proton_barcodes_fasta').prop('checked',false);
+        $('')
+    });
+    $('#platform_pro').on('change', function () {
+        $('#miseq_without_barcodes').prop('checked',false);
+        $('#miseq_barcodes_primers').prop('checked',false);
+        $('#proton').removeClass("hide");
+        $('#miseq').addClass("hide");
     });
 </script>

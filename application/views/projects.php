@@ -15,7 +15,7 @@ if (isset($this->session->userdata['logged_in'])) {
             <?php // echo "User :" . $username . "   Email :" . $email . "   ID :" . $id . "    PROJECT_SESS :" . $current_project ;?>
             <br>
             <?php foreach ($rs as $r) {
-                //   echo "Name project :" . $r['project_name'];
+                   $type_primers =  $r['project_platform_type'];
             }
             ?>
             <?php $controller_name = $this->uri->segment(1); ?>
@@ -48,350 +48,364 @@ if (isset($this->session->userdata['logged_in'])) {
 
     ?>
 
+    
+<div class="row">
+     <div class="col-lg-12">
+     <div class="uk-child-width-1-6\@xl" uk-grid>
+     <div>
+         <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
+         <li class="uk-active ">
+            <a class="uk-text-capitalize uk-text-bold" href="#">
+                Standard Mode 
+              <i class="fa fa-question-circle-o" aria-hidden="true" title="“Standard Mode” was designed in such a way that will optimize and generate the meaningful information/result/output for most of the samples submitted. In many cases, however, data requires a fine adjustment to the pipeline parameter for meaningful output/result. Thus the “Advance Mode” could be more appreciated." uk-tooltip></i>
+             </a>
+         </li>
+         <li>
+             <a class="uk-text-capitalize uk-text-bold" href="1" onclick="advance_mode(this);">Advance Mode 
+             <i class="fa fa-question-circle-o" aria-hidden="true" title="“Advance Mode”, is designed for the optimum use of the software.  Users can make changes to the pipeline parameter which in turns increase the flexibility of the software. This mode allows the pipeline to be adjusted so that it will be able to handle with different types of data. Hence, it will be more applicable to different type of experiments. Introductions and recommendations to steps including quality control, align sequences & clean alignment, pre-cluster sequences & chimera detection, classify sequences, remove bacterial sequences, OTU preparation, which are provided in the section below. " uk-tooltip></i>
+             </a>
+         </li>
+         </ul>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="uk-child-width-1-6\@xl" uk-grid>
-                <div>
-                    <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
-                        <li class="uk-active "><a class="uk-text-capitalize uk-text-bold" href="#">Standard Mode <i class="fa fa-question-circle-o" aria-hidden="true" title="“Standard Mode” was designed in such a way that will optimize and generate the meaningful information/result/output for most of the samples submitted. In many cases, however, data requires a fine adjustment to the pipeline parameter for meaningful output/result. Thus the “Advance Mode” could be more appreciated." uk-tooltip></i></a>
-
-                        </li>
-
-                        <li><a class="uk-text-capitalize uk-text-bold" href="1" onclick="advance_mode(this);">Advance Mode <i class="fa fa-question-circle-o" aria-hidden="true" title="“Advance Mode”, is designed for the optimum use of the software.  Users can make changes to the pipeline parameter which in turns increase the flexibility of the software. This mode allows the pipeline to be adjusted so that it will be able to handle with different types of data. Hence, it will be more applicable to different type of experiments. Introductions and recommendations to steps including quality control, align sequences & clean alignment, pre-cluster sequences & chimera detection, classify sequences, remove bacterial sequences, OTU preparation, which are provided in the section below. " uk-tooltip></i></a></li>
-
-
-                    </ul>
-                    <ul class="uk-switcher" >
-
-                        <li >
-                            <div >
-
-                                <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
-                                    <li><a href="#">Run</a></li>
-<!--                                    <li><a href="#">Result & Graph</a></li>-->
-                                </ul>
-                                <ul class="uk-switcher uk-margin">
-                                    <li >
-                                        <!-- Standard run -->
-                                        <?php echo form_open_multipart('projects/standard_run/' . $current_project) ?>
-
-
-
-                                        <div class="panel panel-info ">
-                                            <div class="panel-heading">Run Standard</div>
-                                            <div class="panel-body">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1.Quality control  #1 <i class="fa fa-question-circle-o" aria-hidden="true" title="In “Quality Control” section, every setting is made to control the overall result’s reliability and resolution. The term ‘ambiguous’ refers to n-base, an unknown/unidentified base, hence it is of our best interest to keep the value of ‘maximum ambiguous’ as low as possible. The same trend was applied to the ‘maximum homopolymer’ since homopolymer refers to the repeated bases (<8 is recommended). The minimum and maximum read length recommended for this software is between 100 – 250 base pairs. Although, depending on different dataset, the parameter setting of the software may varies." uk-tooltip></i></a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseOne" class="panel-collapse collapse">
-                                                <div class="panel-body">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2.Align sequence & Clean alignment #2 <i class="fa fa-question-circle-o" aria-hidden="true" title="There are 3 options for the “Alignment Step” in total which are SILVA, Greengenes and RDP. The default was set to be SILVA due to the fact that this database has a better performance at doing alignment than other databases. (REFERENCE) " uk-tooltip></i></a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseTwo" class="panel-collapse collapse">
-                                                <div class="panel-body">
-
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <label>Screen reads </label>
-                                                        </div>
-                                                        <div class="col-lg-7">
-
-                                                            <table border="0" class="uk-table uk-table-middle">
-                                                                <div class="form-group">
-                                                                <tr>
-                                                                    <td>maximum ambiguous :</td>
-                                                                    <td><input class="uk-input form-control "  type="text" name="max_amb" value="8"
-                                                                               readonly="readonly" placeholder="8" ></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>maximum homopolymer :</td>
-                                                                    <td><input class="uk-input form-control" type="text" name="max_homo" value="8"
-                                                                               readonly="readonly" placeholder="8" ></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>minimum reads length :</td>
-                                                                    <td><input class="uk-input form-control" type="text" name="min_read" value="100"
-                                                                               readonly="readonly"  placeholder="100" ></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>maximum reads length :</td>
-                                                                    <td><input class="uk-input form-control" type="text" name="max_read" value="260"
-                                                                               readonly="readonly" placeholder="260" ></td>
-                                                                </tr>
-                                                                </div>
-                                                            </table>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <label>Alignment step </label>
-                                                        </div>
-                                                        <div class="col-lg-7">
-                                                            <div class="form-group">
-                                                            <select class="uk-select uk-margin" name="align_seq" readonly="readonly">
-                                                                <option>silva.v4.fasta</option>
-                                                            </select>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3.Pre-cluster sequence & Chimera detection #3 <i class="fa fa-question-circle-o" aria-hidden="true" title="This step is performed to check for the strand similarities, in other words, to check for a possible error in some strands. The main objective of this step is to de-noise the sequences, thus providing a better resolution. To check for errors the recommended number of different bases between strand are <2. [Pre-Cluster Sequences]
+         <ul class="uk-switcher">
+         <li>
+             <div>
+             <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-fade">
+             <li><a href="#">Run</a></li>
+             <!--<li><a href="#">Result & Graph</a></li>-->
+             </ul>
+                 <ul class="uk-switcher uk-margin">
+                 <li>
+                 <!-- Standard run -->
+                 <?php echo form_open_multipart('projects/standard_run/' . $current_project) ?>
+             <div class="panel panel-info ">
+             <div class="panel-heading">Run Standard</div>
+                <div class="panel-body">
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1.Quality control #1 
+                    <i class="fa fa-question-circle-o" aria-hidden="true" title="In “Quality Control” section, every setting is made to control the overall result’s reliability and resolution. The term ‘ambiguous’ refers to n-base, an unknown/unidentified base, hence it is of our best interest to keep the value of ‘maximum ambiguous’ as low as possible. The same trend was applied to the ‘maximum homopolymer’ since homopolymer refers to the repeated bases (<8 is recommended). The minimum and maximum read length recommended for this software is between 100 – 250 base pairs. Although, depending on different dataset, the parameter setting of the software may varies." uk-tooltip></i></a>
+                </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body"></div>
+                </div>
+                </div>
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2.Align sequence & Clean alignment #2
+                <i class="fa fa-question-circle-o" aria-hidden="true" title="There are 3 options for the “Alignment Step” in total which are SILVA, Greengenes and RDP. The default was set to be SILVA due to the fact that this database has a better performance at doing alignment than other databases. (REFERENCE) " uk-tooltip></i>
+                </a>
+                </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                <div class="row">
+                <div class="col-lg-2">
+                <label>Screen reads </label>
+                </div>
+                <div class="col-lg-7">
+                <table border="0" class="uk-table uk-table-middle">
+                <div class="form-group">
+                <tr>
+                    <td>maximum ambiguous :</td>
+                    <td><input class="uk-input form-control " type="text" name="max_amb" value="8" readonly="readonly" placeholder="8">
+                    </td>
+                </tr>
+                <tr>
+                    <td>maximum homopolymer :</td>
+                    <td><input class="uk-input form-control" type="text" name="max_homo" value="8" readonly="readonly" placeholder="8">
+                    </td>
+                </tr>
+                <tr>
+                    <td>minimum reads length :</td>
+                    <td><input class="uk-input form-control" type="text" name="min_read" value="100" readonly="readonly" placeholder="100">
+                    </td>
+                </tr>
+                <tr>
+                    <td>maximum reads length :</td>
+                    <td><input class="uk-input form-control" type="text" name="max_read" value="260" readonly="readonly" placeholder="260">
+                    </td>
+                 </tr>
+                 </div>
+                 </table>
+                 </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-2">
+                <label>Alignment step </label>
+                </div>
+                <div class="col-lg-7">
+                <div class="form-group">
+            <select class="uk-select uk-margin" name="align_seq" readonly="readonly">
+                <option>silva.v4.fasta</option>
+            </select>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                     3.Pre-cluster sequence & Chimera detection #3 
+                     <i class="fa fa-question-circle-o" aria-hidden="true" title="This step is performed to check for the strand similarities, in other words, to check for a possible error in some strands. The main objective of this step is to de-noise the sequences, thus providing a better resolution. To check for errors the recommended number of different bases between strand are <2. [Pre-Cluster Sequences]
 In addition to that, it is possible that the (PCR-based) amplification steps in NGS-platform may cause some errors. This type of errors may cause certain mismatched cases between primer/dimer and their template strand. [Chimera Detection]" uk-tooltip></i></a>
-                                                </h4>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse"></i>
+                <div class="panel-body">
+                <div class="row">
+                <div class="col-sm-2">
+                <label>Pre-cluster step</label>
+                </div>
+                 <div class="col-lg-7">
+                 <div class="form_control">
+                 <select class="uk-select" name="diffs" readonly="readonly">
+                    <option value="2">diffs=2</option>
+                 </select>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 <div class="panel panel-default">
+                 <div class="panel-heading">
+                 <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">4.Classify sequences & Remove non-bacterial sequence #4 
+                        <i class="fa fa-question-circle-o" aria-hidden="true" title="To prepare for a taxonomy classification, the a recommended database is Greengenes (set as default). Similar to the reason being the AM software, this consists of a software known as PICRUst, which was designed to predict the function of samples submitted. Furthermore, Greengenes database works at the best performance together with this software. Optionally, if the users are not interested in predicting functions and would like to change the database, SILVA and RDP are also available.
+    Greengenes database is the only database that provide information down to species level, while SILVA and RDP can provide only information at the level of genus. In contrast to Greengenes, RDP database was cleaner and SILVA was mostly use for alignment (SILVA > RDP, in terms of taxa). “Taxon Elimination” is designed to remove the unwanted data (i.e., helping to clean the result). The default was set to eliminate the taxon of chloroplast, mitochondria, eukaryote, and unknown. Optionally, users can eliminate other information, which include an option to remove archaea-unknown and archaea-unknown & bacteria-unknown" uk-tooltip></i>
+                    </a>
+                 </h4>
+                 </div>
+                 <div id="collapseFour" class="panel-collapse collapse">
+                 <div class="panel-body">
+                 <div class="col-lg-3">
+                 <label>Prepare for taxonomy classification </label>
+                 </div>
+                <div class="col-lg-6">
+                <table class="uk-table uk-table-middle">
+                 <tr>
+                 <td>database</td>
+                 <td>
+                 <div class="form-group">
+                <select class="uk-select " name="db_taxon" readonly="readonly">
+                 <option>gg_13_8_99.fasta</option>
+                </select>
+                </div>
+                 </td>
+                 </tr>
+                 <tr>
+                 <td>cutoff</td>
+                 <td>
+                <div class="form-group">
+                    <input class="uk-input form-control" type="text" name="cutoff"   alue="80" placeholder="80" readonly="readonly">
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>taxon elimination</td>
+                <td>
+                <div class="form-group">
+                    <textarea class="uk-textarea form-control" name="rm_taxon" 
+                    readonly="readonly">Chloroplast-Mitochondria-Eukaryota-unknown
+                    </textarea>
+                </div>
+                </td>
+                </tr>
+                </table>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">5.Alpha/Beta diversity analysis #5
+                <i class="fa fa-question-circle-o" aria-hidden="true" title="Alpha – Diversity: “Alpha – Diversity” is set as a default setting. This analysis will calculate the statistic for the community of bacteria within the group. A total of 5 statistical analysis will be provided in a table such as nseq, cover, sobs, Chao and Shannon. Beta – Diversity: “Beta – Diversity” will analyze the community of bacteria between different groups. During this step choices to view diagrams for different statistical calculator can be made. A total 7 statistical analysis will be provided in a table, i.e. lennon, jclass, moristahorn, sorabund, thetan, thetayc and braycurtis.  " uk-tooltip>
+                </i></a>
+                </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse">
+                <div class="panel-body">
+                <div class="row">
+                <div class="col-lg-2">
+                <label>Alpha diversity</label>
+                 </div>
+                <div class="col-lg-7 col-lg-offset-3">
+                 **subsamples detect from files<br>
+                 subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>
+                 </div>
+                 </div>
+                 <div class="row">
+                 <div class="col-lg-2">
+                 <label>Beta diversity</label>
+                 </div>
+                 <div class="col-lg-7 col-lg-offset-3">
+                 **The number of total reads/groups after the preprocess<br>
+                 **subsamples detect from files<br>
+                 subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>
+                  <div class="row">
+                <table>
+                 <tr>
+                 <td>
+                    Level 2 is used for analysis :
+                 </td>
+                 <td>
+                <div class="form-group">
+                     <select class="uk-select" name="tax_level" readonly="readonly">
+                     <option>1</option>
+                     <option value="2" selected> 2 </option>
+                     <option>3</option>
+                     <option>4</option>
+                     <option>5</option>
+                     <option>6</option>
+                     </select>
+                </div>
+                </td>
+                </tr>
+                </table>
+                 <div class="col-lg-6">
+                 <ul>
+                    <li>venn diagram</li>
+                    <li>UPGMA tree</li>
+                    <ul>
+                    <li>Thetayc</li>
+                    <li>Jclass</li>
+                    </ul>
+                    <li>PCOA</li>
+                    <ul>
+                    <li>Thetayc</li>
+                     <li>Jclass</li>
+                    </ul>
+                     <li>NMDS</li>
+                    <ul>
+                    <li>Thetayc</li>
+                    <li>Jclass</li>
+                     </ul>
+                 </ul>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                <div class="row">
+                <div class="col-lg-2">
+                <label>Option</label>
+                </div>
+                <div class="col-lg-6">
+                <ul>
+                <?php
+                    foreach ($rs as $r) {
+                        $sample_folder = $r['project_path'];
+                    }
+                    $project = basename($sample_folder);
+                    $path_owncloud = "../owncloud/data/" . $username . "/files/" . $project . "/input/";
+                    $file_files = array('design');
+                    $file_metadata = array('metadata');
+                    $file_oligos = array('oligos');
+                    $check_file = '0';
+                    $check_metadata = '0';
+                    $check_oligos = '0';
+                    $result_folder = array();
+                    $result_file = array();
+                    if (is_dir($path_owncloud)) {
+                         $select_folder = array_diff(scandir($path_owncloud, 1), array('.', '..'));
+                    $cdir = scandir($path_owncloud);
+                    foreach ($cdir as $key => $value) {
+                            if (!in_array($value, array('.', '..'))) {
+                                if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
+                                    $result_folder[$value] = $value;
+                                } else {
+                                        $type = explode('.', $value);
+                                        $type = array_reverse($type);
+                                        if (in_array($type[0], $file_files)) {
+                                            $check_file = 'have_files';
+                                        }
+                                        if (in_array($type[0], $file_metadata)) {
+                                            $check_metadata = 'have_metadata';
+                                        }
+                                        if (in_array($type[0], $file_metadata)) {
+                                            $file_oligos = 'have_oligos';
+                                         }
+                                 }
+                            }
+                     }
+                    }
+                ?>
+                <?php if ($check_file == '0') { ?>
+                    <li>Please upload file.design? 
+                        <?php echo form_upload('design','','required'); ?>  
+                    </li>
+                <?php } ?>
+                     <?php if ($check_metadata == '0') { ?>
+                     <li>Please upload file.metadata? <?php echo form_upload('metadata','','required'); ?>
+                     </li>
+                <?php } ?>
+                     <li>
+                <?php if ($check_oligos == '0') { ?>
+                        Please upload file.oligos? <?php echo form_upload('oligos','','required'); ?>
+                <?php if ($type_primers != ""){ ?>
+                         <button  type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Create Oligos</button>
+                <?php } ?>
+                <?php } ?></li>
+                </ul>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <button type="submit" name="save" class="btn btn-default pull-right">
+                  Submit
+                 </button>
+                 </div>
+                 </div>
+                 </li>
+                 </ul>
+                 </div>
+                <?php echo form_close() ?>
+                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                Launch Demo Modal
+                            </button>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <form id="contact_form" action="<?php echo base_url() ?>projects/save_oligos/" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                            <div class="input_fields_wrap_primer">
+                                                <button class="add_field_button_primer">Add More Fields primer</button> <button class="add_field_button_barcode">Add More Fields bar</button>
+                                                <div><input type="text" value="primer" name="col1[]"><input type="text" name="col2[]"><input type="text" value="NONE" name="col3[]"></div>
                                             </div>
-                                            <div id="collapseThree" class="panel-collapse collapse"></i>
-                                                <div class="panel-body">
+                                            </div>
+                                            <div class="row">
+                                            <div class="input_fields_wrap_barcode">
 
-                                                    <div class="row">
-
-                                                        <div class="col-sm-2">
-                                                            <label>Pre-cluster step</label>
-                                                        </div>
-                                                        <div class="col-lg-7">
-                                                            <div class="form_control">
-                                                            <select class="uk-select" name="diffs" readonly="readonly">
-                                                                <option value="2">diffs=2</option>
-
-                                                            </select>
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                    </div>
+                                                <div><input type="text" value="barcode" name="colbar1[]"><input type="text" name="colbar2[]"><input type="text" value="NONE" name="colbar3[]"><input type="text"  name="colbar4[]"></div>
+                                            </div>
                                             </div>
                                         </div>
-
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">4.Classify sequences & Remove non-bacterial sequence #4  <i class="fa fa-question-circle-o" aria-hidden="true" title="To prepare for a taxonomy classification, the a recommended database is Greengenes (set as default). Similar to the reason being the AM software, this consists of a software known as PICRUst, which was designed to predict the function of samples submitted. Furthermore, Greengenes database works at the best performance together with this software. Optionally, if the users are not interested in predicting functions and would like to change the database, SILVA and RDP are also available.
-	Greengenes database is the only database that provide information down to species level, while SILVA and RDP can provide only information at the level of genus. In contrast to Greengenes, RDP database was cleaner and SILVA was mostly use for alignment (SILVA > RDP, in terms of taxa). “Taxon Elimination” is designed to remove the unwanted data (i.e., helping to clean the result). The default was set to eliminate the taxon of chloroplast, mitochondria, eukaryote, and unknown. Optionally, users can eliminate other information, which include an option to remove archaea-unknown and archaea-unknown & bacteria-unknown" uk-tooltip></i></a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseFour" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <div class="col-lg-3">
-                                                        <label>Prepare for taxonomy classification </label>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <table class="uk-table uk-table-middle">
-                                                            <tr>
-                                                                <td>database</td>
-                                                                <td>
-                                                                    <div class="form-group">
-                                                                    <select class="uk-select " name="db_taxon" readonly="readonly">
-                                                                        <option>gg_13_8_99.fasta</option>
-                                                                    </select>
-                                                                    </div>
-                                                                </td>
-
-                                                            </tr>
-                                                            <tr>
-                                                                <td>cutoff</td>
-                                                                <td><div class="form-group"><input class="uk-input form-control" type="text" name="cutoff"
-                                                                           value="80" placeholder="80" readonly="readonly"></div> </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>taxon elimination</td>
-                                                                <td>
-                                                                    <div class="form-group">
-
-                                                                        <textarea class="uk-textarea form-control" name="rm_taxon" readonly="readonly">Chloroplast-Mitochondria-Eukaryota-unknown</textarea>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
                                         </div>
-
-
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">5.Alpha/Beta diversity analysis #5  <i class="fa fa-question-circle-o" aria-hidden="true" title="Alpha – Diversity:
-	“Alpha – Diversity” is set as a default setting. This analysis will calculate the statistic for the community of bacteria within the group. A total of 5 statistical analysis will be provided in a table such as nseq, cover, sobs, Chao and Shannon.
-Beta – Diversity:
-	“Beta – Diversity” will analyze the community of bacteria between different groups. During this step choices to view diagrams for different statistical calculator can be made. A total 7 statistical analysis will be provided in a table, i.e. lennon, jclass, moristahorn, sorabund, thetan, thetayc and braycurtis.  " uk-tooltip></i></a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseFive" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <label>Alpha diversity</label>
-                                                        </div>
-                                                        <div class="col-lg-7 col-lg-offset-3">
-                                                            **subsamples detect from files<br>
-                                                            subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <label>Beta diversity</label>
-                                                        </div>
-                                                        <div class="col-lg-7 col-lg-offset-3">
-                                                            **The number of total reads/groups after the preprocess<br>
-                                                            **subsamples detect from files<br>
-                                                            subsamples <input class="uk-input uk-width-1-4" value="5000" disabled>
-                                                            <div class="row">
-
-                                                                <table>
-                                                                    <tr>
-                                                                        <td>
-                                                                            Level 2 is used for analysis :
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="form-group">
-                                                                            <select class="uk-select" name="tax_level" readonly="readonly">
-                                                                                <option>1</option>
-                                                                                <option value="2" selected>2</option>
-                                                                                <option>3</option>
-                                                                                <option>4</option>
-                                                                                <option>5</option>
-                                                                                <option>6</option>
-                                                                            </select>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-
-                                                                <div class="col-lg-6">
-
-                                                                    <ul>
-                                                                        <li>venn diagram</li>
-                                                                        <li>UPGMA tree</li>
-                                                                        <ul>
-                                                                            <li>Thetayc</li>
-                                                                            <li>Jclass</li>
-                                                                        </ul>
-                                                                        <li>PCOA</li>
-                                                                        <ul>
-                                                                            <li>Thetayc</li>
-                                                                            <li>Jclass</li>
-                                                                        </ul>
-                                                                        <li>NMDS</li>
-                                                                        <ul>
-                                                                            <li>Thetayc</li>
-                                                                            <li>Jclass</li>
-                                                                        </ul>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <label>Option</label>
-                                                        </div>
-                                                        <div class="col-lg-6">
-
-                                                            <ul>
-
-                                                                <?php
-                                                                foreach ($rs as $r) {
-                                                                    $sample_folder = $r['project_path'];
-
-                                                                }
-                                                                $project = basename($sample_folder);
-                                                                $path_owncloud = "../owncloud/data/" . $username . "/files/" . $project . "/data/input/";
-                                                                $file_files = array('design');
-                                                                $file_metadata = array('metadata');
-                                                                $check_file = '0';
-                                                                $check_metadata = '0';
-                                                                $result_folder = array();
-                                                                $result_file = array();
-
-                                                                if (is_dir($path_owncloud)) {
-                                                                    $select_folder = array_diff(scandir($path_owncloud, 1), array('.', '..'));
-                                                                    $cdir = scandir($path_owncloud);
-                                                                    foreach ($cdir as $key => $value) {
-
-                                                                        if (!in_array($value, array('.', '..'))) {
-                                                                            if (is_dir($path_owncloud . DIRECTORY_SEPARATOR . $value)) {
-                                                                                $result_folder[$value] = $value;
-
-                                                                            } else {
-
-                                                                                $type = explode('.', $value);
-                                                                                $type = array_reverse($type);
-                                                                                if (in_array($type[0], $file_files)) {
-
-                                                                                    $check_file = 'have_files';
-                                                                                }
-
-                                                                                if (in_array($type[0], $file_metadata)) {
-
-                                                                                    $check_metadata = 'have_metadata';
-
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-
-
-                                                                ?>
-
-                                                                <?php if ($check_file == '0') { ?>
-                                                                    <li>Please upload
-                                                                        file.design? <?php echo form_upload('design'); ?></li>
-                                                                <?php } ?>
-
-                                                                <?php if ($check_metadata == '0') { ?>
-                                                                    <li>Please upload
-                                                                        file.metadata? <?php echo form_upload('metadata'); ?></li>
-                                                                <?php } ?>
-                                                            </ul>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                <button  type="submit" name="save" class="btn btn-default pull-right">
-                                                    Submit
-                                                </button>
-                                            </div>
-
-                                        </div>
-
-                                    </li>
-
-
-                                </ul>
-
+                                        </form>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
                             </div>
 
-                            <?php echo form_close()?>
-
-
                         </li>
-
-
-                        <!-- End Standard run -->
+       <!-- End Standard run -->
 
 
      <!-- ADVANCE  -->
@@ -1884,8 +1898,51 @@ if(console_event1 && !console_event2){
             document.body.innerHTML = restorepage;
 
         }
+
+
+        $(document).ready(function() {
+            var max_fields      = 10; //maximum input boxes allowed
+            var wrapper         = $(".input_fields_wrap_primer"); //Fields wrapper
+            var add_button      = $(".add_field_button_primer"); //Add button ID
+
+            var x = 1; //initlal text box count
+            $(add_button).click(function(e){ //on add input button click
+                e.preventDefault();
+                if(x < max_fields){ //max input box allowed
+                    x++; //text box increment
+                    $(wrapper).append('<div><input type="text" value="primer" name="col1[]"/><input type="text" name="col2[]"/><input type="text" value="NONE" name="col3[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+                }
+            });
+
+            $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); x--;
+            })
+
+            var max_fields_bar      = 10; //maximum input boxes allowed
+            var wrapper_bar         = $(".input_fields_wrap_barcode"); //Fields wrapper
+            var add_button_bar      = $(".add_field_button_barcode"); //Add button ID
+
+            var y = 1; //initlal text box count
+            $(add_button_bar).click(function(e){ //on add input button click
+                e.preventDefault();
+                if(y < max_fields_bar){ //max input box allowed
+                    y++; //text box increment
+                    $(wrapper_bar).append('<div><input type="text" value="barcode" name="colbar1[]"/><input type="text" name="colbar2[]"/><input type="text"  name="colbar3[]"/><input type="text" value="NONE" name="colbar4[]"/><a href="#" class="remove_field_barcode">Remove bar</a></div>'); //add input box
+                }
+            });
+
+            $(wrapper_bar).on("click",".remove_field_barcode", function(e){ //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); y--;
+            })
+
+
+
+
+        });
     </script>
 
              
              
+
+
 

@@ -40,6 +40,8 @@ class  Edit_project extends CI_Controller
                 "project_type" => $this->input->post("project_type"),
                 "project_program" => $this->input->post("project_program"),
                 "project_analysis" => $this->input->post("project_analysis"),
+                "project_platform_sam" => $this->input->post("project_platform"),
+                "project_platform_type" => $this->input->post("project_platform_type"),
                 "project_path" => $this->input->post("project_path"),
                 "project_num_sam" => $show,
                 "project_group_sam" => $show / 2,
