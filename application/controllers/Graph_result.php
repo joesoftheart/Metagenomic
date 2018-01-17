@@ -2,7 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class Graph_result extends CI_Controller{
+class Graph_result extends CI_Controller
+{
 
     public function __construct()
     {
@@ -16,7 +17,7 @@ class Graph_result extends CI_Controller{
     {
         $data['rs'] = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
         $this->load->view('header');
-        $this->load->view('graph_result',$data);
+        $this->load->view('graph_result', $data);
         $this->load->view('footer');
 
     }

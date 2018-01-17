@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * Created by PhpStorm.
  * User: root
@@ -29,14 +30,12 @@ class Projects extends CI_Controller
         $data['rs_process'] = $this->mongo_db->limit(1)->get('status_process');
 
 
-       foreach ($data['rs'] as $r) {
-             $sample_folder = $r['project_path'];
-             $data['project_analysis'] = $r['project_analysis'];
+        foreach ($data['rs'] as $r) {
+            $sample_folder = $r['project_path'];
+            $data['project_analysis'] = $r['project_analysis'];
         }
-           $project = basename($sample_folder);
-           $user = $this->session->userdata['logged_in']['username'];
-
-
+        $project = basename($sample_folder);
+        $user = $this->session->userdata['logged_in']['username'];
 
 
         if ($data != null) {
@@ -54,37 +53,37 @@ class Projects extends CI_Controller
         if (file_exists($progress)) {
             $file_progress = fopen($progress, "r");
             $keywords_split_line = preg_split("/[\n]/", fread($file_progress, filesize($progress)));
-           // print_r($keywords_split_line);
+            // print_r($keywords_split_line);
             $num = count($keywords_split_line);
         }
-       // echo $num;
-        if(file_exists($progress) and $num < 18){
+        // echo $num;
+        if (file_exists($progress) and $num < 18) {
             redirect("/process/index/" . $id_project, 'refresh');
-        }else if (file_exists($progress) and $num = 18){
+        } else if (file_exists($progress) and $num = 18) {
             redirect("/complete_run/index/" . $id_project, 'refresh');
-        }else {
-             
-          
+        } else {
+
+
             $this->load->view('header', $data);
             $this->load->view('projects', $data);
             $this->load->view('footer');
 
             $data['username'] = $user;
-            $data['project']  = $project;
+            $data['project'] = $project;
             $data['currentproject'] = $ar;
 
-                 $img_source = 'images/check.png';
-                 $img_code = base64_encode(file_get_contents($img_source));
-           $data['src'] = 'data:'.mime_content_type($img_source).';base64,'.$img_code;
+            $img_source = 'images/check.png';
+            $img_code = base64_encode(file_get_contents($img_source));
+            $data['src'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
 
-                 $img_source = 'images/ajax-loader.gif';
-                 $img_code = base64_encode(file_get_contents($img_source));
-           $data['srcload'] = 'data:'.mime_content_type($img_source).';base64,'.$img_code;
+            $img_source = 'images/ajax-loader.gif';
+            $img_code = base64_encode(file_get_contents($img_source));
+            $data['srcload'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
 
 
-            $this->load->view('script_advance',$data);
+            $this->load->view('script_advance', $data);
 
-          
+
         }
     }
 
@@ -93,12 +92,12 @@ class Projects extends CI_Controller
     {
         echo "Standard";
 
-        if ($this->input->post("max_amb") != null){
+        if ($this->input->post("max_amb") != null) {
 
             $data = array("max_amb" => $this->input->post("max_amb"),
                 "max_homo" => $this->input->post("max_homo"),
                 "min_read" => $this->input->post("min_read"),
-               "max_read" => $this->input->post("max_read"),
+                "max_read" => $this->input->post("max_read"),
                 "align_seq" => $this->input->post("align_seq"),
                 "diffs" => $this->input->post("diffs"),
                 "cutoff" => $this->input->post("cutoff"),
@@ -110,20 +109,19 @@ class Projects extends CI_Controller
                 "calculators" => "thetayc",
                 "mode" => "standard",
                 "project_id" => $id
-                );
+            );
 
             $check_pro = $this->mongo_db->get_where('projects_run', array("project_id" => $id));
 
-            if ($check_pro != null){
+            if ($check_pro != null) {
                 $this->mongo_db->where(array("project_id" => $id))->set($data)->update('projects_run');
-            }else{
+            } else {
 
                 $this->mongo_db->insert('projects_run', $data);
             }
 
 
-
-        }else{
+        } else {
             echo "..........";
 
         }
@@ -165,22 +163,18 @@ class Projects extends CI_Controller
         $jobname = $user . "_" . $id . "_start_run";
 
 
-
-        if ($project_analysis == "OTUs"){
+        if ($project_analysis == "OTUs") {
             $cmd = "qsub -N $jobname -o Logs_sge/otu/ -e Logs_sge/otu/  -cwd -b y /usr/bin/php -f Scripts/standard_run_otu.php $user $id $project $path";
-             exec($cmd);
-            redirect("/process/index/".$id);
-        }else if ($project_analysis == "phylotype"){
+            exec($cmd);
+            redirect("/process/index/" . $id);
+        } else if ($project_analysis == "phylotype") {
             $cmd = "qsub -N $jobname -o Logs_sge/ -e Logs_sge/phylotype/  -cwd -b y /usr/bin/php -f Scripts/standard_run_phylotype.php $user $id $project $path";
             exec($cmd);
-            redirect("/process/index/".$id);
-        }else {
+            redirect("/process/index/" . $id);
+        } else {
             echo "Not run";
         }
     }
-
-
-
 
 
 }

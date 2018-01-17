@@ -97,17 +97,9 @@
      
            }
 
-        // if($level != "0" && $step_run == "4" ){
-
-        //     $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
-        //     $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
-
-        // }
-        
 
       echo json_encode(array($status,$step_run,$id_job,$tg_body,$ts_body));
       
-
     
     }
 
@@ -1141,9 +1133,9 @@
                   $Ordination_method = "PCoA";
              }
 
-
+        
         # Options 
-
+        
         #file design & metadata 
            $file_design = $data[18];
            $file_metadata = $data[19];
@@ -1176,37 +1168,49 @@
            $ci_method = $data[32];
            $p_value = $data[33];
           
+         # check option open or close
+          $checkOption_7_1 = $data[34];
+          $checkOption_7_2 = $data[35];
 
-          
-     
-        #check variable
-          if($file_design == "nodesign"){
-
-                $file_design = "0";
-          }
-          if($file_metadata =="nometadata"){
-
-              $file_metadata = "0";
-          }
-          if($ah_mova == ""){
-
-              $ah_mova = "0";
-          }
-
-          if($correlation_meta == null){
-
-              $correlation_meta = "0";
+          # option 7.1
+          if($checkOption_7_1 == false){
+               $file_design = "0";
+               $amova = "0";
+               $homova = "0";
+               $anosim = "0";
+               $file_metadata = "0";
+               $correlation_meta = "0";
                $method_meta = "0";
                $axes_meta  = "0";
-          }
-
-          if($correlation_otu == null){
-
                $correlation_otu = "0";
                $method_otu = "0";
                $axes_otu  = "0";
-          }
 
+           }else{
+
+                 if($file_design == "nodesign"){  $file_design = "0";  }
+                 if($amova == null){ $amova = "0";  }
+                 if($homova == null){ $homova = "0"; }
+                 if($anosim == null){  $anosim = "0"; }
+                 if($file_metadata =="nometadata"){ $file_metadata = "0"; }
+                 if($correlation_meta == null){
+                    $correlation_meta = "0";
+                    $method_meta = "0";
+                    $axes_meta  = "0";}
+                 if($correlation_otu == null){
+                    $correlation_otu = "0";
+                    $method_otu = "0";
+                    $axes_otu  = "0"; }
+               
+           }
+        # option 7.2
+        if($checkOption_7_2 == false){
+               $kegg = "0";
+               $sample_comparison = "0";
+               $statistical_test = "0";
+               $ci_method = "0";
+               $p_value = "0";
+        }
 
         $project = "";  # projectname
         $project_analysis = ""; # type project
@@ -1355,7 +1359,7 @@
         if($file_design == "0" && $file_metadata == "0"){
              $divisor = 25 ;
         }else if($file_design != "0" || $file_metadata != "0"){
-             $divisor = 26 ;
+             $divisor = 32 ;
         }
 
          
@@ -1364,9 +1368,9 @@
 
             if($check_run == false){
               
-                  $tg_body = null; //$this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+                  $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
                   
-                  $ts_body = null;//$this->read_file_summary($user,$project,$project_analysis,$level);
+                  $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
                  
                   $this->on_move($user,$project,$project_data,$tg_body,$ts_body);
 
@@ -1375,7 +1379,7 @@
                      $this->update_status($id_project,$data);
 
                  $up = 0;
-                 echo json_encode(array($up,$divisor,$tg_body,$ts_body));
+                 echo json_encode(array($up,$divisor));
                  
 
             }
@@ -1435,9 +1439,9 @@
                    closedir($read);
                 }
 
-               unlink($path_img."bin.svg");
-               unlink($path_img."jclass.svg");
-               unlink($path_img."thetayc.svg");
+               //unlink($path_img."bin.svg");
+               //unlink($path_img."jclass.svg");
+               //unlink($path_img."thetayc.svg");
             }
 
           

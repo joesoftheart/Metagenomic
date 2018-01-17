@@ -1,4 +1,6 @@
-args<-commandArgs(TRUE)
+
+args <- commandArgs(TRUE)
+
 #rm(list=ls())
 library(reshape2)
 library(ggplot2)
@@ -6,12 +8,14 @@ library(scales)
 library(gridExtra)
 library(grid)
 
+
 data=read.table(args[1], header=T, na.strings ="NA", sep="\t")
 data1=melt(data,id.var="Level_2", measure.vars = c("Rel..freq..1....","Rel..freq..2...."))
 
 p=ggplot(data=data1, aes(x=Level_2, y=value, fill=variable))+geom_bar(position=position_dodge(-.9),stat="identity")
 
-p1=p+labs(x="", y="Mean proportion (%)") + scale_fill_manual(values=c("red","blue"), name="Source", labels=c("S1_1_16s_S1","S2_1_16s_S3"))+
+
+p1=p+labs(x="", y="Mean proportion (%)") + scale_fill_manual(values=c("red","blue"), name="Source", labels=c(args[3] , args[4]))+
   coord_flip()+theme_bw()+theme(plot.margin = unit(c(0.3,0,0,0), "lines"),legend.position='top', legend.direction='horizontal')+
   theme(axis.title.x = element_text(face="plain", hjust = 0.5, size=12))
 
@@ -31,6 +35,7 @@ p2=ggplot(data=data, aes(x=data$Level_2, y=data$Effect.size, ymin=data$X95.0..lo
   theme(plot.title = element_text(hjust = 0.5, size=12))+
   theme(axis.title.x = element_text(face="plain", hjust = 0.5, size=12))+
   theme(legend.position="none")
+
 
 #tiff(args[2],width=10, height=6, units="in", res=300, compression = "lzw")
 png(args[2],width=10, height=6, units="in", res=300)

@@ -13,6 +13,7 @@
 /Logs_sge/*
 /database_classification/*
 /stamp/*
+/picrust/*
 
 # User-specific stuff:
 .idea/**/workspace.xml

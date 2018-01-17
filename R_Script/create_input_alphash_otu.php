@@ -8,7 +8,7 @@ $file_after_chao = "owncloud/data/$user/files/$project/output/file_after_chao.tx
 
 if (!file_exists($file_after_chao)) {
     file_put_contents($file_after_chao, "");
- 
+
 }
 
 if ($file_original = fopen($path_file_original, "r")) {
@@ -23,10 +23,9 @@ if ($file_original = fopen($path_file_original, "r")) {
     }
 
 
-
     for ($i = 0; $i <= $num_line - 1; $i++) {
         $line_split_tab_i = preg_split("/[\t]/", $keywords_split_line[$i]);
-        if ($line_split_tab_i[0] == "0.03" and $line_split_tab_i[2] == "ave"){
+        if ($line_split_tab_i[0] == "0.03" and $line_split_tab_i[2] == "ave") {
             file_put_contents($file_after_chao, "Chao" . "\t" . $line_split_tab_i[11] . "\t" . $line_split_tab_i[1] . "\n", FILE_APPEND);
             file_put_contents($file_after_chao, "Chao" . "\t" . $line_split_tab_i[9] . "\t" . $line_split_tab_i[1] . "\n", FILE_APPEND);
             file_put_contents($file_after_chao, "Chao" . "\t" . $line_split_tab_i[10] . "\t" . $line_split_tab_i[1] . "\n", FILE_APPEND);
@@ -36,7 +35,7 @@ if ($file_original = fopen($path_file_original, "r")) {
     }
     for ($i = 0; $i <= $num_line - 1; $i++) {
         $line_split_tab_i = preg_split("/[\t]/", $keywords_split_line[$i]);
-        if ($line_split_tab_i[0] == "0.03" and $line_split_tab_i[2] == "ave"){
+        if ($line_split_tab_i[0] == "0.03" and $line_split_tab_i[2] == "ave") {
             file_put_contents($file_after_chao, "Shannon" . "\t" . $line_split_tab_i[14] . "\t" . $line_split_tab_i[1] . "\n", FILE_APPEND);
             file_put_contents($file_after_chao, "Shannon" . "\t" . $line_split_tab_i[12] . "\t" . $line_split_tab_i[1] . "\n", FILE_APPEND);
             file_put_contents($file_after_chao, "Shannon" . "\t" . $line_split_tab_i[13] . "\t" . $line_split_tab_i[1] . "\n", FILE_APPEND);

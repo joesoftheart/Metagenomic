@@ -8,6 +8,6 @@ if (isset($this->session->userdata['logged_in'])) {
 } ?>
 
 <div id="page-wrapper">
-    <img src="<?php echo base_url();?>images/pipeline.png">
+    <img src="<?php echo base_url(); ?>images/pipeline.png">
 
 </div>

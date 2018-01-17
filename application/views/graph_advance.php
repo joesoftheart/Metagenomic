@@ -135,7 +135,7 @@ if (isset($this->session->userdata['logged_in'])) {
       <table class="table table-striped table-bordered" id="table"  >
                                
         
-         <?php   $path = FCPATH."owncloud/data/aumza/files/testrun/output/myResultsPathwayL2.tsv";
+         <?php   $path = FCPATH."owncloud/data/".$user."/files/".$project."/output/myResultsPathwayL2.tsv";
            
            if(file_exists($path)){
                
@@ -184,8 +184,7 @@ if (isset($this->session->userdata['logged_in'])) {
         <label><?php echo $file_groups_ave_std_summary; ?></label>
          <div class="row">
             <div class="col-lg-12">
-            <div class="table-responsive">
-                    
+            <div class="table-responsive">     
                            
              <table class="table table-striped table-bordered table-hover" style="text-align: center">
                                

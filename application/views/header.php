@@ -87,9 +87,9 @@
 
 <body>
 <nav class="navbar navbar-default navbar-static-top " role="navigation" style="margin-bottom: 0">
-<div id="wrapper">
+    <div id="wrapper">
 
-    <!-- Navigation -->
+        <!-- Navigation -->
 
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -110,7 +110,7 @@
                     <i class="fa fa-envelope fa-fw "></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-messages">
-                    <?php $data_m =   $this->header->getMessage(); ?>
+                    <?php $data_m = $this->header->getMessage(); ?>
                     <?php foreach ($data_m as $rs_v) { ?>
                         <li>
                             <a href="<?php echo site_url('view_message/view_message/' . $rs_v['_id']) ?>">
@@ -142,24 +142,26 @@
                 <ul class="dropdown-menu dropdown-tasks">
                     <?php $data_p = $this->header->getProgressProject();
                     foreach ($data_p as $dtp) { ?>
-                    <li>
-                        <a href="<?php echo site_url('projects/index/'.$dtp['_id'])?>">
-                            <div>
-                                <p>
-                                    <strong><?php echo $dtp['project_name']?></strong>
-                                    <?php $value = $this->header->getProgress($dtp['project_path']); ?>
-                                    <span class="pull-right text-muted"><?php echo $this->header->getProgress($dtp['project_path']);   ?>% complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-                                         aria-valuemin="0" aria-valuemax="100" style="width: <?=$value ?>%">
-                                        <span class="sr-only">40% Complete (success)</span>
+                        <li>
+                            <a href="<?php echo site_url('projects/index/' . $dtp['_id']) ?>">
+                                <div>
+                                    <p>
+                                        <strong><?php echo $dtp['project_name'] ?></strong>
+                                        <?php $value = $this->header->getProgress($dtp['project_path']); ?>
+                                        <span class="pull-right text-muted"><?php echo $this->header->getProgress($dtp['project_path']); ?>
+                                            % complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar"
+                                             aria-valuenow="40"
+                                             aria-valuemin="0" aria-valuemax="100" style="width: <?= $value ?>%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
                     <?php } ?>
                     <li>
                         <a class="text-center" href="#">
@@ -176,7 +178,7 @@
                     <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
-                    <?php $data_n =  $this->header->getNotification(); ?>
+                    <?php $data_n = $this->header->getNotification(); ?>
                     <?php foreach ($data_n as $r) { ?>
                         <li>
                             <a href="<?php echo site_url('view_notification/view_notification/' . $r['_id']) ?>">
@@ -301,4 +303,4 @@
             <!-- /.sidebar-collapse -->
         </div>
         <!-- /.navbar-static-side -->
-    </nav>
+</nav>

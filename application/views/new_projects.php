@@ -103,7 +103,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                         ?>
 
                                         <?php // print_r($result_file) ?>
-                                       
+
 
                                         <label>Select sample from owncloud :</label>
                                         <select class="uk-select  uk-width-1-2" name="project_path">
@@ -128,110 +128,110 @@ if (isset($this->session->userdata['logged_in'])) {
                                     </div>
                                 </div>
 
-<!--                                <label>Would you like to create new submission for SRA of NCBI :</label>-->
-<!--                                <div class="form-group">-->
-<!--                                    <label class="radio-inline">-->
-<!--                                        <input type="radio" name="project_permission" id="" value="private">Yes-->
-<!--                                    </label>-->
-<!--                                    <label class="radio-inline">-->
-<!--                                        <input type="radio" name="project_permission" id="" value="public">No-->
-<!--                                    </label>-->
-<!--                                    <label class="radio-inline">-->
-<!--                                        <input type="radio" name="project_permission" id="" value="share">Later-->
-<!--                                    </label>-->
-<!--                                </div>-->
-<!--                                <ul uk-accordion>-->
-<!--                                    <li class="uk-open">-->
-<!--                                        <h3 class="uk-accordion-title">Create a project file +</h3>-->
-<!--                                        <div class="uk-accordion-content">-->
-<!--                                            <table>-->
-<!--                                                <tr>-->
-<!--                                                    <td>UserName : </td>-->
-<!--                                                    <td><input class="uk-input" type="text"></td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>LastName : </td>-->
-<!--                                                    <td><input class="uk-input" type="text"></td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>FirstName : </td>-->
-<!--                                                    <td><input class="uk-input" type="text"></td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>Email : </td>-->
-<!--                                                    <td><input class="uk-input" type="text"></td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>Center : </td>-->
-<!--                                                    <td><input class="uk-input" type="text"></td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>Type : </td>-->
-<!--                                                    <td><input class="uk-input" type="text"></td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>Website : </td>-->
-<!--                                                    <td><input class="uk-input" type="text"></td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>ProjectName : </td>-->
-<!--                                                    <td><input class="uk-input" type="text"></td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>ProjectTitle : </td>-->
-<!--                                                    <td><input class="uk-input" type="text"></td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>Description : </td>-->
-<!--                                                    <td><input class="uk-input" type="text"></td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>Grant id : </td>-->
-<!--                                                    <td><input class="uk-input" type="text"></td>-->
-<!--                                                </tr>-->
-<!--                                            </table>-->
-<!---->
-<!---->
-<!--                                           </div>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <h3 class="uk-accordion-title">Create detail the experiment data +</h3>-->
-<!--                                        <div class="uk-accordion-content">-->
-<!--                                            <label>Environment :</label>-->
-<!--                                            <select class="uk-select uk-width-1-4" name="">-->
-<!--                                                <option value="">none</option>-->
-<!--                                                <option value="">air</option>-->
-<!--                                                <option value="">host_associated</option>-->
-<!--                                                <option value="">soil</option>-->
-<!--                                                <option value="">wastewater</option>-->
-<!--                                                <option value="">water</option>-->
-<!--                                                <option value="">sediment</option>-->
-<!--                                                <option value="">microbial</option>-->
-<!--                                            </select><br>-->
-<!--                                            <label>Plant :</label>-->
-<!--                                            <select class="uk-select uk-width-1-4" name="">-->
-<!--                                                <option value="">none</option>-->
-<!--                                                <option value="">plant_associated</option>-->
-<!---->
-<!--                                            </select><br>-->
-<!--                                            <label>Human :</label>-->
-<!--                                            <select class="uk-select uk-width-1-4" name="">-->
-<!--                                                <option value="">none</option>-->
-<!--                                                <option value="">human_associated</option>-->
-<!--                                                <option value="">human_gut</option>-->
-<!--                                                <option value="">human_oral</option>-->
-<!--                                                <option value="">human_skin</option>-->
-<!--                                                <option value="">human_vaginal</option>-->
-<!--                                            </select><br>-->
-<!--                                        </div>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <h3 class="uk-accordion-title">Item 3</h3>-->
-<!--                                        <div class="uk-accordion-content">-->
-<!--                                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>-->
-<!--                                        </div>-->
-<!--                                    </li>-->
-<!--                                </ul>-->
+                                <!--                                <label>Would you like to create new submission for SRA of NCBI :</label>-->
+                                <!--                                <div class="form-group">-->
+                                <!--                                    <label class="radio-inline">-->
+                                <!--                                        <input type="radio" name="project_permission" id="" value="private">Yes-->
+                                <!--                                    </label>-->
+                                <!--                                    <label class="radio-inline">-->
+                                <!--                                        <input type="radio" name="project_permission" id="" value="public">No-->
+                                <!--                                    </label>-->
+                                <!--                                    <label class="radio-inline">-->
+                                <!--                                        <input type="radio" name="project_permission" id="" value="share">Later-->
+                                <!--                                    </label>-->
+                                <!--                                </div>-->
+                                <!--                                <ul uk-accordion>-->
+                                <!--                                    <li class="uk-open">-->
+                                <!--                                        <h3 class="uk-accordion-title">Create a project file +</h3>-->
+                                <!--                                        <div class="uk-accordion-content">-->
+                                <!--                                            <table>-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td>UserName : </td>-->
+                                <!--                                                    <td><input class="uk-input" type="text"></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td>LastName : </td>-->
+                                <!--                                                    <td><input class="uk-input" type="text"></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td>FirstName : </td>-->
+                                <!--                                                    <td><input class="uk-input" type="text"></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td>Email : </td>-->
+                                <!--                                                    <td><input class="uk-input" type="text"></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td>Center : </td>-->
+                                <!--                                                    <td><input class="uk-input" type="text"></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td>Type : </td>-->
+                                <!--                                                    <td><input class="uk-input" type="text"></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td>Website : </td>-->
+                                <!--                                                    <td><input class="uk-input" type="text"></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td>ProjectName : </td>-->
+                                <!--                                                    <td><input class="uk-input" type="text"></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td>ProjectTitle : </td>-->
+                                <!--                                                    <td><input class="uk-input" type="text"></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td>Description : </td>-->
+                                <!--                                                    <td><input class="uk-input" type="text"></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td>Grant id : </td>-->
+                                <!--                                                    <td><input class="uk-input" type="text"></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                            </table>-->
+                                <!---->
+                                <!---->
+                                <!--                                           </div>-->
+                                <!--                                    </li>-->
+                                <!--                                    <li>-->
+                                <!--                                        <h3 class="uk-accordion-title">Create detail the experiment data +</h3>-->
+                                <!--                                        <div class="uk-accordion-content">-->
+                                <!--                                            <label>Environment :</label>-->
+                                <!--                                            <select class="uk-select uk-width-1-4" name="">-->
+                                <!--                                                <option value="">none</option>-->
+                                <!--                                                <option value="">air</option>-->
+                                <!--                                                <option value="">host_associated</option>-->
+                                <!--                                                <option value="">soil</option>-->
+                                <!--                                                <option value="">wastewater</option>-->
+                                <!--                                                <option value="">water</option>-->
+                                <!--                                                <option value="">sediment</option>-->
+                                <!--                                                <option value="">microbial</option>-->
+                                <!--                                            </select><br>-->
+                                <!--                                            <label>Plant :</label>-->
+                                <!--                                            <select class="uk-select uk-width-1-4" name="">-->
+                                <!--                                                <option value="">none</option>-->
+                                <!--                                                <option value="">plant_associated</option>-->
+                                <!---->
+                                <!--                                            </select><br>-->
+                                <!--                                            <label>Human :</label>-->
+                                <!--                                            <select class="uk-select uk-width-1-4" name="">-->
+                                <!--                                                <option value="">none</option>-->
+                                <!--                                                <option value="">human_associated</option>-->
+                                <!--                                                <option value="">human_gut</option>-->
+                                <!--                                                <option value="">human_oral</option>-->
+                                <!--                                                <option value="">human_skin</option>-->
+                                <!--                                                <option value="">human_vaginal</option>-->
+                                <!--                                            </select><br>-->
+                                <!--                                        </div>-->
+                                <!--                                    </li>-->
+                                <!--                                    <li>-->
+                                <!--                                        <h3 class="uk-accordion-title">Item 3</h3>-->
+                                <!--                                        <div class="uk-accordion-content">-->
+                                <!--                                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>-->
+                                <!--                                        </div>-->
+                                <!--                                    </li>-->
+                                <!--                                </ul>-->
                                 <button type="submit" name="save" value="submit" class="btn btn-default">Submit</button>
                                 <button type="reset" name="reset" class="btn btn-default">Clear</button>
                             </div>

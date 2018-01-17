@@ -54,8 +54,6 @@
           $GLOBALS['p_value'] = $argv[34];
        
          
-
-      
          
          # Check PCoA & NMDS
          $GLOBALS['check'] = "";
@@ -66,25 +64,19 @@
              $GLOBALS['check'] = "nmds";
          }
 
+         
+         # Keep value method PCoA or nmds
+         $GLOBALS['value_method'] = null;
 
-         # Keep value method PCoA or nmds by metadata
-           $GLOBALS['value_method_meta'] = null;
 
-         # Keep value method PCoA or nmds by otu
-           $GLOBALS['value_method_otu'] = null;
-
-          # Keep value method tree
-            $GLOBALS['tree_cal'] = null;
+        # Keep value method tree
+          $GLOBALS['tree_cal'] = null;
 
 
          if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != "" && $argv[6] =! "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != ""){
              echo "Check Parameter Success"."\n";
-             //collect_rarefaction_summary($user,$project,$path_in,$path_out);
-             make_biom($user,$project,$path_in,$path_out);
-             //biom_to_stamp($user,$project,$path_in,$path_out);
-             //remove_float($user,$project,$path_in,$path_out);
-             //stamp($user,$project,$path_in,$path_out);
-             //plot_STAMP($user,$project,$path_in,$path_out);
+             collect_rarefaction_summary($user,$project,$path_in,$path_out);
+            
        
    
          }else{
@@ -161,11 +153,10 @@
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
-
+                      
+                      $loop = false;
                       dist_summary_shared($user,$project,$path_in,$path_out);
-                      break;
-                      
-                      
+                      //break;
                    }
               }   
     }
@@ -202,11 +193,10 @@
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
-
+                      $loop = false;
                       venn($user,$project,$path_in,$path_out);
-                      break;
-                      
-                      
+                      //break;
+  
                    }
               }   
     }
@@ -243,11 +233,9 @@
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
-
+                      $loop = false;
                       tree_shared($user,$project,$path_in,$path_out);
-                      break;
-                      
-                      
+                      //break;
                    }
               }   
        }
@@ -307,15 +295,16 @@
                    if($check_run == false){
 
                       if($GLOBALS['check'] == "pcoa"){
-
+                          
+                           $loop = false;
                            pcoa($user,$project,$path_in,$path_out);
-                           break;
+                           //break;
                        }
                        elseif ($GLOBALS['check'] == "nmds") {
                           
-                          nmds($user,$project,$path_in,$path_out);
-                        
-                          break;
+                           $loop = false;
+                           nmds($user,$project,$path_in,$path_out);
+                           //break;
                        }
                     
                    }
@@ -324,7 +313,7 @@
          }elseif ($make == "") {
 
              echo "Not command tree_shared !"."\n";
-             break;
+            
            
          }
 
@@ -342,6 +331,9 @@
                for($i = 0 ; $i < sizeof($d_pcoa_st); $i++){
               
                  $make .="pcoa(phylip=final.tx.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.dist ,inputdir=$path_in,outputdir=$path_out)"."\n";
+
+                 $GLOBALS['value_method'] .= $d_pcoa_st[$i]." ";
+              
                
                }
           }
@@ -351,6 +343,9 @@
             for($i = 0 ; $i < sizeof($d_pcoa_me); $i++){
               
              $make .= "pcoa(phylip=final.tx.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.dist ,inputdir=$path_in,outputdir=$path_out)"."\n";
+
+             $GLOBALS['value_method'] .= $d_pcoa_me[$i]." ";
+            
                
             }
          } 
@@ -381,17 +376,16 @@
 
                    if($check_run == false){
 
-                        amova_homova($user,$project,$path_in,$path_out);
-                        break;
+                        $loop = false;
+                        amova_homova_anosim($user,$project,$path_in,$path_out);
+                        //break;
                         
                    }
               }   
 
          }elseif ($make == "") {
 
-             echo "Not command pcoa !"."\n";
-             break;
-           
+             echo "Not command pcoa !"."\n";  
          }
           
        }
@@ -409,7 +403,9 @@
                for($i = 0 ; $i < sizeof($d_nmds_st); $i++){
               
                  $make .="nmds(phylip=final.tx.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.dist, mindim=". $GLOBALS['nmds'].", maxdim=".$GLOBALS['nmds']." ,inputdir=$path_in,outputdir=$path_out)"."\n";
-               
+
+                 $GLOBALS['value_method'] .= $d_nmds_st[$i]." ";
+              
                }
           }
          # community membership
@@ -418,6 +414,9 @@
             for($i = 0 ; $i < sizeof($d_nmds_me); $i++){
               
               $make .="nmds(phylip=final.tx.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.dist, mindim=". $GLOBALS['nmds'].", maxdim=".$GLOBALS['nmds']." ,inputdir=$path_in,outputdir=$path_out)"."\n";
+
+               $GLOBALS['value_method'] .= $d_nmds_me[$i]." ";
+              
                
             }
          }
@@ -447,10 +446,9 @@
 
                    if($check_run == false){
 
+                      $loop = false;
                       amova_homova_anosim($user,$project,$path_in,$path_out);
-                      
-
-                      break;
+                      //break;
                         
                    }
               }   
@@ -458,14 +456,11 @@
          }elseif ($make == "") {
 
              echo "Not command nmds !"."\n";
-             break;
-           
+             
          }
+      }
 
-
-
-       }
-
+  # Start Options 7.1
   #7  use file design
   function amova_homova_anosim($user,$project,$path_in,$path_out){
          
@@ -645,8 +640,10 @@
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
+
+                      $loop = false;
                       corr_axes($user,$project,$path_in,$path_out);
-                      break;
+                      //break;
                         
                    }
               }   
@@ -655,11 +652,9 @@
 
              echo "Not command amova_homova_anosim !"."\n";
              parsimony($user,$project,$path_in,$path_out);
-             break;
-           
+
          }
  
-
       }
   #8 use file metadata
   function corr_axes($user,$project,$path_in,$path_out){
@@ -681,7 +676,7 @@
                        $make .= "corr.axes(axes=final.tx.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
                                  system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_pcoa_st[$i].")"."\n";
                        
-                       $GLOBALS['value_method_meta'] .= $d_pcoa_st[$i]." ";
+                       
                     }
                   }
                   # Community membership
@@ -692,7 +687,7 @@
                          $make .= "corr.axes(axes=final.tx.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
                                    system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_pcoa_me[$i].")"."\n";
                          
-                         $GLOBALS['value_method_meta'] .= $d_pcoa_me[$i]." ";
+                
                       }
                   }
 
@@ -707,7 +702,7 @@
                          $make .= "corr.axes(axes=final.tx.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
                                    system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_nmds_st[$i].")"."\n";
                          
-                         $GLOBALS['value_method_meta'] .= $d_nmds_st[$i]." ";
+                        
                        }
                   }
                   # Community membership
@@ -717,8 +712,6 @@
                         
                          $make .= "corr.axes(axes=final.tx.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
                                    system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_nmds_me[$i].")"."\n";
- 
-                        $GLOBALS['value_method_meta'] .= $d_nmds_me[$i]." ";
                       }
                  }
 
@@ -739,8 +732,7 @@
 
                         $make .= "corr.axes(axes=final.tx.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
                                   system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_pcoa_st[$i].")"."\n";
-                        
-                        $GLOBALS['value_method_otu'] .= $d_pcoa_st[$i]." ";       
+
                     }
                   }
                   # Community membership
@@ -751,7 +743,6 @@
                         $make .= "corr.axes(axes=final.tx.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
                                   system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_pcoa_me[$i].")"."\n";
 
-                        $GLOBALS['value_method_otu'] .= $d_pcoa_me[$i]." "; 
                       }
                   }
 
@@ -766,7 +757,6 @@
                           $make .= "corr.axes(axes=final.tx.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
                                     system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_nmds_st[$i].")"."\n";
 
-                          $GLOBALS['value_method_otu'] .= $d_nmds_st[$i]." ";
                        }
                   }
                   # Community membership
@@ -776,8 +766,7 @@
                         
                           $make .= "corr.axes(axes=final.tx.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
                                     system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_nmds_me[$i].")"."\n";
-
-                          $GLOBALS['value_method_otu'] .= $d_nmds_me[$i]." ";
+                
                       }
                  }
                 
@@ -810,24 +799,20 @@
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
-                      
+                      $loop = false;
                       parsimony($user,$project,$path_in,$path_out);
-                     
-                      break;
-                        
+                      //break;      
                    }
               }   
 
          }elseif ($make == "") {
              
              echo "Not command corr_axes !"."\n";
-             remove_logfile_mothur($path_out);
-             break;
+             parsimony($user,$project,$path_in,$path_out);
            
-         }
-        
-        
-      }
+         }   
+    }
+  
 
   #9 use file design
   function parsimony($user,$project,$path_in,$path_out){
@@ -881,9 +866,9 @@
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
-
+                      $loop = false;
                       heatmap_bin_sim($user,$project,$path_in,$path_out);
-                      break;
+                      //break;
                      
                       
                    }
@@ -892,10 +877,8 @@
 
              echo "Not command parsimony !"."\n";
              heatmap_bin_sim($user,$project,$path_in,$path_out);
-             break;
-           
-         }          
-                  
+                 
+         }                     
                    
      }
 
@@ -907,7 +890,7 @@
 
          $jobname = $user."_heatmap_bin_sim";
          
-         $path_out_hidden = $path_out."/hiddencommand/";
+         $path_out_hidden = "owncloud/data/".$user."/files/".$project."/hiddencommand/";
 
          $make = "heatmap.bin(shared=final.tx.".$GLOBALS['level'].".subsample.shared, scale=log2, numotu=10,inputdir=$path_out,outputdir=$path_out_hidden)
                   heatmap.sim(phylip=final.tx.thetayc.".$GLOBALS['level'].".lt.ave.dist,inputdir=$path_out,outputdir=$path_out_hidden) 
@@ -935,12 +918,10 @@
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
-
+                      
+                      $loop = false;
                       unifrac($user,$project,$path_in,$path_out);
-                      
-                      break;
-                     
-                      
+                      //break; 
                    }
               } 
     }   
@@ -952,10 +933,9 @@
 
      echo "unifrac"."\n";
 
-      $path_out_plot = "owncloud/data/$user/files/$project/output_plot/";
+    $jobname = $user."_unifrac";
+    $path_out_hidden = "owncloud/data/".$user."/files/".$project."/hiddencommand/";
 
-      $jobname = $user."_unifrac";
-      $path_out_hidden = $path_out."/hiddencommand/";
 
       $make = "";
 
@@ -964,8 +944,8 @@
             $d_upgma_st = explode(",", $GLOBALS['d_upgma_st']);
             for($i = 0 ; $i < sizeof($d_upgma_st); $i++){
               
-             $make .="unifrac.weighted(tree=final.tx.".$d_upgma_st[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T ,inputdir=$path_in,outputdir=$path_out_hidden) 
-                      unifrac.unweighted(tree=final.tx.".$d_upgma_st[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T, groups=all ,inputdir=$path_in,outputdir=$path_out_hidden)"."\n";
+             $make .="unifrac.weighted(tree=final.tx.".$d_upgma_st[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T ,inputdir=$path_in,outputdir=$path_out) 
+                      unifrac.unweighted(tree=final.tx.".$d_upgma_st[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T, groups=all ,inputdir=$path_in,outputdir=$path_out)"."\n";
             }
          }
          # community membership
@@ -973,8 +953,8 @@
             $d_upgma_me = explode(",", $GLOBALS['d_upgma_me']);
             for($i = 0 ; $i < sizeof($d_upgma_me); $i++){
               
-             $make .="unifrac.weighted(tree=final.tx.".$d_upgma_me[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T ,inputdir=$path_in,outputdir=$path_out_hidden) 
-                      unifrac.unweighted(tree=final.tx.".$d_upgma_me[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T, groups=all ,inputdir=$path_in,outputdir=$path_out_hidden)"."\n";
+             $make .="unifrac.weighted(tree=final.tx.".$d_upgma_me[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T ,inputdir=$path_in,outputdir=$path_out) 
+                      unifrac.unweighted(tree=final.tx.".$d_upgma_me[$i].".".$GLOBALS['level'].".lt.ave.tre, group=".$GLOBALS['file_design'].", random=T, groups=all ,inputdir=$path_in,outputdir=$path_out)"."\n";
                
             }
          } 
@@ -1004,9 +984,11 @@
 
                    if($check_run == false){
 
+                      $loop = false;
+                      moveoutput_unifrac($path_out,$path_out_hidden);
                       remove_logfile_mothur($path_out);
                       create_file_input_heatmap($user,$project,$path_in,$path_out);
-                      break;
+                      //break;
                      
                       
                    }
@@ -1017,13 +999,37 @@
 
              remove_logfile_mothur($path_out);
              create_file_input_heatmap($user,$project,$path_in,$path_out);
-             break;
-           
+                 
          }          
-
-
            
    }
+
+
+  function moveoutput_unifrac($path_out,$path_out_hidden){
+
+        $path_dir =  $path_out;
+        if (is_dir($path_dir)) {
+            if ($read = opendir($path_dir)){
+                  while (($file = readdir($read)) !== false) {
+                        
+                    $allowed =  array('trewsummary','weighted','uwsummary','unweighted');
+                    $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+                    if(in_array($ext,$allowed)) {
+                           
+                       copy($path_dir.$file,$path_out_hidden.$file);
+                       unlink($path_dir.$file);
+                      }
+                   }
+     
+                   closedir($read);
+            }
+
+        }
+
+  }
+
+  # End Options 7.1
 
   
   # Remove log mothur
@@ -1061,7 +1067,7 @@ function create_file_input_heatmap($user,$project,$path_in,$path_out){
      }   
     
 
-     $jobname = $user ."_create_file_input";
+     $jobname = $user ."_create_file_input_heatmap";
      $log = $GLOBALS['path_log'];
      $cmd = "qsub -N $jobname -o $log  -cwd -j y -b y /usr/bin/php -f R_Script/create_heatmap_phylotype_advance.php $user $project $file_input";
      
@@ -1079,9 +1085,9 @@ function create_file_input_heatmap($user,$project,$path_in,$path_out){
      while ($loop) {
          $check_run = exec("qstat -j $id_job");
          if ($check_run == false) {
-
+             $loop = false;
              create_file_input_abun($user,$project,$path_in,$path_out);
-             break;
+             //break;
          }
      }
 
@@ -1116,10 +1122,9 @@ function create_file_input_heatmap($user,$project,$path_in,$path_out){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-
+            $loop = false;
             create_input_alphash($user,$project,$path_in,$path_out);
-           
-            break;
+            //break;
         }
     }
 
@@ -1148,55 +1153,61 @@ function create_input_alphash($user,$project,$path_in,$path_out){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-
-            create_input_biplot($user,$project,$path_in,$path_out);
-            break;
+            
+             if($GLOBALS['correlation_otu'] != "0"){
+                 $loop = false;
+                 create_input_biplot($user,$project,$path_in,$path_out);
+                 //break;
+             }else{
+                 $loop = false;
+                 plot_graph_r_heatmap($user,$project,$path_in,$path_out);
+                 //break;
+             }
         }
     }
 
 }
 
-#15
+#15  Select correlation OTU  ==> 
+     # create (( file output_biplot ))  ==>
+     # into generate graph  BiplotwithOTU
 function create_input_biplot($user,$project,$path_in,$path_out){
     
     echo "create_input_biplot"."\n";
+
+     $jobname = $user."_create_input_biplot";
+     $log = $GLOBALS['path_log'];
     
-     if($GLOBALS['value_method_otu'] != null ){
+         $level      = $GLOBALS['level'];
+         $method_otu = $GLOBALS['method_otu'];
+         $calculator = $GLOBALS['value_method'];
 
-      $level      = $GLOBALS['level'];
-      $method_otu = $GLOBALS['method_otu'];
-      $calculator = $GLOBALS['value_method_otu'];
-
-     }
-
-      $data_cal = trim($calculator);
-      $val_replace = str_replace(" ",",", $data_cal);
+         $data_cal = trim($calculator);
+         $val_replace = str_replace(" ",",", $data_cal);
    
-    $jobname = $user."_create_input_biplot";
-    $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/create_biplot_phylotype_advance.php $user $project $level $method_otu $val_replace";
    
-    exec($cmd);
-    $check_qstat = "qstat  -j '$jobname' ";
-    exec($check_qstat, $output);
-    $id_job = ""; # give job id
-    foreach ($output as $key_var => $value) {
-        if ($key_var == "1") {
+        $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/create_biplot_phylotype_advance.php $user $project $level $method_otu $val_replace";
+   
+        exec($cmd);
+        $check_qstat = "qstat  -j '$jobname' ";
+        exec($check_qstat, $output);
+        $id_job = ""; # give job id
+        foreach ($output as $key_var => $value) {
+          if ($key_var == "1") {
             $data = explode(":", $value);
             $id_job = $data[1];
+          }
         }
-    }
-    $loop = true;
-    while ($loop) {
+        $loop = true;
+        while ($loop) {
         $check_run = exec("qstat -j $id_job");
-        if ($check_run == false) {
-           
-            plot_graph_r_heatmap($user,$project,$path_in,$path_out);
-            break;
+          if ($check_run == false) {
+              $loop = false;
+              plot_graph_r_heatmap($user,$project,$path_in,$path_out);
+              //break;
+          }
         }
-    }
-
-
+    
 }
 
 #16
@@ -1226,9 +1237,9 @@ function plot_graph_r_heatmap($user,$project,$path_in,$path_out){
      while ($loop) {
          $check_run = exec("qstat -j $id_job");
          if ($check_run == false) {
-
+             $loop = false;
              plot_graph_r_NMD($user,$project,$path_in,$path_out);
-             break;
+             //break;
          }
      }
 
@@ -1241,18 +1252,12 @@ function plot_graph_r_NMD($user,$project,$path_in,$path_out){
     echo "plot_graph_r_NMD "."\n";
 
     
-     # Calculator
-     if($GLOBALS['value_method_meta'] != null){
-
-         $calculator = $GLOBALS['value_method_meta'];
-         $cal = trim($calculator);
+     # Calculator PCoA or NMDS
+ 
+     $calculator = $GLOBALS['value_method'];
+     $cal = trim($calculator);
          
-     }elseif ($GLOBALS['value_method_otu'] != null) {
-
-         $calculator = $GLOBALS['value_method_otu'];
-         $cal = trim($calculator);
-        
-     } 
+    
 
       $cal_replace = explode(" ", $cal);
       $path_input_axes_name = null;
@@ -1296,10 +1301,10 @@ function plot_graph_r_NMD($user,$project,$path_in,$path_out){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-
+            
+            $loop = false;
             plot_graph_r_Rare($user,$project,$path_in,$path_out);
-           
-            break;
+            //break;
         }
     }
 
@@ -1332,9 +1337,9 @@ function plot_graph_r_Rare($user,$project,$path_in,$path_out){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-
+            $loop = false;
             plot_graph_r_Abun($user,$project,$path_in,$path_out);
-            break;
+            //break;
         }
     }
 
@@ -1367,9 +1372,9 @@ function plot_graph_r_Abun($user,$project,$path_in,$path_out){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-
+            $loop = false;
             plot_graph_r_Alphash($user,$project,$path_in,$path_out);
-            break;
+            //break;
         }
     }
 
@@ -1402,69 +1407,116 @@ function plot_graph_r_Alphash($user,$project,$path_in,$path_out){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-            
-            plot_graph_r_Biplot($user,$project,$path_in,$path_out);
-            
-            break;
+
+      if(($GLOBALS['correlation_meta'] != "0") || ($GLOBALS['correlation_otu'] != "0")){
+               $loop = false;
+               plot_graph_r_Biplot($user,$project,$path_in,$path_out);
+               //break;
+          }else{
+               $loop = false;
+               plot_graph_r_Tree($user,$project,$path_in,$path_out);
+               //break;
+          }
+   
         }
     }
 
 }
 
-#21
+#21 check correlation metadata and out 
 function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
   
    
     echo "plot_graph_r_Biplot"."\n";
-
+    $jobname = $user ."_plot_graph_r_Biplot";
+    $log = $GLOBALS['path_log'];
+    
+    # check get variable correlation metadata and correlation otu
+    $numcheck = null;
 
      # Calculator
-     if($GLOBALS['value_method_meta'] != null){
-
-         $calculator = $GLOBALS['value_method_meta'];
-         $cal = trim($calculator);
-         
-     }elseif ($GLOBALS['value_method_otu'] != null) {
-
-         $calculator = $GLOBALS['value_method_otu'];
-         $cal = trim($calculator);
-        
-     } 
-
+     $calculator = $GLOBALS['value_method'];
+     $cal = trim($calculator);      
+   
      $cal_replace = explode(" ", $cal);
      $path_data = null;
 
-      # pcoa or nmds
-       if($GLOBALS['check'] == "pcoa"){
-        
-            for($i=0;$i < sizeof($cal_replace);$i++){ 
-
-              $path_data .= "owncloud/data/$user/files/$project/output/final.tx.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes-";
-              $path_data .= "owncloud/data/$user/files/$project/output/PCoA_BiplotwithOTU_".$cal_replace[$i].".png-";
-              $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_".$cal_replace[$i].".txt-";
-              $path_data .="owncloud/data/$user/files/$project/output/PCoA_BiplotwithMetadata_".$cal_replace[$i].".png-"; 
-              $path_data .="owncloud/data/$user/files/$project/output/file.".$GLOBALS['method_meta'].".corr.axes_".$cal_replace[$i].",";
-   
+      # pcoa 
+      if($GLOBALS['check'] == "pcoa"){
+            
+            #correlation metadata
+            if(($GLOBALS['correlation_meta'] != "0") && ($GLOBALS['correlation_otu'] == "0")){
+                  
+                  $numcheck = "3meta";
+                  for($i=0;$i < sizeof($cal_replace);$i++){ 
+                     $path_data .= "owncloud/data/$user/files/$project/output/final.tx.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes-";
+                     $path_data .="owncloud/data/$user/files/$project/output/PCoA_BiplotwithMetadata_".$cal_replace[$i].".png-"; 
+                     $path_data .="owncloud/data/$user/files/$project/output/file.".$GLOBALS['method_meta'].".corr.axes_".$cal_replace[$i].",";
+                   }
             }
 
+            #correlation otu       
+            elseif(($GLOBALS['correlation_meta'] == "0") && ($GLOBALS['correlation_otu'] != "0")){
+
+                  $numcheck = "3otu";
+                  for($i=0;$i < sizeof($cal_replace);$i++){ 
+                     $path_data .= "owncloud/data/$user/files/$project/output/final.tx.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes-";
+                     $path_data .= "owncloud/data/$user/files/$project/output/PCoA_BiplotwithOTU_".$cal_replace[$i].".png-";
+                     $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_".$cal_replace[$i].".txt".",";  
+                  }
+            
+            }else{
+
+                  $numcheck = "5all";
+                  for($i=0;$i < sizeof($cal_replace);$i++){ 
+                     $path_data .= "owncloud/data/$user/files/$project/output/final.tx.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes-";
+                     $path_data .= "owncloud/data/$user/files/$project/output/PCoA_BiplotwithOTU_".$cal_replace[$i].".png-";
+                     $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_".$cal_replace[$i].".txt-";
+                     $path_data .="owncloud/data/$user/files/$project/output/PCoA_BiplotwithMetadata_".$cal_replace[$i].".png-"; 
+                     $path_data .="owncloud/data/$user/files/$project/output/file.".$GLOBALS['method_meta'].".corr.axes_".$cal_replace[$i].",";
+                  }
+            }
+
+       # nmds
        }else if($GLOBALS['check'] == "nmds"){
-        
-            for($i=0;$i < sizeof($cal_replace);$i++){
+                 
+                #correlation metadata
+                if(($GLOBALS['correlation_meta'] != "0") && ($GLOBALS['correlation_otu'] == "0")){
+                     
+                     $numcheck = "3meta";
+                     for($i=0;$i < sizeof($cal_replace);$i++){
+                      $path_data .= "owncloud/data/$user/files/$project/output/final.tx.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes-";
+                      $path_data .="owncloud/data/$user/files/$project/output/NMDS_BiplotwithMetadata_".$cal_replace[$i].".png-"; 
+                      $path_data .="owncloud/data/$user/files/$project/output/file.".$GLOBALS['method_meta'].".corr.axes_".$cal_replace[$i].",";
+                     }
+                }
 
-               $path_data .= "owncloud/data/$user/files/$project/output/final.tx.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes-";
-               $path_data .= "owncloud/data/$user/files/$project/output/NMDS_BiplotwithOTU_".$cal_replace[$i].".png-";
-               $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_".$cal_replace[$i].".txt-";
-               $path_data .="owncloud/data/$user/files/$project/output/NMDS_BiplotwithMetadata_".$cal_replace[$i].".png-"; 
-               $path_data .="owncloud/data/$user/files/$project/output/file.".$GLOBALS['method_meta'].".corr.axes_".$cal_replace[$i].",";
-   
+                #correlation otu 
+                elseif(($GLOBALS['correlation_meta'] == "0") && ($GLOBALS['correlation_otu'] != "0")) {
 
-            }
+                     $numcheck = "3otu";
+                     for($i=0;$i < sizeof($cal_replace);$i++){
+                        $path_data .= "owncloud/data/$user/files/$project/output/final.tx.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes-";
+                        $path_data .= "owncloud/data/$user/files/$project/output/NMDS_BiplotwithOTU_".$cal_replace[$i].".png-";
+                        $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_".$cal_replace[$i].".txt".",";
+                     
+                      }
+
+                }else{
+
+                      $numcheck = "5all";
+                      for($i=0;$i < sizeof($cal_replace);$i++){
+                        $path_data .= "owncloud/data/$user/files/$project/output/final.tx.".$cal_replace[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes-";
+                        $path_data .= "owncloud/data/$user/files/$project/output/NMDS_BiplotwithOTU_".$cal_replace[$i].".png-";
+                        $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_".$cal_replace[$i].".txt-";
+                        $path_data .="owncloud/data/$user/files/$project/output/NMDS_BiplotwithMetadata_".$cal_replace[$i].".png-"; 
+                        $path_data .="owncloud/data/$user/files/$project/output/file.".$GLOBALS['method_meta'].".corr.axes_".$cal_replace[$i].",";
+                      }
+                }    
        }
 
-   
-    $jobname = $user ."_plot_graph_r_Biplot";
-    $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/biplot_advance.php $path_data";
+ 
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/biplot_advance.php $path_data $numcheck";
     
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1480,13 +1532,11 @@ function plot_graph_r_Biplot($user,$project,$path_in,$path_out){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-             
-              plot_graph_r_Tree($user,$project,$path_in,$path_out);
-
-            break;
+            $loop = false;
+            plot_graph_r_Tree($user,$project,$path_in,$path_out);
+            //break;
         }
     }
-
 }
 
 #22
@@ -1516,9 +1566,9 @@ function plot_graph_r_Tree($user,$project,$path_in,$path_out){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-
+            $loop = false;
             make_biom($user,$project,$path_in,$path_out);
-            break;
+            //break;
         }
     }
 
@@ -1561,22 +1611,24 @@ function make_biom($user,$project,$path_in,$path_out){
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
-
+                    
+                     $loop = false;
                      if($GLOBALS['kegg'] != "0" &&
                         $GLOBALS['sample_comparison'] != "0" &&
                         $GLOBALS['statistical_test'] != "0"  &&  
                         $GLOBALS['ci_method'] != "0" &&
                         $GLOBALS['p_value'] != "0" ){
-
+                          
                           convert_biom($user,$project,$path_in,$path_out);
-                          break; 
+                         // break; 
 
                       }else{
-
+                          
+                          $loop = false;
                            change_name($user,$project,$path_in,$path_out);
                            remove_logfile_mothur2($path_out);
                            remove_file_tree_sum($path_in);
-                           break; 
+                          // break; 
                       }
                        
                    }
@@ -1624,9 +1676,9 @@ function convert_biom($user,$project,$path_in,$path_out){
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
-
+                      $loop = false;
                       phylotype_picrust($user,$project,$path_in,$path_out);
-                      break;  
+                      //break;  
                    }
           }   
 
@@ -1670,8 +1722,9 @@ function phylotype_picrust($user,$project,$path_in,$path_out){
 
                    if($check_run == false){
 
+                      $loop = false;
                       phylotype_picrust2($user,$project,$path_in,$path_out);
-                      break;  
+                      //break;  
                    }
           }   
 
@@ -1714,8 +1767,9 @@ function phylotype_picrust2($user,$project,$path_in,$path_out){
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
+                      $loop = false;
                       phylotype_picrust3($user,$project,$path_in,$path_out);
-                      break;  
+                      //break;  
                    }
           }   
 
@@ -1762,8 +1816,9 @@ function phylotype_picrust3($user,$project,$path_in,$path_out){
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
+                      $loop = false;
                       biom_to_stamp($user,$project,$path_in,$path_out);
-                      break;  
+                      //break;  
                    }
           }   
 
@@ -1809,8 +1864,9 @@ function biom_to_stamp($user,$project,$path_in,$path_out){
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
+                      $loop = false;
                       remove_float($user,$project,$path_in,$path_out);
-                      break;  
+                      //break;  
                    }
           }   
 
@@ -1849,8 +1905,9 @@ function remove_float($user,$project,$path_in,$path_out){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
+            $loop = false;
             stamp($user,$project,$path_in,$path_out);
-            break;
+            //break;
         }
     }
 }
@@ -1938,10 +1995,10 @@ function stamp($user,$project,$path_in,$path_out){
                    $check_run = exec("qstat -j $id_job");
 
                    if($check_run == false){
-
-                      plot_STAMP($user,$project,$path_in,$path_out);
                       
-                      break;  
+                      $loop = false;
+                      plot_STAMP($user,$project,$path_in,$path_out,$sample1,$sample2);
+                      //break;  
                    }
           }   
 
@@ -1949,7 +2006,7 @@ function stamp($user,$project,$path_in,$path_out){
 }
 
 #32
-function plot_STAMP($user,$project,$path_in,$path_out){
+function plot_STAMP($user,$project,$path_in,$path_out,$sample1,$sample2){
 
     echo "plot_STAMP"."\n";
 
@@ -1961,7 +2018,7 @@ function plot_STAMP($user,$project,$path_in,$path_out){
 
     $jobname = $user ."_plot_STAMP";
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/barplotwitherrorstampModi.R $myResultsPathway $path_to_save";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/barplotwitherrorstampModi.R $myResultsPathway $path_to_save $sample1 $sample2";
    
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1977,11 +2034,12 @@ function plot_STAMP($user,$project,$path_in,$path_out){
     while ($loop) {
         $check_run = exec("qstat -j $id_job");
         if ($check_run == false) {
-
+             
+            $loop = false;
             change_name($user,$project,$path_in,$path_out);
             remove_logfile_mothur2($path_out);
             remove_file_tree_sum($path_in);
-            break;
+            //break;
         }
     }
 
@@ -2014,22 +2072,22 @@ function change_name($user,$project,$path_in,$path_out){
                 if (in_array($type[0], $file_read)) {
 
                     $file_name = preg_split("/[.]/",$value );
-                    if (in_array("bin", $file_name)) {
-                        rename($dir . "/" . $value, $dir . "/" . "bin.svg");
+                    // if (in_array("bin", $file_name)) {
+                    //     rename($dir . "/" . $value, $dir . "/" . "bin.svg");
                        
-                    }
+                    // }
                     if (in_array("sharedsobs", $file_name)) {
                         rename($dir . "/" . $value, $dir . "/" . "sharedsobs.svg");
                        
                     }
-                    if (in_array("jclass", $file_name)) {
-                        rename($dir . "/" . $value, $dir . "/" . "jclass.svg");
+                    // if (in_array("jclass", $file_name)) {
+                    //     rename($dir . "/" . $value, $dir . "/" . "jclass.svg");
                        
-                    }
-                    if (in_array("thetayc", $file_name)) {
-                        rename($dir . "/" . $value, $dir . "/" . "thetayc.svg");
+                    // }
+                    // if (in_array("thetayc", $file_name)) {
+                    //     rename($dir . "/" . $value, $dir . "/" . "thetayc.svg");
                         
-                    }
+                    // }
                 }
             }
         }
@@ -2037,7 +2095,7 @@ function change_name($user,$project,$path_in,$path_out){
 }
 
 
-# Remove log mothur
+# Remove log mothur make_biom
 
    function remove_logfile_mothur2($path_out){ 
             

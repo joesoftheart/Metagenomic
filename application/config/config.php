@@ -29,9 +29,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-$config['base_url'] = 'http://10.226.76.74/Metagenomic/';
 
-//$config['base_url'] = 'http://10.226.76.65/Metagenomic/';
+$config['base_url'] = 'http://10.226.76.84/Metagenomic/';
 
 
 //$config['base_url'] = 'http://10.226.76.82/Metagenomic/';

@@ -1123,9 +1123,10 @@ Beta – Diversity:
          <input id="toggle-event1" type="checkbox" data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" >           
         </h5>
      </div>
-    <div class="col-lg-11">
+    <div class="col-lg-12">
     <fieldset class="optionset1" disabled>
-                             <div class="col-lg-8 col-lg-push-1"> 
+           <div class="col-lg-12">
+                             <div class="col-lg-6"> 
                                  <label> Create file design 
                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div11');">
                                 </i> 
@@ -1138,8 +1139,23 @@ Beta – Diversity:
                                 </div>
                                 <p class="opt1" style="display: none;"> <font color="red">*Required</font></p>
                              </div>
-                            
-                             <div class="col-lg-10 col-lg-push-1 uk-margin"> 
+
+                             <div class="col-lg-6 col-lg-pull-1">                             
+                            <input type="checkbox" id="amova_id" name="amova"  value="amova" > Amova 
+                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div9');">
+                                 </i>
+                                 <br/>
+
+                            <input type="checkbox" id="homova_id" name="homova"  value="homova" > Homova 
+                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div10');"></i> 
+                                 <br/>
+
+                            <input type="checkbox" id="anosim_id" name="anosim"  value="anosim" > Anosim 
+                                 <i class="fa fa-question-circle-o"></i>  
+                            </div>    
+         </div>
+         <div class="col-lg-12 uk-margin">
+                             <div class="col-lg-5"> 
                                  <label> Create file metadata 
                                      <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div13');">
                                 </i> 
@@ -1152,39 +1168,21 @@ Beta – Diversity:
                                  <img id="img_metadata">
                              </div>
                               <p class="opt1" style="display: none;"> <font color="red">*Required</font></p>
+
                              </div>
 
-
-                            <div class="col-lg-8 col-lg-push-1 uk-margin">                             
-                            <input type="checkbox" id="amova_id" name="amova"  value="amova" > Amova 
-                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div9');">
-                                 </i>
-                                 <br/>
-
-                            <input type="checkbox" id="homova_id" name="homova"  value="homova" > Homova 
-                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div10');"></i> 
-                                 <br/>
-
-                            <input type="checkbox" id="anosim_id" name="anosim"  value="anosim" > Anosim 
-                                 <i class="fa fa-question-circle-o"></i>  
-                                 <br/>
-                            <p class="opt1" style="display: none;"> <font color="red">*Required</font></p>
-                            </div>
-
-
-                            <label class="col-lg-6 col-lg-push-1">
+                            <div class="col-lg-4">
                                     <input type="checkbox" id="correlation_meta"  value="meta"  > correlation with metadata
                                      <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div14');">
                                      </i> 
-                            </label>
-                           
-                            <div class="col-lg-4 col-lg-pull-1">
+                            </div>
+                            <div class="col-lg-2">
                                 <select class="uk-select" name="method_meta" >
                                     <option value="spearman"> spearman </option>
                                     <option value="pearson"> pearson </option>     
                                 </select>
-                             </div>
-                             <div class="col-lg-2 col-lg-pull-1">
+                            </div>
+                            <div class="col-lg-1">
                                 <select class="uk-select"  name="axes_meta" >
                                     <?php  if($project_analysis =='OTUs'){ ?>
                                             <option value="0.03"> 0.03 </option>
@@ -1197,23 +1195,22 @@ Beta – Diversity:
                                        
                                     <?php } ?>
                                 </select>
-                             </div>
-                             <div class="col-lg-12 col-lg-push-1">
-                                <p class="opt1" style="display: none;"> <font color="red">*Required</font></p>
                             </div>
-                            
-                            <label class="col-lg-6 col-lg-push-1 uk-margin">
+                      
+         </div>
+         <div class="col-lg-12">                   
+                            <div class="col-lg-6">
                                     <input type="checkbox" id="correlation_otu"  value="otu" > correlation of each OTU 
                                      <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div15');">
                                      </i> 
-                             </label>
-                            <div class="col-lg-4 col-lg-pull-1 uk-margin">
+                            </div>
+                            <div class="col-lg-3 col-lg-pull-2">
                                      <select class="uk-select"  name="method_otu" >
                                          <option value="spearman"> spearman </option>
                                          <option value="pearson"> pearson </option>     
                                      </select>
                             </div>
-                            <div class="col-lg-2 col-lg-pull-1 uk-margin">
+                            <div class="col-lg-2 col-lg-pull-2">
                                     <select class="uk-select"  name="axes_otu" >
                                         <?php  if($project_analysis =='OTUs'){ ?>
                                             <option value="0.03"> 0.03 </option>
@@ -1225,14 +1222,15 @@ Beta – Diversity:
                                         <?php } ?>
                                     </select>  
                             </div>
-                            <div class="col-lg-12 col-lg-push-1">
+                            <div class="col-lg-6">
                                 <p class="opt1" style="display: none;"> <font color="red">*Required</font></p>
                             </div>
+         </div>
 
 
         </fieldset>
         </div>
-    <div class="col-lg-12 uk-margin">
+    <div class="col-lg-12">
     <h5>
     <b>7.2  PICRUSt  and STAMP :</b>
         <input id="toggle-event2" type="checkbox" data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" >
@@ -1557,7 +1555,7 @@ document.getElementById("btn_reports").onclick = function(){
 };
 
 document.getElementById("btn_graph").onclick = function(){
-
+    
     $.ajax({ 
           type:"post",
           datatype:"json",
@@ -1650,10 +1648,11 @@ $(document).ready(function (){
             var anosim = null;
             var correlation_meta = null;
             var correlation_otu  = null;
+            var checkconrun = "close";
+            var checkstatus1 = "close";
+            var checkstatus2 = "close";
 
-            var checkstatus = null;
-
-           $("#sub-test3").click(function () {
+$("#sub-test3").click(function () {
                 var username = document.forms["Analysis-form"]["username"].value;
                 var project  = document.forms["Analysis-form"]["project"].value;
                 var level    = document.forms["Analysis-form"]["level"].value;
@@ -1707,72 +1706,71 @@ $(document).ready(function (){
      var ci_method = document.forms["Analysis-form"]["ci_method"].value;
      var p_value = document.forms["Analysis-form"]["p_value"].value;
      
+      design_stop = "stop";
+      metadata_stop = "stop";
+
     
-     
-     // if(console_event2){}
-     if(console_event1){
-        
-      }   
+var array_data = new Array(username, project, level, ch_alpha, size_alpha, ch_beta, size_beta, venn1, venn2, venn3, venn4, d_upgma_st, d_upgma_me, d_pcoa_st, d_pcoa_me, nmds, d_nmds_st, d_nmds_me, file_design, file_metadata, amova, homova, anosim, correlation_meta, method_meta, axes_meta, correlation_otu, method_otu, axes_otu, kegg, sample_comparison, statistical_test, ci_method, p_value ,console_event1 ,console_event2);
 
-    design_stop = "stop";
-    metadata_stop = "stop";
-                  
-
+// check condition run 
     if(username != "" && project != "" &&  level != "" &&  venn1 != "0" && venn2 != "0" && check_ven_all == "start" ){
-      
-      if((d_upgma_st != 0 || d_upgma_me != 0 ) && (d_pcoa_st != 0 || d_pcoa_me != 0 || d_nmds_st != 0 || d_nmds_me != 0 )){
-
-         var array_data = new Array(
-                             username,
-                             project,
-                             level,
-                             ch_alpha,
-                             size_alpha,
-                             ch_beta,
-                             size_beta,
-                             venn1,
-                             venn2,
-                             venn3,
-                             venn4,
-                             d_upgma_st,
-                             d_upgma_me,
-                             d_pcoa_st,
-                             d_pcoa_me,
-                             nmds,
-                             d_nmds_st,
-                             d_nmds_me,
-                             file_design,
-                             file_metadata,
-                             amova,
-                             homova,
-                             anosim,
-                             correlation_meta,
-                             method_meta,
-                             axes_meta,
-                             correlation_otu,
-                             method_otu,
-                             axes_otu,
-                             kegg,
-                             sample_comparison,
-                             statistical_test,
-                             ci_method,
-                             p_value
-                        );
-           
-             console.log(array_data);
-             console.log(correlation_meta);
-             console.log(correlation_otu);
-             console.log(amova);
-             console.log(homova);
-             console.log(anosim);
-            //$(".Pre-test3").hide();
-            //$(".Pre-show3").show();
-            //get_analysis(array_data);
-                
-       }
-     }
+            if((d_upgma_st != 0 || d_upgma_me != 0 ) && (d_pcoa_st != 0 || d_pcoa_me != 0 || d_nmds_st != 0 || d_nmds_me != 0 )){
+                 checkconrun = "open";     
+            }else{  checkconrun = "close"; }
+    }else{  checkconrun = "close";  } 
                   
- });
+    if( file_design != "nodesign" &&
+        (amova != null || homova != null || anosim !=null)){ 
+         checkstatus1 = "open";                     
+    }else{ checkstatus1 = "close"; }
+           
+    if(sample_comparison != "0" && statistical_test !="0" && ci_method != "0" &&   p_value !="0" ){
+        checkstatus2 = "open";            
+    }else{ checkstatus2 = "close"; } 
+ 
+// end check condition run
+
+
+// Run  
+if(console_event1 && !console_event2){
+    if((checkconrun == "open") && (checkstatus1 == "open")){
+            console.log(array_data);
+            console.log("Options 7.1");
+            $(".Pre-test3").hide();
+            $(".Pre-show3").show();
+            get_analysis(array_data);
+           }
+         
+}else if(console_event2 && !console_event1){
+        if((checkconrun == "open") && (checkstatus2 == "open")){
+            console.log(array_data);
+            console.log("Options 7.2");
+             $(".Pre-test3").hide();
+             $(".Pre-show3").show();
+             get_analysis(array_data);
+            }
+
+}else if(console_event1 && console_event2){
+         if((checkconrun == "open") && (checkstatus1 == "open") && (checkstatus2 == "open" )){
+            console.log(array_data);
+            console.log("All options");
+            $(".Pre-test3").hide();
+             $(".Pre-show3").show();
+             get_analysis(array_data);
+           }
+           
+}else{
+        if(checkconrun == "open"){
+            console.log(array_data);
+            console.log("No options");
+            $(".Pre-test3").hide();
+            $(".Pre-show3").show();
+            get_analysis(array_data);       
+        }
+}
+                  
+             
+});
 
 
            var ven1,ven2,ven3,ven4;

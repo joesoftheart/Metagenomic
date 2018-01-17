@@ -66,20 +66,21 @@ if (isset($this->session->userdata['logged_in'])) {
                     <p>Server CPU Usage :<span class="description" id="show_cpu"></span>%</p>
                     <p>Server Memory Usage :<span class="description" id="show_ram"></span>%</p>
 
-                        <?php $data_p = $this->header->getProgressProject();
-                        foreach ($data_p as $dp) {  ?>
+                    <?php $data_p = $this->header->getProgressProject();
+                    foreach ($data_p as $dp) { ?>
 
-                    <p>
-                        <strong><?php echo $dp['project_name'] ?></strong>
-                        <?php $value = $this->header->getProgress($dp['project_path']); ?>
-                        <span class="pull-right text-muted"><?php echo $this->header->getProgress($dp['project_path']);?>% complete</span>
-                    </p>
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
-                             aria-valuemin="0" aria-valuemax="100" style="width: <?=$value?>%">
-                            <span class="sr-only">20% Complete</span>
+                        <p>
+                            <strong><?php echo $dp['project_name'] ?></strong>
+                            <?php $value = $this->header->getProgress($dp['project_path']); ?>
+                            <span class="pull-right text-muted"><?php echo $this->header->getProgress($dp['project_path']); ?>
+                                % complete</span>
+                        </p>
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                 aria-valuemin="0" aria-valuemax="100" style="width: <?= $value ?>%">
+                                <span class="sr-only">20% Complete</span>
+                            </div>
                         </div>
-                    </div>
                     <?php } ?>
                 </div>
             </div>
