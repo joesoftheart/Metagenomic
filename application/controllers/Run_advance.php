@@ -22,50 +22,6 @@
          
     }
 
-
-
-    // public function runadvance(){
-
-    // $id_project = "5a090de381b813981fdd0099"; 
-
-    // $read = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
-  
-    // $project_name = null;
-    // $project_analysis = null;
-    // $id = null;
-
-    // foreach ($read as $r) {
-
-    //     $id = (string)$r['_id'];
-    //     $project_name = $r['project_name'];
-    //     $project_analysis = $r['project_analysis'];
-    //  }
-    
-    //  $this->session->userdata['logged_in']['username'];
-    //  $data['project_analysis'] = $project_analysis;
-    //  $this->load->view('header', $data);
-    //  $this->load->view('run_advance', $data);
-    //  $this->load->view('footer');
-
-      
-    //   $data['username'] = $this->session->userdata['logged_in']['username'];
-    //   $data['project']  = $project_name;
-    //   $data['currentproject'] = $id;
-
-    //   $img_source = 'images/check.png';
-    //   $img_code = base64_encode(file_get_contents($img_source));
-    //   $data['src'] = 'data:'.mime_content_type($img_source).';base64,'.$img_code;
-
-    //   $img_source = 'images/ajax-loader.gif';
-    //   $img_code = base64_encode(file_get_contents($img_source));
-    //   $data['srcload'] = 'data:'.mime_content_type($img_source).';base64,'.$img_code;
-
-    //   $this->load->view('script_advance',$data);
-
-    // }
-
-
-
     public function recheck(){
 
       $id_project = $_REQUEST['data_status'];
@@ -266,7 +222,19 @@
     public function check_fasta(){
       
 
-      $config['upload_path'] = 'Mothur/';
+      $user = $this->uri->segment(2);
+      $id_project = $this->uri->segment(3);
+      $project = "";
+      # Query data Project By ID
+          $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
+          foreach ($array_project as $r) {
+                $project = basename($r['project_path']);              
+      }
+
+      $path_input = "owncloud/data/$user/files/$project/input/";
+      $path_file = FCPATH.$path_input;
+
+      $config['upload_path'] = $path_file;
       $config['allowed_types'] = '*';
       $config['max_filename'] = '255';
       $config['remove_spaces'] = TRUE;
@@ -276,7 +244,7 @@
 
       if(isset($_FILES['file'])){
 
-         if(file_exists('Mothur/'.$_FILES['file']['name'])){
+         if(file_exists($path_file.$_FILES['file']['name'])){
 
              echo 'File already exists : '. $_FILES['file']['name'];
 
@@ -289,7 +257,7 @@
                } 
                else {
 
-                    $check_fasta = $this->fasta_read($_FILES['file']['name']);
+                    $check_fasta = $this->fasta_read($_FILES['file']['name'],$path_input);
                     if($check_fasta){
                          echo 'File successfully uploaded ';
                     }else{
@@ -299,26 +267,25 @@
                }
          } 
       }
-   
-    
     }
-    public function fasta_read($file){
-           $file = FCPATH."Mothur/$file"; 
-           $check = "";
-           $myfile = fopen($file,'r') or die ("Unable to open file");
-           while(($lines = fgets($myfile)) !== false){
+    
+    public function fasta_read($file,$path_input){
+        $file_in = $path_input.$file;
+        $file_ch = FCPATH.$file_in;
+        $check = "";
+        $myfile = fopen($file_ch,'r') or die ("Unable to open file");
+        while(($lines = fgets($myfile)) !== false){
                  
                  $check = substr($lines,0,1);
                  break;
-            }
-           fclose($myfile);
-
-           if($check == '>'){
-               return true;
-           }else{ 
-             unlink($file);
-             return false;
-          }
+        }
+        fclose($myfile);
+        if($check == '>'){
+            return true;
+        }else{ 
+          unlink($file);
+          return false;
+        }
 
     } 
 
@@ -365,6 +332,8 @@
        $project = "";
        $project_analysis = "";
        $project_data = "";
+       $project_platform_sam = "";
+       $project_platform_type = "";
 
       # Query data Project By ID
        $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
@@ -373,6 +342,8 @@
                 $project = $r['project_name'];
                 $project_analysis = $r['project_analysis'];
                 $project_data = basename($r['project_path']);
+                $project_platform_sam = ($r['project_platform_sam']);
+                $project_platform_type = ($r['project_platform_type']); 
          }
 
 
@@ -460,11 +431,11 @@
          if($project_analysis == "phylotype"){
 
                    $taxon = str_replace(";", ",", $taxon);
-                   $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project_data $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
+                   $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype.php $user $project_data $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log $project_platform_sam $project_platform_type";
          }elseif ($project_analysis == "OTUs") {
       
                   $taxon = str_replace(";", ",", $taxon); 
-                  $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project_data $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log";
+                  $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu.php $user $project_data $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $path_input $path_out $path_log $project_platform_sam $project_platform_type";
          }
            
          # Run Qsub Advance 
@@ -583,7 +554,7 @@
               'rm_taxon' => $taxon ,
               'mode' => 'advance',             
               'project_id' => $id_project ,
-              'tax_leval'=> 'null',
+              'tax_level'=> 'null',
               'calculator_tree_st' => 'null' ,
               'calculator_tree_me' => 'null' ,
               'method' => 'null' ,
@@ -606,7 +577,7 @@
               'rm_taxon' => $taxon ,
               'mode' => 'advance',
               'project_id' => $id_project ,
-              'tax_leval'=> 'null',
+              'tax_level'=> 'null',
               'calculator_tree_st' => 'null',
               'calculator_tree_me' => 'null' ,
               'method' => 'null' ,
@@ -656,13 +627,13 @@
                        fclose($myfile);
 
                        $line = file($file);
-                       $message = $line[$count-1];
+                       $message = $line[$count];
                        if($message == ""){
                           $message = "Run Preprocess ";
                        }
 
                        if($count != 0){
-                           $percent = (($count/19)*100);
+                           $percent = (($count/22)*100);
                            $percent_round = round($percent,0);
 
                        }
@@ -1127,7 +1098,7 @@
        # Use  Ordination method (PCoA OR MNDS)
           $Ordination_method = "";
 
-             if($d_nmds_st != null || $d_nmds_me != null){
+             if($d_nmds_st != "0" || $d_nmds_me != "0"){
                  $Ordination_method = "NMDS";
              }else{
                   $Ordination_method = "PCoA";
@@ -1246,10 +1217,27 @@
 
            if($classifly == "silva" || $classifly == "rdp"){
               $label_num = "1";
-            }
-            else if($classifly == "gg") {
+
+            }else if($classifly == "gg") {
               $label_num = "2";
+
+            }else if($classifly == "OTUs"){
+
+               # Query data projects_run by id_project
+                 $otu_label = $this->mongo_db->get_where('projects_run',array('project_id' => $id_project));
+                   foreach ($otu_label as $r) {
+                    
+                       $db_taxon = $r['db_taxon']; 
+                    }
+
+                  if($db_taxon == "gg_13_8_99.fasta"){
+                      $label_num = "2";
+                  }else{
+                      $label_num = "1";
+                  }
             }
+
+
             
 
         # Create  jobname  advance
@@ -1264,7 +1252,7 @@
            }
            else if($project_analysis == "OTUs") {
                 
-                $label_num = "0.03";
+                #$label_num = "0.03";
 
                 $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $amova $homova $anosim $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num $kegg $sample_comparison $statistical_test $ci_method $p_value ";
            }
@@ -1299,7 +1287,7 @@
 
           $data = array(
               
-              'tax_leval'=> $level,
+              'tax_level'=> $level,
               'calculator_tree_st' => $d_upgma_st,
               'calculator_tree_me' => $d_upgma_me ,
               'method' => $Ordination_method ,
@@ -1367,7 +1355,8 @@
         $check_run = exec("qstat -j $id_job ");
 
             if($check_run == false){
-              
+
+
                   $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
                   
                   $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
@@ -1379,7 +1368,7 @@
                      $this->update_status($id_project,$data);
 
                  $up = 0;
-                 echo json_encode(array($up,$divisor));
+                 echo json_encode(array($up,$divisor,$id_project));
                  
 
             }

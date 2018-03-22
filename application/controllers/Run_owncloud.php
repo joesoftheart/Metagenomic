@@ -15,8 +15,242 @@ class Run_owncloud extends CI_Controller
         // include(APPPATH.'../setting_sge.php');
         // putenv("SGE_ROOT=$SGE_ROOT");
         // putenv("PATH=$PATH");
+    }
+    
+    public function gunzip(){
+
+        $file_gun = FCPATH."table_even2029.biom.gz";
+        shell_exec('gunzip '.$file_gun);
+    }
+
+    public function minotu_table(){
+
+         $otu_talbe = FCPATH."otu_table_high_conf_summary.txt";
+         $file = file_get_contents($otu_talbe);
+         $search_for = 'Min';
+         $pattern = preg_quote($search_for, '/');
+
+            $pattern = "/^.*(Min).*\$/m";
+
+                if (preg_match_all($pattern, $file, $matches)) {
+                  
+                     $value = $matches[0][0];
+                     list($mane_min,$val_min) = explode(':', $value);
+                     list($int,$double) = explode(".", $val_min);
+                     echo str_replace(",","",$int);
+                }
+    }
+
+    public function change_name(){
+   
+    $dir = FCPATH."owncloud/data/aumza/files/testsys/output/";
+    $file_read = array('svg','sharedotus');
+    $scan_result = scandir($dir);
+
+    foreach ($scan_result as $key => $value) {
+
+        if (!in_array($value, array('.', '..'))) {
+
+                $type = explode('.', $value);
+                $type = array_reverse($type);
+      
+                if (in_array($type[0], $file_read)) {
+
+                    $file_name = preg_split("/[.]/", $value);
+                  
+                    if (in_array("svg", $file_name)) {
+
+                        //rename($dir."/".$value,$dir."sharedsobs.svg");
+                        echo $value."<br>";
+                  
+                    }
+                    if (in_array("sharedotus", $file_name)) {
+
+                        //rename($dir . "/" . $value,$dir."sharedsobs.sharedotus");
+                        echo $value."<br>";
+                    }
+                
+                }
+            
+        }
+    }
+}
 
 
+     public function python(){
+
+       echo shell_exec('python -c "import matplotlib; print(matplotlib.matplotlib_fname())"');
+      
+    }
+
+
+    public function treport(){
+
+        
+        $this->load->library('myfpdf');
+        $this->load->library('mytcpdf');
+        $this->load->view('advance_report');
+    }
+
+    # Input ==> log makecontigs_barcode_primer.o1909
+    public function tail(){
+         $path = FCPATH."owncloud/data/aumza/files/testprimer/log";
+         $file = $path."/aumza_fasttaOnly-IonProton_primer.o1903";
+         exec("tail -n 1 ".$file , $output);
+         list($line0) = $output;
+        
+             if(preg_match("/mothur > quit()/", $line0)){
+                echo  "Match <br>";
+             }else{
+                echo  "No Match <br>";
+             }
+     
+    }
+
+   # Input ==> $user , $project
+    public  function find_oligos(){
+
+        $path = FCPATH."owncloud/data/aumza/files/testprimer/input/";
+        $array_name = array();
+        $path_dir = $path;
+        if (is_dir($path_dir)){
+            if ($read = opendir($path_dir)) {
+                while (($file = readdir($read)) !== false) {
+                    $allowed = array("fastq","fasta","tax","align","batch");
+                    $ext = pathinfo($file, PATHINFO_EXTENSION);
+                    if (!in_array($ext,$allowed)) {
+                        if(($file != "99_otu_map.txt")&&($file != ".")&&($file != "..")){
+                            array_push($array_name, $file);
+                        }
+                    }
+                }
+            closedir($read);
+            }
+        }
+
+        foreach ($array_name as $key => $value){
+            $file = $path.$value; 
+            $check = false;
+            $myfile = fopen($file,'r') or die ("Unable to open file");
+            while(($lines = fgets($myfile)) !== false){
+                if(preg_match("/primer|barcode/", $lines)){
+                $type = explode("\t",$lines);
+
+                  if((sizeof($type) == 3) && 
+                     ($type[0] == "primer") && 
+                     (trim($type[2]) == "NONE")){
+                         $check = true;
+                  }elseif((sizeof($type) == 4) &&
+                          ($type[0] == "barcode") &&
+                          ($type[2] ==  "NONE")){
+                          $check = true;   
+                  }else{
+                      $check = false;
+                      break;
+                  }
+                }
+            }
+            fclose($myfile);
+            if($check == true){
+               return $value;
+            }else{
+                return "empty";
+            }
+        }
+    }
+
+    # Input ==> $platform_sam , $platform_type , $user , $project
+    public function find_fastq_fasta(){
+
+        $platform_sam = "miseq";
+        $platform_type = "miseq_barcodes_primers";
+        $path = FCPATH."owncloud/data/aumza/files/testprimer/input";
+
+        $file_fastq = glob($path."/*.fastq");
+        $file_fasta = glob($path."/*.fasta");
+        $ref_fasta = array("gg_13_8_99.fasta",
+                           "silva.v4.fasta",
+                           "silva.bacteria.fasta",
+                           "silva.v123.fasta",
+                           "silva.v34.fasta",
+                           "silva.v345.fasta",
+                           "silva.v45.fasta",
+                           "trainset16_022016.rdp.fasta");
+
+        if($platform_sam == "miseq"){
+            $file_oligo = $this->find_oligos();
+            if($platform_type == "miseq_without_barcodes"){
+
+
+            }elseif ($platform_type == "miseq_contain_primer"){
+                
+                
+            }elseif($platform_type == "miseq_barcodes_primers"){
+                $k_fastq = null;
+                foreach ($file_fastq as $value) {
+                $name = end((explode('/',$value)));
+                preg_match('/R(\w)/',$name,$results);
+                    if($results){
+                      list($R,$R_index) = $results;
+                      $k_fastq .= $R.":".$name.":";
+                    }
+                }
+
+                 list($R1,$R1name,$R2,$R2name) = explode(":", $k_fastq);
+                 echo $R1name."<br>".$R2name."<br>".$file_oligo."<br>";
+                 list($firstname) = explode(".fastq", $R1name);
+                 echo $firstname;
+                
+            }
+
+        }elseif ($platform_sam == "proton") {
+            $file_oligo = $this->find_oligos();
+            if($platform_type == "proton_barcodes_primers"){
+                foreach($file_fastq as $value){
+                      $name = end((explode('/',$value)));
+                      list($fastq_get) = explode("fastq", $name);
+                      $fastq_get = $fastq_get."fasta";
+                      echo $fastq_get."<br>";
+                }
+            }elseif($platform_type == "proton_barcodes_fasta"){
+                foreach ($file_fasta as $key => $value){
+                $name_fasta = end((explode('/', $value)));
+                    if(!in_array($name_fasta,$ref_fasta)){
+                         echo $name_fasta."<br/>";
+                    }   
+                }
+            }  
+        }
+            
+        
+    }
+
+    public function keep_primer(){
+        
+        $path = FCPATH."Scripts/facialskin1modi.oligos";
+        $file = file_get_contents($path);
+
+        $cutadapt = array("cutadapt");
+
+                $pattern = "/^.*(primer).*\$/m";
+                if (preg_match_all($pattern, $file, $matches)) {
+
+                    $val = implode("\n", $matches[0]);
+                    $sum = explode("\n", $val);
+
+                    foreach ($sum as $key => $value){
+                         
+                         $primer = explode("\t", $value);
+                         $con_primer = shell_exec("python Scripts/revcomDNAseq.py ". $primer[1]);
+                        
+                         array_push($cutadapt,"-a  ".$con_primer);     
+                    }
+                }
+
+        $cmd_cutadapt = implode(" ",$cutadapt);
+        echo $cmd_cutadapt;
+
+       
     }
 
 

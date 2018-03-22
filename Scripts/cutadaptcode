@@ -1,0 +1,7 @@
+#!/usr/bin/env cutadapt
+#$ -S /bin/sh
+#$ -cwd
+#$ -j y
+
+cutadapt $1 $2 | cutadapt $3 - > $4
+

@@ -1,0 +1,5 @@
+
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
+export PATH=/home/aum/anaconda/bin:$PATH
+
+python  Scriptqiime/pick_open_reference_otus.py -i $1 -o $2 -p $3 -m sortmerna_sumaclust -s 0.1 -v --min_otu_size 1

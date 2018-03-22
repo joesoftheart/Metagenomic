@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/sb-admin-2-custom.css">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.css">
 
     <!-- MetisMenu CSS -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/metisMenu/metisMenu.min.css">
@@ -246,8 +246,7 @@
                         <a href="<?php echo site_url('main') ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="#project"><i class="fa fa-bar-chart-o fa-fw"></i> Projects<span
-                                    class="fa arrow"></span></a>
+                        <a href="#project"><i class="fa fa-bar-chart-o fa-fw"></i> Projects<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="<?php echo site_url('new_projects') ?>">New project</a>

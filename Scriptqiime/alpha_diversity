@@ -1,0 +1,6 @@
+
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
+export PATH=/home/aum/anaconda/bin:$PATH
+export QT_QPA_PLATFORM=offscreen
+
+alpha_diversity.py -i $1 -m observed_species,chao1,simpson,shannon,goods_coverage,osd -o $2 -t $3

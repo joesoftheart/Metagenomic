@@ -1,0 +1,6 @@
+
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
+export PATH=/home/aum/anaconda/bin:$PATH
+
+
+compare_categories.py --method permanova -i $1 -m $2 -c $3 -o $4 -n 999

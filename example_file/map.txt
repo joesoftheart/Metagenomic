@@ -1,0 +1,17 @@
+#SampleID	BarcodeSequence	LinkerPrimerSequence	ReversePrimer	InputFileName	groupA	groupB	groupC	Description
+soils1t1	AAAATTTT	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soils1t1.fasta	soils1	soilsource1	surface	oricode_S1t1
+soils1t2	ATCAGCAG	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soils1t2.fasta	soils1	soilsource1	surface	oricode_S1t2
+soils2t1	CCCCGGTT	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soils2t1.fasta	soils2	soilsource2	surface	oricode_S2t1
+soils2t2	TTTTGGGG	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soils2t2.fasta	soils2	soilsource2	surface	oricode_S2t2
+soils3t1	TTTTAAAA	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soils3t1.fasta	soils3	soilsource3	surface	oricode_S3t1
+soils3t2	ATCGCAGC	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soils3t2.fasta	soils3	soilsource3	surface	oricode_S3t2
+soils4t1	TCTTGGAA	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soils4t1.fasta	soils4	soilsource4	surface	oricode_S4t1
+soils4t2	TTCCAGGA	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soils4t2.fasta	soils4	soilsource4	surface	oricode_S4t2
+soilb1t1	GGTTTTGG	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soilb1t1.fasta	soilb1	soilsource1	bottom	oricode_B1t1
+soilb1t2	AAAAGGGG	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soilb1t2.fasta	soilb1	soilsource1	bottom	oricode_B1t2
+soilb2t1	AGCAGAGC	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soilb2t1.fasta	soilb2	soilsource2	bottom	oricode_B2t1
+soilb2t2	AAAACCCC	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soilb2t2.fasta	soilb2	soilsource2	bottom	oricode_B2t2
+soilb3t1	GGGGTTTT	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soilb3t1.fasta	soilb3	soilsource3	bottom	oricode_B3t1
+soilb3t2	GGGGAAAA	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soilb3t2.fasta	soilb3	soilsource3	bottom	oricode_B3t2
+soilb4t1	CCCCTTAA	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soilb4t1.fasta	soilb4	soilsource4	bottom	oricode_B4t1
+soilb4t2	TACTACGC	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	final.redundant.ng.soilb4t2.fasta	soilb4	soilsource4	bottom	oricode_B4t2

@@ -1,0 +1,5 @@
+
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
+export PATH=/home/aum/anaconda/bin:$PATH
+
+python Scriptqiime/remove_low_confidence_otus.py -i $1 -o $2

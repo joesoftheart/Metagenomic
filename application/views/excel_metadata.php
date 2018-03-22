@@ -14,7 +14,7 @@ if (isset($this->session->userdata['logged_in'])) {
 <script src="<?php echo base_url('js/jquery-3.2.1.js'); ?>"></script>
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.css">
 
 
 <!-- Custom Fonts -->
@@ -245,7 +245,7 @@ if (isset($this->session->userdata['logged_in'])) {
             }
 
         }
-        ;
+        
 
         if (count == false) {
             alert("Please insert value");

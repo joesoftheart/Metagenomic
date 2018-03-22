@@ -2,7 +2,8 @@
 set_time_limit(60);
 $user = $argv[1];
 $project = $argv[2];
-$path_file_original = "../owncloud/data/$user/files/$project/output_plot/final.opti_mcc.0.03.cons.tax.summary";
+$path_file_original = $argv[3];
+
 $file_index = "owncloud/data/$user/files/$project/output/file_index.txt";
 $file_before_reverse = "owncloud/data/$user/files/$project/output/file_before_reverse.txt";
 $file_after_reverse = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";

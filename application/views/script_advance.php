@@ -165,15 +165,17 @@ $(document).on('change', '#custo_mer', function(){
 
 
 function get_fasta(file_data){
-
-            var bar = $('#bar');
-            var percent = $('.percent');
-            var status = $('#status');
+            
+          var user = "<?=$username ?>";
+          var project = "<?=$currentproject ?>";
+          var bar = $('#bar');
+          var percent = $('.percent');
+          var status = $('#status');
           
            $.ajax({
                    type:"post",
                    dataType: 'text',
-                   url:"<?php echo base_url('upfasta'); ?>",
+                   url:"<?php echo base_url('upfasta');?>/"+user+"/"+project,
                    data: file_data,
                    cache: false,
                    processData: false,
@@ -537,7 +539,11 @@ function ckeck_analysis(job_analy){
 
                              $('#bar_pre3').width(0+"%");
                              $('.percent_pre3').html(0+"%");
-                              $('#test_run3').html("Wait Queue");
+                             $('#test_run3').html("Wait Queue");
+                              
+                              // insert value to  projects_run
+                              writereport(analysis[2]);
+
 
                       }else{
 
@@ -555,6 +561,25 @@ function ckeck_analysis(job_analy){
                 });
               }
           },1000);
+
+}
+
+
+function writereport(proid){
+  //console.log('id : '+proid);
+  $.ajax({
+     type:"post",
+     datatype:"json",
+     url:"<?php echo base_url('Advance_report/index'); ?>",
+     data:{projectid: proid  },
+     success:function(data){
+        
+        console.log(data);
+     },
+     error:function(e){
+        console.log(e.message);
+     }
+  });
 
 }
 

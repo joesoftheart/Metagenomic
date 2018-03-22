@@ -1168,7 +1168,9 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                  <i class="fa fa-question-circle-o"></i>  
                             </div>    
          </div>
+         
          <div class="col-lg-12 uk-margin">
+            <hr class="uk-divider-icon">
                              <div class="col-lg-5"> 
                                  <label> Create file metadata 
                                      <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div13');">
@@ -1197,7 +1199,7 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                 </select>
                             </div>
                             <div class="col-lg-1">
-                                <select class="uk-select"  name="axes_meta" >
+                               <!--  <select class="uk-select"  name="axes_meta" >
                                     <?php  if($project_analysis =='OTUs'){ ?>
                                             <option value="0.03"> 0.03 </option>
                                             <option value="0.05"> 0.05 </option>
@@ -1208,11 +1210,12 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                        
                                        
                                     <?php } ?>
-                                </select>
+                                </select> -->
                             </div>
                       
          </div>
-         <div class="col-lg-12">                   
+         <div class="col-lg-12">
+            <hr class="uk-divider-icon">                   
                             <div class="col-lg-6">
                                     <input type="checkbox" id="correlation_otu"  value="otu" > correlation of each OTU 
                                      <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div15');">
@@ -1225,7 +1228,7 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                      </select>
                             </div>
                             <div class="col-lg-2 col-lg-pull-2">
-                                    <select class="uk-select"  name="axes_otu" >
+                                    <!-- <select class="uk-select"  name="axes_otu" >
                                         <?php  if($project_analysis =='OTUs'){ ?>
                                             <option value="0.03"> 0.03 </option>
                                             <option value="0.05"> 0.05 </option>
@@ -1234,7 +1237,7 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                         <option value="3" id="seto3"> 3 </option>
                                         <option value="1" id="seto1"> 1 </option>
                                         <?php } ?>
-                                    </select>  
+                                    </select>   -->
                             </div>
                             <div class="col-lg-6">
                                 <p class="opt1" style="display: none;"> <font color="red">*Required</font></p>
@@ -1244,7 +1247,7 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
 
         </fieldset>
         </div>
-    <div class="col-lg-12">
+    <div class="col-lg-12 uk-margin">
     <h5>
     <b>7.2  PICRUSt  and STAMP :</b>
         <input id="toggle-event2" type="checkbox" data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" >
@@ -1557,7 +1560,7 @@ document.getElementById("btn_reports").onclick = function(){
              success:function(data){
                 var chk = JSON.parse(data); 
                 if(chk == "t"){
-                   location.href="<?php echo base_url();?>report_pdf/fpdf/<?php echo $current_project?>";           
+                   location.href="<?php echo base_url();?>Advance_report/view_report/<?php echo $current_project?>";           
                 }else{
                     alert("you don't run mode advance");
                 }
@@ -1689,11 +1692,12 @@ $("#sub-test3").click(function () {
 
 
                 var method_meta = document.forms["Analysis-form"]["method_meta"].value;
-                var axes_meta = document.forms["Analysis-form"]["axes_meta"].value;
-
+                //var axes_meta = document.forms["Analysis-form"]["axes_meta"].value;
+                var axes_meta = "0";
+                
                 var method_otu = document.forms["Analysis-form"]["method_otu"].value;
-                var axes_otu = document.forms["Analysis-form"]["axes_otu"].value;
-
+                 // var axes_otu = document.forms["Analysis-form"]["axes_otu"].value;
+                var axes_otu = "0";
 
                    var upgma_st = document.getElementsByName('upgma_st[]');
                    var upgma_me = document.getElementsByName('upgma_me[]');

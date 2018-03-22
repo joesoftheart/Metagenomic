@@ -37,11 +37,11 @@
 
          $GLOBALS['correlation_meta'] = $argv[23];
          $GLOBALS['method_meta'] = $argv[24];
-         $GLOBALS['axes_meta'] = $argv[25];
+         //$GLOBALS['axes_meta'] = $argv[25];
 
          $GLOBALS['correlation_otu'] = $argv[26];
          $GLOBALS['method_otu'] = $argv[27];
-         $GLOBALS['axes_otu'] = $argv[28];
+         //$GLOBALS['axes_otu'] = $argv[28];
 
          $GLOBALS['label_num'] = $argv[29];
 
@@ -76,7 +76,7 @@
          if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != "" && $argv[6] =! "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != ""){
              echo "Check Parameter Success"."\n";
              collect_rarefaction_summary($user,$project,$path_in,$path_out);
-            
+           
        
    
          }else{
@@ -113,11 +113,11 @@
              
               echo "correlation_meta : ".$GLOBALS['correlation_meta']."\n";
               echo "method_meta : ".$GLOBALS['method_meta']."\n";
-              echo "axes_meta : ".$GLOBALS['axes_meta']."\n";
+              //echo "axes_meta : ".$GLOBALS['axes_meta']."\n";
 
               echo "correlation_otu : ".$GLOBALS['correlation_otu']."\n";
               echo "method_otu : ".$GLOBALS['method_otu']."\n";
-              echo "axes_otu : ".$GLOBALS['axes_otu']."\n";
+              //echo "axes_otu : ".$GLOBALS['axes_otu']."\n";
          }
 
     #1
@@ -313,8 +313,7 @@
          }elseif ($make == "") {
 
              echo "Not command tree_shared !"."\n";
-            
-           
+                      
          }
 
        }
@@ -673,8 +672,8 @@
                     $d_pcoa_st = explode(",", $GLOBALS['d_pcoa_st']);
                     for($i = 0 ; $i < sizeof($d_pcoa_st); $i++){
 
-                       $make .= "corr.axes(axes=final.tx.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
-                                 system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_pcoa_st[$i].")"."\n";
+                       $make .= "corr.axes(axes=final.tx.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=3, label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                          system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_pcoa_st[$i].")"."\n";
                        
                        
                     }
@@ -684,7 +683,7 @@
                       $d_pcoa_me = explode(",", $GLOBALS['d_pcoa_me']);
                       for($i = 0 ; $i < sizeof($d_pcoa_me); $i++){
 
-                         $make .= "corr.axes(axes=final.tx.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                         $make .= "corr.axes(axes=final.tx.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=3, label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
                                    system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_pcoa_me[$i].")"."\n";
                          
                 
@@ -699,7 +698,7 @@
                       $d_nmds_st = explode(",", $GLOBALS['d_nmds_st']);
                       for($i = 0 ; $i < sizeof($d_nmds_st); $i++){
 
-                         $make .= "corr.axes(axes=final.tx.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                         $make .= "corr.axes(axes=final.tx.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=3, label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
                                    system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_nmds_st[$i].")"."\n";
                          
                         
@@ -710,7 +709,7 @@
                       $d_nmds_me = explode(",", $GLOBALS['d_nmds_me']);
                       for($i = 0 ; $i < sizeof($d_nmds_me); $i++){
                         
-                         $make .= "corr.axes(axes=final.tx.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=".$GLOBALS['axes_meta'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                         $make .= "corr.axes(axes=final.tx.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, metadata=".$GLOBALS['file_metadata'].", method=".$GLOBALS['method_meta'].", numaxes=3, label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
                                    system(mv ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes ".$path_out."file.".$GLOBALS['method_meta'].".corr.axes_".$d_nmds_me[$i].")"."\n";
                       }
                  }
@@ -730,8 +729,8 @@
                     $d_pcoa_st = explode(",", $GLOBALS['d_pcoa_st']);
                     for($i = 0 ; $i < sizeof($d_pcoa_st); $i++){
 
-                        $make .= "corr.axes(axes=final.tx.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
-                                  system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_pcoa_st[$i].")"."\n";
+                        $make .= "corr.axes(axes=final.tx.".$d_pcoa_st[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=3, label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                          system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_pcoa_st[$i].")"."\n";
 
                     }
                   }
@@ -740,8 +739,8 @@
                       $d_pcoa_me = explode(",", $GLOBALS['d_pcoa_me']);
                       for($i = 0 ; $i < sizeof($d_pcoa_me); $i++){
 
-                        $make .= "corr.axes(axes=final.tx.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
-                                  system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_pcoa_me[$i].")"."\n";
+                        $make .= "corr.axes(axes=final.tx.".$d_pcoa_me[$i].".".$GLOBALS['level'].".lt.ave.pcoa.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=3, label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                          system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_pcoa_me[$i].")"."\n";
 
                       }
                   }
@@ -754,8 +753,8 @@
                       $d_nmds_st = explode(",", $GLOBALS['d_nmds_st']);
                       for($i = 0 ; $i < sizeof($d_nmds_st); $i++){
 
-                          $make .= "corr.axes(axes=final.tx.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
-                                    system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_nmds_st[$i].")"."\n";
+                          $make .= "corr.axes(axes=final.tx.".$d_nmds_st[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=3, label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                             system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_nmds_st[$i].")"."\n";
 
                        }
                   }
@@ -764,8 +763,8 @@
                       $d_nmds_me = explode(",", $GLOBALS['d_nmds_me']);
                       for($i = 0 ; $i < sizeof($d_nmds_me); $i++){
                         
-                          $make .= "corr.axes(axes=final.tx.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=".$GLOBALS['axes_otu'].", label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
-                                    system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_nmds_me[$i].")"."\n";
+                          $make .= "corr.axes(axes=final.tx.".$d_nmds_me[$i].".".$GLOBALS['level'].".lt.ave.nmds.axes, shared=final.tx.".$GLOBALS['level'].".subsample.shared, method=".$GLOBALS['method_otu'].", numaxes=3, label=".$GLOBALS['level'].",inputdir=$path_in,outputdir=$path_out)
+                             system(mv ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes ".$path_out."final.tx.".$GLOBALS['level'].".subsample.".$GLOBALS['method_otu'].".corr.axes_".$d_nmds_me[$i].")"."\n";
                 
                       }
                  }
@@ -1574,7 +1573,7 @@ function plot_graph_r_Tree($user,$project,$path_in,$path_out){
 
 }
 
-#24
+#23
 # Run make_biom for Mothur GO To PICRUSt  and STAMP 
 function make_biom($user,$project,$path_in,$path_out){
 
@@ -1638,7 +1637,7 @@ function make_biom($user,$project,$path_in,$path_out){
 
 }
 
-#25
+#24
 function convert_biom($user,$project,$path_in,$path_out){
    
 
@@ -1652,10 +1651,13 @@ function convert_biom($user,$project,$path_in,$path_out){
     $log = $GLOBALS['path_log'];
 
     $path_input_biom  = $path_out."final.tx.".$label.".biom";
-    $path_output_biom = $path_out."normalized_otus.".$label.".biom";
     $path_output_txt  = $path_out."final.tx.".$label.".txt";
+    $path_output_biom = $path_out . "new.biom";
+
    
-    $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y picrust-1.1.1/scripts/convert_biom $path_input_biom $path_output_biom $path_output_txt";
+    
+   
+    $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y picrust-1.1.1/scripts/convert_biom $path_input_biom $path_output_txt $path_output_biom";
 
 
      shell_exec($cmd);
@@ -1685,7 +1687,7 @@ function convert_biom($user,$project,$path_in,$path_out){
 
 }
 
-#26
+#25
 function phylotype_picrust($user,$project,$path_in,$path_out){
 
      #  silva , rdp => $label = 1
@@ -1697,8 +1699,10 @@ function phylotype_picrust($user,$project,$path_in,$path_out){
     $jobname = $user."_phylotype_picrust";
     $log = $GLOBALS['path_log'];
 
-    $path_input_biom = $path_out."final.tx.".$label.".biom";
-    $path_output_biom = $path_out."final.biom";
+    $path_input_biom = $path_out."new.biom";
+    $path_output_biom = $path_out."normalized_otus.".$label.".biom";
+
+    #$path_output_biom = $path_out."final.biom";
 
 
     $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y  picrust-1.1.1/scripts/qsubMoPhylo5andpicrust_norm $path_input_biom $path_output_biom ";
@@ -1731,7 +1735,7 @@ function phylotype_picrust($user,$project,$path_in,$path_out){
 }
 
 
-#27
+#26
 function phylotype_picrust2($user,$project,$path_in,$path_out){
    
      #  silva , rdp => $label = 1
@@ -1776,12 +1780,12 @@ function phylotype_picrust2($user,$project,$path_in,$path_out){
 
 }
 
-#28
+#27
 function phylotype_picrust3($user,$project,$path_in,$path_out){
 
      #  silva , rdp => $label = 1
      #  greengene   => $label = 2
-  $label = $GLOBALS['label_num'];
+     $label = $GLOBALS['label_num'];
 
   echo "phylotype_picrust3"."\n";
 
@@ -1792,7 +1796,8 @@ function phylotype_picrust3($user,$project,$path_in,$path_out){
 
    # $L = Please select level of KEGG pathway  level 1,2 or 3
    $L = $GLOBALS['kegg'];
-  
+   
+
   $predicted_metagenomes = $path_out."predicted_metagenomes.".$label.".".$L.".biom";
     
 
@@ -1824,7 +1829,7 @@ function phylotype_picrust3($user,$project,$path_in,$path_out){
 
 }
 
-#29
+#28
 function biom_to_stamp($user,$project,$path_in,$path_out){
 
     #  silva , rdp => $label = 1
@@ -1872,7 +1877,7 @@ function biom_to_stamp($user,$project,$path_in,$path_out){
 
 }
 
-#30
+#29
 function remove_float($user,$project,$path_in,$path_out){
     
     echo "remove_float"."\n";
@@ -1912,7 +1917,7 @@ function remove_float($user,$project,$path_in,$path_out){
     }
 }
 
-#31
+#30
 function stamp($user,$project,$path_in,$path_out){
 
     #  silva , rdp => $label = 1
@@ -1968,7 +1973,7 @@ function stamp($user,$project,$path_in,$path_out){
     $p_value = $GLOBALS['p_value'];
     
 
-    $function = 'python  STAMP-1.8/commandLine.py --file '.$pathways.' --sample1 '.$sample1.' --sample2 '.$sample2.' --statTest "'.$statistical_test.'" --CI "'.$ci_method.'" -p '.$p_value.' --coverage 0.95 --outputTable '.$myResultsPathway.'';
+    $function = '/root/anaconda2/bin/python  STAMP-1.8/commandLine.py --file '.$pathways.' --sample1 '.$sample1.' --sample2 '.$sample2.' --statTest "'.$statistical_test.'" --CI "'.$ci_method.'" -p '.$p_value.' --coverage 0.95 --outputTable '.$myResultsPathway.'';
 
      file_put_contents($path_in.'qsubStamp.sh', $function);
      chmod($path_in.'qsubStamp.sh',0775);
@@ -2005,7 +2010,7 @@ function stamp($user,$project,$path_in,$path_out){
 
 }
 
-#32
+#31
 function plot_STAMP($user,$project,$path_in,$path_out,$sample1,$sample2){
 
     echo "plot_STAMP"."\n";
@@ -2045,51 +2050,39 @@ function plot_STAMP($user,$project,$path_in,$path_out,$sample1,$sample2){
 
 }
 
-#33
+#32
 function change_name($user,$project,$path_in,$path_out){
 
     echo "change_name"."\n";
-
     $dir = $path_out;
-    $file_read = array( 'svg');
-    $dir_ignore = array();
-    $scan_result = scandir( $dir );
+    $file_read = array('svg','sharedotus');
+    $scan_result = scandir($dir);
 
-    foreach ( $scan_result as $key => $value ) {
+    foreach ($scan_result as $key => $value) {
 
         if (!in_array($value, array('.', '..'))) {
 
-            if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
-
-                if (in_array($value, $dir_ignore)) {
-                    continue;
-                }
-
-            } else {
-
                 $type = explode('.', $value);
                 $type = array_reverse($type);
+      
                 if (in_array($type[0], $file_read)) {
 
-                    $file_name = preg_split("/[.]/",$value );
-                    // if (in_array("bin", $file_name)) {
-                    //     rename($dir . "/" . $value, $dir . "/" . "bin.svg");
-                       
-                    // }
-                    if (in_array("sharedsobs", $file_name)) {
-                        rename($dir . "/" . $value, $dir . "/" . "sharedsobs.svg");
-                       
+                    $file_name = preg_split("/[.]/", $value);
+                  
+                    if (in_array("svg", $file_name)) {
+
+                        rename($dir."/".$value,$dir."sharedsobs.svg");
+                        //echo $value."<br>";
+                  
                     }
-                    // if (in_array("jclass", $file_name)) {
-                    //     rename($dir . "/" . $value, $dir . "/" . "jclass.svg");
-                       
-                    // }
-                    // if (in_array("thetayc", $file_name)) {
-                    //     rename($dir . "/" . $value, $dir . "/" . "thetayc.svg");
-                        
-                    // }
+                    if (in_array("sharedotus", $file_name)) {
+
+                        rename($dir."/".$value,$dir."sharedsobs.sharedotus");
+                        //echo $value."<br>";
+                    }
+                
                 }
-            }
+            
         }
     }
 }

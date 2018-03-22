@@ -15,7 +15,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.css">
 
 
 <!-- Custom Fonts -->
@@ -214,7 +214,7 @@ if (isset($this->session->userdata['logged_in'])) {
             }
 
         }
-        ;
+        
 
         if (count == false) {
             alert("Please insert value");

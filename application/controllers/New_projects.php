@@ -98,7 +98,6 @@ class New_projects extends CI_Controller
             "/var/www/html/owncloud/data/primer16S/silva.v123.fasta",
             "/var/www/html/owncloud/data/primer16S/silva.v34.fasta",
             "/var/www/html/owncloud/data/primer16S/silva.v345.fasta",
-            "/var/www/html/owncloud/data/primer16S/silva.v4.fasta",
             "/var/www/html/owncloud/data/primer16S/silva.v45.fasta",
             "/var/www/html/owncloud/data/primer16S/trainset16_022016.rdp.fasta",
             "/var/www/html/owncloud/data/primer16S/trainset16_022016.rdp.tax"

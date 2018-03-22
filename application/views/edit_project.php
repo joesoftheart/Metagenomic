@@ -121,10 +121,10 @@ if (isset($this->session->userdata['logged_in'])) {
                                             } ?>>Qiime
                                         </label><br>
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_program" id="uparse"
-                                                   value="uparse" <?php if ($r['project_program'] == "uparse") {
+                                            <input type="radio" name="project_program" id="mothur_qiime"
+                                                   value="mothur_qiime" <?php if ($r['project_program'] == "mothur_qiime") {
                                                 echo "checked";
-                                            } ?>>UPARSE
+                                            } ?>>mothur_qiime
                                         </label>
                                     </div>
                                     <div>
@@ -173,7 +173,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                     </div>
 
                                 </div>
-                                <label>Plaase check your reads sequence which you receive NGS platform:  </label>
+                                <label>Please check your reads sequence which you receive NGS platform:  </label>
                                 <div class="form-group" >
                                     <label class="radio-inline">
                                         <input type="radio" name="project_platform" id="platform_mi" value="miseq" <?php if ($r['project_platform_sam'] == "miseq") {
@@ -184,9 +184,16 @@ if (isset($this->session->userdata['logged_in'])) {
                                     <div class="form-group " id="miseq" >
                                         <label class="radio-inline">
                                             <label class="radio-inline">
-                                                <input type="radio" name="project_platform_type" id="miseq_without_barcodes"  value="miseq_without_barcodes"   <?php if ($r['project_platform_type'] == "miseq_without_barcodes") {
+                                                <input type="radio" name="project_platform_type" id="miseq_without_barcodes"  value="miseq_without_barcodes"  
+                             <?php if ($r['project_platform_type'] == "miseq_without_barcodes") {
                                                     echo "checked";
                                                 } ?>>Paired-end fastq file without barcode
+                                            </label><br>
+                                            <label class="radio-inline">
+                                                            <input type="radio" name="project_platform_type" id="miseq_contain_primer"  value="miseq_contain_primer" 
+                            <?php if ($r['project_platform_type'] == "miseq_contain_primer") {
+                                                    echo "checked";
+                                                } ?>>Paired-end fastq file without barcode but contain primer
                                             </label><br>
                                             <label class="radio-inline">
                                                 <input type="radio" name="project_platform_type" id="miseq_barcodes_primers" value="miseq_barcodes_primers" <?php if ($r['project_platform_type'] == "miseq_barcodes_primers") {
@@ -244,7 +251,7 @@ if (isset($this->session->userdata['logged_in'])) {
     $('#qiime').on('change', function () {
         $('#program').addClass("hide");
     });
-    $('#uparse').on('change', function () {
+    $('#mothur_qiime').on('change', function () {
         $('#program').addClass("hide");
     });
     $('#platform_mi').on('change', function () {
@@ -256,6 +263,7 @@ if (isset($this->session->userdata['logged_in'])) {
     });
     $('#platform_pro').on('change', function () {
         $('#miseq_without_barcodes').prop('checked',false);
+         $('#miseq_contain_primer').prop('checked',false);
         $('#miseq_barcodes_primers').prop('checked',false);
         $('#proton').removeClass("hide");
         $('#miseq').addClass("hide");

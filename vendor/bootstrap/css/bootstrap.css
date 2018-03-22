@@ -260,7 +260,7 @@ th {
     border: 1px solid #ddd !important;
   }
 }
-@font-face {
+@font-.ce {
   font-family: 'Glyphicons Halflings';
 
   src: url('../fonts/glyphicons-halflings-regular.eot');
@@ -1097,12 +1097,12 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: #ffffff;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #23527c;
+  color: #0485f9;
   text-decoration: underline;
 }
 a:focus {
@@ -4493,15 +4493,20 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
-  border-color: #e7e7e7;
+  /*background-color: #f8f8f8;
+  border-color: #e7e7e7;*/
+  background-color: #27363cd6;
+  border-color: #f1b713;
+  
 }
 .navbar-default .navbar-brand {
-  color: #777;
+  /*color: #777;*/
+  color: #fff;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
+  /*color: #5e5e5e;*/
+  color:#f1b713;
   background-color: transparent;
 }
 .navbar-default .navbar-text {
@@ -4694,19 +4699,20 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 8px 15px;
   margin-bottom: 20px;
   list-style: none;
-  background-color: #f5f5f5;
+  background-color: #3ac1af;
   border-radius: 4px;
+  border-bottom: 3px solid #e8b116;
 }
 .breadcrumb > li {
   display: inline-block;
 }
 .breadcrumb > li + li:before {
   padding: 0 5px;
-  color: #ccc;
+  color: #fbf9f9;
   content: "/\00a0";
 }
 .breadcrumb > .active {
-  color: #777;
+  color: #ffffff;
 }
 .pagination {
   display: inline-block;

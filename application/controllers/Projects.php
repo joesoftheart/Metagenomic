@@ -29,10 +29,12 @@ class Projects extends CI_Controller
         $data['rs'] = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
         $data['rs_process'] = $this->mongo_db->limit(1)->get('status_process');
 
+        $project_program = null;
 
         foreach ($data['rs'] as $r) {
             $sample_folder = $r['project_path'];
             $data['project_analysis'] = $r['project_analysis'];
+            $project_program = $r['project_program'];
 
         }
         $project = basename($sample_folder);
@@ -64,26 +66,58 @@ class Projects extends CI_Controller
             redirect("/complete_run/index/" . $id_project, 'refresh');
         } else {
 
-
-            $this->load->view('header', $data);
-            $this->load->view('projects', $data);
-            $this->load->view('footer');
-
-            $data['username'] = $user;
-            $data['project'] = $project;
-            $data['currentproject'] = $ar;
-
-            $img_source = 'images/check.png';
-            $img_code = base64_encode(file_get_contents($img_source));
-            $data['src'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
-
-            $img_source = 'images/ajax-loader.gif';
-            $img_code = base64_encode(file_get_contents($img_source));
-            $data['srcload'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
+           if($project_program == "mothur"){
 
 
-            $this->load->view('script_advance', $data);
+                $this->load->view('header', $data);
+                $this->load->view('projects', $data);
+                $this->load->view('footer');
 
+                $data['username'] = $user;
+                $data['project'] = $project;
+                $data['currentproject'] = $ar;
+                $img_source = 'images/check.png';
+                $img_code = base64_encode(file_get_contents($img_source));
+                $data['src'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
+                $img_source = 'images/ajax-loader.gif';
+                $img_code = base64_encode(file_get_contents($img_source));
+                $data['srcload'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
+                $this->load->view('script_advance', $data);
+
+           }elseif ($project_program == "qiime") {
+            
+               # code...
+           }elseif ($project_program == "mothur_qiime") {
+
+                $status = 'null';
+                $step_run = 'null';
+                $id_job = 'null';
+                $data['current'] = $id_project;
+                #Query data status-process
+                 $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+                    foreach ($array_status as $r){
+                            $status   = $r['status'];
+                            $step_run = $r['step_run'];              
+                            $id_job = $r['job_id'];
+                            
+                     }
+
+                $data['status'] = $status;
+                $data['step_run'] = $step_run;
+                $data['id_job'] = $id_job;
+
+                $img_source = 'images/check.png';
+                $img_code = base64_encode(file_get_contents($img_source));
+                $data['src'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
+
+                $img_source = 'images/ajax-loader.gif';
+                $img_code = base64_encode(file_get_contents($img_source));
+                $data['srcload'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
+
+                $this->load->view('header');
+                $this->load->view('run_mothur_qiime',$data);
+                $this->load->view('footer');
+           }
 
         }
     }

@@ -65,7 +65,6 @@ if (isset($this->session->userdata['logged_in'])) {
                                             <input type="radio" name="project_program" id="mothur" value="mothur" required>Mothur
 
                                         </label>
-div
                                         <!--                                    <label>Select analysis :</label> -->
                                         <select class="uk-select  uk-width-1-4 hide" id="program"
                                                 name="project_analysis">
@@ -77,7 +76,7 @@ div
                                             <input type="radio" name="project_program" id="qiime" value="qiime">Qiime
                                         </label><br>
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_program" id="uparse" value="uparse">UPARSE
+                                            <input type="radio" name="project_program" id="mothur_qiime" value="mothur_qiime">Mothur + Qiime
                                         </label>
                                     </div>
 
@@ -126,7 +125,7 @@ div
 
 
                                     </div>
-                                    <label>Plaase check your reads sequence which you receive NGS platform:  </label>
+                                    <label>Please check your reads sequence which you receive NGS platform:  </label>
                                     <div class="form-group" >
                                         <label class="radio-inline">
                                             <input type="radio" name="project_platform" id="platform_mi" value="miseq" required>Miseq lilumina
@@ -136,6 +135,9 @@ div
                                                     <label class="radio-inline">
                                                         <label class="radio-inline">
                                                             <input type="radio" name="project_platform_type" id="miseq_without_barcodes"  value="miseq_without_barcodes" required>Paired-end fastq file without barcode
+                                                        </label><br>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="project_platform_type" id="miseq_contain_primer"  value="miseq_contain_primer" required>Paired-end fastq file without barcode but contain primer
                                                         </label><br>
                                                         <label class="radio-inline">
                                                             <input type="radio" name="project_platform_type" id="miseq_barcodes_primers" value="miseq_barcodes_primers">Paired-end file contrain barcodes and primers
@@ -289,7 +291,7 @@ div
     $('#qiime').on('change', function () {
         $('#program').addClass("hide");
     });
-    $('#uparse').on('change', function () {
+    $('#mothur_qiime').on('change', function () {
         $('#program').addClass("hide");
     });
     $('#mothur').on('change', function () {
@@ -304,6 +306,7 @@ div
     });
     $('#platform_pro').on('change', function () {
         $('#miseq_without_barcodes').prop('checked',false);
+        $('#miseq_contain_primer').prop('checked',false);
         $('#miseq_barcodes_primers').prop('checked',false);
         $('#proton').removeClass("hide");
         $('#miseq').addClass("hide");

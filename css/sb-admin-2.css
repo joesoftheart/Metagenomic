@@ -75,20 +75,28 @@ body {
   padding: 15px;
 }
 .sidebar ul li {
-  border-bottom: 1px solid #80CBC4;
+  border-bottom: 1px solid #f1b710;
 }
 .sidebar ul li a.active {
-  background-color: #80CBC4;
+  background-color: #49555a;
 }
+.sidebar ul li a.active:hover {
+  background-color: #f5f5f5;
+}
+
 .sidebar .arrow {
   float: right;
 }
+
 .sidebar .fa.arrow:before {
   content: "\f104";
 }
-.sidebar .active > a > .fa.arrow:before {
-  content: "\f107";
+
+.sidebar > a > .fa.arrow {
+  background-color: #49555a;
 }
+
+
 .sidebar .nav-second-level li,
 .sidebar .nav-third-level li {
   border-bottom: none !important;
