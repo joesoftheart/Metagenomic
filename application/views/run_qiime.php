@@ -30,7 +30,7 @@ if (isset($this->session->userdata['logged_in'])) {
             <a href="<?php echo site_url('projects/index/' . $current_project) ?>">
                Current project
             </a>
-        <?php } ?>  / Mothur + Qiime 
+        <?php } ?>  / Qiime 
    </li>
 </ol>
           
@@ -45,7 +45,7 @@ if (isset($this->session->userdata['logged_in'])) {
         <ul class="uk-tab-right" uk-switcher="animation: uk-animation-fade" uk-tab>
  
         <li class="uk-active" >
-                <a class="uk-text-capitalize uk-text-bold" href="1" onclick="advance_mode(this);">Mothur + Qiime  </a>
+                <a class="uk-text-capitalize uk-text-bold" href="1" onclick="advance_mode(this);">Qiime  </a>
         </li>
         </ul>
 
@@ -62,8 +62,8 @@ if (isset($this->session->userdata['logged_in'])) {
 
          <div class="sw-theme-arrows">
              <ul class="nav-tabs step-anchor" uk-switcher="animation: uk-animation-fade">
-                 <li class="pre"><a href="#">Step 1<br />Mothur ( Preprocess )</a></li>
-                 <li class="pre2"><a href="#">Step 2<br />Qiime ( Pick OTUs )</a></li>
+                 <li class="pre"><a href="#">Step 1<br />Qiime Preprocess </a></li>
+                 <li class="pre2"><a href="#">Step 2<br />Qiime  Pick OTUs </a></li>
                  <li class="pre3"><a href="#">Step 3<br />..</a></li>
                  <li><a href="#">Step 4<br />..</a></li>
              </ul>
@@ -95,36 +95,18 @@ if (isset($this->session->userdata['logged_in'])) {
                         <div class="panel panel-info">
                          <div class="panel-heading">          
                              <h4 class="panel-title">
-                                 <a  data-toggle="collapse" data-parent="#accordion" href="#collapse1" >1. Quality Control  
-                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div1');"></i>       
+                                 <a  data-toggle="collapse" data-parent="#accordion" href="#collapse1" >1. ..  
+                                 <i class="fa fa-question-circle-o" ></i>       
                                  </a>
                              </h4>
                          </div>
                          <div id="collapse1" class="panel-collapse collapse">
 
                              <div class="panel-body">       
-                                 <label class="col-lg-10"> Screen reads </label>
+                                 <label class="col-lg-10"> .. </label>
                                  <div class="col-lg-10">
 
-                                 <table border="0" class="uk-table uk-table-middle" >
-                                     <tr>
-                                        <td>maximum ambiguous </td>
-                                        <td><input id="mbig" class="form-control" type="number" name="maximum_ambiguous" min="0" placeholder="maximum ambiguous" onblur="checkvalue()" onkeypress='return validateNumber(event)'></td> 
-                                     </tr>
-                                     <tr>
-                                         <td>maximum homopolymer </td>
-                                         <td><input id="mhomo" class="form-control" type="number" name="maximum_homopolymer"  min="0" placeholder="maximum homopolymer" onblur="checkvalue2()" onkeypress='return validateNumber(event)'></td>
-                                     </tr>
-                                     <tr>
-                                         <td>minimum reads length </td>
-                                         <td><input id="miniread" class="form-control" type="number" name="minimum_reads_length" min="0" placeholder="minimum reads length" onblur="checkvalue3()" onkeypress='return validateNumber(event)'></td>
-                                     </tr>                              
-                                     <tr>
-                                         <td> maximum reads length </td>
-                                         <td><input id="maxread" class="form-control" type="number" name="maximum_reads_length" min="0" placeholder="maximum reads length" onblur="checkvalue4()" onkeypress='return validateNumber(event)'></td>
-                                     </tr>
-                                 </table>
-
+                                
                                  </div>
                              </div>
                          </div>
@@ -132,129 +114,30 @@ if (isset($this->session->userdata['logged_in'])) {
                          <div class="panel panel-default">
                              <div class="panel-heading">
                                  <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"> 2. Align Sequences & Clean Alignment
-                                     <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div2');"></i>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"> 2. ...
+                                     <i class="fa fa-question-circle-o"></i>
                                      </a> 
                                  </h4>
                              </div>
                              <div id="collapse2" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                 <label> Alignment step </label>
-                                    <select class="uk-select" name="alignment" id="type_alignment">
-                                        <option  value="silva" selected> Silva</option>
-                                         <option value="gg"> Greengenes</option>
-                                         <option value="rdp"> RDP</option>
-                                     </select>
+                              
+                           
                                     
-
-
-                                   <div  id="row_option_silva"> 
-
-                                    
-                                  <img src="<?php echo site_url('images/img_silva');?>" width="65%" height="55%">
-
-
-                                       <div class="radio">
-                                         <label>
-                                           <input name="option_silva" value="v_full" type="radio" class="radio_silva"> 
-                                             Silva (Default)
-                                          </label>
-                                        </div>
-                                        <div class="radio">
-                                         <label>
-                                           <input name="option_silva" value="v1-v3" type="radio" class="radio_silva"> 
-                                           V1–V3 region with primers 27F and 534R
-                                           &nbsp;<i class="fa fa-question-circle-o"onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div16');">  
-                                           </i>
-                                          </label>
-                                        </div>
-                                        <div class="radio">
-                                         <label>
-                                           <input name="option_silva" value="v3-v4" type="radio" class="radio_silva">
-                                           V3 – V4 region with primers 341F and 802R
-                                             &nbsp;<i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div17');"></i>
-                                          </label>
-                                        </div>
-                                        <div class="radio">
-                                         <label>
-                                           <input name="option_silva" value="v4" type="radio" class="radio_silva">
-                                           V4 region with primers 515F and 806R
-                                             &nbsp;<i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div18');">
-                                             </i>
-                                          </label>
-                                        </div>
-                                        <div class="radio">
-                                         <label>
-                                           <input name="option_silva" value="v3-v5" type="radio" class="radio_silva">
-                                           V3-V5 region with primer 341F and 909R
-                                             &nbsp;<i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div19');">
-                                            </i>
-                                          </label>
-                                         </div>
-                                         <div class="radio">
-                                         <label>
-                                           <input name="option_silva" value="v4-v5" type="radio" class="radio_silva"> 
-                                           V4-V5 region with primers 518F and 926R
-                                           &nbsp;<i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div20');">
-                                            </i>
-                                          </label>
-                                         </div>
-
-                                   </div>
-
-                                <script type="text/javascript">
-                                       
-                                         $(function(){
-                                            //$('#row_option_silva').hide();
-                                            $('#type_alignment').change(function(){
-                                               
-                                            if($('#type_alignment').val() == 'silva'){
-
-                                                $('#row_option_silva').show();
-
-                                               }else{
-
-                                                $('#row_option_silva').hide(); 
-                                                $(".radio_silva").prop('checked', false);
-
-                                               }
-
-                                            });
-
-                                         });
-
-                                 </script>
-
-                                 <div class="col-lg-12 uk-margin"></div>
-                                     <label> OR Upload file fasta </label>
-                                        (Limit size 800 MB) 
-                                         <input type="file" name="customer" id="custo_mer">
-                                         <div class="progress progress-striped active">
-                                         <div id="bar" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0"  aria-valuemax="100" style="width:0%;">
-                                         <div class="percent">0%</div>
-                                         </div>
-                                         </div>
-                                         <div id="status"></div>
                                 </div>
                              </div>
                          </div>
                          <div class="panel panel-info">
                          <div class="panel-heading">
                              <h4 class="panel-title">
-                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"> 3. Pre-Clusters Sequences & Chimera Detection
-                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div3');" ></i>
+                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"> 3. ..
+                                 <i class="fa fa-question-circle-o" ></i>
                                  </a>
                              </h4>
                          </div>
                          <div id="collapse3" class="panel-collapse collapse">
                              <div class="panel-body">
-                                 <label> Pre-cluster step </label> 
-                                     <select class="uk-select" name="diffs">
-                                     <option value="0">diffs = 0</option>
-                                     <option value="1">diffs = 1</option>
-                                     <option value="2" selected>diffs = 2</option>
-                                     <option value="3">diffs = 3</option>
-                                     </select>
+                               
                                                         
                              </div>
                          </div>
@@ -262,60 +145,31 @@ if (isset($this->session->userdata['logged_in'])) {
                          <div class="panel panel-default">
                          <div class="panel-heading">
                               <h4 class="panel-title">
-                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"> 4. Classify Sequences
-                                 <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div4');"></i>
+                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"> 4. ..
+                                 <i class="fa fa-question-circle-o"></i>
                                  </a> 
                          </h4>
                          </div>
                          <div id="collapse4" class="panel-collapse collapse">
                          <div class="panel-body">
-                             <label>Prepare the taxonomy classification</label>
-                                 <select class="uk-select" name="classify">
-                                    <option value="silva"> Silva</option>
-                                    <option value="gg" selected> Greengenes</option>
-                                    <option value="rdp"> RDP</option>
-                                 </select>
-                             <div class="col-lg-12"><br/></div>
-                             <label class="col-lg-10"> with cutoff</label>
-                             <div class="col-lg-5">
-                                 <input class="uk-input" type="number" name="cutoff" min="50" value="80">     
-                             </div>
-                             <div class="col-lg-2"> <label>(>=50)</label></div>
+                             
+                            
                          </div>
                          </div>
                          </div>
                          <div class="panel panel-info">
                          <div class="panel-heading">
                              <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5"> 5. Remove Bacterial Sequences
-                                <i class="fa fa-question-circle-o" onmouseover="tooltip.ajax(this, '<?php echo base_url();?>tooltip/tooltip-ajax.html#div5');"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5"> 5. ..
+                                <i class="fa fa-question-circle-o" ></i>
                                  </a> 
                              </h4>
                          </div>
                          <div id="collapse5" class="panel-collapse collapse">
                          <div class="panel-body">
-                             <label> Taxon elimination</label>
-                             <div class="radio">
-                             <label>
-                                <input name="optionsRadios" value="0" type="radio" checked> default        
-                             </label>
-                             </div>
-                             <div class="radio">
-                             <label>
-                             <input name="optionsRadios" value="1" type="radio">
-                                <select class="uk-select" name="taxon">
-                                <option value="k__Bacteria;k__Bacteria_unclassified-k__Archaea">
-                                     k__Bacteria;k__Bacteria_unclassified-k__Archaea
-                                </option>
-                                <option value="k__Archaea_unclassified">
-                                     k__Archaea_unclassified
-                                 </option>
-                                 <option value="Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified" selected>   
-                                     Chloroplast-Mitochondria-Eukaryota-unknown-k__Bacteria;k__Bacteria_unclassified-k__Archaea;k__Archaea_unclassified
-                                 </option>
-                                 </select>
-                             </label>
-                             </div>
+                            
+                             
+                            
                          </div>
                          </div>
                          </div>
@@ -344,7 +198,7 @@ if (isset($this->session->userdata['logged_in'])) {
                     <div class="Pre-show" style="display:none"> 
                       
                       <div class="loader">
-                          <p class="h1"> Mothur Preprocess</p>
+                          <p class="h1"> Qiime Preprocess</p>
                           <span></span>
                           <span></span>
                           <span></span>
@@ -556,147 +410,10 @@ if (isset($this->session->userdata['logged_in'])) {
 
 <script type="text/javascript">  
 
-function checkvalue(){
-             var mbig = document.getElementById('mbig');
-             if(mbig.value == ""){
-                $('#mbig').css("border","1px solid #FF0000");  
-             }else{
-                $('#mbig').css("border","1px solid #e1ede1");
-             }
-}
-
-function checkvalue2(){
-           var mhomo = document.getElementById('mhomo');
-            if(mhomo.value == ""){
-                $('#mhomo').css("border","1px solid #FF0000");  
-             }else{
-                $('#mhomo').css("border","1px solid #e1ede1");
-             }
-}
-
-function checkvalue3(){
-           var miniread = document.getElementById('miniread');
-            if(miniread.value == ""){
-                $('#miniread').css("border","1px solid #FF0000");  
-             }else{
-                $('#miniread').css("border","1px solid #e1ede1");
-             }
-}
-
-function checkvalue4(){
-           var maxread = document.getElementById('maxread');
-           if(maxread.value == ""){
-                $('#maxread').css("border","1px solid #FF0000");  
-             }else{
-                $('#maxread').css("border","1px solid #e1ede1");
-             }
-}
-
-function validateNumber(event) {
-            var key = window.event ? event.keyCode : event.which;
-            if (event.keyCode === 8 || event.keyCode === 46) {
-                    return true;
-            } else if ( key < 48 || key > 57 ) {
-                return false;
-            } else {
-                return true;
-            }
-}
-
-$(document).on('change', '#custo_mer', function(){
-               
-               var file_data = $('#custo_mer').prop('files')[0];
-                    var form_data = new FormData();
-                    form_data.append('file', file_data);
-                   var file_name = file_data.name;
-                   var file_size = file_data.size;
-                   var file_mb = (file_data.size/1024/1024).toFixed(0); // MB
-                   
-                   var type = file_name.substring(file_name.lastIndexOf('.')+1);
-                   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-                     var i = parseInt(Math.floor(Math.log(file_size) / Math.log(1024)));
-                     var f_size = Math.round(file_size / Math.pow(1024, i), 2) + ' ' + sizes[i];
-                  
-                   if(type == 'fasta' || type == 'align'){
-                        if(file_size == 0){
-                            alert('Size : '+file_size +' Bytes');
-                            document.getElementById('custo_mer').value = ""; 
-                        }
-                        else if(file_mb <= 800){
-                          //alert(file_name+' '+f_size+' '+type);
-                          get_fasta(form_data);
-
-                        }else{
-                            alert('file is too large : '+ f_size);
-                            document.getElementById('custo_mer').value = ""; 
-                        } 
-                    }
-                    else{ 
-                        alert('file is not fasta or align');
-                        document.getElementById('custo_mer').value = ""; 
-                     }
-                 
-});
 
 
-function get_fasta(file_data){
-            var user = "<?php echo $username;?>";
-            var project = "<?php echo $current_project;?>";
-            var bar = $('#bar');
-            var percent = $('.percent');
-            var status = $('#status');
-          
-           $.ajax({
-                   type:"post",
-                   dataType: 'text',
-                   url:"<?php echo base_url('Run_mothur_qiime/check_fasta');?>/"+user+"/"+project,
-                   data: file_data,
-                   cache: false,
-                   processData: false,
-                   contentType: false,
-                    beforeSend: function () {
-                        console.log("beforeSend");
-                        status.empty();
-                        var percentVal = '0%';
-                        bar.width(percentVal);
-                        percent.html(percentVal);
-                    },
-                    xhr: function () {
-                        var xhr = new window.XMLHttpRequest();
-                        //Download progress
-                        xhr.upload.addEventListener("progress", function (evt) {
-                             //console.log(evt.loaded);
-                            if (evt.lengthComputable) {
-                                var percentComplete = evt.loaded / evt.total;
-                                bar.width(Math.round(percentComplete * 100) + "%");
-                                percent.html(Math.round(percentComplete * 100) + "%");
-                                
-                            }
-                        }, false);
-                       return xhr;
-                    },
-                    complete: function (xhr) {
-                         
-                          if(xhr.responseText == '0'){
-                                alert("File is not fasta");
-                                status.html("File is not fasta");
-                                document.getElementById('custo_mer').value = ""; 
-                                bar.width(Math.round(0) + "%");
-                                percent.html(Math.round(0) + "%");
-                          }else { 
-                               alert(xhr.responseText); 
-                               status.html(xhr.responseText);
-                               bar.width(Math.round(0) + "%");
-                               percent.html(Math.round(0) + "%");
-                          }
-                         
-                                
-                    },   
-                   error:function(e){
-                      console.log(e.message);
-                   }
-           });
-}
+
+
 
 
 $(document).ready(function (){ 
@@ -760,9 +477,9 @@ $(document).ready(function (){
                  
                   if(maximum_ambiguous != "" && maximum_homopolymer != "" && minimum_reads_length != "" && maximum_reads_length != "" && alignment != ""){
 
-                        $(".Pre-test").hide();
-                        $(".Pre-show").show();
-                        getvalue(array_data);
+                       // $(".Pre-test").hide();
+                       // $(".Pre-show").show();
+                        //getvalue(array_data);
                    }    
         });
 

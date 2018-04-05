@@ -1,0 +1,11 @@
+
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
+export PATH=/home/aum/anaconda/bin:$PATH
+export PATH=/opt/R-3.1.2/bin:$PATH
+export R_LIBS="/opt/R/x86_64-unknown-linux-gnu-library/3.1"
+
+
+compare_categories.py --method adonis -i $1 -m $2 -c $3 -o $4 -n 999
+
+
+

@@ -1,0 +1,6 @@
+
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh 
+export PATH=/home/aum/anaconda/bin:$PATH
+
+python  Scriptqiime2/add_qiime_labels.py -i $1 -m $2 -c InputFileName -o $3
+

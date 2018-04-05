@@ -1,0 +1,11 @@
+
+
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
+export PATH=/home/aum/anaconda/bin:$PATH
+export PATH=/home/aum/anaconda/envs/qiime191/bin:$PATH
+export PATH=/opt/vsearchsw/bin:$PATH
+export PATH=/opt/ExpressionAnalysis-ea-utils-bd148d4/clipper:$PATH
+
+
+biom summarize-table -i $1 -o $2
+

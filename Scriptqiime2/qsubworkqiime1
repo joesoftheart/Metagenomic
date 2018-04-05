@@ -1,0 +1,9 @@
+
+export PATH=/opt/pear-0.9.11-linux-x86_64/bin:$PATH
+export PATH=/opt/ActivePerl-5.24/bin:$PATH
+export PATH=/opt/bbmap:$PATH
+export PATH=/opt/fastx_toolkit-0.0.12:$PATH
+export PATH=/usr/bin/java:$PATH
+
+perl Scriptqiime2/read_filter.pl --log $1stitched_reads_filter/read_filter.log  -q 30 -p 90 -l 100 -thread 2 -f N -r N $1stitched_reads/*.assembled.* -o $1stitched_reads_filter 
+

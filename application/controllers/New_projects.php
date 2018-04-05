@@ -58,12 +58,23 @@ class New_projects extends CI_Controller
                 "user_id" => $this->session->userdata["logged_in"]["_id"]);
 
             $this->mongo_db->insert('projects', $data);
-            $this->create_symbolic_link($this->input->post("project_path"));
+         
+            $project_program = $this->input->post("project_program");
 
+            if($project_program == "mothur"){
 
-            redirect("main", "refresh");
+                $this->create_symbolic_link($this->input->post("project_path"));
 
+            }elseif ($project_program == "qiime") {
 
+                $this->create_symbolic_link_qiime($this->input->post("project_path"));
+
+            }elseif ($project_program == "mothur_qiime") {
+
+                $this->create_symbolic_link($this->input->post("project_path"));
+            }
+
+             redirect("main", "refresh");
         }
 
 
@@ -102,6 +113,24 @@ class New_projects extends CI_Controller
             "/var/www/html/owncloud/data/primer16S/trainset16_022016.rdp.fasta",
             "/var/www/html/owncloud/data/primer16S/trainset16_022016.rdp.tax"
 
+        );
+
+        $replace = str_replace("..", "/var/www/html", $private_path);
+        $path_private = $replace . "/input/";
+
+        foreach ($path_array as $value) {
+            exec("./Scripts/symbolic.sh $value  $path_private");
+
+        }
+    }
+
+
+    public function create_symbolic_link_qiime($private_path)
+    {
+
+        $path_array = array(
+            "/var/www/html/owncloud/data/path_qiime/alpha_params.txt",
+            "/var/www/html/owncloud/data/path_qiime/uc_fast_paramsmodi.txt"
         );
 
         $replace = str_replace("..", "/var/www/html", $private_path);

@@ -1,0 +1,10 @@
+
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
+export PATH=/home/aum/anaconda/bin:$PATH
+export PATH=/home/aum/anaconda/envs/qiime191/bin:$PATH
+#python -c "import matplotlib;print(matplotlib.get_backend())"
+
+
+core_diversity_analyses.py -o $1  -i $2 -m $3 -t $4 -e $5 -c $6 -p $7
+
+

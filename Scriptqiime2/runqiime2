@@ -1,0 +1,5 @@
+
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh 
+export PATH=/home/aum/anaconda/bin:$PATH
+
+python Scriptqiime2/pick_open_reference_otus.py -i $1 -o $2 -p $3 --parallel --jobs_to_start 1

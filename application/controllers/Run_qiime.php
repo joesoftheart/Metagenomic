@@ -4,7 +4,7 @@
    /**
    * 
    */
-   class Run_mothur_qiime extends CI_Controller{
+   class Run_qiime extends CI_Controller{
    	
    	public function __construct(){
 
@@ -20,118 +20,43 @@
    	}
 
     # Run mothur Preprocess
-    public function run_mothur(){
+    public function run_qiime1($user,$project){
 
-          $value = $_REQUEST['data_array'];
-
-          $user = $value[0];
-          $id_project = $value[1];
-          $maximum_ambiguous = $value[2];
-          $maximum_homopolymer = $value[3];
-          $minimum_reads_length = $value[4];
-          $maximum_reads_length = $value[5];
-          $alignment = $value[6];
-          $customer = $value[7];
-          $diffs = $value[8];
-          $classifly = $value[9];
-          $cutoff  = $value[10];
-          $optionsRadios = $value[11];
-          $taxon = $value[12];
-
-          $project = "";
-          $project_analysis = "";
-          $project_data = "";
-          $project_platform_sam = "";
-          $project_platform_type = "";
-
+        
           # Query data Project By ID
-          $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
-            foreach ($array_project as $r) {
+        //   $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
+        //     foreach ($array_project as $r) {
           
-                $project = $r['project_name'];
-                $project_analysis = $r['project_analysis'];
-                $project_data = basename($r['project_path']);
-                $project_platform_sam = ($r['project_platform_sam']);
-                $project_platform_type = ($r['project_platform_type']); 
-           }
+        //         $project = $r['project_name'];
+        //         $project_analysis = $r['project_analysis'];
+        //         $project_data = basename($r['project_path']);
+        //         $project_platform_sam = ($r['project_platform_sam']);
+        //         $project_platform_type = ($r['project_platform_type']); 
+        //    }
 
-           # Check variable aligment
-            if($customer != null){
-                $alignment = $customer;
-            }
-            
-            else if ($alignment == "gg") {
-                $alignment = "gg_13_8_99.fasta";
-            }
-            else if ($alignment == "rdp") {
-                $alignment = "trainset16_022016.rdp.fasta";
-            }
-
-            else if($alignment == "v_full"){
-                $alignment = "silva.bacteria.fasta";
-            }
-            else if($alignment == "v1-v3"){
-                $alignment = "silva.v123.fasta";
-            }
-            else if($alignment == "v3-v4"){
-                $alignment = "silva.v34.fasta";
-            }
-            else if($alignment == "v4"){
-                $alignment = "silva.v4.fasta";
-            }
-            else if($alignment == "v3-v5"){
-                $alignment = "silva.v345.fasta ";
-            }
-            else if($alignment == "v4-v5"){
-                $alignment = "silva.v45.fasta";
-            }
-
-
-           $reference = '';
-           $taxonomy ='';
-           # Check variable classifly
-            if($classifly == "silva"){
-              $reference = 'silva.nr_v128.align';
-              $taxonomy ='silva.nr_v128.tax';
-            }
-            else if($classifly == "gg") {
-              $reference = 'gg_13_8_99.fasta';
-              $taxonomy ='gg_13_8_99.gg.tax';
-            }
-             else if($classifly == "rdp") {
-              $reference = 'trainset16_022016.rdp.fasta';
-              $taxonomy = 'trainset16_022016.rdp.tax';
-            }
-
-           # Check variable taxon
-            if($optionsRadios == '0'){
-               $taxon = "Chloroplast-Mitochondria-Eukaryota-unknown";
-            }
+         
 
            # Set Path => input ,output ,log
-            $path_input = "owncloud/data/$user/files/$project_data/input/";
-            $path_out = "owncloud/data/$user/files/$project_data/output/";
-            $path_log = "owncloud/data/$user/files/$project_data/log/";
+            $path_input = "owncloud/data/$user/files/$project/input/";
+            $path_out = "owncloud/data/$user/files/$project/output/";
+            $path_log = "owncloud/data/$user/files/$project/log/";
 
         
            # create advance.batch
-            $file_batch = FCPATH."$path_input"."advance.batch";
-            if(!file_exists($file_batch)) {
-                file_put_contents($file_batch, "No command !" );
+            // $file_batch = FCPATH."$path_input"."advance.batch";
+            // if(!file_exists($file_batch)) {
+            //     file_put_contents($file_batch, "No command !" );
 
-            }
+            // }
            # create folder log
             $folder_log = FCPATH."$path_log";   
             if (!file_exists($folder_log)) {
                    mkdir($folder_log, 0777, true);
             }
 
+           $jobname = $user.'-'.$project.'-'.'qiime1';
 
-           $taxon = str_replace(";", ",", $taxon);
-
-           $jobname = $user.'-'.$project.'-'.'mothur';
-
-           $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scriptqiime/mothurPre.php $user $project $path_input $path_out $path_log $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $project_platform_sam $project_platform_type";
+           $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scriptqiime2/qiime_run1.php $user $project $path_input $path_out $path_log";
 
            shell_exec($cmd);
            $check_qstat = "qstat  -j '$jobname' ";
@@ -146,46 +71,38 @@
               }
 
            $id_job = trim($id_job);
-           echo json_encode(array($id_job,$id_project));
+           echo "Job ID : ".$id_job;
 
-        # Insert data run project to status_process
-        #Check data status-process
-        $count = $this->mongo_db->where(array('project_id'=> $id_project))->count('status_process');
-         if($count == 0){
-            $data = array(
-                          'status' => '1' ,
-                          'step_run' => '1' ,
-                          'job_id' => $id_job ,
-                          'job_name' => $jobname ,
-                          'path_log' => $path_log ,
-                          'project_id' => $id_project ,
-                          'user' => $user,
-                          'project' => $project ,
-                          'project_analysis' => $project_analysis ,
-                          'classifly' => $classifly,
-                          'f_design' => '0' ,
-                          'f_metadata' => '0' ,
-                          'project_data' => $project_data ,
-                          'level' => '0');
-            $this->insert_status($data);
-         }else{
-             $data = array(
-                          'status' => '1' ,
-                          'step_run' => '1' ,
-                          'job_id' => $id_job ,
-                          'job_name' => $jobname ,
-                          'path_log' => $path_log ,
-                          'project_id' => $id_project ,
-                          'user' => $user, 
-                          'project' => $project , 
-                          'project_analysis' => $project_analysis ,
-                          'classifly' => $classifly,
-                          'f_design' => '0' ,
-                           'f_metadata' => '0' ,
-                          'project_data' => $project_data ,
-                           'level' => '0' );
-              $this->update_status($id_project,$data);
-        }
+        //    echo json_encode(array($id_job,$id_project));
+
+        // # Insert data run project to status_process
+        // #Check data status-process
+        // $count = $this->mongo_db->where(array('project_id'=> $id_project))->count('status_process');
+        //  if($count == 0){
+        //     $data = array(
+        //                   'status' => '1' ,
+        //                   'step_run' => '1' ,
+        //                   'job_id' => $id_job ,
+        //                   'job_name' => $jobname ,
+        //                   'path_log' => $path_log ,
+        //                   'project_id' => $id_project ,
+        //                   'user' => $user,
+        //                   'project' => $project ,
+        //                   );
+        //     $this->insert_status($data);
+        //  }else{
+        //      $data = array(
+        //                   'status' => '1' ,
+        //                   'step_run' => '1' ,
+        //                   'job_id' => $id_job ,
+        //                   'job_name' => $jobname ,
+        //                   'path_log' => $path_log ,
+        //                   'project_id' => $id_project ,
+        //                   'user' => $user, 
+        //                   'project' => $project , 
+        //                  );
+        //     $this->update_status($id_project,$data);
+        // }
          
     }
 
@@ -223,7 +140,7 @@
                 $line = file($file);
                 $message = $line[$count];
                 if($message == ""){
-                    $message = "Run Mothur ";
+                    $message = "Run Qiime";
                 }
                 if($count != 0){
                     $percent = (($count/16)*100);
@@ -247,72 +164,6 @@
          $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('status_process');    
     }
 
-
- # upload files fasta
-  public function check_fasta(){
-
-      $user = $this->uri->segment(3);
-      $id_project = $this->uri->segment(4);
-      $project = "";
-      # Query data Project By ID
-          $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
-          foreach ($array_project as $r) {
-                $project = basename($r['project_path']);              
-      }
-
-      $path_input = "owncloud/data/$user/files/$project/input/";
-      $path_file = FCPATH.$path_input;
-
-      $config['upload_path'] = $path_file;
-      $config['allowed_types'] = '*';
-      $config['max_filename'] = '255';
-      $config['remove_spaces'] = TRUE;
-      //$config['encrypt_name'] = TRUE;
-      //$config['overwrite'] = FALSE; # overwrite file
-      
-      if(isset($_FILES['file'])){
-
-         if(file_exists($path_file.$_FILES['file']['name'])){
-
-             echo 'File already exists : '. $_FILES['file']['name'];
-         }else{
-            #upload file to upload_path
-            $this->load->library('upload',$config);
-               if (!$this->upload->do_upload('file')) {
-                   echo $this->upload->display_errors();
-               } 
-               else {
-                    $check_fasta = $this->fasta_read($_FILES['file']['name'],$path_input);
-                    if($check_fasta){
-                         echo 'File successfully uploaded';
-                    }else{
-                         echo '0';
-                    } 
-               }
-         } 
-      }  
-  }
-
-  # read and check file fasta
-  public function fasta_read($file,$path_input){
-
-      $file_in = $path_input.$file;
-      $file_ch = FCPATH.$file_in;
-      $check = "";
-      $myfile = fopen($file_ch,'r') or die ("Unable to open file");
-        while(($lines = fgets($myfile)) !== false){
-                 
-                 $check = substr($lines,0,1);
-                 break;
-        }
-        fclose($myfile);
-        if($check == '>'){
-            return true;
-        }else{ 
-          unlink($file);
-          return false;
-        }
-  } 
 
 
  # Run Qiime
