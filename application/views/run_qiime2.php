@@ -45,7 +45,7 @@ if (isset($this->session->userdata['logged_in'])) {
 </nav>
 <div class="col-lg-12 uk-margin"></div>
 
-<?php if ($num_sample != null) { ?>
+
 
     <div class="col-lg-12">
         <h3>Create file map</h3>
@@ -76,13 +76,11 @@ if (isset($this->session->userdata['logged_in'])) {
                 <td><input type="text" value="groupC" readonly="readonly"/></td>
                 </tr>
 
-                <?php 
-          
-                for($i = 0; $i < count($num_sample);$i++) { ?>
+               
 
                     <tr id="Row2">
                         <td>
-                            <input type="text" value="<?=$num_sample[$i]?>" readonly="readonly"/>
+                            <input type="text" value="test" readonly="readonly"/>
                         </td>
                         <td>
                             <input type="text" value="" />
@@ -96,7 +94,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
                     </tr>
 
-                <?php } ?>
+             
 
             </table>
 
@@ -105,12 +103,7 @@ if (isset($this->session->userdata['logged_in'])) {
         <button class="btn btn-success" onclick="getExcel()">create file</button>
 
     </div>
-<?php } else {
 
-    echo "<h4>Not Generated file map !!</h4>";
-}
-
-?>
 
 <div class="col-lg-12 uk-margin"></div>
 <!-- Modal -->
@@ -211,17 +204,6 @@ if (isset($this->session->userdata['logged_in'])) {
     });
 
 
-    // function validateNumber(event) {
-    //     var key = window.event ? event.keyCode : event.which;
-    //     if (event.keyCode === 8 || event.keyCode === 46) {
-    //         return true;
-    //     } else if (key < 48 || key > 57) {
-    //         return false;
-    //     } else {
-    //         return true;
-    //     }
-    // }
-
 
     function getExcel() {
 
@@ -253,20 +235,23 @@ if (isset($this->session->userdata['logged_in'])) {
         if (count == false) {
             alert("Please insert value");
         } else {
-            $.ajax({
-                type: "post",
-                datatype: "json",
-                url: "<?php echo base_url('Run_mothur_qiime/addGroup');?>/" + user + "/" + project,
-                data: {data_excel: excel},
-                success: function (data) {
-                    var user_file = $.parseJSON(data);
-                    alert("Create map " + user_file + " success");
-                    //console.log(data);
-                }, error: function (e) {
-                    console.log(e.message);
-                }
 
-            });
+
+            alert("ok");
+            // $.ajax({
+            //     type: "post",
+            //     datatype: "json",
+            //     url: "<?php echo base_url('Run_mothur_qiime/addGroup');?>/" + user + "/" + project,
+            //     data: {data_excel: excel},
+            //     success: function (data) {
+            //         var user_file = $.parseJSON(data);
+            //         alert("Create map " + user_file + " success");
+            //         //console.log(data);
+            //     }, error: function (e) {
+            //         console.log(e.message);
+            //     }
+
+            // });
         }
     }
 </script>

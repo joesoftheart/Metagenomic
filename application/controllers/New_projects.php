@@ -68,6 +68,7 @@ class New_projects extends CI_Controller
             }elseif ($project_program == "qiime") {
 
                 $this->create_symbolic_link_qiime($this->input->post("project_path"));
+                $this->checkfile_run($project_path);
 
             }elseif ($project_program == "mothur_qiime") {
 
@@ -125,8 +126,7 @@ class New_projects extends CI_Controller
     }
 
 
-    public function create_symbolic_link_qiime($private_path)
-    {
+    public function create_symbolic_link_qiime($private_path){
 
         $path_array = array(
             "/var/www/html/owncloud/data/path_qiime/alpha_params.txt",
@@ -140,5 +140,23 @@ class New_projects extends CI_Controller
             exec("./Scripts/symbolic.sh $value  $path_private");
 
         }
+    }
+
+
+    public function checkfile_run($project_path){
+
+       $path = FCPATH."$project_path";
+       $sampleName = array();
+       $search_fastq = glob($path."*.fastq");
+       foreach ($search_fastq as $key => $value) {
+          $var_name =  basename($value);
+          list($n1,$n2) = explode("_",$var_name);
+          if($key%2 == 0){
+             array_push($sampleName, $n1."\t");
+          }    
+       }
+
+      $path_sampleName = FCPATH."$project_path"."sampleName.txt";
+      file_put_contents($path_sampleName,$sampleName); 
     }
 }

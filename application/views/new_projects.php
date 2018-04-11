@@ -134,7 +134,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 <div class="form-group hide" id="miseq" >
                                                     <label class="radio-inline">
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="project_platform_type" id="miseq_without_barcodes"  value="miseq_without_barcodes" required>Paired-end fastq file without barcode
+                                                            <input type="radio" name="project_platform_type" id="miseq_without_barcodes"  value="miseq_without_barcodes" required>Paired-end fastq file without barcode and primer
                                                         </label><br>
                                                         <label class="radio-inline">
                                                             <input type="radio" name="project_platform_type" id="miseq_contain_primer"  value="miseq_contain_primer" required>Paired-end fastq file without barcode but contain primer
@@ -287,16 +287,20 @@ if (isset($this->session->userdata['logged_in'])) {
 <script>
     $('#mothur').on('change', function () {
         $('#program').removeClass("hide");
+        $('#miseq_barcodes_primers').attr("disabled",false);
+        $('#proton_barcodes_fasta').attr("disabled",false);
     });
     $('#qiime').on('change', function () {
         $('#program').addClass("hide");
+        $('#miseq_barcodes_primers').attr("disabled",true);
+        $('#proton_barcodes_fasta').attr("disabled",true);
     });
     $('#mothur_qiime').on('change', function () {
         $('#program').addClass("hide");
+        $('#miseq_barcodes_primers').attr("disabled",false);
+        $('#proton_barcodes_fasta').attr("disabled",false);
     });
-    $('#mothur').on('change', function () {
-        $('#program').removeClass("hide");
-    });
+    
     $('#platform_mi').on('change', function () {
         $('#miseq').removeClass("hide");
         $('#proton').addClass("hide");

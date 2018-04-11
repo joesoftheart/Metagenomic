@@ -99,6 +99,12 @@ class Projects extends CI_Controller
                             
                      }
 
+                $path_sampleName = FCPATH."owncloud/data/$user/files/$project/input/sampleName.txt";
+                $file_text = file_get_contents($path_sampleName);
+                $get_Name = explode("\t", $file_text);
+                $result = array_filter($get_Name);
+                
+                $data['sampleName'] = $result;
                 $data['status'] = $status;
                 $data['step_run'] = $step_run;
                 $data['id_job'] = $id_job;

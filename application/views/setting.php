@@ -73,7 +73,7 @@
             </ol>
 
             <div class="row">
-                <table>
+               <!--  <table>
                     <?php foreach ($rs_st as $st) ?>
                     <tbody>
                     <tr>
@@ -143,7 +143,7 @@
                     </tr>
                     </tbody>
 
-                </table>
+                </table> -->
                 <div id="show"></div>
             </div>
 

@@ -19,6 +19,8 @@
         putenv("PATH=$PATH");
    	}
 
+
+
     # Run mothur Preprocess
     public function run_qiime1($user,$project){
 
@@ -73,83 +75,54 @@
            $id_job = trim($id_job);
            echo "Job ID : ".$id_job;
 
-        //    echo json_encode(array($id_job,$id_project));
-
-        // # Insert data run project to status_process
-        // #Check data status-process
-        // $count = $this->mongo_db->where(array('project_id'=> $id_project))->count('status_process');
-        //  if($count == 0){
-        //     $data = array(
-        //                   'status' => '1' ,
-        //                   'step_run' => '1' ,
-        //                   'job_id' => $id_job ,
-        //                   'job_name' => $jobname ,
-        //                   'path_log' => $path_log ,
-        //                   'project_id' => $id_project ,
-        //                   'user' => $user,
-        //                   'project' => $project ,
-        //                   );
-        //     $this->insert_status($data);
-        //  }else{
-        //      $data = array(
-        //                   'status' => '1' ,
-        //                   'step_run' => '1' ,
-        //                   'job_id' => $id_job ,
-        //                   'job_name' => $jobname ,
-        //                   'path_log' => $path_log ,
-        //                   'project_id' => $id_project ,
-        //                   'user' => $user, 
-        //                   'project' => $project , 
-        //                  );
-        //     $this->update_status($id_project,$data);
-        // }
+      
          
     }
 
     # Check Run mothur Preprocess
-    public function check_run_mothur(){
+    // public function check_run_mothur(){
 
-          $da_job = $_REQUEST['data_job'];
-          $id_job = $da_job[0];
-          $id_project = $da_job[1];
+    //       $da_job = $_REQUEST['data_job'];
+    //       $id_job = $da_job[0];
+    //       $id_project = $da_job[1];
 
-          $name_job = "";
-          $path_job = "";
-          #Query data status-process
-          $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
-          foreach($array_status as $r) {
-                $name_job = $r['job_name'];
-                $path_job = $r['path_log'];
-          }
+    //       $name_job = "";
+    //       $path_job = "";
+    //       #Query data status-process
+    //       $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+    //       foreach($array_status as $r) {
+    //             $name_job = $r['job_name'];
+    //             $path_job = $r['path_log'];
+    //       }
 
-          $check_run = exec("qstat -j $id_job ");
-          if($check_run == false){
-              echo json_encode(array(0,$id_project));
+    //       $check_run = exec("qstat -j $id_job ");
+    //       if($check_run == false){
+    //           echo json_encode(array(0,$id_project));
 
-          }else{
-               $file = FCPATH."$path_job$name_job.o$id_job";
-               $count = 0 ;
-               $myfile = fopen($file,'r') or die ("Unable to open file");
-                while(($lines = fgets($myfile)) !== false){
-                    if($lines != "\n"){
-                        $count++;
-                    } 
-                }
-               fclose($myfile);
+    //       }else{
+    //            $file = FCPATH."$path_job$name_job.o$id_job";
+    //            $count = 0 ;
+    //            $myfile = fopen($file,'r') or die ("Unable to open file");
+    //             while(($lines = fgets($myfile)) !== false){
+    //                 if($lines != "\n"){
+    //                     $count++;
+    //                 } 
+    //             }
+    //            fclose($myfile);
 
-                $line = file($file);
-                $message = $line[$count];
-                if($message == ""){
-                    $message = "Run Qiime";
-                }
-                if($count != 0){
-                    $percent = (($count/16)*100);
-                    $percent_round = round($percent,0);
-                }
-            $up = array($message,$percent_round);
-            echo json_encode($up);
-         }
-    }
+    //             $line = file($file);
+    //             $message = $line[$count];
+    //             if($message == ""){
+    //                 $message = "Run Qiime";
+    //             }
+    //             if($count != 0){
+    //                 $percent = (($count/16)*100);
+    //                 $percent_round = round($percent,0);
+    //             }
+    //         $up = array($message,$percent_round);
+    //         echo json_encode($up);
+    //      }
+    // }
 
 
    # insert value mongo
@@ -165,120 +138,6 @@
     }
 
 
-
- # Run Qiime
-  public function mothur_qiime1(){
-
-
-       $value = $_REQUEST['data_array'];
-
-        $user = $value[0];
-        $id_project = $value[1];
-        $file_map =   $value[2];
-        $permanova = $value[3];
-        $anosim = $value[4];
-        $adonis = $value[5];
-        $opt_permanova = $value[6];
-        $opt_anosim = $value[7];
-        $opt_adonis = $value[8];
-
-        $project = "";
-        # Query data Project By ID
-        $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
-            foreach ($array_project as $r) {
-                $project = basename($r['project_path']);
-            }
-
-        $path_input = "owncloud/data/$user/files/$project/input/";
-        $path_out = "owncloud/data/$user/files/$project/output/";
-   		  $path_log = "owncloud/data/$user/files/$project/log/";
-
-   		  $jobname = $user.'-'.$project.'-'.'mothur_qiime1';
-
-   		  $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scriptqiime/mothur_qiime1.php $user $project $path_input $path_out $path_log $file_map $permanova $anosim $adonis $opt_permanova $opt_anosim $opt_adonis";
-
-   		 shell_exec($cmd);
-   		 $check_qstat = "qstat  -j '$jobname' ";
-         exec($check_qstat,$output);
-              $id_job = "" ;
-              foreach ($output as $key_var => $value ) {
-
-                    if($key_var == "1"){
-                        $data = explode(":", $value);
-                        $id_job = $data[1];
-                    }
-              }
-
-         $id_job = trim($id_job);
-         echo json_encode(array($id_job,$id_project));
-
-      # Update data status-process Step 2
-
-      $data = array('status' => '1' ,'step_run' => '2' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'project_data' => $project);
-      $this->update_status($id_project,$data);
-         
-   }
-
- # check Run Qiime
-  public function check_run_mothur_qiime1(){
-
-          $da_job = $_REQUEST['data_job'];
-          $id_job = $da_job[0];
-          $id_project = $da_job[1];
-
-          $name_job = "";
-          $path_job = "";
-          #Query data status-process
-          $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
-          foreach($array_status as $r) {
-                $name_job = $r['job_name'];
-                $path_job = $r['path_log'];
-          }
-
-          $check_run = exec("qstat -j $id_job ");
-          if($check_run == false){
-              echo json_encode(array(0,$id_project));
-
-          }else{
-               $file = FCPATH."$path_job$name_job.o$id_job";
-               $count = 0 ;
-               $myfile = fopen($file,'r') or die ("Unable to open file");
-                while(($lines = fgets($myfile)) !== false){
-                    if($lines != "\n"){
-                        $count++;
-                    } 
-                }
-               fclose($myfile);
-
-                $line = file($file);
-                $message = $line[$count-1];
-                if($message == ""){
-                    $message = "Run Qiime ";
-                }
-                if($count != 0){
-                    $percent = (($count/14)*100);
-                    $percent_round = round($percent,0);
-                }
-            $up = array($message,$percent_round);
-            echo json_encode($up);
-         }
-    }
-
-
-    // public function view_mothur_qiime(){
-
-    //     $img_source = 'images/check.png';
-    //     $img_code = base64_encode(file_get_contents($img_source));
-    //     $data['src'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
-
-    //     $img_source = 'images/ajax-loader.gif';
-    //     $img_code = base64_encode(file_get_contents($img_source));
-    //     $data['srcload'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
-
-    //     $this->load->view('header');
-    //     $this->load->view('run_mothur_qiime',$data);
-    //     $this->load->view('footer');
-    // }
 
     
     # check file map.txt in directory Projects
@@ -327,52 +186,116 @@
         }
      }
 
-   # Generate files map.txt
-    public function excel_map(){
 
-      $user = $this->session->userdata['logged_in']['username'];
-      $id_project = $this->session->userdata['current_project'];
+     public function random_sequence($num){
+      
+         $arr_sequence = array();
+         # arvg[1] is number-sequence
+         # arvg[2] is length min sequence
+         # arvg[3] is length max sequence
+         # arvg[4] is number-set-sequence
+         $cmd = "/usr/bin/python Scriptqiime/random_sequence.py $num 8 8 1";
+         $output = shell_exec($cmd);
+      
+          $arr = explode(',', $output);
+            foreach ($arr as $key => $value) {
+                array_push($arr_sequence, $value);
+            }
+
+         return $arr_sequence;
+    }
+
+
+
+     # Generate file map.txt
+     public function genmap(){
+
+      $user = $this->uri->segment(3);
+      $id_project = $this->uri->segment(4);
       $project = "";
       # Query data Project By ID
-      $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
+          $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
           foreach ($array_project as $r) {
                 $project = basename($r['project_path']);              
-      }
+          }
 
-      $data['num_sample'] = $this->getSamId($user,$project);
-      $this->load->view('excel_map',$data);
-
-    }
-  
-    # read Test_Map.txt
-    public function getSamId($user,$project){
-
-        $sample_id = array();
-        $count = 0 ;
-        $path_input = "owncloud/data/$user/files/$project/input/Test_Map.txt";
-        $file_num_sample = FCPATH.$path_input;
-
-        if(file_exists($file_num_sample)){
-           $myfile =  fopen( $file_num_sample, 'r') or die ("Unable to open file");
-           while (($value = fgets($myfile)) !== false) {
-               if($count > 0){
-                  $name_sample = explode("\t",$value);
-                  array_push($sample_id, $name_sample[0]);
-               }
-               $count++;
-            }
-            fclose($myfile);   
-        }
-        else {
-               $sample_id = null; 
-        }
-        
-        return $sample_id;
-        
+      # create map_json.txt  
+        $map_json = $_REQUEST['data_excel'];
+        $path_map_json = "owncloud/data/$user/files/$project/input/map_json.txt";
+        $file_map_json = FCPATH.$path_map_json; 
+        file_put_contents($file_map_json, $map_json);
+         
+          $this->genFullMap($user,$project);
+          echo json_encode($user);
      }
 
-    # read map_json.txt
-    public function map_json(){
+  
+
+     public function genFullMap($user,$project){
+
+         list($val_sample,$barcode) = $this->split_map_json($user,$project);
+
+         $mapcreate = array();
+         foreach ($val_sample as $key => $value){
+             
+             #splice group 
+             $val_group = explode("\t",$value);
+             array_splice($val_group,0,3);
+             $data_group = implode("\t",$val_group);
+             $group = trim($data_group);
+            
+             #splice SampleID PrimerSequence ReversePrimer
+              $val = explode("\t", $value);
+              array_splice($val,3);
+
+              if($key == 0){
+
+                $head = $val[0]."\t"."BarcodeSequence"."\t"."Linker".$val[1]."\t".$val[2]."\t"."InputFileName"."\t".$group."\t"."Description"."\n";
+                array_push($mapcreate, $head);
+
+
+              }else{
+
+                $body =  $val[0]."\t".trim($barcode[$key])."\t".$val[1]."\t".$val[2]."\t"."out.".$val[0].".assembled_filtered.fasta"."\t".$group."\t"."oricode_".$val[0]."\n";
+
+                array_push($mapcreate, $body);
+              }
+         }
+
+          $path_map = "owncloud/data/$user/files/$project/input/map.txt";
+          $file_map = FCPATH.$path_map;
+          file_put_contents($file_map,$mapcreate); 
+
+     }
+
+
+     #split SampleID go out map_json.txt
+     public function split_map_json($user,$project){
+
+        $data_map = array();
+        $group_sam = "";
+        $path_input = "owncloud/data/$user/files/$project/input/map_json.txt";
+        $file_num_sample = FCPATH.$path_input;
+        $myfile =  fopen( $file_num_sample, 'r') or die ("Unable to open file");
+        while (($value = fgets($myfile)) !== false) {
+             
+                $group = explode("\t", $value);
+                $sam = implode("\t",$group);
+                $group_sam = trim($sam);
+                array_push($data_map,$group_sam);
+
+        }
+        fclose($myfile);
+         $num = count($data_map);
+         $barcode = $this->random_sequence($num);
+
+         return  array($data_map,$barcode);
+ 
+     }
+
+
+     # read map_json.txt
+     public function getgroup(){
 
         $Data_request = $_REQUEST['data'];
         $user = $Data_request[0];
@@ -392,88 +315,12 @@
         while (($value = fgets($myfile)) !== false) {
               if($count == 0){
                  $name_group = explode("\t", $value);
-                 array_splice($name_group,0,1);
+                 array_splice($name_group,0,3);
                  $count++;
               }   
         }
         fclose($myfile);
         echo json_encode(array($count,$name_group));
-     }
-
-
-     # Add Group into files map.txt
-     public function addGroup(){
-
-      $user = $this->uri->segment(3);
-      $id_project = $this->uri->segment(4);
-      $project = "";
-      # Query data Project By ID
-          $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
-          foreach ($array_project as $r) {
-                $project = basename($r['project_path']);              
-          }
-
-      # Read map_json insert to array
-        $map_json = $_REQUEST['data_excel'];
-        $path_map_json = "owncloud/data/$user/files/$project/input/map_json.txt";
-        $file_map_json = FCPATH.$path_map_json; 
-        file_put_contents($file_map_json, $map_json);
-
-        $data_map = $this->split_map_json($user,$project); 
-     
-      # Read file map and insert group to file map
-        $mapcreate = array();
-        $count = 0;
-        $path_Test_Map = "owncloud/data/$user/files/$project/input/Test_Map.txt";
-        $Test_Map = FCPATH.$path_Test_Map;
-        $myfile2 =  fopen($Test_Map, 'r') or die ("Unable to open file");
-        while (($value = fgets($myfile2)) !== false) {
-             
-              $val = explode("\t",$value);
-                $data0 = $val[0];
-                $data1 = $val[1];
-                $data2 = $val[2];
-                $data3 = $val[3];
-                $data4 = $val[4];
-                $data5 = trim($val[5]);
-                
-               # array index $data_map
-               $group_map = trim($data_map[$count]); 
-
-               $b_head = $data0."\t".$data1."\t".$data2."\t".$data3."\t".$data4."\t".$group_map."\t".$data5."\n";
-
-                array_push($mapcreate, $b_head);
-                $count++;           
-        }
-
-        fclose($myfile2);
-        $path_map = "owncloud/data/$user/files/$project/input/map.txt";
-        $file_map_addGroup = FCPATH.$path_map;
-        file_put_contents($file_map_addGroup,$mapcreate); 
-        echo json_encode($user);
-
-     }
-
-
-     #split SampleID go out map_json.txt
-     public function split_map_json($user,$project){
-
-        $data_map = array();
-        $group_sam = "";
-        $path_input = "owncloud/data/$user/files/$project/input/map_json.txt";
-        $file_num_sample = FCPATH.$path_input;
-        $myfile =  fopen( $file_num_sample, 'r') or die ("Unable to open file");
-        while (($value = fgets($myfile)) !== false) {
-             
-                $group = explode("\t", $value);
-                array_splice($group,0,1);
-                $sam = implode("\t",$group);
-                $group_sam = trim($sam);
-                array_push($data_map,$group_sam);
-
-        }
-        fclose($myfile);
-        return $data_map;
 
      }
 

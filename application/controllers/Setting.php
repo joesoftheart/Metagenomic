@@ -19,9 +19,9 @@ class Setting extends CI_Controller
     public function index()
     {
 
-        $data['rs_st'] = $this->mongo_db->get('settings');
+        // $data['rs_st'] = $this->mongo_db->get('settings');
 
-        $this->load->view('header', $data);
+        $this->load->view('header');
         $this->load->view('setting');
         $this->load->view('footer');
 
