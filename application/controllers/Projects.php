@@ -23,6 +23,8 @@ class Projects extends CI_Controller
         putenv("PATH=$PATH");
     }
 
+   
+
     public function index($id_project)
     {
         ob_start();

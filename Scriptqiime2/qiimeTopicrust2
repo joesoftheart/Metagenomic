@@ -1,0 +1,7 @@
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
+export PATH=/home/aum/anaconda/bin:$PATH
+export PATH=/opt/vsearchsw/bin:$PATH
+export PATH=/opt/ExpressionAnalysis-ea-utils-bd148d4/clipper:$PATH
+
+
+filter_otus_from_otu_table.py -i $1 -o $2 --negate_ids_to_exclude -e $3

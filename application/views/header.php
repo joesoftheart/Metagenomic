@@ -242,10 +242,7 @@
 
                         <!-- /input-group -->
                     </li>
-                    <li>
-                        <a href="<?php echo site_url('main') ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                    </li>
-                    <li>
+                     <li>
                         <a href="#project"><i class="fa fa-bar-chart-o fa-fw"></i> Projects<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -260,14 +257,16 @@
                             <li>
                                 <a href="<?php echo site_url('Run_sra/sra_projects') ?>"> SRA</a>
                             </li>
-                            <li>
-                                <a href="#5">...</a>
-                            </li>
+                            
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-
                     <li>
+                        <a href="<?php echo site_url('main') ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    
+
+                   <!--  <li>
                         <a href="#sample"><i class="fa fa-table fa-fw"></i> Samples<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -278,11 +277,11 @@
                                 <a href="<?php echo site_url('all_samples') ?>">...</a>
                             </li>
                         </ul>
-                    </li>
-                    <li>
+                    </li> -->
+                    <!-- <li>
                         <a href="<?php echo site_url('used_resource') ?>"><i class="fa fa-usb"></i> Used Resources</a>
-                    </li>
-                    <li>
+                    </li> -->
+                   <!--  <li>
                         <a href="#stat"><i class="fa fa-files-o fa-fw"></i> Statistics<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -291,11 +290,14 @@
                             <li>
                                 <a href="<?php echo site_url('backend_spec') ?>">Backend spec</a>
                             </li>
-                        </ul>
+                        </ul> -->
                         <!-- /.nav-second-level -->
-                    </li>
+                   <!--  </li> -->
                     <li>
-                        <a href="<?php echo site_url('document') ?>"><i class="fa fa-usb"></i> Documents</a>
+                        <a href="<?php echo site_url('document') ?>"><i class="fa fa-files-o"></i> Documents</a>
+                    </li>
+                     <li>
+                        <a href="<?php echo site_url('#') ?>"><i class="fa fa-comments"></i> Contact us</a>
                     </li>
                 </ul>
             </div>

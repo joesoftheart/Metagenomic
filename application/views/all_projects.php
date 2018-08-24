@@ -23,6 +23,8 @@ if (isset($this->session->userdata['logged_in'])) {
         </div>
         <!-- /.col-lg-12 -->
     </div>
+
+
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
@@ -35,23 +37,48 @@ if (isset($this->session->userdata['logged_in'])) {
                     <th>Permission</th>
                     <th>Type</th>
                     <th>Samples</th>
+                    <th>Status</th>
                     <th>Manage</th>
 
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($rs as $r) { ?>
+                <?php 
+                    $count = 0;
+                    foreach ($rs as $r) { ?>
                     <tr class="odd gradeX">
                         <td><?php echo $r["project_name"] ?></td>
                         <td><?php echo $r["project_title"] ?></td>
                         <td><?php echo $r["project_permission"] ?></td>
                         <td class="center"><?php echo $r["project_type"] ?></td>
-                        <td class="center"><?php echo "555" ?></td>
-                        <td><?php echo anchor("edit_project/edit_project/" . $r['_id'], "Edit", array('class' => 'btn btn-default btn-sm')) ?>
+                        <td class="center"><?php echo  $r["project_num_sam"]; ?></td>
+                        
+                        <td>
+                             <?php if($count == 0){ ?>
+                             <div class="progress progress-striped active">
+                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                                 <span class="text-muted" style="color:#FFFFFF">complete</span>
+                                 </div>
+                            </div>
+                            <?php  $count++; }else{ ?>
+
+                                 <div class="progress progress-striped active">
+                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+                                 <span class="pull-right text-muted" style="color:#FFFFFF">80%</span>
+                                 </div>
+                            </div>
+
+
+                            <?php   } ?>
+
+                        </td>
+                        <td align="center"><?php echo anchor("edit_project/edit_project/" . $r['_id'], "Edit", array('class' => 'btn btn-default btn-sm')) ?>
                             &nbsp;
                             <?php echo anchor("all_projects/delete_project/" . $r['_id'], "Delete", array('class' => 'btn btn-default btn-sm'))
                             ?>&nbsp;<a href="#modal-sections<?php echo $r['_id'] ?>" class="btn btn-default btn-sm"
                                        uk-toggle> Share</a>
+
+                             &nbsp;<button  data-toggle="modal" data-target="#myModal" class="btn btn-default btn-sm" > Upload</button>
                         </td>
 
 
@@ -124,3 +151,101 @@ if (isset($this->session->userdata['logged_in'])) {
     //    });
 
 </script>
+
+    
+
+                           
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="myModalLabel">Upload files</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="showup">
+                                                 <input type="file" >
+                                            </div>
+                                            <div id="showdown" style="display:none;">
+                                                 <center>
+                                                     <img src="<?php echo base_url('tooltip/Spinner.gif');?>" width="150px" height="150px">
+                                                 
+                                                 <p> Uploading your data</p>
+                                                 <p> Do not close this window !!</p>
+
+                                                 </center>
+                                                  
+                                            </div>
+
+                                            <div id="showsuccess" style="display:none;">
+                                                 <center>
+                                                    <button type="button" class="btn btn-info btn-circle btn-xl"><i class="fa fa-check"></i></button>
+                                                 
+                                                 <p style="margin-top: 20px;"> Upload Success</p>
+                                                 </center>
+                                                  
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <div id="btnup">
+
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <button type="button" id="upload_sample" class="btn btn-primary">Upload</button>
+                                            </div>
+
+                                            <div  id="btndown" style="display:none;">
+
+                                               <button id="done_up" type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
+
+<script type="text/javascript">
+    
+
+$(document).ready(function(){
+
+     $('#upload_sample').click(function(){
+
+        $('#showup').hide();
+        $('#showdown').show();
+
+         var time = 3;
+         var interval = null;
+         interval = setInterval(function(){   
+         time--;
+            if(time === 0){
+
+                clearInterval(interval);
+                $('#btnup').hide();
+                 $('#showdown').hide();
+                $('#showsuccess').show();
+                $('#btndown').show();         
+            }
+
+          },1000);
+     });
+
+
+    $('#done_up').click(function(){
+
+         $('#showsuccess').hide();
+         $('#btndown').hide(); 
+         $('#showup').show(); 
+         $('#btnup').show(); 
+
+     });      
+       
+
+});
+
+</script>
+                      

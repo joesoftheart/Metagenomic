@@ -30,6 +30,17 @@ class All_projects extends CI_Controller
     }
 
 
+     public function uploadsample(){
+
+        $this->load->view('header');
+        $this->load->view('upload_sample_view');
+        $this->load->view('footer');
+
+
+        
+    }
+
+
     public function delete_project($id)
     {
         $this->mongo_db->where(array("_id" => new \MongoId($id)))->delete('projects');

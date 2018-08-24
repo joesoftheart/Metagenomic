@@ -38,7 +38,7 @@ function advance_mode(obj){
                                  $(".Pre-show").show();
                                  var data = new Array(status[2],pid);
                                  checkrun(data);
-                                 $('#test_run').html('Ckecking Process Queue');
+                                 $('#test_run').html('Checking Process Queue');
 
                                  $('li.pre').attr('id','active');
                                  $('li.pre2').attr('id','');
@@ -51,7 +51,7 @@ function advance_mode(obj){
                                  $(".Pre-show2").show();
                                  var data = new Array(status[2],pid);
                                  check_subsample(data);
-                                 $('#test_run2').html('Ckecking Process Queue');
+                                 $('#test_run2').html('Checking Process Queue');
 
                                  $('li.pre').attr('id','done');
                                  $('li.pre2').attr('id','active');
@@ -65,7 +65,7 @@ function advance_mode(obj){
                                $(".Pre-show3").show();
                                var data = new Array(status[2],pid);
                                ckeck_analysis(data);
-                               $('#test_run3').html('Ckecking Process Queue');
+                               $('#test_run3').html('Checking Process Queue');
 
                                  $('li.pre').attr('id','done');
                                  $('li.pre2').attr('id','done');
@@ -343,7 +343,6 @@ function get_subsample(array_data){
                      console.log(e.message);
                    }
            });
-   
 }
                                  
 function check_subsample(jobsample){

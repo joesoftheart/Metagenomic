@@ -55,7 +55,7 @@
 
                    if($check_run == false){
                       $loop = false;
-                      //pick_open_reference_otus($user,$project,$path_in,$path_out);
+                      pick_open_reference_otus($user,$project,$path_in,$path_out);
                    }
          }   
      } 

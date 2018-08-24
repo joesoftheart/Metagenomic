@@ -25,6 +25,8 @@ p <- ggplot(data, aes(x = Source, y = value, fill = Source)) +
     legend.text = element_text(size = 14),
     strip.text.x = element_text(size = 16, angle = 0, face = 'bold'))#,
 
-png(args[2], width = 10, height = 8, units = "in", res = 300)
+#png(args[2], width = 10, height = 8, units = "in", res = 300)
+svg(args[2], width = 10, height = 8)
+
 p + theme(panel.spacing = unit(1, "lines"))
 dev.off()

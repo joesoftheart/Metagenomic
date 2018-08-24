@@ -15,11 +15,10 @@ class Advance_report extends CI_Controller
 
     public function index()
     {
-        ob_start();
-
-         $id_project =  $_REQUEST['projectid'];
+      
        
-
+        $id_project =  $_REQUEST['projectid'];
+ 
         $data['rs'] = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
         $project_analysis = null;
        
@@ -31,6 +30,14 @@ class Advance_report extends CI_Controller
 
 
         $project_path = str_replace("../", "", $project_path);
+
+         $user = $this->session->userdata['logged_in']['username'];
+         $project_data = basename($project_path);
+
+
+         $this->changsvgToppng($user,$project_data);
+         $this->copyBacth_RunLog($id_project,$user,$project_data);
+     
 
 
         if ($project_analysis == "phylotype") {
@@ -49,13 +56,508 @@ class Advance_report extends CI_Controller
 
    public function view_report($id_project){
 
+         $user = $this->session->userdata['logged_in']['username'];
+         $data['user'] = $user;
 
-        $data['projects_t'] = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
-        $data['projects_run_t'] = $this->mongo_db->get_where('projects_run', array('project_id' => $id_project));
-        $this->load->library('myfpdf');
-        $this->load->library('mytcpdf');
-        $this->load->view('advance_report', $data);
+         $projects_t = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
+         $data['projects_t'] = $projects_t;
+
+
+         $projects_run_t = $this->mongo_db->get_where('projects_run', array('project_id' => $id_project));
+         $data['projects_run_t'] = $projects_run_t;
+      
+ 
+         $method = "";
+         foreach ($projects_run_t as $r) {         
+                $method = $r['method']; 
+         }
+
+  
+         # check graph NMDS and PCoA
+         if($method == "NMDS"){
+
+             $data['thetayc1'] = "NMD_thetayc.png";
+             $data['thetayc2'] = "NMDS_BiplotwithMetadata_thetayc.png";
+             $data['thetayc3'] = "NMDS_BiplotwithOTU_thetayc.png";
+
+         }else if($method == "PCoA"){
+           
+             $data['thetayc1'] = "PCoA_thetayc.png";
+             $data['thetayc2'] = "PCoA_BiplotwithMetadata_thetayc.png";
+             $data['thetayc3'] = "PCoA_BiplotwithOTU_thetayc.png";
+         }
+       
+        # check run picrust 
+        $project_data = "";
+        foreach ($projects_t as $r) {
+                $project_data = basename($r['project_path']);
+         }
+
+        $read_option72 = file_get_contents('owncloud/data/'.$user.'/files/'.$project_data.'/option72.txt');
+        list($option_use,$sample1,$sample2) = explode("\n",$read_option72);
+        list($option,$use) = explode(":", $option_use);
+        list($sa1,$sam1) = explode(":", $sample1);
+        list($sa2,$sam2) = explode(":", $sample2);
+
+        $data['use'] = $use;
+        $data['sam1'] = $sam1;
+        $data['sam2'] = $sam2;
+        
+        $data['tablelog'] = "data_report_mothur/".$user."/".$project_data."/table_log.txt";
+
+        $data['dataphylum'] = $this->phylumn_count($user,$project_data);
+       
+       $this->load->library('myfpdf');
+       $this->load->library('mytcpdf');
+       $this->load->view('advance_report', $data);
+
     }
+
+
+
+
+    public function changsvgToppng($user,$project_data){
+
+        $sharedsobs_svg = FCPATH."data_report_mothur/$user/$project_data/beta_diversity_analysis/sharedsobs.svg";  
+
+        $path_dir = FCPATH."owncloud/data/$user/files/$project_data/output/sharedsobs.svg";
+        if(file_exists($path_dir)){
+               copy($path_dir,$sharedsobs_svg);
+        }
+
+     
+
+    # create folder download Graph .SVG
+    $folder_download1 = "data_report_mothur/$user/$project_data/Download/alpha_diversity_analysis/";
+        if (!file_exists($folder_download1)){
+            mkdir($folder_download1, 0777, true);
+        }
+
+     $folder_download2 = "data_report_mothur/$user/$project_data/Download/beta_diversity_analysis/";
+        if (!file_exists($folder_download2)){
+            mkdir($folder_download2, 0777, true);
+        }
+
+    $folder_download3 = "data_report_mothur/$user/$project_data/Download/optional_output/";
+        if (!file_exists($folder_download3)){
+            mkdir($folder_download3, 0777, true);
+        }
+
+    $folder_download4 = "data_report_mothur/$user/$project_data/Download/taxonomy_classification/";
+        if (!file_exists($folder_download4)){
+            mkdir($folder_download4, 0777, true);
+        }
+
+
+            $path1 = "data_report_mothur/$user/$project_data/alpha_diversity_analysis/";
+            $path_dir = $path1;
+            if (is_dir($path_dir)) {
+                if($read = opendir($path_dir)){
+                    while (($img_svg = readdir($read)) !== false) {
+                        $allowed =  array('svg');
+                        $ext = pathinfo($img_svg, PATHINFO_EXTENSION);
+                        if(in_array($ext,$allowed)){
+
+                            $name_png = pathinfo($img_svg, PATHINFO_FILENAME);
+                             $path_png = $path1.$name_png.".png";
+                             $path_svg = $path1.$img_svg;
+
+                             $cmd = 'inkscape -z  '.$path_svg.' -e '.$path_png;
+                             exec($cmd); 
+                             $path_downlod_svg1 = $folder_download1.$img_svg;
+                             copy($path_svg,$path_downlod_svg1);
+                             unlink($path_svg); 
+                         }
+                    }
+                   closedir($read);
+                }
+            } 
+
+            $path2 = "data_report_mothur/$user/$project_data/beta_diversity_analysis/";
+            $path_dir = $path2;
+            if (is_dir($path_dir)) {
+                if($read = opendir($path_dir)){
+                    while (($img_svg = readdir($read)) !== false) {
+                        $allowed =  array('svg');
+                        $ext = pathinfo($img_svg, PATHINFO_EXTENSION);
+                        if(in_array($ext,$allowed)){
+
+                            $name_png = pathinfo($img_svg, PATHINFO_FILENAME);
+                            $path_png = $path2.$name_png.".png";
+                            $path_svg = $path2.$img_svg; 
+
+                             $cmd = 'inkscape -z '.$path_svg.' -e  '.$path_png;
+                             exec($cmd); 
+                             $path_downlod_svg2 = $folder_download2.$img_svg;
+                             copy($path_svg,$path_downlod_svg2);
+                             unlink($path_svg); 
+                         }
+                    }
+                   closedir($read);
+                }
+            } 
+
+
+            $path3 = "data_report_mothur/$user/$project_data/optional_output/";
+            $path_dir = $path3;
+            if (is_dir($path_dir)) {
+                if($read = opendir($path_dir)){
+                    while (($img_svg = readdir($read)) !== false) {
+                        $allowed =  array('svg');
+                        $ext = pathinfo($img_svg, PATHINFO_EXTENSION);
+                        if(in_array($ext,$allowed)){
+
+                            $name_png = pathinfo($img_svg, PATHINFO_FILENAME);
+                            $path_png = $path3.$name_png.".png";
+                            $path_svg = $path3.$img_svg;
+
+                             $cmd = 'inkscape -z '.$path_svg.' -e  '.$path_png;
+                             exec($cmd); 
+                             $path_downlod_svg3 = $folder_download3.$img_svg;
+                             copy($path_svg,$path_downlod_svg3);
+                             unlink($path_svg); 
+                         }
+                    }
+                   closedir($read);
+                }
+            } 
+
+
+            $path4 = "data_report_mothur/$user/$project_data/taxonomy_classification/";
+            $path_dir = $path4;
+            if (is_dir($path_dir)) {
+                if($read = opendir($path_dir)){
+                    while (($img_svg = readdir($read)) !== false) {
+                        $allowed =  array('svg');
+                        $ext = pathinfo($img_svg, PATHINFO_EXTENSION);
+                        if(in_array($ext,$allowed)){
+
+                            $name_png = pathinfo($img_svg, PATHINFO_FILENAME);
+                            $path_png = $path4.$name_png.".png";
+                            $path_svg = $path4.$img_svg; 
+
+                             $cmd = 'inkscape -z '.$path_svg.' -e  '.$path_png;
+                             exec($cmd); 
+                             $path_downlod_svg4 = $folder_download4.$img_svg;
+                             copy($path_svg,$path_downlod_svg4);
+                             unlink($path_svg); 
+                         }
+                    }
+                   closedir($read);
+                }
+            } 
+
+
+
+     }
+
+
+    public function copyBacth_RunLog($id_project,$user,$project){
+
+        # copy file_phylum_count.txt to data_report_mothur
+        $path_phylum_count = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";
+        if(file_exists($path_phylum_count)){
+                $phylum_count = "data_report_mothur/$user/$project/file_phylum_count.txt";
+                copy($path_phylum_count,$phylum_count);
+        }
+
+     
+       
+        # copy log sungride makesummary to Log_report
+        $MakeSummary_file = null;
+        $path_summary = "owncloud/data/$user/files/$project/log_full/";
+        $file_log = FCPATH.$path_summary;
+            if(is_dir($file_log)) {
+                if($read = opendir($file_log)){
+                       while (($summary = readdir($read)) !== false) {
+
+                         # makesummary
+                         if(stripos($summary,'makesummary') !== false){
+                             
+                             $MakeSummary_file = $summary;
+                           
+                         }
+                      }
+                    closedir($read);
+                }
+            }
+         
+         $this->table_log_create($id_project,$user,$project,$MakeSummary_file);
+
+    }
+
+
+
+    public function table_log_create($id_project,$user,$project,$makesummary){
+
+
+         $projects_data = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
+         foreach ($projects_data as $r) {
+                  $numsample = $r['project_num_sam'];
+         }
+
+         $sample =  $numsample/2;
+
+
+        $log_data = array();
+
+        # colum Header
+        $log_data[0][0] =  "Samples name";
+        $log_data[0][1] =  "No. of reads in rawdata after make contigs";
+        $log_data[0][2] =  "No. of reads after screen.seqs*";
+        $log_data[0][3] =  "No. of reads after removing chimera";
+        $log_data[0][4] =  "No. of cleaned reads for phylotype/OTUs step";
+
+
+        #colum 1 && 2
+        $count = 1;
+        $file_log = FCPATH."Log_report/$user/$project/$makesummary"; 
+        $cmd = "/bin/grep  -A ".$sample." 'Group count:' ".$file_log;
+        exec($cmd,$output);
+        foreach ($output as $key => $value) {
+            if($key > 0){
+                 $data = explode("\t", $value);
+                 $log_data[$count][1] =  trim($data[0]);
+                 $log_data[$count][2] =  trim($data[1]);
+                 $count++;
+            }
+        }
+
+
+         #colum 3
+        $count1 = 1;
+        $path = FCPATH."Log_report/$user/$project/stability.trim.contigs.good.good.count.summary";
+        $read = fopen($path,"r") or die ("Unable to open file");
+        while(($line = fgets($read)) !== false){
+               
+             $data = explode("\t", $line);
+             $log_data[$count1][3] =  trim($data[1]);
+             $count1++;  
+        }
+        fclose($read);
+
+
+         #colum 4
+        $count2 = 1;
+        $path = FCPATH."Log_report/$user/$project/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count.summary";
+        $read = fopen($path,"r") or die ("Unable to open file");
+        while(($line = fgets($read)) !== false){
+               
+             $data = explode("\t", $line);
+             $log_data[$count2][4] =  trim($data[1]);
+             $count2++;  
+        }
+        fclose($read);
+
+
+        #colum 5
+        $count3 = 1;
+        $path = FCPATH."Log_report/$user/$project/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count.summary";
+        $read = fopen($path,"r") or die ("Unable to open file");
+        while(($line = fgets($read)) !== false){
+               
+             $data = explode("\t", $line);
+             $log_data[$count3][5] =  trim($data[1]);
+             $count3++;  
+        }
+        fclose($read);
+
+        $table_data = array();
+        foreach ($log_data as $variable) {
+            $colum = 0;
+            foreach ($variable as  $value) {
+               if($colum <= 3){
+                    $log = $value."\t";
+                    array_push($table_data,$log);
+               }else{
+                    $log = $value."\n";
+                    array_push($table_data,$log);
+               }
+               $colum++;
+              
+              
+            } 
+        }
+       
+         
+        $path_log = "data_report_mothur/$user/$project/table_log.txt";
+        $file_log = FCPATH.$path_log;
+        file_put_contents($file_log,$table_data); 
+
+    }
+
+   
+
+    public function phylumn_count($user,$project_data){
+        
+        # read file convert to array
+        $data_keep = array();
+        $path = FCPATH."data_report_mothur/$user/$project_data/file_phylum_count.txt";
+        $read = fopen($path,"r") or die ("Unable to open file");
+        
+        $data_lenght = 0;
+        $line_count = 0;
+        while(($line = fgets($read)) !== false){
+            $data_arr = explode("\t",$line);
+            $data_lenght = sizeof($data_arr);
+            foreach ($data_arr as $key => $value) {
+                     $data_keep[$line_count][$key] = $value; 
+            }
+            $line_count++;  
+        }
+        fclose($read);
+
+        # search phylum max values
+        $data_set = array();
+        $indx =  $data_lenght-1;
+        for($i = 1;$i <= $indx;$i++){
+            
+            $var_push = array();
+            $line_count = 0;
+            foreach ($data_keep as $key => $value) {
+             #print_r($value);
+               if($line_count > 0){
+                   array_push($var_push,trim($value[$i]));
+                }
+                $line_count++;
+            }
+
+             $var_max = max($var_push);
+             $var_max_index =  array_search($var_max, $var_push);
+             $var_max_index = $var_max_index+1;
+
+             // echo $data_keep[0][$i]." "
+             //        .$data_keep[$var_max_index][0]." "
+             //        .$var_max."<br/>";
+            $data_set[$data_keep[$var_max_index][0]][] = $data_keep[0][$i];
+           
+         }
+
+         # keep count value
+          
+         $arr_num = array();
+         foreach ($data_set as $key => $value) {
+             array_push($arr_num,count($value));
+          }
+
+        # array keep value
+        $phylum_most = array();
+        $sample_most = array();
+
+        $phylum_while = array();
+        $sample_while = array();
+
+        
+        # loop keep data most && while
+        $loop_index = 0;
+        for($k=0;$k < count($data_set);$k++){
+          
+
+          $arr_num_max = max($arr_num);
+          $arr_num_max_index = array_search($arr_num_max,$arr_num);
+          unset($arr_num[$arr_num_max_index]);
+         
+            # check index max
+            $line_arr_num_max = 0;
+
+            foreach ($data_set as $key => $value) {
+
+                # check index max
+                if($arr_num_max_index == $line_arr_num_max){
+
+                    #  phylum_most
+                    if($loop_index == 0){
+                        array_push($phylum_most,$key);
+                        for($i=0;$i < count($value);$i++){
+
+                           array_push($sample_most,$value[$i]);
+                        }
+                    }
+                    
+                    # phylum_while
+                    else{
+
+                        array_push($phylum_while,$key);
+                        for($i=0;$i < count($value);$i++){
+
+                           array_push($sample_while,$value[$i]);
+                        }
+                    }
+                    $loop_index++;   
+                }
+                $line_arr_num_max++;
+            }
+
+         }
+
+        # output data to report
+
+        #echo $phylum_most[0];
+        #echo "<br>";
+
+        $sample1_phylum = "";
+        # loop $sample_most
+        for($i=0;$i< count($sample_most);$i++){
+            if($i == (count($sample_most)-1) ){
+                $sample1_phylum  .= " and ".$sample_most[$i];
+            }else if($i == (count($sample_most)-2) ){
+                $sample1_phylum  .= $sample_most[$i];
+            }
+            else{
+                $sample1_phylum  .= $sample_most[$i]." , ";
+            }   
+        }
+
+        #echo $sample1_phylum; 
+        #echo "<br>";
+
+
+        $phylum_while2 = "";
+        # loop $phylum_while
+        if(count($phylum_while) == 1){
+             $phylum_while2 .= $phylum_while[0];
+        }else{
+            for($i=0;$i< count($phylum_while);$i++){
+                if($i == (count($phylum_while)-1) ){
+                     $phylum_while2 .=  " and ".$phylum_while[$i];
+                }else if($i == (count($phylum_while)-2) ){
+                     $phylum_while2 .= $phylum_while[$i];
+                }
+                else{
+                    $phylum_while2 .= $phylum_while[$i]." , ";
+                }   
+            }
+
+        }
+        // echo $phylum_while2; 
+        //echo "<br>";
+
+        $sample2_phylum = "";
+        # loop $sample_while
+        if(count($sample_while) == 1){
+             $sample2_phylum .= $sample_while[0];
+        }else{
+            for($i=0;$i< count($sample_while);$i++){
+                 if($i == (count($sample_while)-1) ){
+                     $sample2_phylum .= " and ".$sample_while[$i];
+                }else if($i == (count($sample_while)-2) ){
+                    $sample2_phylum .= $sample_while[$i];
+                }
+                else{
+                     $sample2_phylum .= $sample_while[$i]." , ";
+                }   
+            }
+        }
+        // echo $sample2_phylum;
+
+        $data_phylum_sample2 = "";
+        if(count($phylum_while) != 0){
+             $data_phylum_sample2 = ",while for dataset taxonomy of ".$sample2_phylum." the most common phylum found was ".$phylum_while2." respectively";
+        }
+        #echo $data_phylum_sample2;
+        return array($phylum_most[0],$sample1_phylum,$data_phylum_sample2);
+    }
+  
 
 
     // public function database_text(){

@@ -89,7 +89,56 @@ if (isset($this->session->userdata['logged_in'])) {
                 </h4>
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse">
-                <div class="panel-body"></div>
+                <div class="panel-body">
+
+                    <div class="row">
+                <div class="col-lg-2">
+
+                <label>Screen reads </label>
+
+                </div>
+                <div class="col-lg-7">
+
+                <table border="0" class="uk-table uk-table-middle">
+
+                <div class="form-group">
+
+                <tr>
+                    <td>maximum ambiguous :</td>
+                    <td><input class="uk-input form-control " type="text" name="max_amb" value="8" readonly="readonly" placeholder="8">
+                    </td>
+                </tr>
+                <tr>
+                    <td>maximum homopolymer :</td>
+                    <td><input class="uk-input form-control" type="text" name="max_homo" value="8" readonly="readonly" placeholder="8">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>minimum reads length :</td>
+                    <td><input class="uk-input form-control" type="text" name="min_read" value="100" readonly="readonly" placeholder="100">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>maximum reads length :</td>
+                    <td><input class="uk-input form-control" type="text" name="max_read" value="260" readonly="readonly" placeholder="260">
+                    </td>
+                 </tr>
+
+                 </div>
+
+                 </table>
+
+                 </div>
+
+                </div>
+
+
+                    
+
+
+                </div>
                 </div>
                 </div>
                 <div class="panel panel-default">
@@ -102,37 +151,7 @@ if (isset($this->session->userdata['logged_in'])) {
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                <div class="row">
-                <div class="col-lg-2">
-                <label>Screen reads </label>
-                </div>
-                <div class="col-lg-7">
-                <table border="0" class="uk-table uk-table-middle">
-                <div class="form-group">
-                <tr>
-                    <td>maximum ambiguous :</td>
-                    <td><input class="uk-input form-control " type="text" name="max_amb" value="8" readonly="readonly" placeholder="8">
-                    </td>
-                </tr>
-                <tr>
-                    <td>maximum homopolymer :</td>
-                    <td><input class="uk-input form-control" type="text" name="max_homo" value="8" readonly="readonly" placeholder="8">
-                    </td>
-                </tr>
-                <tr>
-                    <td>minimum reads length :</td>
-                    <td><input class="uk-input form-control" type="text" name="min_read" value="100" readonly="readonly" placeholder="100">
-                    </td>
-                </tr>
-                <tr>
-                    <td>maximum reads length :</td>
-                    <td><input class="uk-input form-control" type="text" name="max_read" value="260" readonly="readonly" placeholder="260">
-                    </td>
-                 </tr>
-                 </div>
-                 </table>
-                 </div>
-                </div>
+
                 <div class="row">
                 <div class="col-lg-2">
                 <label>Alignment step </label>
@@ -368,9 +387,9 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                  </ul>
                  </div>
                 <?php echo form_close() ?>
-                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                            <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                                 Launch Demo Modal
-                            </button>
+                            </button> -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
@@ -507,7 +526,7 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                    <div  id="row_option_silva"> 
 
                                     
-                                  <img src="<?php echo site_url('images/img_silva');?>" width="65%" height="55%">
+                                  <img src="<?php echo site_url('images/img_silva.png');?>" width="65%" height="55%">
 
 
                                        <div class="radio">
@@ -757,7 +776,7 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                              <textarea class="form-control" rows="5" id="show_group" readonly="readonly"></textarea>
                                         </div>
                                         <div class="col-lg-10 col-lg-push-1 uk-margin">
-                                              <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Back Preprocess</button>
+                                              <button class="btn btn-primary" data-toggle="modal" data-target="#myModal_back"> Back Preprocess</button>
                                         </div>
                                         </div>
                              </div>
@@ -820,7 +839,7 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
              <div class="col-lg-12 uk-margin"></div>
              <!-- Modal -->
                  <div class="panel-body">
-                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"> 
+                     <div class="modal fade" id="myModal_back" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"> 
                      <div class="modal-dialog">
                      <div class="modal-content">
                      <div class="modal-header">
@@ -1062,13 +1081,13 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                          <div id="collapse10" class="panel-collapse collapse">
                          <div class="panel-body">
 
-                                <label class="col-lg-10"> PCoA : <input name="func" type="radio" id="radio_pcoa"> Use PCoA</label>
+                                <label class="col-lg-10"> PCoA : <input name="func" type="radio" id="radio_pcoa" value="usepcoa"> Use PCoA</label>
                                 <div class="col-lg-7 col-lg-push-2 ">
                                      <label class="col-lg-7"> Community structure</label>
                                      <div class="col-lg-7 col-lg-push-1 ">
+                                         <input type='checkbox' name='pcoa_st[]' value='thetayc' checked disabled> thetayc <br/> 
                                          <input type='checkbox' name='pcoa_st[]' value='braycurtis' class="pcoa" disabled> braycurtis <br/>
                                          <input type='checkbox' name='pcoa_st[]' value='thetan' class="pcoa" disabled> thetan <br/>
-                                         <input type='checkbox' name='pcoa_st[]' value='thetayc' class="pcoa" disabled> thetayc <br/>     
                                          <input type='checkbox' name='pcoa_st[]' value='morisitahorn' class="pcoa" disabled> morisitahorn <br/>
                                          <input type='checkbox' name='pcoa_st[]' value='sorabund' class="pcoa" disabled> sorabund        
                                      </div>
@@ -1081,7 +1100,7 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                      </div>
                                  </div>
                                  <div class="col-lg-12 uk-margin"></div>
-                                 <label class="col-lg-10 "> NMDS : <input  name="func" type="radio" id="radio_nmds"> Use NMDS</label>
+                                 <label class="col-lg-10 "> NMDS : <input  name="func" type="radio" id="radio_nmds" value="usenmds"> Use NMDS</label>
                                 <div class="col-lg-4 col-lg-push-2 ">
                                      <select class="uk-select" name="nmds">
                                          <option value="2"> 2D</option>
@@ -1091,9 +1110,9 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                                 <div class="col-lg-9 col-lg-push-2 ">
                                      <label class="col-lg-7">Community structure</label>
                                      <div class="col-lg-9 col-lg-push-1 ">
+                                          <input type='checkbox' name='nmds_st[]' value='thetayc' checked disabled> thetayc <br/>  
                                          <input type='checkbox' name='nmds_st[]' value='braycurtis'class="nmds" disabled> braycurtis <br/>       
-                                         <input type='checkbox' name='nmds_st[]' value='thetan' class="nmds" disabled> thetan <br/>
-                                         <input type='checkbox' name='nmds_st[]' value='thetayc'class="nmds" disabled> thetayc <br/>                          
+                                         <input type='checkbox' name='nmds_st[]' value='thetan' class="nmds" disabled> thetan <br/>               
                                          <input type='checkbox' name='nmds_st[]' value='morisitahorn'class="nmds" disabled> morisitahorn <br/>                   
                                          <input type='checkbox' name='nmds_st[]' value='sorabund' class="nmds" disabled> sorabund                          
                                      </div>
@@ -1437,17 +1456,18 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
 
             <div class="alert alert-info">
             <center>
+
+            <button type="button" class="btn btn-warning  btn-circle btn-xl" id="btn_graph">
+                <i class="fa fa-file-image-o"></i>
+              </button>
+                     <h4>Graph</h4>
     
-            <button type="button" class="btn btn-info btn-circle btn-xl" id="btn_reports">
-                     <i class="fa fa-file-word-o"></i>
-            </button>
-            
-                   <h4>  Report  </h4>
+           
             </center>
             </div>    
-             </div>
-             </div>
-             </div>
+            </div>
+            </div>
+            </div>
 
         <hr class="uk-divider-icon">
              <div class="panel-body">
@@ -1456,11 +1476,13 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
 
              <div class="alert alert-info">
              <center>
+
+            <button type="button" class="btn btn-info btn-circle btn-xl" id="btn_reports">
+                     <i class="fa fa-file-word-o"></i>
+                </button>
             
-              <button type="button" class="btn btn-warning  btn-circle btn-xl" id="btn_graph">
-                <i class="fa fa-file-image-o"></i>
-              </button>
-                     <h4>Graph</h4>
+                   <h4>  Report  </h4>
+            
              </center>
             
              </div>    
@@ -1562,7 +1584,7 @@ document.getElementById("btn_reports").onclick = function(){
                 if(chk == "t"){
                    location.href="<?php echo base_url();?>Advance_report/view_report/<?php echo $current_project?>";           
                 }else{
-                    alert("you don't run mode advance");
+                    alert("run mode advance");
                 }
               
             }
@@ -1583,7 +1605,8 @@ document.getElementById("btn_graph").onclick = function(){
                 if(dir == "TRUE"){
                    location.href=" <?php echo site_url('showimg/'.$current_project); ?>";           
                 }else{
-                    alert("you don't run mode advance");
+                    alert("run mode advance");
+
                 }
               
             }
@@ -1699,6 +1722,8 @@ $("#sub-test3").click(function () {
                  // var axes_otu = document.forms["Analysis-form"]["axes_otu"].value;
                 var axes_otu = "0";
 
+                var func_use = document.forms["Analysis-form"]["func"].value;
+
                    var upgma_st = document.getElementsByName('upgma_st[]');
                    var upgma_me = document.getElementsByName('upgma_me[]');
 
@@ -1728,7 +1753,7 @@ $("#sub-test3").click(function () {
       metadata_stop = "stop";
 
     
-var array_data = new Array(username, project, level, ch_alpha, size_alpha, ch_beta, size_beta, venn1, venn2, venn3, venn4, d_upgma_st, d_upgma_me, d_pcoa_st, d_pcoa_me, nmds, d_nmds_st, d_nmds_me, file_design, file_metadata, amova, homova, anosim, correlation_meta, method_meta, axes_meta, correlation_otu, method_otu, axes_otu, kegg, sample_comparison, statistical_test, ci_method, p_value ,console_event1 ,console_event2);
+var array_data = new Array(username, project, level, ch_alpha, size_alpha, ch_beta, size_beta, venn1, venn2, venn3, venn4, d_upgma_st, d_upgma_me, d_pcoa_st, d_pcoa_me, nmds, d_nmds_st, d_nmds_me, file_design, file_metadata, amova, homova, anosim, correlation_meta, method_meta, axes_meta, correlation_otu, method_otu, axes_otu, kegg, sample_comparison, statistical_test, ci_method, p_value ,console_event1 ,console_event2,func_use);
 
 // check condition run 
     if(username != "" && project != "" &&  level != "" &&  venn1 != "0" && venn2 != "0" && check_ven_all == "start" ){
@@ -1783,7 +1808,8 @@ if(console_event1 && !console_event2){
             console.log("No options");
             $(".Pre-test3").hide();
             $(".Pre-show3").show();
-            get_analysis(array_data);       
+            get_analysis(array_data); 
+        
         }
 }
                   
@@ -1791,103 +1817,72 @@ if(console_event1 && !console_event2){
 });
 
 
-           var ven1,ven2,ven3,ven4;
-      
-             $('#venn1').change(function(){
-                 ven1 = $('#venn1').val();
-                 if(ven1 != '0'){
-                     if(ven1 === ven2 || ven1 === ven3 || ven1 === ven4){
-                         alert('Duplicate value');
-                         check_ven_all = "stop";
-                     }else{
-                         check_ven_all = "start";
-                     }
-                 }
+var ven1,ven2,ven3,ven4;     
+$('#venn1').change(function(){
+        ven1 = $('#venn1').val();
+        if(ven1 != '0'){
+            if(ven1 === ven2 || ven1 === ven3 || ven1 === ven4){
+                 alert('Duplicate value');
+                 check_ven_all = "stop";
+            }else{check_ven_all = "start"; }
+        }
                 
-                 
-             });
-              $('#venn2').change(function(){
-                 ven2 = $('#venn2').val();
-                  if(ven2 != '0'){
-                     if(ven2 === ven1 || ven2 === ven3 ||ven2 === ven4){
-                         alert('Duplicate value');
-                         check_ven_all = "stop";
-                    }else{
-                         check_ven_all = "start";
-                    }
-                    
-                 }
-                
-             });
-             $('#venn3').change(function(){
-                 ven3 = $('#venn3').val();
-                  if(ven3 != '0'){
-                     if(ven3 === ven1 || ven3 === ven2 || ven3 === ven4 ){
-                          alert('Duplicate value');
-                         check_ven_all = "stop";
-                    }else{
-                         check_ven_all = "start";
-                    } 
-                 }
-                 
-             });
-              $('#venn4').change(function(){
-                 ven4 = $('#venn4').val();
-                  if(ven4 != '0'){
-                    if(ven4 === ven1 || ven4 === ven2 || ven4 === ven3){
-                          alert('Duplicate value');
-                         check_ven_all = "stop";
-                     }else{
-                         check_ven_all = "start";
-                     }
-                 }
-                
-             });
-
-
-
-           $('#correlation_meta').change(function(){
-                if($(this).is(':checked')){
-                    correlation_meta = $('#correlation_meta').val();
-                }else{
-                    correlation_meta = null;
-                }
-            });
-
-           $('#correlation_otu').change(function(){
-                if($(this).is(':checked')){
-                    correlation_otu = $('#correlation_otu').val();
-                }else{
-                    correlation_otu = null;
-                }
-            });
-
-           $('#amova_id').change(function(){
-               if($(this).is(':checked')){
-                   amova = $("#amova_id").val();
-               }else{
-                   amova = null;
-               }
-           });
-
-           $('#homova_id').change(function(){
-               if($(this).is(':checked')){
-                   homova = $("#homova_id").val();
-               }else{
-                   homova = null;
-               }
-           });
-
-           $('#anosim_id').change(function(){
-              if($(this).is(':checked')){
-                   anosim = $("#anosim_id").val();
-              }else{
-                   anosim = null;
-              }
-           });
-
+});
+$('#venn2').change(function(){
+         ven2 = $('#venn2').val();
+         if(ven2 != '0'){
+            if(ven2 === ven1 || ven2 === ven3 ||ven2 === ven4){
+                alert('Duplicate value');
+                check_ven_all = "stop";
+            }else{check_ven_all = "start";}           
+        }
+});
+$('#venn3').change(function(){
+        ven3 = $('#venn3').val();
+        if(ven3 != '0'){
+             if(ven3 === ven1 || ven3 === ven2 || ven3 === ven4 ){
+                alert('Duplicate value');
+                check_ven_all = "stop";
+            }else{check_ven_all = "start";} 
+        }
+ });
+$('#venn4').change(function(){
+        ven4 = $('#venn4').val();
+        if(ven4 != '0'){
+            if(ven4 === ven1 || ven4 === ven2 || ven4 === ven3){
+                 alert('Duplicate value');
+                 check_ven_all = "stop";
+            }else{check_ven_all = "start"; }
+        }
  });
 
+$('#correlation_meta').change(function(){
+        if($(this).is(':checked')){
+            correlation_meta = $('#correlation_meta').val();
+        }else{correlation_meta = null;}
+});
+$('#correlation_otu').change(function(){
+        if($(this).is(':checked')){
+            correlation_otu = $('#correlation_otu').val();
+        }else{correlation_otu = null; }
+});
+$('#amova_id').change(function(){
+        if($(this).is(':checked')){
+                amova = $("#amova_id").val();
+        }else{amova = null;}
+ });
+$('#homova_id').change(function(){
+        if($(this).is(':checked')){
+            homova = $("#homova_id").val();
+        }else{ homova = null;}
+});
+$('#anosim_id').change(function(){
+        if($(this).is(':checked')){
+            anosim = $("#anosim_id").val();
+        }else{anosim = null;}
+});
+
+});
 
 </script> 
 

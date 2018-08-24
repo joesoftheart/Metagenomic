@@ -19,4 +19,9 @@ gg1 = gg +
     theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12)) #No line border
 gg2 = gg1 + theme(legend.direction = "horizontal", legend.position = "bottom", legend.box = "vertical", legend.title.align = 0) #+ scale_fill_discrete(name="")
 #gg2
-ggsave(args[2], plot = gg2, width = 20, height = 25, units = "cm", dpi = 300)
+#ggsave(args[2], plot = gg2, width = 20, height = 25, units = "cm", dpi = 300)
+#png(args[2], width = 20, height = 25, units = "cm", res = 300)
+
+svg(args[2],width=8,height=10)
+gg2
+dev.off()

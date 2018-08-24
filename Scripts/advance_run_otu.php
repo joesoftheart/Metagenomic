@@ -1283,8 +1283,9 @@ function classify_count($user, $project, $path_in, $path_out)
     echo "classify_count" . "\n";
     $jobname = $user . "_classify_count";
     $make = "classify.otu(list=final.opti_mcc.list, count=final.count_table, taxonomy=final.taxonomy, label=0.03,inputdir=$path_in,outputdir=$path_out)
-                   classify.otu(list=final.opti_mcc.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=0.03,inputdir=$path_out,outputdir=owncloud/data/$user/files/$project/output_plot/)
-                   count.groups(shared=final.opti_mcc.shared,inputdir=$path_in,outputdir=$path_out)";
+      classify.otu(list=final.opti_mcc.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=0.03,inputdir=$path_out,outputdir=owncloud/data/$user/files/$project/output_plot/)
+      classify.otu(list=final.opti_mcc.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=detail, label=0.03,inputdir=$path_out,outputdir=owncloud/data/$user/files/$project/output_krona/)
+      count.groups(shared=final.opti_mcc.shared,inputdir=$path_in,outputdir=$path_out)";
 
     file_put_contents($path_in . '/advance.batch', $make);
     $log = $GLOBALS['path_log'];

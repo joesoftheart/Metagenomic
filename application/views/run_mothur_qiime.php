@@ -64,8 +64,8 @@ if (isset($this->session->userdata['logged_in'])) {
              <ul class="nav-tabs step-anchor" uk-switcher="animation: uk-animation-fade">
                  <li class="pre"><a href="#">Step 1<br />Mothur ( Preprocess )</a></li>
                  <li class="pre2"><a href="#">Step 2<br />Qiime ( Pick OTUs )</a></li>
-                 <li class="pre3"><a href="#">Step 3<br />..</a></li>
-                 <li><a href="#">Step 4<br />..</a></li>
+                 <li class="pre3"><a href="#">Step 3<br />Result && Graph</a></li>
+               
              </ul>
          
          <ul class="uk-switcher uk-margin">
@@ -151,7 +151,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                    <div  id="row_option_silva"> 
 
                                     
-                                  <img src="<?php echo site_url('images/img_silva');?>" width="65%" height="55%">
+                                  <img src="<?php echo site_url('images/img_silva.png');?>" width="65%" height="55%">
 
 
                                        <div class="radio">
@@ -334,11 +334,10 @@ if (isset($this->session->userdata['logged_in'])) {
                      </div>
                      </div>
 
-                  
-                                                
-
+      
              </form><!-- close row form -->
              </div> <!-- Pre-test -->
+
              <div class="row">
                  <div class="col-lg-11 ">
                     <div class="Pre-show" style="display:none"> 
@@ -370,6 +369,9 @@ if (isset($this->session->userdata['logged_in'])) {
 
      <!--Prepare phylotype -->
      <li>
+
+        <link href="<?php echo base_url();?>tooltip/bootstrap-toggle.min.css" rel="stylesheet">
+        <script src="<?php echo base_url();?>tooltip/bootstrap-toggle.min.js"></script>
 
         <div class="Pre-test2">
            <form name="Pre-form2" method="post" action="#" enctype="multipart/form-data">
@@ -411,6 +413,35 @@ if (isset($this->session->userdata['logged_in'])) {
                         </div>
                     </div>
                 </div>
+
+                 <div class="panel panel-info">
+                    <div class="panel-heading">          
+                        <h4 class="panel-title">
+                            <a  data-toggle="collapse" data-parent="#accordion" href="#collapse15" >2. Beta diversity index 
+                            <i class="fa fa-question-circle-o"></i>        
+                            </a>
+                         </h4>
+                    </div>
+                    <div id="collapse15" class="panel-collapse collapse">
+                        <div class="panel-body">    
+                            
+                            <div class="col-lg-6"> 
+                            <div class="form-group">
+                                <select class="uk-select" name="" id="">
+                                    <option>abund_jaccard</option>
+                                    <option>binary_lennon</option>
+                                    <option>binary_sorensen_dice</option>
+                                    <option>bray_curtis</option>
+                                    <option>morisita_horn</option>
+                                    <option>unweighted_unifrac</option>
+                                    <option>weighted_unifrac</option>
+                                 </select>
+                            </div>                         
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+    
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -469,9 +500,101 @@ if (isset($this->session->userdata['logged_in'])) {
                                 </select>
                                 </div>
                             </div>
+
+                            <div class="col-lg-12 uk-margin">
+                               <p class="fa fa-cog"> PICRUSt  and STAMP :</p>  
+                                <input id="toggle-event2" type="checkbox" data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" >
+                            </div>
+
+                            <div class="col-lg-10">
+                             <fieldset class="optionset2" disabled>
+
+                            <div class="col-lg-10 col-lg-push-1">
+                            <div class="form-group">
+                            <label class="col-lg-8 col-lg-pull-1 uk-margin">PICRUSt</label>
+                            <div class="col-lg-12">
+                             <label>• Default Please select level of KEGG pathway : </label>
+                            <label class="radio-inline">
+                                <input name="kegg"  value="L1" type="radio">1
+                            </label>
+                            <label class="radio-inline">
+                            <input name="kegg"  value="L2" checked type="radio">2
+                             </label>
+                            </div>
+                            </div>
+                            </div>
+
+                            <div class="col-lg-12 uk-margin"></div>
+
+                            <div class="col-lg-10 col-lg-push-1">
+                            <div class="form-group">
+                            <label class="col-lg-8 col-lg-pull-1 uk-margin">STAMP</label>
+                            </div>
+        
+                            <div class="col-lg-10 ">
+                            <div class="form-group">      
+                             <label>• Sample comparison : </label>
+
+                            <select class="uk-select" name="sample_comparison" id="sample_name">
+         
+                            </select>
+                             </div>
+                            <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
+                            </div>
+         
+                            <div class="col-lg-10 ">
+                            <div class="form-group">                                   
+                            <label>• Selected statistical test : </label>
+                            <select class="uk-select" name="statistical_test">
+                                <option value="0"></option>
+                                <option value="Bootstrap">Bootstrap</option>
+                                <option value="Chi-square">Chi-square test</option>
+                                <option value="Chi-square2">Chi-square test(w/Yates' correction)</option>
+                                <option value="Difference">Difference between proportions</option>
+                                <option value="Fisher">Fisher 's exact test</option>
+                                <option value="G‐test">G‐test</option>
+                                <option value="G‐test2">G‐test (w/ Yates' correction)</option>
+                                <option value="Hypergeometric">Hypergeometric</option>
+                                <option value="Permutation">Permutation</option>
+                            </select>
+                            </div>
+                            <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
+                            </div>
+
+                            <div class="col-lg-10 ">
+                                <div class="form-group">
+                                <label>• CI method : </label>
+                                <select class="uk-select" name="ci_method">
+                                    <option value="0"></option>
+                                    <option value="DP1">DP: Newcombe‐Wilson</option>
+                                    <option value="DP2">DP: Asymptotic</option>
+                                    <option value="DP3">DP: Asymptotic-CC</option>
+                                    <option value="OR1">OR: Haldane adjustment</option>
+                                    <option value="RP1">RP: Asymptotic</option>
+                                </select>
+                                </div>
+                                <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
+                             </div>
+
+                            <div class="col-lg-10 ">
+                            <div class="form-group">
+                                <label>• P‐value : </label>
+                            <select class="uk-select" name="p_value">
+                                <option value="0">None</option>
+                                <option value="0.05">0.05</option>
+                                <option value="0.01">0.01</option>
+                            </select>
+                            </div>
+                             <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
+                            </div>
+                            </div>
+                            </fieldset>
+                            </div> 
+
                          </div>
                     </div>
                  </div>
+
                  <div class="col-lg-12 uk-margin"></div>
                     <div class="row">
                     <div class="col-lg-1"></div>
@@ -515,26 +638,59 @@ if (isset($this->session->userdata['logged_in'])) {
      <!--End Prepare phylotype analysis-->
 
 
-    <!-- Analysis -->                              
+     <!-- Result && Graph -->                              
     <li>
 
         <div class="Pre-test3">
-            <!-- /.row -->
+
+             <hr class="uk-divider-icon">
+            <div class="panel-body">       
+            <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+       
+            <div class="alert alert-info">
+            <center>
+
+                 <button type="button" class="btn btn-warning  btn-circle btn-xl" id="">
+                <i class="fa fa-file-image-o"></i>
+              </button>
+                <h4>Graph</h4>
+
+
+
+            </center>
+            </div>    
+            </div>
+            </div>
+            </div>
+
+            <hr class="uk-divider-icon">
+             <div class="panel-body">
              <div class="row">
-             <div class="col-lg-11">  tab3  </div>  <!-- /.col-lg-11 -->       
-             </div><!-- /.row -->
+             <div class="col-lg-6 col-lg-offset-3">
+
+             <div class="alert alert-info">
+             <center>
+
+
+            <button type="button" class="btn btn-info btn-circle btn-xl" id="btn_reports">
+              <i class="fa fa-file-word-o"></i>
+            </button>
+            <h4>  Report  </h4>
+
+             </center>
+            
+             </div>    
+             </div>
+             </div>
+             </div>
+           
         </div> <!-- Pre-test3 -->
     </li> 
-    <!-- End Analysis -->
+   <!-- End Result && Graph -->
 
-    <!-- Result && Graph -->
-     <li> 
-          <!-- /.row -->
-             <div class="row">
-             <div class="col-lg-11">  tab4  </div>  <!-- /.col-lg-11 -->       
-             </div><!-- /.row -->
-     </li>
-    <!-- End Result && Graph -->
+   
+    
 
      </ul> 
      <!-- class="uk-switcher uk-margin" -->
@@ -554,7 +710,19 @@ if (isset($this->session->userdata['logged_in'])) {
 
   
 
-<script type="text/javascript">  
+<script type="text/javascript">
+
+  var console_event2 = false;
+     $('#toggle-event2').change(function(){
+        console_event2 = $(this).prop('checked');
+        if($(this).prop('checked')){
+          $(".optionset2").removeAttr("disabled")
+          $(".opt2").show();
+        }else{
+          $(".optionset2").attr("disabled", true);
+          $(".opt2").hide();
+        }
+     })  
 
 function checkvalue(){
              var mbig = document.getElementById('mbig');
@@ -713,7 +881,7 @@ $(document).ready(function (){
                 $('li.pre').attr('id','active');
                 $(".Pre-test").hide();
                 $(".Pre-show").show();
-                $('#test_run').html('Ckecking Run Preprocess');
+                $('#test_run').html('Checking Run Preprocess');
                 checkrun(send_data);
 
           }else if(step_run == "2"){
@@ -722,7 +890,7 @@ $(document).ready(function (){
               $('li.pre2').attr('id','active');
               $(".Pre-test2").hide();
               $(".Pre-show2").show();
-              $('#test_run2').html('Ckecking Run Pick OTUs');
+              $('#test_run2').html('Checking Run Pick OTUs');
               $('.sw-theme-arrows > .nav-tabs > .pre').next('li').find('a').trigger('click'); 
               checkrun2(send_data);
           }
@@ -792,7 +960,7 @@ $(document).ready(function (){
     $("#check_map").click(function () { 
         var user = "<?=$username ?>";
         var project = "<?=$current_project ?>";
-        var $data_arr = new Array(user,project);
+        var data_arr = new Array(user,project);
         var time = 10;
         var interval = null;
             interval = setInterval(function(){   
@@ -807,7 +975,7 @@ $(document).ready(function (){
                             var map = JSON.parse(data);
                              if(map == 'Noerror'){
                                  clearInterval(interval);
-                                 getGroup($data_arr);  
+                                 getGroup(data_arr);  
                                  $('#text_map').text(" No errors or warnings were found in mapping file.");
                                  document.getElementById('p_map').value = map;
                                  $('#img_map').attr("src","<?php echo $src;?>");  
@@ -824,9 +992,9 @@ $(document).ready(function (){
  });
 
 
-function getGroup($data_arr){
+function getGroup(data_arr){
 
-     var data_value = $data_arr;
+     var data_value = data_arr;
      $.ajax({
         type:"post",
         datatype:"json",

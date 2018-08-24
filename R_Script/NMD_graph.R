@@ -15,7 +15,8 @@ row.names = "sites")
 NMDS = data.frame(MDS1 = nmds$axis1, MDS2 = nmds$axis2, group = MyMeta$type)
 group = MyMeta$type
 
-png(args[2], width = 8, height = 6, units = "in", res = 300)
+#png(args[2], width = 8, height = 6, units = "in", res = 300)
+svg(args[2],width=8,height=6)
 drawout = ggplot(data = NMDS, aes(MDS1, MDS2)) +
     geom_point(aes(color = group), size = 2.5, alpha = 0.5) +
     geom_hline(yintercept = 0, linetype = "dashed", size = .2) +

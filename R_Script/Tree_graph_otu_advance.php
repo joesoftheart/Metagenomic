@@ -12,7 +12,7 @@ for ($i = 0; $i < count($size_data) - 1; $i++) {
     $val_tree = explode("-", $size_data[$i]);
 
     $path_input_tree = "owncloud/data/$user/files/$project/output/final.opti_mcc." . $val_tree[0] . "." . $level . ".lt.ave.tre";
-    $path_output_tree = "owncloud/data/$user/files/$project/output/Tree_" . $val_tree[0] . ".png";
+    $path_output_tree = "data_report_mothur/$user/$project/beta_diversity_analysis/Tree_" . $val_tree[0] . ".svg";
     get_TreeGraph($path_input_tree, $path_output_tree);
 }
 

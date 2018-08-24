@@ -51,7 +51,6 @@ if (isset($this->session->userdata['logged_in'])) {
 
         <ul class="uk-switcher">
 
-
         <!-- qiime  -->
          <li>
          <link href="<?php echo base_url();?>tooltip/smart_wizard_theme_arrows.css" rel="stylesheet" />
@@ -62,33 +61,34 @@ if (isset($this->session->userdata['logged_in'])) {
 
          <div class="sw-theme-arrows">
              <ul class="nav-tabs step-anchor" uk-switcher="animation: uk-animation-fade">
-                 <li class="pre"><a href="#">Step 1<br/>Pre process </a></li>
-                 <li class="pre2"><a href="#">Step 2<br/>Pick OTUs </a></li>
-                 <li class="pre3"><a href="#">Step 3<br/>Chimerac detection</a></li>
-                 <li class="pre4"><a href="#">Step 4<br/>Core diversity analysis</a></li>
+                 <li class="pre"><a href="#">Step 1<br/> Qiime Process </a></li>
+                 <li class="pre2"><a href="#">Step 2<br/> Result & Graph </a></li>
+              
                 
              </ul>
          
          <ul class="uk-switcher uk-margin">
-
-
          <!--pre -->
          <li>
+
+    <link href="<?php echo base_url();?>tooltip/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="<?php echo base_url();?>tooltip/bootstrap-toggle.min.js"></script>
          <!-- .panel-group -->
          <div class="panel-group" id="accordion"></div>
     
              <div class="Pre-test">
-          
+
                  <!-- /.row -->
                 <div class="row">
                 <div class="col-lg-12">
                  <!-- .panel-heading -->
                  <div class="panel-body">
                  <div class="panel-group" id="accordion">
+
                  <div class="panel panel-info">
                     <div class="panel-heading">          
                         <h4 class="panel-title">
-                            <a  data-toggle="collapse" data-parent="#accordion" href="#collapse13" >Generate Map file 
+                            <a  data-toggle="collapse" data-parent="#accordion" href="#collapse13" >1. Generate Map file 
                             <i class="fa fa-question-circle-o"></i>        
                             </a>
                         </h4>
@@ -154,10 +154,79 @@ if (isset($this->session->userdata['logged_in'])) {
                      <div class="col-lg-2 col-lg-pull-1"> 
                         <img id="img_map"> 
                     </div>
-                </div>
-                </div>
+
+                
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+
+            
+             <form name="Pre-form" method="post" action="#" enctype="multipart/form-data">
+
+                 <input type="hidden" name="username" value="<?= $username ?>">
+                 <input type="hidden" name="project" value="<?= $current_project ?>">
+                 <input type="hidden" name="chkmap" id="chkmap" value="nomap">
+
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse15"> 2. Select Group core diversity analysis 
+                             <i class="fa fa-question-circle-o"></i>  
+                            </a> 
+                        </h4>
+                    </div>
+                    <div id="collapse15" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <p class="fa fa-cog col-lg-11"> Group core diversity analysis </p>
+                            <div class="col-lg-3 ">
+                            <div class="form-group">
+                                 <select class="uk-select" name="core_group" id="core_group" >
+                                 </select>
+                            </div>
+                            </div> 
+                            <div class="col-lg-8"><p class="opt1" style="display: none;"> warning : This group can not use for the next statisical analysis in below option.</p></div>
+                        </div>
+                    </div>
                 </div>
 
+                <div class="panel panel-info">
+                    <div class="panel-heading">          
+                        <h4 class="panel-title">
+                            <a  data-toggle="collapse" data-parent="#accordion" href="#collapse16" >3. Beta diversity index 
+                            <i class="fa fa-question-circle-o"></i>        
+                            </a>
+                         </h4>
+                    </div>
+                    <div id="collapse16" class="panel-collapse collapse">
+                        <div class="panel-body">    
+                            
+                            <div class="col-lg-6"> 
+                            <div class="form-group">
+                                <label>Non-phylogenetic metrics</label>
+                                <select class="uk-select" name="beta_diversity_index" id="bdi1" >
+                                    <option value="none">None</option>
+                                    <option value="abund_jaccard">abund_jaccard</option>
+                                    <option value="binary_lennon">binary_lennon</option>
+                                    <option value="binary_sorensen_dice">binary_sorensen_dice</option>
+                                    <option value="bray_curtis">bray_curtis</option>
+                                    <option value="morisita_horn">morisita_horn</option>
+                                 </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phylogenetic metrics</label>
+                                <select class="uk-select" name="beta_diversity_index2" id="bdi2" >
+                                    <option value="none">None</option>
+                                    <option value="unweighted_unifrac">unweighted_unifrac</option>
+                                    <option value="weighted_unifrac">weighted_unifrac</option>
+                                 </select>
+                            </div>                                      
+                            </div>    
+                        </div>
+                    </div>
+                </div>
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -169,6 +238,8 @@ if (isset($this->session->userdata['logged_in'])) {
                     </div>
                      <div id="collapse14" class="panel-collapse collapse">
                         <div class="panel-body">
+
+                            <fieldset class="optionset1" disabled>
                             <p class="fa fa-cog col-lg-11"> Permanova</p>
                             <div class="col-lg-3 ">
                                 <div class="form-group">
@@ -217,42 +288,136 @@ if (isset($this->session->userdata['logged_in'])) {
                                 </select>
                                 </div>
                             </div>
+                            </fieldset>
+
+                             <div class="col-lg-12 uk-margin">
+                               <p class="fa fa-cog"> PICRUSt  and STAMP :</p>  
+                                <input id="toggle-event2" type="checkbox" data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" >
+                             </div> 
+
+                             <div class="col-lg-10">
+                             <fieldset class="optionset2" disabled>
+
+                            <div class="col-lg-10 col-lg-push-1">
+                            <div class="form-group">
+                            <label class="col-lg-8 col-lg-pull-1 uk-margin">PICRUSt</label>
+                            <div class="col-lg-12">
+                             <label>• Default Please select level of KEGG pathway : </label>
+                            <label class="radio-inline">
+                                <input name="kegg"  value="L1" type="radio">1
+                            </label>
+                            <label class="radio-inline">
+                            <input name="kegg"  value="L2" checked type="radio">2
+                             </label>
+                            </div>
+                            </div>
+                            </div>
+
+                            <div class="col-lg-12 uk-margin"></div>
+
+                            <div class="col-lg-10 col-lg-push-1">
+                            <div class="form-group">
+                            <label class="col-lg-8 col-lg-pull-1 uk-margin">STAMP</label>
+                            </div>
+        
+                            <div class="col-lg-10 ">
+                            <div class="form-group">      
+                             <label>• Sample comparison : </label>
+
+                            <select class="uk-select" name="sample_comparison" id="sample_name">
+         
+                            </select>
+                             </div>
+                            <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
+                            </div>
+         
+                            <div class="col-lg-10 ">
+                            <div class="form-group">                                   
+                            <label>• Selected statistical test : </label>
+                            <select class="uk-select" name="statistical_test">
+                                <option value="0"></option>
+                                <option value="Bootstrap">Bootstrap</option>
+                                <option value="Chi-square">Chi-square test</option>
+                                <option value="Chi-square2">Chi-square test(w/Yates' correction)</option>
+                                <option value="Difference">Difference between proportions</option>
+                                <option value="Fisher">Fisher 's exact test</option>
+                                <option value="G‐test">G‐test</option>
+                                <option value="G‐test2">G‐test (w/ Yates' correction)</option>
+                                <option value="Hypergeometric">Hypergeometric</option>
+                                <option value="Permutation">Permutation</option>
+                            </select>
+                            </div>
+                            <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
+                            </div>
+
+                            <div class="col-lg-10 ">
+                                <div class="form-group">
+                                <label>• CI method : </label>
+                                <select class="uk-select" name="ci_method">
+                                    <option value="0"></option>
+                                    <option value="DP1">DP: Newcombe‐Wilson</option>
+                                    <option value="DP2">DP: Asymptotic</option>
+                                    <option value="DP3">DP: Asymptotic-CC</option>
+                                    <option value="OR1">OR: Haldane adjustment</option>
+                                    <option value="RP1">RP: Asymptotic</option>
+                                </select>
+                                </div>
+                                <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
+                             </div>
+
+                            <div class="col-lg-10 ">
+                            <div class="form-group">
+                                <label>• P‐value : </label>
+                            <select class="uk-select" name="p_value">
+                                <option value="0">None</option>
+                                <option value="0.05">0.05</option>
+                                <option value="0.01">0.01</option>
+                            </select>
+                            </div>
+                             <p class="opt2" style="display: none;"> <font color="red">*Required</font></p>
+                            </div>
+                            </div>
+                            </fieldset>
+                            </div>
+
                          </div>
+                         <!-- panel-body -->
                     </div>
                  </div>
-                 </div>
-                 </div>   
+                </div> 
+               
+                
+                 <div class="col-lg-12 uk-margin"></div>
+                 <div class="row">
+                 <div class="col-lg-1"></div>
+                 <div class="col-lg-6">
+                <input id="sub-test" class="btn btn-primary" value="Run Preprocess">
+                </div>
+                </div>
+
+            </form><!-- close row form -->
+
+
+                
 
                  </div>  <!-- /.col-lg-12 -->
                  </div><!-- /.row -->
                 
-                 <form name="Pre-form" method="post" action="#" enctype="multipart/form-data">
-
-                 <input type="hidden" name="username" value="<?= $username ?>">
-                 <input type="hidden" name="project" value="<?= $current_project ?>">
-                
-                     <div class="col-lg-12 uk-margin"></div>
-                     <div class="row">
-                     <div class="col-lg-1"></div>
-                     <div class="col-lg-6">
-                      <input id="sub-test" class="btn btn-primary" value="Run Preprocess">
-                     </div>
-                     </div>
-
-                 </form><!-- close row form -->
+                 
              </div> <!-- Pre-test -->
+
+
              <div class="row">
                  <div class="col-lg-11 ">
                     <div class="Pre-show" style="display:none"> 
-                      
-                      <div class="loader">
-                          <p class="h1"> Qiime Preprocess</p>
+                    <div class="loader">
+                          <p class="h1"> Qiime Process</p>
                           <span></span>
                           <span></span>
                           <span></span>
-                      </div>
-                     <div class="col-lg-5 col-lg-push-1 "> <b>Status : </b></div>
-                     <div class="col-lg-5 col-lg-pull-3" id="test_run">Wait Queue</div>
+                    </div>
+                    <div class="col-lg-5 col-lg-push-1 "> <b>Status : </b></div>
+                    <div class="col-lg-5 col-lg-pull-3" id="test_run">Wait Queue</div>
                     
                      <div class="col-lg-11 col-lg-push-1 uk-margin">
                      <div class="progress progress-striped active">
@@ -273,83 +438,79 @@ if (isset($this->session->userdata['logged_in'])) {
      <!--pre2-->
      <li>
 
-        <div class="row">
-            <div class="col-lg-11">
-                    <div class="Pre-show2" style="display:none"> 
-                      <div class="loader">
-                          <p class="h1">Qiime Pick OTUs</p>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                      </div>
-                     <div class="col-lg-5 col-lg-push-1 "> <b>Status : </b></div>
-                     <div class="col-lg-5 col-lg-pull-3" id="test_run2">Wait Queue</div>
-                     <div class="col-lg-11 col-lg-push-1 uk-margin">
-                     <div class="progress progress-striped active">
-                         <div id="bar_pre2" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
-                         <div class="percent_pre2">0%</div>
-                     </div>
-                     </div>
-                     </div>
-                     </div> 
-            </div> 
-         </div>
+         <div class="Pre-test2">
+           
+           
+
+            <hr class="uk-divider-icon">
+            <div class="panel-body">       
+            <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+       
+            <div class="alert alert-info">
+            <center>
+             
+            <a href="<?php echo site_url('qiime_report/graph_qiime');?>" target="_blank">
+             <button type="button" class="btn btn-warning  btn-circle btn-xl" id="qiime_report">
+                <i class="fa fa-file-image-o"></i>
+              </button>
+            </a>  
+             <h4>Graph</h4>
+
+            </center>
+            </div>    
+            </div>
+            </div>
+            </div>
+
+
+             <hr class="uk-divider-icon">
+            <div class="panel-body">       
+            <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+       
+            <div class="alert alert-info">
+            <center>
+
+
+            <a href="<?php echo site_url('run_qiime/graph_qiime_full');?>" target="_blank">
+              <button type="button" class="btn btn-success  btn-circle btn-xl">
+                <i class="fa fa-file-image-o"></i>
+              </button>
+            </a>
+            <h4>Graph Qime</h4>
+
+                
+
+            </center>
+            </div>    
+            </div>
+            </div>
+            </div>
+
+             <hr class="uk-divider-icon">
+             <div class="panel-body">
+             <div class="row">
+             <div class="col-lg-6 col-lg-offset-3">
+
+             <div class="alert alert-info">
+             <center>
+
+                  <button type="button" class="btn btn-info btn-circle btn-xl" id="btn_reports">
+                   <i class="fa fa-file-word-o"></i>
+                 </button>
+                 <h4>  Report  </h4>
+
+             </center>
+            
+             </div>    
+             </div>
+             </div>
+             </div>
+
+         </div> <!-- Pre-test2 -->
      </li>
      <!--End pre2-->
-
-    <!--pre3-->
-     <li>
-        <div class="row">
-            <div class="col-lg-11">
-                    <div class="Pre-show3" style="display:none"> 
-                      <div class="loader">
-                          <p class="h1">Qiime Chimerac detection </p>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                      </div>
-                     <div class="col-lg-5 col-lg-push-1 "> <b>Status : </b></div>
-                     <div class="col-lg-5 col-lg-pull-3" id="test_run2">Wait Queue</div>
-                     <div class="col-lg-11 col-lg-push-1 uk-margin">
-                     <div class="progress progress-striped active">
-                         <div id="bar_pre2" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
-                         <div class="percent_pre2">0%</div>
-                     </div>
-                     </div>
-                     </div>
-                     </div> 
-            </div> 
-         </div>
-     </li>
-     <!--End pre3-->
-
-
-    <!--pre4-->
-     <li>
-        <div class="row">
-            <div class="col-lg-11">
-                    <div class="Pre-show4" style="display:none"> 
-                      <div class="loader">
-                          <p class="h1">Qiime Core diversity analysis</p>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                      </div>
-                     <div class="col-lg-5 col-lg-push-1 "> <b>Status : </b></div>
-                     <div class="col-lg-5 col-lg-pull-3" id="test_run2">Wait Queue</div>
-                     <div class="col-lg-11 col-lg-push-1 uk-margin">
-                     <div class="progress progress-striped active">
-                         <div id="bar_pre2" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
-                         <div class="percent_pre2">0%</div>
-                     </div>
-                     </div>
-                     </div>
-                     </div> 
-            </div> 
-         </div>
-     </li>
-     <!--End pre4-->
-
      </ul> 
      <!-- class="uk-switcher uk-margin" -->
 
@@ -365,7 +526,31 @@ if (isset($this->session->userdata['logged_in'])) {
     </div>
 </div>
  <script>
-         function getExcel() {
+
+    $('#core_group').change(function(){
+        var data_name = document.getElementById('core_group').value;
+        if(data_name != "none"){
+           on_switch(data_name);
+        }else{$(".optionset1").attr("disabled", true);}
+        
+    });
+
+  
+     var console_event2 = false;
+     $('#toggle-event2').change(function(){
+        console_event2 = $(this).prop('checked');
+        if($(this).prop('checked')){
+          $(".optionset2").removeAttr("disabled")
+          $(".opt2").show();
+        }else{
+          $(".optionset2").attr("disabled", true);
+          $(".opt2").hide();
+        }
+     });
+
+
+
+    function getExcel() {
 
                         var user = "<?php echo $username ?>";
                         var project = "<?php echo $current_project ?>";
@@ -401,12 +586,12 @@ if (isset($this->session->userdata['logged_in'])) {
                             }
                         });
                         }
-        }
+     }
 
         function check_map(){
                          var user = "<?=$username ?>";
                          var project = "<?=$current_project ?>";
-                         var $data_arr = new Array(user,project);
+                         var data_arr = new Array(user,project);
                          var time = 2;
                          var interval = null;
                              interval = setInterval(function(){   
@@ -421,9 +606,10 @@ if (isset($this->session->userdata['logged_in'])) {
                         var map = JSON.parse(data);
                              if(map == 'Noerror'){
                                  clearInterval(interval);
-                                 getGroup($data_arr);  
+                                 getGroup(data_arr);  
                                  $('#text_map').text("No errors or warnings found in mapping file.");
-                                 $('#img_map').attr("src","<?php echo $src;?>");  
+                                 $('#img_map').attr("src","<?php echo $src;?>"); 
+                                 document.getElementById('chkmap').value = map;
                              }
                              else{ time = 3;  } 
                         }
@@ -464,11 +650,14 @@ $(document).ready(function (){
             }
         });
 
+
+
+      /*  check status run */
+
        var status = "<?=$status?>";
        var step_run = "<?=$step_run?>";
        var id_job = "<?=$id_job?>";
        var current = "<?=$current?>";
-
        if(status != "null"){
           var send_data = new Array(id_job,current);
           if(step_run == "1"){
@@ -476,47 +665,84 @@ $(document).ready(function (){
                 $('li.pre').attr('id','active');
                 $(".Pre-test").hide();
                 $(".Pre-show").show();
-                $('#test_run').html('Ckecking Run Preprocess');
+                $('#test_run').html('Checking Run Qiime');
                 checkrun(send_data);
 
           }else if(step_run == "2"){
-              alert("Pick OTUs"); 
+              alert("Result & Graph"); 
               $('li.pre').attr('id','done');
-              $('li.pre2').attr('id','active');
-              $(".Pre-test2").hide();
-              $(".Pre-show2").show();
-              $('#test_run2').html('Ckecking Run Pick OTUs');
+              //$('li.pre2').attr('id','active');
               $('.sw-theme-arrows > .nav-tabs > .pre').next('li').find('a').trigger('click'); 
-              checkrun2(send_data);
           }
        }else{
 
            $('li.pre').attr('id','active');
        }  
+
+     /* end check status run  */
        
-       
-       
-        $("#sub-test").click(function () {
-               
-                  var username = document.forms["Pre-form"]["username"].value;
-                  var project  = document.forms["Pre-form"]["project"].value;
-                  
-                  //alert(username);
+     /* submit run process */  
+        $("#sub-test").click(function () {               
+                var username = document.forms["Pre-form"]["username"].value;
+                var project  = document.forms["Pre-form"]["project"].value;
+                var chkmap = document.forms["Pre-form"]["chkmap"].value;
+                var permanova = document.forms["Pre-form"]["permanova"].value;
+                var opt_permanova = document.forms["Pre-form"]["opt_permanova"].value;
+                var anosim = document.forms["Pre-form"]["anosim"].value;
+                var opt_anosim = document.forms["Pre-form"]["opt_anosim"].value;
+                var adonis = document.forms["Pre-form"]["adonis"].value;
+                var opt_adonis = document.forms["Pre-form"]["opt_adonis"].value;
+
+                var core_group = document.forms["Pre-form"]["core_group"].value;
+
+                var kegg = document.forms["Pre-form"]["kegg"].value;
+                var sample_comparison = document.forms["Pre-form"]["sample_comparison"].value;
+                var statistical_test =  document.forms["Pre-form"]["statistical_test"].value;
+                var ci_method = document.forms["Pre-form"]["ci_method"].value;
+                var p_value = document.forms["Pre-form"]["p_value"].value; 
+
+                var beta_diversity_index = document.forms["Pre-form"]["beta_diversity_index"].value;
+                var beta_diversity_index2 = document.forms["Pre-form"]["beta_diversity_index2"].value;
                  
+                var array_data = new Array(username,project,chkmap,permanova,opt_permanova,anosim,opt_anosim,adonis,opt_adonis,core_group,kegg,sample_comparison,statistical_test,ci_method,p_value,beta_diversity_index,beta_diversity_index2);
 
-                       // $(".Pre-test").hide();
-                       // $(".Pre-show").show();
-                        //getvalue(array_data);
-                      
-        });
+                var open_opt = null;
+                if(console_event2){
+                    if(sample_comparison != "0" && statistical_test !="0" && ci_method != "0" &&   p_value !="0" ){ 
+                            open_opt = true;
+                    }else{
+                            open_opt = false;
+                    }
+                }
 
-    
+                /* check parameter run   */
+                 if(console_event2 && open_opt){
+                    if(chkmap == 'Noerror'){
+                         // alert("open");
+                        $(".Pre-test").hide();
+                        $(".Pre-show").show();
+                        getvalue(array_data);
+                    }      
+                        
+                 }else if(!console_event2){
+                    if(chkmap == 'Noerror'){
+                        // alert("close");
+                        $(".Pre-test").hide();
+                        $(".Pre-show").show();
+                        getvalue(array_data);
+                    }      
+                 }else{
+                        alert("Please select all stamp");
+                 }
+      
+        });    
+     /*  end submit run process   */   
  });
 
 
-function getGroup($data_arr){
+function getGroup(data_arr){
 
-     var data_value = $data_arr;
+     var data_value = data_arr;
      $.ajax({
         type:"post",
         datatype:"json",
@@ -530,9 +756,20 @@ function getGroup($data_arr){
                 for (var i=0; i < reData[1].length; i++){
                         name_group += "<option value="+reData[1][i]+">"+reData[1][i]+"</option>";    
                 }
+                $('#core_group').html(name_group);
                 $('#permanova').html(name_group);
                 $('#anosim').html(name_group);
-                $('#adonis').html(name_group);   
+                $('#adonis').html(name_group);  
+
+                /*start div sample-name*/
+                var samname = "";
+                samname += "<option value=0> </option>";
+                for (var i=0; i < reData[2].length; i++) {
+
+                     samname += "<option value="+reData[2][i]+">"+reData[2][i]+"</option>";    
+                }
+                $('#sample_name').html(samname);
+                 /*end div sample-name*/ 
             }                
         },
         error:function(e){
@@ -546,7 +783,7 @@ function getvalue(array_data){
             $.ajax({ 
                     type:"post",
                     datatype:"json",
-                    url:"<?php echo base_url('Run_mothur_qiime/run_mothur'); ?>",
+                    url:"<?php echo base_url('Run_qiime/run_qiime_process'); ?>",
                     data:{data_array: data_value},
                     success:function(data){
                       var data_job = $.parseJSON(data);
@@ -570,7 +807,7 @@ function checkrun(job_val){
             $.ajax({ 
                 type:"post",
                 datatype:"json",
-                url:"<?php echo base_url('Run_mothur_qiime/check_run_mothur'); ?>",
+                url:"<?php echo base_url('Run_qiime/check_run_qiime'); ?>",
                 data:{data_job: job_val },
                 success:function(data){
                 //console.log("data : " + JSON.parse(data));
@@ -584,10 +821,8 @@ function checkrun(job_val){
                              $(".Pre-test").show();
                              
                              $('li.pre').attr('id','done');
-                             $('li.pre2').attr('id','active');
-                             $('#sub-test2').attr('class','btn btn-primary');
-                             $('#check_map').attr("disabled",false);
-                           
+                             //$('li.pre2').attr('id','active');
+
                    }else{
                          var show_data = data_up[0];
                          var show_num  = data_up[1];
@@ -606,7 +841,60 @@ function checkrun(job_val){
 }
 
 
+
+
+function on_switch(data_name){
+     var user = "<?php echo $username ?>";
+     var project = "<?php echo $current_project ?>";
+   
+     $.ajax({ 
+        type:"post",
+        datatype:"json",
+        url:"<?php echo site_url('Run_qiime/read_map_json/');?>"+user+"/"+project,
+        data:{data_group: data_name},
+        success:function(data){
+                var data_sw = $.parseJSON(data);
+                console.log(data_sw);
+                if(data_sw == "on"){ 
+                    $(".optionset1").removeAttr("disabled");
+                    $(".opt1").hide();
+                }else{
+                    $(".optionset1").attr("disabled", true);
+                    $(".opt1").show();
+                 }
+        },
+        error:function(e){
+            console.log(e.message);
+        }
+    });          
+}
+
+
+
+
+
+document.getElementById("btn_reports").onclick = function(){
+
+    location.href= "<?php echo site_url();?>Qiime_report/index/<?=$current_project?>";
+    // $.ajax({ 
+    //       type:"post",
+    //       datatype:"json",
+    //       url:"<?php echo base_url('ckprorun'); ?>",
+    //       data:{current:"<?=$current_project?>"},
+    //          success:function(data){
+    //             var chk = JSON.parse(data); 
+    //             if(chk == "t"){
+                             
+    //             }
+              
+    //         }         
+    //  });
+
+};
+
+
+
 </script> 
-<!--  End Advance Script -->
+
 
    

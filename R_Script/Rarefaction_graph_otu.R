@@ -14,7 +14,10 @@ color_sam = c()
 for (i in r) {
     name_sam <- c(name_sam, i)
 }
-png(args[2], width = 8, height = 6, units = "in", res = 300)
+
+#png(args[2], width = 8, height = 6, units = "in", res = 300)
+svg(args[2],width=8,height=6)
+
 cl <- rainbow(length(r))
 for (i in r) {
     if (te == 1) {

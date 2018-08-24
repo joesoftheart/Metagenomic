@@ -40,7 +40,7 @@
 
         if($user != "" && $project != "" && $argv[3] != "" && $argv[4] != "" && $argv[5] != "" && $argv[6] != "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != "" && $argv[11] != "" && $argv[12] != "" && $argv[13] != "" && $argv[14] != "" && $argv[15] != ""){
              echo "Check Parameter Success"."\n";
-            find_fastq_fasta($platform_sam,$platform_type,$user,$project,$path_in,$path_out);
+             //find_fastq_fasta($platform_sam,$platform_type,$user,$project,$path_in,$path_out);
              
           }else {
 
@@ -1278,6 +1278,7 @@
                   make.shared(list=final.tx.list, count=final.count_table, label=" . $GLOBALS['lable'] . ",inputdir=$path_in,outputdir=$path_out)
                   classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, label=" . $GLOBALS['lable'] . ",inputdir=$path_in,outputdir=$path_out)
                   classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=simple, label=" . $GLOBALS['lable_get_taxon'] . ",inputdir=$path_out,outputdir=owncloud/data/$user/files/$project/output_plot/)
+                  classify.otu(list=final.tx.list, count=final.count_table, taxonomy=final.taxonomy, basis=sequence, output=detail, label=" . $GLOBALS['lable_get_taxon'] . ",inputdir=$path_out,outputdir=owncloud/data/$user/files/$project/output_krona/)
                   count.groups(shared=final.tx.shared,inputdir=$path_in,outputdir=$path_out)";
 
                 file_put_contents($path_in . '/advance.batch', $make);

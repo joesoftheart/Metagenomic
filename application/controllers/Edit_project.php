@@ -15,6 +15,7 @@ class  Edit_project extends CI_Controller
         parent::__construct();
 
 
+
     }
 
 
@@ -29,6 +30,7 @@ class  Edit_project extends CI_Controller
         $file_read = array('fastq');
         $project_path = $this->input->post("project_path") . "/input/";
         $show = $this->manage_file->num_file($file_read, $project_path);
+       
 
 
         if ($this->input->post("save")) {
@@ -48,6 +50,8 @@ class  Edit_project extends CI_Controller
                 "project_date_time" => date("Y-m-d H:i:s")
             );
 
+             $this->checkfile_run($project_path);
+
             $this->mongo_db->where(array("_id" => new \MongoId($id)))->set($data_project)->update('projects');
             redirect("all_projects", "refresh");
 
@@ -60,5 +64,23 @@ class  Edit_project extends CI_Controller
         $this->load->view("footer");
 
 
+    }
+
+
+     public function checkfile_run($project_path){
+
+       $path = FCPATH."$project_path";
+       $sampleName = array();
+       $search_fastq = glob($path."*.fastq");
+       foreach ($search_fastq as $key => $value) {
+          $var_name =  basename($value);
+          list($n1,$n2) = explode("_",$var_name);
+          if($key%2 == 0){
+             array_push($sampleName, $n1."\t");
+          }    
+       }
+
+      $path_sampleName = FCPATH."$project_path"."sampleName.txt";
+      file_put_contents($path_sampleName,$sampleName); 
     }
 }

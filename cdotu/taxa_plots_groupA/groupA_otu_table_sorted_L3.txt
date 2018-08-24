@@ -1,0 +1,24 @@
+# Constructed from biom file
+#OTU ID	After	Before	Control
+Unassigned;Other;Other	0.000731997438009	0.00325680381788	0.0
+k__Bacteria;p__Acidobacteria;c__[Chloracidobacteria]	0.00118949583676	0.0	0.0
+k__Bacteria;p__Actinobacteria;c__Actinobacteria	0.0480373318693	0.0598155552689	0.000995960825541
+k__Bacteria;p__Bacteroidetes;c__Bacteroidia	0.000640497758258	0.0	0.0
+k__Bacteria;p__Bacteroidetes;c__Cytophagia	0.000640497758258	0.0	0.00160460355226
+k__Bacteria;p__Bacteroidetes;c__Flavobacteriia	0.00439198462805	0.000419192570618	0.0
+k__Bacteria;p__Bacteroidetes;c__Sphingobacteriia	0.000365998719004	0.0	0.000221324627898
+k__Bacteria;p__Bacteroidetes;c__[Saprospirae]	0.0	0.00690055462402	0.00110662313949
+k__Bacteria;p__Chlorobi;c__OPB56	0.0	0.000386946988263	0.0
+k__Bacteria;p__Chloroflexi;c__Anaerolineae	0.000274499039253	0.0	5.53311569745e-05
+k__Bacteria;p__Chloroflexi;c__Thermomicrobia	0.0	0.0127370050303	0.0
+k__Bacteria;p__Firmicutes;c__Bacilli	0.320889376887	0.269605314072	0.00165993470923
+k__Bacteria;p__Firmicutes;c__Clostridia	0.00457498398756	0.0224106797369	0.0
+k__Bacteria;p__Proteobacteria;c__Alphaproteobacteria	0.0368743709397	0.0135431445892	0.00165993470923
+k__Bacteria;p__Proteobacteria;c__Betaproteobacteria	0.0084179705371	0.0346317554495	0.0
+k__Bacteria;p__Proteobacteria;c__Deltaproteobacteria	0.00301948943179	0.0	0.0
+k__Bacteria;p__Proteobacteria;c__Epsilonproteobacteria	0.000365998719004	0.0	0.0
+k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria	0.569036508372	0.56626467174	0.992696287279
+k__Bacteria;p__SBR1093;c__VHS-B5-50	0.000548998078507	0.0	0.0
+k__Bacteria;p__TM7;c__TM7-3	0.0	0.000870630723591	0.0
+k__Bacteria;p__WPS-2;c__	0.0	0.00870630723591	0.0
+k__Bacteria;p__[Thermi];c__Deinococci	0.0	0.000451438152973	0.0

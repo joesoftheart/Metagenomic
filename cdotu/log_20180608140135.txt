@@ -1,0 +1,499 @@
+Logging started at 14:01:35 on 08 Jun 2018
+QIIME version: 1.9.1
+
+qiime_config values:
+pick_otus_reference_seqs_fp	/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/qiime_default_reference/gg_13_8_otus/rep_set/97_otus.fasta
+sc_queue	all.q
+pynast_template_alignment_fp	/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/qiime_default_reference/gg_13_8_otus/rep_set_aligned/85_otus.pynast.fasta
+cluster_jobs_fp	start_parallel_jobs.py
+assign_taxonomy_reference_seqs_fp	/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/qiime_default_reference/gg_13_8_otus/rep_set/97_otus.fasta
+torque_queue	friendlyq
+jobs_to_start	1
+denoiser_min_per_core	50
+assign_taxonomy_id_to_taxonomy_fp	/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/qiime_default_reference/gg_13_8_otus/taxonomy/97_otu_taxonomy.txt
+temp_dir	/tmp/3782.1.all.q/
+blastall_fp	blastall
+seconds_to_sleep	1
+
+parameter file values:
+beta_diversity:metrics	abund_jaccard,binary_lennon,binary_sorensen_dice,bray_curtis,morisita_horn,unweighted_unifrac,weighted_unifrac
+alpha_diversity:metrics	PD_whole_tree,observed_species,chao1,simpson,shannon,goods_coverage,osd
+parallel:jobs_to_start	1
+
+Input file md5 sums:
+owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/otu_table_mc2_w_tax_no_pynast_failures_no_chimeras_frequency_filtered.biom: ce22edb02ca5c84c383886e4b4f3c4c7
+owncloud/data/aumza/files/qiimeNoprimer/input/map.txt: bf1e8165a3e7e6e340c9c5bc69d7fdcd
+owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/rep_set_no_chimeras.tre: 6784d6b426709344729018d69e076852
+
+Executing commands.
+
+# Generate BIOM table summary command 
+biom summarize-table -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/otu_table_mc2_w_tax_no_pynast_failures_no_chimeras_frequency_filtered.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/biom_table_summary.txt 
+
+Stdout:
+
+Stderr:
+
+# Filter low sequence count samples from table (minimum sequence count: 3475) command 
+filter_samples_from_otu_table.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/otu_table_mc2_w_tax_no_pynast_failures_no_chimeras_frequency_filtered.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_mc3475.biom -n 3475
+
+Stdout:
+
+Stderr:
+
+# Rarify the OTU table to 3475 sequences/sample command 
+single_rarefaction.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_mc3475.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_even3475.biom -d 3475
+
+Stdout:
+
+Stderr:
+
+Executing commands.
+
+# Beta Diversity (abund_jaccard) command 
+beta_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_even3475.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475/ --metrics abund_jaccard  -t owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/rep_set_no_chimeras.tre 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/numpy/core/fromnumeric.py:2645: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  VisibleDeprecationWarning)
+
+# Rename distance matrix (abund_jaccard) command 
+mv owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//abund_jaccard_table_even3475.txt owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//abund_jaccard_dm.txt
+
+Stdout:
+
+Stderr:
+
+# Principal coordinates (abund_jaccard) command 
+principal_coordinates.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//abund_jaccard_dm.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//abund_jaccard_pc.txt 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/skbio/stats/ordination/_principal_coordinate_analysis.py:107: RuntimeWarning: The result contains negative eigenvalues. Please compare their magnitude with the magnitude of some of the largest positive eigenvalues. If the negative ones are smaller, it's probably safe to ignore them, but if they are large in magnitude, the results won't be useful. See the Notes section for more details. The smallest eigenvalue is -0.142250087392 and the largest is 0.959147099301.
+  RuntimeWarning
+
+# Make emperor plots, abund_jaccard) command 
+make_emperor.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//abund_jaccard_pc.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//abund_jaccard_emperor_pcoa_plot/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt 
+
+Stdout:
+
+Stderr:
+
+# Beta Diversity (binary_lennon) command 
+beta_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_even3475.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475/ --metrics binary_lennon  -t owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/rep_set_no_chimeras.tre 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/numpy/core/fromnumeric.py:2645: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  VisibleDeprecationWarning)
+
+# Rename distance matrix (binary_lennon) command 
+mv owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_lennon_table_even3475.txt owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_lennon_dm.txt
+
+Stdout:
+
+Stderr:
+
+# Principal coordinates (binary_lennon) command 
+principal_coordinates.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_lennon_dm.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_lennon_pc.txt 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/skbio/stats/ordination/_principal_coordinate_analysis.py:107: RuntimeWarning: The result contains negative eigenvalues. Please compare their magnitude with the magnitude of some of the largest positive eigenvalues. If the negative ones are smaller, it's probably safe to ignore them, but if they are large in magnitude, the results won't be useful. See the Notes section for more details. The smallest eigenvalue is -0.0231775351756 and the largest is 0.74081827572.
+  RuntimeWarning
+
+# Make emperor plots, binary_lennon) command 
+make_emperor.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_lennon_pc.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_lennon_emperor_pcoa_plot/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt 
+
+Stdout:
+
+Stderr:
+
+# Beta Diversity (binary_sorensen_dice) command 
+beta_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_even3475.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475/ --metrics binary_sorensen_dice  -t owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/rep_set_no_chimeras.tre 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/numpy/core/fromnumeric.py:2645: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  VisibleDeprecationWarning)
+
+# Rename distance matrix (binary_sorensen_dice) command 
+mv owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_sorensen_dice_table_even3475.txt owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_sorensen_dice_dm.txt
+
+Stdout:
+
+Stderr:
+
+# Principal coordinates (binary_sorensen_dice) command 
+principal_coordinates.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_sorensen_dice_dm.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_sorensen_dice_pc.txt 
+
+Stdout:
+
+Stderr:
+
+# Make emperor plots, binary_sorensen_dice) command 
+make_emperor.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_sorensen_dice_pc.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_sorensen_dice_emperor_pcoa_plot/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt 
+
+Stdout:
+
+Stderr:
+
+# Beta Diversity (bray_curtis) command 
+beta_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_even3475.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475/ --metrics bray_curtis  -t owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/rep_set_no_chimeras.tre 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/numpy/core/fromnumeric.py:2645: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  VisibleDeprecationWarning)
+
+# Rename distance matrix (bray_curtis) command 
+mv owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//bray_curtis_table_even3475.txt owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//bray_curtis_dm.txt
+
+Stdout:
+
+Stderr:
+
+# Principal coordinates (bray_curtis) command 
+principal_coordinates.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//bray_curtis_dm.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//bray_curtis_pc.txt 
+
+Stdout:
+
+Stderr:
+
+# Make emperor plots, bray_curtis) command 
+make_emperor.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//bray_curtis_pc.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//bray_curtis_emperor_pcoa_plot/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt 
+
+Stdout:
+
+Stderr:
+
+# Beta Diversity (morisita_horn) command 
+beta_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_even3475.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475/ --metrics morisita_horn  -t owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/rep_set_no_chimeras.tre 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/numpy/core/fromnumeric.py:2645: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  VisibleDeprecationWarning)
+
+# Rename distance matrix (morisita_horn) command 
+mv owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//morisita_horn_table_even3475.txt owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//morisita_horn_dm.txt
+
+Stdout:
+
+Stderr:
+
+# Principal coordinates (morisita_horn) command 
+principal_coordinates.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//morisita_horn_dm.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//morisita_horn_pc.txt 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/skbio/stats/ordination/_principal_coordinate_analysis.py:107: RuntimeWarning: The result contains negative eigenvalues. Please compare their magnitude with the magnitude of some of the largest positive eigenvalues. If the negative ones are smaller, it's probably safe to ignore them, but if they are large in magnitude, the results won't be useful. See the Notes section for more details. The smallest eigenvalue is -0.0990789051294 and the largest is 1.01315832129.
+  RuntimeWarning
+
+# Make emperor plots, morisita_horn) command 
+make_emperor.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//morisita_horn_pc.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//morisita_horn_emperor_pcoa_plot/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt 
+
+Stdout:
+
+Stderr:
+
+# Beta Diversity (unweighted_unifrac) command 
+beta_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_even3475.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475/ --metrics unweighted_unifrac  -t owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/rep_set_no_chimeras.tre 
+
+Stdout:
+
+Stderr:
+
+# Rename distance matrix (unweighted_unifrac) command 
+mv owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//unweighted_unifrac_table_even3475.txt owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//unweighted_unifrac_dm.txt
+
+Stdout:
+
+Stderr:
+
+# Principal coordinates (unweighted_unifrac) command 
+principal_coordinates.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//unweighted_unifrac_dm.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//unweighted_unifrac_pc.txt 
+
+Stdout:
+
+Stderr:
+
+# Make emperor plots, unweighted_unifrac) command 
+make_emperor.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//unweighted_unifrac_pc.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//unweighted_unifrac_emperor_pcoa_plot/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt 
+
+Stdout:
+
+Stderr:
+
+# Beta Diversity (weighted_unifrac) command 
+beta_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_even3475.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475/ --metrics weighted_unifrac  -t owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/rep_set_no_chimeras.tre 
+
+Stdout:
+
+Stderr:
+
+# Rename distance matrix (weighted_unifrac) command 
+mv owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//weighted_unifrac_table_even3475.txt owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//weighted_unifrac_dm.txt
+
+Stdout:
+
+Stderr:
+
+# Principal coordinates (weighted_unifrac) command 
+principal_coordinates.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//weighted_unifrac_dm.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//weighted_unifrac_pc.txt 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/skbio/stats/ordination/_principal_coordinate_analysis.py:107: RuntimeWarning: The result contains negative eigenvalues. Please compare their magnitude with the magnitude of some of the largest positive eigenvalues. If the negative ones are smaller, it's probably safe to ignore them, but if they are large in magnitude, the results won't be useful. See the Notes section for more details. The smallest eigenvalue is -0.000310871431969 and the largest is 0.1421037736.
+  RuntimeWarning
+
+# Make emperor plots, weighted_unifrac) command 
+make_emperor.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//weighted_unifrac_pc.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//weighted_unifrac_emperor_pcoa_plot/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt 
+
+Stdout:
+
+Stderr:
+
+Executing commands.
+
+# Alpha rarefaction command 
+multiple_rarefactions.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_mc3475.biom -m 10 -x 3475 -s 346 -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//rarefaction/ 
+
+Stdout:
+
+Stderr:
+
+# Alpha diversity on rarefied OTU tables command 
+alpha_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//rarefaction/ -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div/ --metrics PD_whole_tree,observed_species,chao1,simpson,shannon,goods_coverage,osd -t owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/rep_set_no_chimeras.tre
+
+Stdout:
+
+Stderr:
+
+# Collate alpha command 
+collate_alpha.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div/ -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div_collated/ 
+
+Stdout:
+
+Stderr:
+
+# Removing intermediate files command 
+rm -r owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//rarefaction/ owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div/
+
+Stdout:
+
+Stderr:
+
+# Rarefaction plot: All metrics command 
+make_rarefaction_plots.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div_collated/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_rarefaction_plots/ 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/matplotlib/collections.py:590: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
+  if self._edgecolors == str('face'):
+
+Executing commands.
+
+# Sort OTU Table command 
+sort_otu_table.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_mc3475.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots/table_mc3475_sorted.biom
+
+Stdout:
+
+Stderr:
+
+# Summarize Taxonomy command 
+summarize_taxa.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots/table_mc3475_sorted.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots/ 
+
+Stdout:
+
+Stderr:
+
+# Plot Taxonomy Summary command 
+plot_taxa_summary.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots/table_mc3475_sorted_L2.txt,owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots/table_mc3475_sorted_L3.txt,owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots/table_mc3475_sorted_L4.txt,owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots/table_mc3475_sorted_L5.txt,owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots/table_mc3475_sorted_L6.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots//taxa_summary_plots/ 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/matplotlib/collections.py:590: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
+  if self._edgecolors == str('face'):
+
+Executing commands.
+
+# Collapse samples in OTU table by categories command 
+collapse_samples.py -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -b owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_mc3475.biom --output_biom_fp owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA/groupA_otu_table.biom --output_mapping_fp owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA/groupA_map.txt --collapse_fields 'groupA' 
+
+Stdout:
+
+Stderr:
+
+# Sort OTU Table command 
+sort_otu_table.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA/groupA_otu_table.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA/groupA_otu_table_sorted.biom
+
+Stdout:
+
+Stderr:
+
+# Summarize Taxonomy command 
+summarize_taxa.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA/groupA_otu_table_sorted.biom -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA/ 
+
+Stdout:
+
+Stderr:
+
+# Plot Taxonomy Summary command 
+plot_taxa_summary.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA/groupA_otu_table_sorted_L2.txt,owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA/groupA_otu_table_sorted_L3.txt,owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA/groupA_otu_table_sorted_L4.txt,owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA/groupA_otu_table_sorted_L5.txt,owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA/groupA_otu_table_sorted_L6.txt -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/taxa_plots_groupA//taxa_summary_plots/ 
+
+Stdout:
+
+Stderr:
+/home/aum/anaconda/envs/qiime191/lib/python2.7/site-packages/matplotlib/collections.py:590: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
+  if self._edgecolors == str('face'):
+
+Executing commands.
+
+# Boxplots (groupA) command 
+make_distance_boxplots.py -d owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//abund_jaccard_dm.txt -f groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//abund_jaccard_boxplots/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -n 999 
+
+Stdout:
+
+Stderr:
+
+# Boxplots (groupA) command 
+make_distance_boxplots.py -d owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_lennon_dm.txt -f groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_lennon_boxplots/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -n 999 
+
+Stdout:
+
+Stderr:
+
+# Boxplots (groupA) command 
+make_distance_boxplots.py -d owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_sorensen_dice_dm.txt -f groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//binary_sorensen_dice_boxplots/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -n 999 
+
+Stdout:
+
+Stderr:
+
+# Boxplots (groupA) command 
+make_distance_boxplots.py -d owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//bray_curtis_dm.txt -f groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//bray_curtis_boxplots/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -n 999 
+
+Stdout:
+
+Stderr:
+
+# Boxplots (groupA) command 
+make_distance_boxplots.py -d owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//morisita_horn_dm.txt -f groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//morisita_horn_boxplots/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -n 999 
+
+Stdout:
+
+Stderr:
+
+# Boxplots (groupA) command 
+make_distance_boxplots.py -d owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//unweighted_unifrac_dm.txt -f groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//unweighted_unifrac_boxplots/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -n 999 
+
+Stdout:
+
+Stderr:
+
+# Boxplots (groupA) command 
+make_distance_boxplots.py -d owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//weighted_unifrac_dm.txt -f groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/bdiv_even3475//weighted_unifrac_boxplots/ -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -n 999 
+
+Stdout:
+
+Stderr:
+
+# Compare alpha diversity (PD_whole_tree) command 
+compare_alpha_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div_collated/PD_whole_tree.txt -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -c groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//compare_PD_whole_tree -n 999 
+
+Stdout:
+
+Stderr:
+
+# Compare alpha diversity (simpson) command 
+compare_alpha_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div_collated/simpson.txt -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -c groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//compare_simpson -n 999 
+
+Stdout:
+
+Stderr:
+
+# Compare alpha diversity (goods_coverage) command 
+compare_alpha_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div_collated/goods_coverage.txt -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -c groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//compare_goods_coverage -n 999 
+
+Stdout:
+
+Stderr:
+
+# Compare alpha diversity (observed_species) command 
+compare_alpha_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div_collated/observed_species.txt -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -c groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//compare_observed_species -n 999 
+
+Stdout:
+
+Stderr:
+
+# Compare alpha diversity (doubles) command 
+compare_alpha_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div_collated/doubles.txt -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -c groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//compare_doubles -n 999 
+
+Stdout:
+
+Stderr:
+
+# Compare alpha diversity (shannon) command 
+compare_alpha_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div_collated/shannon.txt -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -c groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//compare_shannon -n 999 
+
+Stdout:
+
+Stderr:
+
+# Compare alpha diversity (observed) command 
+compare_alpha_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div_collated/observed.txt -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -c groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//compare_observed -n 999 
+
+Stdout:
+
+Stderr:
+
+# Compare alpha diversity (chao1) command 
+compare_alpha_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div_collated/chao1.txt -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -c groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//compare_chao1 -n 999 
+
+Stdout:
+
+Stderr:
+
+# Compare alpha diversity (singles) command 
+compare_alpha_diversity.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//alpha_div_collated/singles.txt -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -c groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/arare_max3475//compare_singles -n 999 
+
+Stdout:
+
+Stderr:
+
+# Group significance (groupA) command 
+group_significance.py -i owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_even3475.biom -m owncloud/data/aumza/files/qiimeNoprimer/input/map.txt -c groupA -o owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/group_significance_groupA.txt 
+
+Stdout:
+
+Stderr:
+
+# Compress the filtered BIOM table command 
+gzip owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_mc3475.biom
+
+Stdout:
+
+Stderr:
+
+# Compress the rarefied BIOM table command 
+gzip owncloud/data/aumza/files/qiimeNoprimer/output/fasta_files/Processeddata/otus/cdotu/table_even3475.biom
+
+Stdout:
+
+Stderr:
+
+
+Logging stopped at 14:03:58 on 08 Jun 2018

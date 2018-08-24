@@ -3,6 +3,7 @@
 $path_data = $argv[1];
 $numcheck  = $argv[2];
 
+echo $numcheck."\n";
 #correlation metadata
 if($numcheck == "3meta"){
 

@@ -38,7 +38,8 @@ p2=ggplot(data=data, aes(x=data$Level_2, y=data$Effect.size, ymin=data$X95.0..lo
 
 
 #tiff(args[2],width=10, height=6, units="in", res=300, compression = "lzw")
-png(args[2],width=10, height=6, units="in", res=300)
+#png(args[2],width=10, height=6, units="in", res=300)
+svg(args[2],width=10,height=6)
 grid.arrange(p1,p2,ncol=2)
 dev.off()
 ####

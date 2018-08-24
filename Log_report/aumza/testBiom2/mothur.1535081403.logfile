@@ -1,0 +1,72 @@
+Linux version
+
+Using ReadLine
+
+Running 64Bit Version
+
+mothur v.1.39.1
+Last updated: 2/3/2017
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+For questions and analysis support, please visit our forum at https://www.mothur.org/forum
+
+Type 'quit()' to exit program
+Batch Mode
+
+
+mothur > count.groups(count=stability.trim.contigs.good.good.count_table,inputdir=Log_report/aumza/testBiom2/,outputdir=Log_report/aumza/testBiom2/)
+Setting output directory to: Log_report/aumza/testBiom2/
+Setting input directory to: Log_report/aumza/testBiom2/
+S1_1_16s contains 15479.
+S2_1_16s contains 14527.
+S3_1_16s contains 14382.
+S4_1_16s contains 14852.
+
+Total seqs: 59240.
+
+Output File Names: 
+Log_report/aumza/testBiom2/stability.trim.contigs.good.good.count.summary
+
+
+mothur > count.groups(count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table,inputdir=Log_report/aumza/testBiom2/,outputdir=Log_report/aumza/testBiom2/)
+Setting output directory to: Log_report/aumza/testBiom2/
+Setting input directory to: Log_report/aumza/testBiom2/
+S1_1_16s contains 14016.
+S2_1_16s contains 13035.
+S3_1_16s contains 13363.
+S4_1_16s contains 13246.
+
+Total seqs: 53660.
+
+Output File Names: 
+Log_report/aumza/testBiom2/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count.summary
+
+
+mothur > count.groups(count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=Log_report/aumza/testBiom2/,outputdir=Log_report/aumza/testBiom2/)
+Setting output directory to: Log_report/aumza/testBiom2/
+Setting input directory to: Log_report/aumza/testBiom2/
+S1_1_16s contains 11805.
+S2_1_16s contains 10349.
+S3_1_16s contains 10691.
+S4_1_16s contains 10754.
+
+Total seqs: 43599.
+
+Output File Names: 
+Log_report/aumza/testBiom2/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count.summary
+
+
+mothur > quit()

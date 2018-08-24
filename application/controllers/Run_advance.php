@@ -13,16 +13,11 @@
       $this->load->library('zip');
       $this->load->library('excel');
 
-
-      //$this->load->controller('Run_owncloud');
-      include(APPPATH.'../setting_sge.php');
-        putenv("SGE_ROOT=$SGE_ROOT");
-        putenv("PATH=$PATH");
-
+     
          
     }
 
-    public function recheck(){
+  public function recheck(){
 
       $id_project = $_REQUEST['data_status'];
        $status   = "";
@@ -57,10 +52,17 @@
       echo json_encode(array($status,$step_run,$id_job,$tg_body,$ts_body));
       
     
-    }
+  }
 
 
-    public function create_file_design(){
+  public function krona($user,$project){
+
+      $data['user'] = $user;
+      $data['project'] = $project;
+      $this->load->view('krona_view',$data);
+  }
+
+  public function create_file_design(){
 
       //$id_project = $_REQUEST['current'];
       $id_project = $this->uri->segment(2);
@@ -76,9 +78,9 @@
 
 
       $this->load->view('excel_design',$data);
-    }
+  }
 
-    public function create_file_metadata(){
+  public function create_file_metadata(){
 
       //$id_project = $_REQUEST['current'];
         
@@ -93,9 +95,9 @@
            }
 
       $this->load->view('excel_metadata',$data);
-    }
+  }
 
-    public function write_design(){
+  public function write_design(){
        
        //$user = $_REQUEST['user'];
       // $id_project = $_REQUEST['project_id'];
@@ -124,9 +126,9 @@
 
        echo json_encode($user);
 
-    }
+  }
 
-    public function check_file_design(){
+  public function check_file_design(){
 
       // $user = $_REQUEST['user'];
      //  $id_project = $_REQUEST['project_id'];
@@ -152,12 +154,9 @@
             else {
               echo json_encode("No File");
             }
-    }
+  }
 
-    
-
-   
-     public function write_metadata(){
+  public function write_metadata(){
 
        //$user = $_REQUEST['user'];
        //$id_project = $_REQUEST['project_id'];
@@ -184,12 +183,10 @@
        file_put_contents($file, $metadata_json); 
 
        echo json_encode($user);
+  }
 
 
-    }
-
-
-     public function check_file_metadata(){
+  public function check_file_metadata(){
 
        //$user = $_REQUEST['user'];
        //$id_project = $_REQUEST['project_id'];
@@ -215,11 +212,11 @@
             else {
               echo json_encode("No File");
             }
-    }
+  }
 
   
 
-    public function check_fasta(){
+  public function check_fasta(){
       
 
       $user = $this->uri->segment(2);
@@ -267,9 +264,9 @@
                }
          } 
       }
-    }
+  }
     
-    public function fasta_read($file,$path_input){
+  public function fasta_read($file,$path_input){
         $file_in = $path_input.$file;
         $file_ch = FCPATH.$file_in;
         $check = "";
@@ -286,12 +283,9 @@
           unlink($file);
           return false;
         }
+  } 
 
-    } 
-
-
-
-    public function chk_data_project_run(){
+  public function chk_data_project_run(){
         
         $id_project = $_REQUEST['current'];
 
@@ -305,13 +299,14 @@
             echo json_encode("t");
            
         }
-    }
+  }
 
+  public function get_json(){
 
+      include(APPPATH.'../setting_sge.php');
+      putenv("SGE_ROOT=$SGE_ROOT");
+      putenv("PATH=$PATH");
 
-
-
-    public function get_json(){
       $value = $_REQUEST['data_array'];
 
        $user = $value[0];
@@ -421,7 +416,9 @@
             if (!file_exists($folder_log)) {
                    mkdir($folder_log, 0777, true);
             }
-        
+
+        #create directory folder report
+        $this->create_folder_report($user,$project);
 
         #Create  jobname  advance
          $jobname = $user."-".$project."-".$project_analysis."-"."advance";
@@ -586,11 +583,14 @@
 
               $this->update_project_run($id_project,$data);
        }  
-
-    }
+  }
    
 
-    public function check_run(){
+  public function check_run(){
+
+         include(APPPATH.'../setting_sge.php');
+         putenv("SGE_ROOT=$SGE_ROOT");
+         putenv("PATH=$PATH");
 
              $da_job = $_REQUEST['data_job'];
                $id_job = $da_job[0];
@@ -641,13 +641,10 @@
                       $up = array($message,$percent_round);
                       echo json_encode($up);
                    }
-             
+  }
 
-     }
+  public function read_count(){
 
-
-
-      public function read_count(){
 
            $da_count = $_REQUEST['data_count'];
            $id_project = $da_count[1];
@@ -656,6 +653,8 @@
            $project = "";
            $project_data = "";
            $project_analysis = ""; 
+           $classifly = ""; 
+           $file_summary = "";
 
              # Query data status-process by id_project
                 $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
@@ -663,18 +662,30 @@
                      $user = $r['user'];
                      $project = $r['project'];
                      $project_analysis = $r['project_analysis'];
-                     $project_data = $r['project_data'];    
+                     $project_data = $r['project_data'];
+                     $classifly = $r['classifly'];    
                
                     }
  
              # Check type Project Phylotype OTU
              if($project_analysis == "phylotype"){
 
-                $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
+                 if($classifly == "silva" || $classifly == "rdp"){
+                      $file_summary = "final.tx.1.cons.tax.summary";
+                 }else if($classifly == "gg") {
+                      $file_summary = "final.tx.2.cons.tax.summary";
+                 }
+
+                 $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
+                 $this->krona_xml_to_html($user,$project,$file_summary);
 
              }elseif ($project_analysis == "OTUs") {
 
-                $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
+                     $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
+
+                     $file_summary = "final.opti_mcc.0.03.cons.tax.summary";
+                     $this->krona_xml_to_html($user,$project_data,$file_summary);
+                    
              }
    
            
@@ -717,21 +728,55 @@
            $data = array('name_sample' => $name_sample);
            $this->update_name_sample($id_project,$data);
          }
-
-      }
-
+  }
 
 
+  public function create_folder_report($user,$project){
+
+        $taxonomy_classification = FCPATH."data_report_mothur/$user/$project/taxonomy_classification/";   
+        if (!file_exists($taxonomy_classification)) {mkdir($taxonomy_classification, 0777, true);}
+
+        $alpha_diversity_analysis = FCPATH."data_report_mothur/$user/$project/alpha_diversity_analysis/";   
+        if (!file_exists($alpha_diversity_analysis)) {mkdir($alpha_diversity_analysis, 0777, true);}
+
+        $beta_diversity_analysis = FCPATH."data_report_mothur/$user/$project/beta_diversity_analysis/";   
+        if (!file_exists($beta_diversity_analysis)){ mkdir($beta_diversity_analysis, 0777, true);}
+
+        $optional_output = FCPATH."data_report_mothur/$user/$project/optional_output/";
+        if (!file_exists($optional_output)) {mkdir($optional_output, 0777, true);}
+  }
 
 
-      public function run_sub_sample(){
+  public function krona_xml_to_html($user,$project,$file_summary){
 
-        $data = $_REQUEST['data_sample'];
 
-        $user = $data[0];
-        $id_project = $data[1];
-        $size = $data[2];
+       # create krona xml
+        $command_xml = "python Scripts/mothur_krona_XML.py  owncloud/data/$user/files/$project/output/".$file_summary." > owncloud/data/$user/files/$project/output/krona_output.xml";
+        exec($command_xml);
 
+
+        # Plot krona html
+        $file_html = "data_report_mothur/$user/$project/taxonomy_classification/krona_output.html";
+        $file_xml = "owncloud/data/$user/files/$project/output/krona_output.xml";
+
+        $command_html = "/opt/KronaTools-2.7/bin/ktImportXML -o ".$file_html." ".$file_xml;
+        exec($command_html);
+  }
+
+
+  
+
+  public function run_sub_sample(){
+
+      include(APPPATH.'../setting_sge.php');
+      putenv("SGE_ROOT=$SGE_ROOT");
+      putenv("PATH=$PATH");
+
+      $data = $_REQUEST['data_sample'];
+
+      $user = $data[0];
+      $id_project = $data[1];
+      $size = $data[2];
 
        $project = "";
        $project_analysis = "";
@@ -751,6 +796,7 @@
         $path_input = "owncloud/data/$user/files/$project_data/input/";
         $path_out = "owncloud/data/$user/files/$project_data/output/";
         $path_log = "owncloud/data/$user/files/$project_data/log/";
+
       
         #Create  jobname  advance
             $jobname = $user."-".$project."-".$project_analysis."-"."advance2";
@@ -760,10 +806,11 @@
            if ($project_analysis == "phylotype") {
 
                 $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype2.php $user $project_data $path_input $path_out $size $path_log";
+               
            }
            else if($project_analysis == "OTUs") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu2.php $user $project_data $path_input $path_out $size $path_log";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu2.php $user $project_data $path_input $path_out $size $path_log"; 
            }
              
  
@@ -792,11 +839,14 @@
          $data = array('status' => '1' ,'step_run' => '2' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'project_data' => $project_data);
          $this->update_status($id_project,$data);
 
-      }
 
+  }
 
+  public function check_subsample(){
 
-      public function check_subsample(){
+        include(APPPATH.'../setting_sge.php');
+        putenv("SGE_ROOT=$SGE_ROOT");
+        putenv("PATH=$PATH");
 
         $sample_job = $_REQUEST['job_sample'];
         $id_job = $sample_job[0];
@@ -810,7 +860,6 @@
          $project_analysis = "";
          $classifly ="";
        
-
 
       #Query data status-process
         $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
@@ -829,6 +878,7 @@
 
             if($check_run == false){
                 
+           
                 # call function read_min_sample
                 $count_min = $this->read_min_sample($id_project);
 
@@ -839,12 +889,11 @@
                   if($project_analysis == "phylotype"){
 
                     $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
-
                   }
                   elseif ($project_analysis == "OTUs") {
 
                     $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
-                    
+
                     #set classifly = otu
                     $classifly = $project_analysis;
                   }
@@ -859,8 +908,7 @@
 
               echo json_encode(array(0,$classifly,$sam_name,$count_min,$samname));
  
-            }else
-                {
+            }else{
 
                      $file = FCPATH."$path_job$name_job.o$id_job";
                      $count = 0 ;
@@ -885,12 +933,11 @@
 
                echo json_encode(array(1,$percent_round));
             }
-             
-
-      }
+  }
 
 
-      public function read_min_sample($p_id){
+
+  public function read_min_sample($p_id){
 
            $id_project = $p_id;    
            $user = "";
@@ -914,6 +961,8 @@
              }elseif ($project_analysis == "OTUs") {
 
                 $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
+
+                
              }
 
            $data_read_count = array();
@@ -933,10 +982,9 @@
 
            # return data read file
            return $data_read_count;
+  }
 
-      }
-
-
+ 
 
   public function samset($id_project){
 
@@ -956,14 +1004,11 @@
              }    
          }
       return $samplename;
-
-    }
-
+  }
 
 
 
-
-      public function ven_val($venn1,$venn2,$venn3,$venn4){
+  public function ven_val($venn1,$venn2,$venn3,$venn4){
          
          # Replace venn
          $group_venn = "" ;
@@ -978,22 +1023,20 @@
              $index = trim($index);
              $group_venn =  str_replace(" ", "-", $index);
              return $group_venn;
-   
-      }
+  }
 
-      public function read_name_sample($project_analysis,$user,$project){
-
+  public function read_name_sample($project_analysis,$user,$project){
 
         # Check type Project Phylotype OTU
-               if($project_analysis == "phylotype"){
+        if($project_analysis == "phylotype"){
 
-                  $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
+              $file = FCPATH."owncloud/data/$user/files/$project/output/final.tx.count.summary";
 
-                 }
-                 elseif ($project_analysis == "OTUs") {
+        }
+        elseif ($project_analysis == "OTUs") {
 
-                  $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
-                 }
+              $file = FCPATH."owncloud/data/$user/files/$project/output/final.opti_mcc.count.summary";
+        }
 
               $sam_name = array();
               $myfile = fopen($file,'r') or die ("Unable to open file");
@@ -1018,12 +1061,13 @@
          $index = trim($index);
          $group_sample =  str_replace(" ", "-", $index);
          return $group_sample;
+  }
 
-      }
+  public function run_analysis(){
 
-     
-      public function run_analysis(){
-
+         include(APPPATH.'../setting_sge.php');
+         putenv("SGE_ROOT=$SGE_ROOT");
+         putenv("PATH=$PATH");
 
          $data = $_REQUEST['data_analysis'];
          $user = $data[0]; # username
@@ -1081,6 +1125,7 @@
 
         #NMDS 
           $nmds = $data[15]; 
+          $func_use = $data[36];
 
          #NMDS Calculator
            $d_nmds_st = $data[16];
@@ -1098,13 +1143,12 @@
        # Use  Ordination method (PCoA OR MNDS)
           $Ordination_method = "";
 
-             if($d_nmds_st != "0" || $d_nmds_me != "0"){
+             if($func_use == "usenmds"){
                  $Ordination_method = "NMDS";
              }else{
                   $Ordination_method = "PCoA";
              }
 
-        
         # Options 
         
         #file design & metadata 
@@ -1144,7 +1188,7 @@
           $checkOption_7_2 = $data[35];
 
           # option 7.1
-          if($checkOption_7_1 == false){
+          if($checkOption_7_1 == "false"){
                $file_design = "0";
                $amova = "0";
                $homova = "0";
@@ -1174,14 +1218,8 @@
                     $axes_otu  = "0"; }
                
            }
-        # option 7.2
-        if($checkOption_7_2 == false){
-               $kegg = "0";
-               $sample_comparison = "0";
-               $statistical_test = "0";
-               $ci_method = "0";
-               $p_value = "0";
-        }
+       
+       
 
         $project = "";  # projectname
         $project_analysis = ""; # type project
@@ -1204,6 +1242,23 @@
         $path_input = "owncloud/data/$user/files/$project_data/input/";
         $path_out = "owncloud/data/$user/files/$project_data/output/";
         $path_log = "owncloud/data/$user/files/$project_data/log/";
+
+
+         # option 7.2
+        if($checkOption_7_2 == "false"){
+               $kegg = "0";
+               $sample_comparison = "0";
+               $statistical_test = "0";
+               $ci_method = "0";
+               $p_value = "0";
+
+             file_put_contents("owncloud/data/$user/files/$project_data/option72.txt", "options:"."unuse"."\n"."sample1:"."none"."\n"."sample2:"."none"."\n");
+       
+        }else{
+
+          list($sample1,$sample2)=explode("--vs--",$sample_comparison);
+          file_put_contents("owncloud/data/$user/files/$project_data/option72.txt", "options:"."use"."\n"."sample1:".$sample1."\n"."sample2:".$sample2."\n");
+        }
 
 
        
@@ -1237,27 +1292,23 @@
                   }
             }
 
-
-            
-
         # Create  jobname  advance
-            $jobname = $user."-".$project."-".$project_analysis."-"."advance3";
+          $jobname = $user."-".$project."-".$project_analysis."-"."advance3";
 
         # Check type Project is Phylotype OR OTU
 
-           if ($project_analysis == "phylotype") {
+          if ($project_analysis == "phylotype") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $amova $homova $anosim $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num $kegg $sample_comparison $statistical_test $ci_method $p_value ";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $amova $homova $anosim $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num $kegg $sample_comparison $statistical_test $ci_method $p_value $func_use";
                
            }
            else if($project_analysis == "OTUs") {
                 
                 #$label_num = "0.03";
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $amova $homova $anosim $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num $kegg $sample_comparison $statistical_test $ci_method $p_value ";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $amova $homova $anosim $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num $kegg $sample_comparison $statistical_test $ci_method $p_value $func_use";
            }
              
- 
         shell_exec($cmd);
 
         $check_qstat = "qstat  -j '$jobname' ";
@@ -1273,19 +1324,14 @@
 
          $id_job = trim($id_job);
 
+        echo json_encode(array($id_job,$id_project));
 
-         echo json_encode(array($id_job,$id_project));
-
-     
        # Update data status-process Step 3
 
          $data = array('status' => '1' ,'step_run' => '3' ,'job_id' => $id_job ,'job_name' => $jobname ,'path_log' => $path_log , 'f_design' => $file_design ,'f_metadata' => $file_metadata , 'project_data' => $project_data ,'level' => $level );
          $this->update_status($id_project,$data);
 
-
-
-
-          $data = array(
+        $data = array(
               
               'tax_level'=> $level,
               'calculator_tree_st' => $d_upgma_st,
@@ -1294,15 +1340,15 @@
               'corr_meta' => $method_meta ,
               'corr_otu' => $method_otu);
 
-              $this->update_project_run($id_project,$data);
+        $this->update_project_run($id_project,$data);
+  }
 
 
+  public function check_analysis(){
 
-      }
-
-
-      public function check_analysis(){
-
+        include(APPPATH.'../setting_sge.php');
+        putenv("SGE_ROOT=$SGE_ROOT");
+        putenv("PATH=$PATH");
 
         $analysis_job = $_REQUEST['job_analysis'];
         $id_job = $analysis_job[0];
@@ -1350,12 +1396,9 @@
              $divisor = 32 ;
         }
 
-         
-
         $check_run = exec("qstat -j $id_job ");
 
             if($check_run == false){
-
 
                   $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
                   
@@ -1398,57 +1441,42 @@
                $up = 1;
                echo json_encode(array($up,$percent_round,$message));
             }
-             
-
-      }
+  }
 
 
-    public function on_move($user,$project,$project_data,$tg_body,$ts_body){
+  public function on_move($user,$project,$project_data,$tg_body,$ts_body){
 
          # check & create folder user
-         $path_img = FCPATH."img_user/$user/$project/";   
-         if (!file_exists($path_img)) {
-                mkdir($path_img, 0777, true);
-         }
-         
-         $path_dir = FCPATH."owncloud/data/$user/files/$project_data/output/";
-            if (is_dir($path_dir)) {
-                if ($read = opendir($path_dir)){
-                      while (($img = readdir($read)) !== false) {
+         // $data_report_mothur = FCPATH."data_report_mothur/$user/$project/beta_diversity_analysis/";   
+         // if (!file_exists($data_report_mothur)) {
+         //        mkdir($data_report_mothur, 0777, true);
+         // }
+
+         //$path_dir = FCPATH."owncloud/data/$user/files/$project_data/output/";
+            // if (is_dir($path_dir)) {
+            //     if ($read = opendir($path_dir)){
+            //           while (($img = readdir($read)) !== false) {
                         
-                        $allowed =  array('png','svg');
-                        $ext = pathinfo($img, PATHINFO_EXTENSION);
+            //             $allowed =  array('svg');
+            //             $ext = pathinfo($img, PATHINFO_EXTENSION);
 
-                        if(in_array($ext,$allowed)) {
+            //             if(in_array($ext,$allowed)) {
                            
-                          copy($path_dir.$img,$path_img.$img);
-                        }
-                      }
-     
-                   closedir($read);
-                }
-
-               //unlink($path_img."bin.svg");
-               //unlink($path_img."jclass.svg");
-               //unlink($path_img."thetayc.svg");
-            }
-
-          
-
-
-        
-          #create file excel_table_groups_ave_std.xlsx
+            //               copy($path_dir.$img,$data_report_mothur.$img);
+            //             }
+            //           }
+            //        closedir($read);
+            //     }
+            // }
+    
+         #create file excel_table_groups_ave_std.xlsx
          $this->create_file_excel_g($user,$project,$tg_body);
 
          #create file excel_table_summary.xlsx
          $this->create_file_excel_s($user,$project,$ts_body); 
+  }
 
-      }
-
-
-
-     public function on_showimg($id_project){
-
+  public function on_showimg($id_project){
 
          $user = "";
          $project = "";
@@ -1469,56 +1497,65 @@
          }
 
 
-
         $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
                   
         $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
         
+      
+         $data_img_tree = array();
+         $data_img_nmds_biplot = array();
+         $data_img_nmd = array();
+         $data_img_pcoa = array();
 
-      
-         $data_img = array();
-         $path_img = FCPATH."img_user/$user/$project/";   
-      
+         $path_img = FCPATH."data_report_mothur/$user/$project/beta_diversity_analysis/";   
         
-            if (is_dir($path_img)) {
+          if (is_dir($path_img)) {
                 if ($read = opendir($path_img)){
                       while (($img = readdir($read)) !== false) {
-                        
-                        $allowed =  array('png','svg');
-                        $ext = pathinfo($img, PATHINFO_EXTENSION);
-                        $name = pathinfo($img);
 
-                        if(in_array($ext,$allowed)) {
-                           
-                            array_push($data_img, $img); 
+                        # Tree
+                        if(stripos($img,'Tree') !== false){
+                           array_push($data_img_tree,$img);
                         }
+
+                        # NMDS_Biplot
+                         if(stripos($img,'Biplot') !== false){
+                            array_push($data_img_nmds_biplot,$img);
+                        }
+
+                        # NMDS
+                         if(stripos($img,'NMD_') !== false){
+                             array_push($data_img_nmd,$img);
+                        }
+
+                        # PCoA
+                          if(stripos($img,'PCoA_') !== false){
+                             array_push($data_img_pcoa,$img);
+                        }
+                        
                       }
-     
                    closedir($read);
                 }
-
             }
 
             $data['id_project'] =  $id_project;
             $data['user'] = $user;
             $data['project'] = $project; 
-            $data['data_img'] = $data_img;
             $data['project_analysis'] = $project_analysis;
             $data['tg_body'] = $tg_body;
             $data['ts_body'] = $ts_body;
 
-         
+            $data['tree'] = $data_img_tree;
+            $data['biplot'] = $data_img_nmds_biplot;
+            $data['nmd'] = $data_img_nmd;
+            $data['pcoa'] = $data_img_pcoa;
 
             $this->load->view('header');
             $this->load->view('graph_advance',$data);
             $this->load->view('footer');
-         
-      
-      }
+  }
 
-
-
-   public function read_file_groups_ave_std_summary($user,$project,$project_analysis,$level){
+  public function read_file_groups_ave_std_summary($user,$project,$project_analysis,$level){
    
          $path = FCPATH."owncloud/data/$user/files/$project/output/";
 
@@ -1579,20 +1616,15 @@
 
                             array_push($tbody,$new_data); 
                               
-
                            }
                         }
                 
                     $count++;
                     }
                 fclose($myfile);  
-          
            } 
-
-           return $tbody; 
-           
-
-      }
+           return $tbody;    
+  }
 
   public function read_file_summary($user,$project,$project_analysis,$level){
           
@@ -1654,7 +1686,6 @@
                                        $line0[12] );
 
                             array_push($tbody,$new_data); 
-                              
 
                            }
                         }
@@ -1664,13 +1695,10 @@
                 fclose($myfile);  
           
            } 
-
-           return $tbody; 
-            
-  
+           return $tbody;    
   }
 
-   public function create_file_excel_g($user,$project,$tg_body){
+  public function create_file_excel_g($user,$project,$tg_body){
 
      $objExcel = new PHPExcel();
 
@@ -1725,10 +1753,7 @@
 
       $objWriter = PHPExcel_IOFactory::createWriter($objExcel,'Excel2007');
       $filename = "excel_table_groups_ave_std.xlsx";
-      $objWriter->save("img_user/".$user."/".$project."/".$filename);
-     
-
-
+      $objWriter->save("data_report_mothur/".$user."/".$project."/alpha_diversity_analysis/".$filename); 
   }
 
 
@@ -1803,61 +1828,48 @@
      
       $objWriter = PHPExcel_IOFactory::createWriter($objExcel,'Excel2007');
       $filename = "excel_table_summary.xlsx";
-      $objWriter->save("img_user/".$user."/".$project."/".$filename);
+      $objWriter->save("data_report_mothur/".$user."/".$project."/beta_diversity_analysis/".$filename);
      
   }
 
   public function insert_status($data){
       
-            # insert data status-process
-            $this->mongo_db->insert('status_process', $data);
-
-
-     }
+        # insert data status-process
+        $this->mongo_db->insert('status_process', $data);
+  }
 
   public function update_status($id_project,$data){
           
-           # update data status-process
-            $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('status_process'); 
-           
-          
-
-     }
+        # update data status-process
+        $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('status_process'); 
+  }
 
 
-    public function insert_name_sample($data){
+  public function insert_name_sample($data){
       
-            # insert data sample_name
-            $this->mongo_db->insert('sample_name', $data);
+          # insert data sample_name
+          $this->mongo_db->insert('sample_name', $data);
+  }
 
-
-     }
-
-     public function update_name_sample($id_project,$data){
+  public function update_name_sample($id_project,$data){
           
            # update data sample_name
-            $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('sample_name'); 
-           
-          
+            $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('sample_name');        
+  }
 
-     }
-
-
-     public function insert_project_run($data){
+  public function insert_project_run($data){
        
         # insert data projects_run
         $this->mongo_db->insert('projects_run',$data);
+  }
 
-     }
-
-     public function update_project_run($id_project,$data){
+  public function update_project_run($id_project,$data){
 
        # update data projects_run
         $this->mongo_db->where(array('project_id' => $id_project , 'mode' => 'advance' ))->set($data)->update('projects_run');
-    
-     }
+  }
 
-     public function check_dirzip(){
+  public function check_dirzip(){
 
       $id_project = $_REQUEST['current'];
 
@@ -1875,7 +1887,7 @@
 
          }
 
-         $path_img = FCPATH."img_user/$user/$folder/";  
+         $path_img = FCPATH."data_report_mothur/$user/$folder/Download/";  
 
            if($step_run == "4"){
 
@@ -1887,97 +1899,25 @@
            }else{
              echo json_encode("Null");
          }
-     }
-
-    public function down_zip(){
-
-
-        //$id_project = $_REQUEST['current'];
-         $id_project = $this->uri->segment(2);
-
-        #Query data status-process
-        $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
-         foreach ($array_status as $r) {             
-              
-                $user = $r['user'];
-                $folder = $r['project'];
-    
-         }
-
-           $this->zip->read_dir("img_user/".$user."/".$folder."/",FALSE);
-           $this->zip->download('visualization.zip');
-
-
-     }
-
-     // public function getCanvas1(){
-
-     //   $img_data = $_REQUEST['data'];
-     //   $id_project = $_REQUEST['current'];
-        
-     //    $user = "NULL";
-     //    $folder = "NULL";
-
-     //    #Query data status-process
-     //    $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
-     //     foreach ($array_status as $r) {             
-              
-     //            $user = $r['user'];
-     //            $folder = $r['project'];
-    
-     //     }
-
-     //     $path_img = FCPATH."img_user/$user/$folder/table_groups_ave_std_summary.png";  
-
-     //     if(!file_exists($path_img)){
-    
-     //          $upload_dir = "img_user/".$user."/".$folder."/";
-     //          $img = str_replace('data:image/png;base64','', $img_data);
-     //          $img = str_replace(' ', '+', $img);
-     //           $data = base64_decode($img);
-
-     //           $file = $upload_dir."table_groups_ave_std_summary.png";
-     //           file_put_contents($file, $data);
-     //     }
-       
-      
-     // }
-
-     // public function getCanvas2(){
-
-     //   $img_data = $_REQUEST['data'];
-     //   $id_project = $_REQUEST['current'];
-        
-     //    $user = "NULL";
-     //    $folder = "NULL";
-
-     //    #Query data status-process
-     //    $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
-     //     foreach ($array_status as $r) {             
-              
-     //            $user = $r['user'];
-     //            $folder = $r['project'];
-    
-     //     }
-
-     //     $path_img = FCPATH."img_user/$user/$folder/table_summary.png";  
-
-     //      if(!file_exists($path_img)){
-
-     //          $upload_dir = "img_user/".$user."/".$folder."/";
-     //          $img = str_replace('data:image/png;base64','', $img_data);
-     //          $img = str_replace(' ', '+', $img);
-     //          $data = base64_decode($img);
-
-     //           $file = $upload_dir."table_summary.png";
-     //           file_put_contents($file, $data);
-     //      }
-      
-     // }
-
-
-
-  
   }
+
+  public function down_zip(){
+
+      //$id_project = $_REQUEST['current'];
+      $id_project = $this->uri->segment(2);
+
+      #Query data status-process
+      $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+      foreach ($array_status as $r) {             
+              
+          $user = $r['user'];
+          $folder = $r['project'];
+    
+      }
+
+      $this->zip->read_dir("data_report_mothur/".$user."/".$folder."/Download/",FALSE);
+      $this->zip->download('visualization.zip');
+  } 
+}
 
 ?>

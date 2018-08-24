@@ -75,10 +75,10 @@ body {
   padding: 15px;
 }
 .sidebar ul li {
-  border-bottom: 1px solid #f1b710;
+  border-bottom: 1px solid #cac6c6;
 }
 .sidebar ul li a.active {
-  background-color: #49555a;
+  background-color: #f5f5f5;
 }
 .sidebar ul li a.active:hover {
   background-color: #f5f5f5;
