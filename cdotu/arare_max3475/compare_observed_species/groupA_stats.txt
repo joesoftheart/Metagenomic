@@ -1,4 +1,0 @@
-Group1	Group2	Group1 mean	Group1 std	Group2 mean	Group2 std	t stat	p-value
-After	Before	115.25	27.45	88.3	9.5	0.927793302651	1.0
-Control	After	42.4	5.4	115.25	27.45	-2.60400787451	1.0
-Control	Before	42.4	5.4	88.3	9.5	-4.20041631205	0.933

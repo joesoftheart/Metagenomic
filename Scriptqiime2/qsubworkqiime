@@ -2,4 +2,4 @@ export PATH=/opt/pear-0.9.11-linux-x86_64/bin:$PATH
 export PATH=/opt/ActivePerl-5.24/bin:$PATH
 #export LD_LIBRARY_PATH=/opt/glibc-2.14/lib
 
-perl Scriptqiime2/run_pear.pl -f $2pear_full_log.txt -s $2pear_summary_log.txt -p 8 -o $1stitched_reads $2* 
+perl Scriptqiime2/run_pear.pl -f $2pear_full_log.txt -s $2pear_summary_log.txt -p 8 -o $1stitched_reads $2*.fastq 

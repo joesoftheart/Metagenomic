@@ -450,8 +450,8 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="alert alert-info">
             <center>
              
-            <a href="<?php echo site_url('qiime_report/graph_qiime');?>" target="_blank">
-             <button type="button" class="btn btn-warning  btn-circle btn-xl" id="qiime_report">
+            <a href="<?php echo site_url('qiime_report/graph_qiime/');?><?=$username?>/<?=$current_project?>" target="_blank">
+             <button type="button" class="btn btn-warning  btn-circle btn-xl">
                 <i class="fa fa-file-image-o"></i>
               </button>
             </a>  
@@ -473,7 +473,7 @@ if (isset($this->session->userdata['logged_in'])) {
             <center>
 
 
-            <a href="<?php echo site_url('run_qiime/graph_qiime_full');?>" target="_blank">
+            <a href="<?php echo site_url('qiime_report/graph_qiime_full/');?><?=$current_project?>" target="_blank">
               <button type="button" class="btn btn-success  btn-circle btn-xl">
                 <i class="fa fa-file-image-o"></i>
               </button>
@@ -542,9 +542,11 @@ if (isset($this->session->userdata['logged_in'])) {
         if($(this).prop('checked')){
           $(".optionset2").removeAttr("disabled")
           $(".opt2").show();
+         
         }else{
           $(".optionset2").attr("disabled", true);
           $(".opt2").hide();
+           
         }
      });
 
@@ -682,7 +684,8 @@ $(document).ready(function (){
      /* end check status run  */
        
      /* submit run process */  
-        $("#sub-test").click(function () {               
+        $("#sub-test").click(function () {    
+             $('li.pre').attr('id','active');           
                 var username = document.forms["Pre-form"]["username"].value;
                 var project  = document.forms["Pre-form"]["project"].value;
                 var chkmap = document.forms["Pre-form"]["chkmap"].value;
@@ -706,12 +709,12 @@ $(document).ready(function (){
                  
                 var array_data = new Array(username,project,chkmap,permanova,opt_permanova,anosim,opt_anosim,adonis,opt_adonis,core_group,kegg,sample_comparison,statistical_test,ci_method,p_value,beta_diversity_index,beta_diversity_index2);
 
-                var open_opt = null;
+                var open_opt = "null";
                 if(console_event2){
-                    if(sample_comparison != "0" && statistical_test !="0" && ci_method != "0" &&   p_value !="0" ){ 
+                    if(sample_comparison != "0" && statistical_test !="0" && ci_method != "0" &&  p_value !="0" ){ 
                             open_opt = true;
                     }else{
-                            open_opt = false;
+                            open_opt = false; 
                     }
                 }
 
@@ -721,7 +724,7 @@ $(document).ready(function (){
                          // alert("open");
                         $(".Pre-test").hide();
                         $(".Pre-show").show();
-                        getvalue(array_data);
+                        getvalue(array_data,open_opt);
                     }      
                         
                  }else if(!console_event2){
@@ -729,7 +732,7 @@ $(document).ready(function (){
                         // alert("close");
                         $(".Pre-test").hide();
                         $(".Pre-show").show();
-                        getvalue(array_data);
+                        getvalue(array_data,open_opt);
                     }      
                  }else{
                         alert("Please select all stamp");
@@ -757,13 +760,10 @@ function getGroup(data_arr){
                         name_group += "<option value="+reData[1][i]+">"+reData[1][i]+"</option>";    
                 }
                 $('#core_group').html(name_group);
-                $('#permanova').html(name_group);
-                $('#anosim').html(name_group);
-                $('#adonis').html(name_group);  
-
+               
                 /*start div sample-name*/
                 var samname = "";
-                samname += "<option value=0> </option>";
+                samname += "<option value='0'> </option>";
                 for (var i=0; i < reData[2].length; i++) {
 
                      samname += "<option value="+reData[2][i]+">"+reData[2][i]+"</option>";    
@@ -778,13 +778,13 @@ function getGroup(data_arr){
     });                       
 }
 
-function getvalue(array_data){
+function getvalue(array_data,open_opt){
             var data_value = array_data;
             $.ajax({ 
                     type:"post",
                     datatype:"json",
                     url:"<?php echo base_url('Run_qiime/run_qiime_process'); ?>",
-                    data:{data_array: data_value},
+                    data:{data_array: data_value, data_opt:open_opt},
                     success:function(data){
                       var data_job = $.parseJSON(data);
                       checkrun(data_job);
@@ -855,9 +855,17 @@ function on_switch(data_name){
         success:function(data){
                 var data_sw = $.parseJSON(data);
                 console.log(data_sw);
-                if(data_sw == "on"){ 
+                if(data_sw[0] == "on"){ 
                     $(".optionset1").removeAttr("disabled");
                     $(".opt1").hide();
+
+                    var name_group =  "<option value='none'>none</option>";
+                         name_group += "<option value="+data_sw[1]+">"+data_sw[1]+"</option>";
+
+                    $('#permanova').html(name_group);
+                    $('#anosim').html(name_group);
+                    $('#adonis').html(name_group);  
+
                 }else{
                     $(".optionset1").attr("disabled", true);
                     $(".opt1").show();

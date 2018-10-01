@@ -40,7 +40,7 @@
 
         if($user != "" && $project != "" && $argv[3] != "" && $argv[4] != "" && $argv[5] != "" && $argv[6] != "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != "" && $argv[11] != "" && $argv[12] != "" && $argv[13] != "" && $argv[14] != "" && $argv[15] != ""){
              echo "Check Parameter Success"."\n";
-             //find_fastq_fasta($platform_sam,$platform_type,$user,$project,$path_in,$path_out);
+             find_fastq_fasta($platform_sam,$platform_type,$user,$project,$path_in,$path_out);
              
           }else {
 
@@ -199,6 +199,11 @@
                     echo "Unable-open-fileoligos";
                     break;
                 }
+
+            }elseif ($platform_type == "proton_without"){
+
+
+                # code... find file fasta
             }  
         }         
     }
@@ -743,7 +748,7 @@
 
 
 # make.contigs && summary.seqs
-#read log
+# read log
             function makecontig_summary($user, $project, $path_in, $path_out)
             {
 

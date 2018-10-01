@@ -566,7 +566,7 @@ $this->myfpdf->Cell(0, 8, 'Data pre-processing :', 0, 1);
 //$this->myfpdf->DumpFont('Symbol', '179');
 
 $this->myfpdf->SetFont('Times', '', 10);
-$this->myfpdf->MultiCell(0, 6, 'The data set ' . $project_name . ' was uploaded on ' . $date . ' at ' . $time . ' and contains ' . $count_seqs . ' sequences with an average length of ' . $avg_lenght . ' bps.  Raw sequencing data obtained from ' . $project_sequencing . ' platform were implemented according to ' . $project_program . ' MiSeq SOP. First, raw sequences were joined the reads into contigs using make.contigs function from Mothur program (version 1.39.5). After that they were pre-processed to remove ambiguous base > ' . $max_amb . '. Then, sequences were aligned using SILVA bacterial database. This makes sequences that did not overlap in the desired region are excluded including the sequences of homopolymer bases > ' . $max_amb . ' with the minimum and maximum length of reads were set to ' . $min_read . ' and ' . $max_read . ' bp, respectively. Moreover, pre.cluster function was used to merge low frequency sequences with very close higher frequency sequencings using a modified single linage algorithm. This is to reduce the sequencing error. The chimeras were also screened using UCHIME function and removed from the sequences set. The clean sequences were classified the taxonomy using the Naïve Bayesian Classifier method, described by Wang et al. with Greengenes database (August 2013 release of gg_13_8_99). The minimum bootstrap confidence score of 80% was used for taxonomic assignment. In the step of the clustering of sequences was performed using ' . $project_type . '-based methods at ' . $methods . ' level with Mothur program.');
+$this->myfpdf->MultiCell(0, 6, 'The data set ' . $project_name . ' was uploaded on ' . $date . ' at ' . $time . ' and contains ' . $count_seqs . ' sequences with an average length of ' . $avg_lenght . ' bps.  Raw sequencing data obtained from ' . $project_sequencing . ' platform were implemented according to ' . $project_program . ' MiSeq SOP. First, raw sequences were joined the reads into contigs using make.contigs function from Mothur program (version 1.39.5). After that they were pre-processed to remove ambiguous base > ' . $max_amb . '. Then, sequences were aligned using '.$alignment_name.'. This makes sequences that did not overlap in the desired region are excluded including the sequences of homopolymer bases > ' . $max_amb . ' with the minimum and maximum length of reads were set to ' . $min_read . ' and ' . $max_read . ' bp, respectively. Moreover, pre.cluster function was used to merge low frequency sequences with very close higher frequency sequencings using a modified single linage algorithm. This is to reduce the sequencing error. The chimeras were also screened using UCHIME function and removed from the sequences set. The clean sequences were classified the taxonomy using the Naïve Bayesian Classifier method, described by Wang et al. with '.$classifier_name.'. The minimum bootstrap confidence score of 80% was used for taxonomic assignment. In the step of the clustering of sequences was performed using ' . $project_type . '-based methods at ' . $methods . ' level with Mothur program.');
 
 $this->myfpdf->Cell(0, 5, '', 0, 1);
 $this->myfpdf->SetFont('Times', '', 10);
@@ -719,17 +719,44 @@ $this->myfpdf->SetFont('Times', '', 10);
 $this->myfpdf->MultiCell(0, 6, "        Biplot (Figure 7) present the evaluated data in a graph form. Biplot was visualized from performing using mothur subroutine 'corr.axes'. This visualization help illustrates the interaction between the submitted data and other metadata such as pH, temperature, salinity and the correlation of the relative abundance of each OTU along the two axes in the PCoA or NMDS. The arrow represent the direction of metadata or the environment or OTUs which related among groups to axes of PCoA or NMDS. Different bacteria can interact and respond to changes in metadata in different ways, some may respond more when pH changes but the opposite trend may be observed for salinity due to its high salt tolerance level. This graph will serve as a tool to spot metadata in which it effects one sample more than another, this plot is represent $graph, based on $calculators index with biplot, calculated by $calculators_bio's correlation.");
 
 
-# NMDS_BiplotwithMetadata_thetayc.png.png OR PCoA_BiplotwithMetadata_thetayc.png
-$this->myfpdf->Image(base_url() .'data_report_mothur/'.$user.'/'.$project_name.'/beta_diversity_analysis/'.$thetayc2, 50, 75, 110, 90);
 
-$this->myfpdf->Cell(0,90, '', 0, 1);
-$this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 7  </b>'. $graph . ' based on thetayc index with biplot, calculated thetayc ’s correlation method, representing the direction of metadata or the environment which related with other samples.') . '');
+
+# NMDS_BiplotwithMetadata_thetayc.png.png OR PCoA_BiplotwithMetadata_thetayc.png
+$img_thetayc2 = 'data_report_mothur/'.$user.'/'.$project_name.'/beta_diversity_analysis/'.$thetayc2;
 
 # NMDS_BiplotwithOTU_thetayc.png.png OR PCoA_BiplotwithOTU_thetayc.png
-$this->myfpdf->Image(base_url() .'data_report_mothur/'.$user.'/'.$project_name.'/beta_diversity_analysis/'.$thetayc3, 50, 174, 110, 90);
+$img_thetayc3 =  'data_report_mothur/'.$user.'/'.$project_name.'/beta_diversity_analysis/'.$thetayc3;
 
-$this->myfpdf->Cell(0, 85, '', 0, 1);
-$this->myfpdf->MultiCell(0, 0, $this->myfpdf->WriteHTML('<b>Figure 8  </b>'. $graph . ' based on thetayc index with biplot, calculated ' . $calculators_bio . '’s correlation method, representing the direction of OTUs or genus which related among groups.') . '');
+if(file_exists($img_thetayc2) && file_exists($img_thetayc3)){
+
+ $this->myfpdf->Image(base_url() .'data_report_mothur/'.$user.'/'.$project_name.'/beta_diversity_analysis/'.$thetayc2, 50, 75, 110, 90);
+
+ $this->myfpdf->Cell(0,90, '', 0, 1);
+ $this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 7  </b>'. $graph . ' based on thetayc index with biplot, calculated thetayc ’s correlation method, representing the direction of metadata or the environment which related with other samples.') . '');
+
+
+ $this->myfpdf->Image(base_url() .'data_report_mothur/'.$user.'/'.$project_name.'/beta_diversity_analysis/'.$thetayc3, 50, 174, 110, 90);
+
+ $this->myfpdf->Cell(0, 85, '', 0, 1);
+ $this->myfpdf->MultiCell(0, 0, $this->myfpdf->WriteHTML('<b>Figure 8  </b>'. $graph . ' based on thetayc index with biplot, calculated ' . $calculators_bio . '’s correlation method, representing the direction of OTUs or genus which related among groups.') . '');
+
+}else if(file_exists($img_thetayc2)){
+
+ $this->myfpdf->Image(base_url() .'data_report_mothur/'.$user.'/'.$project_name.'/beta_diversity_analysis/'.$thetayc2, 50, 75, 110, 90);
+
+ $this->myfpdf->Cell(0,90, '', 0, 1);
+ $this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 7  </b>'. $graph . ' based on thetayc index with biplot, calculated thetayc ’s correlation method, representing the direction of metadata or the environment which related with other samples.') . '');
+
+
+}else if(file_exists($img_thetayc3)){
+
+  $this->myfpdf->Image(base_url() .'data_report_mothur/'.$user.'/'.$project_name.'/beta_diversity_analysis/'.$thetayc3, 50, 75, 110, 90);
+
+  $this->myfpdf->Cell(0, 90, '', 0, 1);
+  $this->myfpdf->MultiCell(0, 0, $this->myfpdf->WriteHTML('<b>Figure 7  </b>'. $graph . ' based on thetayc index with biplot, calculated ' . $calculators_bio . '’s correlation method, representing the direction of OTUs or genus which related among groups.') . '');
+
+}
+
 
 
 
@@ -758,7 +785,8 @@ $this->myfpdf->Cell(0, 10, 'Predicted metabolic functions based on 16S rRNA data
 $this->myfpdf->SetFont('Times', '', 10);
 $this->myfpdf->MultiCell(0, 6, 'PICRUSt is an approach for inferring community metagenomic potential from its 16S profile. The predicted metagenome output of PICRUSt was computed in statistic using STAMP v2.0 based on the difference groups. The normalized OTUs data was processed to metagenome prediction and categorized by function using KEGG level 2. These analysis were performed the significantly different between two groups using two-sided Welch’s t-test, the Welch′s inverted test for confidence interval method with Benjamini–Hochberg FDR (BH) for multiple testing corrections. BH was used to correct the potential false positives due to multiple tests. Feature with q-value < 0.05 were considered significant. At level 2 of KEGG, BH correction found 12 features displayed significantly different between '.$sam1.' and '.$sam2);
 
-$this->myfpdf->Image(base_url() .'img_user/aumza/testBiom2/bar_plot_STAMP.png', 20, 120, 170, 90);
+$this->myfpdf->Image(base_url() .'data_report_mothur/'.$user.'/'.$project_name.'/optional_output/bar_plot_STAMP.png', 20, 120, 170, 90);
+
 $this->myfpdf->SetFont('Times', '', 10);
 $this->myfpdf->Cell('0', 110, '', 0, 1);
 $this->myfpdf->MultiCell(0, 6, $this->myfpdf->WriteHTML('<b>Figure 9  </b> Extended error bar plot of the predicted metagenome functions in KEGG (level 2) between '.$sam1.' and '.$sam2) . '');

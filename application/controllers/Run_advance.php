@@ -341,40 +341,49 @@
                 $project_platform_type = ($r['project_platform_type']); 
          }
 
-
+         $data_alignment = null;
         # Check variable aligment
             if($customer != null){
                 $alignment = $customer;
+                 $data_alignment = "Customer database (".$customer.")";
             }
             
             else if ($alignment == "gg") {
                 $alignment = "gg_13_8_99.fasta";
+                 $data_alignment = "Greengenes database";
             }
             else if ($alignment == "rdp") {
                 $alignment = "trainset16_022016.rdp.fasta";
+                $data_alignment = "RDP database";
             }
 
             else if($alignment == "v_full"){
                 $alignment = "silva.bacteria.fasta";
+                 $data_alignment = "SILVA bacterial database";
             }
             else if($alignment == "v1-v3"){
                 $alignment = "silva.v123.fasta";
+                 $data_alignment = "SILVA bacterial database";
             }
             else if($alignment == "v3-v4"){
                 $alignment = "silva.v34.fasta";
+                 $data_alignment = "SILVA bacterial database";
             }
             else if($alignment == "v4"){
                 $alignment = "silva.v4.fasta";
+                 $data_alignment = "SILVA bacterial database";
             }
             else if($alignment == "v3-v5"){
                 $alignment = "silva.v345.fasta ";
+                 $data_alignment = "SILVA bacterial database";
             }
             else if($alignment == "v4-v5"){
                 $alignment = "silva.v45.fasta";
+                 $data_alignment = "SILVA bacterial database";
             }
 
 
-
+         $data_classifly = null;
          $reference = '';
          $taxonomy ='';
         # Check variable classifly
@@ -382,14 +391,17 @@
             if($classifly == "silva"){
               $reference = 'silva.nr_v128.align';
               $taxonomy ='silva.nr_v128.tax';
+               $data_classifly = "Silva database (Release 132)";
             }
             else if($classifly == "gg") {
               $reference = 'gg_13_8_99.fasta';
               $taxonomy ='gg_13_8_99.gg.tax';
+               $data_classifly = "Greengenes database (August 2013 release of gg_13_8_99)";
             }
              else if($classifly == "rdp") {
               $reference = 'trainset16_022016.rdp.fasta';
               $taxonomy = 'trainset16_022016.rdp.tax';
+               $data_classifly = "RDP database (version 16)";
             }
 
 
@@ -404,6 +416,10 @@
             $path_input = "owncloud/data/$user/files/$project_data/input/";
             $path_out = "owncloud/data/$user/files/$project_data/output/";
             $path_log = "owncloud/data/$user/files/$project_data/log/";
+
+
+           file_put_contents($path_input."align_class.txt", "alignment :".$data_alignment."\n", FILE_APPEND);
+           file_put_contents($path_input."align_class.txt", "classifier :".$data_classifly."\n", FILE_APPEND);
 
          # create advance.batch
             $file_batch = FCPATH."$path_input"."advance.batch";
@@ -677,14 +693,14 @@
                  }
 
                  $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.tx.count.summary";
-                 $this->krona_xml_to_html($user,$project,$file_summary);
+                 $this->krona_xml_to_html($user,$project_data,$file_summary,$project);
 
              }elseif ($project_analysis == "OTUs") {
 
                      $file = FCPATH."owncloud/data/$user/files/$project_data/output/final.opti_mcc.count.summary";
 
                      $file_summary = "final.opti_mcc.0.03.cons.tax.summary";
-                     $this->krona_xml_to_html($user,$project_data,$file_summary);
+                     $this->krona_xml_to_html($user,$project_data,$file_summary,$project);
                     
              }
    
@@ -747,17 +763,17 @@
   }
 
 
-  public function krona_xml_to_html($user,$project,$file_summary){
+  public function krona_xml_to_html($user,$project_data,$file_summary,$project){
 
 
        # create krona xml
-        $command_xml = "python Scripts/mothur_krona_XML.py  owncloud/data/$user/files/$project/output/".$file_summary." > owncloud/data/$user/files/$project/output/krona_output.xml";
+        $command_xml = "python Scripts/mothur_krona_XML.py  owncloud/data/$user/files/$project_data/output/".$file_summary." > owncloud/data/$user/files/$project_data/output/krona_output.xml";
         exec($command_xml);
 
 
         # Plot krona html
         $file_html = "data_report_mothur/$user/$project/taxonomy_classification/krona_output.html";
-        $file_xml = "owncloud/data/$user/files/$project/output/krona_output.xml";
+        $file_xml = "owncloud/data/$user/files/$project_data/output/krona_output.xml";
 
         $command_html = "/opt/KronaTools-2.7/bin/ktImportXML -o ".$file_html." ".$file_xml;
         exec($command_html);
@@ -1299,14 +1315,14 @@
 
           if ($project_analysis == "phylotype") {
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $amova $homova $anosim $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num $kegg $sample_comparison $statistical_test $ci_method $p_value $func_use";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_phylotype3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $amova $homova $anosim $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num $kegg $sample_comparison $statistical_test $ci_method $p_value $func_use $project";
                
            }
            else if($project_analysis == "OTUs") {
                 
                 #$label_num = "0.03";
 
-                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $amova $homova $anosim $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num $kegg $sample_comparison $statistical_test $ci_method $p_value $func_use";
+                $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scripts/advance_run_otu3.php $user $project_data $path_input $path_out $path_log $level $size_alpha $size_beta $group_sam $group_ven $d_upgma_st $d_upgma_me $d_pcoa_st $d_pcoa_me $nmds $d_nmds_st $d_nmds_me $file_design $file_metadata $amova $homova $anosim $correlation_meta $method_meta $axes_meta $correlation_otu $method_otu $axes_otu $label_num $kegg $sample_comparison $statistical_test $ci_method $p_value $func_use $project";
            }
              
         shell_exec($cmd);
@@ -1497,9 +1513,9 @@
          }
 
 
-        $tg_body = $this->read_file_groups_ave_std_summary($user,$project,$project_analysis,$level);
+        $tg_body = $this->read_file_groups_ave_std_summary($user,$project_data,$project_analysis,$level);
                   
-        $ts_body = $this->read_file_summary($user,$project,$project_analysis,$level);
+        $ts_body = $this->read_file_summary($user,$project_data,$project_analysis,$level);
         
       
          $data_img_tree = array();
@@ -1541,6 +1557,7 @@
             $data['id_project'] =  $id_project;
             $data['user'] = $user;
             $data['project'] = $project; 
+            $data['project_data'] = $project_data;
             $data['project_analysis'] = $project_analysis;
             $data['tg_body'] = $tg_body;
             $data['ts_body'] = $ts_body;

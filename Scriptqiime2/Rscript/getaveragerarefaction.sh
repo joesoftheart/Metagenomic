@@ -1,1 +1,3 @@
-./averagecolumn.awk $1 | sed 's/^\t//' | tr -s '\t' '\t' > outaverage.txt
+#!/bin/sh
+
+Scriptqiime2/Rscript/averagecolumn.awk $1 | /bin/sed 's/^\t//' | /usr/bin/tr -s '\t' '\t' > $2

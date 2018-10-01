@@ -1,0 +1,5 @@
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
+export PATH=/home/aum/anaconda/bin:$PATH
+
+
+make_otu_heatmap.py -i $1 -o $2 -g svg --dpi 300 --no_log_transform --width $3 

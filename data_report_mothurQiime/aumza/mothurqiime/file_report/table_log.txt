@@ -1,0 +1,5 @@
+Samples name	No. of reads in rawdata after make contigs	No. of reads after screen.seqs*	No. of reads after removing chimera	No. of cleaned reads for phylotype/OTUs step
+S1-1-16s	40000	15479	14016	13987
+S2-1-16s	40000	14527	13035	12985
+S3-1-16s	40000	14382	13363	13186
+S4-1-16s	40000	14852	13246	13210

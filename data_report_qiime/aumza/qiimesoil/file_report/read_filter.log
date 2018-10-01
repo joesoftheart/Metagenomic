@@ -1,0 +1,7 @@
+file	initial	qFiltered	lFiltered	forwardFiltered	reverseFiltered	final	qFilteredPercent	lFilteredPercent	forwardFilteredPercent	reverseFilteredPercent	finalPercent
+C11.assembled.fastq	26376	5617	231	NA	NA	20528	21.3	0.9	NA	NA	77.8
+C12.assembled.fastq	4038	210	3	NA	NA	3825	5.2	0.1	NA	NA	94.7
+D1af.assembled.fastq	9385	500	2	NA	NA	8883	5.3	0.0	NA	NA	94.7
+D1bf.assembled.fastq	6825	696	20	NA	NA	6109	10.2	0.3	NA	NA	89.5
+D3af.assembled.fastq	5624	304	4	NA	NA	5316	5.4	0.1	NA	NA	94.5
+D5bf.assembled.fastq	32503	1468	271	NA	NA	30764	4.5	0.8	NA	NA	94.6

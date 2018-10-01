@@ -1,0 +1,20 @@
+# Constructed from biom file
+#OTU ID	C11	C12	D1af	D1bf	D3af	D5bf
+k__Bacteria;p__Actinobacteria;c__Actinobacteria;o__Actinomycetales;f__Actinomycetaceae;g__Actinomyces	0.0	0.0	0.0	0.0	0.0	0.0119994056022
+k__Bacteria;p__Actinobacteria;c__Actinobacteria;o__Actinomycetales;f__Corynebacteriaceae;g__Corynebacterium	0.000137005069188	0.0	0.0471774193548	0.00200630553167	0.0249145090376	0.0200980756371
+k__Bacteria;p__Actinobacteria;c__Actinobacteria;o__Actinomycetales;f__Micrococcaceae;g__Kocuria	0.0	0.0	0.00282258064516	0.0	0.0	0.0101790623375
+k__Bacteria;p__Chloroflexi;c__Thermomicrobia;o__JG30-KF-CM45;f__;g__	0.0	0.0	0.0	0.0	0.0	0.0146741957055
+k__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Planococcaceae;g__	0.0	0.0	0.00295698924731	0.00143307537976	0.0195407914021	0.000668697525819
+k__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Staphylococcaceae;g__Jeotgalicoccus	0.0	0.0	0.0	0.0	0.0	0.0240359610669
+k__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Staphylococcaceae;g__Staphylococcus	0.00184956843403	0.000863309352518	0.371505376344	0.199770707939	0.823644357596	0.131807712311
+k__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Streptococcaceae;g__Streptococcus	0.0	0.0	0.00147849462366	0.0	0.0456765999023	0.00527528048146
+k__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Veillonellaceae;g__Veillonella	0.0	0.0	0.000134408602151	0.000286615075953	0.0	0.0164573891077
+k__Bacteria;p__Proteobacteria;c__Alphaproteobacteria;o__Rhodospirillales;f__Acetobacteraceae;g__Roseomonas	6.85025345938e-05	0.0	0.0235215053763	0.0091716824305	0.0	0.0
+k__Bacteria;p__Proteobacteria;c__Alphaproteobacteria;o__Sphingomonadales;f__Sphingomonadaceae;g__Sphingomonas	0.0	0.0	0.0137096774194	0.000573230151906	0.000732779677577	0.0
+k__Bacteria;p__Proteobacteria;c__Betaproteobacteria;o__Burkholderiales;f__Burkholderiaceae;g__Pandoraea	0.0	0.0	0.00793010752688	0.0	0.00146555935515	0.0160487406197
+k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacteriales;f__Enterobacteriaceae;g__Proteus	0.984175914509	0.992517985612	0.000134408602151	0.34422470622	0.0	0.482873913367
+k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Pseudomonadales;f__Moraxellaceae;g__Enhydrobacter	0.000822030415125	0.00230215827338	0.32997311828	0.397248495271	0.00293111871031	0.0445798350546
+k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Pseudomonadales;f__Pseudomonadaceae;Other	0.0	0.0	0.0	0.0	0.0117244748412	0.000928746563638
+k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Pseudomonadales;f__Pseudomonadaceae;g__Pseudomonas	0.0	0.0	0.0192204301075	0.0	0.00561797752809	7.4299725091e-05
+k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Xanthomonadales;f__Xanthomonadaceae;g__	0.00178106589944	0.00172661870504	0.102150537634	0.0321008885067	0.00903761602345	0.102607920351
+k__Bacteria;p__WPS-2;c__;o__;f__;g__	0.0	0.0	0.0	0.0	0.0	0.0100304628873

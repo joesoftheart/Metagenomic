@@ -1,0 +1,4 @@
+#SampleID	original-sample-ids	BarcodeSequence	LinkerPrimerSequence	ReversePrimer	InputFileName	Description
+After	(D1af, D1bf)	(CGTCGCTT, CACCCTGC)	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	(outD1af.assembled_filtered.fasta, outD1bf.assembled_filtered.fasta)	(oricode_D1af, oricode_D1bf)
+Before	(D3af, D5bf)	(GAGCGCGC, AAGGGCCT)	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	(outD3af.assembled_filtered.fasta, outD5bf.assembled_filtered.fasta)	(oricode_D3af, oricode_D5bf)
+Control	(C11, C12)	(TTTTTATC, GGTAGCTG)	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	(outC11.assembled_filtered.fasta, outC12.assembled_filtered.fasta)	(oricode_C11, oricode_C12)

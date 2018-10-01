@@ -13,6 +13,7 @@ class Advance_report extends CI_Controller
     }
 
 
+
     public function index()
     {
       
@@ -20,23 +21,37 @@ class Advance_report extends CI_Controller
         $id_project =  $_REQUEST['projectid'];
  
         $data['rs'] = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
+
         $project_analysis = null;
-       
+        $project_name = "";
+
         foreach ($data['rs'] as $result) {
             $project_analysis = $result['project_analysis'];
             $project_path = $result['project_path'];
+            $project_name =  $result['project_name'];
 
         }
 
 
-        $project_path = str_replace("../", "", $project_path);
+        $projects_run_t = $this->mongo_db->get_where('projects_run', array('project_id' => $id_project));
+         $data['projects_run_t'] = $projects_run_t;
+      
+ 
+         $method = "";
+         foreach ($projects_run_t as $r) {         
+                $method = $r['method']; 
+         }
+
+
+
+         $project_path = str_replace("../", "", $project_path);
 
          $user = $this->session->userdata['logged_in']['username'];
          $project_data = basename($project_path);
 
 
-         $this->changsvgToppng($user,$project_data);
-         $this->copyBacth_RunLog($id_project,$user,$project_data);
+         $this->changsvgToppng($user,$project_data,$project_name);
+         $this->copyBacth_RunLog($id_project,$user,$project_data,$project_name);
      
 
 
@@ -47,7 +62,7 @@ class Advance_report extends CI_Controller
             echo json_encode($project_analysis);
 
         } else if ($project_analysis == "OTUs") {
-            $this->read_file_db_otu($project_path, $id_project);
+            $this->read_file_db_otu($project_path, $id_project,$method);
              echo json_encode($project_analysis);
         }
 
@@ -89,9 +104,18 @@ class Advance_report extends CI_Controller
        
         # check run picrust 
         $project_data = "";
+        $project_name = "";
         foreach ($projects_t as $r) {
                 $project_data = basename($r['project_path']);
+                $project_name = $r['project_name'];
          }
+
+
+
+        $data_read_filealign_class = $this->read_filealign_class($user,$project_name);
+          $data['alignment_name'] = trim($data_read_filealign_class[0]);
+          $data['classifier_name'] = trim($data_read_filealign_class[1]);
+
 
         $read_option72 = file_get_contents('owncloud/data/'.$user.'/files/'.$project_data.'/option72.txt');
         list($option_use,$sample1,$sample2) = explode("\n",$read_option72);
@@ -103,9 +127,9 @@ class Advance_report extends CI_Controller
         $data['sam1'] = $sam1;
         $data['sam2'] = $sam2;
         
-        $data['tablelog'] = "data_report_mothur/".$user."/".$project_data."/table_log.txt";
+        $data['tablelog'] = "data_report_mothur/".$user."/".$project_name."/table_log.txt";
 
-        $data['dataphylum'] = $this->phylumn_count($user,$project_data);
+        $data['dataphylum'] = $this->phylumn_count($user,$project_data,$project_name);
        
        $this->load->library('myfpdf');
        $this->load->library('mytcpdf');
@@ -115,10 +139,33 @@ class Advance_report extends CI_Controller
 
 
 
+    public function read_filealign_class($user,$project_name){
+        
+        // $alignment = "";
+        // $classifier = "";
 
-    public function changsvgToppng($user,$project_data){
+        $path = "owncloud/data/$user/files/$project_name/input/align_class.txt";
+        $read = fopen($path,"r") or die ("Unable to open file");
+        $data_array = array();
+         
+             while(($line = fgets($read)) !== false){
+              
+                  list($name,$value) = explode(":", $line);
+                  array_push($data_array, $value);
+              
+             }
+        fclose($read);
 
-        $sharedsobs_svg = FCPATH."data_report_mothur/$user/$project_data/beta_diversity_analysis/sharedsobs.svg";  
+        return $data_array;
+      
+    }
+
+
+
+
+    public function changsvgToppng($user,$project_data,$project_name){
+
+        $sharedsobs_svg = FCPATH."data_report_mothur/$user/$project_name/beta_diversity_analysis/sharedsobs.svg";  
 
         $path_dir = FCPATH."owncloud/data/$user/files/$project_data/output/sharedsobs.svg";
         if(file_exists($path_dir)){
@@ -128,28 +175,28 @@ class Advance_report extends CI_Controller
      
 
     # create folder download Graph .SVG
-    $folder_download1 = "data_report_mothur/$user/$project_data/Download/alpha_diversity_analysis/";
+    $folder_download1 = "data_report_mothur/$user/$project_name/Download/alpha_diversity_analysis/";
         if (!file_exists($folder_download1)){
             mkdir($folder_download1, 0777, true);
         }
 
-     $folder_download2 = "data_report_mothur/$user/$project_data/Download/beta_diversity_analysis/";
+     $folder_download2 = "data_report_mothur/$user/$project_name/Download/beta_diversity_analysis/";
         if (!file_exists($folder_download2)){
             mkdir($folder_download2, 0777, true);
         }
 
-    $folder_download3 = "data_report_mothur/$user/$project_data/Download/optional_output/";
+    $folder_download3 = "data_report_mothur/$user/$project_name/Download/optional_output/";
         if (!file_exists($folder_download3)){
             mkdir($folder_download3, 0777, true);
         }
 
-    $folder_download4 = "data_report_mothur/$user/$project_data/Download/taxonomy_classification/";
+    $folder_download4 = "data_report_mothur/$user/$project_name/Download/taxonomy_classification/";
         if (!file_exists($folder_download4)){
             mkdir($folder_download4, 0777, true);
         }
 
 
-            $path1 = "data_report_mothur/$user/$project_data/alpha_diversity_analysis/";
+            $path1 = "data_report_mothur/$user/$project_name/alpha_diversity_analysis/";
             $path_dir = $path1;
             if (is_dir($path_dir)) {
                 if($read = opendir($path_dir)){
@@ -173,7 +220,7 @@ class Advance_report extends CI_Controller
                 }
             } 
 
-            $path2 = "data_report_mothur/$user/$project_data/beta_diversity_analysis/";
+            $path2 = "data_report_mothur/$user/$project_name/beta_diversity_analysis/";
             $path_dir = $path2;
             if (is_dir($path_dir)) {
                 if($read = opendir($path_dir)){
@@ -198,7 +245,7 @@ class Advance_report extends CI_Controller
             } 
 
 
-            $path3 = "data_report_mothur/$user/$project_data/optional_output/";
+            $path3 = "data_report_mothur/$user/$project_name/optional_output/";
             $path_dir = $path3;
             if (is_dir($path_dir)) {
                 if($read = opendir($path_dir)){
@@ -223,7 +270,7 @@ class Advance_report extends CI_Controller
             } 
 
 
-            $path4 = "data_report_mothur/$user/$project_data/taxonomy_classification/";
+            $path4 = "data_report_mothur/$user/$project_name/taxonomy_classification/";
             $path_dir = $path4;
             if (is_dir($path_dir)) {
                 if($read = opendir($path_dir)){
@@ -252,12 +299,12 @@ class Advance_report extends CI_Controller
      }
 
 
-    public function copyBacth_RunLog($id_project,$user,$project){
+    public function copyBacth_RunLog($id_project,$user,$project,$project_name){
 
         # copy file_phylum_count.txt to data_report_mothur
         $path_phylum_count = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";
         if(file_exists($path_phylum_count)){
-                $phylum_count = "data_report_mothur/$user/$project/file_phylum_count.txt";
+                $phylum_count = "data_report_mothur/$user/$project_name/file_phylum_count.txt";
                 copy($path_phylum_count,$phylum_count);
         }
 
@@ -265,7 +312,7 @@ class Advance_report extends CI_Controller
        
         # copy log sungride makesummary to Log_report
         $MakeSummary_file = null;
-        $path_summary = "owncloud/data/$user/files/$project/log_full/";
+        $path_summary = "owncloud/data/$user/files/$project/log/";
         $file_log = FCPATH.$path_summary;
             if(is_dir($file_log)) {
                 if($read = opendir($file_log)){
@@ -282,13 +329,13 @@ class Advance_report extends CI_Controller
                 }
             }
          
-         $this->table_log_create($id_project,$user,$project,$MakeSummary_file);
+         $this->table_log_create($id_project,$user,$project,$MakeSummary_file,$project_name);
 
     }
 
 
 
-    public function table_log_create($id_project,$user,$project,$makesummary){
+    public function table_log_create($id_project,$user,$project,$makesummary,$project_name){
 
 
          $projects_data = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
@@ -311,7 +358,7 @@ class Advance_report extends CI_Controller
 
         #colum 1 && 2
         $count = 1;
-        $file_log = FCPATH."Log_report/$user/$project/$makesummary"; 
+        $file_log = FCPATH."Log_report/$user/$project_name/$makesummary"; 
         $cmd = "/bin/grep  -A ".$sample." 'Group count:' ".$file_log;
         exec($cmd,$output);
         foreach ($output as $key => $value) {
@@ -326,7 +373,7 @@ class Advance_report extends CI_Controller
 
          #colum 3
         $count1 = 1;
-        $path = FCPATH."Log_report/$user/$project/stability.trim.contigs.good.good.count.summary";
+        $path = FCPATH."Log_report/$user/$project_name/stability.trim.contigs.good.good.count.summary";
         $read = fopen($path,"r") or die ("Unable to open file");
         while(($line = fgets($read)) !== false){
                
@@ -339,7 +386,7 @@ class Advance_report extends CI_Controller
 
          #colum 4
         $count2 = 1;
-        $path = FCPATH."Log_report/$user/$project/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count.summary";
+        $path = FCPATH."Log_report/$user/$project_name/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count.summary";
         $read = fopen($path,"r") or die ("Unable to open file");
         while(($line = fgets($read)) !== false){
                
@@ -352,7 +399,7 @@ class Advance_report extends CI_Controller
 
         #colum 5
         $count3 = 1;
-        $path = FCPATH."Log_report/$user/$project/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count.summary";
+        $path = FCPATH."Log_report/$user/$project_name/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count.summary";
         $read = fopen($path,"r") or die ("Unable to open file");
         while(($line = fgets($read)) !== false){
                
@@ -380,7 +427,7 @@ class Advance_report extends CI_Controller
         }
        
          
-        $path_log = "data_report_mothur/$user/$project/table_log.txt";
+        $path_log = "data_report_mothur/$user/$project_name/table_log.txt";
         $file_log = FCPATH.$path_log;
         file_put_contents($file_log,$table_data); 
 
@@ -388,11 +435,11 @@ class Advance_report extends CI_Controller
 
    
 
-    public function phylumn_count($user,$project_data){
+    public function phylumn_count($user,$project_data,$project_name){
         
         # read file convert to array
         $data_keep = array();
-        $path = FCPATH."data_report_mothur/$user/$project_data/file_phylum_count.txt";
+        $path = FCPATH."data_report_mothur/$user/$project_name/file_phylum_count.txt";
         $read = fopen($path,"r") or die ("Unable to open file");
         
         $data_lenght = 0;
@@ -1137,7 +1184,7 @@ class Advance_report extends CI_Controller
     }
 
 
-public function read_file_db_otu($path_owncloud, $id_project){
+public function read_file_db_otu($path_owncloud, $id_project,$method){
 
        
         // $path_file_otu = array("final.opti_mcc.summary", "file_after_reverse.csv", "file_phylum_count.txt", "final.opti_mcc.0.03.subsample.shared",
@@ -1451,8 +1498,20 @@ public function read_file_db_otu($path_owncloud, $id_project){
      // echo ">>>>>>>>>>>>>>>>>>>>>End Page 4 <<<<<<<<<<<<<<<<<br>";
 
 
-        #final.opti_mcc.thetayc.0.03.lt.ave.nmds.axes
-        $near_data = file_get_contents($path_owncloud_otu . "final.opti_mcc.thetayc.0.03.lt.ave.nmds.axes");
+        if($method == "NMDS"){
+
+             #final.opti_mcc.thetayc.0.03.lt.ave.nmds.axes
+            $near_data = file_get_contents($path_owncloud_otu . "final.opti_mcc.thetayc.0.03.lt.ave.nmds.axes");
+
+        }else{
+
+             #final.opti_mcc.thetayc.0.03.lt.ave.pcoa.axes
+            $near_data = file_get_contents($path_owncloud_otu . "final.opti_mcc.thetayc.0.03.lt.ave.pcoa.axes");
+
+        }
+        
+
+
         $axes1 = array();
         $axes2 = array();
         $row = explode("\n", $near_data);

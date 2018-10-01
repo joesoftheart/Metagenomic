@@ -1,0 +1,24 @@
+# Constructed from biom file
+#OTU ID	C11	C12	D1af	D1bf	D3af	D5bf
+Unassigned;Other;Other	0.0	0.0	0.0010752688172	0.0	0.0	0.0037521361171
+k__Bacteria;p__Acidobacteria;c__[Chloracidobacteria]	0.0	0.0	0.00174731182796	0.0	0.0	0.0
+k__Bacteria;p__Actinobacteria;c__Actinobacteria	0.00116454308809	0.000287769784173	0.0684139784946	0.00458584121525	0.0363947239863	0.0633776655026
+k__Bacteria;p__Bacteroidetes;c__Bacteroidia	0.0	0.0	0.000940860215054	0.0	0.0	0.0
+k__Bacteria;p__Bacteroidetes;c__Cytophagia	0.00198657350322	0.0	0.000134408602151	0.00171969045572	0.0	0.0
+k__Bacteria;p__Bacteroidetes;c__Flavobacteriia	0.0	0.0	0.00645161290323	0.0	0.00122129946263	0.000297198900364
+k__Bacteria;p__Bacteroidetes;c__Sphingobacteriia	0.000274010138375	0.0	0.000537634408602	0.0	0.0	0.0
+k__Bacteria;p__Bacteroidetes;c__[Saprospirae]	0.00116454308809	0.000863309352518	0.0	0.0	0.0	0.00795007058474
+k__Bacteria;p__Chlorobi;c__OPB56	0.0	0.0	0.0	0.0	0.0	0.000445798350546
+k__Bacteria;p__Chloroflexi;c__Anaerolineae	6.85025345938e-05	0.0	0.0	0.000859845227859	0.0	0.0
+k__Bacteria;p__Chloroflexi;c__Thermomicrobia	0.0	0.0	0.0	0.0	0.0	0.0146741957055
+k__Bacteria;p__Firmicutes;c__Bacilli	0.00184956843403	0.000863309352518	0.377016129032	0.201203783319	0.907914020518	0.172523961661
+k__Bacteria;p__Firmicutes;c__Clostridia	0.0	0.0	0.00658602150538	0.000286615075953	0.00170981924768	0.0255591054313
+k__Bacteria;p__Proteobacteria;c__Alphaproteobacteria	0.00205507603781	0.0	0.048252688172	0.0126110633419	0.00488519785051	0.0148599450182
+k__Bacteria;p__Proteobacteria;c__Betaproteobacteria	0.0	0.0	0.0123655913978	0.0	0.00928187591597	0.0384872575971
+k__Bacteria;p__Proteobacteria;c__Deltaproteobacteria	0.0	0.0	0.00443548387097	0.0	0.0	0.0
+k__Bacteria;p__Proteobacteria;c__Epsilonproteobacteria	0.0	0.0	0.000537634408602	0.0	0.0	0.0
+k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria	0.991437183176	0.997985611511	0.470698924731	0.778733161364	0.0351734245237	0.647039155955
+k__Bacteria;p__SBR1093;c__VHS-B5-50	0.0	0.0	0.000806451612903	0.0	0.0	0.0
+k__Bacteria;p__TM7;c__TM7-3	0.0	0.0	0.0	0.0	0.0	0.00100304628873
+k__Bacteria;p__WPS-2;c__	0.0	0.0	0.0	0.0	0.0	0.0100304628873
+k__Bacteria;p__[Thermi];c__Deinococci	0.0	0.0	0.0	0.0	0.00341963849536	0.0

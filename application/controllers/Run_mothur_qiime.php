@@ -14,13 +14,16 @@
       	$this->load->library('form_validation');
   
 
-      	include(APPPATH.'../setting_sge.php');
-        putenv("SGE_ROOT=$SGE_ROOT");
-        putenv("PATH=$PATH");
+      
    	}
+
 
     # Run mothur Preprocess
     public function run_mothur(){
+
+          include(APPPATH.'../setting_sge.php');
+          putenv("SGE_ROOT=$SGE_ROOT");
+          putenv("PATH=$PATH");
 
           $value = $_REQUEST['data_array'];
 
@@ -55,52 +58,68 @@
                 $project_platform_type = ($r['project_platform_type']); 
            }
 
+
+           $data_alignment = null;
+
            # Check variable aligment
             if($customer != null){
                 $alignment = $customer;
+                $data_alignment = "Customer database (".$customer.")";
             }
             
             else if ($alignment == "gg") {
                 $alignment = "gg_13_8_99.fasta";
+                $data_alignment = "Greengenes database";
             }
             else if ($alignment == "rdp") {
                 $alignment = "trainset16_022016.rdp.fasta";
+                $data_alignment = "RDP database";
             }
 
             else if($alignment == "v_full"){
                 $alignment = "silva.bacteria.fasta";
+                $data_alignment = "SILVA bacterial database";
             }
             else if($alignment == "v1-v3"){
                 $alignment = "silva.v123.fasta";
+                $data_alignment = "SILVA bacterial database";
             }
             else if($alignment == "v3-v4"){
                 $alignment = "silva.v34.fasta";
+                $data_alignment = "SILVA bacterial database";
             }
             else if($alignment == "v4"){
                 $alignment = "silva.v4.fasta";
+                $data_alignment = "SILVA bacterial database";
             }
             else if($alignment == "v3-v5"){
                 $alignment = "silva.v345.fasta ";
+                $data_alignment = "SILVA bacterial database";
             }
             else if($alignment == "v4-v5"){
                 $alignment = "silva.v45.fasta";
+                $data_alignment = "SILVA bacterial database";
             }
 
-
+           
+           $data_classifly = null;
            $reference = '';
            $taxonomy ='';
            # Check variable classifly
             if($classifly == "silva"){
               $reference = 'silva.nr_v128.align';
               $taxonomy ='silva.nr_v128.tax';
+              $data_classifly = "Silva database (Release 132)";
             }
             else if($classifly == "gg") {
               $reference = 'gg_13_8_99.fasta';
               $taxonomy ='gg_13_8_99.gg.tax';
+              $data_classifly = "Greengenes database (August 2013 release of gg_13_8_99)";
             }
              else if($classifly == "rdp") {
               $reference = 'trainset16_022016.rdp.fasta';
               $taxonomy = 'trainset16_022016.rdp.tax';
+              $data_classifly = "RDP database (version 16)";
             }
 
            # Check variable taxon
@@ -112,6 +131,14 @@
             $path_input = "owncloud/data/$user/files/$project_data/input/";
             $path_out = "owncloud/data/$user/files/$project_data/output/";
             $path_log = "owncloud/data/$user/files/$project_data/log/";
+
+
+           file_put_contents($path_input."database.txt", "ambiguous :".$maximum_ambiguous."\n", FILE_APPEND);
+           file_put_contents($path_input."database.txt", "homopolymer :".$maximum_homopolymer."\n", FILE_APPEND);
+           file_put_contents($path_input."database.txt", "minimum_reads :".$minimum_reads_length."\n", FILE_APPEND);
+           file_put_contents($path_input."database.txt", "maximum_reads :".$maximum_reads_length."\n", FILE_APPEND);
+           file_put_contents($path_input."database.txt", "alignment :".$data_alignment."\n", FILE_APPEND);
+           file_put_contents($path_input."database.txt", "classifier :".$data_classifly."\n", FILE_APPEND);
 
         
            # create advance.batch
@@ -126,12 +153,19 @@
                    mkdir($folder_log, 0777, true);
             }
 
+            #create directory folder report
+            $this->create_folder_report($user,$project);
+
+            #create directory folder Download
+            $this->create_folder_download($user,$project);
+
+
 
            $taxon = str_replace(";", ",", $taxon);
 
            $jobname = $user.'-'.$project.'-'.'mothur';
 
-           $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scriptqiime/mothurPre.php $user $project $path_input $path_out $path_log $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $project_platform_sam $project_platform_type";
+           $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scriptqiime/mothurPre.php $user $project $path_input $path_out $path_log $maximum_ambiguous $maximum_homopolymer $minimum_reads_length $maximum_reads_length $alignment $diffs $reference $taxonomy $cutoff $taxon $project_platform_sam $project_platform_type $project_data";
 
            shell_exec($cmd);
            $check_qstat = "qstat  -j '$jobname' ";
@@ -192,6 +226,10 @@
     # Check Run mothur Preprocess
     public function check_run_mothur(){
 
+          include(APPPATH.'../setting_sge.php');
+          putenv("SGE_ROOT=$SGE_ROOT");
+          putenv("PATH=$PATH");
+
           $da_job = $_REQUEST['data_job'];
           $id_job = $da_job[0];
           $id_project = $da_job[1];
@@ -246,6 +284,42 @@
          # update data status-process
          $this->mongo_db->where(array('project_id'=> $id_project))->set($data)->update('status_process');    
     }
+
+
+
+
+  public function create_folder_report($user,$project){
+
+        $taxonomy_classification = FCPATH."data_report_mothurQiime/$user/$project/taxonomy_classification/";   
+        if (!file_exists($taxonomy_classification)) {mkdir($taxonomy_classification, 0777, true);}
+
+        $alpha_diversity_analysis = FCPATH."data_report_mothurQiime/$user/$project/alpha_diversity_analysis/";   
+        if (!file_exists($alpha_diversity_analysis)) {mkdir($alpha_diversity_analysis, 0777, true);}
+
+        $beta_diversity_analysis = FCPATH."data_report_mothurQiime/$user/$project/beta_diversity_analysis/";   
+        if (!file_exists($beta_diversity_analysis)){ mkdir($beta_diversity_analysis, 0777, true);}
+
+        $optional_output = FCPATH."data_report_mothurQiime/$user/$project/optional_output/";
+        if (!file_exists($optional_output)) {mkdir($optional_output, 0777, true);}
+
+        $file_report = FCPATH."data_report_mothurQiime/$user/$project/file_report/";
+        if (!file_exists($file_report)) {mkdir($file_report, 0777, true);}
+  }
+
+  public function create_folder_download($user,$project){
+
+        $taxonomy_classification = FCPATH."data_report_mothurQiime/$user/$project/Download/taxonomy_classification/";   
+        if (!file_exists($taxonomy_classification)) {mkdir($taxonomy_classification, 0777, true);}
+
+        $alpha_diversity_analysis = FCPATH."data_report_mothurQiime/$user/$project/Download/alpha_diversity_analysis/";   
+        if (!file_exists($alpha_diversity_analysis)) {mkdir($alpha_diversity_analysis, 0777, true);}
+
+        $beta_diversity_analysis = FCPATH."data_report_mothurQiime/$user/$project/Download/beta_diversity_analysis/";   
+        if (!file_exists($beta_diversity_analysis)){ mkdir($beta_diversity_analysis, 0777, true);}
+
+        $optional_output = FCPATH."data_report_mothurQiime/$user/$project/Download/optional_output/";
+        if (!file_exists($optional_output)) {mkdir($optional_output, 0777, true);}
+  }
 
 
  # upload files fasta
@@ -318,18 +392,32 @@
  # Run Qiime
   public function mothur_qiime1(){
 
+        include(APPPATH.'../setting_sge.php');
+          putenv("SGE_ROOT=$SGE_ROOT");
+          putenv("PATH=$PATH");
 
-       $value = $_REQUEST['data_array'];
+
+        $value = $_REQUEST['data_array'];
+        $check_options = $_REQUEST['data_opt'];
 
         $user = $value[0];
         $id_project = $value[1];
         $file_map =   $value[2];
-        $permanova = $value[3];
-        $anosim = $value[4];
-        $adonis = $value[5];
-        $opt_permanova = $value[6];
-        $opt_anosim = $value[7];
-        $opt_adonis = $value[8];
+        $core_group = $value[3];
+        $beta_diversity_index = $value[4];
+        $beta_diversity_index2 = $value[5];
+        $permanova = $value[6];
+        $opt_permanova = $value[7];
+        $anosim = $value[8];
+        $opt_anosim = $value[9];
+        $adonis = $value[10];
+        $opt_adonis = $value[11];
+        $kegg = $value[12];
+        $sample_comparison = $value[13];
+        $statistical_test = $value[14];
+        $ci_method = $value[15];
+        $p_value = $value[16];
+    
 
         $project = "";
         # Query data Project By ID
@@ -344,7 +432,7 @@
 
    		  $jobname = $user.'-'.$project.'-'.'mothur_qiime1';
 
-   		  $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scriptqiime/mothur_qiime1.php $user $project $path_input $path_out $path_log $file_map $permanova $anosim $adonis $opt_permanova $opt_anosim $opt_adonis";
+   		  $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scriptqiime/mothur_qiime1.php $user $project $path_input $path_out $path_log $core_group $beta_diversity_index $beta_diversity_index2 $permanova $opt_permanova $anosim $opt_anosim $adonis $opt_adonis $kegg $sample_comparison $statistical_test $ci_method $p_value $check_options";
 
    		 shell_exec($cmd);
    		 $check_qstat = "qstat  -j '$jobname' ";
@@ -371,6 +459,10 @@
  # check Run Qiime
   public function check_run_mothur_qiime1(){
 
+          include(APPPATH.'../setting_sge.php');
+          putenv("SGE_ROOT=$SGE_ROOT");
+          putenv("PATH=$PATH");
+
           $da_job = $_REQUEST['data_job'];
           $id_job = $da_job[0];
           $id_project = $da_job[1];
@@ -386,7 +478,10 @@
 
           $check_run = exec("qstat -j $id_job ");
           if($check_run == false){
-              echo json_encode(array(0,$id_project));
+
+               $data = array('status' => '0' ,'step_run' => '3');
+               $this->update_status($id_project,$data);
+               echo json_encode(array(0,$id_project));
 
           }else{
                $file = FCPATH."$path_job$name_job.o$id_job";
@@ -405,7 +500,7 @@
                     $message = "Run Qiime ";
                 }
                 if($count != 0){
-                    $percent = (($count/14)*100);
+                    $percent = (($count/23)*100);
                     $percent_round = round($percent,0);
                 }
             $up = array($message,$percent_round);
@@ -414,22 +509,6 @@
     }
 
 
-    // public function view_mothur_qiime(){
-
-    //     $img_source = 'images/check.png';
-    //     $img_code = base64_encode(file_get_contents($img_source));
-    //     $data['src'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
-
-    //     $img_source = 'images/ajax-loader.gif';
-    //     $img_code = base64_encode(file_get_contents($img_source));
-    //     $data['srcload'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
-
-    //     $this->load->view('header');
-    //     $this->load->view('run_mothur_qiime',$data);
-    //     $this->load->view('footer');
-    // }
-
-    
     # check file map.txt in directory Projects
     public function check_map_file(){
 
@@ -474,7 +553,7 @@
         }else{
            return('Error');
         }
-     }
+    }
 
    # Generate files map.txt
     public function excel_map(){
@@ -527,11 +606,13 @@
         $user = $Data_request[0];
         $id_project = $Data_request[1];
         $project = "";
-      # Query data Project By ID
+        # Query data Project By ID
           $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
           foreach ($array_project as $r) {
                 $project = basename($r['project_path']);              
           }
+
+        $samplename = $this->samset($user,$project); 
 
         $count = 0;
         $name_group = array();
@@ -546,8 +627,26 @@
               }   
         }
         fclose($myfile);
-        echo json_encode(array($count,$name_group));
+        echo json_encode(array($count,$name_group,$samplename));
      }
+
+
+    public function samset($user,$project){
+
+      $path_sampleName = FCPATH."owncloud/data/$user/files/$project/input/sampleName.txt";
+      $file_text = file_get_contents($path_sampleName);
+      $get_Name = explode("\t", $file_text);
+      $result = array_filter($get_Name);
+
+      $sample_name = $result;
+      $samplename = array();
+      for ($i=0; $i < sizeof($sample_name); $i++) {  
+             for ($j= 1; $j < sizeof($sample_name)-$i; $j++) { 
+              array_push($samplename ,$sample_name[$i]."--vs--".$sample_name[$j+$i]);
+             }    
+      }
+      return $samplename;
+    } 
 
 
      # Add Group into files map.txt
@@ -626,14 +725,66 @@
 
      }
 
-   
-
-    
 
 
+    public function read_map_json($user,$id_project){
 
+      $project = "";
+      //Query data Project By ID
+      $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
+      foreach ($array_project as $r) {
+           $project = basename($r['project_path']);              
+      }
 
+      $group_check = $_REQUEST['data_group'];
+     
+      $data_set_group = array();
+      $path = FCPATH. "owncloud/data/$user/files/$project/input/map_json.txt";;
+      $read = fopen($path,"r") or die ("Unable to open file");
+      $count = 0;
+         while(($line = fgets($read)) !== false){
+               
+              $data = explode("\t", $line);
+              array_splice($data,0,1);
+              array_push($data_set_group,$data);
+              $count = count($data);
+             
+         }
+      fclose($read);
+      //print_r($data_set_group);
+          $name_group = array();
+          for($i=0;$i < $count;$i++){
+               $num_repeat = 1;
+               $group = array_column($data_set_group,$i);
+               // array_push($name_group, $group[0]);
+              //print_r(array_count_values($group));
+              $num_value = (array_count_values($group));
+              
+              foreach ($num_value as $key => $value) {
+                 $val = (int)$value;
+                 if($val == $num_repeat){
+                     $num = $val-$num_repeat; 
+                 }else{
+                     $num = $val-$num_repeat; 
+                 }
+              }
+                $key = trim($group[0]);
+                $name_group[$key] = $num;
+          }
+          #print_r($name_group);
+          $check = null;
+          $data =  $name_group[$group_check];
+          if($data == "1"){
+              $check = "on";
+          }else{
+              $check = "off";
+          }
+          
+          echo json_encode(array($check,$group_check));
 
+     }
+
+  
 
    }
 

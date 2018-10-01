@@ -399,7 +399,7 @@ if (isset($this->session->userdata['logged_in'])) {
                             <p class="fa fa-gears col-lg-11"> Click button generate map file</p>
                             <div class="col-lg-2">                      
                                  <div class="col-lg-10">
-                                    <a href="<?php echo site_url();?>Run_mothur_qiime/excel_map" target="_blank"><input type="button" class="btn btn-outline btn-info" value="generate map file" id="check_map" disabled="disabled" ></a>
+                                    <a href="<?php echo site_url();?>Run_mothur_qiime/excel_map" target="_blank"><input type="button" class="btn btn-outline btn-info" disabled="disabled" value="generate map file" id="check_map"></a>
                                    <!--  disabled="disabled"  -->
                                  </div>
                             </div>
@@ -417,7 +417,30 @@ if (isset($this->session->userdata['logged_in'])) {
                  <div class="panel panel-info">
                     <div class="panel-heading">          
                         <h4 class="panel-title">
-                            <a  data-toggle="collapse" data-parent="#accordion" href="#collapse15" >2. Beta diversity index 
+                            <a  data-toggle="collapse" data-parent="#accordion" href="#collapse16" >2. Select Group core diversity analysis 
+                            <i class="fa fa-question-circle-o"></i>        
+                            </a>
+                         </h4>
+                    </div>
+                    <div id="collapse16" class="panel-collapse collapse">
+                        <div class="panel-body">    
+                            
+                                <p class="fa fa-cog col-lg-11"> Group core diversity analysis </p>
+                                <div class="col-lg-3 ">
+                                <div class="form-group">
+                                     <select class="uk-select" name="core_group" id="core_group" >
+                                     </select>
+                                </div>
+                                </div> 
+                                <div class="col-lg-8"><p class="opt1" style="display: none;"> warning : This group can not use for the next statisical analysis in below option.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="panel panel-info">
+                    <div class="panel-heading">          
+                        <h4 class="panel-title">
+                            <a  data-toggle="collapse" data-parent="#accordion" href="#collapse15" >3. Beta diversity index 
                             <i class="fa fa-question-circle-o"></i>        
                             </a>
                          </h4>
@@ -427,17 +450,27 @@ if (isset($this->session->userdata['logged_in'])) {
                             
                             <div class="col-lg-6"> 
                             <div class="form-group">
-                                <select class="uk-select" name="" id="">
-                                    <option>abund_jaccard</option>
-                                    <option>binary_lennon</option>
-                                    <option>binary_sorensen_dice</option>
-                                    <option>bray_curtis</option>
-                                    <option>morisita_horn</option>
-                                    <option>unweighted_unifrac</option>
-                                    <option>weighted_unifrac</option>
+                                <label>Non-phylogenetic metrics</label>
+                                <select class="uk-select" name="beta_diversity_index" id="bdi1" >
+                                    <option value="none">None</option>
+                                    <option value="abund_jaccard">abund_jaccard</option>
+                                    <option value="binary_lennon">binary_lennon</option>
+                                    <option value="binary_sorensen_dice">binary_sorensen_dice</option>
+                                    <option value="bray_curtis">bray_curtis</option>
+                                    <option value="morisita_horn">morisita_horn</option>
                                  </select>
-                            </div>                         
-                            </div>    
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phylogenetic metrics</label>
+                                <select class="uk-select" name="beta_diversity_index2" id="bdi2" >
+                                    <option value="none">None</option>
+                                    <option value="unweighted_unifrac">unweighted_unifrac</option>
+                                    <option value="weighted_unifrac">weighted_unifrac</option>
+                                 </select>
+                            </div>                                      
+                            </div> 
+
                         </div>
                     </div>
                 </div>
@@ -452,6 +485,8 @@ if (isset($this->session->userdata['logged_in'])) {
                     </div>
                      <div id="collapse14" class="panel-collapse collapse">
                         <div class="panel-body">
+
+                            <fieldset class="optionset1" disabled>
                             <p class="fa fa-cog col-lg-11"> Permanova</p>
                             <div class="col-lg-3 ">
                                 <div class="form-group">
@@ -500,6 +535,8 @@ if (isset($this->session->userdata['logged_in'])) {
                                 </select>
                                 </div>
                             </div>
+                            </fieldset>
+
 
                             <div class="col-lg-12 uk-margin">
                                <p class="fa fa-cog"> PICRUSt  and STAMP :</p>  
@@ -651,12 +688,38 @@ if (isset($this->session->userdata['logged_in'])) {
             <div class="alert alert-info">
             <center>
 
-                 <button type="button" class="btn btn-warning  btn-circle btn-xl" id="">
+            <a href="<?php echo site_url('mothur_qiime_report/graph_qiime/');?><?=$username?>/<?=$current_project?>" target="_blank">
+            <button type="button" class="btn btn-warning  btn-circle btn-xl">
+                 <i class="fa fa-file-image-o"></i>
+            </button>
+                 </a>  
+            <h4>Graph</h4>
+
+
+
+            </center>
+            </div>    
+            </div>
+            </div>
+            </div>
+
+             <hr class="uk-divider-icon">
+            <div class="panel-body">       
+            <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+       
+            <div class="alert alert-info">
+            <center>
+
+
+            <a href="<?php echo site_url('mothur_qiime_report/graph_qiime_full/');?><?=$current_project?>" target="_blank">
+              <button type="button" class="btn btn-success  btn-circle btn-xl">
                 <i class="fa fa-file-image-o"></i>
               </button>
-                <h4>Graph</h4>
+            </a>
+            <h4>Graph Qime</h4>
 
-
+                
 
             </center>
             </div>    
@@ -672,10 +735,11 @@ if (isset($this->session->userdata['logged_in'])) {
              <div class="alert alert-info">
              <center>
 
-
-            <button type="button" class="btn btn-info btn-circle btn-xl" id="btn_reports">
+             <a href="<?php echo site_url('mothur_qiime_report/index/');?><?=$current_project?>" target="_blank">
+             <button type="button" class="btn btn-info btn-circle btn-xl">
               <i class="fa fa-file-word-o"></i>
-            </button>
+             </button>
+             </a>
             <h4>  Report  </h4>
 
              </center>
@@ -712,15 +776,25 @@ if (isset($this->session->userdata['logged_in'])) {
 
 <script type="text/javascript">
 
-  var console_event2 = false;
+   $('#core_group').change(function(){
+        var data_name = document.getElementById('core_group').value;
+        if(data_name != "none"){
+           on_switch(data_name);
+        }else{$(".optionset1").attr("disabled", true);}
+        
+    });
+
+     var console_event2 = false;
      $('#toggle-event2').change(function(){
         console_event2 = $(this).prop('checked');
         if($(this).prop('checked')){
           $(".optionset2").removeAttr("disabled")
           $(".opt2").show();
+         
         }else{
           $(".optionset2").attr("disabled", true);
           $(".opt2").hide();
+          
         }
      })  
 
@@ -875,8 +949,8 @@ $(document).ready(function (){
        var current = "<?=$current?>";
 
        if(status != "null"){
-          var send_data = new Array(id_job,current);
-          if(step_run == "1"){
+            var send_data = new Array(id_job,current);
+            if(step_run == "1"){
                 alert("Preprocess"); 
                 $('li.pre').attr('id','active');
                 $(".Pre-test").hide();
@@ -884,20 +958,19 @@ $(document).ready(function (){
                 $('#test_run').html('Checking Run Preprocess');
                 checkrun(send_data);
 
-          }else if(step_run == "2"){
-              alert("Pick OTUs"); 
-              $('li.pre').attr('id','done');
-              $('li.pre2').attr('id','active');
-              $(".Pre-test2").hide();
-              $(".Pre-show2").show();
-              $('#test_run2').html('Checking Run Pick OTUs');
-              $('.sw-theme-arrows > .nav-tabs > .pre').next('li').find('a').trigger('click'); 
-              checkrun2(send_data);
-          }
-       }else{
+            }else if(step_run == "2"){
+                  alert("Pick OTUs"); 
+                  $('li.pre').attr('id','done');
+                  $('li.pre2').attr('id','active');
+                  $(".Pre-test2").hide();
+                  $(".Pre-show2").show();
+                  $('#test_run2').html('Checking Run Pick OTUs');
+                  $('.sw-theme-arrows > .nav-tabs > .pre').next('li').find('a').trigger('click'); 
+                  checkrun2(send_data);
 
-           $('li.pre').attr('id','active');
-       }  
+            }else{ $('li.pre').attr('id','active'); }
+
+       }else{ $('li.pre').attr('id','active'); }  
        
        
        
@@ -939,21 +1012,52 @@ $(document).ready(function (){
                 var username = document.forms["Pre-form2"]["username"].value;
                 var project  = document.forms["Pre-form2"]["project"].value;
                 var f_map = document.forms["Pre-form2"]["f_map"].value;
+                var core_group = document.forms["Pre-form2"]["core_group"].value;
+                var beta_diversity_index = document.forms["Pre-form2"]["beta_diversity_index"].value;
+                var beta_diversity_index2 = document.forms["Pre-form2"]["beta_diversity_index2"].value;
                 var permanova = document.forms["Pre-form2"]["permanova"].value;
-                var anosim = document.forms["Pre-form2"]["anosim"].value;
-                var adonis = document.forms["Pre-form2"]["adonis"].value;
                 var opt_permanova = document.forms["Pre-form2"]["opt_permanova"].value;
+                var anosim = document.forms["Pre-form2"]["anosim"].value;
                 var opt_anosim = document.forms["Pre-form2"]["opt_anosim"].value;
+                var adonis = document.forms["Pre-form2"]["adonis"].value;
                 var opt_adonis = document.forms["Pre-form2"]["opt_adonis"].value;
+                var kegg = document.forms["Pre-form2"]["kegg"].value;
+                var sample_comparison = document.forms["Pre-form2"]["sample_comparison"].value;
+                var statistical_test = document.forms["Pre-form2"]["statistical_test"].value;
+                var ci_method = document.forms["Pre-form2"]["ci_method"].value;
+                var p_value = document.forms["Pre-form2"]["p_value"].value;
 
-                var array_data = new Array(username,project,f_map,permanova,anosim,adonis,opt_permanova,opt_anosim,opt_adonis);
-                if(f_map == 'Noerror'){
+                var array_data = new Array(username,project,f_map,core_group,beta_diversity_index,beta_diversity_index2,permanova,opt_permanova,anosim,opt_anosim,adonis,opt_adonis,kegg,sample_comparison,statistical_test,ci_method,p_value);
 
-                     $(".Pre-test2").hide();
-                     $(".Pre-show2").show();
-                     getvalue2(array_data); 
+                // check options picrust and stamp
+                var open_opt = "null";
+                if(console_event2){
+                     if(sample_comparison != "0" && statistical_test !="0" && ci_method != "0" &&  p_value !="0" ){ 
+                            open_opt = true;
+                     }else{
+                            open_opt = false; 
+                     }
+                 }
+
+                if(console_event2){
+                    //console.log("sub-test2 : "+console_event2); 
+                    if(f_map == 'Noerror'){
+                        $(".Pre-test2").hide();
+                        $(".Pre-show2").show();
+                        getvalue2(array_data,open_opt); 
+                    }
+                }else if(!console_event2){
+                    //console.log("sub-test2 : "+console_event2); 
+                    if(f_map == 'Noerror'){
+                        $(".Pre-test2").hide();
+                        $(".Pre-show2").show();
+                        getvalue2(array_data,open_opt); 
+                    }
+
+                }else{
+                        alert("Please select all stamp");
                 }
-                
+ 
          });
 
 
@@ -1008,9 +1112,19 @@ function getGroup(data_arr){
                 for (var i=0; i < reData[1].length; i++){
                         name_group += "<option value="+reData[1][i]+">"+reData[1][i]+"</option>";    
                 }
-                $('#permanova').html(name_group);
-                $('#anosim').html(name_group);
-                $('#adonis').html(name_group);   
+
+                $('#core_group').html(name_group);
+                
+
+                /*start div sample-name*/
+                var samname = "";
+                samname += "<option value='0'> </option>";
+                    for(var i=0; i < reData[2].length; i++) {
+
+                         samname += "<option value="+reData[2][i]+">"+reData[2][i]+"</option>";    
+                     }
+                $('#sample_name').html(samname);
+                /*end div sample-name*/  
             }                
         },
         error:function(e){
@@ -1085,13 +1199,13 @@ function checkrun(job_val){
 
 
 
-function getvalue2(array_data){
+function getvalue2(array_data,open_opt){
             var data_value = array_data;
             $.ajax({ 
                     type:"post",
                     datatype:"json",
                     url:"<?php echo base_url('Run_mothur_qiime/mothur_qiime1'); ?>",
-                    data:{data_array: data_value},
+                    data:{data_array: data_value, data_opt:open_opt},
                     success:function(data){
                       var data_job = $.parseJSON(data);
                       checkrun2(data_job);
@@ -1140,6 +1254,41 @@ function checkrun2(job_val){
             });
             }
         },1000);
+}
+
+
+function on_switch(data_name){
+     var user = "<?php echo $username ?>";
+     var project = "<?php echo $current_project ?>";
+   
+     $.ajax({ 
+        type:"post",
+        datatype:"json",
+        url:"<?php echo site_url('Run_mothur_qiime/read_map_json/');?>"+user+"/"+project,
+        data:{data_group: data_name},
+        success:function(data){
+                var data_sw = $.parseJSON(data);
+                console.log(data_sw);
+                if(data_sw[0] == "on"){ 
+                    $(".optionset1").removeAttr("disabled");
+                    $(".opt1").hide();
+
+                     var name_group =  "<option value='none'>none</option>";
+                         name_group += "<option value="+data_sw[1]+">"+data_sw[1]+"</option>";
+
+                    $('#permanova').html(name_group);
+                    $('#anosim').html(name_group);
+                    $('#adonis').html(name_group);  
+
+                }else{
+                    $(".optionset1").attr("disabled", true);
+                    $(".opt1").show();
+                 }
+        },
+        error:function(e){
+            console.log(e.message);
+        }
+    });          
 }
 
 

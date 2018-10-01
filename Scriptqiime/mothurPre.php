@@ -21,6 +21,7 @@
          $GLOBALS['taxon'] = $argv[15]; 
          $platform_sam = $argv[16];
          $platform_type = $argv[17];
+         $GLOBALS['project_save'] = $argv[18];
 
          $GLOBALS['taxon'] = str_replace(',', ';',$GLOBALS['taxon']);     
 
@@ -1196,13 +1197,16 @@
 
                 ini_set('memory_limit', '-1');
                 $file = $path_out."final.count_table";
-
+                 
                 $data_w = array();
                 $count = 0;
                 $myfile =  fopen($file, 'r') or die ("Unable to open file");
+
+                $data_search = array("-","_");
+
                 while (($value = fgets($myfile)) !== false) {
                     if($count == 0){
-                        $out1 = str_replace("_", "+", $value);
+                        $out1 = str_replace($data_search, "+", $value);
                         $name = explode("\t", $out1);
                         $out2 = str_replace("+", "_", $name[0]);
                         $name[0] = $out2;
@@ -1370,9 +1374,9 @@
         $LinkerPrimerSequence = "GGATTAGATACCCTGGTAGTCC";
         $ReversePrimer = "CTCACGRCACGAGCTGACG";
        
-        $otu_talbe = $log.$log_split;
+        $otu_table = $log.$log_split;
 
-        $file = file_get_contents($otu_talbe);
+        $file = file_get_contents($otu_table);
         $search_for = 'Processing group';
         $pattern = preg_quote($search_for, '/');
 
@@ -1403,38 +1407,128 @@
                 }
 
           file_put_contents($path_in."Test_Map.txt",$mapcreate);
-          on_check_remove($path_in, $path_out); 
+          on_check_remove($user,$project,$path_in,$path_out); 
      }
 
 
+    function on_check_remove($user,$project,$path_in,$path_out){
 
-        function on_check_remove($path_in, $path_out){
+        echo "on_check_remove" . "\n";
+        $path_dir = $path_in;
+            if(is_dir($path_dir)) {
+                if ($read = opendir($path_dir)) {
+                    while (($file = readdir($read)) !== false) {
 
-                echo "on_check_remove" . "\n";
-                $path_dir = $path_in;
-                if (is_dir($path_dir)) {
-                    if ($read = opendir($path_dir)) {
-                        while (($file = readdir($read)) !== false) {
+                        $allowed = array('8mer', 'sum', 'train', 'numNonZero', 'prob');
+                        $ext = pathinfo($file, PATHINFO_EXTENSION);
+                        if (in_array($ext, $allowed)) {
 
-                            $allowed = array('8mer', 'sum', 'train', 'numNonZero', 'prob');
-                            $ext = pathinfo($file, PATHINFO_EXTENSION);
-
-                            if (in_array($ext, $allowed)) {
-
-                                unlink($path_dir . $file);
-                            }
+                             unlink($path_dir . $file);
                         }
-
-                        closedir($read);
                     }
+                    closedir($read);
                 }
+            }
+        run_count_group($user,$project,$path_in,$path_out);
+    }
 
-                remove_logfile_mothur($path_out);
 
+
+    
+    function run_count_group($user,$project,$path_in,$path_out){
+
+ 
+        $project_save =  $GLOBALS['project_save'];
+
+        $folder_project = "Log_report/$user/$project_save/";   
+        if (!file_exists($folder_project)){
+            mkdir( $folder_project, 0777, true);
         }
 
+        # copy log sungride makesummary to Log_report
+        $MakeSummary_file = null;
+        $path_summary = "owncloud/data/$user/files/$project/log/";
+        $file_log = $path_summary;
+            if(is_dir($file_log)) {
+                if($read = opendir($file_log)){
+                       while (($summary = readdir($read)) !== false) {
 
-        function remove_logfile_mothur($path_out){
+                         # makesummary
+                         if(stripos($summary,'makesummary') !== false){
+                             
+                             $MakeSummary_file = $summary;
+                             $copy_makesummary = $path_summary.$summary;
+                             $makesummary = "Log_report/$user/$project_save/".$summary;
+                             copy($copy_makesummary,$makesummary);
+                         }
+                      }
+                    closedir($read);
+                }
+            }
+
+
+        # Move file ruu mothur  << count.groups >>
+
+         $copy_file3 = "owncloud/data/$user/files/$project/output/stability.trim.contigs.good.good.count_table";
+         if(file_exists($copy_file3)){
+                $file3 = "Log_report/$user/$project_save/stability.trim.contigs.good.good.count_table";
+                copy($copy_file3,$file3);
+         }
+
+
+         $copy_file4 = "owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table";
+         if(file_exists($copy_file4)){
+                $file4 = "Log_report/$user/$project_save/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table";
+                copy($copy_file4,$file4);
+         }
+
+
+         $copy_file5 = "owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table";
+         if(file_exists($copy_file5)){
+                $file5 = "Log_report/$user/$project_save/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table";
+                copy($copy_file5,$file5);
+         }
+
+
+        $jobname = $user."_run_count_group";
+        $log = $GLOBALS['path_log'];
+
+        $make = "count.groups(count=stability.trim.contigs.good.good.count_table,inputdir=Log_report/$user/$project_save/,outputdir=Log_report/$user/$project_save/)
+         count.groups(count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table,inputdir=Log_report/$user/$project_save/,outputdir=Log_report/$user/$project_save/)
+         count.groups(count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=Log_report/$user/$project_save/,outputdir=Log_report/$user/$project_save/)";
+
+        file_put_contents('Log_report/'.$user.'/'.$project_save.'/colum_full.batch', $make);
+
+        $log = $GLOBALS['path_log'];
+        $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur Log_report/$user/$project_save/colum_full.batch";
+              
+        shell_exec($cmd);
+
+
+         exec($cmd);
+         $check_qstat = "qstat  -j '$jobname' ";
+         exec($check_qstat, $output);
+         $id_job = ""; # give job id
+         foreach ($output as $key_var => $value) {
+            if ($key_var == "1") {
+                $data = explode(":", $value);
+                $id_job = $data[1];
+            }
+          }
+
+          $loop = true;
+          while ($loop) {
+                $check_run = exec("qstat -j $id_job");
+                 if ($check_run == false) {
+                   
+                      $loop = false;
+                     remove_logfile_mothur($path_out);                   
+               }
+          }
+    }
+
+
+    function remove_logfile_mothur($path_out){
 
                 $path_dir = $path_out;
                 if (is_dir($path_dir)) {
@@ -1449,12 +1543,13 @@
                                 unlink($path_dir . $logfile);
                             }
                         }
-
                         closedir($read);
                     }
                 }
-                echo "remove_logfile_mothur" . "\n";
-        } 
+        echo "remove_logfile_mothur" . "\n";
+    } 
+
+
    
 
 ?>

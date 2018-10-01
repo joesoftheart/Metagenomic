@@ -339,9 +339,9 @@ if (isset($this->session->userdata['logged_in'])) {
                               &nbsp;&nbsp;&nbsp;<p class="fa fa-bookmark"> &nbsp;&nbsp;PCoA </p>
                               <?php  foreach ($pcoa as $val_pcoa) {  ?>
                                       <center>
-                                          <img src="<?php echo base_url('data_report_mothur/'.$user.'/'.$project.'/beta_diversity_analysis/'.$val_pcoa);?>"  width="450px" height="450px" >
+                                          <img src="<?php echo base_url('data_report_mothur/'.$user.'/'.$project.'/beta_diversity_analysis/'.$val_pcoa);?>"  width="650px" height="650px" >
                                       <br/>  
-                                      <?php  echo $val_nmd; ?>  
+                                      <?php  echo $val_pcoa; ?>  
                                       </center> 
                               <?php }  ?>
                                <!-- /Graph PCoA -->
@@ -350,7 +350,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                &nbsp;&nbsp;&nbsp;<p class="fa fa-bookmark"> &nbsp;&nbsp;Biplot </p>
                                    <?php  foreach ($biplot as $val_biplot) {  ?>
                                       <center>
-                                          <img src="<?php echo base_url('data_report_mothur/'.$user.'/'.$project.'/beta_diversity_analysis/'.$val_biplot);?>"  width="450px" height="450px" >
+                                          <img src="<?php echo base_url('data_report_mothur/'.$user.'/'.$project.'/beta_diversity_analysis/'.$val_biplot);?>"  width="650px" height="650px" >
                                       <br/>  
                                       <?php  echo $val_biplot; ?>  
                                       </center> 
@@ -366,7 +366,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                &nbsp;&nbsp;&nbsp; <p class="fa fa-bookmark"> &nbsp;&nbsp;NMD </p>
                                 <?php  foreach ($nmd as $val_nmd) {  ?>
                                       <center>
-                                          <img src="<?php echo base_url('data_report_mothur/'.$user.'/'.$project.'/beta_diversity_analysis/'.$val_nmd);?>"  width="450px" height="450px" >
+                                          <img src="<?php echo base_url('data_report_mothur/'.$user.'/'.$project.'/beta_diversity_analysis/'.$val_nmd);?>"  width="650px" height="650px" >
                                       <br/>  
                                       <?php  echo $val_nmd; ?>  
                                       </center>
@@ -378,7 +378,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                 &nbsp;&nbsp;&nbsp;<p class="fa fa-bookmark"> &nbsp;&nbsp;Biplot </p>
                                    <?php  foreach ($biplot as $val_biplot) {  ?>
                                       <center>
-                                          <img src="<?php echo base_url('data_report_mothur/'.$user.'/'.$project.'/beta_diversity_analysis/'.$val_biplot);?>"  width="450px" height="450px" >
+                                          <img src="<?php echo base_url('data_report_mothur/'.$user.'/'.$project.'/beta_diversity_analysis/'.$val_biplot);?>"  width="650px" height="650px" >
                                       <br/>  
                                       <?php  echo $val_biplot; ?>  
                                       </center> 
@@ -406,7 +406,7 @@ if (isset($this->session->userdata['logged_in'])) {
                           <div class="table-responsive">
                             <table class="table table-striped table-bordered" id="table"  >
 
-                             <?php   $path = FCPATH."owncloud/data/".$user."/files/".$project."/output/myResultsPathwayL2.tsv";
+                             <?php   $path = FCPATH."owncloud/data/".$user."/files/".$project_data."/output/myResultsPathwayL2.tsv";
 
                             if(file_exists($path)){
 

@@ -1,0 +1,2 @@
+Group1	Group2	Group1 mean	Group1 std	Group2 mean	Group2 std	t stat	p-value
+surface	bottom	0.836956521739	0.019565217391	0.939855072464	0.0514492753625	-1.86939224964	0.352

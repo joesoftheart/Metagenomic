@@ -3,5 +3,5 @@ source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
 export PATH=/home/aum/anaconda/bin:$PATH
 export QT_QPA_PLATFORM=offscreen
 
-make_2d_plots.py -i $1 -m $2 -o $3 --ellipsoid_opacity=0.5 --ellipsoid_method=IQR -b 'groupA,groupB,groupC'
+make_2d_plots.py -i $1 -m $2 -o $3 --ellipsoid_opacity=0.5 --ellipsoid_method=IQR -b $4
 

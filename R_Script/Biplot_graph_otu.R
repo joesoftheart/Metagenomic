@@ -11,7 +11,7 @@ nmds <- read.table(file = args[1], header = T)
 svg(args[2],width=12,height=6)
 
 #plot(nmds$axis1,nmds$axis2, col=c("#0000FF","green","red","cyan"),pch=20, xlab="Axis 1", ylab="Axis 2", xlim = c(-1.0,1.0), ylim=c(-1.0,1.0), cex = 2.0)
-plot(nmds$axis1, nmds$axis2, col = c(sample(colors())), pch = 20, xlab = "Axis 1", ylab = "Axis 2", xlim = c(- 1.0, 1.0), ylim = c(- 1.0, 1.0), cex = 2.0)
+plot(nmds$axis1, nmds$axis2, col = c(sample(colors())), pch = 20, xlab = args[6], ylab = args[7], xlim = c(- 1.0, 1.0), ylim = c(- 1.0, 1.0), cex = 2.0)
 
 with(nmds, text(x = nmds$axis1, y = nmds$axis2, labels = nmds$group, pos = 4, cex = 0.8))
 points <- read.table(args[3], header = T)
@@ -28,7 +28,7 @@ dev.off()
 svg(args[4],width=12,height=6)
 
 #plot(nmds$axis1,nmds$axis2, col=c("#0000FF","green","red","cyan"),pch=20, xlab="Axis 1", ylab="Axis 2", xlim = c(-1.0,1.0), ylim=c(-1.0,1.0), cex = 2.0)#
-plot(nmds$axis1, nmds$axis2, col = c(sample(colors())), pch = 20, xlab = "Axis 1", ylab = "Axis 2", xlim = c(- 1.0, 1.0), ylim = c(- 1.0, 1.0), cex = 2.0)
+plot(nmds$axis1, nmds$axis2, col = c(sample(colors())), pch = 20, xlab = args[6], ylab = args[7], xlim = c(- 1.0, 1.0), ylim = c(- 1.0, 1.0), cex = 2.0)
 with(nmds, text(x = nmds$axis1, y = nmds$axis2, labels = nmds$group, pos = 4, cex = 0.8))
 points <- read.table(args[5], header = T)
 x1 <- points$axis1

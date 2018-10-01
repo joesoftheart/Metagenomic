@@ -1,0 +1,3 @@
+#SampleID	original-sample-ids	BarcodeSequence	LinkerPrimerSequence	ReversePrimer	InputFileName	groupA	groupB	Description
+bottom	(S3t1t16s, S4t1t16s)	(ACGTTTGT, GCCTCGGT)	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	(final.redundant.ng.S3t1t16s.fasta, final.redundant.ng.S4t1t16s.fasta)	(soils3, soils4)	soilsource1	(oricode_S3t1t16s, oricode_S4t1t16s)
+surface	(S1t1t16s, S2t1t16s)	(ACCGCTTT, CACTAAAG)	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	(final.redundant.ng.S1t1t16s.fasta, final.redundant.ng.S2t1t16s.fasta)	(soils1, soils2)	soilsource1	(oricode_S1t1t16s, oricode_S2t1t16s)

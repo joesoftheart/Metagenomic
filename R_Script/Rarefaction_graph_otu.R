@@ -23,7 +23,7 @@ for (i in r) {
     if (te == 1) {
         print(i)
         print(data[, i])
-        plot(x = data$numsampled, y = data[, i], type = "l", col = cl[te], xlab = "# sequences sampled", ylab = "Observed OTUs", ylim = c(0, 800))#, xlim=c(0,130000), ylim=c(0,900))
+        plot(x = data$numsampled, y = data[, i], type = "l", col = cl[te], xlab = "# sequences sampled", ylab = "Observed OTUs", ylim = c(0, max(data[,names(data) != "numsampled"],na.rm=TRUE)+50))#, xlim=c(0,130000), ylim=c(0,900))
         color_sam <- c(color_sam, cl[te])
     }else {
         print(i)

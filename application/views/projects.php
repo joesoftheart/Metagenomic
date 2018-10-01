@@ -1185,8 +1185,12 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
 
                             <input type="checkbox" id="anosim_id" name="anosim"  value="anosim" > Anosim 
                                  <i class="fa fa-question-circle-o"></i>  
-                            </div>    
+                            </div> 
          </div>
+        <div class="col-lg-12">
+              <br>** homova , anosim <br> &nbsp;&nbsp;- if file design has less than 2 groups, P value can not be calculated.
+        </div>
+          
          
          <div class="col-lg-12 uk-margin">
             <hr class="uk-divider-icon">
@@ -1317,7 +1321,7 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
                 <option value="Chi-square">Chi-square test</option>
                 <option value="Chi-square2">Chi-square test(w/Yates' correction)</option>
                 <option value="Difference">Difference between proportions</option>
-                <option value="Fisher">Fisher 's exact test</option>
+                <option value="Fisher" selected>Fisher 's exact test</option>
                 <option value="G‐test">G‐test</option>
                 <option value="G‐test2">G‐test (w/ Yates' correction)</option>
                 <option value="Hypergeometric">Hypergeometric</option>
@@ -1332,7 +1336,7 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
             <label>• CI method : </label>
             <select class="uk-select" name="ci_method">
                  <option value="0"></option>
-                 <option value="DP1">DP: Newcombe‐Wilson</option>
+                 <option value="DP1" selected>DP: Newcombe‐Wilson</option>
                  <option value="DP2">DP: Asymptotic</option>
                  <option value="DP3">DP: Asymptotic-CC</option>
                  <option value="OR1">OR: Haldane adjustment</option>
@@ -1347,7 +1351,7 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
             <label>• P‐value : </label>
             <select class="uk-select" name="p_value">
                  <option value="0">None</option>
-                 <option value="0.05">0.05</option>
+                 <option value="0.05" selected>0.05</option>
                  <option value="0.01">0.01</option>
                
             </select>
@@ -1566,9 +1570,11 @@ In addition to that, it is possible that the (PCR-based) amplification steps in 
      if($(this).prop('checked')){
           $(".optionset2").removeAttr("disabled")
           $(".opt2").show();
+          console.log(console_event2);
      }else{
           $(".optionset2").attr("disabled", true);
           $(".opt2").hide();
+          console.log(console_event2);
      }
   })
 

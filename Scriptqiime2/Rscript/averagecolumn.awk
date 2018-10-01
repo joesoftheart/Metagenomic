@@ -1,4 +1,5 @@
-awk -F"\t" -v OFS="\t" '
+
+/usr/bin/awk -F"\t" -v OFS="\t" '
   NR==1{$3=""; print; next;}
   {
   c[$2]++; 

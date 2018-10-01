@@ -54,6 +54,8 @@
          $GLOBALS['p_value'] = $argv[34];
 
 
+
+
          
          # Check PCoA & NMDS
          $GLOBALS['func_use'] = $argv[35];
@@ -73,11 +75,15 @@
             $GLOBALS['tree_cal'] = null;
 
 
+         # $project => project_save
+         $GLOBALS['project_save'] = $argv[36];
+
+
+
          if($user != "" && $project != "" && $path_in != "" && $path_out != "" && $argv[5] != "" && $argv[6] =! "" && $argv[7] != "" && $argv[8] != "" && $argv[9] != "" && $argv[10] != ""){
              echo "Check Parameter Success"."\n";
              collect_rarefaction_summary($user,$project,$path_in,$path_out);
             
-
 
          }else{
 
@@ -1225,12 +1231,14 @@ function create_input_biplot($user, $project, $path_in, $path_out){
 function plot_graph_r_heatmap($user, $project, $path_in, $path_out)
 {
 
+    $project_save =  $GLOBALS['project_save'];
+  
 
     echo "plot_graph_r_heatmap " . "\n";
 
     $path_input_csv = "owncloud/data/$user/files/$project/output/file_after_reverse.csv";
     #$path_to_save = "owncloud/data/$user/files/$project/output/heartmap.png";
-    $path_to_save = "data_report_mothur/$user/$project/taxonomy_classification/heartmap.svg";
+    $path_to_save = "data_report_mothur/$user/$project_save/taxonomy_classification/heartmap.svg";
     $jobname = $user . "_plot_graph_r_heartmap";
 
     $log = $GLOBALS['path_log'];
@@ -1262,6 +1270,8 @@ function plot_graph_r_heatmap($user, $project, $path_in, $path_out)
 #17
 function plot_graph_r_NMD($user, $project, $path_in, $path_out){
 
+     $project_save =  $GLOBALS['project_save'];
+
     echo "plot_graph_r_NMD " . "\n";
 
     # Calculator PCoA or NMDS
@@ -1271,21 +1281,27 @@ function plot_graph_r_NMD($user, $project, $path_in, $path_out){
       $cal_replace = explode(" ", $cal);
       $path_input_axes_name = null;
 
+      # check type PCoA OR NMDS
+      $check_pcoa_or_nmds = null;
 
     # PCoA OR NMDS
     if ($GLOBALS['check'] == "pcoa") {
 
+        $check_pcoa_or_nmds = "pcoa";
+
         for ($i = 0; $i < sizeof($cal_replace); $i++) {
 
-            $path_input_axes_name .= "owncloud/data/$user/files/$project/output/final.opti_mcc." . $cal_replace[$i] . "." . $GLOBALS['level'] . ".lt.ave.pcoa.axes" . "-" . "data_report_mothur/$user/$project/beta_diversity_analysis/PCoA_" . $cal_replace[$i] . ".svg" . " ";
+            $path_input_axes_name .= "owncloud/data/$user/files/$project/output/final.opti_mcc." . $cal_replace[$i] . "." . $GLOBALS['level'] . ".lt.ave.pcoa.axes" . "-" . "data_report_mothur/$user/$project_save/beta_diversity_analysis/PCoA_" . $cal_replace[$i] . ".svg" . " ";
 
         }
 
     } else if ($GLOBALS['check'] == "nmds") {
 
+        $check_pcoa_or_nmds = "nmds";
+
         for ($i = 0; $i < sizeof($cal_replace); $i++) {
 
-            $path_input_axes_name .= "owncloud/data/$user/files/$project/output/final.opti_mcc." . $cal_replace[$i] . "." . $GLOBALS['level'] . ".lt.ave.nmds.axes" . "-" . "data_report_mothur/$user/$project/beta_diversity_analysis/NMD_" . $cal_replace[$i] . ".svg" . " ";
+            $path_input_axes_name .= "owncloud/data/$user/files/$project/output/final.opti_mcc." . $cal_replace[$i] . "." . $GLOBALS['level'] . ".lt.ave.nmds.axes" . "-" . "data_report_mothur/$user/$project_save/beta_diversity_analysis/NMD_" . $cal_replace[$i] . ".svg" . " ";
 
         }
     }
@@ -1296,7 +1312,7 @@ function plot_graph_r_NMD($user, $project, $path_in, $path_out){
 
     $jobname = $user . "_plot_graph_r_NMD";
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f  R_Script/nmds_pcoa_plot_advance.php $path_input_axes";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f  R_Script/nmds_pcoa_plot_advance.php $path_input_axes $check_pcoa_or_nmds";
 
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1326,11 +1342,14 @@ function plot_graph_r_Rare($user, $project, $path_in, $path_out)
 {
 
 
+    $project_save =  $GLOBALS['project_save'];
+
     echo "plot_graph_r_Rare " . "\n";
 
     $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.opti_mcc.groups.rarefaction";
     
-    $path_to_save = "data_report_mothur/$user/$project/alpha_diversity_analysis/Rare.svg";
+    $path_to_save = "data_report_mothur/$user/$project_save/alpha_diversity_analysis/Rare.svg";
+
     $jobname = $user . "_plot_graph_r_Rare";
 
     $log = $GLOBALS['path_log'];
@@ -1364,10 +1383,12 @@ function plot_graph_r_Rare($user, $project, $path_in, $path_out)
 function plot_graph_r_Abun($user, $project, $path_in, $path_out){
 
 
+    $project_save =  $GLOBALS['project_save'];
+
     echo "plot_graph_r_Abun " . "\n";
 
     $path_input_phylumex = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";
-    $path_to_save = "data_report_mothur/$user/$project/taxonomy_classification/Abun.svg";
+    $path_to_save = "data_report_mothur/$user/$project_save/taxonomy_classification/Abun.svg";
 
        $path = $path_input_phylumex;
         $read = fopen($path,"r") or die ("unable to open file");
@@ -1446,11 +1467,12 @@ function plot_graph_r_Abun($user, $project, $path_in, $path_out){
 function plot_graph_r_Alphash($user, $project, $path_in, $path_out)
 {
 
-
+    $project_save =  $GLOBALS['project_save'];
+    
     echo "plot_graph_r_Alphash " . "\n";
 
     $path_input_chao_shannon = "owncloud/data/$user/files/$project/output/file_after_chao.txt";
-    $path_to_save = "data_report_mothur/$user/$project/alpha_diversity_analysis/Alpha.svg";
+    $path_to_save = "data_report_mothur/$user/$project_save/alpha_diversity_analysis/Alpha.svg";
 
     $jobname = $user . "_plot_graph_r_Alphash";
 
@@ -1490,6 +1512,8 @@ function plot_graph_r_Alphash($user, $project, $path_in, $path_out)
 #21 check correlation metadata and otu
 function plot_graph_r_Biplot($user, $project, $path_in, $path_out){
 
+   $project_save =  $GLOBALS['project_save'];
+
     echo "plot_graph_r_Biplot" . "\n";
     $jobname = $user . "_plot_graph_r_Biplot";
     $log = $GLOBALS['path_log'];
@@ -1502,19 +1526,23 @@ function plot_graph_r_Biplot($user, $project, $path_in, $path_out){
     
     $cal_replace = explode(" ", $cal);
     $path_data = null;
+    
 
+     # check type PCoA OR NMDS
+     $check_pcoa_or_nmds = null;
 
     #pcoa 
     if ($GLOBALS['check'] == "pcoa") {
+      
+       $check_pcoa_or_nmds = "pcoa";
 
-
-      #correlation metadata
-      if(($GLOBALS['correlation_meta'] != "0") && ($GLOBALS['correlation_otu'] == "0")){
+       #correlation metadata
+       if(($GLOBALS['correlation_meta'] != "0") && ($GLOBALS['correlation_otu'] == "0")){
 
           $numcheck = "3meta";
           for ($i = 0; $i < sizeof($cal_replace); $i++) {
                $path_data .= "owncloud/data/$user/files/$project/output/final.opti_mcc." . $cal_replace[$i] . "." . $GLOBALS['level'] . ".lt.ave.pcoa.axes-";
-               $path_data .= "data_report_mothur/$user/$project/beta_diversity_analysis/PCoA_BiplotwithMetadata_" . $cal_replace[$i] . ".svg-";
+               $path_data .= "data_report_mothur/$user/$project_save/beta_diversity_analysis/PCoA_BiplotwithMetadata_" . $cal_replace[$i] . ".svg-";
                $path_data .= "owncloud/data/$user/files/$project/output/file." . $GLOBALS['method_meta'] . ".corr.axes_" . $cal_replace[$i] . ",";
           }
 
@@ -1525,7 +1553,7 @@ function plot_graph_r_Biplot($user, $project, $path_in, $path_out){
           $numcheck = "3otu";
            for($i = 0; $i < sizeof($cal_replace); $i++) {
                 $path_data .= "owncloud/data/$user/files/$project/output/final.opti_mcc." . $cal_replace[$i] . "." . $GLOBALS['level'] . ".lt.ave.pcoa.axes-";
-                $path_data .= "data_report_mothur/$user/$project/beta_diversity_analysis/PCoA_BiplotwithOTU_" . $cal_replace[$i] . ".svg-";
+                $path_data .= "data_report_mothur/$user/$project_save/beta_diversity_analysis/PCoA_BiplotwithOTU_" . $cal_replace[$i] . ".svg-";
                 $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_" . $cal_replace[$i] . ".txt".",";
             } 
 
@@ -1533,12 +1561,18 @@ function plot_graph_r_Biplot($user, $project, $path_in, $path_out){
            
            $numcheck = "5all";
            for($i = 0; $i < sizeof($cal_replace); $i++) {
+
                 $path_data .= "owncloud/data/$user/files/$project/output/final.opti_mcc." .$cal_replace[$i] . "." . $GLOBALS['level'] . ".lt.ave.pcoa.axes-";
-                $path_data .= "data_report_mothur/$user/$project/beta_diversity_analysis/PCoA_BiplotwithOTU_" . $cal_replace[$i] . ".svg-";
-                $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_" . $cal_replace[$i] . ".txt".",";
-                $path_data .= "data_report_mothur/$user/$project/beta_diversity_analysis/PCoA_BiplotwithMetadata_" . $cal_replace[$i] . ".svg-";
+
+                $path_data .= "data_report_mothur/$user/$project_save/beta_diversity_analysis/PCoA_BiplotwithOTU_" . $cal_replace[$i] . ".svg-";
+
+                $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_" . $cal_replace[$i] . ".txt"."-";
+
+                $path_data .= "data_report_mothur/$user/$project_save/beta_diversity_analysis/PCoA_BiplotwithMetadata_" . $cal_replace[$i] . ".svg-";
+
                 $path_data .= "owncloud/data/$user/files/$project/output/file." . $GLOBALS['method_meta'] . ".corr.axes_" . $cal_replace[$i] . ",";
            }
+
        }
 
     }
@@ -1546,6 +1580,7 @@ function plot_graph_r_Biplot($user, $project, $path_in, $path_out){
     #nmds
     else if ($GLOBALS['check'] == "nmds") {
 
+      $check_pcoa_or_nmds = "nmds";
 
       #correlation metadata
       if(($GLOBALS['correlation_meta'] != "0") && ($GLOBALS['correlation_otu'] == "0")){
@@ -1553,7 +1588,7 @@ function plot_graph_r_Biplot($user, $project, $path_in, $path_out){
          $numcheck = "3meta";
          for ($i = 0; $i < sizeof($cal_replace); $i++) {
              $path_data .= "owncloud/data/$user/files/$project/output/final.opti_mcc." . $cal_replace[$i] . "." . $GLOBALS['level'] . ".lt.ave.nmds.axes-";
-             $path_data .= "data_report_mothur/$user/$project/beta_diversity_analysis/NMDS_BiplotwithMetadata_" . $cal_replace[$i] . ".svg-";
+             $path_data .= "data_report_mothur/$user/$project_save/beta_diversity_analysis/NMDS_BiplotwithMetadata_" . $cal_replace[$i] . ".svg-";
              $path_data .= "owncloud/data/$user/files/$project/output/file." . $GLOBALS['method_meta'] . ".corr.axes_" . $cal_replace[$i] . ",";
          }
       }
@@ -1564,7 +1599,7 @@ function plot_graph_r_Biplot($user, $project, $path_in, $path_out){
          $numcheck = "3otu";
          for ($i = 0; $i < sizeof($cal_replace); $i++) {
                $path_data .= "owncloud/data/$user/files/$project/output/final.opti_mcc." . $cal_replace[$i] . "." . $GLOBALS['level'] . ".lt.ave.nmds.axes-";
-               $path_data .= "data_report_mothur/$user/$project/beta_diversity_analysis/NMDS_BiplotwithOTU_" . $cal_replace[$i] . ".svg-";
+               $path_data .= "data_report_mothur/$user/$project_save/beta_diversity_analysis/NMDS_BiplotwithOTU_" . $cal_replace[$i] . ".svg-";
                $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_" . $cal_replace[$i] . ".txt".",";
 
          }      
@@ -1574,9 +1609,13 @@ function plot_graph_r_Biplot($user, $project, $path_in, $path_out){
          $numcheck = "5all";
           for ($i = 0; $i < sizeof($cal_replace); $i++) {
             $path_data .= "owncloud/data/$user/files/$project/output/final.opti_mcc." . $cal_replace[$i] . "." . $GLOBALS['level'] . ".lt.ave.nmds.axes-";
-            $path_data .= "data_report_mothur/$user/$project/beta_diversity_analysis/NMDS_BiplotwithOTU_" . $cal_replace[$i] . ".svg-";
+
+            $path_data .= "data_report_mothur/$user/$project_save/beta_diversity_analysis/NMDS_BiplotwithOTU_" . $cal_replace[$i] . ".svg-";
+
             $path_data .= "owncloud/data/$user/files/$project/output/output_biplot_" . $cal_replace[$i] . ".txt-";
-            $path_data .= "data_report_mothur/$user/$project/beta_diversity_analysis/NMDS_BiplotwithMetadata_" . $cal_replace[$i] . ".svg-";
+
+            $path_data .= "data_report_mothur/$user/$project_save/beta_diversity_analysis/NMDS_BiplotwithMetadata_" . $cal_replace[$i] . ".svg-";
+
             $path_data .= "owncloud/data/$user/files/$project/output/file." . $GLOBALS['method_meta'] . ".corr.axes_" . $cal_replace[$i] . ",";
           }
       }    
@@ -1584,7 +1623,7 @@ function plot_graph_r_Biplot($user, $project, $path_in, $path_out){
 
 
    
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f  R_Script/biplot_otu_advance.php $path_data $numcheck";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f  R_Script/biplot_otu_advance.php $path_data $numcheck $check_pcoa_or_nmds";
 
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";
@@ -1612,6 +1651,9 @@ function plot_graph_r_Biplot($user, $project, $path_in, $path_out){
 #22
 function plot_graph_r_Tree($user, $project, $path_in, $path_out){
 
+    
+    $project_save =  $GLOBALS['project_save'];
+
     echo "plot_graph_r_Tree" . "\n";
 
     $tree_cal = $GLOBALS['tree_cal'];
@@ -1619,7 +1661,7 @@ function plot_graph_r_Tree($user, $project, $path_in, $path_out){
 
     $jobname = $user . "_plot_graph_r_Tree";
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/Tree_graph_otu_advance.php $tree_cal $level $user $project";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/php -f R_Script/Tree_graph_otu_advance.php $tree_cal $level $user $project $project_save";
 
 
     exec($cmd);
@@ -2059,6 +2101,8 @@ function stamp($user,$project,$path_in,$path_out){
 #31
 function plot_STAMP($user,$project,$path_in,$path_out,$sample1,$sample2){
 
+
+    $project_save =  $GLOBALS['project_save'];
     echo "plot_STAMP"."\n";
 
     # $L = Please select level of KEGG pathway  level 1,2 or 3
@@ -2066,7 +2110,7 @@ function plot_STAMP($user,$project,$path_in,$path_out,$sample1,$sample2){
 
     $myResultsPathway = "owncloud/data/$user/files/$project/output/myResultsPathway".$L.".tsv";
     
-    $path_to_save = "data_report_mothur/$user/$project/optional_output/bar_plot_STAMP.svg";
+    $path_to_save = "data_report_mothur/$user/$project_save/optional_output/bar_plot_STAMP.svg";
 
 
     $jobname = $user ."_plot_STAMP";
@@ -2103,16 +2147,19 @@ function plot_STAMP($user,$project,$path_in,$path_out,$sample1,$sample2){
 
 #32 No print name function to log sungrid
 function keep_file_report($user,$project,$path_in,$path_out){
+       
+
+       $project_save =  $GLOBALS['project_save'];
 
  
-        $folder_project = "Log_report/$user/$project/";   
+        $folder_project = "Log_report/$user/$project_save/";   
         if (!file_exists($folder_project)){
             mkdir( $folder_project, 0777, true);
         }
 
         # copy log sungride makesummary to Log_report
         $MakeSummary_file = null;
-        $path_summary = "owncloud/data/$user/files/$project/log_full/";
+        $path_summary = "owncloud/data/$user/files/$project/log/";
         $file_log = $path_summary;
             if(is_dir($file_log)) {
                 if($read = opendir($file_log)){
@@ -2123,7 +2170,7 @@ function keep_file_report($user,$project,$path_in,$path_out){
                              
                              $MakeSummary_file = $summary;
                              $copy_makesummary = $path_summary.$summary;
-                             $makesummary = "Log_report/$user/$project/".$summary;
+                             $makesummary = "Log_report/$user/$project_save/".$summary;
                              copy($copy_makesummary,$makesummary);
                          }
                       }
@@ -2136,21 +2183,21 @@ function keep_file_report($user,$project,$path_in,$path_out){
 
          $copy_file3 = "owncloud/data/$user/files/$project/output/stability.trim.contigs.good.good.count_table";
          if(file_exists($copy_file3)){
-                $file3 = "Log_report/$user/$project/stability.trim.contigs.good.good.count_table";
+                $file3 = "Log_report/$user/$project_save/stability.trim.contigs.good.good.count_table";
                 copy($copy_file3,$file3);
          }
 
 
          $copy_file4 = "owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table";
          if(file_exists($copy_file4)){
-                $file4 = "Log_report/$user/$project/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table";
+                $file4 = "Log_report/$user/$project_save/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table";
                 copy($copy_file4,$file4);
          }
 
 
          $copy_file5 = "owncloud/data/$user/files/$project/output/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table";
          if(file_exists($copy_file5)){
-                $file5 = "Log_report/$user/$project/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table";
+                $file5 = "Log_report/$user/$project_save/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table";
                 copy($copy_file5,$file5);
          }
 
@@ -2158,14 +2205,14 @@ function keep_file_report($user,$project,$path_in,$path_out){
         $jobname = $user."_keep_file_report";
         $log = $GLOBALS['path_log'];
 
-        $make = "count.groups(count=stability.trim.contigs.good.good.count_table,inputdir=Log_report/$user/$project/,outputdir=Log_report/$user/$project/)
-         count.groups(count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table,inputdir=Log_report/$user/$project/,outputdir=Log_report/$user/$project/)
-         count.groups(count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=Log_report/$user/$project/,outputdir=Log_report/$user/$project/)";
+        $make = "count.groups(count=stability.trim.contigs.good.good.count_table,inputdir=Log_report/$user/$project_save/,outputdir=Log_report/$user/$project_save/)
+         count.groups(count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table,inputdir=Log_report/$user/$project_save/,outputdir=Log_report/$user/$project_save/)
+         count.groups(count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=Log_report/$user/$project_save/,outputdir=Log_report/$user/$project_save/)";
 
-        file_put_contents('Log_report/'.$user.'/'.$project.'/colum_full.batch', $make);
+        file_put_contents('Log_report/'.$user.'/'.$project_save.'/colum_full.batch', $make);
 
         $log = $GLOBALS['path_log'];
-        $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur Log_report/$user/$project/colum_full.batch";
+        $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur Log_report/$user/$project_save/colum_full.batch";
               
         shell_exec($cmd);
 

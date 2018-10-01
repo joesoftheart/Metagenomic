@@ -38,7 +38,9 @@ class New_projects extends CI_Controller
 
 
             $file_read = array('fastq');
+
             $project_path = $this->input->post("project_path") . "/input/";
+           
             $show = $this->manage_file->num_file($file_read, $project_path);
 
             $data = array("project_name" => $this->input->post("project_name"),
@@ -142,7 +144,7 @@ class New_projects extends CI_Controller
         }
     }
 
-
+ 
     public function checkfile_run($project_path){
 
        $path = FCPATH."$project_path";
@@ -150,7 +152,9 @@ class New_projects extends CI_Controller
        $search_fastq = glob($path."*.fastq");
        foreach ($search_fastq as $key => $value) {
           $var_name =  basename($value);
-          list($n1,$n2) = explode("_",$var_name);
+          $re_name = str_replace("-","t", $var_name);
+          rename($path.$var_name,$path.$re_name);
+          list($n1,$n2) = explode("_",$re_name);
           if($key%2 == 0){
              array_push($sampleName, $n1."\t");
           }    

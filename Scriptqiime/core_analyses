@@ -1,8 +1,9 @@
 
 source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
 export PATH=/home/aum/anaconda/bin:$PATH
+export PATH=/home/aum/anaconda/envs/qiime191/bin:$PATH
 export QT_QPA_PLATFORM=offscreen
 
-core_diversity_analyses.py -o $1 -i $2 -m $3 -t $4 -e $5 -c groupA,groupB,groupC -p $6
+core_diversity_analyses.py -o $1 -i $2 -m $3 -t $4 -e $5 -c $6 -p $7
 
 

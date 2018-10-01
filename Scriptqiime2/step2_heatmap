@@ -1,0 +1,5 @@
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
+export PATH=/home/aum/anaconda/bin:$PATH
+
+
+biom convert -i $1 -o $2 --table-type="OTU table" --to-json

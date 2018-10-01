@@ -12,26 +12,20 @@
    		$this->load->helper(array('url','path','file','date'));
       	$this->load->helper('form');
       	$this->load->library('form_validation');
-  
 
-      	include(APPPATH.'../setting_sge.php');
-        putenv("SGE_ROOT=$SGE_ROOT");
-        putenv("PATH=$PATH");
    	}
 
 
-    public function graph_qiime_full(){
-
-      $this->load->view('qime_full_graph');
-
-    }
-
-    
 
     # Run qiime Preprocess
     public function run_qiime_process(){
+
+        include(APPPATH.'../setting_sge.php');
+        putenv("SGE_ROOT=$SGE_ROOT");
+        putenv("PATH=$PATH");
          
         $value = $_REQUEST['data_array'];
+        $data_opt = $_REQUEST['data_opt'];
 
         $user = $value[0];
         $id_project = $value[1];
@@ -75,9 +69,17 @@
                    mkdir($folder_log, 0777, true);
             }
 
+
+            #create directory folder report
+            $this->create_folder_report($user,$project);
+
+            #create directory folder Download
+            $this->create_folder_download($user,$project);
+
+
            $jobname = $user.'-'.$project.'-'.'qiime1';
 
-           $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scriptqiime2/qiime_run1.php $user $project $path_input $path_out $path_log $project_platform_type $permanova $opt_permanova $anosim $opt_anosim $adonis $opt_adonis $core_group $kegg $sample_comparison $statistical_test $ci_method $p_value $beta_diversity_index $beta_diversity_index2";
+           $cmd = "qsub -N '$jobname' -o $path_log -e $path_log -cwd -b y /usr/bin/php -f Scriptqiime2/qiime_run1.php $user $project $path_input $path_out $path_log $project_platform_type $permanova $opt_permanova $anosim $opt_anosim $adonis $opt_adonis $core_group $kegg $sample_comparison $statistical_test $ci_method $p_value $beta_diversity_index $beta_diversity_index2 $data_opt";
 
            shell_exec($cmd);
            $check_qstat = "qstat  -j '$jobname' ";
@@ -123,8 +125,49 @@
         }   
     }
 
+
+
+    public function create_folder_report($user,$project){
+
+        $taxonomy_classification = FCPATH."data_report_qiime/$user/$project/taxonomy_classification/";   
+        if (!file_exists($taxonomy_classification)) {mkdir($taxonomy_classification, 0777, true);}
+
+        $alpha_diversity_analysis = FCPATH."data_report_qiime/$user/$project/alpha_diversity_analysis/";   
+        if (!file_exists($alpha_diversity_analysis)) {mkdir($alpha_diversity_analysis, 0777, true);}
+
+        $beta_diversity_analysis = FCPATH."data_report_qiime/$user/$project/beta_diversity_analysis/";   
+        if (!file_exists($beta_diversity_analysis)){ mkdir($beta_diversity_analysis, 0777, true);}
+
+        $optional_output = FCPATH."data_report_qiime/$user/$project/optional_output/";
+        if (!file_exists($optional_output)) {mkdir($optional_output, 0777, true);}
+
+        $file_report = FCPATH."data_report_qiime/$user/$project/file_report/";
+        if (!file_exists($file_report)) {mkdir($file_report, 0777, true);}
+  }
+
+   public function create_folder_download($user,$project){
+
+        $taxonomy_classification = FCPATH."data_report_qiime/$user/$project/Download/taxonomy_classification/";   
+        if (!file_exists($taxonomy_classification)) {mkdir($taxonomy_classification, 0777, true);}
+
+        $alpha_diversity_analysis = FCPATH."data_report_qiime/$user/$project/Download/alpha_diversity_analysis/";   
+        if (!file_exists($alpha_diversity_analysis)) {mkdir($alpha_diversity_analysis, 0777, true);}
+
+        $beta_diversity_analysis = FCPATH."data_report_qiime/$user/$project/Download/beta_diversity_analysis/";   
+        if (!file_exists($beta_diversity_analysis)){ mkdir($beta_diversity_analysis, 0777, true);}
+
+        $optional_output = FCPATH."data_report_qiime/$user/$project/Download/optional_output/";
+        if (!file_exists($optional_output)) {mkdir($optional_output, 0777, true);}
+  }
+
+
+
     #Check Run qiime Preprocess
     public function check_run_qiime(){
+
+          include(APPPATH.'../setting_sge.php');
+          putenv("SGE_ROOT=$SGE_ROOT");
+          putenv("PATH=$PATH");
 
           $da_job = $_REQUEST['data_job'];
           $id_job = $da_job[0];
@@ -163,7 +206,7 @@
                     $message = "Run Qiime";
                 }
                 if($count != 0){
-                    $percent = (($count/21)*100);
+                    $percent = (($count/40)*100);
                     $percent_round = round($percent,0);
                 }
             $up = array($message,$percent_round);
@@ -453,7 +496,7 @@
           }else{
               $check = "off";
           }
-          echo json_encode($check);
+          echo json_encode(array($check,$group_check));
 
      }
 

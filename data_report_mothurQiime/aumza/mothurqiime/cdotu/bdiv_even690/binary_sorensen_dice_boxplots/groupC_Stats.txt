@@ -1,0 +1,18 @@
+# The tests of significance were performed using a two-sided Student's two-sample t-test.
+# Alternative hypothesis: Group 1 mean != Group 2 mean
+# The nonparametric p-values were calculated using 999 Monte Carlo permutations.
+# The nonparametric p-values contain the correct number of significant digits.
+# Entries marked with "N/A" could not be calculated because at least one of the groups
+# of distances was empty, both groups each contained only a single distance, or
+# the test could not be performed (e.g. no variance in groups with the same mean).
+Group 1	Group 2	t statistic	Parametric p-value	Parametric p-value (Bonferroni-corrected)	Nonparametric p-value	Nonparametric p-value (Bonferroni-corrected)
+All within groupC	All between groupC	-0.468206614088	0.664010717193	1	0.474	1.000
+All within groupC	surface vs. surface	-0.57735026919	[ 0.66666667]	1	0.657	1.000
+All within groupC	bottom vs. bottom	0.57735026919	[ 0.66666667]	1	0.657	1.000
+All within groupC	surface vs. bottom	-0.468206614088	0.664010717193	1	0.454	1.000
+All between groupC	surface vs. surface	-1.44800089033	[ 0.24344309]	1	0.188	1.000
+All between groupC	bottom vs. bottom	0.590065137994	[ 0.59664387]	1	0.951	1.000
+All between groupC	surface vs. bottom	0.0	1.0	1	1.000	1.000
+surface vs. surface	bottom vs. bottom	N/A	N/A	N/A	N/A	N/A
+surface vs. surface	surface vs. bottom	-1.44800089033	[ 0.24344309]	1	0.195	1.000
+bottom vs. bottom	surface vs. bottom	0.590065137994	[ 0.59664387]	1	0.955	1.000

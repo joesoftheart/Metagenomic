@@ -10,9 +10,6 @@ if (isset($this->session->userdata['logged_in'])) {
 } ?>
 
 
-<!-- 
-<link href="<?php echo base_url(); ?>vendor/bootstrap_sort/bootstrap-sortable.css" rel="stylesheet" type="text/css"> -->
-
 <div id="page-wrapper">
   <div class="row">
     <div class="col-lg-12">
@@ -102,12 +99,15 @@ if (isset($this->session->userdata['logged_in'])) {
                          <br/>
                          <center>
                            <div class="row">
+
+                              <div class="col-md-7">
                           
-                                  <img src="<?php echo base_url('data_report_qiime/charts/bar_plot.png');?>" class="img-fluid" alt="Responsive image">
-                               
+                                  <img src="<?php echo base_url();?>data_report_qiime/<?=$user?>/<?=$project?>/taxonomy_classification/bar_plot.png"  width="600px" height="850px">
+
+                              </div> 
                             
-                             <div class="col-md-6 col-md-offset-3">
-                                  <img src="<?php echo base_url('data_report_qiime/charts/IDMtkSUWj2F0xoQEOzLwrrTJQJR0Uk_legend.png');?>" width="600px" height="150px">
+                             <div class="col-md-5 col-md-pull-1">
+                                  <img src="<?php echo base_url();?>data_report_qiime/<?=$user?>/<?=$project?>/taxonomy_classification/bar_plot_legend.png" width="600px" height="150px">
                                
                              </div>
                            </div>
@@ -118,7 +118,7 @@ if (isset($this->session->userdata['logged_in'])) {
                          <p class="fa fa-bookmark"> &nbsp;&nbsp;Genus level </p> 
                           <br/>
                          <center>
-                           <img src="<?php echo base_url('data_report_qiime/abundances.png');?>" width="550px" height="550px">
+                           <img src="<?php echo base_url();?>data_report_qiime/<?=$user?>/<?=$project?>/taxonomy_classification/heatmap.png" width="550px" height="550px">
                          </center>
                    
 
@@ -161,7 +161,7 @@ if (isset($this->session->userdata['logged_in'])) {
                           <p class="fa fa-bookmark"> &nbsp;&nbsp;Chao </p> 
                           <br/>
                          <center>
-                           <img src="<?php echo base_url('data_report_qiime/groupA_boxplots_chao.png');?>" width="550px" height="550px">
+                           <img src="<?php echo base_url();?>data_report_qiime/<?=$user?>/<?=$project?>/alpha_diversity_analysis/boxplots_chao.png" width="550px" height="550px">
                          </center>
 
                          <br/>
@@ -169,7 +169,7 @@ if (isset($this->session->userdata['logged_in'])) {
                          <p class="fa fa-bookmark"> &nbsp;&nbsp;Shannon </p> 
                          <br/>
                          <center>
-                           <img src="<?php echo base_url('data_report_qiime/groupA_boxplots_shannon.png');?>" width="550px" height="550px">
+                           <img src="<?php echo base_url();?>data_report_qiime/<?=$user?>/<?=$project?>/alpha_diversity_analysis/boxplots_shannon.png" width="550px" height="550px">
                          </center>
 
 
@@ -177,7 +177,7 @@ if (isset($this->session->userdata['logged_in'])) {
                          <p class="fa fa-bookmark"> &nbsp;&nbsp;Rarefaction curve </p> 
                           <br/>
                          <center>
-                           <img src="<?php echo base_url('data_report_qiime/observedSampleID.png');?>" width="550px" height="550px">
+                           <img src="<?php echo base_url();?>data_report_qiime/<?=$user?>/<?=$project?>/alpha_diversity_analysis/Rarefactionqiime.png" width="550px" height="550px">
                          </center>
                           
 
@@ -250,7 +250,7 @@ if (isset($this->session->userdata['logged_in'])) {
                            <br/>
                        
 
-                         <iframe  width="100%" height="500px" src="<?php echo base_url('cdotu/bdiv_even3475/2d_plots_coordinate/unweighted_unifrac_pc_2D_PCoA_plots.html');?>">
+                         <iframe  width="100%" height="500px" src="<?php echo base_url();?>data_report_qiime/<?=$user?>/<?=$project?>/beta_diversity_analysis/2d_plots_coordinate/unweighted_unifrac_pc_2D_PCoA_plots.html">
      
                           </iframe>  
 
@@ -268,12 +268,22 @@ if (isset($this->session->userdata['logged_in'])) {
                     </div>
                     <div id="collapsefour" class="panel-collapse collapse" aria-expanded="false">
                         <div class="panel-body">
-                           
-                          <p class="fa fa-bookmark"> Bar plot </p> 
-                           <br/>
-                         <center>
-                           <img src="<?php echo base_url('data_report_qiime/bar_plot_STAMP.png');?>" width="550px" height="550px">
-                         </center>
+
+                          <?php 
+                            $png_stamp = "data_report_qiime/$user/$project/optional_output/bar_plot_STAMP.png";
+                            if(file_exists($png_stamp)){ ?>
+                            
+                              <p class="fa fa-bookmark"> Bar plot </p> 
+                              <br/>
+                              <center>
+                                 <img src="<?php echo base_url()?>data_report_qiime/<?=$user?>/<?=$project?>/optional_output/bar_plot_STAMP.png" width="650px" height="650px">
+                              </center>
+
+                            <?php }else{
+                                echo "You did not select the option, Grapg did not be displayed.";
+                            }
+                             
+                           ?>
 
 
                            
@@ -309,7 +319,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
       <div class="col-lg-12 uk-margin"> </div>
       <center>
-          <input  class="btn btn-outline btn-info" value="Download all zip" id="#">
+          <input  class="btn btn-outline btn-info" value="Download all zip" id="zipall">
       </center> 
 </div><!-- End Table file_summary -->   
 
@@ -320,34 +330,32 @@ if (isset($this->session->userdata['logged_in'])) {
 <!-- "/page-wrapper" -->
 
 
+<script src="<?php echo base_url(); ?>vendor/bootstrap_sort/bootstrap-sortable.js"></script>
+
+
 
 <script type="text/javascript"> 
 
   document.getElementById("zipall").onclick = function(){
+    
+        $.ajax({ 
+          type:"post",
+          datatype:"json",
+          url:"<?php echo base_url('qiime_report/check_dirzip'); ?>",
+          data:{current:"<?=$current_project?>"},
+          success:function(data){
+            var dir = JSON.parse(data); 
+            if(dir == "TRUE"){
+             location.href="<?php echo site_url();?>qiime_report/down_zip/<?=$current_project?>";           
+           }else{
+            alert("FALSE");
+          }
 
-    $.ajax({ 
-      type:"post",
-      datatype:"json",
-      url:"<?php echo base_url('chkdir'); ?>",
-      data:{current:"<?=$id_project?>"},
-      success:function(data){
-        var dir = JSON.parse(data); 
-        if(dir == "TRUE"){
-         location.href="<?php echo site_url();?>dowfile/<?=$id_project?>";           
-       }else{
-        alert("FALSE");
-      }
+        }
 
-    }
-
-  });
-
+      });
   };
 </script>
-
-
-
-<script src="<?php echo base_url(); ?>vendor/bootstrap_sort/bootstrap-sortable.js"></script>
 
 
 

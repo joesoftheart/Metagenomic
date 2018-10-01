@@ -6,4 +6,4 @@ export PATH=/opt/fastx_toolkit-0.0.12:$PATH
 export PATH=/usr/bin/java:$PATH
 #export LD_LIBRARY_PATH=/opt/glibc-2.14/lib:$LD_LIBRARY_PATH
 
-perl Scriptqiime2/run_fastq_to_fasta.pl -p 4 -o $1fasta_files $1stitched_reads_filter/*fastq
+perl Scriptqiime2/run_fastq_to_fasta.pl -p 2 -o $1fasta_files $1stitched_reads_filter/*.fastq

@@ -1,0 +1,36 @@
+# The tests of significance were performed using a two-sided Student's two-sample t-test.
+# Alternative hypothesis: Group 1 mean != Group 2 mean
+# The nonparametric p-values were calculated using 999 Monte Carlo permutations.
+# The nonparametric p-values contain the correct number of significant digits.
+# Entries marked with "N/A" could not be calculated because at least one of the groups
+# of distances was empty, both groups each contained only a single distance, or
+# the test could not be performed (e.g. no variance in groups with the same mean).
+Group 1	Group 2	t statistic	Parametric p-value	Parametric p-value (Bonferroni-corrected)	Nonparametric p-value	Nonparametric p-value (Bonferroni-corrected)
+All within groupA	All between groupA	-0.752312681753	0.465267631325	1	0.487	1.000
+All within groupA	Control vs. Control	-0.910055588074	[ 0.45885609]	1	0.399	1.000
+All within groupA	After vs. After	0.096072197952	[ 0.93222291]	1	0.838	1.000
+All within groupA	Before vs. Before	0.813983390122	[ 0.50115559]	1	0.588	1.000
+All within groupA	Control vs. After	-0.56251697512	0.598048256073	1	0.572	1.000
+All within groupA	Control vs. Before	-1.06320874291	0.336317130875	1	0.304	1.000
+All within groupA	After vs. Before	-0.18234894706	0.862471619385	1	0.838	1.000
+All between groupA	Control vs. Control	-1.42521037507	[ 0.18184814]	1	0.097	1.000
+All between groupA	After vs. After	-0.361692725844	[ 0.72443348]	1	0.910	1.000
+All between groupA	Before vs. Before	0.397168359251	[ 0.69884112]	1	0.921	1.000
+All between groupA	Control vs. After	-0.0655605891852	0.948654663696	1	0.960	1.000
+All between groupA	Control vs. Before	-0.573241802239	0.575573737327	1	0.560	1.000
+All between groupA	After vs. Before	0.697052344794	0.497182491129	1	0.467	1.000
+Control vs. Control	After vs. After	N/A	N/A	N/A	N/A	N/A
+Control vs. Control	Before vs. Before	N/A	N/A	N/A	N/A	N/A
+Control vs. Control	Control vs. After	-0.997691616005	[ 0.39195783]	1	0.611	1.000
+Control vs. Control	Control vs. Before	-1.56600436266	[ 0.21532445]	1	0.214	1.000
+Control vs. Control	After vs. Before	-1.60160144147	[ 0.20756235]	1	0.372	1.000
+After vs. After	Before vs. Before	N/A	N/A	N/A	N/A	N/A
+After vs. After	Control vs. After	-0.273325562886	[ 0.80233956]	1	1.000	1.000
+After vs. After	Control vs. Before	-0.612017826636	[ 0.5837888]	1	1.000	1.000
+After vs. After	After vs. Before	-0.00224701717164	[ 0.99834821]	1	1.000	1.000
+Before vs. Before	Control vs. After	0.243537706357	[ 0.82329254]	1	0.945	1.000
+Before vs. Before	Control vs. Before	0.0686885616615	[ 0.94955955]	1	1.000	1.000
+Before vs. Before	After vs. Before	1.13895438627	[ 0.33743596]	1	0.609	1.000
+Control vs. After	Control vs. Before	-0.340826700444	0.744851501792	1	0.532	1.000
+Control vs. After	After vs. Before	0.554662036954	0.599176474257	1	0.662	1.000
+Control vs. Before	After vs. Before	1.17273678938	0.285348676276	1	0.242	1.000

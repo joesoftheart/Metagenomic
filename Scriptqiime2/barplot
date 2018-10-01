@@ -1,0 +1,6 @@
+source /home/aum/anaconda/envs/qiime191/etc/conda/activate.d/setblastmat.sh
+export PATH=/home/aum/anaconda/bin:$PATH
+export QT_QPA_PLATFORM=offscreen
+
+
+plot_taxa_summary.py -i $1 -l phylum -c bar -d 300 -t svg -x $3 -s -o $2

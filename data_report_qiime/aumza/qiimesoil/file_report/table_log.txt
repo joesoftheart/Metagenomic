@@ -1,0 +1,7 @@
+Samples name	No. of reads in rawdata after assembly	No. of reads after filter quality	No. of reads after removing chimera	No. of cleaned reads for OTUs analysis
+C11	26376	20528	14704	14598
+C12	4038	3825	3486	3475
+D1af	9385	8883	7582	7440
+D1bf	6825	6109	3527	3489
+D3af	5624	5316	4118	4094
+D5bf	32503	30764	26992	26918

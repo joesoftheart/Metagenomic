@@ -28,7 +28,10 @@ class  Edit_project extends CI_Controller
     public function edit_project($id)
     {
         $file_read = array('fastq');
+
         $project_path = $this->input->post("project_path") . "/input/";
+        $project_program = $this->input->post("project_program");
+
         $show = $this->manage_file->num_file($file_read, $project_path);
        
 
@@ -50,7 +53,7 @@ class  Edit_project extends CI_Controller
                 "project_date_time" => date("Y-m-d H:i:s")
             );
 
-             $this->checkfile_run($project_path);
+             $this->checkfile_run($project_path,$project_program);
 
             $this->mongo_db->where(array("_id" => new \MongoId($id)))->set($data_project)->update('projects');
             redirect("all_projects", "refresh");
@@ -67,17 +70,34 @@ class  Edit_project extends CI_Controller
     }
 
 
-     public function checkfile_run($project_path){
+     public function checkfile_run($project_path,$project_program){
 
        $path = FCPATH."$project_path";
        $sampleName = array();
        $search_fastq = glob($path."*.fastq");
-       foreach ($search_fastq as $key => $value) {
-          $var_name =  basename($value);
-          list($n1,$n2) = explode("_",$var_name);
-          if($key%2 == 0){
-             array_push($sampleName, $n1."\t");
-          }    
+
+       if($project_program == "qiime"){
+            foreach ($search_fastq as $key => $value) {
+                $var_name =  basename($value);
+                $re_name = str_replace("-","t", $var_name);
+                rename($path.$var_name,$path.$re_name);
+                list($n1,$n2) = explode("_",$re_name);
+                if($key%2 == 0){
+                    array_push($sampleName, $n1."\t");
+                }    
+            }
+
+       }else{
+
+            foreach ($search_fastq as $key => $value) {
+                $var_name =  basename($value);
+                $re_name = str_replace("-","t", $var_name);
+                rename($path.$var_name,$path.$re_name);
+                list($n1,$n2) = explode("_",$var_name);
+                if($key%2 == 0){
+                    array_push($sampleName, $n1."\t");
+                }    
+            }
        }
 
       $path_sampleName = FCPATH."$project_path"."sampleName.txt";

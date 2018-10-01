@@ -1,7 +1,0 @@
-#SampleID	PrimerSequence	ReversePrimer	groupA	groupB
-C11	d	d	Control1	Control
-C12	d	d	Control2	Control
-D1af	d	d	Control3	After
-D1bf	d	d	Control4	After
-D3af	d	d	Control5	Before
-D5bf	d	d	Control6	Before
