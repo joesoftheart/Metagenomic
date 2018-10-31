@@ -24,11 +24,13 @@ class Advance_report extends CI_Controller
 
         $project_analysis = null;
         $project_name = "";
+        $project_platform_type = null;
 
         foreach ($data['rs'] as $result) {
             $project_analysis = $result['project_analysis'];
             $project_path = $result['project_path'];
             $project_name =  $result['project_name'];
+            $project_platform_type = $result['project_platform_type'];
 
         }
 
@@ -51,14 +53,14 @@ class Advance_report extends CI_Controller
 
 
          $this->changsvgToppng($user,$project_data,$project_name);
-         $this->copyBacth_RunLog($id_project,$user,$project_data,$project_name);
+         $this->copyBacth_RunLog($id_project,$user,$project_data,$project_name,$project_platform_type);
      
 
 
         if ($project_analysis == "phylotype") {
 
             //$this->database_text();
-            $this->read_file_db_phylotype($project_path, $id_project);
+            $this->read_file_db_phylotype($project_path, $id_project,$method);
             echo json_encode($project_analysis);
 
         } else if ($project_analysis == "OTUs") {
@@ -299,7 +301,7 @@ class Advance_report extends CI_Controller
      }
 
 
-    public function copyBacth_RunLog($id_project,$user,$project,$project_name){
+    public function copyBacth_RunLog($id_project,$user,$project,$project_name,$project_platform_type){
 
         # copy file_phylum_count.txt to data_report_mothur
         $path_phylum_count = "owncloud/data/$user/files/$project/output/file_phylum_count.txt";
@@ -308,12 +310,18 @@ class Advance_report extends CI_Controller
                 copy($path_phylum_count,$phylum_count);
         }
 
-     
        
-        # copy log sungride makesummary to Log_report
-        $MakeSummary_file = null;
-        $path_summary = "owncloud/data/$user/files/$project/log/";
-        $file_log = FCPATH.$path_summary;
+
+       if($project_platform_type == "proton_without"){
+
+             $this->tablelog_fasta($user,$project_name);  
+
+       }else{
+
+         # copy log sungride makesummary to Log_report
+         $MakeSummary_file = null;
+         $path_summary = "owncloud/data/$user/files/$project/log/";
+         $file_log = FCPATH.$path_summary;
             if(is_dir($file_log)) {
                 if($read = opendir($file_log)){
                        while (($summary = readdir($read)) !== false) {
@@ -329,7 +337,96 @@ class Advance_report extends CI_Controller
                 }
             }
          
-         $this->table_log_create($id_project,$user,$project,$MakeSummary_file,$project_name);
+        $this->table_log_create($id_project,$user,$project,$MakeSummary_file,$project_name);
+       }
+       
+    }
+
+
+    # fasta input
+    public function tablelog_fasta($user,$project_name){
+              
+         $log_data = array();
+
+         $log_data[0][0] =  "Samples name";
+         $log_data[0][1] =  "No. of reads in rawdata";
+         $log_data[0][2] =  "No. of reads after screen.seqs*";
+         $log_data[0][3] =  "No. of reads after removing chimera";
+         $log_data[0][4] =  "No. of cleaned reads for phylotype/OTUs step";
+
+         $count = 1;
+         $file_log = "owncloud/data/$user/files/$project_name/output/stability.contigs.count.summary"; 
+
+         $read_log = fopen($file_log,"r") or die ("Unable to open file");
+         while(($line_log = fgets($read_log)) !== false){
+               
+             $data_log = explode("\t", $line_log);
+             $log_data[$count][1] =  trim($data_log[0]);
+             $log_data[$count][2] =  trim($data_log[1]);
+             $count++;  
+        }
+        fclose($read_log);
+
+
+           #colum 3
+        $count1 = 1;
+        $path = FCPATH."Log_report/$user/$project_name/stability.trim.contigs.good.good.count.summary";
+        $read = fopen($path,"r") or die ("Unable to open file");
+        while(($line = fgets($read)) !== false){
+               
+             $data = explode("\t", $line);
+             $log_data[$count1][3] =  trim($data[1]);
+             $count1++;  
+        }
+        fclose($read);
+
+
+         #colum 4
+        $count2 = 1;
+        $path = FCPATH."Log_report/$user/$project_name/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count.summary";
+        $read = fopen($path,"r") or die ("Unable to open file");
+        while(($line = fgets($read)) !== false){
+               
+             $data = explode("\t", $line);
+             $log_data[$count2][4] =  trim($data[1]);
+             $count2++;  
+        }
+        fclose($read);
+
+
+        #colum 5
+        $count3 = 1;
+        $path = FCPATH."Log_report/$user/$project_name/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count.summary";
+        $read = fopen($path,"r") or die ("Unable to open file");
+        while(($line = fgets($read)) !== false){
+               
+             $data = explode("\t", $line);
+             $log_data[$count3][5] =  trim($data[1]);
+             $count3++;  
+        }
+        fclose($read);
+
+        $table_data = array();
+        foreach ($log_data as $variable) {
+            $colum = 0;
+            foreach ($variable as  $value) {
+               if($colum <= 3){
+                    $log = $value."\t";
+                    array_push($table_data,$log);
+               }else{
+                    $log = $value."\n";
+                    array_push($table_data,$log);
+               }
+               $colum++;
+              
+              
+            } 
+        }
+       
+         
+        $path_log = "data_report_mothur/$user/$project_name/table_log.txt";
+        $file_log = FCPATH.$path_log;
+        file_put_contents($file_log,$table_data); 
 
     }
 
@@ -690,7 +787,9 @@ class Advance_report extends CI_Controller
     // }
 
 
-   public function read_file_db_phylotype($path_owncloud, $id_project){
+
+   public function read_file_db_phylotype($path_owncloud, $id_project ,$method){
+
 
         // $path_file_phylotype = array("final.tx.summary", "file_after_reverse.csv", "file_phylum_count.txt", "final.tx.2.subsample.shared",
         //     "final.tx.thetayc.2.lt.ave.nmds.axes", "final.tx.groups.summary", "final.tx.groups.rarefaction");
@@ -711,13 +810,16 @@ class Advance_report extends CI_Controller
                 $row_data = preg_split("/\s+/", $data);
                 if ($row_data[0] == 2 and $row_data[2] == "ave") {
                     $arr_out[$index] = $row_data[5];
-                    $arr_chao[$index] = $row_data[9];
-                    $arr_shanon[$index] = $row_data[12];
+
+                    $arr_chao[$row_data[1]] = $row_data[9];
+                    $arr_shanon[$row_data[1]] = $row_data[12];
+
                     $table_alpha[$index] = $row_data[1] . ":" . $row_data[4] . ":" . $row_data[5] . ":" . $row_data[9] . ":" . $row_data[12];
                     $index++;
                 }
             }
         }
+
         $min_otu = min($arr_out);
         $max_otu = max($arr_out);
         $min_chao = min($arr_chao);
@@ -725,6 +827,11 @@ class Advance_report extends CI_Controller
         $min_shanon = min($arr_shanon);
         $max_shanon = max($arr_shanon);
         $t_range_otu = min($arr_out) . "-" . max($arr_out);
+
+        $samplename_min_chao =  array_search($min_chao,$arr_chao);
+        $samplename_max_chao =  array_search($max_chao,$arr_chao);
+        $samplename_min_shanon = array_search($min_shanon,$arr_shanon);
+        $samplename_max_shanon = array_search($max_shanon,$arr_shanon);
 
 
         # final.tx.groups.rarefaction
@@ -987,11 +1094,18 @@ class Advance_report extends CI_Controller
 
 
 //       echo ">>>>>>>>>>>>>>>>>>>>>End Page 4 <<<<<<<<<<<<<<<<<br>";
+         if($method == "NMDS"){
 
+                #final.tx.thetayc.2.lt.ave.nmds.axes
+                $near_data = file_get_contents($path_owncloud_phylotype . "final.tx.thetayc.2.lt.ave.nmds.axes");
+        }else{
 
+             #final.tx.thetayc.2.lt.ave.pcoa.axes
+             $near_data = file_get_contents($path_owncloud_phylotype . "final.tx.thetayc.2.lt.ave.pcoa.axes");
+        }
         
-        #final.tx.thetayc.2.lt.ave.nmds.axes
-        $near_data = file_get_contents($path_owncloud_phylotype . "final.tx.thetayc.2.lt.ave.nmds.axes");
+
+      
         $axes1 = array();
         $axes2 = array();
         $row = explode("\n", $near_data);
@@ -1126,12 +1240,12 @@ class Advance_report extends CI_Controller
         $p_value_homo = $split_homova[2];
 
 
-//
 //        echo ">>>>>>>>>>>>>>>>>>>>>End Page 5 <<<<<<<<<<<<<<<<<br>";
 //        echo "In db";
 //        echo ">>>>>>>>>>>>>>>>>>>>>End Page 6 <<<<<<<<<<<<<<<<<br>";
 //        echo "In db";
 //        echo ">>>>>>>>>>>>>>>>>>>>>End Page 7 <<<<<<<<<<<<<<<<<br>";
+
 
 
         $data = array(
@@ -1145,6 +1259,10 @@ class Advance_report extends CI_Controller
             "min_chao" => $min_chao,
             "max_shanon" => $max_shanon,
             "min_shanon" => $min_shanon,
+            "samplename_min_chao" => $samplename_min_chao,
+            "samplename_max_chao" => $samplename_max_chao,
+            "samplename_min_shanon" => $samplename_min_shanon,
+            "samplename_max_shanon" => $samplename_max_shanon,
             "sample_hi" => $sample_height,
             "sample_low" => $sample_low,
             "sample_big_rare" => $sample_big_rare,
@@ -1206,9 +1324,10 @@ public function read_file_db_otu($path_owncloud, $id_project,$method){
             if ($data != null) {
                 $row_data = preg_split("/\s+/", $data);
                 if ($row_data[0] == 0.03) {
+
                     $arr_out[$index] = $row_data[5];
-                    $arr_chao[$index] = $row_data[9];
-                    $arr_shanon[$index] = $row_data[12];
+                    $arr_chao[$row_data[1]] = $row_data[9];
+                    $arr_shanon[$row_data[1]] = $row_data[12];
                     $table_alpha[$index] = $row_data[1] . ":" . $row_data[4] . ":" . $row_data[5] . ":" . $row_data[9] . ":" . $row_data[12];
                     $index++;
                 }
@@ -1222,6 +1341,11 @@ public function read_file_db_otu($path_owncloud, $id_project,$method){
         $min_shanon = min($arr_shanon);
         $max_shanon = max($arr_shanon);
         $t_range_otu = min($arr_out) . "-" . max($arr_out);
+
+        $samplename_min_chao =  array_search($min_chao,$arr_chao);
+        $samplename_max_chao =  array_search($max_chao,$arr_chao);
+        $samplename_min_shanon = array_search($min_shanon,$arr_shanon);
+        $samplename_max_shanon = array_search($max_shanon,$arr_shanon);
 
 
 
@@ -1655,7 +1779,6 @@ public function read_file_db_otu($path_owncloud, $id_project,$method){
         // echo "In db";
         // echo ">>>>>>>>>>>>>>>>>>>>>End Page 7 <<<<<<<<<<<<<<<<<br>";
 
-
            $data = array(
             "avg_read_pre" => "",
             "num_seqs" => "",
@@ -1667,6 +1790,10 @@ public function read_file_db_otu($path_owncloud, $id_project,$method){
             "min_chao" => $min_chao,
             "max_shanon" => $max_shanon,
             "min_shanon" => $min_shanon,
+            "samplename_min_chao" => $samplename_min_chao,
+            "samplename_max_chao" => $samplename_max_chao,
+            "samplename_min_shanon" => $samplename_min_shanon,
+            "samplename_max_shanon" => $samplename_max_shanon,
             "sample_hi" => $sample_height,
             "sample_low" => $sample_low,
             "sample_big_rare" => $sample_big_rare,

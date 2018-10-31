@@ -152,23 +152,57 @@ class RPDF extends FPDF
 
     function Table_Log($data){
 
+        $count_line_sample = 0;
         $count = 0;
         $read = fopen($data,"r") or die ("Unable to open file");
         while(($line = fgets($read)) !== false){
-            $data_arr = explode("\t",$line);
-            foreach ($data_arr as $key => $value) {
-                if($count <= 4){
-                     $c_width=32;// cell width 
-                     $c_height=10;// cell height
-                     $x_axis=$this->getx(); 
-                     $this->vcell($c_width,$c_height,$x_axis,trim($value));
-                  // $this->Cell(30,10, iconv('UTF-8', 'cp874', trim($value)),1);
-                }else{
-                  $this->Cell(32,7, iconv('UTF-8', 'cp874', trim($value)),1);
-                }
-                $count++;
-            }            
-            $this->Ln(); 
+             #limit show sample 5 
+            if($count_line_sample < 5){
+                $data_arr = explode("\t",$line);
+                foreach ($data_arr as $key => $value) {
+                    if($count <= 4){
+                         $c_width=32;// cell width 
+                         $c_height=10;// cell height
+                         $x_axis=$this->getx(); 
+                         $this->vcell($c_width,$c_height,$x_axis,trim($value));
+                      // $this->Cell(30,10, iconv('UTF-8', 'cp874', trim($value)),1);
+                    }else{
+                      $this->Cell(32,7, iconv('UTF-8', 'cp874', trim($value)),1);
+                    }
+                    $count++;
+                }            
+                $this->Ln(); 
+                $count_line_sample++;
+            }
+        }
+        fclose($read);
+     } 
+
+
+     function Table_Log_fasta($data){
+
+        $count_line_sample = 0;
+        $count = 0;
+        $read = fopen($data,"r") or die ("Unable to open file");
+        while(($line = fgets($read)) !== false){
+             #limit show sample 5 
+            if($count_line_sample < 5){
+                $data_arr = explode("\t",$line);
+                foreach ($data_arr as $key => $value) {
+                    if($count <= 2){
+                         $c_width=32;// cell width 
+                         $c_height=10;// cell height
+                         $x_axis=$this->getx(); 
+                         $this->vcell($c_width,$c_height,$x_axis,trim($value));
+                      // $this->Cell(30,10, iconv('UTF-8', 'cp874', trim($value)),1);
+                    }else{
+                      $this->Cell(32,7, iconv('UTF-8', 'cp874', trim($value)),1);
+                    }
+                    $count++;
+                }            
+                $this->Ln(); 
+                $count_line_sample++;
+            }
         }
         fclose($read);
      } 
@@ -177,12 +211,17 @@ class RPDF extends FPDF
   
     function Table($data)
     {   
+         
+         $count_line_sample = 0;
          $this->SetFont('','',10);
          for($i=0;$i < count($data); $i++){
+            if($count_line_sample < 5){
               for($j = 0 ; $j < count($data[$i]); $j++){
                  $this->Cell(32, 5, iconv('UTF-8', 'cp874',$data[$i][$j]),1);
               }
-            $this->Ln();  
+              $this->Ln();
+              $count_line_sample++;
+            }  
          }
 
          $GLOBALS['numsample'] = count($data)-1;
@@ -191,15 +230,18 @@ class RPDF extends FPDF
 
     function Table2($data)
     {   
+         $count_line_sample = 0;
          $this->SetFont('','',8);
          for($i=0;$i < count($data); $i++){
-              for($j = 0 ; $j < count($data[$i]); $j++){
+            if($count_line_sample < 5){
+                 # count($data[$i])
+                for($j = 0 ; $j < 5; $j++){
                 
                     $this->Cell(24, 7, iconv('UTF-8', 'cp874',$data[$i][$j]),'1');
-                
-                 
-              }
-            $this->Ln();  
+                }
+              $this->Ln();
+              $count_line_sample++; 
+            } 
          }
         
     }
@@ -207,16 +249,19 @@ class RPDF extends FPDF
     function Statistical($header, $dataa)
     {
 
-
+        $count_line_sample = 0;
         // Header
         foreach ($header as $col)
              $this->Cell(20, 7, iconv('UTF-8', 'cp874', $col), 1);
              $this->Ln();  
         // Data
         foreach ($dataa as $row) {
-            foreach ($row as $col)
-                $this->Cell(40, 7, iconv('UTF-8', 'cp874', $col), 1);
-            $this->Ln();
+            if($count_line_sample < 5){
+                foreach ($row as $col)
+                    $this->Cell(40, 7, iconv('UTF-8', 'cp874', $col), 1);
+                $this->Ln();
+                $count_line_sample++;
+            }
         }
 
 
@@ -380,7 +425,21 @@ $this->myfpdf->Cell(0, 5, '', 0, 1);
 $this->myfpdf->SetFont('Times', '', 10);
 $this->myfpdf->MultiCell(0, 10, $this->myfpdf->WriteHTML('<b>Table 1</b> The number of reads in the main pre-processing step was displayed') . '', 0);
 $this->myfpdf->SetFont('angsa', '', 12);
-$this->myfpdf->Table_Log($tablelog);
+
+if($project_type == "proton_without"){
+    $this->myfpdf->Table_Log_fasta($tablelog);
+}else{
+    $this->myfpdf->Table_Log($tablelog);
+}
+
+
+$check_num_sample = (int)$project_group_sam;
+if($check_num_sample > 4){
+  $this->myfpdf->MultiCell(0, 5, $this->myfpdf->WriteHTML('*show sample 4 of all '.$check_num_sample) . '', 0);  
+}
+
+
+
 $this->myfpdf->Cell(0, 3, '', 0, 1);
 
 $this->myfpdf->Ln(10);
@@ -417,6 +476,11 @@ $this->myfpdf->SetFont('Times', '', 10);
 $this->myfpdf->MultiCell(0, 10, $this->myfpdf->WriteHTML('<b>Table 2 </b>Alpha diversity estimator of bacterial 16S analysis at 97% identity threshold') . '');
 
 $this->myfpdf->Table($alpha_diversity);
+$check_num_sample = (int)$project_group_sam;
+if($check_num_sample > 4){
+  $this->myfpdf->MultiCell(0, 5, $this->myfpdf->WriteHTML('*show sample 4 of all '.$check_num_sample) . '', 0);  
+}
+
 
 $this->myfpdf->Image(base_url() .'data_report_qiime/'.$user.'/'.$project_name.'/alpha_diversity_analysis/boxplots_chao.png', '25', '140', '70  ', '70', 'PNG');
 
@@ -493,10 +557,25 @@ $this->myfpdf->MultiCell(0, 8, $this->myfpdf->WriteHTML('<b>Table 3 </b> Statist
 
 $this->myfpdf->Table2($jaccard);
 
+$check_num_sample = (int)$project_group_sam;
+if($check_num_sample > 4){
+  $this->myfpdf->SetFont('Times', '', 8);
+  $this->myfpdf->MultiCell(0, 5, $this->myfpdf->WriteHTML('*show sample 4 of all '.$check_num_sample) . '', 0);  
+}
+
+
 $this->myfpdf->Ln(10);
 $this->myfpdf->SetFont('Times','',10);
 $this->myfpdf->MultiCell(0, 8, $this->myfpdf->WriteHTML('<b>Table 4 </b> Statistical analysis of beta analysis among '.$GLOBALS['numsample'].' samples based on the '.'MorisitaHorn'.' calculators') . '');
+
 $this->myfpdf->Table2($moris);
+
+$check_num_sample = (int)$project_group_sam;
+if($check_num_sample > 4){
+  $this->myfpdf->SetFont('Times', '', 8);
+  $this->myfpdf->MultiCell(0, 5, $this->myfpdf->WriteHTML('*show sample 4 of all '.$check_num_sample) . '', 0);  
+}
+
 
 
 

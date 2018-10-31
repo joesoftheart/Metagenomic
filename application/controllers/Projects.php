@@ -155,6 +155,45 @@ class Projects extends CI_Controller
                 $this->load->view('header');
                 $this->load->view('run_mothur_qiime',$data);
                 $this->load->view('footer');
+
+
+           }elseif($project_program == "qiime2"){
+
+
+                $status = 'null';
+                $step_run = 'null';
+                $id_job = 'null';
+                $data['current'] = $id_project;
+                #Query data status-process
+                 $array_status = $this->mongo_db->get_where('status_process',array('project_id' => $id_project));
+                    foreach ($array_status as $r){
+                            $status   = $r['status'];
+                            $step_run = $r['step_run'];              
+                            $id_job = $r['job_id'];
+                            
+                     }
+
+                $path_sampleName = FCPATH."owncloud/data/$user/files/$project/input/sampleName.txt";
+                $file_text = file_get_contents($path_sampleName);
+                $get_Name = explode("\t", $file_text);
+                $result = array_filter($get_Name);
+                
+                $data['sampleName'] = $result;
+                $data['status'] = $status;
+                $data['step_run'] = $step_run;
+                $data['id_job'] = $id_job;
+
+                $img_source = 'images/check.png';
+                $img_code = base64_encode(file_get_contents($img_source));
+                $data['src'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
+
+                $img_source = 'images/ajax-loader.gif';
+                $img_code = base64_encode(file_get_contents($img_source));
+                $data['srcload'] = 'data:' . mime_content_type($img_source) . ';base64,' . $img_code;
+
+                $this->load->view('header');
+                $this->load->view('run_qiime2',$data);
+                $this->load->view('footer');
            }
 
         }

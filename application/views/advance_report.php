@@ -157,59 +157,77 @@ class RPDF extends FPDF
 
     function Table_Log($data){
 
+        $count_line_sample = 0;
         $count = 0;
         $read = fopen($data,"r") or die ("Unable to open file");
         while(($line = fgets($read)) !== false){
-            $data_arr = explode("\t",$line);
-            foreach ($data_arr as $key => $value) {
-                if($count <= 4){
-                     $c_width=32;// cell width 
-                     $c_height=10;// cell height
-                     $x_axis=$this->getx(); 
-                     $this->vcell($c_width,$c_height,$x_axis,trim($value));
-                  // $this->Cell(30,10, iconv('UTF-8', 'cp874', trim($value)),1);
-                }else{
-                  $this->Cell(32,7, iconv('UTF-8', 'cp874', trim($value)),1);
-                }
-                $count++;
-            }            
-            $this->Ln(); 
+             #limit show sample 7 
+             if($count_line_sample < 8){
+
+               $data_arr = explode("\t",$line);
+               foreach ($data_arr as $key => $value) {
+               
+                    if($count <= 4){
+                         $c_width=32;// cell width 
+                         $c_height=10;// cell height
+                         $x_axis=$this->getx(); 
+                         $this->vcell($c_width,$c_height,$x_axis,trim($value));
+                         // $this->Cell(30,10, iconv('UTF-8', 'cp874', trim($value)),1);
+                    }else{
+                         $this->Cell(32,7, iconv('UTF-8', 'cp874', trim($value)),1);
+                    }
+                    $count++;
+                }            
+                $this->Ln();
+                $count_line_sample++; 
+            }
         }
         fclose($read);
      } 
     
 
-    function Table($header, $data)
-    {
+    function Table($header, $data){
+
+        $count_line_sample = 0;
+
         foreach ($header as $col)
             $this->Cell(30, 7, iconv('UTF-8', 'cp874', $col), 1);
         $this->Ln();
         foreach ($data as $row) {
-            foreach ($row as $col)
-                 if(is_numeric( $col)){
-                  $this->Cell(30, 7, iconv('UTF-8', 'cp874', number_format($col,4)), 1);
-                }else{
-                  $this->Cell(30, 7, iconv('UTF-8', 'cp874',  $col), 1); 
-                }
-               $this->Ln();
+             #limit show sample 5 
+            if($count_line_sample < 5){
+                foreach ($row as $col)
+                     if(is_numeric( $col)){
+                      $this->Cell(30, 7, iconv('UTF-8', 'cp874', number_format($col,4)), 1);
+                    }else{
+                      $this->Cell(30, 7, iconv('UTF-8', 'cp874',  $col), 1); 
+                    }
+                   $this->Ln();
+                   $count_line_sample++;
+           }
         }
     }
 
     function Statistical($header, $dataa){
 
+         $count_line_sample = 0;
         // Header
         foreach ($header as $col)
              $this->Cell(18, 7, iconv('UTF-8', 'cp874', $col), 1);
              $this->Ln();  
         // Data
         foreach ($dataa as $row) {
-            foreach ($row as $col)
-                if(is_numeric( $col)){
-                  $this->Cell(18, 7, iconv('UTF-8', 'cp874', number_format($col,4)), 1);
-                }else{
-                  $this->Cell(18, 7, iconv('UTF-8', 'cp874',  $col), 1); 
-                }
-               $this->Ln();
+              #limit show sample 5 
+            if($count_line_sample < 6){
+                foreach ($row as $col)
+                    if(is_numeric( $col)){
+                      $this->Cell(18, 7, iconv('UTF-8', 'cp874', number_format($col,4)), 1);
+                    }else{
+                      $this->Cell(18, 7, iconv('UTF-8', 'cp874',  $col), 1); 
+                    }
+                   $this->Ln();
+                   $count_line_sample++;
+            }
         }
     }
 
@@ -409,10 +427,19 @@ foreach ($projects_run_t as $r_pro_run) {
     $lib_size = $r_pro_run['lib_size'];
     $min_otu = $r_pro_run['min_otu'];
     $max_otu = $r_pro_run['max_otu'];
+
     $max_chao = $r_pro_run['max_chao'];
     $min_chao = $r_pro_run['min_chao'];
     $max_shanon = $r_pro_run['max_shanon'];
     $min_shanon = $r_pro_run['min_shanon'];
+
+
+    $samplename_min_chao = $r_pro_run['samplename_min_chao'];
+    $samplename_max_chao =  $r_pro_run['samplename_max_chao'];
+    $samplename_min_shanon = $r_pro_run['samplename_min_shanon'];
+    $samplename_max_shanon = $r_pro_run['samplename_max_shanon'];
+
+
     $sample_hi = $r_pro_run['sample_hi'];
     $sample_low = $r_pro_run['sample_low'];
     $sample_big_rare = $r_pro_run['sample_big_rare'];
@@ -466,11 +493,16 @@ $p_value_place_homo = "p = " . $p_value_homo;
 $name_patten_homo = $name_place_homo . "," . $p_value_place_homo;
 
 
-$header = array('groups', 'Good s coverage', 'Observed OTUs', 'Chao', 'Shannon');
+$header = array('groups', 'Good s coverage (%)', 'Observed OTUs', 'Chao', 'Shannon');
 $data = array();
 for ($i = 0; $i < count($table_alpha); $i++) {
+
     $data[] = explode(':', $table_alpha[$i]);
+    $column_2 = ($data[$i][1]*100);
+    $data[$i][1] = $column_2;
+
 }
+
 
 $headers = array('comparision', '', 'lennon', 'jclass', 'morisitahorn', 'sarabund', 'theten', 'thetayc', 'braycurtis');
 
@@ -575,14 +607,18 @@ $this->myfpdf->SetFont('angsa', '', 12);
 $this->myfpdf->Table_Log($tablelog);
 $this->myfpdf->Cell(0, 3, '', 0, 1);
 $this->myfpdf->SetFont('Times', '', 10);
+
+$check_num_sample = (int)$project_group_sam;
+if($check_num_sample > 7){
+  $this->myfpdf->MultiCell(0, 5, $this->myfpdf->WriteHTML('*show sample 7 of all '.$project_group_sam) . '', 0);  
+}
+
 $this->myfpdf->MultiCell(0, 10, $this->myfpdf->WriteHTML('*screen.seqs : screen the sequenes in ambiguous base, homopolymer and length of reads') . '', 0);
 
 $this->myfpdf->SetFont('Times', 'UB', 12);
 $this->myfpdf->Cell(0, 10, 'Summary Report', 0, 1);
 $this->myfpdf->SetFont('Times', '', 10);
 $this->myfpdf->MultiCell(0, 6, 'A total of ' . $project_group_sam . ' datasets has been submitted to the Amplicon Metagenomic platform. These data were then analysed and display as different diagrams/graphs. This report consist of statistical table and graph of alpha diversity analysis, rarefaction graph, taxonomy profiles of bacterial phyla, heatmap profiling, beta diversity analysis including venn diagram, statistical comparision, NMDS or PCoA, biplot, respectively.');
-
-
 
 
 
@@ -598,15 +634,21 @@ $this->myfpdf->SetTextColor(0,0,0);
 $this->myfpdf->Cell(0, 6, 'Diversity, richness and composition of microbial communities', 0, 1);
 
 $this->myfpdf->SetFont('Times', '', 10);
-$this->myfpdf->MultiCell(0, 6, 'The cleaned sequences were clustered based on ' . $project_analysis . ' method. After data pre-processing, an average reads length is ' . $num_seqs2 . ' bp with number of dataset of ' . $avg_reads . ' sequences. The ' . $project_analysis . ' of these data represented ' . $t_range_otu . ' OTUs per group in average. The alpha diversity was estimated microbial community richness (Chao1) and diversity (Shannon) from subsampling data based on the library size at '. $lib_size .'. The ' . $max_chao . ' and the ' . $min_chao . ' displayed the highest and the lowest species richness, respectively. The Shannon index estimated the diversity in the community. It displayed that there is the most diverse of bacteria in ' . $max_shanon . ' and the lowest diverse of bacteria in ' . $min_shanon . '. ');
+$this->myfpdf->MultiCell(0, 6, 'The cleaned sequences were clustered based on ' . $project_analysis . ' method. After data pre-processing, an average reads length is ' . $num_seqs2 . ' bp with number of dataset of ' . $avg_reads . ' sequences. The ' . $project_analysis . ' of these data represented ' . $t_range_otu . ' OTUs per group in average. The alpha diversity was estimated microbial community richness (Chao1) and diversity (Shannon) from subsampling data based on the library size at '. $lib_size .'. The '.$samplename_max_chao.' ('.number_format($max_chao,4).') and the '.$samplename_min_chao.' ('.number_format($min_chao,4).') displayed the highest and the lowest species richness, respectively. The Shannon index estimated the diversity in the community. It displayed that there is the most diverse of bacteria in '.$samplename_max_shanon.' ('.number_format($max_shanon,4).') and the lowest diverse of bacteria in '.$samplename_min_shanon.' ('.number_format($min_shanon,4) .'). ');
 
 $this->myfpdf->Cell(0, 5, '', 0, 1);
 $this->myfpdf->SetFont('Times', '', 10);
 $this->myfpdf->MultiCell(0, 10, $this->myfpdf->WriteHTML('<b>Table 2 </b>Alpha diversity estimator of bacterial 16S analysis at ' . $methods . ' level') . '', 0);
 $this->myfpdf->SetFont('angsa', '', 12);
+
 $this->myfpdf->Table($header, $data);
 
-$this->myfpdf->Image(base_url() .'data_report_mothur/'.$user.'/'.$project_name.'/alpha_diversity_analysis/Alpha.png', '50', '140', '115  ', '100', 'PNG');
+$check_num_sample = (int)$project_group_sam;
+if($check_num_sample > 5){
+  $this->myfpdf->MultiCell(0, 5, $this->myfpdf->WriteHTML('*show sample 5 of all '.$project_group_sam) . '', 0);  
+}
+
+$this->myfpdf->Image(base_url() .'data_report_mothur/'.$user.'/'.$project_name.'/alpha_diversity_analysis/Alpha.png', '50', '145', '115  ', '100', 'PNG');
 
 $this->myfpdf->Cell(0, 115, '', 0, 1);
 $this->myfpdf->SetFont('Times', '', 10);
@@ -692,6 +734,12 @@ $this->myfpdf->Cell(0, 10, $this->myfpdf->WriteHTML('<b>Table 3</b> Statistical 
 
 $this->myfpdf->SetFont('Times', '', 9);
 $this->myfpdf->Statistical($headers, $dataa);
+
+$check_num_sample = (int)$project_group_sam;
+if($check_num_sample > 6){
+  $this->myfpdf->MultiCell(0, 5, $this->myfpdf->WriteHTML('*show sample 6 of all '.$project_group_sam) . '', 0);  
+}
+
 $this->myfpdf->SetFont('Times', '', 10);
 
 $this->myfpdf->Cell(0, 6, '', 0, 1);
@@ -776,7 +824,7 @@ if($use == "use"){
 $this->myfpdf->Cell(0, 3, '', 0, 1);
 $this->myfpdf->SetFont('Times', 'B', 12);
 $this->myfpdf->SetTextColor(220,50,50);
-$this->myfpdf->Cell(0, 5, 'Functional metabolic analysis', 0, 1);
+$this->myfpdf->Cell(0, 8, 'Functional metabolic analysis', 0, 1);
 
 $this->myfpdf->SetFont('Times', 'B', 10);
 $this->myfpdf->SetTextColor(0,0,0);
@@ -785,7 +833,7 @@ $this->myfpdf->Cell(0, 10, 'Predicted metabolic functions based on 16S rRNA data
 $this->myfpdf->SetFont('Times', '', 10);
 $this->myfpdf->MultiCell(0, 6, 'PICRUSt is an approach for inferring community metagenomic potential from its 16S profile. The predicted metagenome output of PICRUSt was computed in statistic using STAMP v2.0 based on the difference groups. The normalized OTUs data was processed to metagenome prediction and categorized by function using KEGG level 2. These analysis were performed the significantly different between two groups using two-sided Welch’s t-test, the Welch′s inverted test for confidence interval method with Benjamini–Hochberg FDR (BH) for multiple testing corrections. BH was used to correct the potential false positives due to multiple tests. Feature with q-value < 0.05 were considered significant. At level 2 of KEGG, BH correction found 12 features displayed significantly different between '.$sam1.' and '.$sam2);
 
-$this->myfpdf->Image(base_url() .'data_report_mothur/'.$user.'/'.$project_name.'/optional_output/bar_plot_STAMP.png', 20, 120, 170, 90);
+$this->myfpdf->Image(base_url() .'data_report_mothur/'.$user.'/'.$project_name.'/optional_output/bar_plot_STAMP.png', 20, 130, 170, 90);
 
 $this->myfpdf->SetFont('Times', '', 10);
 $this->myfpdf->Cell('0', 110, '', 0, 1);

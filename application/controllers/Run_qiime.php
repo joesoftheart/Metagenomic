@@ -301,10 +301,13 @@
       $user = $this->uri->segment(3);
       $id_project = $this->uri->segment(4);
       $project = "";
+      $project_platform_type = "";
+
       # Query data Project By ID
           $array_project = $this->mongo_db->get_where('projects',array('_id' => new MongoId($id_project)));
           foreach ($array_project as $r) {
-                $project = basename($r['project_path']);              
+                $project = basename($r['project_path']);
+                $project_platform_type = ($r['project_platform_type']);               
           }
 
       # create map_json.txt  
@@ -313,7 +316,15 @@
         $file_map_json = FCPATH.$path_map_json; 
         file_put_contents($file_map_json, $map_json);
          
-          $this->genFullMap($user,$project);
+         
+          if($project_platform_type == "proton_without"){
+
+                $this->genFullMap2($user,$project);
+          }else{
+
+                $this->genFullMap($user,$project);
+          }
+
           echo json_encode($user);
      }
 
@@ -364,6 +375,72 @@
           file_put_contents($file_map,$mapcreate); 
 
      }
+
+
+    public function genFullMap2($user,$project){
+
+         $sample_map = $this->numfile_fasta($user,$project);
+         list($val_sample,$barcode) = $this->split_map_json($user,$project);
+         $mapcreate = array();
+
+          foreach ($val_sample as $key => $value){
+           
+             #splice group 
+             $val_group = explode("\t",$value);
+             array_splice($val_group,0,3);
+             $data_group = implode("\t",$val_group);
+             $group = trim($data_group);
+            
+             #splice SampleID PrimerSequence ReversePrimer
+              $val = explode("\t", $value);
+              array_splice($val,3);
+
+
+              if($key == 0){
+
+                $head = $val[0]."\t"."BarcodeSequence"."\t"."Linker".$val[1]."\t".$val[2]."\t"."InputFileName"."\t".$group."\t"."Description"."\n";
+                array_push($mapcreate, $head);
+
+
+              }else{
+
+                $body =  $val[0]."\t".trim($barcode[$key])."\t".$val[1]."\t".$val[2]."\t".$sample_map[$key-1]."\t".$group."\t"."oricode_".$val[0]."\n";
+
+                array_push($mapcreate, $body);
+              }
+          }
+
+         
+          $path_map = "owncloud/data/$user/files/$project/input/map.txt";
+          $file_map = FCPATH.$path_map;
+          file_put_contents($file_map,$mapcreate); 
+    }
+
+
+
+    public function numfile_fasta($user,$project){
+      
+        $sample_map = array();
+        $ref_fasta = array("gg_13_8_99.fasta",
+                           "silva.v4.fasta",
+                           "silva.bacteria.fasta",
+                           "silva.v123.fasta",
+                           "silva.v34.fasta",
+                           "silva.v345.fasta",
+                           "silva.v45.fasta",
+                           "trainset16_022016.rdp.fasta");
+
+         $path = "owncloud/data/$user/files/$project/input/";
+         $findfasta = glob($path."*.{fasta,fst}", GLOB_BRACE); 
+         foreach ($findfasta as $key => $file) {
+             $name_fasta = basename($file);
+             if(!in_array($name_fasta,$ref_fasta)){
+                  array_push($sample_map, trim($name_fasta));
+             }
+        }
+        return $sample_map;  
+       
+    }
 
 
      #split SampleID go out map_json.txt
@@ -475,23 +552,26 @@
                $group = array_column($data_set_group,$i);
                // array_push($name_group, $group[0]);
                // print_r(array_count_values($group));
-              $num_value = (array_count_values($group));
-              
+               $num_value = (array_count_values($group));
+
+               $key_data_repeat = array();
               foreach ($num_value as $key => $value) {
                  $val = (int)$value;
-                 if($val == $num_repeat){
-                     $num = $val-$num_repeat; 
-                 }else{
-                     $num = $val-$num_repeat; 
+                 //echo $key."<br>";
+                 if($val > $num_repeat){
+                     array_push($key_data_repeat, $val); 
                  }
               }
-                $key = trim($group[0]);
-                $name_group[$key] = $num;
+
+              $num = count($key_data_repeat);
+              $key = trim($group[0]);
+              $name_group[$key] = $num;
+               
           }
           #print_r($name_group);
           $check = null;
           $data =  $name_group[$group_check];
-          if($data == "1"){
+          if($data > "1"){
               $check = "on";
           }else{
               $check = "off";

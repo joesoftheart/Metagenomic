@@ -83,7 +83,7 @@
         
         $combined = $path_out."Processeddata/combined_seqs.fna";
         $clustering = $path_out."Processeddata/clustering/";
-        $uc_fast_params = $path_in."uc_fast_params.txt";
+        $uc_fast_params = $path_in."uc_fast_paramsmodi.txt";
 
 
      	$jobname = $user."_pick_open_reference_otus";
@@ -1228,7 +1228,8 @@
            $data_min_txt = $min."\t".$L;
            file_put_contents($file_min_txt,$data_min_txt);
 
-
+        plot_heatmap($user,$project,$path_in,$path_out);
+         
 
     }
 

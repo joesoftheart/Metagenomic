@@ -1,0 +1,7 @@
+Samples	No.of sequences after dereplicate sequences	No. of sequences after removing chimera
+soilS3t1sub	5091.0	2558.0
+soilS3t2sub	5064.0	2202.0
+soilS1t1sub	5060.0	2888.0
+soilS2t2sub	5034.0	3129.0
+soilS2t1sub	4998.0	2634.0
+soilS1t2sub	4924.0	2830.0

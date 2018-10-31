@@ -1,0 +1,3 @@
+uuid: e922e83c-f107-412a-a889-d30a588fed6f
+type: DistanceMatrix % Properties(['phylogenetic'])
+format: DistanceMatrixDirectoryFormat

@@ -757,34 +757,34 @@
                $num_repeat = 1;
                $group = array_column($data_set_group,$i);
                // array_push($name_group, $group[0]);
-              //print_r(array_count_values($group));
-              $num_value = (array_count_values($group));
+               //print_r(array_count_values($group));
+               $num_value = (array_count_values($group));
               
-              foreach ($num_value as $key => $value) {
+               $key_data_repeat = array();
+               foreach ($num_value as $key => $value) {
                  $val = (int)$value;
-                 if($val == $num_repeat){
-                     $num = $val-$num_repeat; 
-                 }else{
-                     $num = $val-$num_repeat; 
+                 //echo $key."<br>";
+                 if($val > $num_repeat){
+                     array_push($key_data_repeat, $val); 
                  }
-              }
-                $key = trim($group[0]);
-                $name_group[$key] = $num;
+               }
+
+              $num = count($key_data_repeat);
+              $key = trim($group[0]);
+              $name_group[$key] = $num;
           }
           #print_r($name_group);
           $check = null;
           $data =  $name_group[$group_check];
-          if($data == "1"){
+          if($data > "1"){
               $check = "on";
           }else{
               $check = "off";
           }
           
           echo json_encode(array($check,$group_check));
-
      }
 
-  
 
    }
 

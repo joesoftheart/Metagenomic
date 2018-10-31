@@ -1328,12 +1328,17 @@ function plot_graph_r_Rare($user,$project,$path_in,$path_out){
 
     echo "plot_graph_r_Rare "."\n";
 
+     # read count value minimum_subsample.txt 
+     $path_count_less = "owncloud/data/$user/files/$project/minimum_subsample.txt";
+     $minimum_subsample =  file_get_contents($path_count_less); 
+     $minimum = trim($minimum_subsample);
+
     $path_input_rarefaction = "owncloud/data/$user/files/$project/output/final.tx.groups.rarefaction";
     $path_to_save = "data_report_mothur/$user/$project_save/alpha_diversity_analysis/Rare.svg";
     $jobname = $user."_plot_graph_r_Rare";
     
     $log = $GLOBALS['path_log'];
-    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/Rarefaction_graph_phylotype.R $path_input_rarefaction $path_to_save";
+    $cmd = "qsub -N $jobname -o $log -cwd -j y -b y /usr/bin/Rscript  R_Script/Rarefaction_graph_phylotype.R $path_input_rarefaction $path_to_save $minimum";
    
     exec($cmd);
     $check_qstat = "qstat  -j '$jobname' ";

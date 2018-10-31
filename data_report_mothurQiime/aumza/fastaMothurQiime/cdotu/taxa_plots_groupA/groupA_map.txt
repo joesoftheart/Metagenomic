@@ -1,0 +1,7 @@
+#SampleID	original-sample-ids	BarcodeSequence	LinkerPrimerSequence	ReversePrimer	InputFileName	groupB	Description
+MN	(MN12, MN13, MN15)	(TCTGACCC, TTATGGCA, GTTCGGAA)	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	(final.redundant.ng.MN12.fasta, final.redundant.ng.MN13.fasta, final.redundant.ng.MN15.fasta)	ThaiGulf	(oricode_MN12, oricode_MN13, oricode_MN15)
+MT	(MT209, MT210, MT213)	(TCGCCCGA, TAGGTCGA, AAAAGAGG)	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	(final.redundant.ng.MT209.fasta, final.redundant.ng.MT210.fasta, final.redundant.ng.MT213.fasta)	AndamanSea	(oricode_MT209, oricode_MT210, oricode_MT213)
+SM	(SM2, SM4, SM5)	(TCTGTGCT, CTCGCTCG, GACCCAGC)	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	(final.redundant.ng.SM2.fasta, final.redundant.ng.SM4.fasta, final.redundant.ng.SM5.fasta)	AndamanSea	(oricode_SM2, oricode_SM4, oricode_SM5)
+TA	(T1, T2, T9)	(GCCATATC, AGTGAGGA, CGACGCCT)	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	(final.redundant.ng.T1.fasta, final.redundant.ng.T2.fasta, final.redundant.ng.T9.fasta)	ThaiGulf	(oricode_T1, oricode_T2, oricode_T9)
+TC	(TS4, TS6, TS8)	(TTCTTTCG, TGTTAGTA, TGAGGAAA)	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	(final.redundant.ng.TS4.fasta, final.redundant.ng.TS6.fasta, final.redundant.ng.TS8.fasta)	AndamanSea	(oricode_TS4, oricode_TS6, oricode_TS8)
+TL	(TL1, TL2, TL3)	(GGGAATAG, CCTAGCGA, ATCGTCCG)	GGATTAGATACCCTGGTAGTCC	CTCACGRCACGAGCTGACG	(final.redundant.ng.TL1.fasta, final.redundant.ng.TL2.fasta, final.redundant.ng.TL3.fasta)	ThaiGulf	(oricode_TL1, oricode_TL2, oricode_TL3)

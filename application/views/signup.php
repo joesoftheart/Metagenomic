@@ -239,9 +239,9 @@ if (isset($this->session->userdata['logged_in'])) {
         src="<?php echo base_url(); ?>vendor/datatables-responsive/dataTables.responsive.js"></script>
 
 <script type="text/javascript">
-    $(window).on('load', function () {
-        $('#myModal').modal('show');
-    });
+    // $(window).on('load', function () {
+    //     $('#myModal').modal('show');
+    // });
 
 </script>
 

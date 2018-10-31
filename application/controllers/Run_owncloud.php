@@ -16,6 +16,65 @@ class Run_owncloud extends CI_Controller
         // putenv("SGE_ROOT=$SGE_ROOT");
         // putenv("PATH=$PATH");
     }
+
+
+
+    public function find_fasta(){
+
+        $ref_fasta = array("gg_13_8_99.fasta",
+                           "silva.v4.fasta",
+                           "silva.bacteria.fasta",
+                           "silva.v123.fasta",
+                           "silva.v34.fasta",
+                           "silva.v345.fasta",
+                           "silva.v45.fasta",
+                           "trainset16_022016.rdp.fasta");
+        $path = "owncloud/data/aumza/files/fastaChimera/input/";
+        #find (.fasta) or (.fst)
+        $file_fastq = glob($path."*.{fasta,fst}", GLOB_BRACE); 
+        $name_list = array();
+        $namefasta_list = array();
+        foreach ($file_fastq as $key => $file) {
+            $name_fasta = basename($file);
+            if(!in_array($name_fasta,$ref_fasta)){
+                         list($file_name,$file_extension) = explode(".",$name_fasta);
+                         array_push($name_list,$file_name);
+                         array_push($namefasta_list,$name_fasta);
+            }
+        } 
+        
+        $str_name_list = null;
+        $count_line = null;
+        $count_name_list = count($name_list);
+        foreach ($namefasta_list as $val) {
+            $count_line++;
+            if($count_line == $count_name_list){
+                 $str_name_list .= $val; 
+            }else{
+                 $str_name_list .= $val."-";
+            }
+        }
+
+      
+        $group_name_list = null;
+        $count_line2 = null;
+        foreach ($name_list as $val_name) {
+
+            $data_split = preg_split("/(_|-)/", $val_name);
+            $count_line2++;
+            if($count_line2 == $count_name_list){
+                 $group_name_list .= $data_split[0]; 
+            }else{
+                 $group_name_list .= $data_split[0]."-";
+            }  
+        }
+
+         echo $str_name_list;
+         echo "<br><br>";
+         echo $group_name_list;
+    
+
+    }
     
     public function gunzip(){
 

@@ -1,0 +1,7 @@
+#SampleID	original-sample-ids	BarcodeSequence	LinkerPrimerSequence	ReversePrimer	InputFileName	groupB	Description
+MN	(MN12, MN13, MN15)	(GGGACTGC, CCAGCCTA, GCACCCGT)	GGATTCCCTGGTAGTCCAGATA	CTCACGRCACGAGCTGACG	(MN12_good.fasta, MN13_good.fasta, MN15_good.fasta)	ThaiGulf	(oricode_MN12, oricode_MN13, oricode_MN15)
+MT	(MT209, MT210, MT213)	(AAACGGTG, GCAGGACG, TTAAGAGC)	GGATTCCCTGGTAGTCCAGATA	CTCACGRCACGAGCTGACG	(MT209_good.fasta, MT210_good.fasta, MT213_good.fasta)	AndamanSea	(oricode_MT209, oricode_MT210, oricode_MT213)
+SM	(SM2, SM4, SM5)	(TGTGGATC, CGGCGGAA, ATGGCGCT)	GGATTCCCTGGTAGTCCAGATA	CTCACGRCACGAGCTGACG	(SM2_good.fasta, SM4_good.fasta, SM5_good.fasta)	AndamanSea	(oricode_SM2, oricode_SM4, oricode_SM5)
+TA	(T1, T2, T9)	(CGCGGACA, AGTAGTGG, AAAGACAC)	GGATTCCCTGGTAGTCCAGATA	CTCACGRCACGAGCTGACG	(T1_good.fasta, T2_good.fasta, T9_good.fasta)	ThaiGulf	(oricode_T1, oricode_T2, oricode_T9)
+TC	(TS4, TS6, TS8)	(CGGCTCGT, GGGCTGCA, GAGTAAGC)	GGATTCCCTGGTAGTCCAGATA	CTCACGRCACGAGCTGACG	(TS4_good.fasta, TS6_good.fasta, TS8_good.fasta)	AndamanSea	(oricode_TS4, oricode_TS6, oricode_TS8)
+TL	(TL1, TL2, TL3)	(TAAATCCG, TAGGCATG, CTGTTGCG)	GGATTCCCTGGTAGTCCAGATA	CTCACGRCACGAGCTGACG	(TL1_good.fasta, TL2_good.fasta, TL3_good.fasta)	ThaiGulf	(oricode_TL1, oricode_TL2, oricode_TL3)

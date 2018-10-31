@@ -187,7 +187,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                 <input type="radio" name="project_platform_type" id="miseq_without_barcodes"  value="miseq_without_barcodes"  
                              <?php if ($r['project_platform_type'] == "miseq_without_barcodes") {
                                                     echo "checked";
-                                                } ?>>Paired-end fastq file without barcode
+                                                } ?>>Paired-end fastq file without barcode and primer
                                             </label><br>
                                             <label class="radio-inline">
                                                             <input type="radio" name="project_platform_type" id="miseq_contain_primer"  value="miseq_contain_primer" 
@@ -220,6 +220,13 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     echo "checked";
                                                 } ?>>Only fasta file contrain barcodes and primers (no quality file
                                                 )
+                                            </label><br>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="project_platform_type" id="proton_without"  value="proton_without"
+                                                <?php if ($r['project_platform_type'] == "proton_without"){
+                                                     echo "checked";
+                                                } ?>>
+                                                Fasta file without barcodes and primers (no quality file)
                                             </label>
                                         </label>
                                     </div>
@@ -259,7 +266,7 @@ if (isset($this->session->userdata['logged_in'])) {
         $('#proton').addClass("hide");
         $('#proton_barcodes_primers').prop('checked',false);
         $('#proton_barcodes_fasta').prop('checked',false);
-        $('')
+        $('#proton_without').prop('checked',false);
     });
     $('#platform_pro').on('change', function () {
         $('#miseq_without_barcodes').prop('checked',false);

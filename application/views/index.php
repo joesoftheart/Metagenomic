@@ -56,7 +56,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                     $project_path = $r['project_path'];
                                     $project_name = basename($project_path);
                                     $path_owncloud = "../owncloud/data/$username/files/$project_name/input";
-                                    $show = $this->manage_file->num_file($file_read, $path_owncloud);
+                                    $show = $r['project_num_sam'];
                                     ?>
                                     <div class="huge"><h5 style="color: #FFFFFF"><?php echo $show; ?> samples</h5></div>
                                     <div style="text-align: left"><?= $r['project_name']; ?></div>
@@ -102,7 +102,7 @@ if (isset($this->session->userdata['logged_in'])) {
                                                     $project_path = $rt['project_path'];
                                                     $project_name = basename($project_path);
                                                     $path_owncloud = "../owncloud/data/$username/files/$project_name/input";
-                                                    $show = $this->manage_file->num_file($file_read, $path_owncloud);
+                                                    $show = $rt['project_num_sam'];
                                                     ?>
                                                     <div class="huge">
                                                         <h5 style="color: #FFFFFF;">

@@ -101,22 +101,35 @@ Class Mothur_qiime_report extends CI_Controller{
 
 	 public function index($id_project){
 
+        echo $id_project;
+
         $user = $this->session->userdata['logged_in']['username'];
         $projects_name = null;
         $date_time = null;
         $project_type = null;
-
+        $project_platform_type = null;
+        $project_group_sam = null;
+   
         $read = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
         foreach ($read as $key => $value) {
             $projects_name = $value['project_name'];
             $date_time = $value['project_date_time'];
             $project_type = $value['project_type'];
+            $project_platform_type =  $value['project_platform_type'];
+            $project_group_sam = $value['project_group_sam'];
             
         }
 
         $file_table_log = "data_report_mothurQiime/$user/$projects_name/file_report/table_log.txt";
         if(!file_exists($file_table_log)){
-            $this->detail_table_log($user,$projects_name);
+
+             if($project_platform_type == "proton_without"){
+                $this->tablelog_fasta($user,$projects_name);
+
+             }else{
+                 $this->detail_table_log($user,$projects_name);
+             }
+                
         }
 
         $file_min = "data_report_mothurQiime/$user/$projects_name/file_report/min.txt";
@@ -131,6 +144,7 @@ Class Mothur_qiime_report extends CI_Controller{
         $data['user'] = $user;
         $data['project_name'] = $projects_name;
         $data['project_type'] = $project_type;
+        $data['project_group_sam'] = $project_group_sam;
        
         $data['day'] = $day;
         $data['time'] = $time;
@@ -407,6 +421,97 @@ Class Mothur_qiime_report extends CI_Controller{
 	 }
 
 	
+
+
+     # fasta input
+    public function tablelog_fasta($user,$project_name){
+              
+         $log_data = array();
+
+         $log_data[0][0] =  "Samples name";
+         $log_data[0][1] =  "No. of reads in rawdata";
+         $log_data[0][2] =  "No. of reads after screen.seqs*";
+         $log_data[0][3] =  "No. of reads after removing chimera";
+         $log_data[0][4] =  "No. of cleaned reads for phylotype/OTUs step";
+
+         $count = 1;
+         $file_log = "owncloud/data/$user/files/$project_name/output/stability.contigs.count.summary"; 
+
+         $read_log = fopen($file_log,"r") or die ("Unable to open file");
+         while(($line_log = fgets($read_log)) !== false){
+               
+             $data_log = explode("\t", $line_log);
+             $log_data[$count][1] =  trim($data_log[0]);
+             $log_data[$count][2] =  trim($data_log[1]);
+             $count++;  
+
+        }
+        fclose($read_log);
+
+
+
+
+           #colum 3
+        $count1 = 1;
+        $path = FCPATH."Log_report/$user/$project_name/stability.trim.contigs.good.good.count.summary";
+        $read = fopen($path,"r") or die ("Unable to open file");
+        while(($line = fgets($read)) !== false){
+               
+             $data = explode("\t", $line);
+             $log_data[$count1][3] =  trim($data[1]);
+             $count1++;  
+        }
+        fclose($read);
+
+
+         #colum 4
+        $count2 = 1;
+        $path = FCPATH."Log_report/$user/$project_name/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count.summary";
+        $read = fopen($path,"r") or die ("Unable to open file");
+        while(($line = fgets($read)) !== false){
+               
+             $data = explode("\t", $line);
+             $log_data[$count2][4] =  trim($data[1]);
+             $count2++;  
+        }
+        fclose($read);
+
+
+        #colum 5
+        $count3 = 1;
+        $path = FCPATH."Log_report/$user/$project_name/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count.summary";
+        $read = fopen($path,"r") or die ("Unable to open file");
+        while(($line = fgets($read)) !== false){
+               
+             $data = explode("\t", $line);
+             $log_data[$count3][5] =  trim($data[1]);
+             $count3++;  
+        }
+        fclose($read);
+
+        $table_data = array();
+        foreach ($log_data as $variable) {
+            $colum = 0;
+            foreach ($variable as  $value) {
+               if($colum <= 3){
+                    $log = $value."\t";
+                    array_push($table_data,$log);
+               }else{
+                    $log = $value."\n";
+                    array_push($table_data,$log);
+               }
+               $colum++;
+              
+              
+            } 
+        }
+
+         
+        $path_log = "data_report_mothurQiime/$user/$project_name/file_report/table_log.txt";
+        $file_log = FCPATH.$path_log;
+        file_put_contents($file_log,$table_data); 
+
+    }
 
 
     public function detail_table_log($user,$projects_name){

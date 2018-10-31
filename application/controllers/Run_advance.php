@@ -659,6 +659,7 @@
                    }
   }
 
+
   public function read_count(){
 
 
@@ -716,7 +717,7 @@
                  
                  $var =  explode("\t", $lines);
                  array_push($data_read_count, $var[0]." : ".$var[1]);
-                 array_push($count, $var[1]);   
+                 array_push($count, (int)$var[1]);   
 
                  array_push($name_sample, $var[0]);
 
@@ -724,7 +725,12 @@
 
            fclose($myfile);
            $count_less = min($count);
+           $write_count_less = "owncloud/data/$user/files/$project_data/minimum_subsample.txt";
+           file_put_contents($write_count_less,$count_less); 
+
            array_push($data_read_count, $count_less);
+
+
 
            # return data read file
            echo json_encode($data_read_count);
@@ -745,6 +751,8 @@
            $this->update_name_sample($id_project,$data);
          }
   }
+
+
 
 
   public function create_folder_report($user,$project){

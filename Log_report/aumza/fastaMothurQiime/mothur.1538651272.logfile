@@ -1,0 +1,114 @@
+Linux version
+
+Using ReadLine
+
+Running 64Bit Version
+
+mothur v.1.39.1
+Last updated: 2/3/2017
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+For questions and analysis support, please visit our forum at https://www.mothur.org/forum
+
+Type 'quit()' to exit program
+Batch Mode
+
+
+mothur > count.groups(count=stability.trim.contigs.good.good.count_table,inputdir=Log_report/aumza/fastaMothurQiime/,outputdir=Log_report/aumza/fastaMothurQiime/)
+Setting output directory to: Log_report/aumza/fastaMothurQiime/
+Setting input directory to: Log_report/aumza/fastaMothurQiime/
+MN12 contains 15914.
+MN13 contains 10105.
+MN15 contains 10890.
+MT209 contains 21818.
+MT210 contains 20093.
+MT213 contains 30390.
+SM2 contains 21891.
+SM4 contains 12926.
+SM5 contains 16131.
+T1 contains 22083.
+T2 contains 11448.
+T9 contains 16985.
+TL1 contains 12097.
+TL2 contains 10875.
+TL3 contains 11848.
+TS4 contains 11552.
+TS6 contains 11447.
+TS8 contains 12494.
+
+Total seqs: 280987.
+
+Output File Names: 
+Log_report/aumza/fastaMothurQiime/stability.trim.contigs.good.good.count.summary
+
+
+mothur > count.groups(count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table,inputdir=Log_report/aumza/fastaMothurQiime/,outputdir=Log_report/aumza/fastaMothurQiime/)
+Setting output directory to: Log_report/aumza/fastaMothurQiime/
+Setting input directory to: Log_report/aumza/fastaMothurQiime/
+MN12 contains 13821.
+MN13 contains 8472.
+MN15 contains 10811.
+MT209 contains 21754.
+MT210 contains 19960.
+MT213 contains 30197.
+SM2 contains 21709.
+SM4 contains 12812.
+SM5 contains 15799.
+T1 contains 21997.
+T2 contains 11416.
+T9 contains 16884.
+TL1 contains 12055.
+TL2 contains 10774.
+TL3 contains 11830.
+TS4 contains 11501.
+TS6 contains 11429.
+TS8 contains 12449.
+
+Total seqs: 275670.
+
+Output File Names: 
+Log_report/aumza/fastaMothurQiime/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count.summary
+
+
+mothur > count.groups(count=stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table,inputdir=Log_report/aumza/fastaMothurQiime/,outputdir=Log_report/aumza/fastaMothurQiime/)
+Setting output directory to: Log_report/aumza/fastaMothurQiime/
+Setting input directory to: Log_report/aumza/fastaMothurQiime/
+MN12 contains 13813.
+MN13 contains 8459.
+MN15 contains 10808.
+MT209 contains 21714.
+MT210 contains 19928.
+MT213 contains 30027.
+SM2 contains 21480.
+SM4 contains 12733.
+SM5 contains 15758.
+T1 contains 21770.
+T2 contains 11294.
+T9 contains 16746.
+TL1 contains 11915.
+TL2 contains 10651.
+TL3 contains 11720.
+TS4 contains 11416.
+TS6 contains 11417.
+TS8 contains 12431.
+
+Total seqs: 274080.
+
+Output File Names: 
+Log_report/aumza/fastaMothurQiime/stability.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count.summary
+
+
+mothur > quit()

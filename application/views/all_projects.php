@@ -44,7 +44,7 @@ if (isset($this->session->userdata['logged_in'])) {
                 </thead>
                 <tbody>
                 <?php 
-                    $count = 0;
+                    
                     foreach ($rs as $r) { ?>
                     <tr class="odd gradeX">
                         <td><?php echo $r["project_name"] ?></td>
@@ -54,22 +54,76 @@ if (isset($this->session->userdata['logged_in'])) {
                         <td class="center"><?php echo  $r["project_num_sam"]; ?></td>
                         
                         <td>
-                             <?php if($count == 0){ ?>
-                             <div class="progress progress-striped active">
-                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-                                 <span class="text-muted" style="color:#FFFFFF">complete</span>
+
+                             <?php 
+
+                                 $array_status = $this->mongo_db->get_where('status_process',array('project' => $r["project_name"]));
+
+                                $status = null;
+                                $step_run = null;
+                                $message_text = null;
+                                $progress_width = null;
+                                $color_text = null;
+                                 foreach ($array_status as $data_status){
+                                     $status   = $data_status['status'];
+                                     $step_run = $data_status['step_run'];              
+                                 }
+
+                                 if($status == "0"){
+                                    $progress_width = "width: 100%";
+                                    $message_text = "Complete";
+                                    $color_text = "color:#FFFFFF";
+
+                                 }else if($status == "1"){
+                                    $color_text = "color:#FFFFFF";
+                                    if($r["project_program"] == "mothur"){
+                                         if($step_run == "1"){
+                                              $progress_width = "width: 25%";
+                                              $message_text = "25%";
+
+                                         }elseif($step_run == "2"){
+                                              $progress_width = "width: 50%";
+                                              $message_text = "50%";
+
+                                         }elseif($step_run == "3"){
+                                              $progress_width = "width: 75%";
+                                              $message_text = "75%";
+                                         }
+                                        
+
+                                    }else if($r["project_program"] == "qiime"){
+                                        if($step_run == "1"){
+                                              $progress_width = "width: 75%";
+                                              $message_text = "75%";
+
+                                         }
+
+                                    }else if($r["project_program"] == "mothur_qiime"){
+                                         if($step_run == "1"){
+                                              $progress_width = "width: 50%";
+                                              $message_text = "50%";
+
+                                         }elseif($step_run == "2"){
+                                              $progress_width = "width: 75%";
+                                              $message_text = "75%";
+                                         }
+                                    }
+                                   
+                                 }else{
+                                     $color_text = "color:#0C0B0B";
+                                     $progress_width = "width: 0%";
+                                     $message_text = "NoStatus";
+                                 }
+                                 
+                             ?>
+                           
+
+                            <div class="progress progress-striped active">
+                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="<?php echo $progress_width?>" >
+                                 <span class="text-muted" style="<?php echo $color_text?>"><?=$message_text?></span>
                                  </div>
                             </div>
-                            <?php  $count++; }else{ ?>
 
-                                 <div class="progress progress-striped active">
-                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                                 <span class="pull-right text-muted" style="color:#FFFFFF">80%</span>
-                                 </div>
-                            </div>
-
-
-                            <?php   } ?>
 
                         </td>
                         <td align="center"><?php echo anchor("edit_project/edit_project/" . $r['_id'], "Edit", array('class' => 'btn btn-default btn-sm')) ?>

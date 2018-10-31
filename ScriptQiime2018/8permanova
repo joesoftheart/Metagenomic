@@ -1,0 +1,8 @@
+source /home/aum/miniconda3/envs/qiime2-2018.8/etc/conda/activate.d/*.sh
+export PATH=/home/aum/miniconda3/bin:$PATH
+export PATH=/home/aum/miniconda3/envs/qiime2-2018.8/bin:$PATH
+
+
+qiime diversity beta-group-significance --i-distance-matrix $2diversityAnalysisResults/$4_unifrac_distance_matrix.qza --m-metadata-file $1sample-metadata.tsv --m-metadata-column $3 --o-visualization $2diversityAnalysisResults/$4-unifrac-group-significance.qzv --p-pairwise
+
+

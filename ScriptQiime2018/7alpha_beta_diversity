@@ -1,0 +1,40 @@
+source /home/aum/miniconda3/envs/qiime2-2018.8/etc/conda/activate.d/*.sh
+export PATH=/home/aum/miniconda3/bin:$PATH
+export PATH=/home/aum/miniconda3/envs/qiime2-2018.8/bin:$PATH
+
+
+qiime diversity core-metrics-phylogenetic --i-phylogeny $25_rooted_tree.qza --i-table $24_table_nonchimeric.qza --p-sampling-depth $3 --m-metadata-file $1sample-metadata.tsv --output-dir $2diversityAnalysisResults
+
+
+#Create Visualization files
+
+qiime diversity alpha-group-significance --i-alpha-diversity $2diversityAnalysisResults/faith_pd_vector.qza --m-metadata-file $1sample-metadata.tsv --o-visualization $2diversityAnalysisResults/faith-pd-group-significance.qzv
+
+
+qiime diversity alpha-group-significance --i-alpha-diversity $2diversityAnalysisResults/evenness_vector.qza --m-metadata-file $1sample-metadata.tsv --o-visualization $2diversityAnalysisResults/evenness-group-significance.qzv
+
+
+qiime diversity alpha-group-significance --i-alpha-diversity $2diversityAnalysisResults/shannon_vector.qza --m-metadata-file $1sample-metadata.tsv --o-visualization $2diversityAnalysisResults/shannon_vector.qzv
+
+
+qiime diversity alpha-group-significance --i-alpha-diversity $2diversityAnalysisResults/observed_otus_vector.qza --m-metadata-file $1sample-metadata.tsv --o-visualization $2diversityAnalysisResults/observed_otus_vector.qzv
+
+
+#Alpha rarefaction plotting
+
+qiime diversity alpha-rarefaction --i-table $24_table_nonchimeric.qza --i-phylogeny $25_rooted_tree.qza --p-max-depth $3 --m-metadata-file $1sample-metadata.tsv --o-visualization $2diversityAnalysisResults/alpha-rarefaction.qzv
+
+
+#Generate PCoA Plot
+
+qiime emperor plot --i-pcoa $2diversityAnalysisResults/weighted_unifrac_pcoa_results.qza --m-metadata-file $1sample-metadata.tsv --o-visualization $2diversityAnalysisResults/weighted_unifrac_pcoa_results.qzv
+
+
+qiime emperor plot --i-pcoa $2diversityAnalysisResults/unweighted_unifrac_pcoa_results.qza --m-metadata-file $1sample-metadata.tsv --o-visualization $2diversityAnalysisResults/unweighted_unifrac_pcoa_results.qzv
+
+
+qiime emperor plot --i-pcoa $2diversityAnalysisResults/bray_curtis_pcoa_results.qza --m-metadata-file $1sample-metadata.tsv --o-visualization $2diversityAnalysisResults/bray_curtis_pcoa_results.qzv
+
+qiime emperor plot --i-pcoa $2diversityAnalysisResults/jaccard_pcoa_results.qza --m-metadata-file $1sample-metadata.tsv --o-visualization $2diversityAnalysisResults/jaccard_pcoa_results.qzv
+
+

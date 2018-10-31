@@ -496,10 +496,14 @@ if (isset($this->session->userdata['logged_in'])) {
              <div class="alert alert-info">
              <center>
 
-                  <button type="button" class="btn btn-info btn-circle btn-xl" id="btn_reports">
-                   <i class="fa fa-file-word-o"></i>
+
+                <a href="<?php echo site_url('Qiime_report/index/');?><?=$current_project?>" target="_blank">
+                 <button type="button" class="btn btn-info btn-circle btn-xl">
+                  <i class="fa fa-file-word-o"></i>
                  </button>
-                 <h4>  Report  </h4>
+                 </a>
+                <h4>  Report  </h4>
+
 
              </center>
             
@@ -570,6 +574,8 @@ if (isset($this->session->userdata['logged_in'])) {
                         var count = true;
                         var res = check_val.split("\t");
                         for (var i = 0; i < res.length - 1; i++) {
+                              console.log(res[i]);
+                              
                              if (res[i] == "") {count = false; }
                          }
                          if (count == false) {alert("Please insert value");
@@ -876,29 +882,6 @@ function on_switch(data_name){
         }
     });          
 }
-
-
-
-
-
-document.getElementById("btn_reports").onclick = function(){
-
-    location.href= "<?php echo site_url();?>Qiime_report/index/<?=$current_project?>";
-    // $.ajax({ 
-    //       type:"post",
-    //       datatype:"json",
-    //       url:"<?php echo base_url('ckprorun'); ?>",
-    //       data:{current:"<?=$current_project?>"},
-    //          success:function(data){
-    //             var chk = JSON.parse(data); 
-    //             if(chk == "t"){
-                             
-    //             }
-              
-    //         }         
-    //  });
-
-};
 
 
 

@@ -14,8 +14,7 @@ class All_projects extends CI_Controller
     {
         parent::__construct();
         $this->load->helper('url');
-        $CI = &get_instance();
-        $CI->load->library("session");
+        $this->load->library(array('session','Mongo_db'));
     }
 
     public function index()

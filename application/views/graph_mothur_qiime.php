@@ -206,6 +206,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
                           <p class="fa fa-bookmark"> &nbsp;&nbsp;jaccard </p> 
                           <center>
+                          <div class="table-responsive">  
                           <table class="table table-striped table-bordered table-hover" width="80%">
                           <?php   foreach ($jaccard as $value2) { ?>
 
@@ -221,12 +222,14 @@ if (isset($this->session->userdata['logged_in'])) {
                               
                           <?php  } ?>
                          </table>
+                         </div>
                          </center>
 
                            
                           <br/> 
                           <p class="fa fa-bookmark"> &nbsp;&nbsp;morisita</p> 
                           <center>
+                          <div class="table-responsive">  
                           <table class="table table-striped table-bordered table-hover" width="80%">
                           <?php   foreach ($moris as $value3) { ?>
 
@@ -242,6 +245,7 @@ if (isset($this->session->userdata['logged_in'])) {
                               
                           <?php  } ?>
                          </table>
+                         </div>
                          </center>
 
                           <br/> 

@@ -1,0 +1,24 @@
+source /home/aum/miniconda3/envs/qiime2-2018.8/etc/conda/activate.d/*.sh
+export PATH=/home/aum/miniconda3/bin:$PATH
+export PATH=/home/aum/miniconda3/envs/qiime2-2018.8/bin:$PATH
+
+
+
+#Generate a tree for phylogenetic diversity analyses
+
+qiime alignment mafft --i-sequences $1checkingChimera/4_rep_seq_nonchimeric.qza --o-alignment $15_aligned_rep_seq.qza
+
+
+#Run masking (or filtering) the alignment to remove positions that are highly variable
+
+qiime alignment mask --i-alignment $15_aligned_rep_seq.qza --o-masked-alignment $15_masked_aligned_rep_seq.qza
+
+
+#Run FastTree to generate a phylogenetic tree from the masked alignment
+
+qiime phylogeny fasttree --i-alignment $15_masked_aligned_rep_seq.qza --o-tree $15_unrooted_tree.qza
+
+
+#Adding Root
+
+qiime phylogeny midpoint-root --i-tree $15_unrooted_tree.qza --o-rooted-tree $15_rooted_tree.qza

@@ -73,10 +73,13 @@ if (isset($this->session->userdata['logged_in'])) {
                                         </select>
                                         <br>
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_program" id="qiime" value="qiime">Qiime
+                                            <input type="radio" name="project_program" id="qiime" value="qiime">Qiime1
                                         </label><br>
                                         <label class="radio-inline">
-                                            <input type="radio" name="project_program" id="mothur_qiime" value="mothur_qiime">Mothur + Qiime
+                                            <input type="radio" name="project_program" id="mothur_qiime" value="mothur_qiime">Mothur + Qiime1
+                                        </label><br>
+                                         <label class="radio-inline">
+                                            <input type="radio" name="project_program" id="qiime2" value="qiime2">Qiime2
                                         </label>
                                     </div>
 
@@ -296,6 +299,7 @@ if (isset($this->session->userdata['logged_in'])) {
         $('#proton_barcodes_fasta').attr("disabled",false);
         $('#proton_without').attr("disabled",false);
     });
+
     $('#qiime').on('change', function () {
         $('#program').addClass("hide");
         $('#miseq_barcodes_primers').attr("disabled",true);
@@ -308,6 +312,15 @@ if (isset($this->session->userdata['logged_in'])) {
         $('#proton_barcodes_fasta').attr("disabled",false);
         $('#proton_without').attr("disabled",false);
     });
+
+    $('#qiime2').on('change', function () {
+        $('#program').addClass("hide");
+        $('#platform_mi').attr("disabled",true);
+        $('#proton_barcodes_primers').attr("disabled",true);
+        $('#proton_barcodes_fasta').attr("disabled",true);
+    });
+
+
     
     $('#platform_mi').on('change', function () {
         $('#miseq').removeClass("hide");

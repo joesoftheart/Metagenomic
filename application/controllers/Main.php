@@ -12,15 +12,19 @@ class Main extends CI_Controller
 
     public function index()
     {
+      
+       if(isset($this->session->userdata['logged_in'])) {
+            $data['rs'] = $this->mongo_db->get_where('projects', array("user_id" => $this->session->userdata["logged_in"]["_id"]));
+            $this->load->view('header', $data);
+            $this->load->view('index', $data);
+            $this->load->view('footer');
+             
+        }else{
+            
+            redirect("main/login", "refresh");
+        }
 
-
-        ob_start();
-
-
-        $data['rs'] = $this->mongo_db->get_where('projects', array("user_id" => $this->session->userdata["logged_in"]["_id"]));
-        $this->load->view('header', $data);
-        $this->load->view('index', $data);
-        $this->load->view('footer');
+        
     }
 
     // Show login page

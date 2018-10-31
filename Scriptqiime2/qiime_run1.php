@@ -34,14 +34,24 @@
   $GLOBALS['check_options'] = $argv[21];
   
 
-  
-  #reNamePairedend($user,$project,$path_in,$path_out);
-  runPerl($user,$project,$path_in,$path_out);
-  
-  
+
+ checkproject_platform($user,$project,$path_in,$path_out);
+
+  function checkproject_platform($user,$project,$path_in,$path_out){
+
+       if($GLOBALS['project_platform_type'] == "proton_without"){
+
+           add_labels_fasta($user,$project,$path_in,$path_out);
+       }else{ 
+
+           
+           reNamePairedend($user,$project,$path_in,$path_out);
+           //runPerl($user,$project,$path_in,$path_out);
+       }
+  }
 
 
-  function reNamePairedend($user,$project,$path_in,$path_out){
+   function reNamePairedend($user,$project,$path_in,$path_out){
 
         $file_fastq = glob($path_in."*.fastq"); 
         foreach ($file_fastq as $key => $file) {
@@ -59,11 +69,13 @@
 
       runPerl($user,$project,$path_in,$path_out);
    }
+  
+  
 
  # 1
   function runPerl($user,$project,$path_in,$path_out){
 
- 	  echo "runPerl"."\n";
+ 	    echo "runPerl"."\n";
 
       $jobname = $user."_runPerl";
       $log = $GLOBALS['path_log'];
@@ -340,6 +352,75 @@
                    }
          }   
     }
+
+
+
+     function add_labels_fasta($user,$project,$path_in,$path_out){
+
+        echo "add_labels_fasta"."\n";
+
+          $option_i = $path_out."fasta_files/";
+          $option_m = $path_in."map.txt";
+          $option_o = $path_out."fasta_files/Processeddata/";
+
+          $folder_fasta_files = $path_out."fasta_files";   
+          if (!file_exists($folder_fasta_files)) {
+                mkdir($folder_fasta_files, 0777, true);
+          }
+      
+          $ref_fasta = array("gg_13_8_99.fasta",
+                           "silva.v4.fasta",
+                           "silva.bacteria.fasta",
+                           "silva.v123.fasta",
+                           "silva.v34.fasta",
+                           "silva.v345.fasta",
+                           "silva.v45.fasta",
+                           "trainset16_022016.rdp.fasta");
+
+          $path = "owncloud/data/$user/files/$project/input/";
+          $findfasta = glob($path."*.{fasta,fst}", GLOB_BRACE); 
+          foreach ($findfasta as $key => $file) {
+                $name_fasta = basename($file);
+
+                if(!in_array($name_fasta,$ref_fasta)){
+
+                  $paste_file = $folder_fasta_files."/".$name_fasta;
+                  copy($file,$paste_file);
+                }
+          }
+
+
+        $jobname = $user."_add_labels_fasta";
+        $log = $GLOBALS['path_log'];
+
+        $cmd = "qsub -N '$jobname' -o $log  -cwd -j y -b y Scriptqiime2/runqiime1 $option_i $option_m $option_o";
+
+
+         shell_exec($cmd);
+         $check_qstat = "qstat  -j '$jobname' ";
+         exec($check_qstat,$output);
+               
+         $id_job = "" ; # give job id 
+         foreach ($output as $key_var => $value ) {
+              
+                    if($key_var == "1"){
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }        
+         }
+         $loop = true;
+         while ($loop) {
+
+                   $check_run = exec("qstat -j $id_job");
+
+                   if($check_run == false){
+                      $loop = false;
+                      pick_open($user,$project,$path_in,$path_out);
+                   }
+         }   
+    }
+
+
 
    # 9
     function pick_open($user,$project,$path_in,$path_out){

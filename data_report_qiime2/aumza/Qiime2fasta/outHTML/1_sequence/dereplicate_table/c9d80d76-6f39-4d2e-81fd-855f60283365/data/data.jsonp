@@ -1,0 +1,1 @@
+app.init({"group":{"soilS3t1sub":"soilS3","soilS3t2sub":"soilS3","soilS1t1sub":"soilS1","soilS2t2sub":"soilS2","soilS2t1sub":"soilS2","soilS1t2sub":"soilS1"}}, {"soilS3t1sub":5091.0,"soilS3t2sub":5064.0,"soilS1t1sub":5060.0,"soilS2t2sub":5034.0,"soilS2t1sub":4998.0,"soilS1t2sub":4924.0});

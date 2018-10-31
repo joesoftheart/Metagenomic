@@ -200,11 +200,50 @@
                     break;
                 }
 
-            }elseif ($platform_type == "proton_without"){
+             }elseif ($platform_type == "proton_without"){
 
+                $findfasta = glob($path."*.{fasta,fst}", GLOB_BRACE); 
+                $name_list = array();
+                $namefasta_list = array();
 
-                # code... find file fasta
-            }  
+                foreach ($findfasta as $key => $file) {
+                    $name_fasta = basename($file);
+                    if(!in_array($name_fasta,$ref_fasta)){
+                        list($file_name,$file_extension) = explode(".",$name_fasta);
+                        array_push($name_list,$file_name);
+                        array_push($namefasta_list,$name_fasta);
+                    }
+                } 
+
+                # input name_list
+                $str_name_list = null;
+                $count_line = null;
+                $count_name_list = count($name_list);
+                foreach ($namefasta_list as $val) {
+                    $count_line++;
+                    if($count_line == $count_name_list){
+                         $str_name_list .= $val; 
+                    }else{
+                         $str_name_list .= $val."-";
+                    }
+                }
+
+                # input group_list
+                $group_name_list = null;
+                $count_line2 = null;
+                foreach ($name_list as $val_name) {
+                    $data_split = preg_split("/(_|-)/", $val_name);
+                    $count_line2++;
+                    if($count_line2 == $count_name_list){
+                        $group_name_list .= $data_split[0]; 
+                    }else{
+                        $group_name_list .= $data_split[0]."-";
+                    }  
+                }
+
+                #Run file fasta Ion Proton
+                 merge_make($user,$project,$path_in,$path_out,$str_name_list,$group_name_list);
+             }  
         }         
     }
 
@@ -546,7 +585,7 @@
         }
 
 
-# make.file  stability.files
+        # make.file  stability.files
         function run_makefile($user,$project,$path_in,$path_out,$file_oligo,$check){
 
                 echo "run_makefile" . "\n";
@@ -815,6 +854,51 @@
                 file_put_contents($file, $data_w);
                 screen_summary($user, $project, $path_in, $path_out);
             }
+
+         
+        # Run Ion Proton Fasta   
+        function merge_make($user,$project,$path_in,$path_out,$str_name_list,$group_name_list){
+
+             echo "merge_make" . "\n";
+             $jobname = $user . "_merge_make";
+             
+             $make = "merge.files(input=$str_name_list,output=stability.trim.contigs.fasta,inputdir=$path_in,outputdir=$path_out)
+                make.group(fasta=$str_name_list, groups=$group_name_list,inputdir=$path_in,outputdir=$path_out)
+                system(mv ".$path_out."mergegroups  ".$path_out."stability.contigs.groups ,outputdir=$path_out)
+                count.groups(group=stability.contigs.groups,inputdir=$path_out,outputdir=$path_out)
+                summary.seqs(fasta=stability.trim.contigs.fasta,processors=8,inputdir=$path_out,outputdir=$path_out)";
+
+                file_put_contents($path_in . 'advance.batch', $make);
+                $log = $GLOBALS['path_log'];
+                $cmd = "qsub  -N '$jobname' -o $log  -cwd -j y -b y Mothur/mothur $path_in/advance.batch";
+
+                shell_exec($cmd);
+                $check_qstat = "qstat  -j '$jobname' ";
+                exec($check_qstat, $output);
+
+                $id_job = ""; # give job id
+                foreach ($output as $key_var => $value) {
+
+                    if ($key_var == "1") {
+                        $data = explode(":", $value);
+                        $id_job = $data[1];
+                    }
+                }
+
+                $GLOBALS['log_make'] = $jobname.".o".trim($id_job);
+
+                $loop = true;
+                while ($loop) {
+                    $check_run = exec("qstat -j $id_job ");
+                     if ($check_run == false) {
+                        $loop = false;
+                        screen_summary($user, $project, $path_in, $path_out);
+                     }
+                }
+        }
+
+
+
 
 
 //////////////////////////////////////////////////
@@ -1388,7 +1472,7 @@ function write_file_database($user,$project){
       $log_classify = $path.$user."_classifly_removelineage_summary.o".$GLOBALS['log_classify'];
       $log_phylotype = $path.$user."_phylotype_make_class_count.o".$GLOBALS['log_phylotype'];
 
-      
+     
       #Log makesummary
       $file = file_get_contents($log_make);
       $pattern = "/^.*(Start|Minimum|2.5%-tile|25%-tile|Median|75%-tile|97.5%-tile|Maximum|Mean).*\$/m";

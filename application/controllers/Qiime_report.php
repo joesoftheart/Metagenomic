@@ -105,18 +105,26 @@ Class Qiime_report extends CI_Controller{
         $projects_name = null;
         $date_time = null;
         $project_type = null;
+        $project_group_sam = null;
 
         $read = $this->mongo_db->get_where('projects', array('_id' => new \MongoId($id_project)));
         foreach ($read as $key => $value) {
             $projects_name = $value['project_name'];
             $date_time = $value['project_date_time'];
-            $project_type = $value['project_type'];
+            $project_type = $value['project_platform_type'];
+            $project_group_sam = $value['project_group_sam'];
             
         }
 
         $file_table_log = "data_report_qiime/$user/$projects_name/file_report/table_log.txt";
         if(!file_exists($file_table_log)){
-            $this->detail_table_log($user,$projects_name);
+
+            if($project_type == "proton_without"){
+                 $this->detail_table_log_fasta($user,$projects_name);
+            }else{
+                $this->detail_table_log($user,$projects_name);
+            }
+            
         }
 
         $file_min = "data_report_qiime/$user/$projects_name/file_report/min.txt";
@@ -131,6 +139,7 @@ Class Qiime_report extends CI_Controller{
         $data['user'] = $user;
         $data['project_name'] = $projects_name;
         $data['project_type'] = $project_type;
+        $data['project_group_sam'] = $project_group_sam;
        
         $data['day'] = $day;
         $data['time'] = $time;
@@ -512,6 +521,120 @@ Class Qiime_report extends CI_Controller{
             $colum = 0;
             foreach ($variable as  $value) {
                if($colum <= 3){
+                    $log = $value."\t";
+                    array_push($table_data,$log);
+               }else{
+                    $log = $value."\n";
+                    array_push($table_data,$log);
+               }
+               $colum++;
+              
+            } 
+        }
+
+        $path_log = "data_report_qiime/$user/$projects_name/file_report/table_log.txt";
+        $file_log = FCPATH.$path_log;
+        file_put_contents($file_log,$table_data); 
+
+    }
+
+
+
+     public function detail_table_log_fasta($user,$projects_name){
+
+
+
+        $log_data = array();
+
+        # colum Header
+        $log_data[0][0] =  "Samples name";
+        //$log_data[0][1] =  "No. of reads in rawdata after assembly";
+        // $log_data[0][2] =  "No. of reads after filter quality";
+        $log_data[0][1] =  "No. of reads after removing chimera";
+        $log_data[0][2] =  "No. of cleaned reads for OTUs analysis";
+
+
+        # column 1
+        $sample_name = "data_report_qiime/$user/$projects_name/file_report/sampleName.txt";
+        $read = fopen($sample_name,"r") or die ("Unable to open file");
+        $count = 1;
+            while(($line = fgets($read)) !== false){
+                 $val_name = explode("\t", trim($line));
+                 foreach ($val_name as $key => $value){
+
+                         $log_data[$count][0] =  trim($value);
+                         
+                   $count++;    
+                 }
+              
+             }
+        fclose($read);
+
+
+        // # column 2 && column 3
+        // $read_filter = "data_report_qiime/$user/$projects_name/file_report/read_filter.log";
+        // $read2 = fopen($read_filter,"r") or die ("Unable to open file");
+        // $count2 = 0;
+        //     while(($line2 = fgets($read2)) !== false){
+
+        //        if($count2 >= 1){
+
+        //            $value = explode("\t", trim($line2));
+        //            $log_data[$count2][1] =  trim($value[1]);
+        //            $log_data[$count2][2] =  trim($value[6]);
+        //        }
+               
+        //        $count2++;
+        //      }
+        // fclose($read2);
+   
+         
+     
+        # column 4
+        $chimeras_summary = "data_report_qiime/$user/$projects_name/file_report/otu_table_mc2_w_tax_no_pynast_failures_no_chimeras_summary.txt";
+
+         $read3 = fopen($chimeras_summary,"r") or die ("Unable to open file");
+         $count3 = 0;
+         
+            while(($line3 = fgets($read3)) !== false){
+                if($count3 >= 15){
+
+                    $val3 = explode(":", trim($line3));
+                    $index_val = $this->searchForId($val3[0],$log_data);
+                    $log_data[$index_val][1] =  floor($val3[1]); 
+
+                 }
+               
+               $count3++;
+             }
+        fclose($read3);
+   
+        
+
+        # column 5
+         $filtered_summary = "data_report_qiime/$user/$projects_name/file_report/otu_table_mc2_w_tax_no_pynast_failures_no_chimeras_frequency_filtered_summary.txt";
+
+         $read4 = fopen($filtered_summary,"r") or die ("Unable to open file");
+         $count4 = 0;
+
+            while(($line4 = fgets($read4)) !== false){
+                if($count4 >= 15){
+                    $val4 = explode(":", trim($line4));
+                    $index_val = $this->searchForId($val4[0],$log_data);
+                    $log_data[$index_val][2] =  floor($val4[1]); 
+
+
+                }
+                $count4++;
+            }
+         fclose($read4);
+
+
+        $table_data = array();
+        foreach ($log_data as $variable) {
+            $colum = 0;
+            foreach ($variable as  $value) {
+               if($colum <= 1){
                     $log = $value."\t";
                     array_push($table_data,$log);
                }else{
